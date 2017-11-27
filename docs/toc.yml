@@ -1,0 +1,145 @@
+- name: Centro architetture Azure
+  href: index.md
+- name: Guida all'architettura delle applicazioni
+  href: guide/index.md
+  items:
+    - name: Stili di architettura
+      href: guide/architecture-styles/index.md
+    - name: Scelte di tecnologia
+      href: guide/technology-choices/index.md
+      items: null
+    - name: Principi di progettazione
+      href: guide/design-principles/index.md
+    - name: Punti chiave della qualità del software
+      href: guide/pillars.md
+    - name: Modelli di progettazione
+      href: patterns/index.md?toc=/azure/architecture/guide/toc.json
+- name: Architetture di riferimento
+  href: reference-architectures/index.md
+  items:
+    - name: Gestione delle identità
+      href: reference-architectures/identity/index.md
+    - name: Rete ibrida
+      href: reference-architectures/hybrid-networking/index.md
+    - name: Applicazione web del Servizio app
+      href: reference-architectures/app-service-web-app/index.md
+    - name: Rete perimetrale
+      href: reference-architectures/dmz/index.md
+    - name: SAP NetWeaver e SAP HANA
+      href: reference-architectures/sap/index.md
+    - name: SharePoint Server 2016
+      href: reference-architectures/sharepoint/index.md
+    - name: Carichi di lavoro della macchina virtuale (Linux)
+      href: reference-architectures/virtual-machines-linux/index.md
+    - name: Carichi di lavoro della macchina virtuale (Windows)
+      href: reference-architectures/virtual-machines-windows/index.md
+- name: Modelli di progettazione cloud
+  href: patterns/index.md
+  items:
+    - name: Modelli di disponibilità
+      href: patterns/category/availability.md
+    - name: Modelli di gestione dei dati
+      href: patterns/category/data-management.md
+    - name: Modelli di progettazione e implementazione
+      href: patterns/category/design-implementation.md
+    - name: Modelli di gestione e monitoraggio
+      href: patterns/category/management-monitoring.md
+    - name: Modelli di messaggistica
+      href: patterns/category/messaging.md
+    - name: Modelli di prestazioni e scalabilità
+      href: patterns/category/performance-scalability.md
+    - name: Modelli di resilienza
+      href: patterns/category/resiliency.md
+    - name: Modelli di protezione
+      href: patterns/category/security.md
+- name: Procedure consigliate
+  items:
+    - name: Progettazione di API
+      href: best-practices/api-design.md
+    - name: Implementazione di API
+      href: best-practices/api-implementation.md
+    - name: Scalabilità automatica
+      href: best-practices/auto-scaling.md
+    - name: Processi in background
+      href: best-practices/background-jobs.md
+    - name: Memorizzazione nella cache
+      href: best-practices/caching.md
+    - name: Rete per la distribuzione di contenuti (CDN)
+      href: best-practices/cdn.md
+    - name: Partizionamento dei dati
+      href: best-practices/data-partitioning.md
+    - name: Monitoraggio e diagnostica
+      href: best-practices/monitoring.md
+    - name: Convenzioni di denominazione
+      href: best-practices/naming-conventions.md
+    - name: Gestione degli errori temporanei
+      href: best-practices/transient-faults.md
+    - name: Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
+      href: best-practices/retry-service-specific.md
+- name: Antipattern delle prestazioni
+  href: antipatterns/index.md
+  items:
+    - name: Database occupato
+      href: antipatterns/busy-database/index.md
+    - name: Front-end occupato
+      href: antipatterns/busy-front-end/index.md
+    - name: I/O "frammentato"
+      href: antipatterns/chatty-io/index.md
+    - name: Recupero estraneo
+      href: antipatterns/extraneous-fetching/index.md
+    - name: Creazione di istanze non corretta
+      href: antipatterns/improper-instantiation/index.md
+    - name: Persistenza monolitica
+      href: antipatterns/monolithic-persistence/index.md
+    - name: Nessuna memorizzazione nella cache
+      href: antipatterns/no-caching/index.md
+    - name: I/O sincrono
+      href: antipatterns/synchronous-io/index.md
+- name: Elenco di controllo per l'analisi della progettazione
+  items:
+    - name: Disponibilità
+      href: checklist/availability.md
+    - name: DevOps
+      href: checklist/dev-ops.md
+    - name: Resilienza
+      href: checklist/resiliency.md
+    - name: Scalabilità
+      href: checklist/scalability.md
+- name: Progettare per la resilienza
+  items:
+    - name: Progettazione di applicazioni resilienti
+      href: resiliency/index.md
+    - name: Elenco di controllo per la resilienza
+      href: checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: Analisi della modalità di errore
+      href: resiliency/failure-mode-analysis.md
+- name: Guide relative agli scenari
+  items:
+    - name: Azure per i professionisti AWS
+      href: aws-professional/index.md
+    - name: Gestire le identità nelle applicazioni multi-tenant
+      href: multitenant-identity/index.md
+    - name: Eseguire la migrazione da Servizi cloud a Service Fabric
+      href: service-fabric/migrate-from-cloud-services.md
+    - name: Eseguire Elasticsearch in Azure
+      href: elasticsearch/index.md
+    - name: Estendere le funzionalità dei modelli di Azure Resource Manager
+      href: building-blocks/extending-templates/index.md
+- name: Risorse
+  items:
+    - name: Roadmap per Azure
+      href: 'https://azure.microsoft.com/roadmap/'
+    - name: Centro protezione Microsoft per Azure
+      href: 'https://www.microsoft.com/en-us/trustcenter/cloudservices/azure'
+    - name: Icone e diagrammi
+      href: resources/diagrams.md
+    - name: Calendario degli aggiornamenti di Azure
+      href: 'https://azure.microsoft.com/updates/'
+    - name: Formazione
+      href: 'https://azure.microsoft.com/community/training/'
+    - name: Blog SQLCAT
+      href: 'https://blogs.msdn.microsoft.com/sqlcat/'
+    - name: Blog AzureCAT
+      href: 'https://blogs.msdn.microsoft.com/azurecat/'
+    - name: White paper
+      href: 'https://azure.microsoft.com/resources/whitepapers/'

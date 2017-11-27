@@ -1,0 +1,26 @@
+- name: Centro architetture Azure
+  href: /azure/architecture
+- name: Procedure consigliate
+  items:
+    - name: Progettazione di API
+      href: api-design.md
+    - name: Implementazione di API
+      href: api-implementation.md
+    - name: Scalabilità automatica
+      href: auto-scaling.md
+    - name: Processi in background
+      href: background-jobs.md
+    - name: Memorizzazione nella cache
+      href: caching.md
+    - name: Rete per la distribuzione di contenuti (CDN)
+      href: cdn.md
+    - name: Partizionamento dei dati
+      href: data-partitioning.md
+    - name: Monitoraggio e diagnostica
+      href: monitoring.md
+    - name: Convenzioni di denominazione
+      href: naming-conventions.md
+    - name: Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
+      href: retry-service-specific.md
+    - name: Gestione degli errori temporanei
+      href: transient-faults.md

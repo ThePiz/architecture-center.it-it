@@ -1,0 +1,30 @@
+- name: Centro architetture Azure
+  href: /azure/architecture
+- name: Gestire le identità nelle applicazioni multi-tenant
+  items:
+    - name: Introduzione
+      href: index.md
+    - name: Lo scenario Tailspin
+      href: tailspin.md
+    - name: Autenticazione
+      href: authenticate.md
+    - name: Identità basata sulle attestazioni
+      href: claims.md
+    - name: Iscrizione del tenant
+      href: signup.md
+    - name: Ruoli applicazione
+      href: app-roles.md
+    - name: Authorization
+      href: authorize.md
+    - name: Proteggere un'API Web
+      href: web-api.md
+    - name: Memorizzare nella cache i token di accesso
+      href: token-cache.md
+    - name: Asserzione del client
+      href: client-assertion.md
+    - name: Proteggere i segreti dell'applicazione
+      href: key-vault.md
+    - name: Federazione con AD FS di un cliente
+      href: adfs.md
+    - name: Eseguire l'applicazione Surveys
+      href: run-the-app.md
