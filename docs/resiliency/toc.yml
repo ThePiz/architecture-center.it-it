@@ -1,0 +1,24 @@
+- name: Centro architetture Azure
+  href: /azure/architecture
+- name: Progettare per la resilienza
+  items:
+    - name: Progettazione di applicazioni resilienti
+      href: index.md
+    - name: Elenco di controllo per la resilienza
+      href: ../checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: Analisi della modalità di errore
+      href: failure-mode-analysis.md
+    - name: Materiale sussidiario aggiuntivo
+      items:
+        - name: Ripristino di emergenza
+          href: disaster-recovery-azure-applications.md
+        - name: Disponibilità elevata
+          href: high-availability-azure-applications.md
+        - name: Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati
+          href: recovery-data-corruption.md
+        - name: Ripristino da errori locali
+          href: recovery-local-failures.md
+        - name: Ripristino dopo un'interruzione di servizio a livello di area
+          href: recovery-loss-azure-region.md
+        - name: Ripristino dall'ambiente locale ad Azure
+          href: recovery-on-premises-azure.md
