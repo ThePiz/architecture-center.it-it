@@ -5,11 +5,11 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 251489e7a6d78d82f3ed70ca2df6c88f8759f9a5
-ms.sourcegitcommit: fbcf9a1c25db13b2627a8a58bbc985cd01ea668d
+ms.openlocfilehash: 75fda82ee5ca7ca3665501fe428d1d01995e7422
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -21,7 +21,7 @@ Si apprenderà come:
 * Struttura delle soluzioni disponibili in Azure.
 * Differenze tra i principali servizi di Azure e i servizi AWS.
 
- Nel tempo, Azure e AWS hanno creato le proprie funzionalità in modo indipendente e oggi di conseguenza presentano importanti differenze di progettazione e implementazione.
+Nel tempo, Azure e AWS hanno creato le proprie funzionalità in modo indipendente e oggi di conseguenza presentano importanti differenze di progettazione e implementazione.
 
 ## <a name="overview"></a>Panoramica
 
@@ -62,7 +62,7 @@ I limiti possono essere aumentati fino al valore massimo inviando [una richiesta
 
 Il termine "risorsa" viene usato in Azure e in AWS per indicare qualsiasi istanza di calcolo, oggetto di archiviazione, dispositivo di rete o altre entità che è possibile creare o configurare all'interno della piattaforma.
 
-Le risorse di Azure vengono distribuite e gestite usando uno dei due modelli: il modello di Azure Resource Manager o il [modello di distribuzione classica](/azure/azure-resource-manager/resource-manager-deployment-model).
+Le risorse di Azure vengono distribuite e gestite usando uno dei due modelli: il modello di [Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) o il [modello di distribuzione classica](/azure/azure-resource-manager/resource-manager-deployment-model) meno recente di Azure.
 Ogni nuova risorsa viene creata con il modello di Azure Resource Manager.
 
 ### <a name="resource-groups"></a>Gruppi di risorse
@@ -166,7 +166,7 @@ Sebbene i tipi di istanze AWS e le dimensioni delle macchine virtuali di Azure a
 
 A differenza della fatturazione al secondo di AWS, le macchine virtuali su richiesta di Azure hanno una fatturazione al minuto.
 
-In Azure non sono presenti elementi equivalenti alle istanze Spot, istanze riservate o host dedicati di Amazon EC2.
+In Azure non sono presenti elementi equivalenti alle istanze Spot o agli host dedicati di EC2.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS e Archiviazione di Azure per i dischi della macchina virtuale
 
@@ -232,16 +232,18 @@ Nella piattaforma AWS, l'archiviazione nel cloud è sostanzialmente suddivisa in
 In Archiviazione di Azure, [gli account di archiviazione](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/) associati a una sottoscrizione consentono di creare e gestire i servizi di archiviazione seguenti:
 
 -   [Archiviazione BLOB](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/): può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. Può essere impostata per l'accesso privato o per condividere contenuto pubblico su Internet. Archiviazione BLOB ha le stesse finalità di AWS S3 ed EBS.
-
 -   [Archiviazione tabelle](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/): archivia set di dati strutturati. L'archiviazione tabelle usa un archivio dati chiave-attributo NoSQL, che consente lo sviluppo e l'accesso rapido a grandi quantità di dati. È simile ai servizi SimpleDB e DynamoDB di AWS.
 
 -   [Archiviazione code](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/): offre un sistema di messaggistica per l'elaborazione del flusso di lavoro e per la comunicazione tra componenti dei servizi cloud.
 
 -   [Archiviazione file](https://azure.microsoft.com/documentation/articles/storage-java-how-to-use-file-storage/): offre un'archiviazione condivisa per le applicazioni che usano il protocollo standard Server Message Block (SMB). L'archiviazione file viene usata in modo analogo a EFS nella piattaforma AWS.
 
-#### <a name="glacier-and-azure-storage"></a>Glacier e Archiviazione di Azure
 
-In Archiviazione di Azure non è disponibile un equivalente diretto di Glacier, il sistema di archiviazione a lungo termine di AWS. Il [livello di archiviazione ad accesso sporadico di Azure](https://azure.microsoft.com/documentation/articles/storage-blob-storage-tiers/) è ottimizzato per l'archiviazione di dati di lunga durata a cui si accede raramente.
+
+
+ 
+#### <a name="glacier-and-azure-storage"></a>Glacier e Archiviazione di Azure 
+L'[archivio di Archiviazione di Azure Standard](/azure/storage/blobs/storage-blob-storage-tiers) offre un equivalente diretto per l'archiviazione Glacier a lungo termine di AWS. Il [livello di archiviazione ad accesso sporadico di Azure](/azure/storage/blobs/storage-blob-storage-tiers) è ottimizzato per l'archiviazione di dati di lunga durata a cui si accede raramente.
 L'archiviazione sporadica è più economica e con prestazioni inferiori rispetto all'archiviazione BLOB standard e può essere paragonata ad Amazon S3 Standard – Infrequent Access.
 
 #### <a name="see-also"></a>Vedere anche
@@ -284,13 +286,17 @@ Azure consente di ottenere connessioni dedicate da sito a sito tramite il serviz
 
 ### <a name="database-services"></a>Servizi di database
 
-#### <a name="rds-and-azure-sql-database-service"></a>RDS e servizio database SQL di Azure
+#### <a name="rds-and-azure-relational-database-services"></a>RDS e servizi di database relazionali di Azure
 
-AWS e Azure hanno approcci diversi in termini di offerte di database relazionali nel cloud. Relational Database Service (RDS) di AWS supporta la creazione di istanze usando numerosi motori di database come Oracle e MySQL.
+Azure offre diversi servizi di database relazionali equivalenti a RDS (Relational Database Service) di AWS.
 
-[Database SQL](https://azure.microsoft.com/documentation/articles/sql-database-technical-overview/) è il servizio offerto da Azure per i database cloud. Tramite un servizio gestito, offre archiviazione dei dati relazionali altamente scalabile. Database SQL usa il proprio motore e non supporta la creazione di altri tipi di database. È possibile distribuire altri motori di database, ad esempio [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/), [Oracle](https://azure.microsoft.com/campaigns/oracle/) o [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) tramite le istanze di macchine virtuali di Azure.
+-   [Database SQL](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
+-   [Database di Azure per MySQL](https://docs.microsoft.com/azure/mysql/overview)
+-   [Database di Azure per PostgreSQL](https://docs.microsoft.com/azure/postgresql/overview)
 
-I costi di RDS di AWS sono determinati dalla quantità di risorse hardware consumate dall'istanza, ad esempio CPU, RAM, archiviazione e larghezza di banda di rete. I costi del servizio di database SQL dipendono dalla dimensione del database, dalle connessioni simultanee e dai livelli di velocità effettiva.
+È possibile distribuire altri motori di database, ad esempio [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/), [Oracle](https://azure.microsoft.com/campaigns/oracle/) e [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) tramite le istanze di macchine virtuali di Azure.
+
+I costi di RDS di AWS sono determinati dalla quantità di risorse hardware consumate dall'istanza, ad esempio CPU, RAM, archiviazione e larghezza di banda di rete. Nei servizi di database di Azure i costi dipendono dalla dimensione del database, dalle connessioni simultanee e dai livelli di velocità effettiva.
 
 #### <a name="see-also"></a>Vedere anche
 
