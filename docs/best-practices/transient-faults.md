@@ -4,11 +4,11 @@ description: Indicazioni su come implementare un meccanismo di ripetizione dei t
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 05558abad8938788d09caa5df8b1f088ce3b5bdc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9562e3447b2219fe2f3df96cfca24b845efa39b0
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="transient-fault-handling"></a>Gestione degli errori temporanei
 
@@ -93,7 +93,7 @@ Le linee guida seguenti consentono di definire un meccanismo di gestione degli e
 * **Altre considerazioni**
   
   * Quando si scelgono i valori relativi al numero di ripetizioni dei tentativi e agli intervalli tra tentativi per  criteri, è necessario valutare se l'operazione eseguita sul servizio o sulla risorsa fa parte di un'operazione di lunga durata o articolata in più fasi. Può essere difficile o dispendioso controbilanciare tutte le altre fasi operative che hanno già avuto esito positivo quando una fase non viene completata. In questo caso, un intervallo molto lungo e un numero elevato di tentativi può essere accettabile, purché non impedisca l'esecuzione di altre operazioni bloccando le risorse.
-  * Valutare se la ripetizione della stessa operazione può causare incoerenze nei dati. Se alcune parti di un processo in più fasi vengono ripetute e le operazioni non sono idempotenti, può verificarsi un'incoerenza. Ad esempio, se un'operazione incrementa un valore e viene ripetuta, genererà un risultato non valido. La ripetizione di un'operazione che invia un messaggio a una coda può causare un'incoerenza nel consumer di messaggi se non riesce a rilevare i messaggi duplicati. Per evitare questo problema, assicurarsi di progettare ogni fase come un'operazione idempotente. Per altre informazioni sull'idempotenza, vedere il post di blog relativo ai [modelli di idempotenza](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/).
+  * Valutare se la ripetizione della stessa operazione può causare incoerenze nei dati. Se alcune parti di un processo in più fasi vengono ripetute e le operazioni non sono idempotenti, può verificarsi un'incoerenza. Ad esempio, se un'operazione incrementa un valore e viene ripetuta, genererà un risultato non valido. La ripetizione di un'operazione che invia un messaggio a una coda può causare un'incoerenza nel consumer di messaggi se non riesce a rilevare i messaggi duplicati. Per evitare questo problema, assicurarsi di progettare ogni fase come un'operazione idempotente. Per altre informazioni sull'idempotenza, vedere [Idempotency Patterns][idempotency-patterns] (Modelli di idempotenza).
   * Valutare l'ambito delle operazioni per cui verrà ripetuto il tentativo di esecuzione. Ad esempio, potrebbe essere più facile implementare il codice di ripetizione dei tentativi a un livello che include più operazioni e quindi ripeterle tutte se qualcuna ha esito negativo. Tuttavia, questa operazione può causare problemi di idempotenza o operazioni di rollback non necessarie.
   * Se si sceglie un ambito che comprende più operazioni, è opportuno prendere in considerazione la latenza totale di tutte le operazioni nel determinare gli intervalli tra tentativi, nel monitorare il tempo impiegato e prima di generare avvisi per gli errori.
   * Valutare come le strategia di ripetizione dei tentativi può influire sui vicini e su altri tenant in un'applicazione condivisa o quando si usano risorse e servizi condivisi. L'adozione di criteri aggressivi di ripetizione dei tentativi possono causare un numero crescente di errori temporanei si verifichi per gli altri utenti e per le applicazioni che condividono le risorse e i servizi. Analogamente, l'applicazione può essere influenzata dai criteri di ripetizione dei tentativi implementati da altri utenti dei servizi e delle risorse. Per le applicazioni mission-critical, è possibile decidere di usare servizi premium non condivisi. Ciò consente un maggiore controllo sul carico e la conseguente limitazione delle richieste di tali risorse e servizi, giustificando così il costo aggiuntivo.
@@ -103,5 +103,7 @@ Le linee guida seguenti consentono di definire un meccanismo di gestione degli e
 * [Blocco di applicazioni per la gestione degli errori temporanei](http://msdn.microsoft.com/library/hh680934.aspx)
 * [Modello di interruttore](http://msdn.microsoft.com/library/dn589784.aspx)
 * [Modello di transazioni di compensazione](http://msdn.microsoft.com/library/dn589804.aspx)
-* [Modelli di idempotenza](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/)
+* [Idempotency Patterns][idempotency-patterns] (Modelli di idempotenza)
+
+[idempotency-patterns]: http://blog.jonathanoliver.com/idempotency-patterns/
 

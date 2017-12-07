@@ -2,15 +2,15 @@
 title: "Eseguire macchine virtuali Linux per un'applicazione a più livelli in Azure"
 description: "Come eseguire macchine virtuali Linux per un'architettura a più livelli in Microsoft Azure."
 author: MikeWasson
-ms.date: 11/22/2016
+ms.date: 11/22/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: 673e090e306ffc421603371658c8273b10b980d4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 98814685e0f33f2a1258bf8307a86f92d8a81968
+ms.sourcegitcommit: 583e54a1047daa708a9b812caafb646af4d7607b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/28/2017
 ---
 # <a name="run-linux-vms-for-an-n-tier-application"></a>Eseguire macchine virtuali Linux per un'applicazione a più livelli
 
@@ -24,7 +24,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 È possibile implementare un'architettura a più livelli in diversi modi. Il diagramma mostra una tipica applicazione Web a 3 livelli. Questa architettura è basata sull'architettura descritta in [Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità][multi-vm]. I livelli Web e business usano macchine virtuali con carico bilanciato.
 
-* **Set di disponibilità.** Creare un [set di disponibilità][azure-availability-sets] per ogni livello ed eseguire il provisioning di almeno due macchine virtuali in ogni livello.  In questo modo le macchine virtuali sono idonee per un [contratto di servizio][vm-sla] di livello superiore.
+* **Set di disponibilità.** Creare un [set di disponibilità][azure-availability-sets] per ogni livello ed eseguire il provisioning di almeno due macchine virtuali in ogni livello.  In questo modo le macchine virtuali sono idonee per un [contratto di servizio][vm-sla] di livello superiore. È possibile distribuire una singola macchina virtuale in un set di disponibilità, ma questa macchina virtuale non si qualificherà per la garanzia del contratto di servizio a meno che non usi Archiviazione Premium di Azure per tutti i dischi dati e del sistema operativo.  
 * **Subnet.** Creare una subnet separata per ogni livello. Specificare l'intervallo di indirizzi e la subnet mask usando la notazione [CIDR]. 
 * **Servizi di bilanciamento del carico.** Usare un [servizio di bilanciamento del carico con connessione Internet][load-balancer-external] per distribuire il traffico Internet in entrata al livello Web e un [servizio di bilanciamento del carico interno][load-balancer-internal] per distribuire il traffico di rete dal livello Web al livello business.
 * **Jumpbox.** Detto anche [bastion host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete (NSG) che consente il traffico remoto solo da Indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. Il gruppo di sicurezza di rete deve consentire il traffico SSH (Secure Shell).
@@ -113,31 +113,59 @@ Per semplificare la gestione dell'intero sistema, usare strumenti di amministraz
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una distribuzione di questa architettura è disponibile in [GitHub][github-folder]. L'architettura viene distribuita in tre fasi. Per distribuire l'architettura, seguire questi passaggi: 
+Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. 
 
-1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fvirtual-machines%2Fn-tier-linux%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. Dopo avere aperto il collegamento nel portale di Azure, immettere i valori seguenti: 
-   * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-ntier-cassandra-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
-3. Nelle notifiche del portale di Azure verificare se è presente un messaggio che informa che la distribuzione è completata.
-4. I file dei parametri includono un nome utente e una password amministratore hardcoded. È consigliabile cambiarli immediatamente in tutte le macchine virtuali. Fare clic su ogni macchina virtuale nel portale di Azure, quindi fare clic su **Reimposta password** nel pannello **Supporto e risoluzione dei problemi**. Selezionare **Reimposta password** nella casella di riepilogo a discesa **Modalità**, quindi selezionare un nuovo **nome utente** e una nuova **password**. Fare clic sul pulsante **Aggiorna** per rendere permanenti il nuovo nome utente e la nuova password.
+### <a name="prerequisites"></a>Prerequisiti
+
+Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
+
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento AzureCAT][ref-arch-repo].
+
+2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per installare l'interfaccia della riga di comando, seguire le istruzioni in [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
+
+3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
+
+  ```bash
+  npm install -g @mspnp/azure-building-blocks
+  ```
+
+4. Da un prompt dei comandi, di Bash o di PowerShell accedere al proprio account di Azure usando uno dei comandi riportati di seguito e seguire le istruzioni.
+
+  ```bash
+  az login
+  ```
+
+### <a name="deploy-the-solution-using-azbb"></a>Distribuire la soluzione mediante azbb
+
+Per distribuire le macchine virtuali Linux per un'architettura di riferimento per applicazioni a più livelli, seguire questi passaggi:
+
+1. Passare alla cartella `virtual-machines\n-tier-linux` per il repository clonato nel passaggio 1 dei prerequisiti nella sezione precedente.
+
+2. Il file di parametri specifica un nome utente amministratore predefinito e una password per ogni macchina virtuale nella distribuzione. È necessario modificare questi elementi prima di distribuire l'architettura di riferimento. Aprire il file `n-tier-linux.json` e sostituire ogni campo **adminUsername** e **adminPassword** con le nuove impostazioni.   Salvare il file.
+
+3. Distribuire l'architettura di riferimento usando lo strumento da riga di comando **azbb**, come mostrato di seguito.
+
+  ```bash
+  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
+  ```
+
+Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio usando blocchi predefiniti di Azure, visitare il [repository GitHub][git].
 
 <!-- links -->
 [multi-dc]: multi-region-application.md
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-vm]: ./multi-vm.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
-
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-linux-manage-availability
+[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [bastion host]: https://en.wikipedia.org/wiki/Bastion_host
 [cassandra-in-azure]: https://docs.datastax.com/en/datastax_enterprise/4.5/datastax_enterprise/install/installAzure.html
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
 [chef]: https://www.chef.io/solutions/azure/
 [datastax]: http://www.datastax.com/products/datastax-enterprise
+[git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-linux
 [lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
 [lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
@@ -150,6 +178,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github-folde
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [indirizzo IP pubblico]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
+[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx

@@ -6,11 +6,11 @@ ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: f3c375f8fccc633d9525a8afbd11c13037265f4a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e25d10d661ac4759f209bd27384303dee2ee454e
+ms.sourcegitcommit: 583e54a1047daa708a9b812caafb646af4d7607b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/28/2017
 ---
 # <a name="run-windows-vms-for-an-n-tier-application"></a>Eseguire macchine virtuali Windows per un'applicazione a più livelli
 
@@ -24,7 +24,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 È possibile implementare un'architettura a più livelli in diversi modi. Il diagramma mostra una tipica applicazione Web a 3 livelli. Questa architettura è basata sull'architettura descritta in [Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità][multi-vm]. I livelli Web e business usano macchine virtuali con carico bilanciato.
 
-* **Set di disponibilità.** Creare un [set di disponibilità][azure-availability-sets] per ogni livello ed eseguire il provisioning di almeno due macchine virtuali in ogni livello. In questo modo le macchine virtuali sono idonee per un [contratto di servizio][vm-sla] di livello superiore.
+* **Set di disponibilità.** Creare un [set di disponibilità][azure-availability-sets] per ogni livello ed eseguire il provisioning di almeno due macchine virtuali in ogni livello. In questo modo le macchine virtuali sono idonee per un [contratto di servizio][vm-sla] di livello superiore. È possibile distribuire una singola macchina virtuale in un set di disponibilità, ma questa macchina virtuale non si qualificherà per la garanzia del contratto di servizio a meno che non usi Archiviazione Premium di Azure per tutti i dischi dati e del sistema operativo.  
 * **Subnet.** Creare una subnet separata per ogni livello. Specificare l'intervallo di indirizzi e la subnet mask usando la notazione [CIDR]. 
 * **Servizi di bilanciamento del carico.** Usare un [servizio di bilanciamento del carico con connessione Internet][load-balancer-external] per distribuire il traffico Internet in entrata al livello Web e un [servizio di bilanciamento del carico interno][load-balancer-internal] per distribuire il traffico di rete dal livello Web al livello business.
 * **Jumpbox.** Detto anche [bastion host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete (NSG) che consente il traffico remoto solo da Indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. L'NSG dovrebbe consentire il traffico RDP (Remote Desktop Protocol).
@@ -128,33 +128,50 @@ Per semplificare la gestione dell'intero sistema, usare strumenti di amministraz
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una distribuzione di questa architettura è disponibile in [GitHub][github-folder]. L'architettura viene distribuita in tre fasi. Per distribuire l'architettura, seguire questi passaggi: 
+Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. 
 
-1. Fare clic sul pulsante seguente per iniziare la prima fase della distribuzione:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fvirtual-machines%2Fn-tier-windows%2FvirtualNetwork.azuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. Dopo avere aperto il collegamento nel portale di Azure, immettere i valori seguenti: 
-   * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-ntier-sql-network-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
-3. Nelle notifiche del portale di Azure verificare se è presente un messaggio che informa che la prima fase della distribuzione è completata.
-4. Fare clic sul pulsante seguente per iniziare la seconda fase della distribuzione:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fvirtual-machines%2Fn-tier-windows%2Fworkload.azuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-5. Dopo avere aperto il collegamento nel portale di Azure, immettere i valori seguenti: 
-   * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-ntier-sql-workload-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
-6. Nelle notifiche del portale di Azure verificare se è presente un messaggio che informa che la seconda fase della distribuzione è completata.
-7. Fare clic sul pulsante seguente per iniziare la terza fase della distribuzione:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fvirtual-machines%2Fn-tier-windows%2Fsecurity.azuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-8. Dopo avere aperto il collegamento nel portale di Azure, immettere i valori seguenti: 
-   * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Usa esistente** e immettere `ra-ntier-sql-network-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
-9. Nelle notifiche del portale di Azure verificare se è presente un messaggio che informa che la terza fase della distribuzione è completata.
-10. I file dei parametri includono un nome utente e una password amministratore hardcoded. È consigliabile cambiarli immediatamente in tutte le macchine virtuali. Fare clic su ogni macchina virtuale nel portale di Azure, quindi fare clic su **Reimposta password** nel pannello **Supporto e risoluzione dei problemi**. Selezionare **Reimposta password** nella casella di riepilogo a discesa **Modalità**, quindi selezionare un nuovo **nome utente** e una nuova **password**. Fare clic sul pulsante **Aggiorna** per salvare il nuovo nome utente e la nuova password. 
+### <a name="prerequisites"></a>Prerequisiti
+
+Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
+
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento AzureCAT][ref-arch-repo].
+
+2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per installare l'interfaccia della riga di comando, seguire le istruzioni in [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
+
+3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
+
+  ```bash
+  npm install -g @mspnp/azure-building-blocks
+  ```
+
+4. Da un prompt dei comandi, di Bash o di PowerShell accedere al proprio account di Azure usando uno dei comandi riportati di seguito e seguire le istruzioni.
+
+  ```bash
+  az login
+  ```
+
+### <a name="deploy-the-solution-using-azbb"></a>Distribuire la soluzione mediante azbb
+
+Per distribuire le macchine virtuali Windows per un'architettura di riferimento per applicazioni a più livelli, seguire questi passaggi:
+
+1. Passare alla cartella `virtual-machines\n-tier-windows` per il repository clonato nel passaggio 1 dei prerequisiti nella sezione precedente.
+
+2. Il file di parametri specifica un nome utente amministratore predefinito e una password per ogni macchina virtuale nella distribuzione. È necessario modificare questi elementi prima di distribuire l'architettura di riferimento. Aprire il file `n-tier-windows.json` e sostituire ogni campo **adminUsername** e **adminPassword** con le nuove impostazioni.
+  
+  > [!NOTE]
+  > Durante questa distribuzione vengono eseguiti molti script, sia negli oggetti **VirtualMachineExtension** sia nelle impostazioni **extensions** per alcuni degli oggetti **VirtualMachine**. Alcuni di questi script richiedono il nome utente amministratore e la password appena modificati. È consigliabile esaminare questi script per assicurarsi di aver specificato le credenziali corrette. La distribuzione può non riuscire se non si specificano le credenziali corrette.
+  > 
+  > 
+
+Salvare il file.
+
+3. Distribuire l'architettura di riferimento usando lo strumento da riga di comando **azbb**, come mostrato di seguito.
+
+  ```bash
+  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
+  ```
+
+Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio usando blocchi predefiniti di Azure, visitare il [repository GitHub][git].
 
 
 <!-- links -->
@@ -162,14 +179,16 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github-folde
 [multi-dc]: multi-region-application.md
 [multi-vm]: multi-vm.md
 [n-tier]: n-tier.md
-
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-windows-manage-availability#configure-each-application-tier-into-separate-availability-sets
 [azure-cli]: /azure/virtual-machines-command-line-tools
+[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [azure-key-vault]: https://azure.microsoft.com/services/key-vault
 [bastion host]: https://en.wikipedia.org/wiki/Bastion_host
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
 [chef]: https://www.chef.io/solutions/azure/
+[git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-windows
 [lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
 [lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
@@ -181,6 +200,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github-folde
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [indirizzo IP pubblico]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
+[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [sql-alwayson]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-alwayson-force-failover]: https://msdn.microsoft.com/library/ff877957.aspx
 [sql-alwayson-getting-started]: https://msdn.microsoft.com/library/gg509118.aspx
