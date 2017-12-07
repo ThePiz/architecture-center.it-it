@@ -3,11 +3,11 @@ title: Criteri per la scelta di un'opzione di calcolo di Azure
 description: Confrontare i servizi di calcolo di Azure in base a diverse coordinate.
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 640793b56c1713f63456bab75ab4b9289d22a53c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 36b57d1fb674b5a1452a0e8208de836963b2b01b
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="criteria-for-choosing-an-azure-compute-option"></a>Criteri per la scelta di un'opzione di calcolo di Azure
 
@@ -17,14 +17,14 @@ Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calc
 
 | Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio contenitore di Azure | Servizi cloud | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
-| Composizione dell'applicazione | Agnostico | Applicazioni | Servizi, eseguibili guest | Funzioni | Contenitori | Ruoli | Scheduled jobs  |
+| Composizione dell'applicazione | Agnostico | Applicazioni | Servizi, eseguibili guest, contenitori | Funzioni | Contenitori | Ruoli | Scheduled jobs  |
 | Densità | Agnostico | Più app per istanza tramite piani di app | Più servizi per VM | Nessuna istanza dedicata<a href="#note1"><sup>1</sup></a> | Più contenitori per VM | Un'istanza del ruolo per VM | Più app per VM |
 | Numero minimo di nodi | 1 <a href="#note2"><sup>2</sup></a>  | 1 | 5 <a href="#note3"><sup>3</sup></a> | Nessun nodo dedicato<a href="#note1"><sup>1</sup></a> | 3 | 2 | 1 <a href="#note4"><sup>4</sup></a> |
 | Gestione dello stato | Senza stato o con stato | Senza stato | Senza stato o con stato | Senza stato | Senza stato o con stato | Senza stato | Senza stato |
-| Hosting Web | Agnostico | Integrato | Self-hosted, contenitori IIS | Non applicabile | Agnostico | Integrato (IIS) | No |
-| OS | Windows, Linux | Windows, Linux (anteprima)  | Windows, Linux (anteprima) | Non applicabile | Windows, Linux | Windows | Windows, Linux |
+| Hosting Web | Agnostico | Integrato | Agnostico | Non applicabile | Agnostico | Integrato (IIS) | No |
+| OS | Windows, Linux | Windows, Linux  | Windows, Linux | Non applicabile | Windows (anteprima), Linux | Windows | Windows, Linux |
 | Può essere distribuito in una rete virtuale dedicata? | Supportato | Supportato<a href="#note5"><sup>5</sup></a> | Supportato | Non supportate | Supportato | Supportato<a href="#note6"><sup>6</sup></a> | Supportato |
-| Connettività ibrida | Supportato | Supportato<a href="#note1"><sup>7</sup></a>  | Supportato | Non supportato | Supportato | Supportato<a href="#note8"><sup>8</sup></a> | Supportato |
+| Connettività ibrida | Supportato | Supportato<a href="#note1"><sup>7</sup></a>  | Supportato | Non supportate | Supportato | Supportato<a href="#note8"><sup>8</sup></a> | Supportato |
 
 Note
 
