@@ -3,11 +3,11 @@ title: "Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in 
 description: "Procedure consolidate per la configurazione di una farm di SharePoint Server 2016 a disponibilità elevata in Azure."
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: a3d47eea15f1e7e8cecf2bf1be55d8c3a9bb9bdc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0c0e9a7b2ae12a2d12919548f91304e6cbd2d8a6
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 
@@ -15,9 +15,9 @@ Questa architettura di riferimento mostra una serie di procedure comprovate per 
 
 ![](./images/sharepoint-ha.png)
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Questa architettura si basa su quella illustrata in [Eseguire macchine virtuali Windows per un'applicazione a più livelli][windows-n-tier]. Distribuisce una farm di SharePoint Server 2016 a disponibilità elevata all'interno di una rete virtuale Azure. Questa architettura è adatta a un ambiente di test o di produzione, a un'infrastruttura ibrida SharePoint con Office 365 o come base per uno scenario di ripristino di emergenza.
 
@@ -45,7 +45,7 @@ Questa architettura è costituita dai componenti seguenti:
 
 - **Server SharePoint**. I server SharePoint eseguono i ruoli Web front-end, memorizzazione nella cache, applicazione e ricerca. 
 
-- **Jumpbox**. detto anche [bastion host][bastion-host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete che consente il traffico remoto solo da indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. Il gruppo di sicurezza di rete dovrebbe consentire il traffico RDP.
+- **Jumpbox**. detto anche [bastion host][bastion-host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete che consente il traffico remoto solo da indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. L'NSG dovrebbe consentire il traffico RDP (Remote Desktop Protocol).
 
 ## <a name="recommendations"></a>Raccomandazioni
 
@@ -199,7 +199,7 @@ Per distribuire l'architettura in modo incrementale senza un ambiente di rete lo
 
 Per distribuire tutti gli elementi in un unico passaggio, usare `all`. Si noti che l'intero processo potrebbe richiedere diverse ore.
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
 * Installare la versione più recente di [Azure PowerShell][azure-ps].
 
