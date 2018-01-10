@@ -6,11 +6,11 @@ author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories: resiliency
-ms.openlocfilehash: f8337717c4afd6b558f0da8e1ded3a8071340db7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="compensating-transaction-pattern"></a>Modello di transazioni di compensazione
 
@@ -38,7 +38,7 @@ Un approccio comune prevede l'uso di un flusso di lavoro per implementare un'ope
 
 > Questo approccio è simile alla strategia delle Saghe descritta nel [blog di Clemens Vasters](http://vasters.com/clemensv/2012/09/01/Sagas.aspx).
 
-Una transazione di compensazione è anche un'operazione coerente e potrebbe avere esito negativo. Il sistema deve essere in grado di riprendere la transazione di compensazione al momento dell'errore e continuare. Potrebbe essere necessario ripetere un passaggio non riuscito, pertanto i passaggi in una transazione di compensazione devono essere definiti come comandi idempotenti. Per altre informazioni, vedere [Idempotency Patterns](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.
+Una transazione di compensazione è anche un'operazione coerente e potrebbe avere esito negativo. Il sistema deve essere in grado di riprendere la transazione di compensazione al momento dell'errore e continuare. Potrebbe essere necessario ripetere un passaggio non riuscito, pertanto i passaggi in una transazione di compensazione devono essere definiti come comandi idempotenti. Per altre informazioni, vedere [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.
 
 In alcuni casi potrebbe non essere possibile riprendere la transazione da un passaggio non riuscito se non tramite un intervento manuale. In questi casi il sistema deve generare un avviso e fornire quante più informazioni possibili sul motivo dell'errore.
 

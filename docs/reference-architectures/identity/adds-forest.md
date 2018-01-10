@@ -10,11 +10,11 @@ pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: bb7e57af2afacf1faa7679c854bf49217918eba8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: b946afa91e8bd303c51f97e18be170c4105cc8c5
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creare una foresta di risorse di Active Directory Domain Services in Azure
 
@@ -22,17 +22,17 @@ Questa architettura di riferimento illustra come creare un dominio di Active Dir
 
 [![0]][0] 
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
 Active Directory Domain Services archivia le informazioni di identità in una struttura gerarchica. Il nodo principale nella struttura gerarchica è noto come foresta. Una foresta contiene domini e i domini contengono altri tipi di oggetti. Questa architettura di riferimento crea una foresta di Active Directory Domain Services in Azure con una relazione di trust unidirezionale in uscita con un dominio locale. La foresta in Azure contiene un dominio che non esiste in locale. A causa della relazione di trust, gli accessi effettuati nei domini locali possono essere considerati attendibili per accedere alle risorse nel dominio di Azure separato. 
 
 Gli usi tipici di questa architettura includono mantenere la separazione della sicurezza per le identità e gli oggetti contenuti nel cloud ed eseguire la migrazione di singoli domini da un ambiente locale al cloud. 
 
-Per altre considerazioni, vedere [Scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
+Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
-L'architettura include i componenti seguenti.
+L'architettura include i componenti indicati di seguito.
 
 * **Rete locale**. La rete locale contiene la propria foresta di Active Directory con i relativi domini.
 * **Server Active Directory**. Sono i controller di dominio che implementano i servizi di dominio in esecuzione come macchine virtuali nel cloud. Questi server ospitano una foresta che contiene uno o più domini, separati da quelli locali.
@@ -92,7 +92,7 @@ Per considerazioni sulla sicurezza specifiche di Active Directory, vedere la sez
 
 Una soluzione per la distribuzione di questa architettura di riferimento è disponibile in [GitHub][github]. Per eseguire lo script di PowerShell che distribuisce la soluzione è necessaria l'ultima versione dell'interfaccia della riga di comando di Azure. Per distribuire l'architettura di riferimento, eseguire la procedura seguente:
 
-1. Scaricare o clonare la cartella della soluzione da [GitHub][github] nel computer locale.
+1. Scaricare o clonare la cartella della soluzione da [GitHub][github] al computer locale.
 
 2. Aprire l'interfaccia della riga di comando di Azure e passare alla cartella della soluzione locale.
 

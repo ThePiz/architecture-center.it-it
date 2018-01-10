@@ -4,11 +4,11 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6aba60dc3a60e96e59e2034d4a1e380e0f1c996a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0a416bc6297c7406de92fbc695b62c39c637de8f
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -21,16 +21,16 @@ La tabella seguente riepiloga le caratteristiche dei meccanismi di ripetizione d
 | **Servizio** | **Funzionalità per la ripetizione di tentativi** | **Configurazione dei criteri** | **Ambito** | **Funzionalità di telemetria** |
 | --- | --- | --- | --- | --- |
 | **[Archiviazione di Azure](#azure-storage-retry-guidelines)** |Native nel client |Programmatica |Client e singole operazioni |TraceSource |
-| **[Database SQL con Entity Framework](#sql-database-using-entity-framework-6-retry-guidelines)** |Native nel client |Programmatica |Globale per AppDomain |Nessuno |
-| **[Database SQL con Entity Framework Core](#sql-database-using-entity-framework-core-retry-guidelines)** |Native nel client |Programmatica |Globale per AppDomain |None |
+| **[Database SQL con Entity Framework](#sql-database-using-entity-framework-6-retry-guidelines)** |Native nel client |Programmatica |Globale per AppDomain |Nessuna |
+| **[Database SQL con Entity Framework Core](#sql-database-using-entity-framework-core-retry-guidelines)** |Native nel client |Programmatica |Globale per AppDomain |Nessuna |
 | **[Database SQL con ADO.NET](#sql-database-using-adonet-retry-guidelines)** |[Polly](#transient-fault-handling-with-polly) |Dichiarativa e a livello di codice |Singole istruzioni o blocchi di codice |Personalizzate |
 | **[Bus di servizio](#service-bus-retry-guidelines)** |Native nel client |Programmatica |Gestore dello spazio dei nomi, factory di messaggistica e client |ETW |
 | **[Cache Redis di Azure](#azure-redis-cache-retry-guidelines)** |Native nel client |Programmatica |Client |TextWriter |
 | **[API di DocumentDB](#documentdb-api-retry-guidelines)** |Native nel servizio |Non configurabili |Globale |TraceSource |
 | **[Ricerca di Azure](#azure-storage-retry-guidelines)** |Native nel client |Programmatica |Client |ETW o personalizzato |
-| **[Azure Active Directory](#azure-active-directory-retry-guidelines)** |Nativo nella libreria ADAL |Incorporato nella libreria ADAL |Interno |Nessuno |
-| **[Service Fabric](#service-fabric-retry-guidelines)** |Native nel client |Programmatica |Client |Nessuno | 
-| **[Hub eventi di Azure](#azure-event-hubs-retry-guidelines)** |Native nel client |Programmatica |Client |Nessuno |
+| **[Azure Active Directory](#azure-active-directory-retry-guidelines)** |Nativo nella libreria ADAL |Incorporato nella libreria ADAL |Interno |Nessuna |
+| **[Service Fabric](#service-fabric-retry-guidelines)** |Native nel client |Programmatica |Client |Nessuna | 
+| **[Hub eventi di Azure](#azure-event-hubs-retry-guidelines)** |Native nel client |Programmatica |Client |Nessuna |
 
 > [!NOTE]
 > Per la maggior parte dei meccanismi di ripetizione dei tentativi incorporati in Azure, non è attualmente possibile applicare criteri di ripetizione dei tentativi differenti per diversi tipi di errore o eccezione, oltre alle funzionalità previste dai criteri stessi. Al momento della stesura di questo documento, quindi, il consiglio migliore è quello di configurare criteri che forniscano una combinazione ottimale di prestazioni e disponibilità. I criteri possono essere successivamente ottimizzati analizzando i file di log per determinare i tipi di errori temporanei che si sono verificati. Ad esempio, se la maggior parte degli errori è correlata a problemi di connettività di rete, si potrebbe optare per un tentativo immediato anziché attendere molto tempo per ripetere il primo tentativo.
@@ -59,7 +59,7 @@ TableRequestOptions interactiveRequestOption = new TableRequestOptions()
   // For Read-access geo-redundant storage, use PrimaryThenSecondary.
   // Otherwise set this to PrimaryOnly.
   LocationMode = LocationMode.PrimaryThenSecondary,
-  // Maximum execution time based on the business use case. Maximum value up to 10 seconds.
+  // Maximum execution time based on the business use case. 
   MaximumExecutionTime = TimeSpan.FromSeconds(2)
 };
 ```
@@ -94,13 +94,32 @@ Si userà in questo caso un'istanza **OperationContext** per specificare il codi
 
 Oltre a indicare se un errore può essere risolto eseguendo nuovi tentativi, i criteri estesi di ripetizione dei tentativi restituiscono un oggetto **RetryContext** , che indica il numero di tentativi, i risultati dell'ultima richiesta e se il tentativo successivo verrà eseguito nel percorso primario o secondario (vedere la tabella seguente per maggiori dettagli). Le proprietà dell'oggetto **RetryContext** possono essere inoltre usate per decidere se e quando eseguire un nuovo tentativo. Per altre informazioni, vedere [IExtendedRetryPolicy.Evaluate Method](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx).
 
-La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizione dei tentativi incorporati.
+Le tabelle seguenti mostrano le impostazioni predefinite per i criteri di ripetizione dei tentativi predefiniti.
 
-| **Contesto** | **Impostazione** | **Valore predefinito** | **Significato** |
-| --- | --- | --- | --- |
-| QueueRequestOptions<br />QueueRequestOptions |MaximumExecutionTime<br /><br />ServerTimeout<br /><br /><br /><br /><br />LocationMode<br /><br /><br /><br /><br /><br /><br />RetryPolicy |120 secondi<br /><br />Nessuno<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />ExponentialPolicy |Tempo di esecuzione massimo per la richiesta, inclusi tutti i potenziali tentativi.<br />Intervallo di timeout del server per la richiesta (il valore viene arrotondato a secondi). Se non specificato, verrà usato il valore predefinito per tutte le richieste al server. In genere, la scelta migliore è omettere questa impostazione in modo che venga usato il valore predefinito del server.<br />Se l'account di archiviazione viene creato con l'opzione di replica "archiviazione con ridondanza geografica e accesso in lettura (RA-GRS)", è possibile usare la modalità percorso per indicare in corrispondenza di quale percorso deve essere ricevuta la richiesta. Ad esempio, se è specificata l'opzione **PrimaryThenSecondary** , le richieste vengono sempre inviate prima al percorso primario. Se una richiesta ha esito negativo, viene quindi inviata al percorso secondario.<br />Per informazioni dettagliate su ogni opzione, vedere le sezioni seguenti. |
-| Criteri esponenziali |maxAttempt<br />deltaBackoff<br /><br /><br />MinBackoff<br /><br />MaxBackoff |3<br />4 secondi<br /><br /><br />3 secondi<br /><br />120 secondi |Numero di tentativi.<br />Intervallo di backoff tra i tentativi. Per i tentativi successivi verranno usati multipli di questo intervallo di tempo, combinati con un elemento casuale.<br />I valori vengono aggiunti a tutti gli intervalli tra i tentativi, calcolati a partire da deltaBackoff. Questo valore non può essere modificato.<br />MaxBackoff viene usato se l'intervallo tra i tentativi è maggiore di MaxBackoff. Questo valore non può essere modificato. |
-| Criteri lineari |maxAttempt<br />deltaBackoff |3<br />30 secondi |Numero di tentativi.<br />Intervallo di backoff tra i tentativi. |
+**Opzioni richiesta**
+
+| **Impostazione** | **Valore predefinito** | **Significato** |
+| --- | --- | --- |
+| MaximumExecutionTime | 120 secondi | Tempo di esecuzione massimo per la richiesta, inclusi tutti i potenziali tentativi. |
+| ServerTimeout | Nessuna | Intervallo di timeout del server per la richiesta (il valore viene arrotondato a secondi). Se non specificato, verrà usato il valore predefinito per tutte le richieste al server. In genere, la scelta migliore è omettere questa impostazione in modo che venga usato il valore predefinito del server. | 
+| LocationMode | Nessuna | Se l'account di archiviazione viene creato con l'opzione di replica "archiviazione con ridondanza geografica e accesso in lettura (RA-GRS)", è possibile usare la modalità percorso per indicare in corrispondenza di quale percorso deve essere ricevuta la richiesta. Ad esempio, se è specificata l'opzione **PrimaryThenSecondary** , le richieste vengono sempre inviate prima al percorso primario. Se una richiesta ha esito negativo, viene quindi inviata al percorso secondario. |
+| RetryPolicy | ExponentialPolicy | Per informazioni dettagliate su ogni opzione, vedere le sezioni seguenti. |
+
+**Criteri esponenziali** 
+
+| **Impostazione** | **Valore predefinito** | **Significato** |
+| --- | --- | --- |
+| maxAttempt | 3 | Numero di tentativi. |
+| deltaBackoff | 4 secondi | Intervallo di backoff tra i tentativi. Per i tentativi successivi verranno usati multipli di questo intervallo di tempo, combinati con un elemento casuale. |
+| MinBackoff | 3 secondi | I valori vengono aggiunti a tutti gli intervalli tra i tentativi, calcolati a partire da deltaBackoff. Questo valore non può essere modificato.
+| MaxBackoff | 120 secondi | MaxBackoff viene usato se l'intervallo tra i tentativi è maggiore di MaxBackoff. Questo valore non può essere modificato. |
+
+**Criteri lineari**
+
+| **Impostazione** | **Valore predefinito** | **Significato** |
+| --- | --- | --- |
+| maxAttempt | 3 | Numero di tentativi. |
+| deltaBackoff | 30 secondi | Intervallo di backoff tra i tentativi. |
 
 ### <a name="retry-usage-guidance"></a>Linee guida sull'uso dei criteri di ripetizione dei tentativi
 Quando si accede ai servizi di archiviazione di Azure tramite l'API del client di archiviazione, tenere presenti le linee guida seguenti:
@@ -123,7 +142,7 @@ Il numero di tentativi viene registrato in un'origine **TraceSource**. È necess
 
 Le operazioni possono ricevere un'istanza **OperationContext**, che espone un evento **Retrying** di cui è possibile usufruire per associare una logica personalizzata per i dati telemetrici. Per altre informazioni, vedere [Evento OperationContext.Retrying](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.operationcontext.retrying.aspx).
 
-### <a name="examples"></a>esempi
+### <a name="examples"></a>Esempi
 L'esempio di codice seguente mostra come creare due istanze **TableRequestOptions** con due diverse impostazioni di ripetizione dei tentativi: una per le richieste interattive e una per le richieste in background. L'esempio imposta quindi questi due criteri di ripetizione dei tentativi in modo che vengano applicati a tutte le richieste. Imposta inoltre la strategia interattiva su una richiesta specifica in modo che ignori le impostazioni predefinite applicate al client.
 
 ```csharp
@@ -149,7 +168,7 @@ namespace RetryCodeSamples
                 // For Read-access geo-redundant storage, use PrimaryThenSecondary.
                 // Otherwise set this to PrimaryOnly.
                 LocationMode = LocationMode.PrimaryThenSecondary,
-                // Maximum execution time based on the business use case. Maximum value up to 10 seconds.
+                // Maximum execution time based on the business use case. 
                 MaximumExecutionTime = TimeSpan.FromSeconds(2)
             };
 
@@ -270,7 +289,14 @@ Per altre informazioni, vedere l'articolo sulla [configurazione basata su codice
 
 La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizione dei tentativi incorporati quando si usa Entity Framework 6.
 
-![Tabella del materiale sussidiario sulla ripetizione di tentativi](./images/retry-service-specific/RetryServiceSpecificGuidanceTable4.png)
+| Impostazione | Valore predefinito | Significato |
+|---------|---------------|---------|
+| Criterio | Esponenziali | Backoff esponenziale. |
+| MaxRetryCount | 5 | Numero massimo di tentativi. |
+| MaxDelay | 30 secondi | Ritardo massimo tra i tentativi. Questa valore non influisce sulla modalità di calcolo della serie di ritardi. Definisce solo un limite superiore. |
+| DefaultCoefficient | 1 secondo | Coefficiente per il calcolo del backoff esponenziale. Questo valore non può essere modificato. |
+| DefaultRandomFactor | 1.1 | Moltiplicatore usato per aggiungere un ritardo casuale per ogni voce. Questo valore non può essere modificato. |
+| DefaultExponentialBase | 2 | Moltiplicatore usato per calcolare il ritardo successivo. Questo valore non può essere modificato. |
 
 ### <a name="retry-usage-guidance"></a>Linee guida sull'uso dei criteri di ripetizione dei tentativi
 Quando si accede al database SQL con Entity Framework 6, tenere presente le linee guida seguenti:
@@ -292,7 +318,7 @@ Quando si accede al database SQL con Entity Framework 6, tenere presente le line
 >
 >
 
-### <a name="examples"></a>esempi
+### <a name="examples"></a>Esempi
 L'esempio di codice seguente definisce una soluzione di accesso ai dati semplice che usa Entity Framework. Imposta una strategia di ripetizione dei tentativi specifica tramite la definizione di un'istanza di una classe denominata **BlogConfiguration** che estende **DbConfiguration**.
 
 ```csharp
@@ -351,7 +377,7 @@ Quando si accede al database SQL con Entity Framework Core, il supporto per la r
 
 La principale astrazione è l'interfaccia `IExecutionStrategy`. La strategia di esecuzione per SQL Server, che include SQL Azure, riconosce i tipi di eccezione per cui è possibile ripetere i tentativi e dispone di impostazioni predefinite ragionevoli per un numero massimo ripetizione dei tentativi, intervalli tra di essi e così via.
 
-### <a name="examples"></a>esempi
+### <a name="examples"></a>Esempi
 
 Il codice seguente abilita le ripetizioni automatiche di tentativi quando si configura l'oggetto DbContext, che rappresenta una sessione con il database. 
 
@@ -423,7 +449,7 @@ Quando si accede al database SQL con ADO.NET, tenere presente le linee guida seg
 >
 >
 
-### <a name="examples"></a>esempi
+### <a name="examples"></a>Esempi
 Questa sezione illustra come usare Polly per accedere al database SQL di Azure usando un set di criteri di ripetizione dei tentativi configurato nella classe `Policy`.
 
 Il codice seguente illustra un metodo di estensione nella classe `SqlCommand` che richiama `ExecuteAsync` con backoff esponenziale.
@@ -510,7 +536,15 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 I criteri di ripetizione dei tentativi non possono essere impostati a livello di singola operazione. Questo vale per tutte le operazioni relative al client di messaggistica.
 La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizione dei tentativi incorporati.
 
-![Tabella del materiale sussidiario sulla ripetizione di tentativi](./images/retry-service-specific/RetryServiceSpecificGuidanceTable7.png)
+| Impostazione | Valore predefinito | Significato |
+|---------|---------------|---------|
+| Criterio | Esponenziali | Backoff esponenziale. |
+| MinimalBackoff | 0 | Intervallo minimo di backoff. Viene aggiunto all'intervallo per i tentativi calcolato a partire da deltaBackoff. |
+| MaximumBackoff | 30 secondi | Intervallo massimo di backoff. Si usa MaximumBackoff se l'intervallo tra i tentativi calcolato è maggiore di MaxBackoff. |
+| DeltaBackoff | 3 secondi | Intervallo di backoff tra i tentativi. Per i successivi tentativi verranno utilizzati i multipli di questi timespan. |
+| TimeBuffer | 5 secondi | Il buffer temporale associato al tentativo. I tentativi verranno abbandonati se il tempo rimanente è minore del valore di TimeBuffer. |
+| MaxRetryCount | 10 | Numero massimo di tentativi. |
+| ServerBusyBaseSleepTime | 10 secondi | Se l'ultima eccezione riscontrata è **ServerBusyException**, questo valore verrà aggiunto all'intervallo di ripetizione dei tentativi calcolato. Questo valore non può essere modificato. |
 
 ### <a name="retry-usage-guidance"></a>Linee guida sull'uso dei criteri di ripetizione dei tentativi
 Quando si usa il bus di servizio, tenere presente le linee guida seguenti:
@@ -520,7 +554,12 @@ Quando si usa il bus di servizio, tenere presente le linee guida seguenti:
 
 È consigliabile iniziare le operazioni di ripetizione dei tentativi usando le impostazioni seguenti. Si tratta di impostazioni di uso generale ed è quindi necessario monitorare le operazioni e personalizzare i valori in base allo scenario.
 
-![Tabella del materiale sussidiario sulla ripetizione di tentativi](./images/retry-service-specific/RetryServiceSpecificGuidanceTable8.png)
+| Context | Latenza massima di esempio | Criteri di ripetizione | Impostazioni | Funzionamento |
+|---------|---------|---------|---------|---------|
+| Interattivo, interfaccia utente o in primo piano | 2 secondi*  | Esponenziali | MinimumBackoff = 0 <br/> MaximumBackoff = 30 sec <br/> DeltaBackoff = 300 msec <br/> TimeBuffer = 300 msec <br/> MaxRetryCount = 2 | Tentativo 1: intervallo di 0 sec <br/> Tentativo 2: intervallo di ~300 msec <br/> Tentativo 3: intervallo di ~900 msec |
+| Background o batch | 30 secondi | Esponenziali | MinimumBackoff = 1 <br/> MaximumBackoff = 30 sec <br/> DeltaBackoff = 1,75 sec <br/> TimeBuffer = 5 sec <br/> MaxRetryCount = 3 | Tentativo 1: intervallo di ~1 sec <br/> Tentativo 2: intervallo di ~3 sec <br/> Tentativo 3: intervallo di ~6 msec <br/> Tentativo 4: intervallo di ~13 msec |
+
+\* Non è incluso l'ulteriore intervallo aggiunto se viene restituita una risposta di server occupato.
 
 ### <a name="telemetry"></a>Telemetria
 Il bus di servizio registra i tentativi come eventi ETW tramite un oggetto **EventSource**. È necessario associare un **EventListener** all'origine eventi per acquisire gli eventi e visualizzarli nel visualizzatore delle prestazioni o scriverli in un log di destinazione appropriato. A questo scopo, è possibile usare il [blocco applicativo di registrazione semantica](http://msdn.microsoft.com/library/dn775006.aspx) . Gli eventi di ripetizione dei tentativi sono caratterizzati dal formato seguente:
@@ -538,7 +577,7 @@ lastExceptionType="Microsoft.ServiceBus.Messaging.MessagingCommunicationExceptio
 exceptionMessage="The remote name could not be resolved: 'retry-tests.servicebus.windows.net'.TrackingId:6a26f99c-dc6d-422e-8565-f89fdd0d4fe3,TimeStamp:9/5/2014 10:00:13 PM"
 ```
 
-### <a name="examples"></a>esempi
+### <a name="examples"></a>Esempi
 L'esempio di codice seguente illustra come impostare i criteri di ripetizione dei tentativi per:
 
 * Un gestore dello spazio dei nomi. I criteri si applicano a tutte le operazioni eseguite sul gestore e non possono essere sostituiti a favore di singole operazioni.
@@ -729,7 +768,7 @@ retrying; attempts left: 2...
 ...
 ```
 
-### <a name="examples"></a>esempi
+### <a name="examples"></a>Esempi
 L'esempio di codice seguente consente di configurare un intervallo costante, ovvero lineare, tra le ripetizioni di tentativi durante l'inizializzazione del client StackExchange.Redis. Questo esempio illustra come impostare la configurazione usando un'istanza **ConfigurationOptions**.
 
 ```csharp
@@ -831,7 +870,7 @@ Se Cosmos DB limita il client, viene restituito un errore HTTP 429. Verificare i
 ### <a name="policy-configuration"></a>Configurazione dei criteri
 La tabella seguente mostra le impostazioni predefinite per la classe `RetryOptions`.
 
-| Impostazione | Valore predefinito | Description |
+| Impostazione | Valore predefinito | DESCRIZIONE |
 | --- | --- | --- |
 | MaxRetryAttemptsOnThrottledRequests |9 |Il numero massimo di tentativi se la richiesta ha esito negativo a causa della limitazione applicata da Cosmos DB alla velocità del client. |
 | MaxRetryWaitTimeInSeconds |30 |Il tempo massimo per i tentativi in secondi. |
@@ -880,7 +919,7 @@ Tracciare con ETW o registrando un provider di traccia personalizzato. Per altre
 Azure Active Directory è una soluzione cloud completa per la gestione delle identità e dell'accesso che combina servizi directory di importanza strategica, governance avanzata delle identità e gestione della sicurezza e dell'accesso alle applicazioni. Azure AD offre inoltre agli sviluppatori una piattaforma di gestione delle identità per consentire il controllo dell'accesso alle applicazioni in base a regole e criteri centralizzati.
 
 ### <a name="retry-mechanism"></a>Meccanismo di ripetizione dei tentativi
-Nella libreria di autenticazione di Active Directory è previsto un meccanismo di ripetizione dei tentativi incorporato per Azure Active Directory. Per evitare blocchi imprevisti, è consigliabile che le librerie di terze parti e il codice dell'applicazione *non* ripetano i tentativi di connessione non riusciti, ma consentano ad ADAL di gestire i tentativi. 
+Nella libreria di autenticazione di Active Directory è previsto un meccanismo di ripetizione dei tentativi incorporato per Azure Active Directory. Per evitare blocchi imprevisti, è consigliabile che le librerie di terze parti e il codice dell'applicazione **non** ripetano i tentativi di connessione non riusciti, ma consentano ad ADAL di gestire i tentativi. 
 
 ### <a name="retry-usage-guidance"></a>Linee guida sull'uso dei criteri di ripetizione dei tentativi
 Quando si usa Azure Active Directory, tenere presente le linee guida seguenti:
@@ -967,7 +1006,7 @@ Quando si accede a servizi di Azure o di terze parti, tenere presente quanto seg
 ### <a name="retry-strategies"></a>Strategie di ripetizione dei tentativi
 Di seguito sono riportati i tipi intervallo più comuni nelle strategie di ripetizione dei tentativi:
 
-* **Esponenziale**: criteri di ripetizione dei tentativi che eseguono un numero prestabilito di nuovi tentativi e usano un approccio di backoff esponenziale casuale per determinare l'intervallo di tempo tra i tentativi. Ad esempio:
+* **Esponenziale**: criteri di ripetizione dei tentativi che eseguono un numero prestabilito di nuovi tentativi e usano un approccio di backoff esponenziale casuale per determinare l'intervallo di tempo tra i tentativi. Ad esempio: 
 
         var random = new Random();
 
@@ -977,11 +1016,11 @@ Di seguito sono riportati i tipi intervallo più comuni nelle strategie di ripet
         var interval = (int)Math.Min(checked(this.minBackoff.TotalMilliseconds + delta),
                        this.maxBackoff.TotalMilliseconds);
         retryInterval = TimeSpan.FromMilliseconds(interval);
-* **Incrementale**: strategia di ripetizione dei tentativi con un numero prestabilito di nuovi tentativi e un intervallo di tempo incrementale tra i tentativi. Ad esempio:
+* **Incrementale**: strategia di ripetizione dei tentativi con un numero prestabilito di nuovi tentativi e un intervallo di tempo incrementale tra i tentativi. Ad esempio: 
 
         retryInterval = TimeSpan.FromMilliseconds(this.initialInterval.TotalMilliseconds +
                        (this.increment.TotalMilliseconds * currentRetryCount));
-* **Lineare**: criteri di ripetizione dei tentativi che eseguono un numero prestabilito di nuovi tentativi e usano un intervallo di tempo fisso tra i tentativi. Ad esempio:
+* **Lineare**: criteri di ripetizione dei tentativi che eseguono un numero prestabilito di nuovi tentativi e usano un intervallo di tempo fisso tra i tentativi. Ad esempio: 
 
         retryInterval = this.deltaBackoff;
 

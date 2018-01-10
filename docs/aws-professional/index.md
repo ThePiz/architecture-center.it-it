@@ -5,11 +5,11 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 75fda82ee5ca7ca3665501fe428d1d01995e7422
-ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
+ms.openlocfilehash: b576b11bc152ef721f56e79609cb7a03f2d31dd3
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -52,7 +52,7 @@ Al di sotto del livello della sottoscrizione è possibile assegnare ruoli utente
 Analogamente agli account AWS, le sottoscrizioni presentano limiti e quote di servizio predefiniti. Per informazioni dettagliate su tali limiti, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/).
 I limiti possono essere aumentati fino al valore massimo inviando [una richiesta di supporto tramite il portale di gestione](https://blogs.msdn.microsoft.com/girishp/2015/09/20/increasing-core-quota-limits-in-azure/).
 
-### <a name="see-also"></a>Vedere anche
+### <a name="see-also"></a>Vedere anche 
 
 -   [Come aggiungere o modificare i ruoli di amministratore di Azure](https://azure.microsoft.com/documentation/articles/billing-add-change-azure-subscription-administrator/)
 
@@ -97,7 +97,7 @@ In ognuna di queste interfacce, il gruppo di risorse è fondamentale per la crea
 
 La sintassi e la struttura di queste interfacce sono diverse dai rispettivi equivalenti AWS, ma forniscono funzionalità simili. Molti strumenti di gestione di terze parti usati in AWS, ad esempio [Terraform di Hashicorp](https://www.terraform.io/docs/providers/azurerm/) e [Netflix Spinnaker](http://www.spinnaker.io/) sono disponibili anche in Azure.
 
-### <a name="see-also"></a>Vedere anche
+### <a name="see-also"></a>Vedere anche 
 
 -   [Linee guida sui gruppi di risorse di Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-infrastructure-resource-groups-guidelines/)
 
@@ -134,7 +134,7 @@ A differenza delle zone di disponibilità di AWS, che rappresentano data center 
 
 In Azure, il backup dell'[archiviazione con ridondanza geografica](https://azure.microsoft.com/documentation/articles/storage-redundancy/#geo-redundant-storage) viene eseguito automaticamente nell'area abbinata appropriata. Per tutte le altre risorse, la creazione di una soluzione completamente ridondante usando le aree abbinate implica la creazione di copia completa della soluzione in entrambe le aree.
 
-### <a name="see-also"></a>Vedere anche
+### <a name="see-also"></a>Vedere anche 
 
 -   [Aree e disponibilità per le macchine virtuali in Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-regions-and-availability/)
 
@@ -205,7 +205,7 @@ Azure offre numerosi servizi di calcolo che non hanno equivalenti diretti in AWS
 
 -   [Service Fabric](https://azure.microsoft.com/documentation/articles/service-fabric-overview/): piattaforma per lo sviluppo e l'hosting di soluzioni di [microservizi](https://azure.microsoft.com/documentation/articles/service-fabric-overview-microservices/) scalabili.
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Creare una VM Linux in Azure usando il portale](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-quick-create-portal/)
 
@@ -237,16 +237,14 @@ In Archiviazione di Azure, [gli account di archiviazione](https://azure.microsof
 -   [Archiviazione code](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/): offre un sistema di messaggistica per l'elaborazione del flusso di lavoro e per la comunicazione tra componenti dei servizi cloud.
 
 -   [Archiviazione file](https://azure.microsoft.com/documentation/articles/storage-java-how-to-use-file-storage/): offre un'archiviazione condivisa per le applicazioni che usano il protocollo standard Server Message Block (SMB). L'archiviazione file viene usata in modo analogo a EFS nella piattaforma AWS.
-
-
-
-
  
 #### <a name="glacier-and-azure-storage"></a>Glacier e Archiviazione di Azure 
-L'[archivio di Archiviazione di Azure Standard](/azure/storage/blobs/storage-blob-storage-tiers) offre un equivalente diretto per l'archiviazione Glacier a lungo termine di AWS. Il [livello di archiviazione ad accesso sporadico di Azure](/azure/storage/blobs/storage-blob-storage-tiers) è ottimizzato per l'archiviazione di dati di lunga durata a cui si accede raramente.
-L'archiviazione sporadica è più economica e con prestazioni inferiori rispetto all'archiviazione BLOB standard e può essere paragonata ad Amazon S3 Standard – Infrequent Access.
 
-#### <a name="see-also"></a>Vedere anche
+Il livello di accesso [archivio del servizio Archiviazione BLOB di Azure](/azure/storage/blobs/storage-blob-storage-tiers#archive-access-tier) è paragonabile al servizio di archiviazione Glacier di AWS. È destinato ai dati a cui si accede raramente archiviati per almeno 180 giorni e può tollerare numerose ore di latenza di recupero. 
+
+Per i dati a cui si accede raramente che devono essere immediatamente disponibili, il [livello di accesso sporadico del servizio Archiviazione BLOB di Azure](/azure/storage/blobs/storage-blob-storage-tiers#cool-access-tier) offre una soluzione di archiviazione più economica rispetto all'archiviazione BLOB standard. Questo livello di archiviazione è paragonabile al servizio di archiviazione ad accesso non frequente AWS S3.
+
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Elenco di controllo di prestazioni e scalabilità per Archiviazione di Microsoft Azure](https://azure.microsoft.com/documentation/articles/storage-performance-checklist/)
 
@@ -276,7 +274,7 @@ In AWS, Route 53 offre servizi di gestione del nome DNS e di routing del traffic
 
 Azure consente di ottenere connessioni dedicate da sito a sito tramite il servizio [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/), che permette la connessione diretta della rete locale alle risorse di Azure tramite una connessione di rete privata dedicata. A un costo inferiore, Azure offre anche [connessioni VPN da sito a sito](https://azure.microsoft.com/documentation/articles/vpn-gateway-howto-site-to-site-resource-manager-portal/) di tipo tradizionale.
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Creare una rete virtuale usando il portale di Azure](https://azure.microsoft.com/documentation/articles/virtual-networks-create-vnet-arm-pportal/)
 
@@ -298,7 +296,7 @@ Azure offre diversi servizi di database relazionali equivalenti a RDS (Relationa
 
 I costi di RDS di AWS sono determinati dalla quantità di risorse hardware consumate dall'istanza, ad esempio CPU, RAM, archiviazione e larghezza di banda di rete. Nei servizi di database di Azure i costi dipendono dalla dimensione del database, dalle connessioni simultanee e dai livelli di velocità effettiva.
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Esercitazioni sul database SQL di Azure](https://azure.microsoft.com/documentation/articles/sql-database-explore-tutorials/)
 
@@ -326,7 +324,7 @@ Azure suddivide i servizi di directory nelle offerte seguenti:
 
 Oltre al [Web application firewall di Gateway applicazione](https://azure.microsoft.com/documentation/articles/application-gateway-webapplicationfirewall-overview/), è anche possibile usare[Web application firewall](https://azure.microsoft.com/documentation/articles/application-gateway-webapplicationfirewall-overview/) di fornitori di terze parti come [Barracuda Networks](https://azure.microsoft.com/marketplace/partners/barracudanetworks/waf/).
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Introduzione alla sicurezza in Microsoft Azure](https://azure.microsoft.com/documentation/articles/azure-security-getting-started/)
 
@@ -352,7 +350,7 @@ AWS Device Farm offre servizi di testing di app su più dispositivi. In Azure, [
 
 Oltre al testing front-end, [Azure DevTest Labs](https://azure.microsoft.com/services/devtest-lab/) offre risorse di testing back-end per ambienti Linux e Windows.
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Come usare l'archiviazione di accodamento da Node.js](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/)
 
@@ -378,7 +376,7 @@ Oltre al testing front-end, [Azure DevTest Labs](https://azure.microsoft.com/ser
 
 -   [Power BI](https://powerbi.microsoft.com/): usato per migliorare la visualizzazione dei dati.
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/)
 
@@ -388,7 +386,7 @@ Oltre al testing front-end, [Azure DevTest Labs](https://azure.microsoft.com/ser
 
 ### <a name="internet-of-things"></a>Internet delle cose
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Introduzione all'hub IoT di Azure](https://azure.microsoft.com/documentation/articles/iot-hub-csharp-csharp-getstarted/)
 
@@ -400,7 +398,7 @@ Oltre al testing front-end, [Azure DevTest Labs](https://azure.microsoft.com/ser
 
 Gli hub di notifica non supportano l'invio di messaggi SMS o di posta elettronica; per queste tipologie di recapito è necessario usare servizi di terze parti.
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 
 -   [Creare un'app Android](https://azure.microsoft.com/documentation/articles/app-service-mobile-android-get-started/)
 
@@ -410,7 +408,7 @@ Gli hub di notifica non supportano l'invio di messaggi SMS o di posta elettronic
 
 ### <a name="management-and-monitoring"></a>Gestione e monitoraggio
 
-#### <a name="see-also"></a>Vedere anche
+#### <a name="see-also"></a>Vedere anche 
 -   [Indicazioni di monitoraggio e diagnostica](https://azure.microsoft.com/documentation/articles/best-practices-monitoring/)
 
 -   [Procedure consigliate per la creazione di modelli di Azure Resource Manager](https://azure.microsoft.com/documentation/articles/resource-manager-template-best-practices/)

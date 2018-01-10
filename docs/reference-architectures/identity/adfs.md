@@ -9,11 +9,11 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: b24f4e72b13331437d92f20a228e3ba8121db90a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: b8c9ae0621c087c68d449dd13e60046104c01513
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Estendere Active Directory Federation Services in Azure
 
@@ -42,7 +42,7 @@ Questa architettura di riferimento è incentrata sulla *federazione passiva*, in
 
 Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Questa architettura estende l'implementazione descritta nell'articolo relativo all'[estensione di Active Directory Domain Services (AD DS) in Azure][extending-ad-to-azure]. Contiene i componenti seguenti.
 
@@ -219,7 +219,7 @@ AD FS usa il protocollo HTTPS, pertanto verificare che le regole NSG per la subn
 
 Una soluzione per la distribuzione di questa architettura di riferimento è disponibile in [GitHub][github]. Per eseguire lo script di PowerShell che distribuisce la soluzione, è necessaria l'ultima versione dell'[interfaccia della riga di comando di Azure][azure-cli]. Per distribuire l'architettura di riferimento, eseguire la procedura seguente:
 
-1. Scaricare o clonare la cartella della soluzione da [GitHub][github] nel computer locale.
+1. Scaricare o clonare la cartella della soluzione da [GitHub][github] al computer locale.
 
 2. Aprire l'interfaccia della riga di comando di Azure e passare alla cartella della soluzione locale.
 

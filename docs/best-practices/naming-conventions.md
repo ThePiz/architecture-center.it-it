@@ -4,11 +4,11 @@ description: "Convenzioni di denominazione per le risorse di Azure. Come denomin
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 5084fc2ba5a18707de1213276111c53203b6cdd7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 20f090c4cc39f96887cd58ffd2a9c7736e77de57
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -37,7 +37,7 @@ Ecco un modello consigliato per la denominazione delle sottoscrizioni:
 * Linea di prodotti (Product line) è un nome specifico per un prodotto o una funzione eseguita all'interno del reparto. Generalmente è facoltativo per servizi e applicazioni interni. Tuttavia, è consigliabile usarlo per i servizi pubblici che dovranno essere facilmente separati e identificati, ad esempio per avere una netta separazione dei record di fatturazione.
 * Ambiente (Environment) è il nome che descrive il ciclo di vita della distribuzione di applicazioni o servizi, ad esempio Sviluppo, Controllo di qualità o Produzione.
 
-| Company | Department | Linea di prodotti o servizio | Environment | Nome completo |
+| Azienda | Department | Linea di prodotti o servizio | Environment | Nome completo |
 | --- | --- | --- | --- | --- |
 | Contoso |SocialGaming |AwesomeService |Produzione |Contoso SocialGaming AwesomeService Produzione |
 | Contoso |SocialGaming |AwesomeService |Sviluppo |Contoso SocialGaming AwesomeService Sviluppo |
@@ -60,7 +60,7 @@ Gli affissi possono fare riferimento ai diversi aspetti che descrivono le specif
 | Aspetto | Esempio | Note |
 | --- | --- | --- |
 | Environment |dev, prod, QA |Identifica l'ambiente per la risorsa. |
-| Percorso |usOcc (Stati Uniti occidentali), usOr (Stati Uniti orientali) |Identifica l'area in cui la risorsa viene distribuita. |
+| Località |usOcc (Stati Uniti occidentali), usOr (Stati Uniti orientali) |Identifica l'area in cui la risorsa viene distribuita. |
 | Istanza |01, 02 |Per le risorse che hanno più di un'istanza denominata, come server Web e così via. |
 | Prodotto o servizio |service |Identifica il prodotto, l'applicazione o il servizio supportato dalla risorsa |
 | Ruolo |sql, web, messaggistica |Identifica il ruolo della risorsa associata. |
@@ -73,38 +73,53 @@ Tutti i tipi di risorsa o servizio in Azure impongono una serie di restrizioni e
 
 In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo carattere in qualsiasi nome. Questi caratteri comportano un esito negativo per la maggior parte delle regole di convalida.
 
-| Categoria | Servizio o entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Gruppo di risorse |Gruppo di risorse |Globale |1-64 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura, parentesi, trattino, punto (tranne alla fine) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
-| Gruppo di risorse |Set di disponibilità |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<service-short-name>-<context>-as` |`profx-sql-as` |
-| Generale |Tag |Entità associata |512 (nome), 256 (valore) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`"key" : "value"` |`"department" : "Central IT"` |
-| Calcolo |Macchina virtuale |Gruppo di risorse |1-15 (Windows), 1-64 (Linux) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
-| Calcolo |App per le funzioni | Globale |1-60 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico e trattino |`<name>-func` |`calcprofit-func` |
-| Archiviazione |Nome account di archiviazione (dati) |Globale |3-24 |Minuscolo |Alfanumerico |`<globally unique name><number>` (usare una funzione per calcolare un guid univoco per la denominazione degli account di archiviazione) |`profxdata001` |
-| Archiviazione |Nome account di archiviazione (dischi) |Globale |3-24 |Minuscolo |Alfanumerico |`<vm name without dashes>st<number>` |`profxsql001st0` |
-| Archiviazione | Nome del contenitore |Account di archiviazione |3-63 |Minuscolo |Alfanumerico e trattino |`<context>` |`logs` |
-| Archiviazione |Nome del BLOB | Contenitore: |1-1024 |Fa distinzione tra maiuscole e minuscole. |Qualsiasi carattere URL |`<variable based on blob usage>` |`<variable based on blob usage>` |
-| Archiviazione |Nome della coda |Account di archiviazione |3-63 |Minuscolo |Alfanumerico e trattino |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
-| Archiviazione |Nome tabella | Account di archiviazione |3-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`<service short name><context>` |`awesomeservicelogs` |
-| Archiviazione |Nome file | Account di archiviazione |3-63 |Minuscolo | Alfanumerico |`<variable based on blob usage>` |`<variable based on blob usage>` |
-| Archiviazione |Data Lake Store | Globale |3-24 |Minuscolo | Alfanumerico |`<name>-dtl` |`telemetry-dtl` |
-| Rete |Rete virtuale |Gruppo di risorse |2-64 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-vnet` |`profx-vnet` |
-| Rete |Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole. |Alfanumerico, carattere di sottolineatura, trattino e punto |`<descriptive context>` |`web` |
-| Rete |Interfaccia di rete |Gruppo di risorse |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
-| Rete |Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
-| Rete |Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |
-| Rete |Indirizzo IP pubblico |Gruppo di risorse |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-pip` |
-| Rete |Bilanciamento del carico |Gruppo di risorse |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
-| Rete |Configurazione di regole del servizio di bilanciamento del carico |Bilanciamento del carico |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
-| Rete |Gateway applicazione di Azure |Gruppo di risorse |1-80 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
-| Rete |Profilo di Gestione traffico |Gruppo di risorse |1-63 |non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino e punto |`<descriptive context>` |`app1` |
+### <a name="general"></a>Generale
+
+| Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
+| --- | --- | --- | --- | --- | --- | --- |
+|Gruppo di risorse |Sottoscrizione |1-90 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura, parentesi, trattino e punto (tranne alla fine) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Set di disponibilità |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<service-short-name>-<context>-as` |`profx-sql-as` |
+|Tag |Entità associata |512 (nome), 256 (valore) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`"key" : "value"` |`"department" : "Central IT"` |
+
+### <a name="compute"></a>Calcolo
+
+| Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
+| --- | --- | --- | --- | --- | --- | --- |
+|Macchina virtuale |Gruppo di risorse |1-15 (Windows), 1-64 (Linux) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
+|App per le funzioni | Globale |1-60 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico e trattino |`<name>-func` |`calcprofit-func` |
 
 > [!NOTE]
 > Le macchine virtuali in Azure hanno due nomi distinti: il nome della macchina virtuale e il nome host. Quando si crea una macchina virtuale nel portale, viene usato lo stesso nome per il nome host e per il nome della risorsa della macchina virtuale. Le restrizioni sopra descritte si riferiscono al nome host. Il nome della risorsa effettivo può avere al massimo 64 caratteri.
 
-Microsoft aggiunge di frequente nuovi servizi in Azure. Nella tabella precedente vengono illustrati i servizi più comunemente usati nelle categorie Rete, Calcolo e Archiviazione. Per altri servizi, prendere in considerazione un suffisso di 3 lettere appropriato.
+### <a name="storage"></a>Archiviazione
 
-## <a name="organizing-resources-with-tags"></a>Organizzazione delle risorse con tag
+| Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
+| --- | --- | --- | --- | --- | --- | --- |
+|Nome account di archiviazione (dati) |Globale |3-24 |Lettere minuscole |Alfanumerico |`<globally unique name><number>` (usare una funzione per calcolare un guid univoco per la denominazione degli account di archiviazione) |`profxdata001` |
+|Nome account di archiviazione (dischi) |Globale |3-24 |Lettere minuscole |Alfanumerico |`<vm name without dashes>st<number>` |`profxsql001st0` |
+| Nome contenitore |Account di archiviazione |3-63 |Lettere minuscole |Alfanumerico e trattino |`<context>` |`logs` |
+|Nome del BLOB | Contenitore: |1-1024 |Fa distinzione tra maiuscole e minuscole. |Qualsiasi carattere URL |`<variable based on blob usage>` |`<variable based on blob usage>` |
+|Nome della coda |Account di archiviazione |3-63 |Lettere minuscole |Alfanumerico e trattino |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
+|Nome tabella | Account di archiviazione |3-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`<service short name><context>` |`awesomeservicelogs` |
+|Nome file | Account di archiviazione |3-63 |Lettere minuscole | Alfanumerico |`<variable based on blob usage>` |`<variable based on blob usage>` |
+|Archivio Data Lake | Globale |3-24 |Lettere minuscole | Alfanumerico |`<name>-dls` |`telemetry-dls` |
+
+### <a name="networking"></a>Rete
+
+| Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
+| --- | --- | --- | --- | --- | --- | --- |
+|Rete virtuale |Gruppo di risorse |2-64 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-vnet` |`profx-vnet` |
+|Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura, trattino e punto |`<descriptive context>` |`web` |
+|Interfaccia di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
+|Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |
+|Indirizzo IP pubblico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Bilanciamento del carico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
+|Configurazione di regole del servizio di bilanciamento del carico |Bilanciamento del carico |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
+|Gateway applicazione di Azure |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
+|Profilo di Gestione traffico |Gruppo di risorse |1-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino e punto |`<descriptive context>` |`app1` |
+
+## <a name="organize-resources-with-tags"></a>Organizza le risorse con i tag
 
 Azure Resource Manager supporta l'aggiunta di tag alle entità con stringhe di testo arbitrario per identificare il contesto e semplificare l'automazione.  Ad esempio, un tag `"sqlVersion: "sql2014ee"` può identificare tutte le macchine virtuali in una distribuzione che esegue SQL Server 2014 Enterprise Edition per eseguire uno script automatizzato su di esse.  I tag devono essere usati per ottimizzare e migliorare il contesto unitamente alle convenzioni di denominazione scelte.
 
@@ -126,12 +141,12 @@ Ecco alcuni casi d'uso dei tag comuni:
 
 Ecco un esempio di alcuni approcci comuni all'aggiunta di tag:
 
-| Nome del tag | Chiave | Esempio | Commento |
+| Nome del tag | Chiave | Esempio | Comment |
 | --- | --- | --- | --- |
 | Fattura a/ID chargeback interno |billTo |`IT-Chargeback-1234` |Codice di fatturazione o I/O interno |
 | Operatore o utente direttamente responsabile |managedBy |`joe@contoso.com` |Alias o indirizzo di posta elettronica |
-| Nome del progetto |project-name |`myproject` |Nome della linea di prodotti o del progetto |
-| Versione del progetto |project-version |`3.4` |Versione della linea di prodotti o del progetto |
+| Nome del progetto |projectName |`myproject` |Nome della linea di prodotti o del progetto |
+| Versione del progetto |projectVersion |`3.4` |Versione della linea di prodotti o del progetto |
 | Environment |Environment |`<Production, Staging, QA >` |Identificatore dell'ambiente |
 | Livello |Livello |`Front End, Back End, Data` |Identificazione di livello o del ruolo/contesto |
 | Profilo dei dati |dataProfile |`Public, Confidential, Restricted, Internal` |Riservatezza dei dati archiviati nella risorsa |

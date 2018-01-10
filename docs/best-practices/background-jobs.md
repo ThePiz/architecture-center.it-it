@@ -4,11 +4,11 @@ description: "Indicazioni sulle attività in background eseguite in modo indipen
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 62266b822a238ee53b62e74e91d753dc5da308b4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d8c1d4dfe12208b72fd6991def805f90a830b5f0
+ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/29/2017
 ---
 # <a name="background-jobs"></a>Processi in background
 [!INCLUDE [header](../_includes/header.md)]
@@ -100,7 +100,7 @@ I processi Web di Azure presentano le caratteristiche seguenti:
 * **Registrazione**: Console.Out viene trattato (contrassegnato) come INFO. Console.Error viene trattato come errore. È possibile accedere alle informazioni di monitoraggio e diagnostica dal Portale di Azure. I file di log possono essere scaricati direttamente dal sito. Tali file vengono salvati nei percorsi seguenti:
   * Per l'esecuzione con trigger: Vfs/data/jobs/triggered/nomeProcesso
   * Per l'esecuzione continua: Vfs/data/jobs/continuous/nomeProcesso
-* **Configurazione**: è possibile configurare i processi Web tramite il portale, l'API REST e PowerShell. Si può usare un file di configurazione denominato settings.job nella stessa directory radice dello script del processo per fornire le informazioni di configurazione per un processo. Ad esempio:
+* **Configurazione**: è possibile configurare i processi Web tramite il portale, l'API REST e PowerShell. Si può usare un file di configurazione denominato settings.job nella stessa directory radice dello script del processo per fornire le informazioni di configurazione per un processo. Ad esempio: 
   * { "stopping_wait_time": 60 }
   * { "is_singleton": true }
 
@@ -129,7 +129,7 @@ Per altre informazioni su come avviare le attività in background, vedere la sez
 Per decidere se distribuire le attività in background in una macchina virtuale di Azure, tenere presente quanto segue:
 
 * L'hosting di attività in background in una macchina virtuale di Azure separata offre flessibilità e consente un controllo preciso su avvio, esecuzione, pianificazione e allocazione delle risorse,  ma determina un aumento dei costi di runtime se è necessario distribuire una macchina virtuale solo per eseguire attività in background.
-* Non sono disponibili funzionalità di monitoraggio delle attività nel portale di Azure o di riavvio automatico di operazioni non riuscite, anche se è possibile monitorare lo stato di base della macchina virtuale e gestirla usando i [cmdlet di Azure Resource Manager](https://msdn.microsoft.com/en-us/library/mt125356.aspx). Non sono tuttavia disponibili funzioni di controllo dei processi e dei thread nei nodi di calcolo. In genere, l'uso di una macchina virtuale richiederà un impegno aggiuntivo per implementare un meccanismo che raccoglie i dati dalla strumentazione nell'attività e dal sistema operativo nella macchina virtuale. Una soluzione appropriata potrebbe essere l'uso di [System Center Management Pack per Azure](https://www.microsoft.com/en-us/download/details.aspx?id=50013).
+* Non sono disponibili funzionalità di monitoraggio delle attività nel portale di Azure o di riavvio automatico di operazioni non riuscite, anche se è possibile monitorare lo stato di base della macchina virtuale e gestirla usando i [cmdlet di Azure Resource Manager](https://msdn.microsoft.com/library/mt125356.aspx). Non sono tuttavia disponibili funzioni di controllo dei processi e dei thread nei nodi di calcolo. In genere, l'uso di una macchina virtuale richiederà un impegno aggiuntivo per implementare un meccanismo che raccoglie i dati dalla strumentazione nell'attività e dal sistema operativo nella macchina virtuale. Una soluzione appropriata potrebbe essere l'uso di [System Center Management Pack per Azure](https://www.microsoft.com/download/details.aspx?id=50013).
 * È possibile considerare la creazione di probe di monitoraggio esposti tramite endpoint HTTP. Il codice per questi probe potrebbe eseguire controlli di integrità, raccogliere informazioni operative e statistiche o raggruppare informazioni sugli errori e restituirle a un'applicazione di gestione. Per altre informazioni, vedere [Modello di monitoraggio integrità Endpoint](http://msdn.microsoft.com/library/dn589789.aspx).
 
 #### <a name="more-information"></a>Altre informazioni
@@ -180,7 +180,7 @@ I contenitori possono essere utili per l'esecuzione di processi in background. A
 
 Esistono diversi modi per implementare le attività di background in un ruolo Servizi cloud:
 
-* Creare un'implementazione della classe **RoleEntryPoint** nel ruolo e usarne i metodi per eseguire attività in background. Le attività vengono eseguite nel contesto di WaIISHost.exe. Possono usare il metodo **GetSetting** della classe **CloudConfigurationManager** per caricare le impostazioni di configurazione. Per altre informazioni, vedere [Ciclo di vita (Servizi cloud)](#lifecycle-cloud-services).
+* Creare un'implementazione della classe **RoleEntryPoint** nel ruolo e usarne i metodi per eseguire attività in background. Le attività vengono eseguite nel contesto di WaIISHost.exe. Possono usare il metodo **GetSetting** della classe **CloudConfigurationManager** per caricare le impostazioni di configurazione. Per altre informazioni, vedere [Ciclo di vita](#lifecycle).
 * Usare le attività di avvio per eseguire attività in background all'avvio dell'applicazione. Per forzare il proseguimento dell'esecuzione delle attività in background, impostare la proprietà **taskType** su **background**. In caso contrario il processo di avvio dell'applicazione si arresterà e attenderà il completamento dell'attività. Per altre informazioni, vedere [Come configurare ed eseguire attività di avvio per un servizio cloud](/azure/cloud-services/cloud-services-startup-tasks).
 * Usare WebJobs SDK per implementare attività in background come ad esempio WebJobs, che vengono avviate come attività di avvio. Per altre informazioni, vedere [Creare un processo Web .NET in Servizio app di Azure](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started).
 * Usare un'attività di avvio per installare un servizio Windows che esegue una o più attività in background. È necessario impostare la proprietà **taskType** su **background** in modo che il servizio venga eseguito in background. Per altre informazioni, vedere [Come configurare ed eseguire attività di avvio per un servizio cloud](/azure/cloud-services/cloud-services-startup-tasks).
@@ -321,9 +321,8 @@ Le attività in background devono offrire prestazioni sufficienti a garantire ch
 * [Esecuzione di attività in background](http://msdn.microsoft.com/library/ff803365.aspx)
 * [Ciclo di vita di avvio del ruolo di Azure](http://blog.syntaxc4.net/post/2011/04/13/windows-azure-role-startup-life-cycle.aspx) (post di blog)
 * [Ciclo di vita del ruolo di Servizi cloud di Azure](http://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (video)
-* [Che cos'è Azure WebJobs SDK](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk)
-* [Creare un processo Web .NET nel servizio app di Azure](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started)
-* [Eseguire attività in background con Processi Web](https://docs.microsoft.com/en-us/azure/app-service-web/web-sites-create-web-jobs)
-* [Analogie e differenze tra le code di Azure e le code del bus di servizio](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
-* [Come abilitare il modulo Diagnostica in un servizio cloud](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics)
+* [Che cos'è Azure WebJobs SDK](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
+* [Eseguire attività in background con Processi Web](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
+* [Analogie e differenze tra le code di Azure e le code del bus di servizio](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
+* [Come abilitare il modulo Diagnostica in un servizio cloud](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
 

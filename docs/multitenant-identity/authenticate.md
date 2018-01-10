@@ -6,15 +6,15 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 74f4e85e282799b7eee92caf2da083fb264f8733
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Eseguire l'autenticazione con Azure AD e OpenID Connect
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 L'applicazione Surveys usa il protocollo OpenID Connect (OIDC) per autenticare gli utenti con Azure Active Directory (Azure AD). L'applicazione Surveys usa ASP.NET Core, che include middleware integrato per OIDC. Il diagramma seguente illustra a livello generale ciò che accade quando l'utente esegue l'accesso.
 
@@ -131,7 +131,7 @@ Ecco il processo di autenticazione:
 Se l'autenticazione riesce, il middleware OIDC crea un ticket di autenticazione che contiene un'entità attestazioni con le attestazioni dell'utente. È possibile accedere al ticket all'interno dell'evento **AuthenticationValidated** o **TicketReceived**.
 
 > [!NOTE]
-> Finché non viene completato l'intero flusso di autenticazione, `HttpContext.User` continua a mantenere un'entità di sicurezza anonima e *non* l'utente autenticato. L'entità anonima include una raccolta di attestazioni vuota. Dopo il completamento dell'autenticazione e il reindirizzamento dell'app, il middleware dei cookie deserializza i cookie di autenticazione e imposta `HttpContext.User` su un'entità attestazioni che rappresenta l'utente autenticato.
+> Finché non viene completato l'intero flusso di autenticazione, `HttpContext.User` continua a mantenere un'entità di sicurezza anonima e **non** l'utente autenticato. L'entità anonima include una raccolta di attestazioni vuota. Dopo il completamento dell'autenticazione e il reindirizzamento dell'app, il middleware dei cookie deserializza i cookie di autenticazione e imposta `HttpContext.User` su un'entità attestazioni che rappresenta l'utente autenticato.
 > 
 > 
 
@@ -170,7 +170,7 @@ Quando il middleware OIDC reindirizza all'endpoint di autorizzazione, l'URL di r
 * response_type  = "code id_token". Specifica il flusso ibrido.
 * response_mode = "form_post". Specifica la risposta del Post per i form.
 
-Per specificare un flusso diverso, impostare la proprietà **ResponseType** nelle opzioni. ad esempio:
+Per specificare un flusso diverso, impostare la proprietà **ResponseType** nelle opzioni. Ad esempio: 
 
 ```csharp
 app.UseOpenIdConnectAuthentication(options =>

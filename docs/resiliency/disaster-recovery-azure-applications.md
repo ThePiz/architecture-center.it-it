@@ -3,21 +3,30 @@ title: Ripristino di emergenza per le applicazioni basate su Azure
 description: Panoramiche tecniche e informazioni approfondite sulla progettazione e la creazione di applicazioni per il ripristino di emergenza in Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: d415b27dd7928996e2a6dc7fd8fcf6a77c835768
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5ed6e2cec149571724f1545b40f628d6bbe1ad71
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
-[!INCLUDE [header](../_includes/header.md)]
 # <a name="disaster-recovery-for-azure-applications"></a>Ripristino di emergenza per le applicazioni basate su Azure
-La resilienza e le strategie a disponibilità elevata sono state concepite per gestire condizioni di errore temporaneo. Il ripristino di emergenza è incentrato sul recupero dalla perdita irreversibile di funzionalità delle applicazioni. Se, ad esempio, un'area di Azure che ospita l'applicazione non è più disponibile, è necessario un piano per eseguire l'applicazione o accedere ai dati in un'altra area. L'esecuzione di questo piano prevede l'impiego di persone, processi e applicazioni di supporto che consentono al sistema di continuare a funzionare. Per verificare che sia valido, il piano deve includere le prove di errore e il test del ripristino del database. Il livello di funzionalità del servizio richiesto durante un'emergenza è determinato dai proprietari dei processi aziendali e delle tecnologie, che definiscono le modalità operative del sistema in caso di emergenza. Questo livello di funzionalità può assumere forme diverse e prevedere la completa indisponibilità, una disponibilità parziale, con funzionalità ridotte o ritardi nell'elaborazione, o la disponibilità completa.
+
+Il ripristino di emergenza è incentrato sul recupero dalla perdita irreversibile di funzionalità delle applicazioni. Se, ad esempio, un'area di Azure che ospita l'applicazione non è più disponibile, è necessario un piano per eseguire l'applicazione o accedere ai dati in un'altra area. 
+
+I proprietari dei processi aziendali e delle tecnologie devono determinare il livello di funzionalità richiesta in caso di emergenza. Questo livello di funzionalità può assumere forme diverse e prevedere la completa indisponibilità, una disponibilità parziale, con funzionalità ridotte o ritardi nell'elaborazione, o la disponibilità completa.
+
+La resilienza e le strategie a disponibilità elevata sono state concepite per gestire condizioni di errore temporaneo.  L'esecuzione di questo piano prevede l'impiego di persone, processi e applicazioni di supporto che consentono al sistema di continuare a funzionare. Per verificare che sia valido, il piano deve includere le prove di errore e il test del ripristino del database. 
 
 ## <a name="azure-disaster-recovery-features"></a>Funzionalità del ripristino di emergenza in Azure
+
 Come per la disponibilità, Azure offre [indicazioni tecniche sulla resilienza](./index.md) concepite per supportare il ripristino di emergenza. Esiste anche un rapporto tra le funzionalità di disponibilità di Azure e il ripristino di emergenza. Ad esempio, la gestione dei ruoli tra domini di errore aumenta la disponibilità di un'applicazione. Senza questo tipo di gestione, un errore hardware non gestito diventerebbe uno scenario di "emergenza". L'applicazione corretta delle funzionalità e delle strategie di disponibilità deve essere considerata una parte importante delle iniziative per rendere le applicazioni a prova di emergenza. Questo articolo, tuttavia, va oltre i problemi generali relativi alla disponibilità per illustrare eventi di emergenza più gravi e più rari.
 
 ## <a name="multiple-datacenter-regions"></a>Più aree di data center
 I data center di Azure sono dislocati in diverse aree del mondo. Questa infrastruttura supporta diversi scenari di ripristino di emergenza, ad esempio la replica geografica fornita dal sistema di Archiviazione di Azure nelle aree secondarie. È inoltre possibile distribuire in modo semplice ed economico un servizio cloud in diverse località del mondo. È utile confrontare questo con i costi e le difficoltà correlate alla creazione e alla gestione di data center propri in più aree. La distribuzione di dati e servizi in più aree consente di proteggere l'applicazione dal rischio di gravi interruzioni in una singola area. Quando si progetta il piano di ripristino di emergenza, è importante comprendere il concetto di aree abbinate. Per altre informazioni, vedere [Continuità aziendale e ripristino di emergenza nelle aree geografiche abbinate di Azure](/azure/best-practices-availability-paired-regions).
+
+## <a name="azure-site-recovery"></a>Azure Site Recovery
+
+[Azure Site Recovery](/azure/site-recovery/) consente di eseguire in modo semplice la replica di macchine virtuali di Azure tra le aree. Il sovraccarico di gestione richiesto è minimo, perché non è necessario eseguire il provisioning di risorse aggiuntive nell'area secondaria. Quando si abilita la replica, Site Recovery crea automaticamente le risorse necessarie nell'area di destinazione, in base alle impostazioni delle macchine virtuali di origine. Oltre a offrire la replica continua automatizzata, consente di eseguire il failover delle applicazioni con un solo clic. È anche possibile eseguire esercitazioni per il ripristino di emergenza testando il failover, senza influire sui carichi di lavoro di produzione o sulla replica continua. 
 
 ## <a name="azure-traffic-manager"></a>Gestione traffico di Azure
 Quando si verifica un problema specifico di un'area, è necessario reindirizzare il traffico a servizi o distribuzioni in un'altra area. Questa operazione risulta più efficace se eseguita tramite servizi, ad esempio Gestione traffico di Azure, che consente di automatizzare il failover del traffico utente in un'altra area se l'area primaria non riesce. Quando si progetta una strategia di ripristino di emergenza efficace, è importante comprendere le nozioni di base di Gestione traffico.
@@ -69,9 +78,7 @@ Si noti che la disponibilità elevata riduce la velocità effettiva e aumenta la
 Gli errori indicati in precedenza sono principalmente errori gestibili nella stessa area di Azure. È tuttavia necessario prepararsi anche all'eventualità che si verifichi un'interruzione del servizio nell'intera area. Se si verifica un'interruzione del servizio a livello di area, le copie ridondanti locali dei dati non sono disponibili. Se è stata abilitata la replica geografica, esistono altre tre copie dei BLOB e delle tabelle in un'area diversa. Se Microsoft dichiara l'area perdita di un'area, Azure esegue di nuovo il mapping di tutte le voci DNS all'area con replica geografica.
 
 > [!NOTE]
-> Tenere presente che non è possibile controllare questo processo e che verrà eseguito solo in caso di interruzione del servizio a livello di area. Per questo motivo, è necessario affidarsi ad altre strategie di backup specifiche dell'applicazione per ottenere il massimo livello di disponibilità. Per altre informazioni, vedere la sezione sulle [strategie dei dati per il ripristino di emergenza](#data-strategies-for-disaster-recovery).
-> 
-> 
+> Tenere presente che non è possibile controllare questo processo e che verrà eseguito solo in caso di interruzione del servizio a livello di area. Per ottenere valori migliori di RPO e RTO, provare a usare [Azure Site Recovery](/azure/site-recovery/). Con Site Recovery è l'applicazione a decidere quando considerare accettabile un'interruzione e quando effettuare il failover alle macchine virtuali replicate.
 
 ### <a name="azure-wide-service-disruption"></a>Interruzione del servizio a livello di Azure
 Nella pianificazione delle emergenze, è necessario considerare l'intera gamma delle possibili condizioni. Una delle interruzioni del servizio più gravi riguarda l'eventuale coinvolgimento contemporaneo di tutte le aree di Azure. Come per altre interruzioni del servizio, anche in questo caso è possibile scegliere di accettare il rischio di un tempo di inattività temporaneo. Le interruzioni del servizio diffuse che si estendono a più aree dovrebbero essere più rare rispetto a quelle isolate che interessano servizi dipendenti o singole aree.
@@ -179,6 +186,18 @@ Per tutte le applicazioni tranne le meno importanti è necessario definire un pi
 
 Di seguito vengono esaminati approcci specifici che supportano il failover tra aree diverse. In entrambi questi esempi si usano due aree per descrivere il processo.
 
+### <a name="failover-using-azure-site-recovery"></a>Failover con Azure Site Recovery
+
+Quando si abilita la replica delle macchine virtuali di Azure con Azure Site Recovery, vengono create diverse risorse nell'area secondaria:
+
+- Gruppo di risorse.
+- Rete virtuale (VNet).
+- Account di archiviazione. 
+- Set di disponibilità che conterranno le macchine virtuali dopo il failover.
+
+Le operazioni di scrittura dei dati sui dischi delle macchine virtuali nell'area primaria vengono trasferite continuamente nell'account di archiviazione nell'area secondaria. I punti di ripristino vengono generati nell'account di archiviazione di destinazione a intervalli di pochi minuti. Quando si avvia un failover, le macchine virtuali ripristinate vengono create nel gruppo di risorse, nella VNet e nel set di disponibilità di destinazione. Durante un failover è possibile scegliere qualsiasi punto di ripristino disponibile.
+
+
 ### <a name="redeployment-to-a-secondary-azure-region"></a>Ridistribuzione in un'area di Azure secondaria
 Nell'approccio di ridistribuzione a un'area secondaria, solo l'area primaria presenta applicazioni e database in esecuzione. L'area secondaria non è configurata per un failover automatico. Quando si verifica un'emergenza, è quindi necessario attivare tutti i componenti del servizio nella nuova area. Sono inclusi il caricamento di un servizio cloud in Azure, la distribuzione del servizio cloud, il ripristino dei dati e la modifica del DNS per il reindirizzamento del traffico.
 
@@ -269,6 +288,8 @@ Provare a progettare un tipo di "centralino" nell'applicazione per simulare manu
 
 Durante la simulazione vengono evidenziati eventuali problemi non gestiti in modo adeguato. Gli scenari simulati devono essere completamente controllabili. In questo modo, anche se il piano di ripristino ha esito negativo, è possibile ripristinare la situazione senza causare danni significativi. È inoltre importante che i responsabili ad alto livello siano informati sui tempi e sulle modalità di esecuzione delle simulazioni. Questo piano deve indicare in modo dettagliato il tempo necessario o le risorse coinvolte durante la simulazione. Definire anche il grado di successo durante il test del piano di ripristino di emergenza.
 
+Se si usa Azure Site Recovery, è possibile eseguire un failover di test in Azure per convalidare la strategia di replica oppure eseguire un'esercitazione sul ripristino di emergenza senza perdita di dati o tempi di inattività. Un failover di test non influisce sulla replica delle macchine virtuali in corso o sull'ambiente di produzione.
+
 I piani di ripristino di emergenza possono essere sottoposti a test anche con altre tecniche. La maggior parte delle quali tuttavia è costituita semplicemente da varianti delle tecniche di base. Lo scopo di questo test è valutare la fattibilità del piano di ripristino. I test del piano di ripristino di emergenza sono incentrati sui dettagli per individuare le falle del piano di base.
 
 ## <a name="service-specific-guidance"></a>Indicazioni specifiche dei servizi
@@ -278,7 +299,7 @@ Gli argomenti che seguono descrivono i servizi di Azure specifici per il riprist
 | Service | Argomento |
 |---------|-------|
 | Servizi cloud | [Operazioni da eseguire in caso di un'interruzione del servizio Azure con impatto sui servizi cloud di Azure](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
-| Insieme di credenziali delle chiavi | [Disponibilità e ridondanza in Azure Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) |
+| Insieme di credenziali di chiave | [Disponibilità e ridondanza in Azure Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |Archiviazione | [Cosa fare se si verifica un'interruzione di Archiviazione di Azure](/azure/storage/storage-disaster-recovery-guidance) |
 | Database SQL | [Ripristinare un database SQL di Azure o eseguire il failover in un database secondario](/azure/sql-database/sql-database-disaster-recovery) |
 | Macchine virtuali | [Cosa fare in caso di un'interruzione di servizio di Azure che influisce sulle macchine virtuali di Azure](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |

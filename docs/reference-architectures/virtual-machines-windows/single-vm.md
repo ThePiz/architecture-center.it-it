@@ -2,15 +2,15 @@
 title: Eseguire una macchina virtuale (VM) Windows in Azure
 description: "Come eseguire una macchina virtuale Windows in Azure, con particolare attenzione a scalabilità, resilienza, gestibilità e sicurezza."
 author: telmosampaio
-ms.date: 11/16/2017
+ms.date: 12/12/2017
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: b519cb96c124a91d95fb5965f34b86026c95805c
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: 71eeebae1f557ecbb6f33c4a7e37a278204f3dcd
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="run-a-windows-vm-on-azure"></a>Eseguire una macchina virtuale (VM) Windows in Azure
 
@@ -20,19 +20,20 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 *Scaricare un [file di Visio][visio-download] che contiene il diagramma di questa architettura.*
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Il provisioning di una macchina virtuale di Azure richiede componenti aggiuntivi, quali risorse di calcolo, di rete e di archiviazione.
 
-* **Gruppo di risorse.** Un [*gruppo di risorse*][resource-manager-overview] è un contenitore in cui risiedono le risorse correlate. In genere, è necessario raggruppare le risorse in una soluzione in base alla loro durata e alle persone che le gestiranno. Per il carico di lavoro di una singola macchina virtuale è possibile creare un unico gruppo di risorse per tutte le risorse.
+* **Gruppo di risorse.** Un [gruppo di risorse][resource-manager-overview] è un contenitore in cui risiedono le risorse correlate. In genere, è necessario raggruppare le risorse in una soluzione in base alla loro durata e alle persone che le gestiranno. Per il carico di lavoro di una singola macchina virtuale è possibile creare un unico gruppo di risorse per tutte le risorse.
 * **VM**. È possibile eseguire il provisioning di una macchina virtuale da un elenco di immagini pubblicate, da un'immagine gestita personalizzata o da un file del disco rigido virtuale (VHD) caricato nell'archivio BLOB di Azure.
 * **Disco del sistema operativo.** Il disco del sistema operativo è un disco rigido virtuale archiviato in [Archiviazione di Azure][azure-storage], dove viene conservato anche quando il computer host è inattivo.
-* **Disco temporaneo.** La VM viene creata con un disco temporaneo, ovvero l'unità `D:` in Windows. Questo disco viene archiviato in un'unità fisica nel computer host. *Non* viene salvato nell'Archiviazione di Azure ed è possibile che venga eliminato durante i riavvii e altri eventi del ciclo di vita della macchina virtuale. Usare questo disco solo per dati temporanei, ad esempio file di paging o di scambio.
+* **Disco temporaneo.** La VM viene creata con un disco temporaneo, ovvero l'unità `D:` in Windows. Questo disco viene archiviato in un'unità fisica nel computer host. **Non** viene salvato nell'Archiviazione di Azure ed è possibile che venga eliminato durante i riavvii e altri eventi del ciclo di vita della macchina virtuale. Usare questo disco solo per dati temporanei, ad esempio file di paging o di scambio.
 * **Dischi dati.** Un [disco dati][data-disk] è un VHD persistente usato per i dati dell'applicazione. I dischi dati vengono archiviati nell'Archiviazione di Azure, come il disco del sistema operativo.
 * **Rete virtuale (VNet) e subnet.** Ogni macchina virtuale di Azure viene distribuita in una rete virtuale che può essere suddivisa in più subnet.
-* **Indirizzo IP pubblico.** Un indirizzo IP pubblico è necessario per comunicare con la VM &mdash;, ad esempio tramite Desktop remoto.
-* **Interfaccia di rete (NIC)**. Una scheda di interfaccia di rete assegnata consente alla macchina virtuale di comunicare con la rete virtuale.
-* **Gruppo di sicurezza di rete**. I [gruppi di sicurezza di rete][nsg] vengono usati per consentire o negare il traffico di rete a una risorsa di rete. Un NSG può essere associato a una singola scheda di interfaccia di rete o a una subnet. Se lo si associa a una subnet, le regole dell’NSG si applicano a tutte le VM nella subnet.
+* **Indirizzo IP pubblico.** Un indirizzo IP pubblico è necessario per comunicare con la VM &mdash;, ad esempio tramite Desktop remoto.  
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.  
+* **Interfaccia di rete (NIC)**. Una scheda di interfaccia di rete assegnata consente alla macchina virtuale di comunicare con la rete virtuale.  
+* **Gruppo di sicurezza di rete**. I [gruppi di sicurezza di rete][nsg] vengono usati per consentire o negare il traffico di rete verso una risorsa di rete. Un NSG può essere associato a una singola scheda di interfaccia di rete o a una subnet. Se lo si associa a una subnet, le regole dell’NSG si applicano a tutte le VM nella subnet.
 * **Diagnostica.** La registrazione diagnostica è essenziale per la gestione e la risoluzione dei problemi della macchina virtuale.
 
 ## <a name="recommendations"></a>Raccomandazioni
@@ -41,7 +42,7 @@ Questa architettura mostra le indicazioni di base per l'esecuzione di una macchi
 
 ### <a name="vm-recommendations"></a>Indicazioni per le VM
 
-Azure offre macchine virtuali di diverse dimensioni. [Archiviazione Premium][premium-storage] è consigliata per le sue prestazioni elevate e la bassa latenza ed è [supportata con specifiche dimensioni di macchina virtuale][premium-storage-supported]. Selezionare una di queste dimensioni, a meno che non si abbia un carico di lavoro specializzato, ad esempio di High-Performance Computing. Per altre informazioni vedere [Dimensioni delle macchine virtuali][virtual-machine-sizes].
+Azure offre macchine virtuali di diverse dimensioni. [Archiviazione Premium][premium-storage] è consigliata per le sue prestazioni elevate e la bassa latenza ed è [supportata con specifiche dimensioni di macchina virtuale][premium-storage-supported]. Selezionare una di queste dimensioni, a meno che non si abbia un carico di lavoro specializzato, ad esempio di High-Performance Computing. Per altre informazioni, vedere [Dimensioni delle macchine virtuali][virtual-machine-sizes].
 
 Se si sposta un carico di lavoro esistente in Azure, per iniziare scegliere le dimensioni della VM più simili a quelle dei server locali. Misurare quindi le prestazioni del carico di lavoro effettivo in relazione alla CPU, alla memoria e alle operazioni di input/output al secondo (IOPS) del disco e regolare le dimensioni in base alle necessità. Se sono necessarie più schede di interfaccia di rete per la macchina virtuale, tenere presente che per ogni [dimensione di macchina virtuale][vm-size-tables] è definito un numero massimo di schede.
 
@@ -61,7 +62,7 @@ Per ottimizzare le prestazioni I/O del disco, si consiglia di usare [Archiviazio
 
 È consigliabile anche usare [dischi gestiti](/azure/storage/storage-managed-disks-overview). I dischi gestiti non richiedono un account di archiviazione. È sufficiente specificare le dimensioni e il tipo di disco per distribuirlo come risorsa a disponibilità elevata.
 
-Se si usano dischi non gestiti, creare account di archiviazione di Azure separati per ogni macchina virtuale che dovrà contenere i dischi rigidi virtuali, in modo da evitare di raggiungere i [limiti di operazioni di I/O al secondo][vm-disk-limits] per gli account di archiviazione.
+Se non si usano dischi non gestiti, creare account di archiviazione di Azure separati per ogni macchina virtuale che dovrà contenere i dischi rigidi virtuali, in modo da evitare di raggiungere i [limiti di operazioni di I/O al secondo][vm-disk-limits] (IOPS) per gli account di archiviazione.
 
 Aggiungere uno o più dischi dati. Quando si crea un VHD, il disco non è formattato. Accedere alla VM per formattare il disco. Se non si usano dischi gestiti e sono presenti molti dischi dati, occorre prestare attenzione ai limiti totali di I/O dell'account di archiviazione. Per altre informazioni, vedere [Limiti relativi ai dischi della macchina virtuale][vm-disk-limits].
 
@@ -86,7 +87,7 @@ Per abilitare Desktop remoto, aggiungere una regola all'NSG per consentire il tr
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
-Per una disponibilità più elevata, distribuire più macchine virtuali in un set di disponibilità. Sarà così disponibile anche un [contratto di servizio][vm-sla] (SLA) di livello più elevato.
+Per una disponibilità più elevata, distribuire più macchine virtuali in un set di disponibilità. Sarà così disponibile anche un [contratto di servizio][vm-sla] di livello più elevato.
 
 È possibile che la VM sia interessata da attività di [manutenzione pianificata][planned-maintenance] o [manutenzione non pianificata][manage-vm-availability]. È possibile usare i [log di riavvio della VM][reboot-logs] per determinare se un riavvio della VM è stato provocato da attività di manutenzione pianificata.
 
@@ -100,7 +101,7 @@ Per proteggersi dalla perdita accidentale di dati durante le operazioni normali,
 
 **Arresto di una VM.** Azure distingue tra gli stati "Arrestato" e "Deallocato". L'addebito avviene quando lo stato della VM viene arrestato, ma non quando la VM viene deallocata.
 
-Anche il pulsante **Arresta** nel portale di Azure consente di deallocare la VM. Se l'arresto viene effettuato tramite il sistema operativo ad accesso eseguito, la VM viene arrestata ma *non* deallocata, quindi gli addebiti continueranno a essere effettuati.
+Anche il pulsante **Arresta** nel portale di Azure consente di deallocare la VM. Se l'arresto viene effettuato tramite il sistema operativo ad accesso eseguito, la VM viene arrestata ma **non** deallocata, quindi gli addebiti continueranno a essere effettuati.
 
 **Eliminazione di una VM.** Se si elimina una VM, i VHD non vengono eliminati. È quindi possibile eliminare in modo sicuro la macchina virtuale senza perdere dati. Verranno tuttavia applicati comunque addebiti per l'archiviazione. Per eliminare il VHD, eliminare il file dall'[archivio BLOB][blob-storage].
 
@@ -132,7 +133,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github-folde
   * Una macchina virtuale che esegue la versione più recente di Windows Server 2016 Datacenter Edition.
   * Un'estensione script personalizzata di esempio che formatta i due dischi dati e uno script DSC di PowerShell che distribuisce IIS.
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
 Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
 
@@ -180,6 +181,7 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azbbv2]: https://github.com/mspnp/template-building-blocks
 [azure-cli-2]: /cli/azure/install-azure-cli?view=azure-cli-latest
+[azure-dns]: /azure/dns/dns-overview
 [azure-storage]: /azure/storage/storage-introduction
 [blob-snapshot]: /azure/storage/storage-blob-snapshots
 [blob-storage]: /azure/storage/storage-introduction

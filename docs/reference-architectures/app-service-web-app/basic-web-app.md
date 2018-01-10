@@ -2,13 +2,13 @@
 title: Applicazione Web di base
 description: L'architettura consigliata per l'esecuzione delle applicazioni Web di base in Microsoft Azure.
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: b7475c4087a184bb7608d0c45ffecee912c920d7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 598eb547f0e96ae334af391183a792637caa8631
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="basic-web-application"></a>Applicazione Web di base
 [!INCLUDE [header](../../_includes/header.md)]
@@ -17,9 +17,9 @@ Questa architettura di riferimento mostra un set di procedure collaudate per un'
 
 ![[0]][0]
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architecture 
 
 > [!NOTE]
 > Questa architettura non è incentrata sullo sviluppo delle applicazioni e non usa uno specifico framework applicazione, ma ha piuttosto l'obiettivo di comprendere l'interazione tra i diversi servizi di Azure.
@@ -29,15 +29,23 @@ Questa architettura di riferimento mostra un set di procedure collaudate per un'
 L'architettura include i componenti seguenti:
 
 * **Gruppo di risorse**. Un [gruppo di risorse](/azure/azure-resource-manager/resource-group-overview) è un contenitore logico per le risorse di Azure.
+
 * **App del servizio app**. [Servizio app di Azure][app-service] è una piattaforma completamente gestita per la creazione e la distribuzione di applicazioni cloud.     
+
 * **Piano di servizio app**. Un [piano di servizio app][app-service-plans] fornisce le macchine virtuali (VM) gestite che ospitano l'app. Tutte le app associate a un piano vengono eseguite nelle stesse istanze della macchina virtuale.
 
 * **Slot di distribuzione**.  Uno [slot di distribuzione][deployment-slots] consente di gestire temporaneamente una distribuzione e quindi scambiarla con la distribuzione di produzione. In questo modo è possibile evitare di eseguire la distribuzione direttamente nell'ambiente di produzione. Per consigli specifici, vedere la sezione [Gestibilità](#manageability-considerations).
 
-* **Indirizzo IP**. L'app del servizio app è associata a un indirizzo IP pubblico e a un nome di dominio. Il nome di dominio è un sottodominio di `azurewebsites.net`, ad esempio `contoso.azurewebsites.net`. Per usare un nome di dominio personalizzato, ad esempio `contoso.com`, creare record DNS (Domain Name Service) che eseguono il mapping del nome di dominio personalizzato all'indirizzo IP. Per ulteriori informazioni, vedere [Configurare un nome di dominio personalizzato nel servizio app di Azure][custom-domain-name].
+* **Indirizzo IP**. L'app del servizio app è associata a un indirizzo IP pubblico e a un nome di dominio. Il nome di dominio è un sottodominio di `azurewebsites.net`, ad esempio `contoso.azurewebsites.net`.  
+
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure. Per usare un nome di dominio personalizzato, ad esempio `contoso.com`, creare record DNS che eseguono il mapping del nome di dominio personalizzato all'indirizzo IP. Per ulteriori informazioni, vedere [Configurare un nome di dominio personalizzato nel servizio app di Azure][custom-domain-name].  
+
 * **Database SQL di Azure**. Il [database SQL][sql-db] è un database relazionale distribuito come servizio nel cloud.
+
 * **Server logico**. Nel database SQL di Azure un server logico ospita i database. È possibile creare più database per ogni server logico.
+
 * **Archiviazione di Azure**. Creare un account di archiviazione di Azure con un contenitore BLOB per archiviare i log di diagnostica.
+
 * **Azure Active Directory** (Azure AD). Usare Azure AD o un altro provider di identità per l'autenticazione.
 
 ## <a name="recommendations"></a>Raccomandazioni
@@ -52,7 +60,7 @@ All'utente vengono addebitate le istanze del piano di servizio app anche se l'ap
 ### <a name="sql-database"></a>Database SQL
 Usare la [versione V12][sql-db-v12] del database SQL. Il database SQL supporta i [livelli di servizio ][sql-db-service-tiers] Basic, Standard e Premium con più livelli di prestazioni all'interno di ciascuno di essi, misurati in [DTU (Database Transaction Unit)][sql-dtu]. Eseguire la pianificazione delle capacità e scegliere un livello di prestazioni che soddisfi i propri requisiti.
 
-### <a name="region"></a>Region
+### <a name="region"></a>Area
 Eseguire il provisioning del piano di servizio app e del database SQL nella stessa area per ridurre al minimo la latenza di rete. In genere, è consigliabile selezionare l'area più vicina agli utenti.
 
 Anche il gruppo di risorse è associato a un'area, che specifica dove vengono archiviati i metadati di distribuzione. Inserire il gruppo e le relative risorse nella stessa area, per provare a migliorare la disponibilità durante la distribuzione. 
@@ -129,7 +137,7 @@ Un'app del servizio app ha sempre uno slot di distribuzione denominato `producti
 
 Se si ripristina una versione precedente, assicurarsi che le modifiche allo schema del database siano compatibili con le versioni precedenti.
 
-Non usare gli slot nella distribuzione della produzione per il test, perché tutte le applicazioni include nello stesso piano del servizio app condividono le stesse istanze della macchina virtuale. I test di carico, ad esempio, potrebbero compromettere il sito di produzione in tempo reale. Creare invece piani del servizio app separati per gli ambienti di produzione e di test. L'inserimento delle distribuzioni dei test in un piano separato consente di isolarli dalla versione di produzione.
+Non usare gli slot nella distribuzione della produzione per il test, perché tutte le applicazioni include nello stesso piano del servizio app condividono le stesse istanze della macchina virtuale. I test di carico, ad esempio, potrebbero compromettere il sito di produzione in tempo reale. Creare invece piani del servizio app separati per gli ambienti di produzione e di test. Se si inseriscono le distribuzioni di test in un piano separato, le si isola dalla versione di produzione.
 
 ### <a name="configuration"></a>Configurazione
 Archiviare le impostazioni di configurazione come [impostazioni app][app-settings]. Definire le impostazioni dell'app nei modelli di Resource Manager o con PowerShell. In fase di runtime, le impostazioni dell'app sono disponibili come variabili di ambiente.
@@ -169,7 +177,7 @@ Un'app del servizio app include un endpoint SSL di un sottodominio di `azurewebs
 
 Come procedura ottimale di protezione, l'app deve applicare HTTPS mediante il reindirizzamento delle richieste HTTP. È possibile implementare questa procedura all'interno dell'applicazione o usare una regola di riscrittura URL come descritto nell'articolo relativo all'[abilitazione di HTTPS per un'app nel servizio app di Azure][ssl-redirect].
 
-### <a name="authentication"></a>Autenticazione
+### <a name="authentication"></a>Authentication
 È consigliabile eseguire l'autenticazione tramite un provider di identità (IDP), come Azure AD, Facebook, Google o Twitter. Usare OAuth 2 o OpenID Connect (OIDC) per il flusso di autenticazione. Azure AD offre funzionalità che consentono di gestire utenti e gruppi, creare ruoli applicazione, integrare le identità locali e usare i servizi di backend, quali Office 365 e Skype for Business.
 
 Evitare che l'applicazione gestisca gli accessi e le credenziali utente direttamente, in modo da non creare una potenziale superficie di attacco.  Come minimo, è necessario impostare la conferma tramite posta elettronica, il recupero della password, l'autenticazione a più fattori, nonché convalidare la lunghezza della password e archiviare in modo sicuro gli hash delle password. I provider di identità di grandi dimensioni gestiscono tutte queste operazioni per l'utente e si impegnano costantemente a monitorare e migliorare le procedure di sicurezza.
@@ -215,6 +223,7 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [app-service-security]: /azure/app-service-web/web-sites-security
 [app-settings]: /azure/app-service-web/web-sites-configure
 [arm-template]: /azure/azure-resource-manager/resource-group-overview#resource-groups
+[azure-dns]: /azure/dns/dns-overview
 [custom-domain-name]: /azure/app-service-web/web-sites-custom-domain-name
 [deploy]: /azure/app-service-web/web-sites-deploy
 [deploy-arm-template]: /azure/resource-group-template-deploy
@@ -223,7 +232,7 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [kudu]: https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/
 [monitoring-guidance]: ../../best-practices/monitoring.md
 [new-relic]: http://newrelic.com/
-[paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/app-service-web-app/basic-web-app/Paas-Basic/Templates
+[paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/managed-web-app/basic-web-app/Paas-Basic/Templates
 [perf-analysis]: https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [resource-group]: /azure/azure-resource-manager/resource-group-overview

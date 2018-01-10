@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 31a685e46da02fb59d93a210e6f14da5c68331de
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0cbcf0a8af1a8e20f2a1c024f5146a37176c5d1e
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -25,13 +25,17 @@ La **resilienza** è la capacità di un sistema di correggere gli errori e conti
 Due aspetti importanti della resilienza sono la disponibilità elevata e il ripristino di emergenza.
 
 * La **disponibilità elevata** è la capacità dell'applicazione di continuare a essere eseguita in uno stato integro, senza tempi di inattività significativi. Per "stato integro" si intende che l'applicazione è reattiva e gli utenti possono connettersi all'applicazione e interagire con essa.  
-* Il **ripristino di emergenza** è la capacità di correggere eventi imprevisti rari ma gravi, ad esempio errori non temporanei su larga scala, come un'interruzione del servizio che interessa un'intera area. Il ripristino di emergenza include il backup dei dati e l'archiviazione e può includere l'intervento manuale, ad esempio il ripristino di un database dal backup. 
+* Il **ripristino di emergenza** è la capacità di correggere eventi imprevisti rari ma gravi, ad esempio errori non temporanei su larga scala, come un'interruzione del servizio che interessa un'intera area. Il ripristino di emergenza include il backup dei dati e l'archiviazione e può includere l'intervento manuale, ad esempio il ripristino di un database dal backup.
 
-Un modo per pensare alla disponibilità elevata e al ripristino di emergenza è che il secondo ha inizio quando l'impatto di un errore supera la capacità che la prima ha di gestirlo. Per esempio, inserire diverse VM dietro a un servizio di bilanciamento del carico garantirà la disponibilità in caso di errore di una VM, ma non se l'errore si presenta per tutte le VM allo stesso tempo. 
+Un modo per pensare alla disponibilità elevata e al ripristino di emergenza è che il secondo ha inizio quando l'impatto di un errore supera la capacità che la prima ha di gestirlo.  
 
-Quando si progetta un'applicazione resiliente, è necessario comprendere i requisiti di disponibilità. Quanto tempo di inattività è accettabile? La risposta è in parte in funzione dei costi. Quanto costa un potenziale tempo di inattività all'azienda? Quanto si dovrebbe investire per rendere l'applicazione a disponibilità elevata? È necessario anche definire cosa significa che l'applicazione debba essere disponibile. Ad esempio, se un cliente può inviare un ordine, ma il sistema non è in grado di elaborarlo nel normale intervallo di tempo, si può dire che l'applicazione non sia disponibile? È necessario anche considerare le probabilità che un tipo particolare di interruzione si verifichi e se sia conveniente una strategia di mitigazione.
+Quando si progetta per la resilienza, è necessario comprendere i requisiti di disponibilità. Quanto tempo di inattività è accettabile? La risposta è in parte in funzione dei costi. Quanto costa un potenziale tempo di inattività all'azienda? Quanto si dovrebbe investire per rendere l'applicazione a disponibilità elevata? È necessario anche definire cosa significa che l'applicazione debba essere disponibile. Ad esempio, se un cliente può inviare un ordine, ma il sistema non è in grado di elaborarlo nel normale intervallo di tempo, si può dire che l'applicazione non sia disponibile? È necessario anche considerare le probabilità che un tipo particolare di interruzione si verifichi e se sia conveniente una strategia di mitigazione.
 
-Un altro termine comune è la **continuità aziendale**, cioè la capacità di eseguire funzioni di business essenziali durante e dopo il verificarsi di condizioni avverse, come una calamità naturale o l'inattività di un servizio. La continuità aziendale copre tutte le operazioni di un'azienda, tra cui le strutture fisiche, le persone, le comunicazioni, i trasporti e i servizi IT. Questo articolo si focalizza sulle applicazioni cloud, ma la pianificazione della resilienza deve essere eseguita nel contesto dei requisiti complessivi della continuità aziendale. Per maggiori informazioni, vedere la [Contingency Planning Guide] (Guida ai piani di emergenza) e la [capacity-planning-guide] (Guida alla pianificazione della capacità) del NIST (National Institute of Science and Technology).
+Un altro termine comune è la **continuità aziendale**, cioè la capacità di eseguire funzioni di business essenziali durante e dopo il verificarsi di condizioni avverse, come una calamità naturale o l'inattività di un servizio. La continuità aziendale copre tutte le operazioni di un'azienda, tra cui le strutture fisiche, le persone, le comunicazioni, i trasporti e i servizi IT. Questo articolo si focalizza sulle applicazioni cloud, ma la pianificazione della resilienza deve essere eseguita nel contesto dei requisiti complessivi della continuità aziendale. 
+
+Il **backup dei dati** costituisce una parte essenziale del ripristino di emergenza. In caso di errore nei componenti senza stato di un'applicazione, è comunque possibile ridistribuirli. Ma se si verificano perdite di dati, non è possibile riportare il sistema a uno stato stabile. In caso di un'emergenza a livello di area, è necessario eseguire il backup dei dati, possibilmente in un'area diversa. 
+
+Il backup è un'operazione diversa rispetto alla **replica dei dati**. La replica dei dati implica la copia dei dati quasi in tempo reale, in modo che il sistema possa effettuare rapidamente il failover a una replica. Molti sistemi di database supportano la replica, ad esempio SQL Server supporta i gruppi di disponibilità Always On di SQL Server. La funzionalità di replica dei dati può ridurre il tempo necessario per il ripristino da un'interruzione, garantendo la disponibilità costante di una replica dei dati, ma non offre alcuna protezione in caso di errore umano. Se i dati risultano danneggiati a causa di un errore umano, vengono comunque copiati nelle repliche. È quindi necessario includere comunque il backup a lungo termine nella strategia di ripristino di emergenza. 
 
 ## <a name="process-to-achieve-resiliency"></a>Processo per ottenere la resilienza
 La resilienza non è un componente aggiuntivo, ma deve essere progettata nel sistema e messa in pratica operativa. Di seguito è riportato un modello generale da seguire:
@@ -64,6 +68,7 @@ Questi carichi di lavoro potrebbero avere requisiti diversi di disponibilità, s
 Due metriche importanti da considerare sono l'obiettivo del tempo di ripristino e l'obiettivo del punto di ripristino.
 
 * L'**obiettivo del tempo di ripristino** (RTO) è il tempo massimo accettabile che un'applicazione non sia disponibile dopo un evento imprevisto. Se l'obiettivo RTO è di 90 minuti, è necessario essere in grado di ripristinare l'applicazione a uno stato di esecuzione entro 90 minuti dall'inizio di un'emergenza. Se si ha un obiettivo RTO basso, si potrebbe tenere una seconda distribuzione continuamente eseguita in standby, per prevenire un'interruzione di area.
+
 * **Obiettivo del punto di ripristino** (RPO) è la durata massima di perdita dei dati accettabile durante un'emergenza. Per esempio, se si archiviano i dati in un singolo database, senza replica in altri database, e si eseguono backup orari, si potrebbero perdere fino a un'ora di dati. 
 
 Gli obiettivi RTO e RPO sono requisiti aziendali. Condurre una valutazione dei rischi consente di definire gli obiettivi RTO e RPO dell'applicazione. Un'altra metrica comune è il **tempo medio per il ripristino** (MTTR), ovvero il tempo medio impiegato per ripristinare l'applicazione dopo un errore. Il tempo medio per il ripristino è un fatto empirico relativo a un sistema. Se questo tempo supera l'obiettivo RTO, di conseguenza un errore di sistema causerà un'interruzione delle attività inaccettabile, poiché non sarà possibile ripristinare il sistema entro l'obiettivo RTO definito. 
@@ -134,6 +139,33 @@ In aggiunta, l'esecuzione del failover non è istantanea e può causare periodi 
 
 Il numero calcolato dei contratti di servizio è una baseline utile, ma non fornisce tutte le informazioni riguardanti la disponibilità. Spesso un'applicazione può ridurre le prestazioni in modo non drastico e graduale nel caso di errore di un percorso non critico. Si consideri un'applicazione in cui viene visualizzato un catalogo di libri. Nel caso in cui l'applicazione non possa recuperare l'immagine di anteprima di una copertina, si potrebbe visualizzare un'immagine segnaposto. In tal caso, l'errore nell'ottenimento dell'immagine non riduce i tempi di attività dell'applicazione, sebbene condizioni l'esperienza utente.  
 
+## <a name="redundancy-and-designing-for-failure"></a>Ridondanza e progettazione per gli errori
+
+L'ambito di impatto degli errori può variare. Alcuni errori hardware, come nel caso di un disco danneggiato, possono influire su un singolo computer host. Un commutatore di rete non funzionante può invece influire su un intero rack di server. Gli errori che causano l'interruzione di un intero data center, ad esempio l'interruzione dell'alimentazione in un data center, sono invece meno comuni. Sono infine rari i casi in cui un'intera area risulta non disponibile.
+
+Uno dei principali modi per rendere resiliente un'applicazione consiste nell'applicare la ridondanza. Ma la ridondanza va pianificata quando si progetta l'applicazione. Il livello di ridondanza necessario dipende inoltre dai requisiti aziendali: non tutte le applicazioni richiedono la ridondanza tra aree per proteggersi da un'interruzione dell'alimentazione a livello di area. In generale, è opportuno trovare il giusto compromesso tra incremento della ridondanza e dell'affidabilità e aumento dei costi e della complessità.  
+
+In Azure sono disponibili numerose funzionalità per rendere ridondante un'applicazione a ogni livello di errore, a partire da una singola macchina virtuale fino a un'intera area. 
+
+![](./images/redundancy.svg)
+
+**Singola macchina virtuale**. Azure offre un contratto di servizio relativo al tempo di attività per le singole macchine virtuali. Anche se è possibile ottenere un contratto di servizio di livello superiore eseguendo due o più macchine virtuali, è possibile che una singola macchina virtuale sia già abbastanza affidabile per alcuni carichi di lavoro. Per i carichi di lavoro di produzione è consigliabile usare due o più macchine virtuali per garantire la ridondanza. 
+
+**Set di disponibilità**. Per proteggersi da errori hardware localizzati, ad esempio un disco o un commutatore di rete non funzionante, distribuire due o più macchine virtuali in un set di disponibilità. Un set di disponibilità è costituito da due o più *domini di errore* che condividono una fonte di alimentazione e uno switch di rete comuni. Le macchine virtuali in un set di disponibilità vengono distribuite tra i domini di errore, in modo che, se un dominio di errore è interessato da un errore hardware, il traffico di rete possa comunque essere indirizzato alle macchine virtuali negli altri domini di errore. Per altre informazioni sui set di disponibilità, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure](/azure/virtual-machines/windows/manage-availability).
+
+**Zone di disponibilità (anteprima)**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. 
+
+**Aree associate**. Per proteggere un'applicazione da un'interruzione dell'alimentazione a livello di area, è possibile distribuire l'applicazione in più aree, tramite Gestione traffico di Microsoft Azure in modo da distribuire il traffico Internet in aree diverse. Ogni area di Azure è associata a un'altra area e la combinazione di queste aree costituisce una [coppia di aree](/azure/best-practices-availability-paired-regions). Ad eccezione del Brasile meridionale, le coppie di aree hanno la stessa collocazione geografica in modo da soddisfare i requisiti di residenza dei dati ai fini della giurisdizione per le imposizioni fiscali e normative.
+
+Quando si progetta un'applicazione con più aree, tenere presente che la latenza di rete tra più aree è superiore rispetto a quella all'interno di una singola area. Se, ad esempio, se si sta eseguendo la replica di un database per abilitare il failover, usare la replica di dati sincrona all'interno di un'area e la replica dei dati asincrona tra aree diverse.
+
+| &nbsp; | Set di disponibilità | Zona di disponibilità | Area associata |
+|--------|------------------|-------------------|---------------|
+| Ambito dell'errore | Rack | Data center | Area |
+| Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | Gestione traffico |
+| Latenza di rete | Molto bassa | Bassa | Medio-alta |
+| Rete virtuale  | VNet | VNet | Peering reti virtuali tra aree (anteprima) |
+
 ## <a name="designing-for-resiliency"></a>Progettazione per la resilienza
 Durante la fase di progettazione, è consigliabile eseguire un'analisi della modalità di errore (FMA). L'obiettivo di quest'analisi è di identificare i possibili punti di errore e definire il modo in cui l'applicazione risponde a tali errori.
 
@@ -150,7 +182,7 @@ Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche
 | --- | --- |
 | Il servizio non è disponibile |HTTP 5xx |
 | Limitazione |HTTP 429 (Troppe richieste) |
-| Autenticazione |HTTP 401 (Non autorizzato) |
+| Authentication |HTTP 401 (Non autorizzato) |
 | Risposta lenta |Timeout della richiesta |
 
 ## <a name="resiliency-strategies"></a>Strategie di resilienza
@@ -168,12 +200,11 @@ Per altre informazioni, vedere il [Retry Pattern][retry-pattern] (Modello di rip
 ### <a name="load-balance-across-instances"></a>Bilanciare il carico tra più istanze
 Ai fini della scalabilità, un'applicazione cloud deve essere in grado di scalare orizzontalmente aggiungendo altre istanze. Questo approccio migliora anche la resilienza, poiché le istanze danneggiate possono essere rimosse dalla rotazione.  
 
-ad esempio:
+Ad esempio: 
 
 * Inserire due o più macchine virtuali dietro al bilanciamento del carico: quest'ultimo distribuisce il traffico a tutte le macchine virtuali. Vedere [Run load-balanced VMs for scalability and availability][ra-multi-vm] (Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità).
 * Scalare orizzontalmente un'applicazione del servizio app di Azure a più istanze: il servizio app bilancia automaticamente il carico tra le istanze. Vedere [Basic web application][ra-basic-web] (Applicazione Web di base).
 * Usare [Gestione traffico][tm] per distribuire il traffico in un set di endpoint.
-
 
 ### <a name="replicate-data"></a>Replicare i dati
 La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione forniscono funzioni di replica predefinite, tra cui Database SQL di Azure, Cosmos DB e Apache Cassandra.  
@@ -183,7 +214,7 @@ La replica dei dati è una strategia generale per la gestione degli errori non t
 Per ottimizzare la disponibilità, è possibile posizionare le repliche in più aree. Tuttavia, ciò aumenta la latenza quando si replicano i dati. In genere, la replica tra aree viene eseguita in modo asincrono e ciò implica un modello di coerenza finale e la potenziale perdita di dati se una replica ha esito negativo. 
 
 ### <a name="degrade-gracefully"></a>Ridurre le prestazioni in modo non drastico
-Se un servizio ha esito negativo e non è presente un percorso di failover, l'applicazione potrebbe essere in grado di ridurre le prestazioni gradualmente pur fornendo un'esperienza utente accettabile. ad esempio:
+Se un servizio ha esito negativo e non è presente un percorso di failover, l'applicazione potrebbe essere in grado di ridurre le prestazioni gradualmente pur fornendo un'esperienza utente accettabile. Ad esempio: 
 
 * Inserire un elemento di lavoro in una coda, in modo da gestirlo in un secondo momento. 
 * Restituire un valore stimato.
@@ -320,7 +351,7 @@ Nelle sezioni precedenti sono state trattate le strategie di ripristino automati
 
 È consigliabile eseguire le operazioni seguenti: documentare e testare il piano di ripristino di emergenza, valutare l'impatto aziendale degli errori delle applicazioni, automatizzare il processo il più possibile e documentare eventuali passaggi manuali, come ad esempio il failover manuale o il ripristino dei dati dai backup, testare regolarmente, infine, il processo di ripristino di emergenza per convalidare e migliorare il piano. 
 
-## <a name="summary"></a>Riepilogo
+## <a name="summary"></a>Summary
 Questo articolo si è focalizzato sulla resilienza da una prospettiva olistica, enfatizzando alcune delle problematiche del cloud. Fra queste sono inclusi la natura distribuita del cloud computing, l'uso di hardware appositi e la presenza di errori di rete temporanei.
 
 Di seguito sono riportati alcuni punti chiave illustrati nell'articolo:

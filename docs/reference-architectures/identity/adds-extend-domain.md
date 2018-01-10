@@ -9,11 +9,11 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 7f771f77c7fa7f266dcce9f5b45e5be658213b8d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 216c59a0a5912d0fe90011e49ad20eb017ada6be
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
@@ -21,15 +21,15 @@ Questa architettura di riferimento mostra come estendere l'ambiente Active Direc
 
 [![0]][0] 
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
 Active Directory Domain Services viene usato per autenticare utenti, computer, applicazioni o altre identità incluse in un dominio di sicurezza. Può essere ospitato in locale, ma se l'applicazione è ospitata in parte in locale e in parte in Azure, potrebbe essere più efficiente replicare questa funzionalità in Azure. Questo consente di ridurre la latenza dovuta all'invio di richieste di autenticazione e di autorizzazione locali dal cloud di nuovo all'istanza di Active Directory Domain Services in esecuzione in locale. 
 
 Questa architettura viene comunemente usata quando la rete locale e la rete virtuale di Azure sono connesse tramite una connessione VPN o ExpressRoute. L'architettura supporta anche la replica bidirezionale. Ciò vuol dire che è possibile apportare modifiche sia in locale che nel cloud ed entrambe le origini verranno mantenute coerenti. Gli usi tipici di questa architettura includono applicazioni ibride in cui la funzionalità viene distribuita tra origini locali e Azure, oltre che applicazioni e servizi che eseguono l'autenticazione tramite Active Directory.
 
-Per altre considerazioni, vedere [Scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
+Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architecture 
 
 Questa architettura estende l'architettura illustrata in [Rete perimetrale tra Azure e Internet][implementing-a-secure-hybrid-network-architecture-with-internet-access]. Include i componenti seguenti.
 
@@ -91,7 +91,7 @@ Distribuire le macchine virtuali che eseguono Active Directory Domain Services i
 
 Eseguire backup regolari di Active Directory Domain Services. Non limitarsi a copiare i file VHD dei controller di dominio anziché eseguire backup regolari, perché il file di database di Active Directory Domain Services nel disco rigido virtuale potrebbe non essere in stato coerente quando viene copiato, rendendo impossibile riavviare il database.
 
-Non arrestare una macchina virtuale del controller di dominio tramite il portale di Azure. Al contrario, arrestare e riavviare dal sistema operativo guest. L'arresto attraverso il portale comporta la deallocazione della macchina virtuale e la reimpostazione di entrambi i valori `VM-GenerationID` e `invocationID` del repository Active Directory. Questo rimuove il pool di identificatori relativi (RID) di Active Directory Domain Services, contrassegna SYSVOL come non autorevole e può richiedere la riconfigurazione del controller di dominio.
+Non arrestare una macchina virtuale del controller di dominio tramite il portale di Azure. Al contrario, arrestare e riavviare dal sistema operativo guest. L'arresto tramite il portale determina la deallocazione della VM e di conseguenza la reimpostazione di entrambi i valori `VM-GenerationID` e `invocationID` del repository Active Directory. Questo rimuove il pool di identificatori relativi (RID) di Active Directory Domain Services, contrassegna SYSVOL come non autorevole e può richiedere la riconfigurazione del controller di dominio.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
 
@@ -103,9 +103,9 @@ Usare BitLocker o Crittografia dischi di Azure per crittografare il disco che os
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una soluzione per la distribuzione di questa architettura di riferimento è disponibile in [GitHub][github]. Per eseguire lo script di PowerShell che distribuisce la soluzione è necessaria l'ultima versione dell'[interfaccia della riga di comando di Azure][azure-powershell]. Per distribuire l'architettura di riferimento, eseguire la procedura seguente:
+Una soluzione per la distribuzione di questa architettura di riferimento è disponibile in [GitHub][github]. Per eseguire lo script di PowerShell che distribuisce la soluzione, è necessaria l'ultima versione dell'[interfaccia della riga di comando di Azure][azure-powershell]. Per distribuire l'architettura di riferimento, eseguire la procedura seguente:
 
-1. Scaricare o clonare la cartella della soluzione da [GitHub][github] nel computer locale.
+1. Scaricare o clonare la cartella della soluzione da [GitHub][github] al computer locale.
 
 2. Aprire l'interfaccia della riga di comando di Azure e passare alla cartella della soluzione locale.
 
