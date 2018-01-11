@@ -3,17 +3,17 @@ title: Progettazione, creazione e gestione di microservizi in Azure con Kubernet
 description: Progettazione, creazione e gestione di microservizi in Azure
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: c279546552d731a01ed970e7942ad7d4a56157da
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>Progettazione, creazione e gestione di microservizi in Azure
 
 ![](./images/drone.svg)
 
-I microservizi sono diventati uno stile di architettura diffuso per la creazione di applicazioni cloud che offrono resilienza, scalabilità elevata e capacità di evolversi rapidamente. I microservizi non sono solo una moda, ma rappresentano un nuovo concetto che richiede un approccio diverso alla progettazione e alla creazione di applicazioni. 
+I microservizi sono diventati uno stile di architettura diffuso per la creazione di applicazioni cloud che offrono resilienza, scalabilità elevata, possibilità di distribuzione indipendente e capacità di evolversi rapidamente. I microservizi non sono solo una moda, ma rappresentano un nuovo concetto che richiede un approccio diverso alla progettazione e alla creazione di applicazioni. 
 
 In questo set di articoli viene analizzato come creare ed eseguire un'architettura di microservizi in Azure. Gli argomenti includono:
 
@@ -35,7 +35,7 @@ Verranno analizzate, prima di tutto, le nozioni di base. Cosa sono i microserviz
 In un'architettura di microservizi l'applicazione è composta da servizi di piccole dimensioni indipendenti. Ecco alcune caratteristiche specifiche dei microservizi:
 
 - Ogni microservizio implementa una singola funzionalità di business.
-- Le dimensioni di un microservizio sono sufficientemente piccole da consentirne la scrittura e la gestione da parte di un unico piccolo team di sviluppatori, in genere composto da 5-10 persone.
+- Le dimensioni di un microservizio sono sufficientemente piccole da consentirne la scrittura e la gestione da parte di un unico piccolo team di sviluppatori.
 - I microservizi vengono eseguiti in processi separati, che comunicano tramite API o modelli di messaggistica ben definiti. 
 - I microservizi non condividono archivi dati o schemi di dati. Ogni microservizio è responsabile della gestione dei propri dati. 
 - I microservizi hanno basi di codice separate e non condividono il codice sorgente. Possono tuttavia usare librerie di utilità comuni.

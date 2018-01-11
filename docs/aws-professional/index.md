@@ -5,11 +5,11 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: b576b11bc152ef721f56e79609cb7a03f2d31dd3
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: ac96110e3fe69b4bb69714e18fd0f193208bc244
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -103,36 +103,45 @@ La sintassi e la struttura di queste interfacce sono diverse dai rispettivi equi
 
 ## <a name="regions-and-zones-high-availability"></a>Aree e zone (disponibilità elevata)
 
-In AWS, la disponibilità ruota intorno al concetto di Zone di disponibilità. In Azure, i domini di errore e i set di disponibilità partecipano alla creazione di soluzioni a disponibilità elevata. Le aree abbinate offrono capacità di ripristino di emergenza aggiuntive.
+L'ambito di impatto degli errori può variare. Alcuni errori hardware, come nel caso di un disco danneggiato, possono influire su un singolo computer host. Un commutatore di rete non funzionante può invece influire su un intero rack di server. Gli errori che causano l'interruzione di un intero data center, ad esempio l'interruzione dell'alimentazione in un data center, sono invece meno comuni. Sono infine rari i casi in cui un'intera area risulta non disponibile.
 
-### <a name="availability-zones-azure-fault-domains-and-availability-sets"></a>Zone di disponibilità, domini di errore di Azure e set di disponibilità
+Uno dei principali modi per rendere resiliente un'applicazione consiste nell'applicare la ridondanza. Ma la ridondanza va pianificata quando si progetta l'applicazione. Il livello di ridondanza necessario dipende inoltre dai requisiti aziendali: non tutte le applicazioni richiedono la ridondanza tra aree per proteggersi da un'interruzione dell'alimentazione a livello di area. In generale, è opportuno trovare il giusto compromesso tra incremento della ridondanza e dell'affidabilità e aumento dei costi e della complessità.  
 
-In AWS, un'area è suddivisa in due o più zone di disponibilità. Una zona di disponibilità corrisponde a un data center fisicamente isolato nell'area geografica.
-Se si distribuiscono i server delle applicazioni in zone di disponibilità distinte, un guasto hardware o un'interruzione della connettività che colpisce una zona non ha impatto sul server ospitato in un'altra.
+In AWS, un'area è suddivisa in due o più zone di disponibilità. Una zona di disponibilità corrisponde a un data center fisicamente isolato nell'area geografica. Azure offre alcune funzionalità per rendere ridondante un'applicazione a ogni livello di errore, tra cui **set di disponibilità**, **zona di disponibilità** e **aree abbinate**. 
 
-In Azure, un [dominio di errore](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/) definisce un gruppo di macchine virtuali che condivide una fonte di alimentazione e un commutatore di rete.
-I [set di disponibilità](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-manage-availability/) vengono usati per distribuire le macchine virtuali tra più domini di errore. Quando le istanze sono assegnate allo stesso set di disponibilità, Azure le distribuisce uniformemente nei diversi domini di errore. Se in un dominio di errore si verifica un'interruzione di rete o di alimentazione, le macchine virtuali del set che si trovano in un altro dominio di errore non subiranno le conseguenze dell'interruzione.
+![](../resiliency/images/redundancy.svg)
 
-![Confronto tra le zone di disponibilità di AWS e i domini di errore e i set di disponibilità di Azure](./images/zone-fault-domains.png "Confronto tra le zone di disponibilità di AWS e i domini di errore e i set di disponibilità di Azure")
-<br/>*Confronto tra le zone di disponibilità di AWS e i domini di errore e i set di disponibilità di Azure*
-<br/><br/>
+La tabella seguente riepiloga ogni opzione.
 
-Per garantire che in ogni ruolo sia presente un'istanza operativa, i set di disponibilità devono essere organizzati in base al ruolo dell'istanza dell'applicazione. Ad esempio, in un'applicazione Web standard a tre livelli potrebbe essere necessario creare un set di disponibilità distinto per il front-end, l'applicazione e le istanze dei dati.
+| &nbsp; | Set di disponibilità | Zona di disponibilità | Area associata |
+|--------|------------------|-------------------|---------------|
+| Ambito dell'errore | Rack | Data center | Region |
+| Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | servizio Gestione traffico |
+| Latenza di rete | Molto bassa | Basso | Medio-alta |
+| Reti virtuali  | VNet | VNet | Peering reti virtuali tra aree (anteprima) |
+
+### <a name="availability-sets"></a>Set di disponibilità 
+
+Per proteggersi da errori hardware localizzati, ad esempio un disco o un commutatore di rete non funzionante, distribuire due o più macchine virtuali in un set di disponibilità. Un set di disponibilità è costituito da due o più *domini di errore* che condividono una fonte di alimentazione e uno switch di rete comuni. Le macchine virtuali in un set di disponibilità vengono distribuite tra i domini di errore, in modo che, se un dominio di errore è interessato da un errore hardware, il traffico di rete possa comunque essere indirizzato alle macchine virtuali negli altri domini di errore. Per altre informazioni sui set di disponibilità, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure](/azure/virtual-machines/windows/manage-availability).
+
+Quando le istanze delle macchine virtuali vengono aggiunte ai set di disponibilità, vengono anche assegnate a un [dominio di aggiornamento](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/). Un dominio di aggiornamento rappresenta un gruppo di macchine virtuali per il quale sono previsti eventi di manutenzione pianificata simultanei. La distribuzione delle macchine virtuali tra più domini di aggiornamento garantisce che, nel momento predefinito, gli eventi pianificati di aggiornamento e applicazione di patch interessino solo un sottoinsieme delle macchine virtuali.
+
+Per garantire che in ogni ruolo sia presente un'istanza operativa, i set di disponibilità devono essere organizzati in base al ruolo dell'istanza dell'applicazione. Ad esempio, in un'applicazione Web a tre livelli è necessario creare set di disponibilità separati per il front-end, l'applicazione e i livelli dati.
 
 ![Set di disponibilità di Azure per ogni ruolo applicazione](./images/three-tier-example.png "Set di disponibilità di Azure per ogni ruolo applicazione")
-<br/>*Set di disponibilità di Azure per ogni ruolo applicazione*
-<br/><br/>
 
-Quando le istanze delle macchine virtuali vengono aggiunte ai set di disponibilità, vengono anche assegnate a un [dominio di aggiornamento](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/).
-Un dominio di aggiornamento rappresenta un gruppo di macchine virtuali per il quale sono previsti eventi di manutenzione pianificata simultanei. La distribuzione delle macchine virtuali tra più domini di aggiornamento garantisce che, nel momento predefinito, gli eventi pianificati di aggiornamento e applicazione di patch interessino solo un sottoinsieme delle macchine virtuali.
+### <a name="availability-zones-preview"></a>Zone di disponibilità (anteprima)
+
+Una [zona di disponibilità](/azure/availability-zones/az-overview) è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. 
 
 ### <a name="paired-regions"></a>Aree abbinate
 
-In Azure, le [aree abbinate](https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/) vengono usate per supportare la ridondanza tra due aree geografiche predefinite; in questo modo anche qualora un'intera area di Azure sia interessata da un'interruzione del servizio, la soluzione resterà disponibile.
+Per proteggere un'applicazione da un'interruzione dell'alimentazione a livello di area, è possibile distribuire l'applicazione in più aree, tramite [Gestione traffico di Azure][traffic-manager] in modo da distribuire il traffico Internet in aree diverse. Ogni area di Azure è associata a un'altra area e la combinazione di queste aree costituisce una [coppia di aree][paired-regions]. Ad eccezione del Brasile meridionale, le coppie di aree hanno la stessa collocazione geografica in modo da soddisfare i requisiti di residenza dei dati ai fini della giurisdizione per le imposizioni fiscali e normative.
 
-A differenza delle zone di disponibilità di AWS, che rappresentano data center fisicamente distinti ma relativamente prossimi a regioni geografiche, le aree abbinate sono in genere lontane almeno 300 miglia. Ciò garantisce che le emergenze su larga scala abbiamo conseguenze solo una delle regioni della coppia. È possibile configurare le coppie adiacenti in modo che i database e i dati del servizio di archiviazione siano sincronizzati e che l'implementazione degli aggiornamenti della piattaforma venga eseguita in un'area della coppia alla volta.
+A differenza delle zone di disponibilità, che rappresentano data center fisicamente distinti ma relativamente prossimi a regioni geografiche, le aree abbinate sono in genere lontane almeno 300 miglia. Ciò garantisce che le emergenze su larga scala abbiamo conseguenze solo una delle regioni della coppia. È possibile configurare le coppie adiacenti in modo che i database e i dati del servizio di archiviazione siano sincronizzati e che l'implementazione degli aggiornamenti della piattaforma venga eseguita in un'area della coppia alla volta.
 
 In Azure, il backup dell'[archiviazione con ridondanza geografica](https://azure.microsoft.com/documentation/articles/storage-redundancy/#geo-redundant-storage) viene eseguito automaticamente nell'area abbinata appropriata. Per tutte le altre risorse, la creazione di una soluzione completamente ridondante usando le aree abbinate implica la creazione di copia completa della soluzione in entrambe le aree.
+
 
 ### <a name="see-also"></a>Vedere anche 
 
@@ -266,9 +275,9 @@ Gli equivalenti di Azure dei due servizi di Elastic Load Balancing sono:
 
 In AWS, Route 53 offre servizi di gestione del nome DNS e di routing del traffico DNS e servizi di failover. In Azure tutto ciò è gestito da due servizi:
 
--   [DNS di Azure](https://azure.microsoft.com/documentation/services/dns/): offre la gestione di dominio e DNS.
+-   Il servizio [DNS di Azure](https://azure.microsoft.com/documentation/services/dns/) offre la gestione di dominio e DNS.
 
--   [Gestione traffico](https://azure.microsoft.com/documentation/articles/traffic-manager-overview/): offre routing del traffico a livello DNS, bilanciamento del carico e funzionalità di failover.
+-   Il servizio [Gestione traffico][traffic-manager] offre routing del traffico a livello DNS, bilanciamento del carico e funzionalità di failover.
 
 #### <a name="direct-connect-and-azure-expressroute"></a>Direct Connect e Azure ExpressRoute
 
@@ -431,3 +440,9 @@ Gli hub di notifica non supportano l'invio di messaggi SMS o di posta elettronic
 -   [Modelli e procedure - Informazioni aggiuntive su Azure](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [Corso online gratuito: Microsoft Azure per i professionisti AWS](http://aka.ms/azureforaws)
+
+
+<!-- links -->
+
+[paired-regions]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
+[traffic-manager]: /azure/traffic-manager/
