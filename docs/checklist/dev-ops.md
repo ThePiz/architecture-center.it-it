@@ -1,8 +1,6 @@
 # <a name="devops-checklist"></a>Elenco di controllo DevOps
 
-DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazioni IT in un set di processi e impostazioni cultura unificati per la distribuzione del software. 
-
-Usare questo elenco di controllo come punto di partenza per valutare le impostazioni cultura e il processo DevOps.
+DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazioni IT in un set di processi e impostazioni cultura unificati per la distribuzione del software. Usare questo elenco di controllo come punto di partenza per valutare le impostazioni cultura e il processo DevOps.
 
 ## <a name="culture"></a>Impostazioni cultura
 
@@ -94,7 +92,7 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 **Monitorare la scadenza di asset e risorse.** Alcuni asset e risorse, ad esempio i certificati, scadono dopo un determinato periodo di tempo. Verificare di tenere traccia degli asset soggetti a scadenza, della loro data e dei servizi o delle funzionalità dipendenti da questi. Usare processi automatizzati per monitorare questi asset. Inviare una notifica al team addetto alle operazioni prima della scadenza di un asset ed eseguire l'escalation se una scadenza rischia di interrompere l'applicazione.
 
-## <a name="management"></a>gestione
+## <a name="management"></a>Gestione
 
 **Automatizzare le attività operative.** La gestione manuale di processi operativi ripetitivi è soggetta a errori. Automatizzare queste attività laddove possibile per garantire coerenza nell'esecuzione e nella qualità. È consigliabile sottoporre al controllo delle versioni il codice che implementa l'automazione nel controllo del codice sorgente. Come per qualsiasi altro codice, è necessario testare anche gli strumenti di automazione.
 

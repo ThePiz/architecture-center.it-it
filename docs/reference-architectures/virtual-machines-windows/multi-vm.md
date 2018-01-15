@@ -6,11 +6,11 @@ ms.date: 11/16/2017
 pnp.series.title: Windows VM workloads
 pnp.series.next: n-tier
 pnp.series.prev: single-vm
-ms.openlocfilehash: c9b1e52044d38348ecf1bd29cb24b3c20d1d6a45
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: 14e7e023afd7cb7cbe0e8db8e224ba777f6fe863
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-load-balanced-vms-for-scalability-and-availability"></a>Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità
 
@@ -18,9 +18,9 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 ![[0]][0]
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Questa architettura si basa sull'[architettura di riferimento della macchina virtuale singola][single-vm], pertanto si applicano le stesse raccomandazioni.
 
@@ -32,7 +32,8 @@ L'architettura include i componenti seguenti:
 * **Rete virtuale (VNet) e subnet.** Ogni macchina virtuale di Azure viene distribuita in una rete virtuale che può essere suddivisa in più subnet.
 * **Azure Load Balancer**. Il [servizio di bilanciamento del carico][load-balancer] distribuisce le richieste Internet in ingresso alle istanze delle macchine virtuali. 
 * **Indirizzo IP pubblico**. Affinché il servizio di bilanciamento del carico possa ricevere il traffico Internet, è richiesto un indirizzo IP pubblico.
-* **Set di scalabilità di macchine virtuali**. Un [set di scalabilità di macchine virtuali][vm-scaleset] è un set di macchine virtuali identiche usato per ospitare un carico di lavoro. I set di scalabilità consentono di aumentare o ridurre il numero di istanze delle macchine virtuali manualmente o automaticamente in base a regole predefinite.
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
+* **Set di scalabilità di macchine virtuali**. Un [set di scalabilità di macchine virtuali][vm-scaleset] è un set di macchine virtuali identiche usato per ospitare un carico di lavoro. I set di scalabilità consentono di aumentare o ridurre il numero di macchine virtuali manualmente o automaticamente in base a regole predefinite.
 * **Set di disponibilità**. Il [set di disponibilità][availability-set] include le macchine virtuali, rendendole idonee per un [contratto di servizio (SLA)][vm-sla] superiore. Per consentire l'applicazione del contratto di servizio superiore, il set di disponibilità deve includere almeno due macchine virtuali. I set di disponibilità sono impliciti nei set di scalabilità. Se si creano macchine virtuali al di fuori di un set di scalabilità, è necessario creare il set di disponibilità in modo indipendente.
 * **Dischi gestiti**. Il servizio Azure Managed Disks gestisce i file di disco rigido virtuale (VHD) per i dischi delle macchine virtuali. 
 * **Archiviazione**. Creare un account di archiviazione di Azure per contenere i log di diagnostica per le macchine virtuali.
@@ -66,7 +67,7 @@ Ogni sottoscrizione di Azure ha limiti predefiniti, tra cui il numero massimo di
 
 Distribuire le macchine virtuali all'interno della stessa subnet. Non esporre le macchine virtuali direttamente su Internet, ma assegnare un indirizzo IP privato a ogni macchina virtuale. I client si connettono usando l'indirizzo IP pubblico del servizio di bilanciamento del carico.
 
-Se è necessario accedere alle macchine virtuali dietro al servizio di bilanciamento del carico, prendere in considerazione l'aggiunta di una singola macchina virtuale come jumpbox (anche noto come bastion host) con un indirizzo IP pubblico a cui è possibile effettuare l'accesso. Accedere quindi alle macchine virtuali dietro al servizio di bilanciamento del carico dal jumpbox. In alternativa, è possibile configurare le regole Network Address Translation (NAT) in ingresso del servizio di bilanciamento del carico. Tuttavia, un jumpbox è la soluzione migliore quando si ospitano carichi di lavoro a più livelli o più carichi di lavoro.
+Se è necessario accedere alle macchine virtuali dietro al servizio di bilanciamento del carico, valutare l'opportunità di aggiungere una singola macchina virtuale come jumpbox (anche noto come bastion host) con un indirizzo IP pubblico a cui è possibile eseguire l'accesso. Accedere quindi alle macchine virtuali dietro al servizio di bilanciamento del carico dal jumpbox. In alternativa, è possibile configurare le regole Network Address Translation (NAT) in ingresso del servizio di bilanciamento del carico. Tuttavia, un jumpbox è la soluzione migliore quando si ospitano carichi di lavoro a più livelli o più carichi di lavoro.
 
 ### <a name="load-balancer-recommendations"></a>Raccomandazioni per il servizio di bilanciamento del carico
 
@@ -78,9 +79,9 @@ Per indirizzare il traffico a una macchina virtuale specifica, usare le regole N
 
 ### <a name="storage-account-recommendations"></a>Raccomandazioni per gli account di archiviazione
 
-Si consiglia l'uso di [dischi gestiti](/azure/storage/storage-managed-disks-overview) con [archiviazione Premium][premium]. I dischi gestiti non richiedono un account di archiviazione. Basta specificare le dimensioni e il tipo di disco per distribuirlo come risorsa a disponibilità elevata.
+Si consiglia l'uso di [dischi gestiti](/azure/storage/storage-managed-disks-overview) con [archiviazione Premium][premium]. I dischi gestiti non richiedono un account di archiviazione. È sufficiente specificare le dimensioni e il tipo di disco per distribuirlo come risorsa a disponibilità elevata.
 
-Se si usano dischi non gestiti, creare account di archiviazione di Azure distinti per ogni macchina virtuale per contenere i dischi rigidi virtuali, in modo da evitare di raggiungere i [limiti di operazioni di input/output al secondo][vm-disk-limits] (IOPS) per gli account di archiviazione.
+Se si usano dischi non gestiti, creare account di archiviazione di Azure distinti per ogni macchina virtuale per contenere i dischi rigidi virtuali, in modo da evitare di raggiungere i [limiti di operazioni di input/output al secondo (IOPS)][vm-disk-limits] per gli account di archiviazione.
 
 Creare un account di archiviazione per i log di diagnostica. Questo account di archiviazione può essere condiviso da tutte le macchine virtuali. Può trattarsi di un account di archiviazione non gestito basato sull'uso di dischi standard.
 
@@ -102,7 +103,7 @@ Ecco alcune raccomandazioni per i probe di integrità del servizio di bilanciame
 
 * I probe possono testare protocolli HTTP o TCP. Se le macchine virtuali eseguono un server HTTP, creare un probe HTTP. In caso contrario, creare un probe TCP.
 * Per un probe HTTP, specificare il percorso di un endpoint HTTP. Il probe controlla una risposta HTTP 200 da questo percorso. Può trattarsi del percorso radice ("/") o di un endpoint di monitoraggio dell'integrità che implementa una logica personalizzata per controllare l'integrità dell'applicazione. L'endpoint deve consentire richieste HTTP anonime.
-* Il probe viene inviato da un [indirizzo IP noto][health-probe-ip], 168.63.129.16. Assicurarsi di non bloccare il traffico da o verso questo indirizzo IP in eventuali criteri del firewall o regole del gruppo di sicurezza di rete.
+* Il probe viene inviato da un [indirizzo IP noto][health-probe-ip], 168.63.129.16. Verificare di non bloccare il traffico da o verso questo indirizzo IP in eventuali criteri del firewall o regole del gruppo di sicurezza di rete.
 * Usare i [log dei probe di integrità][health-probe-log] per visualizzare lo stato dei probe di integrità. Abilitare la registrazione nel portale di Azure per ogni servizio di bilanciamento del carico. I log vengono scritti in Archiviazione BLOB di Azure. Il log mostra il numero di macchine virtuali sul back-end che non ricevono traffico di rete a causa di risposte del probe non riuscite.
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
@@ -130,7 +131,7 @@ Prima di poter distribuire l'architettura di riferimento nella propria sottoscri
 
 1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento AzureCAT][ref-arch-repo].
 
-2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per istruzioni sull'installazione dell'interfaccia CLI, vedere [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
+2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per istruzioni sull'installazione dell'interfaccia della riga di comando, vedere [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
 
 3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
 
@@ -169,6 +170,7 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [azure-automation]: /azure/automation/automation-intro
 [azure-cli]: /azure/virtual-machines-command-line-tools
 [azure-cli-2]: /azure/install-azure-cli?view=azure-cli-latest
+[azure-dns]: /azure/dns/dns-overview
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [health-probe-log]: /azure/load-balancer/load-balancer-monitor-log

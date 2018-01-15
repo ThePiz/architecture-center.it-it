@@ -4,11 +4,11 @@ description: "Architettura consigliata per un'applicazione Web a disponibilità 
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 2d7d0c38bef3efc73a7ba2dd61e4190d07deb1b5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 60caa121d0ce2f1aa2638650229bed8048804c22
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Eseguire un'applicazione Web in più aree geografiche
 [!INCLUDE [header](../../_includes/header.md)]
@@ -17,13 +17,14 @@ Questa architettura di riferimento mostra come eseguire un'applicazione del serv
 
 ![Architettura di riferimento: applicazione Web con disponibilità elevata](./images/multi-region-web-app-diagram.png) 
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architecture 
 
 Questa architettura si basa su quella illustrata in [Migliorare la scalabilità in un'applicazione Web][guidance-web-apps-scalability]. Le differenze principali sono le seguenti:
 
 * **Aree primarie e secondarie**. Questa architettura si basa sull'uso di due aree per ottenere una maggiore disponibilità. L'applicazione viene distribuita in ognuna delle aree. Durante il normale funzionamento, il traffico di rete viene indirizzato all'area primaria. Se l'area primaria non è più disponibile, il traffico viene indirizzato all'area secondaria. 
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 * **Gestione traffico di Azure**. [Gestione traffico][traffic-manager] indirizza le richieste in ingresso all'area primaria. Se l'applicazione in esecuzione in tale area non è più disponibile, Gestione traffico effettua il failover all'area secondaria.
 * **Replica geografica** del database SQL e di Cosmos DB. 
 
@@ -40,7 +41,7 @@ Questa architettura di riferimento è incentrata sulla modalità attivo/passivo 
 
 ## <a name="recommendations"></a>Raccomandazioni
 
-I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Seguire le indicazioni in questa sezione come punto di partenza.
+I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Seguire le raccomandazioni contenute in questa sezione come punto di partenza.
 
 ### <a name="regional-pairing"></a>Coppie di aree
 Ogni area di Azure è abbinata a un'altra area con la stessa collocazione geografica. In generale, è consigliabile scegliere aree della stessa coppia di aree (ad esempio, Stati Uniti orientali 2 e Stati Uniti centrali). I vantaggi di questa operazione includono i seguenti:
@@ -85,7 +86,7 @@ Per l'archiviazione code, creare una coda di backup nell'area secondaria. Durant
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
 
-### <a name="traffic-manager"></a>Gestione traffico
+### <a name="traffic-manager"></a>servizio Gestione traffico
 
 Gestione traffico effettua automaticamente il failover se l'area primaria non è più disponibile. Quando Gestione traffico effettua il failover, per un periodo di tempo i client non riescono a raggiungere l'applicazione. La durata di questo periodo è influenzata dai fattori seguenti:
 
@@ -94,7 +95,7 @@ Gestione traffico effettua automaticamente il failover se l'area primaria non è
 
 Per dettagli, vedere [Informazioni sul monitoraggio di Gestione traffico][tm-monitoring].
 
-Gestione traffico è un possibile punto di guasto nel sistema. In caso di interruzione del servizio, i client non riescono ad accedere all'applicazione durante il tempo di inattività. Rivedere il [contratto di servizio (SLA) di Gestione traffico][tm-sla] e determinare se l'uso di Gestione traffico da solo soddisfa i requisiti aziendali per la disponibilità elevata. In caso contrario, considerare di aggiungere un'altra soluzione di gestione del traffico come failback. In caso di errore del servizio Gestione traffico di Azure, modificare i record di nome canonico (CNAME) in DNS in modo da puntare all'altro servizio di gestione del traffico. Questo passaggio deve essere eseguito manualmente e l'applicazione non sarà disponibile finché non vengono propagate le modifiche al DNS.
+Gestione traffico è un possibile punto di guasto nel sistema. In caso di interruzione del servizio, i client non riescono ad accedere all'applicazione durante il tempo di inattività. Rivedere il [contratto di servizio (SLA) di Gestione traffico][tm-sla] e determinare se l'uso di Gestione traffico da solo soddisfa i requisiti aziendali per la disponibilità elevata. In caso contrario, provare ad aggiungere un'altra soluzione di gestione del traffico come failback. In caso di errore del servizio Gestione traffico di Azure, modificare i record di nome canonico (CNAME) in DNS in modo da puntare all'altro servizio di gestione del traffico. Questo passaggio deve essere eseguito manualmente e l'applicazione non sarà disponibile finché non vengono propagate le modifiche al DNS.
 
 ### <a name="sql-database"></a>Database SQL
 L'obiettivo del punto di ripristino (RPO) e il tempo di recupero stimato (ERT) per il database SQL sono documentati in [Panoramica della continuità aziendale del database SQL di Azure][sql-rpo]. 
@@ -116,7 +117,7 @@ Per altre informazioni, vedere [Cosa fare se si verifica un'interruzione di Arch
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 
-### <a name="traffic-manager"></a>Gestione traffico
+### <a name="traffic-manager"></a>servizio Gestione traffico
 
 Se Gestione traffico effettua il failover, è consigliabile eseguire un failback manuale invece di implementare un failback automatico. In caso contrario, si potrebbe creare una situazione in cui l'applicazione passa alternativamente da un'area all'altra. Verificare che tutti i sottosistemi dell'applicazione siano integri prima del failback.
 
@@ -147,6 +148,7 @@ Se nel database primario si verifica un errore, effettuare un failover manuale a
 <!-- links -->
 
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-dns]: /azure/dns/dns-overview
 [docdb-geo]: /azure/documentdb/documentdb-distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: b3f1fcf1403a5199191cb37dfed4fbe86695766d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c54959da96115e55ba8a5c9e0f3c358d29ce5dd
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-windows-vms-in-multiple-regions-for-high-availability"></a>Eseguire macchine virtuali Windows in più aree per una disponibilità elevata
 
@@ -17,13 +17,14 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 [![0]][0] 
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architecture 
 
 Questa architettura si basa su quella illustrata in [Eseguire macchine virtuali Windows per un'applicazione a più livelli](n-tier.md). 
 
-* **Aree primarie e secondarie**. Usare due aree per ottenere una maggiore disponibilità: una è l'area primaria, l'altra è per il failover. 
+* **Aree primarie e secondarie**. Usare due aree per ottenere una maggiore disponibilità: una è l'area primaria, l'altra è per il failover.
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 * **Gestione traffico di Azure**. [Gestione traffico][traffic-manager] indirizza le richieste in ingresso a una delle aree. Durante il normale funzionamento, le richieste vengono indirizzate all'area primaria. Se tale area non è più disponibile, Gestione traffico effettua il failover all'area secondaria. Per altre informazioni, vedere la sezione [Configurazione di Gestione traffico](#traffic-manager-configuration).
 * **Gruppi di risorse**. Creare [gruppi di risorse][resource groups] distinti per l'area primaria, l'area secondaria e Gestione traffico. In questo modo si ottiene la flessibilità necessaria per gestire ogni area come un'unica raccolta di risorse. Ad esempio, è possibile ridistribuire un'area, senza rendere non disponibile l'altra. [Collegare i gruppi di risorse][resource-group-links], in modo che sia possibile eseguire una query per elencare tutte le risorse per l'applicazione.
 * **Reti virtuali**. Creare una rete virtuale distinta per ogni area. Assicurarsi che gli spazi degli indirizzi non si sovrappongano. 
@@ -164,7 +165,7 @@ Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali
 
 <!-- Links -->
 [hybrid-vpn]: ../hybrid-networking/vpn.md
-
+[azure-dns]: /azure/dns/dns-overview
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

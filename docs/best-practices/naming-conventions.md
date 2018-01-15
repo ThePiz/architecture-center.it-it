@@ -4,11 +4,11 @@ description: "Convenzioni di denominazione per le risorse di Azure. Come denomin
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 20f090c4cc39f96887cd58ffd2a9c7736e77de57
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: 364735dec9658b4d2a9d21330f38c57f6fa694bd
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -109,7 +109,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
 |Rete virtuale |Gruppo di risorse |2-64 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-vnet` |`profx-vnet` |
-|Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura, trattino e punto |`<descriptive context>` |`web` |
+|Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`web` |
 |Interfaccia di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
 |Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |

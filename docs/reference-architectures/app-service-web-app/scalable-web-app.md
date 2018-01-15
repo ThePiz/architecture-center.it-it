@@ -7,11 +7,11 @@ pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: b875b89b87edd5636d90da8b7f8211f965b39937
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1fdaf6e3695cb814fa4c275a4a273f9fa9a7b71b
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Migliorare la scalabilità in un'applicazione Web
 
@@ -19,9 +19,9 @@ Questa architettura di riferimento è basata su procedure consolidate volte al m
 
 ![[0]][0]
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura  
+## <a name="architecture"></a>Architecture  
 
 Questa architettura si basa su quella illustrata in [Applicazione Web di base][basic-web-app]. Include i componenti seguenti:
 
@@ -34,6 +34,7 @@ Questa architettura si basa su quella illustrata in [Applicazione Web di base][b
 * **Archiviazione dei dati**. Usare un [database SQL di Azure][sql-db] per i dati relazionali. Per i dati non relazionali considerare invece un archivio NoSQL, ad esempio [Cosmos DB][documentdb].
 * **Ricerca di Azure**. Usare il servizio [Ricerca di Azure][azure-search] per aggiungere funzionalità di ricerca come i suggerimenti per la ricerca, la ricerca fuzzy e la ricerca specifica della lingua. Il servizio Ricerca di Azure viene in genere usato in combinazione con un altro archivio dati, soprattutto se l'archivio dati primario richiede la coerenza assoluta. In questo approccio, archiviare i dati autorevoli nell'altro archivio dati e l'indice di ricerca in Ricerca di Azure. Ricerca di Azure può essere usato anche per creare un unico indice di ricerca da più archivi dati.  
 * **Messaggio di posta elettronica o SMS**. Usare un servizio di terze parti come SendGrid o Twilio per inviare messaggi di posta elettronica o SMS invece di incorporare questa funzionalità direttamente nell'applicazione.
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 
 ## <a name="recommendations"></a>Raccomandazioni
 
@@ -49,7 +50,7 @@ I requisiti della propria organizzazione potrebbero essere diversi da quelli del
 
 Se si intende usare la funzionalità *Tabelle semplici* o *API semplici* delle app per dispositivi mobili del servizio app, creare un'app del servizio app distinta per questo scopo.  Per essere abilitate, queste funzionalità hanno bisogno di uno specifico framework applicazione.
 
-### <a name="webjobs"></a>Processi Web
+### <a name="webjobs"></a>WebJobs
 È consigliabile distribuire i processi Web ad elevato consumo di risorse in un'app del servizio app vuota all'interno di un piano di servizio app. In questo modo si forniscono istanze dedicate per il processo Web. Vedere [Linee guida per i processi in background][webjobs-guidance].  
 
 ### <a name="cache"></a>Cache
@@ -61,7 +62,7 @@ Se si intende usare la funzionalità *Tabelle semplici* o *API semplici* delle a
 
 Per informazioni più dettagliate sulla progettazione di una strategia di memorizzazione nella cache, vedere [Informazioni aggiuntive sulla memorizzazione nella cache][caching-guidance].
 
-### <a name="cdn"></a>Rete CDN
+### <a name="cdn"></a>RETE CDN
 Usare la [rete per la distribuzione di contenuti di Azure][azure-cdn] per memorizzare nella cache il contenuto statico. Il vantaggio principale di una rete CDN è quello di ridurre la latenza per gli utenti, in quanto il contenuto viene memorizzato nella cache di un server perimetrale geograficamente vicino all'utente. La rete CDN può anche ridurre il carico sull'applicazione, poiché il traffico non viene gestito dall'applicazione.
 
 Se l'app è costituita prevalentemente da pagine statiche, valutare l'uso della [rete CDN per memorizzare nella cache l'intera app][cdn-app-service]. In alternativa, inserire il contenuto statico, ad esempio immagini, CSS e file HTML, nel servizio [Archiviazione di Azure e usare la rete CDN per memorizzare nella cache questi file][cdn-storage-account].
@@ -82,13 +83,13 @@ Le applicazioni moderne spesso elaborano grandi quantità di dati. Per assicurar
 | Coppie chiave/valore |Dati del profilo utente cercati in base all'ID utente |Archiviazione tabelle di Azure |
 | Brevi messaggi aventi lo scopo di attivare un'ulteriore elaborazione |Richieste di ordini |Coda di archiviazione, coda del bus di servizio o argomento del bus di servizio di Azure |
 | Dati non relazionali con uno schema flessibile che richiedono l'esecuzione di query di base |Catalogo prodotti |Database di documenti, come Azure Cosmos DB, MongoDB o Apache CouchDB |
-| Dati relazionali che richiedono il supporto di query più avanzate, uno schema rigido e/o coerenza assoluta |Inventario prodotti |Database SQL di Azure |
+| Dati relazionali che richiedono il supporto di query più avanzate, uno schema rigido e/o coerenza assoluta |Inventario prodotti |database SQL di Azure |
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
 Uno dei vantaggi principali del servizio app di Azure è la possibilità di scalare l'applicazione in base al carico. Ecco alcune considerazioni da tenere presenti quando si pianifica la scalabilità dell'applicazione.
 
-### <a name="app-service-app"></a>App del servizio app
+### <a name="app-service-app"></a>app del servizio app
 Se la propria soluzione include diverse app del servizio app, è consigliabile distribuirle in piani di servizio app distinti. Questo approccio consente di scalare le app in modo indipendente, poiché vengono eseguite in istanze separate. 
 
 Allo stesso modo, è consigliabile inserire un processo Web in un piano distinto, in modo che le attività in background non vengano eseguite nelle stesse istanze che gestiscono le richieste HTTP.  
@@ -127,6 +128,7 @@ Usare [Transparent Data Encryption][sql-encryption] se occorre crittografare i d
 [app-service-api-app]: /azure/app-service-api/app-service-api-apps-why-best-platform
 [app-service-pricing]: https://azure.microsoft.com/pricing/details/app-service/
 [azure-cdn]: https://azure.microsoft.com/services/cdn/
+[azure-dns]: /azure/dns/dns-overview
 [azure-redis]: https://azure.microsoft.com/services/cache/
 [azure-search]: https://azure.microsoft.com/documentation/services/search/
 [azure-search-scaling]: /azure/search/search-capacity-planning

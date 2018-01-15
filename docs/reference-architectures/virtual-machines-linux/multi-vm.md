@@ -6,11 +6,11 @@ ms.date: 11/16/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: n-tier
 pnp.series.prev: single-vm
-ms.openlocfilehash: b1b3c94524d50d05c90b46d26cab54fea8c8061a
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: 8f081baa40355b4f02b83c308466df8333d7ad87
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-load-balanced-vms-for-scalability-and-availability"></a>Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità
 
@@ -18,9 +18,9 @@ Questa architettura di riferimento mostra un set di procedure comprovate per l'e
 
 ![[0]][0]
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Questa architettura si basa sull'[architettura di riferimento della macchina virtuale singola][single-vm], pertanto si applicano le stesse raccomandazioni.
 
@@ -32,6 +32,7 @@ L'architettura include i componenti seguenti:
 * **Rete virtuale (VNet) e subnet.** Ogni macchina virtuale di Azure viene distribuita in una rete virtuale che può essere suddivisa in più subnet.
 * **Azure Load Balancer**. Il [servizio di bilanciamento del carico][load-balancer] distribuisce le richieste Internet in ingresso alle istanze delle macchine virtuali. 
 * **Indirizzo IP pubblico**. Affinché il servizio di bilanciamento del carico possa ricevere il traffico Internet, è richiesto un indirizzo IP pubblico.
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 * **Set di scalabilità di macchine virtuali**. Un [set di scalabilità di macchine virtuali][vm-scaleset] è un set di macchine virtuali identiche usato per ospitare un carico di lavoro. I set di scalabilità consentono di aumentare o ridurre il numero di macchine virtuali manualmente o automaticamente in base a regole predefinite.
 * **Set di disponibilità**. Il [set di disponibilità][availability-set] include le macchine virtuali, rendendole idonee per un [contratto di servizio (SLA)][vm-sla] superiore. Per consentire l'applicazione del contratto di servizio superiore, il set di disponibilità deve includere almeno due macchine virtuali. I set di disponibilità sono impliciti nei set di scalabilità. Se si creano macchine virtuali al di fuori di un set di scalabilità, è necessario creare il set di disponibilità in modo indipendente.
 * **Dischi gestiti**. Il servizio Azure Managed Disks gestisce i file di disco rigido virtuale (VHD) per i dischi delle macchine virtuali. 
@@ -169,6 +170,7 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [azure-automation]: /azure/automation/automation-intro
 [azure-cli]: /azure/virtual-machines-command-line-tools
 [azure-cli-2]: /azure/install-azure-cli?view=azure-cli-latest
+[azure-dns]: /azure/dns/dns-overview
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [health-probe-log]: /azure/load-balancer/load-balancer-monitor-log
