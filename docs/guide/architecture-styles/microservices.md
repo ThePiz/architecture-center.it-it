@@ -2,15 +2,15 @@
 title: Stile di architettura di microservizi
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture di microservizi in Azure
 author: MikeWasson
-ms.openlocfilehash: 6426b3342a319832baf5eec35e9c783ba9348bdd
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 08fd39b6cf0b3c88af654b27e21b2d7dd9fb19b1
+ms.sourcegitcommit: 7764a804f000180c37a4f8dbab946b525f784f58
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/09/2018
 ---
 # <a name="microservices-architecture-style"></a>Stile di architettura di microservizi
 
-Un'architettura di microservizi è costituita da un insieme di servizi ridotti autonomi. Ogni servizio è indipendente e deve implementare una singola funzionalità di business. 
+Un'architettura di microservizi è costituita da un insieme di servizi ridotti autonomi. Ogni servizio è indipendente e deve implementare una singola funzionalità di business. Per indicazioni dettagliate per la creazione di un'architettura di microservizi in Azure, vedere [Progettazione, creazione e gestione di microservizi in Azure](../../microservices/index.md).
 
 ![](./images/microservices-logical.svg)
  
@@ -111,7 +111,7 @@ Prendere in considerazione questo stile di architettura per:
 
 ## <a name="microservices-using-azure-container-service"></a>Microservizi basati sull'uso del servizio contenitore di Azure 
 
-È possibile usare il servizio contenitore di Azure per configurare ed eseguire il provisioning di un cluster Docker. Il servizio contenitore di Azure supporta diversi agenti di orchestrazione ampiamente diffusi, tra cui Kubernetes, DC/OS e Docker Swarm.
+È possibile usare il [servizio contenitore di Azure](/azure/container-service/) per configurare un cluster Docker ed effettuarne il provisioning. Il servizio contenitore di Azure supporta diversi agenti di orchestrazione ampiamente diffusi, tra cui Kubernetes, DC/OS e Docker Swarm.
 
 ![](./images/microservices-acs.png)
  
@@ -133,11 +133,11 @@ Il diagramma seguente mostra tre nodi che eseguono quattro diversi servizi (indi
 
 ## <a name="microservices-using-azure-service-fabric"></a>Microservizi basati sull'uso di Azure Service Fabric
 
-Il diagramma seguente mostra un'architettura di microservizi basata su Azure Service Fabric.
+Il diagramma seguente mostra un'architettura di microservizi con [Azure Service Fabric](/azure/service-fabric/).
 
 ![](./images/service-fabric.png)
 
-Il cluster di Service Fabric viene distribuito a uno o più set di scalabilità delle macchine virtuali. È possibile disporre di più set di scalabilità delle macchine virtuali nel cluster, in modo da avere una combinazione di tipi di macchine virtuali. Un gateway API è posizionato davanti al cluster di Service Fabric, con un servizio di bilanciamento del carico esterno per ricevere le richieste client.
+Il cluster di Service Fabric viene distribuito in uno o più set di scalabilità di macchine virtuali. È possibile disporre di più set di scalabilità delle macchine virtuali nel cluster, in modo da avere una combinazione di tipi di macchine virtuali. Un gateway API è posizionato davanti al cluster di Service Fabric, con un servizio di bilanciamento del carico esterno per ricevere le richieste client.
 
 Il runtime di Service Fabric esegue la gestione del cluster, inclusi il posizionamento dei servizi, il failover dei nodi e il monitoraggio dello stato. Il runtime viene distribuito nei nodi del cluster stessi. Non è disponibile un set distinto di macchine virtuali per la gestione del cluster.
 

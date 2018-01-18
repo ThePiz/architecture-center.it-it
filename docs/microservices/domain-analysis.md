@@ -3,11 +3,11 @@ title: Analisi del dominio per i microservizi
 description: Analisi del dominio per i microservizi
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: dc07c5195299c88a946accbe4e13a997afaaff90
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: c3c353a6b30507369357af4b520a51f8afc2fb8d
+ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 01/11/2018
 ---
 # <a name="designing-microservices-domain-analysis"></a>Progettazione di microservizi: analisi del dominio 
 
@@ -27,7 +27,7 @@ Questo capitolo e quello successivo illustrano alcune procedure che verranno qui
 
 3. All'interno di un contesto delimitato, verranno applicati gli schemi di progettazione basata su dominio tattica per definire entità, aggregazioni e servizi di dominio. 
  
-4. I risultati del passaggio precedente verranno usati per identificare i microservizi nell'applicazione.
+4. Usare i risultati del passaggio precedente per identificare i microservizi nell'applicazione.
 
 In questo capitolo vengono illustrati i primi tre passaggi, più strettamente correlati alla progettazione basata su dominio. Nel capitolo successivo verranno identificati i microservizi. In ogni caso, è importante ricordare che la progettazione basata su dominio è un processo iterativo e continuo. I vincoli del servizio non sono scolpiti nella pietra. Con l'evolvere dell'applicazione, si potrebbe decidere di suddividere un servizio in vari servizi più piccoli.
 
@@ -140,7 +140,7 @@ Da questi scenari, il team di sviluppo ha identificato le **entità seguenti**.
 - Account
 - Conferma
 - Notifica
-- Etichetta
+- Tag
 
 Le prime quattro, ovvero recapito, pacchetto, drone e account, sono tutte **aggregazioni** che rappresentano limiti di coerenza transazionali. Le conferme e le notifiche sono entità figlio dei recapiti e le etichette sono entità figlio dei pacchetti. 
 

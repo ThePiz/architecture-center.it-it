@@ -1,17 +1,17 @@
 ---
 title: Modello di livello anti-danneggiamento
-description: Implementare un livello adapter o di interfaccia tra un'applicazione moderna e un sistema legacy.
+description: Implementare un'interfaccia o un livello adapter tra un'applicazione moderna e un sistema legacy.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 590d5f3676c92f5f18661360106e2b2fdd4efbe1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e41f080abbef772596ee7f8b10ad72bb03a3b829
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="anti-corruption-layer-pattern"></a>Modello di livello anti-danneggiamento
 
-Implementare un livello adapter o di interfaccia tra un'applicazione moderna e un sistema legacy da cui dipende. Questo livello converte le richieste tra l'applicazione moderna e il sistema legacy. Usare questo modello per assicurarsi che la progettazione di un'applicazione non sia limitata a causa di dipendenze da sistemi legacy.
+Implementare un livello adapter o di interfaccia tra un'applicazione moderna e un sistema legacy da cui dipende. Questo livello converte le richieste tra l'applicazione moderna e il sistema legacy. Usare questo modello per assicurarsi che la progettazione di un'applicazione non sia limitata a causa di dipendenze da sistemi legacy. Questo modello è stato descritto per la prima volta da Eric Evans in *Domain-Driven Design*.
 
 ## <a name="context-and-problem"></a>Contesto e problema
 

@@ -3,15 +3,15 @@ title: Modello back-end per front-end
 description: Creare servizi back-end separati che vengono utilizzati da interfacce o applicazioni front-end specifiche.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: dd71b65e99ae21dff1443f5728ae5f0f54f8122c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 87acd39d021c5e44594a2e7c9574e4dd363ce83b
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="backends-for-frontends-pattern"></a>Modello back-end per front-end
 
-Creare servizi back-end separati che vengono utilizzati da interfacce o applicazioni front-end specifiche. Questo modello è utile quando si vuole evitare di personalizzare un singolo back-end per più interfacce.
+Creare servizi back-end separati che vengono utilizzati da interfacce o applicazioni front-end specifiche. Questo modello è utile quando si vuole evitare di personalizzare un singolo back-end per più interfacce. Il modello è stato descritto per la prima volta da Sam Newman.
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
@@ -32,6 +32,8 @@ Creare un solo back-end per ogni interfaccia utente. Ottimizzare il comportament
 ![](./_images/backend-for-frontend-example.png) 
 
 Dal momento che ogni back-end è specifico di una sola interfaccia, può essere ottimizzato per tale interfaccia. Di conseguenza, sarà più piccolo, meno complesso e probabilmente più veloce rispetto a un back-end generico che prova a soddisfare i requisiti di tutte le interfacce. Ogni team di sviluppo dell'interfaccia può controllare autonomamente il proprio back-end e non si basa su un team centralizzato di sviluppo del back-end. Il team di sviluppo dell'interfaccia utente può quindi scegliere in modo flessibile il linguaggio, la frequenza di rilascio, l'assegnazione delle priorità del carico di lavoro e l'integrazione delle funzionalità nel back-end.
+
+Per altre informazioni, vedere [Pattern: Backends For Frontends](http://samnewman.io/patterns/architectural/bff/) (Modello: back-end per front-end).
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 

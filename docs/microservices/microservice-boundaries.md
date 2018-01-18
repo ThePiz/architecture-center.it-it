@@ -3,11 +3,11 @@ title: Identificazione dei limiti dei microservizi
 description: Identificazione dei limiti dei microservizi
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 046749191bd565813218b3834cb4674c4c5100e2
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: e4f11da9f970724c55ad99824f808a10c4558971
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>Progettazione di microservizi: identificazione dei limiti dei microservizi
 
@@ -116,7 +116,7 @@ Ecco alcuni fattori da considerare nella scelta tra un approccio con agente di o
 
 **Portabilità**. Tutti gli agenti di orchestrazione qui elencati (Kubernetes, DC/OS, Docker Swarm e Service Fabric) possono essere eseguiti in locale oppure in più cloud pubblici. 
 
-**Integrazione delle applicazioni**. Può essere complicato creare un'applicazione complessa usando un'architettura senza server. In Azure è possibile usare le [app per la logica di Azure](/azure/logic-apps/) per coordinare un set di Funzioni di Azure. Per un esempio di questo approccio, vedere [Creare una funzione che si integra con le app per la logica di Azure](/azure/azure-functions/functions-twitter-email.)
+**Integrazione delle applicazioni**. Può essere complicato creare un'applicazione complessa usando un'architettura senza server. In Azure è possibile usare le [app per la logica di Azure](/azure/logic-apps/) per coordinare un set di Funzioni di Azure. Per un esempio di questo approccio, vedere [Creare una funzione che si integra con le app per la logica di Azure](/azure/azure-functions/functions-twitter-email).
 
 **Costo**. Con un agente di orchestrazione si pagano le macchine virtuali in esecuzione nel cluster. Con un'applicazione senza server si pagano solo le risorse di calcolo effettivamente utilizzate. In entrambi i casi è necessario tener conto del costo di servizi aggiuntivi, ad esempio archiviazione, database e servizi di messaggistica.
 

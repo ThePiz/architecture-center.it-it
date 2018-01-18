@@ -4,11 +4,11 @@ description: "Indicazioni per la memorizzazione nella cache per migliorare le pr
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f8bc25ef10847e8308e830b745e87a176438d200
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7968c1578dfef2c7ad28576b9aafbbe2b6672cd9
+ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/11/2018
 ---
 # <a name="caching"></a>Memorizzazione nella cache
 
@@ -105,7 +105,7 @@ Alcune cache consentono di specificare il periodo di scadenza come un valore ass
 
 È inoltre possibile che la cache si riempia se ai dati è consentita una permanenza prolungata. In tal caso, qualsiasi richiesta di aggiungere nuovi elementi alla cache potrebbe comportare la rimozione forzata di alcuni elementi in un processo noto come rimozione. I servizi cache tipicamente rimuovono i dati usati meno di recente, ma è solitamente possibile eseguire l'override di questo criterio e impedire la rimozione di elementi. Tuttavia, se si adotta questo approccio, si rischia di superare la memoria disponibile nella cache. Un'applicazione che tenta di aggiungere un elemento alla cache non completerà l'operazione, generando un'eccezione.
 
-Alcune implementazioni di memorizzazione nella cache possono specificare altri criteri di rimozione. Esistono diversi tipi di criteri di rimozione. inclusi i seguenti:
+Alcune implementazioni di memorizzazione nella cache possono specificare altri criteri di rimozione. Esistono diversi tipi di criteri di rimozione. incluse le seguenti:
 
 * Criteri basati sull'uso più recente (in previsione del fatto che i dati non saranno più necessari).
 * Criteri First-In-First-Out (i dati meno recenti vengono rimossi per primi).
@@ -185,23 +185,13 @@ Se è necessario limitare l'accesso a subset di dati memorizzati nella cache, è
 È inoltre necessario proteggere i dati durante la trasmissione dalla cache e nella cache. Il raggiungimento di questo scopo dipende dalle funzionalità di sicurezza fornite dall'infrastruttura di rete usata dalle applicazioni client per connettersi alla cache. Se la cache è implementata tramite un server locale all'interno della stessa organizzazione che ospita le applicazioni client, grazie all'isolamento della rete stessa potrebbe non essere necessario eseguire altri passaggi. Se la cache è remota e richiede una connessione TCP o HTTP attraverso una rete pubblica (ad esempio Internet), prendere in considerazione l'implementazione del protocollo SSL.
 
 ## <a name="considerations-for-implementing-caching-with-microsoft-azure"></a>Considerazioni per l'implementazione della cache con Microsoft Azure
-Azure offre Cache Redis di Azure. Si tratta di un'implementazione della cache Redis open source che viene eseguita come servizio in un data center di Azure. Se l'applicazione viene implementata come un servizio cloud, un sito Web o all'interno di una macchina virtuale di Azure fornisce un servizio di caching a cui è possibile accedere da qualsiasi applicazione Azure. Le cache possono essere condivise da applicazioni client che dispongono della chiave di accesso appropriato.
+
+[Cache Redis di Azure](/azure/redis-cache/) è un'implementazione della cache Redis open source che viene eseguita come servizio in un data center di Azure. Se l'applicazione viene implementata come un servizio cloud, un sito Web o all'interno di una macchina virtuale di Azure fornisce un servizio di caching a cui è possibile accedere da qualsiasi applicazione Azure. Le cache possono essere condivise da applicazioni client che dispongono della chiave di accesso appropriato.
 
 Cache Redis di Azure è una soluzione di memorizzazione nella cache ad alte prestazioni che fornisce disponibilità, scalabilità e sicurezza. In genere, viene eseguita come servizio distribuito in uno o più computer dedicati e tenta di archiviare quante più informazioni possibile in memoria per garantire un rapido accesso. Questa architettura è destinata a fornire bassa latenza e velocità effettiva elevata, riducendo la necessità di eseguire lente operazioni di I/O.
 
  Cache Redis di Azure è compatibile con molte delle varie API usate dalle applicazioni client. Se si dispone di applicazioni che usano già Cache Redis di Azure in esecuzione in locale, Cache Redis di Azure fornisce un percorso di migrazione rapido per la memorizzazione nella cache nel cloud.
 
-> [!NOTE]
-> Azure offre inoltre il servizio cache gestita. Questo servizio si basa sul motore della cache di Azure Service Fabric. Consente di creare una cache distribuita che può essere condivisa da applicazioni collegate in modo flessibile. La cache è ospitata su server ad alte prestazioni in esecuzione in un data center di Azure.
-> Tuttavia, questa opzione non è più consigliata e viene fornita solo per supportare le applicazioni esistenti che sono stata realizzate per usarla. Per lo sviluppo di tutte le nuove applicazioni usare Cache Redis di Azure.
-> 
-> Inoltre, Azure supporta la memorizzazione nella cache nel ruolo. Questa funzionalità consente di creare una cache specifica per un servizio cloud.
-> La cache è ospitata da istanze di un ruolo Web o di lavoro ed è accessibile solo per i ruoli che operano come parte della stessa unità di distribuzione del servizio cloud. Un'unità di distribuzione è il set di istanze del ruolo distribuite come servizio cloud in un'area specifica. La cache è di tipo cluster e tutte le istanze del ruolo all'interno della stessa unità di distribuzione che ospita la cache entrano a far parte dello stesso cluster di cache. Tuttavia, questa opzione non è più consigliata e viene fornita solo per supportare le applicazioni esistenti che sono stata realizzate per usarla. Per lo sviluppo di tutte le nuove applicazioni usare Cache Redis di Azure.
-> 
-> Sia il Servizio cache gestita di Azure che la Cache nel ruolo di Azure sono attualmente destinati al ritiro in giorno 16 novembre 2016.
-> Si consiglia di eseguire la migrazione a Cache Redis di Azure in preparazione a tale ritiro. Per altre informazioni, visitare la pagina [Quali offerte e dimensioni della Cache Redis di Azure è consigliabile usare?](/azure/redis-cache/cache-faq#what-redis-cache-offering-and-size-should-i-use).
-> 
-> 
 
 ### <a name="features-of-redis"></a>Funzionalità di Redis
  Redis è più di un semplice server di cache. Fornisce un database in memoria distribuito con un set di comandi completo che supporta molti scenari comuni descritti più avanti in questo documento, nella sezione Uso della memorizzazione nella cache di Redis. In questa sezione vengono riepilogate alcune delle funzionalità chiave fornite da Redis.
