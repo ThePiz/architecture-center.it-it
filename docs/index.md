@@ -2,11 +2,11 @@
 title: Centro architetture Azure
 description: "Il centro architetture Azure è il centro ufficiale per materiale sussidiario, progetti, modelli e procedure consigliate per la creazione di soluzioni con Microsoft Azure. È curato dal team Microsoft modelli e procedure."
 layout: LandingPage
-ms.openlocfilehash: d48861a1001c9bef8cad152a3664077f2ad915c6
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: 204d32c8de934665fff7b1a321bfdf893ac69983
+ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 01/19/2018
 ---
 # <a name="azure-architecture-center"></a>Centro architetture Azure
 
@@ -92,7 +92,7 @@ ms.lasthandoff: 12/29/2017
                     <div class="card">
                         <div class="cardImageOuter">
                             <div class="cardImage">
-                                <img src="_images/new-content.svg" alt="Designing, building, and operating microservices on Azure" />
+                                <img src="_images/microservices.svg" alt="Designing, building, and operating microservices on Azure" />
                             </div>
                         </div>
                         <div class="cardText">
