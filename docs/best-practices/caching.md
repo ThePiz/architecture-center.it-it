@@ -4,11 +4,11 @@ description: "Indicazioni per la memorizzazione nella cache per migliorare le pr
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 7968c1578dfef2c7ad28576b9aafbbe2b6672cd9
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: fde1c3e8c65d357746e4ccaddebeebace943cf9d
+ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 01/19/2018
 ---
 # <a name="caching"></a>Memorizzazione nella cache
 
@@ -131,7 +131,7 @@ Evitare di usare una cache come repository principale dei dati. Questo è il ruo
 
 Prestare attenzione a non introdurre dipendenze critiche per la disponibilità di un servizio di cache condivisa nelle soluzioni. Un'applicazione deve essere in grado di continuare a funzionare anche se il servizio che fornisce la cache condivisa non è disponibile. L'applicazione non deve bloccarsi o generare errori mentre attende che il servizio cache riprenda a funzionare.
 
-Pertanto, l'applicazione deve essere preparata per rilevare la disponibilità del servizio cache e il fallback all'archivio dati originale se la cache non è accessibile. Il [modello a interruttore](http://msdn.microsoft.com/library/dn589784.aspx) è utile per la gestione di questo scenario. È possibile ripristinare il servizio che fornisce la cache. Non appena questo torna disponibile la cache può essere ripopolata man mano che i dati vengono letti dall'archivio dati originale, secondo una strategia, ad esempio il [modello cache-aside](http://msdn.microsoft.com/library/dn589799.aspx).
+Pertanto, l'applicazione deve essere preparata per rilevare la disponibilità del servizio cache e il fallback all'archivio dati originale se la cache non è accessibile. Il [modello a interruttore](http://msdn.microsoft.com/library/dn589784.aspx) è utile per la gestione di questo scenario. È possibile ripristinare il servizio che fornisce la cache. Non appena questo torna disponibile, la cache può essere ripopolata man mano che i dati vengono letti dall'archivio dati originale, seguendo una strategia come il [modello cache-aside](http://msdn.microsoft.com/library/dn589799.aspx).
 
 Tuttavia, se l'applicazione esegue il fallback all'archivio dati originale quando la cache è temporaneamente non disponibile, si potrebbe avere un impatto sulla scalabilità del sistema.
 Mentre viene recuperato l'archivio dati, l'archivio dati originale potrebbe essere sovraccaricato da richieste di dati, con conseguenti timeout ed errori di connessione.
