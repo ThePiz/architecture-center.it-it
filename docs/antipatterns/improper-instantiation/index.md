@@ -3,15 +3,15 @@ title: Antipattern di creazione di istanze non corretta
 description: Evitare di creare continuamente nuove istanze di un oggetto che deve essere creato una sola volta e poi condiviso.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: d6ea27b0ea88ad7527353d263d900626c0aff720
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 4b217f7fc644901eb5c3e77319d151caed30eef1
+ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>Antipattern di creazione di istanze non corretta
 
-Continuando a creare nuove istanze di un oggetto che deve essere creato una sola volta e poi condiviso si rischia di compromettere le perstazioni. 
+Continuando a creare nuove istanze di un oggetto che deve essere creato una sola volta e poi condiviso si rischia di compromettere le prestazioni. 
 
 ## <a name="problem-description"></a>Descrizione del problema
 
@@ -22,7 +22,7 @@ Molte librerie forniscono astrazioni di risorse esterne. Internamente, queste cl
 - `Microsoft.Azure.Documents.Client.DocumentClient`. Si connette a un'istanza di database Cosmos
 - `StackExchange.Redis.ConnectionMultiplexer`. Si connette a Redis, incluso Cache Redis di Azure.
 
-Queste classi sono destinate a essere istanziate una sola volta e riutilizzate per tutta la durata di un'applicazione. Invece molti non sanno che queste classi devono essere acquisite solo quando è necessario e rilasciate rapidamente (quelle elencate di seguito sono librerie .NET, ma il modello non è unico di .NET).
+Per queste classi è prevista la creazione di una sola istanza, che viene riutilizzata per tutta la durata di un'applicazione. È un errore comune ritenere che queste classi debbano essere acquisite solo quando è necessario e rilasciate rapidamente. (Le librerie elencate di seguito sono librerie .NET, ma il modello non è univoco per .NET).
 
 L'esempio ASP.NET seguente crea un'istanza di `HttpClient` per comunicare con un servizio remoto. L'esempio completo è disponibile [qui][sample-app].
 
@@ -44,7 +44,7 @@ public class NewHttpClientInstancePerRequestController : ApiController
 
 In un'applicazione Web questa tecnica non è scalabile. Viene creato un nuovo oggetto `HttpClient` per ogni richiesta dell'utente. In caso di carico pesante, il server Web può esaurire il numero di socket disponibile, causando errori `SocketException`.
 
-Questo problema non è limitato alla classe `HttpClient`. Altre classi che eseguono il wrapping di risorse o sono costose da creare potrebbero causare problemi simili. L'esempio seguente crea un'istanza della classe `ExpensiveToCreateService`. In questo caso il problema non è necessariamente l'esaurimento dei socket, ma semplicemente il tempo necessario per la creazione di ogni istanza. La creazione ed eliminazione continua di istanze di questa classe può incidere negativamente sulla scalabilità del sistema.
+Questo problema non è limitato alla classe `HttpClient`. Altre classi che eseguono il wrapping di risorse o sono costose da creare potrebbero causare problemi simili. L'esempio seguente crea un'istanza della classe `ExpensiveToCreateService`. In questo caso il problema non è necessariamente l'esaurimento dei socket, ma semplicemente il tempo necessario per la creazione di ogni istanza. La creazione e l'eliminazione continua di istanze di questa classe possono incidere negativamente sulla scalabilità  del sistema.
 
 ```csharp
 public class NewServiceInstancePerRequestController : ApiController
@@ -71,7 +71,7 @@ public class ExpensiveToCreateService
 
 Se la classe che esegue il wrapping della risorsa esterna è condivisibile e thread-safe, creare un'istanza singleton condivisa o un pool di istanze della classe riutilizzabili.
 
-Nell'esempio riportato di seguito viene utilizzato un'istanza `HttpClient` statico, condividendo in questo modo la connessione tra tutte le richieste.
+L'esempio seguente usa un'istanza statica di `HttpClient`, condividendo quindi la connessione tra tutte le richieste.
 
 ```csharp
 public class SingleHttpClientInstanceController : ApiController
@@ -97,17 +97,17 @@ public class SingleHttpClientInstanceController : ApiController
 
 - L'elemento principale di questo antipattern è la ripetuta creazione ed eliminazione di istanze di un oggetto *condivisibile*. Se una classe non è condivisibile (non è thread-safe), questo antipattern non è applicabile.
 
-- Il tipo di risorsa condivisa può indicare se si deve usare un singleton o creare un pool. La classe `HttpClient` è progettata per essere condivisa anziché messa in pool. Altri oggetti potrebbero supportare il pool, consentendo al sistema di distribuire il carico di lavoro tra più istanze.
+- Il tipo di risorsa condivisa può indicare se si deve usare un singleton o creare un pool. La classe `HttpClient` è progettata per essere condivisa anziché inserita in un pool. Altri oggetti potrebbero supportare il pool, consentendo al sistema di distribuire il carico di lavoro tra più istanze.
 
-- Gli oggetti che si condividono tra più richieste *devono* essere thread-safe. La classe `HttpClient` è progettata per essere utilizzata in questo modo, ma altre classi potrebbero non supportare richieste simultanee: controllare la documentazione disponibile.
+- Gli oggetti che si condividono tra più richieste *devono* essere thread-safe. La classe `HttpClient` è progettata per essere utilizzata in questo modo, ma altre classi potrebbero non supportare richieste simultanee. Controllare la documentazione disponibile.
 
-- Alcuni tipi di risorse sono scarse e non devono essere trattenute. Le connessioni di database sono un esempio. Trattenendo una connessione di database aperta che non è necessaria può impedire l'accesso al database da parte di altri utenti simultanei.
+- Alcuni tipi di risorse sono scarse e non devono essere trattenute. Le connessioni di database sono un esempio. Tenendo aperta una connessione di database non necessaria si potrebbe impedire l'accesso contemporaneo al database da parte di altri utenti.
 
-- In .NET Framework vengono creati più oggetti che consentono di stabilire connessioni a risorse esterne utilizzando metodi factory statici di altre classi che gestiscono queste connessioni. Questi oggetti factory devono essere salvati e riutilizzati, anziché eliminati e ricreati. Ad esempio, nel bus di servizio di Azure, l'oggetto `QueueClient` viene creato tramite un oggetto `MessagingFactory`. Internamente, `MessagingFactory` gestisce le connessioni. Per altre informazioni, vedere [Procedure consigliate per il miglioramento delle prestazioni tramite la messaggistica del bus di servizio][service-bus-messaging].
+- In .NET Framework molti oggetti che stabiliscono connessioni a risorse esterne vengono creati usando metodi factory statici di altre classi che gestiscono tali connessioni. Questi oggetti factory devono essere salvati e riutilizzati, anziché eliminati e ricreati. Ad esempio, nel bus di servizio di Azure, l'oggetto `QueueClient` viene creato tramite un oggetto `MessagingFactory`. Internamente, `MessagingFactory` gestisce le connessioni. Per altre informazioni, vedere [Procedure consigliate per il miglioramento delle prestazioni tramite la messaggistica del bus di servizio][service-bus-messaging].
 
 ## <a name="how-to-detect-the-problem"></a>Come rilevare il problema
 
-Sintomi di questo problema includono la riduzione della velocità effettiva o l'aumento della frequenza degli errori, insieme a uno o più dei seguenti effetti: 
+Sintomi di questo problema includono la riduzione della velocità  effettiva o l'aumento della frequenza degli errori, insieme a uno o più degli effetti seguenti: 
 
 - Aumento delle eccezioni che indicano l'esaurimento delle risorse, ad esempio i socket, le connessioni al database, gli handle di file e così via. 
 - Aumento dell'uso di memoria e del garbage collection.
@@ -128,13 +128,13 @@ Le sezioni seguenti applicano questa procedura all'applicazione di esempio descr
 
 ### <a name="identify-points-of-slow-down-or-failure"></a>Individuare i punti di rallentamento o errore
 
-La figura seguente mostra i risultati generati utilizzando l'[APM New Relic][new-relic], che mostra le operazioni che hanno tempi di risposta lunghi. In questo caso, vale la pena di analizzare ulteriormente il metodo `GetProductAsync` nel controller `NewHttpClientInstancePerRequest`. Si noti che il tasso di errore aumenta quando queste operazioni sono in esecuzione. 
+La figura seguente mostra i risultati generati utilizzando [New Relic APM][new-relic], che mostra le operazioni che hanno tempi di risposta lunghi. In questo caso, vale la pena di analizzare ulteriormente il metodo `GetProductAsync` nel controller `NewHttpClientInstancePerRequest`. Si noti che il tasso di errore aumenta quando queste operazioni sono in esecuzione. 
 
 ![Il dashboard di monitoraggio di New Relic che mostra l'applicazione di esempio che crea una nuova istanza di un oggetto HttpClient per ogni richiesta][dashboard-new-HTTPClient-instance]
 
 ### <a name="examine-telemetry-data-and-find-correlations"></a>Esaminare i dati di telemetria e trovare le correlazioni
 
-L'immagine successiva mostra i dati acquisiti utilizzando la profilatura dei thread, nello stesso periodo corrispondente all'immagine precedente. Il sistema impiega molto tempo per l'apertura delle connessioni socket e anche più tempo per chiuderle e gestire le eccezioni di socket.
+L'immagine successiva mostra i dati acquisiti usando la profilatura dei thread, nello stesso periodo corrispondente all'immagine precedente. Il sistema impiega molto tempo per l'apertura delle connessioni socket e anche più tempo per chiuderle e gestire le eccezioni di socket.
 
 ![Il thread profiler di New Relic che mostra l'applicazione di esempio che crea una nuova istanza di un oggetto HttpClient per ogni richiesta][thread-profiler-new-HTTPClient-instance]
 
