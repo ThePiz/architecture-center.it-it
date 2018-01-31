@@ -2,11 +2,11 @@
 title: Architetture di riferimento di Azure
 description: Architetture di riferimento, progetti e materiale sussidiario per l'implementazione per carichi di lavoro comuni in Azure.
 layout: LandingPage
-ms.openlocfilehash: eaff531c28faeb0aac774acf70d4334fb4e1f319
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0cc03f87dae39517e1a72a65d4767dcc21879d8f
+ms.sourcegitcommit: 9998334bebccb86be0f715ac7dffc0c3175aea68
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/26/2018
 ---
 # <a name="azure-reference-architectures"></a>Architetture di riferimento di Azure
 
@@ -137,6 +137,26 @@ Le nostre architetture di riferimento sono disposte per scenario, con le archite
     </ul>
 
 <ul class="panelContent cardsI">
+<li>
+    <a href="./jenkins/index.md">
+    <div class="cardSize">
+        <div class="cardPadding">
+            <div class="card">
+                <div class="cardImageOuter">
+                    <div class="cardImage">
+                        <img src="./jenkins/images/logo.svg" alt="Jenkins" height="100%" />
+                    </div>
+                </div>
+                <div class="cardText">
+                    <h3>Server di compilazione Jenkins</h3>
+                    <p>Distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </a>
+</li>
+
 <li>
     <a href="./sharepoint/index.md">
     <div class="cardSize">
