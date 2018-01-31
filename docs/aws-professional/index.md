@@ -5,11 +5,11 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: ac96110e3fe69b4bb69714e18fd0f193208bc244
-ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
+ms.openlocfilehash: e5f7cb5062b0b4a8526f3b29a9fa4ddaff399fc0
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -311,7 +311,7 @@ I costi di RDS di AWS sono determinati dalla quantità di risorse hardware consu
 
 -   [Configurare la replica geografica per il database SQL di Azure con il portale di Azure](https://azure.microsoft.com/documentation/articles/sql-database-geo-replication-portal/)
 
--   [Introduzione a Cosmos DB: un database NoSQL JSON](https://azure.microsoft.com/documentation/articles/documentdb-introduction/)
+-   [Introduzione a Cosmos DB: un database NoSQL JSON](/azure/cosmos-db/sql-api-introduction)
 
 -   [Come usare l'archiviazione tabelle di Azure da Node.js](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/)
 
