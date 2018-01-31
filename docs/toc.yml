@@ -10,19 +10,21 @@
       items: null
     - name: Principi di progettazione
       href: guide/design-principles/index.md
-    - name: Punti chiave della qualità del software
+    - name: Concetti fondamentali della qualità del software
       href: guide/pillars.md
     - name: Modelli di progettazione
       href: patterns/index.md?toc=/azure/architecture/guide/toc.json
 - name: Architetture di riferimento
   href: reference-architectures/index.md
   items:
+    - name: Applicazioni Web del servizio app
+      href: reference-architectures/app-service-web-app/index.md
+    - name: Reti ibride
+      href: reference-architectures/hybrid-networking/index.md
     - name: Gestione delle identità
       href: reference-architectures/identity/index.md
-    - name: Rete ibrida
-      href: reference-architectures/hybrid-networking/index.md
-    - name: Applicazione web del Servizio app
-      href: reference-architectures/app-service-web-app/index.md
+    - name: Server Jenkins
+      href: reference-architectures/jenkins/index.md
     - name: Rete perimetrale
       href: reference-architectures/dmz/index.md
     - name: SAP NetWeaver e SAP HANA
@@ -54,7 +56,7 @@
       href: patterns/category/security.md
 - name: Procedure consigliate
   items:
-    - name: Progettazione di API
+    - name: Progettazione API
       href: best-practices/api-design.md
     - name: Implementazione di API
       href: best-practices/api-implementation.md
