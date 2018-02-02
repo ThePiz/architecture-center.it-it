@@ -2,22 +2,22 @@
 title: "Concetti fondamentali della qualità del software"
 description: "Descrive i cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza."
 author: MikeWasson
-ms.openlocfilehash: 78e613368a07718f5923d619ace335d399b0cc80
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1d5e30602cafa0d39f92de3101974e77ae258595
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="pillars-of-software-quality"></a>Concetti fondamentali della qualità del software 
 
 Un'applicazione cloud efficace è basata su cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza.
 
-| Concetto fondamentale | Descrizione |
+| Concetto fondamentale | DESCRIZIONE |
 |--------|-------------|
 | Scalabilità | La capacità di un sistema di gestire carichi maggiori. |
 | Disponibilità | La percentuale di tempo per cui il sistema funziona ed è in esecuzione. |
 | Resilienza | La capacità di un sistema di correggere gli errori e continuare a funzionare. |
-| gestione | Processi operativi che mantengono un sistema in esecuzione in produzione. |
+| Gestione | Processi operativi che mantengono un sistema in esecuzione in produzione. |
 | Sicurezza | Protezione delle applicazioni e dei dati dalle minacce. |
 
 ## <a name="scalability"></a>Scalabilità
@@ -61,7 +61,7 @@ La disponibilità viene spesso descritta in termini di "9", ovvero "quattro 9" s
 | 99,9% | 10 minuti | 43,2 minuti | 8,76 ore |
 | 99,95% | 5 minuti | 21,6 minuti | 4,38 ore |
 | 99,99% | 1 minuto | 4,32 minuti | 52,56 minuti |
-| 99.999% | 6 secondi | 26 secondi | 5,26 minuti |
+| 99,999% | 6 secondi | 26 secondi | 5,26 minuti |
 
 Si noti che il tempo di attività del 99% potrebbe implicare un'interruzione del servizio di quasi 2 ore a settimana. Per molte applicazioni, soprattutto le applicazioni per consumatori, questo valore SLO non è accettabile. D'altra parte, cinque 9 (99,999%) indicano non più di 5 minuti di inattività in un *anno*. In tempi così brevi è già abbastanza impegnativo rilevare un'interruzione, ma è ancora più difficile risolvere il problema. Per ottenere una disponibilità molto elevata (99,99% o superiore), non è possibile fare affidamento sull'intervento manuale per la correzione degli errori. L'applicazione deve prevedere la diagnosi e la riparazione automatiche, condizione in cui la resilienza è di importanza strategica.
 
@@ -153,7 +153,7 @@ Le applicazioni cloud spesso usano servizi gestiti che dispongono di chiavi di a
 
 Assicurarsi che i dati rimangano nell'area geopolitica corretta quando si usa la disponibilità elevata di Azure. L'archiviazione di replica geografica di Azure usa il concetto di [area abbinata] [ paired-region] nella stessa area geopolitica. 
 
-Usare Key Vault per proteggere i segreti e le chiavi di crittografia. Con Key Vault è possibile crittografare chiavi e segreti usando chiavi protette da moduli di sicurezza hardware (HSM). Numerosi servizi di archiviazione e di database di Azure supportano la crittografia dei dati a riposo, tra cui [Archiviazione di Azure][storage-encryption], il [database SQL di Azure][sql-db-encryption], [ Microsoft Azure SQL Data Warehouse][data-warehouse-encryption] e [Cosmos DB][documentdb-encryption].
+Usare Key Vault per proteggere i segreti e le chiavi di crittografia. Con Key Vault è possibile crittografare chiavi e segreti usando chiavi protette da moduli di sicurezza hardware (HSM). Numerosi servizi di archiviazione e di database di Azure supportano la crittografia dei dati a riposo, tra cui [Archiviazione di Azure][storage-encryption], il [database SQL di Azure][sql-db-encryption], [ Microsoft Azure SQL Data Warehouse][data-warehouse-encryption] e [Cosmos DB][cosmosdb-encryption].
 
 ### <a name="security-resources"></a>Risorse di sicurezza
 
@@ -171,7 +171,7 @@ Usare Key Vault per proteggere i segreti e le chiavi di crittografia. Con Key Va
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
-[documentdb-encryption]: /azure/documentdb/documentdb-nosql-database-security
+[cosmosdb-encryption]: /azure/cosmos-db/database-security
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [paired-region]: /azure/best-practices-availability-paired-regions
 [resource-manager-auditing]: /azure/azure-resource-manager/resource-group-audit

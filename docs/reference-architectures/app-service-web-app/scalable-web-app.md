@@ -7,11 +7,11 @@ pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: 1fdaf6e3695cb814fa4c275a4a273f9fa9a7b71b
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 4ad12fb041a79fcb706530c9968fd0f96211d7f9
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Migliorare la scalabilità in un'applicazione Web
 
@@ -31,7 +31,7 @@ Questa architettura si basa su quella illustrata in [Applicazione Web di base][b
 * **Coda**. Nell'architettura illustrata qui l'applicazione accoda le attività in background inserendo un messaggio in una coda dell'[archivio code di Azure][queue-storage]. Il messaggio attiva una funzione nel processo Web. In alternativa, è possibile usare le code del bus di servizio. Per un confronto, vedere [Analogie e differenze tra le code di Azure e le code del bus di servizio][queues-compared].
 * **Cache**. Archiviare i dati semistatici nella [cache Redis di Azure][azure-redis].  
 * **Rete CDN**. Usare la [rete per la distribuzione di contenuti di Azure][azure-cdn] (rete CDN) per memorizzare nella cache il contenuto disponibile pubblicamente, in modo da ridurre la latenza e accelerare la distribuzione del contenuto.
-* **Archiviazione dei dati**. Usare un [database SQL di Azure][sql-db] per i dati relazionali. Per i dati non relazionali considerare invece un archivio NoSQL, ad esempio [Cosmos DB][documentdb].
+* **Archiviazione dei dati**. Usare un [database SQL di Azure][sql-db] per i dati relazionali. Per i dati non relazionali considerare invece un archivio NoSQL, ad esempio [Cosmos DB][cosmosdb].
 * **Ricerca di Azure**. Usare il servizio [Ricerca di Azure][azure-search] per aggiungere funzionalità di ricerca come i suggerimenti per la ricerca, la ricerca fuzzy e la ricerca specifica della lingua. Il servizio Ricerca di Azure viene in genere usato in combinazione con un altro archivio dati, soprattutto se l'archivio dati primario richiede la coerenza assoluta. In questo approccio, archiviare i dati autorevoli nell'altro archivio dati e l'indice di ricerca in Ricerca di Azure. Ricerca di Azure può essere usato anche per creare un unico indice di ricerca da più archivi dati.  
 * **Messaggio di posta elettronica o SMS**. Usare un servizio di terze parti come SendGrid o Twilio per inviare messaggi di posta elettronica o SMS invece di incorporare questa funzionalità direttamente nell'applicazione.
 * **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
@@ -140,7 +140,7 @@ Usare [Transparent Data Encryption][sql-encryption] se occorre crittografare i d
 [cdn-storage-account]: /azure/cdn/cdn-create-a-storage-account-with-cdn
 [cdn-guidance]: ../../best-practices/cdn.md
 [cors]: /azure/app-service-api/app-service-api-cors-consume-javascript
-[documentdb]: https://azure.microsoft.com/documentation/services/documentdb/
+[cosmosdb]: /azure/cosmos-db/
 [queue-storage]: /azure/storage/storage-dotnet-how-to-use-queues
 [queues-compared]: /azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted
 [resource-group]: /azure/azure-resource-manager/resource-group-overview#resource-groups

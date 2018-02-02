@@ -3,11 +3,11 @@ title: Rendere ogni elemento ridondante
 description: "Per evitare singoli punti di guasto, è consigliabile applicare la ridondanza nell'applicazione."
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 89a1e6d2d3b1217ab07c9a99a4c4fb3e8cd2cd29
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 05ccf78c2cfbcd4e2d26200e70463d388d54f671
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="make-all-things-redundant"></a>Rendere ogni elemento ridondante
 
@@ -25,7 +25,7 @@ Un'applicazione resiliente consente di risolvere più facilmente gli errori. È 
 
 **Replicare i database**. Il database SQL e Cosmos DB replicano automaticamente i dati in un'area. È inoltre possibile abilitare la replica geografica tra le diverse aree. Se si usa una soluzione con database IaaS, sceglierne una che supporti la replica e il failover, ad esempio i [gruppi di disponibilità Always On di SQL Server][sql-always-on]. 
 
-**Abilitare la replica geografica**. La replica geografica per il [database SQL di Azure][sql-geo-replication] e [Cosmos DB][docdb-geo-replication] consente di creare repliche leggibili secondarie dei dati in una o più aree secondarie. In caso di interruzione del servizio, il database potrà quindi effettuare il failover all'area secondaria per le operazioni di scrittura.
+**Abilitare la replica geografica**. La replica geografica per il [database SQL di Azure][sql-geo-replication] e [Cosmos DB][cosmosdb-geo-replication] consente di creare repliche leggibili secondarie dei dati in una o più aree secondarie. In caso di interruzione del servizio, il database potrà quindi effettuare il failover all'area secondaria per le operazioni di scrittura.
 
 **Usare il partizionamento per garantire la disponibilità**. Il partizionamento del database viene spesso usato per migliorare la scalabilità, ma può anche consentire di migliorare la disponibilità. In caso di malfunzionamento di una partizione, è comunque possibile raggiungere le altre. Un errore in una partizione danneggerà inoltre solo un subset delle transazioni totali. 
 
@@ -46,6 +46,6 @@ Un'applicazione resiliente consente di risolvere più facilmente gli errori. È 
 [multi-vm-blueprint]: ../../reference-architectures/virtual-machines-windows/multi-vm.md
 
 [cassandra]: http://cassandra.apache.org/
-[docdb-geo-replication]: /azure/documentdb/documentdb-distribute-data-globally
+[cosmosdb-geo-replication]: /azure/cosmos-db/distribute-data-globally
 [sql-always-on]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
