@@ -4,16 +4,16 @@ description: Indicazioni sulla rete per la distribuzione di contenuti (CDN) per 
 author: dragon119
 ms.date: 09/30/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 94036c803552d5e7061f99e6dd0ca9e563a32690
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: fffe0b0523c0a9c817f4346744ff3b5e3f11dede
+ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="content-delivery-network"></a>Rete per la distribuzione di contenuti (CDN)
 [!INCLUDE [header](../_includes/header.md)]
 
-La Rete di distribuzione dei contenuti di Microsoft Azure (CDN) offre agli sviluppatori una soluzione globale per distribuire contenuti a larghezza di banda elevata ospitati in Azure o in altre posizioni. Con la rete CDN è possibile memorizzare nella cache gli oggetti disponibili pubblicamente caricati dall'archivio BLOB di Azure un'applicazione Web, una macchina virtuale, una cartella dell'applicazione o altre posizioni HTTP/HTTPS. La cache della rete CDN può essere mantenuta in posizioni strategiche per fornire la larghezza di banda massima per la distribuzione di contenuto agli utenti. In genere, la rete CDN viene usata per recapitare contenuto statico come immagini, fogli di stile, documenti, file script sul lato client e pagine HTML.
+La [Rete di distribuzione dei contenuti di Microsoft Azure (CDN)](/azure/cdn/cdn-overview) offre agli sviluppatori una soluzione globale per distribuire contenuti a larghezza di banda elevata ospitati in Azure o in altre posizioni. Con la rete CDN è possibile memorizzare nella cache gli oggetti disponibili pubblicamente caricati dall'archivio BLOB di Azure un'applicazione Web, una macchina virtuale, una cartella dell'applicazione o altre posizioni HTTP/HTTPS. La cache della rete CDN può essere mantenuta in posizioni strategiche per fornire la larghezza di banda massima per la distribuzione di contenuto agli utenti. In genere, la rete CDN viene usata per recapitare contenuto statico come immagini, fogli di stile, documenti, file script sul lato client e pagine HTML.
 
 È anche possibile usare la rete CDN come una cache per la distribuzione di contenuto dinamico, ad esempio un report PDF o un grafico sulla base di input specificati. Se gli stessi valori di input sono forniti da utenti diversi, il risultato sarà lo stesso.
 
@@ -74,7 +74,7 @@ Scenari in cui la rete CDN può essere meno utile sono:
 L’utilizzo della rete CDN è un ottimo modo per ridurre al minimo il carico sull'applicazione e ottimizzare disponibilità e prestazioni. Valutare l'adozione di questa strategia per tutto il contenuto appropriato e le risorse usate dall'applicazione. Quando si progetta la strategia per l'uso della rete CDN, considerare i punti nelle sezioni seguenti:  
 
 ### <a name="origin"></a>Origine
-La distribuzione del contenuto attraverso la rete CDN richiede semplicemente di specificare un endpoint HTTP e/o HTTPS che il servizio della rete CDN userà per accedere al contenuto e memorizzarlo nella cache.
+La distribuzione del contenuto attraverso la rete CDN richiede semplicemente di specificare un [endpoint](/azure/cdn/cdn-create-new-endpoint) HTTP e/o HTTPS che il servizio della rete CDN userà per accedere al contenuto e memorizzarlo nella cache.
 
 L'endpoint può specificare un contenitore di archiviazione BLOB di Azure che include il contenuto statico da recapitare attraverso la rete CDN. Il contenitore deve essere contrassegnato come pubblico. Solo i BLOB di un contenitore pubblico con accesso in lettura sono disponibili tramite la rete CDN.
 

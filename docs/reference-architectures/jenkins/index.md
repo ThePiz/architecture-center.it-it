@@ -3,11 +3,11 @@ title: Eseguire un server Jenkins in Azure
 description: Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: d06b16c212951c629612d69b13fa2b32b1030475
-ms.sourcegitcommit: 9998334bebccb86be0f715ac7dffc0c3175aea68
+ms.openlocfilehash: 9cab4990b259695f310da339bfef3060b0905640
+ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/26/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
@@ -21,13 +21,13 @@ Questa architettura supporta il ripristino di emergenza con i servizi di Azure, 
 
 Questo documento è incentrato sulle operazioni di base in Azure necessarie per supportare Jenkins, come l'uso di Archiviazione di Azure per gestire gli elementi di compilazione, gli elementi di sicurezza necessari per l'accesso SSO, gli altri servizi che possono essere integrati e la scalabilità per la pipeline. L'architettura è progettata per essere usata con un repository di controllo del codice sorgente esistente. Uno scenario comune, ad esempio, consiste nell'avviare i processi Jenkins in base a commit GitHub.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Questa architettura è costituita dai componenti seguenti:
 
 -   **Gruppo di risorse.** Un [gruppo di risorse][rg] viene usato per raggruppare gli asset di Azure in modo che possano essere gestiti in base alla durata, al proprietario e ad altri criteri. Usare gruppi di risorse per distribuire e monitorare gli asset di Azure come gruppo e tenere traccia dei costi per la fatturazione in base al gruppo di risorse. È inoltre possibile eliminare un intero set di risorse, operazione molto utile nelle distribuzioni di test.
 
--   **Server Jenkins**. Viene distribuita una macchina virtuale che eseguirà [Jenkins][azure-market] come server di automazione e fungerà da master Jenkins. Questa architettura di riferimento usa il [modello di soluzione per Jenkins in Azure][solution], installato in una macchina virtuale Linux (Ubuntu 14.04 LTS) in Azure. In Azure Marketplace sono disponibili altre offerte Jenkins.
+-   **Server Jenkins**. Viene distribuita una macchina virtuale che eseguirà [Jenkins][azure-market] come server di automazione e fungerà da master Jenkins. Questa architettura di riferimento usa il [modello di soluzione per Jenkins in Azure][solution], installato in una macchina virtuale Linux (Ubuntu 16.04 LTS) in Azure. In Azure Marketplace sono disponibili altre offerte Jenkins.
 
     > [!NOTE]
     > Nginx viene installato nella VM per fungere da proxy inverso per Jenkins. È possibile configurare Nginx per abilitare SSL per il server Jenkins.
@@ -167,7 +167,7 @@ Per altre procedure consigliate della community Jenkins, vedere [Jenkins Best Pr
 
 Per distribuire questa architettura, seguire questa procedura per installare il [modello di soluzione per Jenkins in Azure][azure-market] e quindi installare gli script di configurazione del monitoraggio e del ripristino di emergenza nei passaggi successivi.
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
 - Questa architettura di riferimento richiede una sottoscrizione di Azure. 
 - Per creare un'entità servizio di Azure, è necessario avere diritti di amministratore per il tenant di Azure AD associato al server Jenkins distribuito.

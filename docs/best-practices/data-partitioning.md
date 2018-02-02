@@ -4,14 +4,13 @@ description: Indicazioni su come suddividere le partizioni per la gestione e l'a
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: c139fd1ef59ea94235cd9519dd064d0722cee3c9
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aa59a99ae87328424379e1f9c6fee8cc5887e61c
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="data-partitioning"></a>Partizionamento dei dati
-[!INCLUDE [header](../_includes/header.md)]
 
 In molte soluzioni su larga scala, i dati vengono suddivisi in partizioni separate per poter essere gestiti e per poter accedervi separatamente. La strategia di partizionamento deve essere scelta attentamente per ottimizzare le prestazioni riducendo al minimo gli effetti negativi. Il partizionamento può aiutare a migliorare la scalabilità, ridurre i conflitti e ottimizzare le prestazioni. Un altro vantaggio offerto dal partizionamento è costituito dalla possibilità di suddividere i dati in base al modello di utilizzo. È possibile ad esempio archiviare i dati meno recenti e usati raramente in un archivio dati più economico.
 
@@ -145,7 +144,7 @@ Quando si progettano e implementano partizioni, considerare i seguenti fattori c
 * **Criticità dei dati nelle operazioni aziendali**. Alcuni dati potrebbero includere informazioni aziendali critiche, ad esempio dettagli di fatture o transazioni bancarie. Altri dati possono includere dati operativi meno critici, ad esempio i file di log, le tracce di prestazioni e così via. Dopo aver individuato tutti i tipi di dati, prendere in considerazione:
   * L'archiviazione dei dati critici in partizioni a disponibilità elevata con un piano di backup appropriato.
   * La definizione di gestione separata e meccanismi di monitoraggio o procedure per le diverse criticità di ogni set di dati. Il posizionamento di dati che hanno lo stesso livello di criticità nella stessa partizione in modo da poter eseguire il backup con una frequenza appropriata. Le partizioni contenenti dati per le transazioni bancarie, ad esempio, potrebbero richiedere backup più frequenti rispetto alle partizioni che contengono informazioni di registrazione o di traccia.
-* **Gestione delle singole partizioni**. La progettazione di partizioni per supportare la manutenzione e la gestione indipendenti offre diversi vantaggi. Ad esempio:
+* **Gestione delle singole partizioni**. La progettazione di partizioni per supportare la manutenzione e la gestione indipendenti offre diversi vantaggi. Ad esempio: 
   * Se una partizione fallisce, può essere recuperata in modo indipendente, senza interferire con le istanze delle applicazioni che accedono ai dati di altre partizioni.
   * Il partizionamento dei dati per aree geografiche può consentire attività di manutenzione pianificate che vengono eseguite in determinate fasce orarie per ogni posizione. Assicurarsi che le partizioni non siano troppo grandi per evitare che le operazioni di manutenzione pianificata non siano completate durante questo periodo.
 * **Replica dei dati critici tra le partizioni**. Questa strategia può migliorare disponibilità e prestazioni, anche se può causare problemi di coerenza. La sincronizzazione delle modifiche apportate ai dati in una partizione in tutte le repliche richiede tempo. Durante questo periodo, le diverse partizioni conterranno valori di dati diversi.
@@ -360,43 +359,30 @@ Quando si decide se e come partizionare una coda o un argomento dei messaggi del
 * Code e argomenti partizionati non possono essere configurati per essere eliminati automaticamente quando diventano inattivi.
 * Se si creano soluzioni multipiattaforma o ibride, non è attualmente possibile usare code e argomenti partizionati con il protocollo AMQP (Advanced Message Queuing Protocol).
 
-## <a name="partitioning-strategies-for-documentdb-api"></a>Strategie di partizionamento per l'API di DocumentDB
-Azure Cosmos DB è un database NoSQL che può archiviare documenti tramite l'[API di DocumentDB][documentdb-api]. Un documento in un database Cosmos DB è una rappresentazione serializzata JSON di un oggetto o di un altra parte di un dato. Nessuno schema fisso viene applicato ad eccezione del fatto che ogni documento deve contenere un ID univoco.
+## <a name="partitioning-strategies-for-cosmos-db"></a>Strategie di partizionamento per Cosmos DB
+
+Azure Cosmos DB è un database NoSQL che può archiviare documenti JSON tramite l'[API SQL di Azure Cosmos DB][cosmosdb-sql-api]. Un documento in un database Cosmos DB è una rappresentazione serializzata JSON di un oggetto o di un altra parte di un dato. Nessuno schema fisso viene applicato ad eccezione del fatto che ogni documento deve contenere un ID univoco.
 
 I documenti sono organizzati in raccolte. È possibile raggruppare i documenti correlati in una raccolta. Ad esempio, in un sistema che gestisce post di blog, è possibile archiviare il contenuto di ogni post di blog come documento in una raccolta. È anche possibile creare raccolte per ogni tipo di argomento. In alternativa, in un'applicazione multi-tenant, ad esempio un sistema in cui autori diversi controllano e gestiscono i propri post di blog, è possibile partizionare i blog per autore e creare una raccolta separata per ogni autore. Lo spazio di archiviazione allocato alle raccolte è flessibile e può essere ridotto o incrementato in base alle esigenze.
 
-Le raccolte di documenti offrono un meccanismo naturale per partizionare i dati all'interno di un unico database. Internamente, un database di Cosmos DB può estendersi su più server e potrebbe tentare di distribuire il carico distribuendo le raccolte tra i server. Il modo più semplice per implementare il partizionamento orizzontale consiste nel creare una raccolta per ogni partizione.
+Cosmos DB supporta il partizionamento automatico dei dati basato su una chiave di partizione definita dall'applicazione. Un *partizione logica* è una partizione che archivia tutti i dati per un valore di una singola chiave di partizione. Tutti i documenti che condividono lo stesso valore per la chiave di partizione vengono posizionati all'interno della stessa partizione logica. Cosmos DB distribuisce i valori in base all'hash della chiave di partizione. Una partizione logica può avere una dimensione massima di 10 GB. La scelta della chiave di partizione è pertanto una decisione importante da prendere in fase di progettazione. Scegliere una proprietà con un'ampia gamma di valori e modelli di accesso uniformi. Per altre informazioni, vedere [Partizionamento e ridimensionamento in Azure Cosmos DB](/azure/cosmos-db/partition-data).
 
 > [!NOTE]
-> Ogni database Cosmos DB ha un *livello di prestazioni* che determina la quantità di risorse ottenute. A ogni livello di prestazioni è associato un limite di velocità dell'*unità richiesta*. Il limite di velocità dell'unità richiesta specifica il volume di risorse riservato e disponibile a uso esclusivo della raccolta. Il costo di una raccolta dipende dal livello di prestazioni selezionato per la raccolta. Più elevato è il livello di prestazioni e il limite di velocità dell'unità richiesta, maggiore sarà il costo. Il livello di prestazioni di una raccolta può essere regolato usando il portale di Azure. Per altre informazioni, vedere la pagina [Livelli di prestazioni in Cosmos DB] sul sito Web Microsoft.
+> Ogni database Cosmos DB ha un *livello di prestazioni* che determina la quantità di risorse ottenute. A ogni livello di prestazioni è associato un limite di velocità dell'*unità richiesta*. Il limite di velocità dell'unità richiesta specifica il volume di risorse riservato e disponibile a uso esclusivo della raccolta. Il costo di una raccolta dipende dal livello di prestazioni selezionato per la raccolta. Più elevato è il livello di prestazioni e il limite di velocità dell'unità richiesta, maggiore sarà il costo. Il livello di prestazioni di una raccolta può essere regolato usando il portale di Azure. Per altre informazioni, vedere [Unità richiesta in Azure Cosmos DB][cosmos-db-ru].
 >
 >
+
+Se il meccanismo di partitioning fornito da Cosmos DB non è sufficiente, potrebbe essere necessario partizionare i dati a livello di applicazione. Le raccolte di documenti offrono un meccanismo naturale per partizionare i dati all'interno di un unico database. Il modo più semplice per implementare il partizionamento orizzontale consiste nel creare una raccolta per ogni partizione. I contenitori sono risorse logiche e possono comprendere uno o più server. I contenitori a dimensione fissa hanno un limite massimo di 10 GB e velocità effettiva di 10.000 UR/s. I contenitori senza limiti non hanno dimensioni massime di archiviazione ma devono specificare una chiave di partizione. Con il partizionamento orizzontale, l'applicazione client indirizza le richieste alla partizione appropriata, in genere mediante l'implementazione del proprio meccanismo di mapping basato su alcuni attributi dei dati che definiscono la chiave di partizione. 
 
 Tutti i database vengono creati nel contesto di un account del database di Cosmos DB. Un singolo account può contenere più database e specifica in quale area vengono creati i database. Ogni account impone anche il proprio controllo di accesso. È possibile usare gli account Cosmos DB per individuare le partizioni a livello geografico, ovvero raccolte all'interno del database, prossime agli utenti che vi devono accedere e imporre restrizioni in modo che solo tali utenti possano connettersi a esse.
 
-Ogni account Cosmos DB ha una quota che limita il numero di database e raccolte che può contenere e la quantità di spazio di archiviazione disponibile per i documenti. Per altre informazioni, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi][azure-limits]. In teoria, se si implementa un sistema in cui tutte le partizioni appartengono allo stesso database, è possibile che venga raggiunto il limite di capacità di archiviazione dell'account.
+Quando si decide come partizionare i dati con un API SQL di Cosmos DB, tenere presente quanto riportato di seguito:
 
-In questo caso, potrebbe essere necessario creare altri account e database e distribuire le partizioni nei database. Tuttavia, anche se è poco probabile che si raggiunga la capacità di archiviazione di un database, è consigliabile usare più database. Di conseguenza, poiché ogni database ha un proprio set di utenti e autorizzazioni, è possibile usare questo meccanismo per isolare l'accesso alle raccolte in base al database.
-
-La figura 8 mostra la struttura di alto livello dell'API di DocumentDB.
-
-![Struttura dell'API di DocumentDB](./images/data-partitioning/DocumentDBStructure.png)
-
-*Figura 8.  Struttura dell'architettura dell'API di DocumentDB*
-
-L'applicazione client indirizza le richieste alla partizione appropriata, in genere mediante l'implementazione del proprio meccanismo di mapping basato su alcuni attributi dei dati che definiscono la chiave di partizione. La figura 9 mostra due database dell'API di DocumentDB, ognuno dei quali contiene due raccolte che svolgono la funzione di partizione. I dati vengono partizionati in base all'ID tenant e includono i dati di un tenant specifico. I database vengono creati in account Cosmos DB separati. Questi account si trovano nella stessa area dei tenant dei quali contengono i dati. La logica di routing nell'applicazione client utilizza l'ID tenant come chiave di partizione.
-
-![Implementazione del partizionamento orizzontale tramite l'API di DocumentDB](./images/data-partitioning/DocumentDBPartitions.png)
-
-*Figura 9. Implementazione del partizionamento orizzontale tramite l'API di DocumentDB*
-
-Quando si decide come partizionare i dati con un API di DocumentDB, tenere presente quanto riportato di seguito:
-
-* **Le risorse disponibili per un database API di DocumentDB sono soggette alle limitazioni di quota dell'account**. Ogni database può contenere un numero di raccolte (anche in questo caso, esiste un limite) e ogni raccolta è associata a un livello di prestazioni che regola il limite di velocità RU (velocità effettiva riservata) per la raccolta. Per altre informazioni, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi].
+* **Le risorse disponibili per un database di Cosmos DB sono soggette alle limitazioni di quota dell'account**. Ogni database può contenere un numero di raccolte e ogni raccolta è associata a un livello di prestazioni che regola il limite di velocità RU (velocità effettiva riservata) per la raccolta. Per altre informazioni, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi][azure-limits].
 * **Ogni documento deve avere un attributo da usare per identificare in modo univoco tale documento all'interno della raccolta in cui è contenuto**. Questo attributo è diverso dalla chiave di partizione che definisce la raccolta contenente il documento. Una raccolta può contenere un numero elevato di documenti. In teoria, l'unico limite è la lunghezza massima dell'ID di documento. L'ID di documento può contenere fino a 255 caratteri.
 * **Tutte le operazioni eseguite su un documento vengono eseguite nel contesto di una transazione. Le transazioni sono limitate alla raccolta in cui è contenuto il documento.** Se un'operazione ha esito negativo, viene eseguito il rollback del lavoro che è stato eseguito. Quando viene eseguita un'operazione su un documento, tutte le modifiche apportate sono soggette all'isolamento a livello di snapshot. Questo meccanismo garantisce ad esempio che nel caso in cui una richiesta di creazione di un nuovo documento ha esito negativo, un altro utente che contemporaneamente esegue una query nel database non visualizzi un documento parziale che verrà in seguito rimosso.
 * **Amche le query del database sono limitate al livello di raccolta**. Una singola query può recuperare dati solo da una raccolta. Se è necessario recuperare dati da più raccolte, è necessario eseguire query in ogni raccolta singolarmente e incorporare i risultati nel codice dell'applicazione.
-* **I database API di DocumentDB supportano elementi programmabili che possono essere archiviati in una raccolta insieme ai documenti**. Questi includono stored procedure, funzioni definite dall'utente e trigger scritti in JavaScript. Questi elementi possono accedere a qualsiasi documento all'interno della stessa raccolta. Inoltre, questi elementi vengono eseguiti nell'ambito della transazione di ambiente (nel caso di un trigger che viene generato in seguito a una creazione, eliminazione o sostituzione eseguita su un documento) o avviando una nuova transazione (nel caso di una stored procedure eseguita in seguito a una richiesta client esplicita). Se il codice in un elemento programmabile genera un'eccezione, viene eseguito il rollback della transazione. È possibile utilizzare stored procedure e trigger per mantenere l'integrità e la coerenza tra i documenti, ma  tutti questi documenti devono far parte della stessa raccolta.
+* **Cosmos DB supporta elementi programmabili che possono essere archiviati in una raccolta insieme ai documenti**. Questi includono stored procedure, funzioni definite dall'utente e trigger scritti in JavaScript. Questi elementi possono accedere a qualsiasi documento all'interno della stessa raccolta. Inoltre, questi elementi vengono eseguiti nell'ambito della transazione di ambiente (nel caso di un trigger che viene generato in seguito a una creazione, eliminazione o sostituzione eseguita su un documento) o avviando una nuova transazione (nel caso di una stored procedure eseguita in seguito a una richiesta client esplicita). Se il codice in un elemento programmabile genera un'eccezione, viene eseguito il rollback della transazione. È possibile utilizzare stored procedure e trigger per mantenere l'integrità e la coerenza tra i documenti, ma  tutti questi documenti devono far parte della stessa raccolta.
 * **È improbabile che le raccolte che si prevede di mantenere nei database superino i limiti di velocità effettiva definiti dai livelli di prestazioni delle raccolte**. Per altre informazioni, vedere [Unità richiesta in Azure Cosmos DB][cosmos-db-ru]. Se si prevede di raggiungere questi limiti, considerare la suddivisione di raccolte tra database in account diversi per ridurre il carico per ogni raccolta.
 
 ## <a name="partitioning-strategies-for-azure-search"></a>Strategie di partizionamento per Ricerca di Azure
@@ -454,11 +440,11 @@ Quando si decide come partizionare i dati con Cache Redis di Azure, tenere prese
   * Tipi di aggregazione, ad esempio elenchi, che possono svolgere la funzione di code e stack
   * Set ordinati e non ordinati
   * Hash che consentono di raggruppare i campi correlati, ad esempio gli elementi che rappresentano i campi in un oggetto
-* I tipi di aggregazione consentono di associare numerosi valori correlati alla stessa chiave. Una chiave Redis identifica un elenco, un set o un hash anziché gli elementi di dati in esso contenuti. Questi tipi sono tutti disponibili con Cache Redis di Azure e sono descritti nella pagina relativa ai [tipi di dati] nel sito Web Redis. Ad esempio, in una parte di un sistema di e-commerce che tiene traccia degli ordini effettuati dai clienti, i dettagli di ogni cliente possono essere archiviati in un hash Redis associato a una chiave costituita dall'ID cliente. Ogni hash può contenere un insieme di ID degli ordini del cliente. Un set di Redis separato può contenere gli ordini, anch'essi strutturati come hash e associati a una chiave costituita dall'ID ordine. Nella figura 10 viene illustrata questa struttura. Si noti che Redis non implementa alcuna forma di integrità referenziale, pertanto è responsabilità dello sviluppatore mantenere le relazioni tra clienti e ordini.
+* I tipi di aggregazione consentono di associare numerosi valori correlati alla stessa chiave. Una chiave Redis identifica un elenco, un set o un hash anziché gli elementi di dati in esso contenuti. Questi tipi sono tutti disponibili con Cache Redis di Azure e sono descritti nella pagina relativa ai [tipi di dati] nel sito Web Redis. Ad esempio, in una parte di un sistema di e-commerce che tiene traccia degli ordini effettuati dai clienti, i dettagli di ogni cliente possono essere archiviati in un hash Redis associato a una chiave costituita dall'ID cliente. Ogni hash può contenere un insieme di ID degli ordini del cliente. Un set di Redis separato può contenere gli ordini, anch'essi strutturati come hash e associati a una chiave costituita dall'ID ordine. Nella figura 8 viene illustrata questa struttura. Si noti che Redis non implementa alcuna forma di integrità referenziale, pertanto è responsabilità dello sviluppatore mantenere le relazioni tra clienti e ordini.
 
 ![Struttura consigliata nell'archivio Redis per la registrazione degli ordini dei clienti e dei relativi dettagli](./images/data-partitioning/RedisCustomersandOrders.png)
 
-*Figura 10. Struttura consigliata nell'archivio Redis per la registrazione degli ordini dei clienti e dei relativi dettagli*
+*Figura 8. Struttura consigliata nell'archivio Redis per la registrazione degli ordini dei clienti e dei relativi dettagli*
 
 > [!NOTE]
 > In Redis, tutte le chiavi sono valori di dati binari, come le stringhe Redis, e possono contenere fino a 512 MB di dati. In teoria, una chiave può contenere qualsiasi informazione. Tuttavia, è consigliabile adottare una convenzione di denominazione coerente per le chiavi che descriva il tipo di dati e identifichi l'entità senza essere eccessivamente lunga. Un approccio comune consiste nell'usare chiavi nel formato "tipo_entità:ID". Ad esempio, è possibile usare "cliente:99" per indicare la chiave per il cliente con ID 99.
@@ -562,18 +548,18 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 * La pagina relativa ai [tipi di dati] nel sito Web Redis descrive i tipi di dati che sono disponibili con Redis e Cache Redis di Azure.
 
 [Disponibilità e coerenza nell'Hub eventi]: /azure/event-hubs/event-hubs-availability-and-consistency
-[azure-limits]: /azure/azure-subscription-service-limit
+[azure-limits]: /azure/azure-subscription-service-limits
 [Rete di distribuzione dei contenuti di Microsoft Azure]: /azure/cdn/cdn-overview
 [Cache Redis di Azure]: http://azure.microsoft.com/services/cache/
 [Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
 [Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
 [Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx (Creazione di una soluzione Polyglot)
-[cosmos-db-ru]: /azure/documentdb/documentdb-request-units
+[cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Introduzione alla coerenza dei dati]: http://aka.ms/Data-Consistency-Primer
 [Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
-[Data Types]: http://redis.io/topics/data-types
-[documentdb-api]: /azure/documentdb/documentdb-introduction
+[Tipi di dati]: http://redis.io/topics/data-types
+[cosmosdb-sql-api]: /azure/cosmos-db/sql-api-introduction
 [Panoramica sulle funzionalità di database elastico]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1

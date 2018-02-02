@@ -3,11 +3,11 @@ title: Ridurre al minimo il coordinamento
 description: "Ridurre al minimo il coordinamento tra i servizi per le applicazioni per ottenere la scalabilità"
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 1f8caa8b7cd85593c937f1d99d582492d4cf9a8b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="minimize-coordination"></a>Ridurre al minimo il coordinamento 
 
@@ -49,7 +49,7 @@ Questi due modelli sono complementari tra loro. Se l'archivio di sola scrittura 
 
 **Quando possibile, usare la concorrenza ottimistica**. Il controllo della concorrenza pessimistica usa blocchi di database per evitare conflitti. Questo può causare prestazioni non ottimali e ridurre la disponibilità. Con il controllo della concorrenza ottimistica, ogni transazione modifica una copia o uno snapshot dei dati. Quando viene eseguito il commit della transazione, il motore di database convalida la transazione e rifiuta tutte le transazioni che hanno influenza sulla coerenza del database. 
 
-Il database SQL di Azure e SQL Server supportano la concorrenza ottimistica tramite l'[isolamento dello snapshot][sql-snapshot-isolation]. Alcuni servizi di Archiviazione di Microsoft Azure supportano la concorrenza ottimistica tramite l'uso di valori Etag, tra cui l'[API di DocumentDB][docdb-faq] e l'[archiviazione di Azure][storage-concurrency].
+Il database SQL di Azure e SQL Server supportano la concorrenza ottimistica tramite l'[isolamento dello snapshot][sql-snapshot-isolation]. Alcuni servizi di Archiviazione di Microsoft Azure supportano la concorrenza ottimistica tramite l'uso di valori Etag, tra cui [Azure Cosmos DB][cosmosdb-faq] e l'[archiviazione di Azure][storage-concurrency].
 
 **Prendere in considerazione MapReduce o altri algoritmi paralleli e distribuiti**. A seconda dei dati e del tipo di lavoro da eseguire, si può dividere il lavoro in due attività indipendenti, che possono essere eseguite da più nodi che lavorano in parallelo. Vedere [Big compute architecture style][big-compute] (Stile dell'architettura Big compute).
 
@@ -62,7 +62,7 @@ Il database SQL di Azure e SQL Server supportano la concorrenza ottimistica tram
 [compensating-transaction]: ../../patterns/compensating-transaction.md
 [cqrs-style]: ../architecture-styles/cqrs.md
 [cqrs-pattern]: ../../patterns/cqrs.md
-[docdb-faq]: /azure/documentdb/documentdb-faq
+[cosmosdb-faq]: /azure/cosmos-db/faq
 [domain-event]: https://martinfowler.com/eaaDev/DomainEvent.html
 [event-sourcing]: ../../patterns/event-sourcing.md
 [leader-election]: ../../patterns/leader-election.md

@@ -4,11 +4,11 @@ description: "Architettura consigliata per un'applicazione Web a disponibilità 
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 60caa121d0ce2f1aa2638650229bed8048804c22
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 50ac9636e1e3c25bd0403c89281a3a06915d065f
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Eseguire un'applicazione Web in più aree geografiche
 [!INCLUDE [header](../../_includes/header.md)]
@@ -71,7 +71,7 @@ Usare la [replica geografica attiva][sql-replication] per creare una replica sec
 ### <a name="cosmos-db"></a>Cosmos DB
 Cosmos DB supporta la replica geografica tra le aree geografiche. Un'area viene designata come accessibile in scrittura, mentre le altre sono repliche di sola lettura.
 
-In caso di interruzione a livello di area, è possibile effettuare il failover selezionando un'altra area come area di scrittura. L'SDK del client invia automaticamente richieste di scrittura all'area di scrittura corrente, in modo che non sia necessario aggiornare la configurazione del client dopo un failover. Per altre informazioni, vedere [Come distribuire i dati a livello globale con Azure Cosmos DB][docdb-geo].
+In caso di interruzione a livello di area, è possibile effettuare il failover selezionando un'altra area come area di scrittura. L'SDK del client invia automaticamente richieste di scrittura all'area di scrittura corrente, in modo che non sia necessario aggiornare la configurazione del client dopo un failover. Per altre informazioni, vedere [Come distribuire i dati a livello globale con Azure Cosmos DB][cosmosdb-geo].
 
 > [!NOTE]
 > Tutte le repliche appartengono allo stesso gruppo di risorse.
@@ -149,7 +149,7 @@ Se nel database primario si verifica un errore, effettuare un failover manuale a
 
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [azure-dns]: /azure/dns/dns-overview
-[docdb-geo]: /azure/documentdb/documentdb-distribute-data-globally
+[cosmosdb-geo]: /azure/cosmos-db/distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
 [ra-grs]: /azure/storage/storage-redundancy#read-access-geo-redundant-storage

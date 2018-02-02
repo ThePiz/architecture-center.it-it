@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 03/24/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 09d09468eebe5c6fe1c9cdab14e142ff46cf0b25
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aca2088cb007728c5717a968969000c0a19bcd07
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="failure-mode-analysis"></a>Analisi della modalità di errore
 [!INCLUDE [header](../_includes/header.md)]
@@ -54,7 +54,7 @@ La registrazione Application_End è l'unico modo per individuare gli arresti di 
 **Diagnostica**. Log dell'applicazione e del server Web. Vedere [Abilitare la registrazione diagnostica per le app Web nel servizio app di Azure][app-service-logging].
 
 ### <a name="a-particular-user-repeatedly-makes-bad-requests-or-overloads-the-system"></a>Un utente specifico esegue ripetutamente richieste non valide o sovraccarica il sistema.
-**Rilevamento**. Autenticare gli utenti e includere l'ID utente nei registri dell'applicazione.
+**Rilevamento** Autenticare gli utenti e includere l'ID utente nei registri dell'applicazione.
 
 **Ripristino**
 
@@ -64,13 +64,13 @@ La registrazione Application_End è l'unico modo per individuare gli arresti di 
 **Diagnostica**. Registrare tutte le richieste di autenticazione.
 
 ### <a name="a-bad-update-was-deployed"></a>È stato distribuito un aggiornamento non valido.
-**Rilevamento**. Monitorare l'integrità dell'applicazione tramite il portale di Azure (vedere [Monitoraggio delle prestazioni dell'applicazione Web di Azure][app-insights-web-apps]) o implementare il [modello di monitoraggio degli endpoint per l'integrità] [health-endpoint-monitoring-pattern].
+**Rilevamento** Monitorare l'integrità dell'applicazione tramite il portale di Azure (vedere [Monitoraggio delle prestazioni dell'applicazione Web di Azure][app-insights-web-apps]) o implementare il [modello di monitoraggio degli endpoint per l'integrità] [health-endpoint-monitoring-pattern].
 
 **Ripristino**. Usare più [slot di distribuzione] [ app-service-slots] ed eseguire il rollback all'ultima distribuzione valida. Per altre informazioni, vedere [Applicazione Web di base][ra-web-apps-basic].
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
 ### <a name="openid-connect-oidc-authentication-fails"></a>L'autenticazione di OpenID Connect (OIDC) non riesce.
-**Rilevamento**. Le modalità di errore possibili includono:
+**Rilevamento** Le modalità di errore possibili includono:
 
 1. Azure Active Directory non è disponibile o non è raggiungibile a causa di un problema di rete. Il reindirizzamento all'endpoint di autenticazione non riesce e il middleware OIDC genera un'eccezione.
 2. Il tenant di Azure Active Directory non esiste. Il reindirizzamento all'endpoint di autenticazione restituisce un codice di errore HTTP e il middleware OIDC genera un'eccezione.
@@ -85,7 +85,7 @@ La registrazione Application_End è l'unico modo per individuare gli arresti di 
 
 ## <a name="azure-search"></a>Ricerca di Azure
 ### <a name="writing-data-to-azure-search-fails"></a>La scrittura dei dati in Ricerca di Azure non riesce.
-**Rilevamento**. Individuare gli errori `Microsoft.Rest.Azure.CloudException`.
+**Rilevamento** Individuare gli errori `Microsoft.Rest.Azure.CloudException`.
 
 **Ripristino**
 
@@ -96,7 +96,7 @@ Il criterio di ripetizione dei tentativi predefinito usa il backoff esponenziale
 **Diagnostica**. Usare [Analisi del traffico di ricerca][search-analytics].
 
 ### <a name="reading-data-from-azure-search-fails"></a>La lettura dei dati da Ricerca di Azure non riesce.
-**Rilevamento**. Individuare gli errori `Microsoft.Rest.Azure.CloudException`.
+**Rilevamento** Individuare gli errori `Microsoft.Rest.Azure.CloudException`.
 
 **Ripristino**
 
@@ -108,7 +108,7 @@ Il criterio di ripetizione dei tentativi predefinito usa il backoff esponenziale
 
 ## <a name="cassandra"></a>Cassandra
 ### <a name="reading-or-writing-to-a-node-fails"></a>La lettura o la scrittura in un nodo non riesce.
-**Rilevamento**. Individuare l'eccezione. Per i client .NET, in genere è `System.Web.HttpException`. Altri client potrebbero avere altri tipi di eccezione.  Per altre informazioni, vedere la pagina relativa alla [gestione degli errori Cassandra eseguita correttamente](http://www.datastax.com/dev/blog/cassandra-error-handling-done-right).
+**Rilevamento** Individuare l'eccezione. Per i client .NET, in genere è `System.Web.HttpException`. Altri client potrebbero avere altri tipi di eccezione.  Per altre informazioni, vedere la pagina relativa alla [gestione degli errori Cassandra eseguita correttamente](http://www.datastax.com/dev/blog/cassandra-error-handling-done-right).
 
 **Ripristino**
 
@@ -120,39 +120,39 @@ Il criterio di ripetizione dei tentativi predefinito usa il backoff esponenziale
 
 ## <a name="cloud-service"></a>Servizio cloud
 ### <a name="web-or-worker-roles-are-unexpectedlybeing-shut-down"></a>I ruoli di lavoro o Web vengono arrestati in modo imprevisto.
-**Rilevamento**. Viene generato l'evento [RoleEnvironment.Stopping][RoleEnvironment.Stopping].
+**Rilevamento** Viene generato l'evento [RoleEnvironment.Stopping][RoleEnvironment.Stopping].
 
 **Ripristino**. Eseguire l'override del metodo [RoleEntryPoint.OnStop][RoleEntryPoint.OnStop] per eseguire normalmente la pulizia. Per altre informazioni, vedere [Come gestire correttamente gli eventi OnStop d Azure][onstop-events] (blog).
 
 ## <a name="cosmos-db"></a>Cosmos DB 
 ### <a name="reading-data-fails"></a>La lettura dei dati non riesce.
-**Rilevamento**. Individuare `System.Net.Http.HttpRequestException` o `Microsoft.Azure.Documents.DocumentClientException`.
+**Rilevamento** Individuare `System.Net.Http.HttpRequestException` o `Microsoft.Azure.Documents.DocumentClientException`.
 
 **Ripristino**
 
 * L'SDK esegue automaticamente nuovi tentativi. Per impostare il numero di tentativi e il tempo di attesa massimo, configurare `ConnectionPolicy.RetryOptions`. Le eccezioni generate dal client escludono il criterio di ripetizione oppure non sono errori temporanei.
 * Se Cosmos DB limita il client, viene restituito un errore HTTP 429. Verificare il codice di stato in `DocumentClientException`. Se l'errore 429 si verifica in modo coerente, è consigliabile aumentare il valore di throughput della raccolta.
     * Se si usa l'API di MongoDB, il servizio restituisce il codice di errore 16500 in caso di limitazione.
-* Replicare il database Cosmos DB tra due o più aree. Tutte le repliche sono leggibili. Specificare il parametro `PreferredLocations` mediante gli SDK client. Si tratta di un elenco ordinato di aree di Azure. Tutte le letture verranno inviate alla prima area disponibile nell'elenco. Se la richiesta non riesce, il client proverà con altre aree nell'elenco seguendo l'ordine. Per altre informazioni, vedere [Procedura di configurazione della distribuzione globale in Azure Cosmos DB mediante l'API di DocumentDB][docdb-multi-region].
+* Replicare il database Cosmos DB tra due o più aree. Tutte le repliche sono leggibili. Specificare il parametro `PreferredLocations` mediante gli SDK client. Si tratta di un elenco ordinato di aree di Azure. Tutte le letture verranno inviate alla prima area disponibile nell'elenco. Se la richiesta non riesce, il client proverà con altre aree nell'elenco seguendo l'ordine. Per altre informazioni, vedere [Procedura di configurazione della distribuzione globale in Azure Cosmos DB mediante l'API SQL][cosmosdb-multi-region].
 
 **Diagnostica**. Registrare tutti gli errori sul lato client.
 
 ### <a name="writing-data-fails"></a>La scrittura dei dati non riesce.
-**Rilevamento**. Individuare `System.Net.Http.HttpRequestException` o `Microsoft.Azure.Documents.DocumentClientException`.
+**Rilevamento** Individuare `System.Net.Http.HttpRequestException` o `Microsoft.Azure.Documents.DocumentClientException`.
 
 **Ripristino**
 
 * L'SDK esegue automaticamente nuovi tentativi. Per impostare il numero di tentativi e il tempo di attesa massimo, configurare `ConnectionPolicy.RetryOptions`. Le eccezioni generate dal client escludono il criterio di ripetizione oppure non sono errori temporanei.
 * Se Cosmos DB limita il client, viene restituito un errore HTTP 429. Verificare il codice di stato in `DocumentClientException`. Se l'errore 429 si verifica in modo coerente, è consigliabile aumentare il valore di throughput della raccolta.
 * Replicare il database Cosmos DB tra due o più aree. Se l'area primaria non riesce, verrà alzata di livello per la scrittura un'area diversa. È inoltre possibile attivare manualmente un failover. L'SDK esegue l'individuazione e il routing automatici, pertanto dopo un failover il codice di applicazione continua a funzionare. Durante il periodo di failover (in genere minuti), le operazioni di scrittura avranno una latenza maggiore, in quanto l'SDK deve individuare la nuova area di scrittura.
-  Per altre informazioni, vedere [Procedura di configurazione della distribuzione globale in Azure Cosmos DB mediante l'API di DocumentDB][docdb-multi-region].
+  Per altre informazioni, vedere [Procedura di configurazione della distribuzione globale in Azure Cosmos DB mediante l'API SQL][cosmosdb-multi-region].
 * Come fallback, rendere persistente il documento in una coda di backup ed elaborare la coda in un secondo momento.
 
 **Diagnostica**. Registrare tutti gli errori sul lato client.
 
 ## <a name="elasticsearch"></a>Elasticsearch
 ### <a name="reading-data-from-elasticsearch-fails"></a>La lettura dei dati da Elasticsearch non riesce.
-**Rilevamento**. Individuare l'eccezione appropriata per il [client Elasticsearch] [ elasticsearch-client] specifico in uso.
+**Rilevamento** Individuare l'eccezione appropriata per il [client Elasticsearch] [ elasticsearch-client] specifico in uso.
 
 **Ripristino**
 
@@ -164,7 +164,7 @@ Per altre informazioni, vedere [Esecuzione di Elasticsearch su Azure][elasticsea
 **Diagnostica**. È possibile usare gli strumenti di monitoraggio per Elasticsearch o registrare tutti gli errori sul lato client con il payload. Vedere la sezione "Monitoraggio" in [Esecuzione di Elasticsearch su Azure][elasticsearch-azure].
 
 ### <a name="writing-data-to-elasticsearch-fails"></a>La scrittura dei dati in Elasticsearch non riesce.
-**Rilevamento**. Individuare l'eccezione appropriata per il [client Elasticsearch] [ elasticsearch-client] specifico in uso.  
+**Rilevamento** Individuare l'eccezione appropriata per il [client Elasticsearch] [ elasticsearch-client] specifico in uso.  
 
 **Ripristino**
 
@@ -177,7 +177,7 @@ Per altre informazioni, vedere [Esecuzione di Elasticsearch su Azure][elasticsea
 
 ## <a name="queue-storage"></a>Archiviazione code
 ### <a name="writing-a-message-to-azure-queue-storage-fails-consistently"></a>La scrittura di un messaggio in Archiviazione code di Azure non riesce sistematicamente.
-**Rilevamento**. Dopo *N* tentativi l'operazione di scrittura continua a non riuscire.
+**Rilevamento** Dopo *N* tentativi l'operazione di scrittura continua a non riuscire.
 
 **Ripristino**
 
@@ -339,7 +339,7 @@ Per altre informazioni, vedere [Panoramica delle code dei messaggi non recapitab
 
 1. Ritentare l'operazione per il ripristino da errori temporanei. Il [criterio di ripetizione dei tentativi][Storage.RetryPolicies] nel client SDK viene gestito automaticamente.
 2. Implementare il modello Interruttore per evitare di oltrepassare le limitazioni di archiviazione.
-3. Se N tentativi non sono riusciti, eseguire un normale fallback. ad esempio:
+3. Se N tentativi non sono riusciti, eseguire un normale fallback. Ad esempio: 
 
    * Archiviare i dati in una cache locale e inoltrare le operazioni di scrittura per l'archiviazione in un secondo momento, quando il servizio diventa disponibile.
    * Se l'azione di scrittura viene eseguita in un ambito transazionale, è possibile compensare la transazione.
@@ -453,7 +453,7 @@ Per altre informazioni sul processo di FMA, vedere [Resilienza in base alla prog
 [BrokeredMessage.TimeToLive]: https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx
 [cassandra-error-handling]: http://www.datastax.com/dev/blog/cassandra-error-handling-done-right
 [circuit-breaker]: https://msdn.microsoft.com/library/dn589784.aspx
-[docdb-multi-region]: /azure/documentdb/documentdb-developing-with-multiple-regions/
+[cosmosdb-multi-region]: /azure/cosmos-db/tutorial-global-distribution-sql-api
 [elasticsearch-azure]: ../elasticsearch/index.md
 [elasticsearch-client]: https://www.elastic.co/guide/en/elasticsearch/client/index.html
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

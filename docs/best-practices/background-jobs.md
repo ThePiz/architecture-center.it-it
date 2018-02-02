@@ -4,11 +4,11 @@ description: "Indicazioni sulle attività in background eseguite in modo indipen
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: d8c1d4dfe12208b72fd6991def805f90a830b5f0
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: 10c24afee4b880cfbf8ee534f4d7f945d2b046a9
+ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="background-jobs"></a>Processi in background
 [!INCLUDE [header](../_includes/header.md)]
@@ -244,7 +244,7 @@ Se si desidera implementare le attività in background in un ruolo Web o di lavo
     }
     ```
     
-    * Aggiungere la definizione dell'impostazione **Freeze** come valore booleano nei file ServiceDefinition.csdef e ServiceConfiguration.*.cscfg per il ruolo e impostarla su **false**. Se il ruolo passa alla modalità di riavvio ripetuto, è possibile modificare l'impostazione in **true** per bloccare l'esecuzione del ruolo e consentire lo scambio con una versione precedente.
+  * Aggiungere la definizione dell'impostazione **Freeze** come valore booleano nei file ServiceDefinition.csdef e ServiceConfiguration.\*.cscfg per il ruolo e impostarla su **false**. Se il ruolo passa alla modalità di riavvio ripetuto, è possibile modificare l'impostazione in **true** per bloccare l'esecuzione del ruolo e consentire lo scambio con una versione precedente.
 
 #### <a name="more-information"></a>Altre informazioni
 * [Modello di consolidamento delle risorse di calcolo](http://msdn.microsoft.com/library/dn589778.aspx)

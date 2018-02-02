@@ -4,11 +4,11 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 66ff802c1f7b35db147ffe4279982c827570c3c1
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: 51f807715d0ac929806b9a5a13da4efa00566592
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -203,7 +203,7 @@ Le voci seguenti dell'elenco di controllo si applicano a servizi specifici in Az
 
 ### <a name="cosmos-db"></a>Cosmos DB
 
-**Replicare il database tra aree.** Azure Cosmos DB consente di associare qualsiasi numero di aree di Azure a un account del database Cosmos DB. Un database Microsoft Azure Cosmos DB può avere più aree di lettura e un'area di scrittura. Se si verifica un errore nell'area di scrittura, è possibile leggere da un'altra replica. Il client SDK gestisce questa situazione automaticamente. È anche possibile eseguire il failover dell'area di scrittura in un'altra area. Per altre informazioni, vedere [Come distribuire i dati a livello globale con Azure Cosmos DB](/azure/documentdb/documentdb-distribute-data-globally).
+**Replicare il database tra aree.** Azure Cosmos DB consente di associare qualsiasi numero di aree di Azure a un account del database Cosmos DB. Un database Microsoft Azure Cosmos DB può avere più aree di lettura e un'area di scrittura. Se si verifica un errore nell'area di scrittura, è possibile leggere da un'altra replica. Il client SDK gestisce questa situazione automaticamente. È anche possibile eseguire il failover dell'area di scrittura in un'altra area. Per altre informazioni, vedere [Come distribuire i dati a livello globale con Azure Cosmos DB](/azure/cosmos-db/distribute-data-globally).
 
 ### <a name="redis-cache"></a>Cache Redis
 
