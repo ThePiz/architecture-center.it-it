@@ -3,11 +3,11 @@ title: Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Az
 description: Come eseguire la migrazione di un'applicazione da Servizi cloud di Azure ad Azure Service Fabric.
 author: MikeWasson
 ms.date: 04/27/2017
-ms.openlocfilehash: 22b6cca0d4714dd4cde0fd7449340d6e1f45e65b
-ms.sourcegitcommit: fbcf9a1c25db13b2627a8a58bbc985cd01ea668d
+ms.openlocfilehash: 73e34c53ffd2f2eeb466d12a5f6c65dcfdaae389
+ms.sourcegitcommit: 2c9a8edf3e44360d7c02e626ea8ac3b03fdfadba
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 02/03/2018
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Azure Service Fabric 
 
@@ -176,7 +176,7 @@ Un servizio deve creare in modo esplicito i listener per ogni endpoint. Il motiv
 
  Un servizio cloud contiene i file di configurazione e di pacchetto seguenti:
 
-| File | Descrizione |
+| File | DESCRIZIONE |
 |------|-------------|
 | Definizione del servizio (con estensione csdef) | Impostazioni usate da Azure per configurare il servizio cloud. Definisce i ruoli, gli endpoint, le attività di avvio e i nomi delle impostazioni di configurazione. |
 | Configurazione del servizio (con estensione cscfg) | Impostazioni specifiche della distribuzione, inclusi il numero delle istanze del ruolo, i numeri di porta degli endpoint e i valori delle impostazioni di configurazione. 
@@ -198,7 +198,7 @@ Il pacchetto dell'applicazione è ciò che si distribuisce. Contiene uno o più 
 
 Un'applicazione di Service Fabric contiene i file di configurazione seguenti:
 
-| File | Percorso | Descrizione |
+| File | Località | DESCRIZIONE |
 |------|----------|-------------|
 | ApplicationManifest.xml | Pacchetto dell'applicazione | Definisce i servizi che costituiscono l'applicazione. |
 | ServiceManifest.xml | Pacchetto del servizio| Descrive uno o più servizi. |
@@ -289,9 +289,9 @@ Il trasferimento dell'applicazione Surveys in Service Fabric è stato piuttosto 
 
 La distribuzione è stata inoltre modificata da Servizi cloud a un cluster di Service Fabric in esecuzione in un set di scalabilità di macchine virtuali.
 
-A questo punto, tuttavia, l'applicazione non ottiene tutti i vantaggi dei microservizi, ad esempio la distribuzione indipendente dei servizi e il controllo delle versioni. Per sfruttare al meglio Service Fabric, Tailspin deve provvedere ad alcune ottimizzazioni.
+## <a name="next-steps"></a>Passaggi successivi
 
-
+Al termine del trasferimento dell'applicazione Surveys, Tailspin vuole sfruttare i vantaggi delle funzionalità di Service Fabric, tra cui la distribuzione indipendente dei servizi e il controllo delle versioni. Per informazioni sul modo in cui Tailspin ha scomposto questi servizi in un'architettura più granulare per sfruttare i vantaggi di queste funzionalità di Service Fabric, vedere [Effettuare il refactoring di un'applicazione di Azure Service Fabric migrata da Servizi cloud di Azure][refactor-surveys]
 
 <!-- links -->
 
@@ -308,6 +308,7 @@ A questo punto, tuttavia, l'applicazione non ottiene tutti i vantaggi dei micros
 [kestrel]: https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel
 [lb-probes]: /azure/load-balancer/load-balancer-custom-probe-overview
 [owin]: https://www.asp.net/aspnet/overview/owin-and-katana
+[refactor-surveys]: refactor-migrated-app.md
 [sample-code]: https://github.com/mspnp/cloud-services-to-service-fabric
 [sf-application-model]: /azure/service-fabric/service-fabric-application-model
 [sf-aspnet-core]: /azure/service-fabric/service-fabric-add-a-web-frontend
