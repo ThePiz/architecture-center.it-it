@@ -3,11 +3,11 @@ title: Antipattern di creazione di istanze non corretta
 description: Evitare di creare continuamente nuove istanze di un oggetto che deve essere creato una sola volta e poi condiviso.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 4b217f7fc644901eb5c3e77319d151caed30eef1
-ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
+ms.openlocfilehash: 8955f37e76c8b5e66c1ed7737d200d11ed321612
+ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 02/13/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>Antipattern di creazione di istanze non corretta
 
