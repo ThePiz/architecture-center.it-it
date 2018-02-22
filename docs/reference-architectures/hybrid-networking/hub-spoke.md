@@ -2,14 +2,14 @@
 title: Implementazione una topologia di rete hub-spoke in Azure
 description: Come implementare una topologia di rete hub-spoke in Azure.
 author: telmosampaio
-ms.date: 05/05/2017
+ms.date: 02/14/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e6f07a7962dd5728226b023700268340590d97a3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c03ecd4ba5ddbe50cfb17e56d75c18102b751cfb
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementare una topologia di rete hub-spoke in Azure
 
@@ -32,9 +32,9 @@ Tra gli usi tipici di questa architettura vi sono:
 * Carichi di lavoro che non richiedono connettività uno con l'altro, ma richiedono l'accesso ai servizi condivisi.
 * Aziende che richiedono il controllo centrale sugli aspetti di sicurezza, ad esempio un firewall nell'hub come rete perimetrale, e gestione separata per i carichi di lavoro in ogni spoke.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
-Questa architettura è costituita dai componenti seguenti.
+L'architettura è costituita dai componenti seguenti.
 
 * **Rete locale**. Una rete LAN privata in esecuzione all'interno di un'organizzazione.
 
@@ -114,7 +114,7 @@ Considerare inoltre i servizi condivisi nell'hub, per assicurarsi che quest'ulti
 
 Una distribuzione di questa architettura è disponibile in [GitHub][ref-arch-repo]. Usa VM Ubuntu in ogni rete virtuale per testare la connettività. Nella subnet **shared-services** della **rete virtuale dell'hub** non sono effettivamente ospitati servizi.
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
 Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
 
@@ -339,68 +339,6 @@ Per verificare che la distribuzione di una topologia hub-spoke connessa a un dat
 
   ```bash
   ping 10.1.1.37
-  ```
-
-### <a name="add-connectivity-between-spokes"></a>Aggiungere la connettività tra spoke
-
-Se si vuole consentire la connessione tra gli spoke, è necessario distribuire a ogni spoke route definite dall'utente che inoltrino il traffico destinato agli altri spoke al gateway nella rete virtuale dell'hub. Eseguire la procedura seguente per verificare che attualmente non sia possibile connettersi da uno spoke a un altro, quindi distribuire le route definite dall'utente e ripetere il test della connettività.
-
-1. Ripetere i precedenti passaggi da 1 a 4, se non si è più connessi alla VM Jumpbox.
-
-2. Connettersi a uno dei server Web nello spoke 1.
-
-  ```bash
-  ssh 10.1.1.37
-  ```
-
-3. Testare la connettività tra spoke 1 e spoke 2. Dovrebbe avere esito negativo.
-
-  ```bash
-  ping 10.1.2.37
-  ```
-
-4. Tornare al prompt dei comandi del computer.
-
-5. Passare alla cartella `hybrid-networking\hub-spoke\spokes` per il repository scaricato nel passaggio dei prerequisiti precedente.
-
-6. Eseguire il comando di Bash o PowerShell seguente per distribuire una route definita dall'utente al primo spoke. Sostituire i valori con la propria sottoscrizione, il nome del gruppo di risorse e l'area di Azure.
-
-  ```bash
-  sh ./spoke.udr.deploy.sh --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    --resourcegroup ra-spoke1-rg \
-    --location westus \
-    --spoke 1
-  ```
-
-  ```powershell
-  ./spoke.udr.deploy.ps1 -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx `
-    -ResourceGroup ra-spoke1-rg `
-    -Location westus `
-    -Spoke 1
-  ```
-
-7. Eseguire il comando di Bash o PowerShell seguente per distribuire una route definita dall'utente al secondo spoke. Sostituire i valori con la propria sottoscrizione, il nome del gruppo di risorse e l'area di Azure.
-
-  ```bash
-  sh ./spoke.udr.deploy.sh --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    --resourcegroup ra-spoke2-rg \
-    --location westus \
-    --spoke 2
-  ```
-
-  ```powershell
-  ./spoke.udr.deploy.ps1 -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx `
-    -ResourceGroup ra-spoke2-rg `
-    -Location westus `
-    -Spoke 2
-  ```
-
-8. Tornare al terminale SSH.
-
-9. Testare la connettività tra spoke 1 e spoke 2. Dovrebbe avere esito positivo.
-
-  ```bash
-  ping 10.1.2.37
   ```
 
 <!-- links -->
