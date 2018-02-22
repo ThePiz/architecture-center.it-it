@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: bf385ccc988a709a61d9bee5fb1ee084a133138d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a5dc25a4b61ffd13d86f1abb2b839054e5fb4c7f
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federazione con AD FS di un cliente
 
@@ -55,7 +55,7 @@ Per un esempio di utilizzo di WS-Federation con ASP.NET 4, vedere l'[esempio act
 ## <a name="limitations"></a>Limitazioni
 Per impostazione predefinita, l'applicazione relying party riceve solo un set fisso delle attestazioni disponibili nel parametro id_token, illustrato nella tabella seguente. Con AD FS 2016, è possibile personalizzare il parametro id_token negli scenari di OpenID Connect. Per altre informazioni, vedere [Custom ID Tokens in AD FS](/windows-server/identity/ad-fs/development/customize-id-token-ad-fs-2016) (Token ID personalizzati in AD FS).
 
-| Attestazione | Descrizione |
+| Attestazione | DESCRIZIONE |
 | --- | --- |
 | aud |Destinatari. Applicazione per la quale sono state rilasciate le attestazioni. |
 | authenticationinstant |[Istante di autenticazione]. Ora in cui è stata eseguita l'autenticazione. |
@@ -67,7 +67,7 @@ Per impostazione predefinita, l'applicazione relying party riceve solo un set fi
 | nameidentifier |[Identificatore del nome]. È l'identificatore del nome dell'entità per la quale è stato rilasciato il token. |
 | nonce |Nonce sessione. È un valore univoco generato da AD FS per impedire attacchi di tipo replay. |
 | upn |Nome dell'entità utente. Esempio: john@corp.fabrikam.com |
-| pwd_exp |Periodo di scadenza della password. Corrisponde al numero di secondi fino alla scadenza della password dell'utente o di un segreto di autenticazione simile, ad esempio un  PIN. |
+| pwd_exp |Periodo di scadenza della password. Corrisponde al numero di secondi fino alla scadenza della password dell'utente o di un segreto di autenticazione simile, ad esempio un PIN. |
 
 > [!NOTE]
 > L'attestazione "iss" contiene l'istanza AD FS del partner. In genere, questa attestazione identifica il provider SaaS come autorità emittente. Non identifica l'istanza AD FS del cliente. Il dominio del cliente è incluso nel nome dell'entità utente.
@@ -117,7 +117,7 @@ Ecco la procedura dettagliata.
 5. In "Tipo di attestazione in ingresso" selezionare **UPN**.
 6. Selezionare "Pass-through di tutti i valori attestazione".
    ![Aggiunta guidata regole attestazione di trasformazione](./images/edit-claims-rule2.png)
-7. Fare clic su **Finish**.
+7. Fare clic su **Fine**.
 8. Ripetere i passaggi da 2 a 7 e specificare **Tipo di attestazione ancoraggio** per il tipo di attestazione in ingresso.
 9. Fare clic su **OK** per completare la procedura guidata.
 
@@ -161,7 +161,7 @@ Procedura per il cliente:
    * In **Attributo LDAP** selezionare **User-Principal-Name**.
    * In **Tipo di attestazione in uscita** selezionare **UPN**.
      ![Aggiunta guidata regole attestazione di trasformazione](./images/add-claims-rules2.png)
-7. Fare clic su **Finish**.
+7. Fare clic su **Fine**.
 8. Fare nuovamente clic su **Add Rule** .
 9. Selezionare "Inviare attestazioni mediante una regola personalizzata" e fare clic su **Avanti**.
 10. Immettere un nome per la regola, ad esempio "Tipo di attestazione ancoraggio".
