@@ -1,3 +1,15 @@
+---
+title: Elenco di controllo DevOps
+description: Elenco di controllo contenente linee guida relative a DevOps.
+author: dragon119
+ms.date: 01/10/2018
+ms.custom: checklist
+ms.openlocfilehash: c435ea0aed9571cb6508d7d23f93414a138998fe
+ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 02/14/2018
+---
 # <a name="devops-checklist"></a>Elenco di controllo DevOps
 
 DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazioni IT in un set di processi e impostazioni cultura unificati per la distribuzione del software. Usare questo elenco di controllo come punto di partenza per valutare le impostazioni cultura e il processo DevOps.
@@ -16,7 +28,7 @@ DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazion
 
 **Apprendere dagli errori.** Gli errori sono inevitabili, ma è importante riconoscerli per evitare di ripeterli. Se si verifica un errore operativo, valutare il problema, documentarne causa e soluzione e condividere eventuali informazioni utili apprese. Quando possibile, aggiornare i processi di compilazione per il rilevamento automatico del tipo di errore in questione nel futuro.
 
-**Ottimizzare la velocità e raccogliere i dati.** Ogni miglioramento pianificato è ipotetico. Procedere sempre con incrementi ridotti il più possibile. Considerare le nuove idee come esperimenti. Instrumentare gli esperimenti in modo da poter raccogliere i dati di produzione per valutarne l'efficacia. Essere preparati a esiti negativi rapidi se l'ipotesi non è corretta.
+**Ottimizzare la velocità e raccogliere i dati.** Ogni miglioramento pianificato è ipotetico. Procedere sempre con incrementi ridotti il più possibile. Considerare le nuove idee come esperimenti. Instrumentare gli esperimenti in modo da poter raccogliere i dati di produzione per valutarne l'efficacia. Essere preparati a fallire e rispondere immediatamente agli errori se l'ipotesi non è corretta.
 
 **Consentire tempo per l'apprendimento.** Successi e fallimenti offrono entrambi ottime opportunità di apprendimento. Prima di passare a nuovi progetti, consentire tempo a sufficienza per acquisire le nozioni più importanti e assicurarsi che vengano apprese dal team. Concedere al team anche il tempo di acquisire competenze, sperimentare e conoscere nuovi strumenti e tecniche. 
 

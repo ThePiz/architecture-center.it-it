@@ -4,11 +4,11 @@ description: "Convenzioni di denominazione per le risorse di Azure. Come denomin
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 364735dec9658b4d2a9d21330f38c57f6fa694bd
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: f814201901af69b816d7f1588e58057b252b22db
+ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 02/09/2018
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -96,7 +96,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
 |Nome account di archiviazione (dati) |Globale |3-24 |Lettere minuscole |Alfanumerico |`<globally unique name><number>` (usare una funzione per calcolare un guid univoco per la denominazione degli account di archiviazione) |`profxdata001` |
-|Nome account di archiviazione (dischi) |Globale |3-24 |Lettere minuscole |Alfanumerico |`<vm name without dashes>st<number>` |`profxsql001st0` |
+|Nome account di archiviazione (dischi) |Globale |3-24 |Lettere minuscole |Alfanumerico |`<vm name without hyphens>st<number>` |`profxsql001st0` |
 | Nome contenitore |Account di archiviazione |3-63 |Lettere minuscole |Alfanumerico e trattino |`<context>` |`logs` |
 |Nome del BLOB | Contenitore: |1-1024 |Fa distinzione tra maiuscole e minuscole. |Qualsiasi carattere URL |`<variable based on blob usage>` |`<variable based on blob usage>` |
 |Nome della coda |Account di archiviazione |3-63 |Lettere minuscole |Alfanumerico e trattino |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
@@ -108,16 +108,16 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
-|Rete virtuale |Gruppo di risorse |2-64 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-vnet` |`profx-vnet` |
-|Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`web` |
-|Interfaccia di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
-|Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
-|Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |
-|Indirizzo IP pubblico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-pip` |
-|Bilanciamento del carico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
-|Configurazione di regole del servizio di bilanciamento del carico |Bilanciamento del carico |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
-|Gateway applicazione di Azure |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
-|Profilo di Gestione traffico |Gruppo di risorse |1-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, trattino e punto |`<descriptive context>` |`app1` |
+|Rete virtuale |Gruppo di risorse |2-64 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service short name>-vnet` |`profx-vnet` |
+|Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`web` |
+|Interfaccia di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
+|Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |
+|Indirizzo IP pubblico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Bilanciamento del carico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
+|Configurazione di regole del servizio di bilanciamento del carico |Bilanciamento del carico |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
+|Gateway applicazione di Azure |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
+|Profilo di Gestione traffico |Gruppo di risorse |1-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno e punto |`<descriptive context>` |`app1` |
 
 ## <a name="organize-resources-with-tags"></a>Organizza le risorse con i tag
 

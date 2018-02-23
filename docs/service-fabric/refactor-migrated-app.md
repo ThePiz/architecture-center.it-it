@@ -3,11 +3,11 @@ title: Effettuare il refactoring di un'applicazione di Azure Service Fabric migr
 description: Informazioni su come effettuare il refactoring di un'applicazione di Azure Service Fabric esistente migrata da Servizi cloud di Azure
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 4889fae8f157b0f1205e7d8223f125974be59ba9
-ms.sourcegitcommit: 2c9a8edf3e44360d7c02e626ea8ac3b03fdfadba
+ms.openlocfilehash: 18af7c7fe0c0933b1a2a132ee2ee0d8479d41b2a
+ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 02/09/2018
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Effettuare il refactoring di un'applicazione di Azure Service Fabric migrata da Servizi cloud di Azure
 
@@ -43,7 +43,7 @@ Il servizio **Tailspin.Web.Survey.Public** viene trasferito dal ruolo Web *Tails
 Il servizio **Tailspin.AnswerAnalysisService** viene trasferito dal ruolo di lavoro *Tailspin.Workers.Survey* originale.
 
 > [!NOTE] 
-> Anche se sono state apportate modifiche minime a ogni ruolo Web e di lavoro, **Tailspin.Web** e **Tailspin.Web.Survey.Public** sono stati modificati per l'hosting automatico di un server Web [Kestrel]. L'applicazione Surveys precedente è un'applicazione ASP.Net ospitata tramite Interet Information Services (IIS), ma non è possibile eseguire IIS come servizio in Service Fabric. Qualsiasi server Web deve essere quindi in grado di eseguire l'hosting automatico, ad esempio [Kestrel]. È possibile eseguire IIS in un contenitore in Service Fabric in alcune situazioni. Per altre informazioni, vedere gli [scenari per l'uso dei contenitori][container-scenarios].  
+> Anche se sono state apportate modifiche minime a ogni ruolo Web e di lavoro, **Tailspin.Web** e **Tailspin.Web.Survey.Public** sono stati modificati per l'hosting automatico di un server Web [Kestrel]. L'applicazione Surveys precedente è un'applicazione ASP.Net ospitata tramite Internet Information Services (IIS), ma non è possibile eseguire IIS come servizio in Service Fabric. Qualsiasi server Web deve essere quindi in grado di eseguire l'hosting automatico, ad esempio [Kestrel]. È possibile eseguire IIS in un contenitore in Service Fabric in alcune situazioni. Per altre informazioni, vedere gli [scenari per l'uso dei contenitori][container-scenarios].  
 
 Tailspin effettua ora il refactoring dell'applicazione Surveys in un'architettura più granulare. La motivazione di Tailspin per il refactoring consiste nel semplificare lo sviluppo, la compilazione e la distribuzione dell'applicazione Surveys. Tramite la scomposizione dei ruoli Web e di lavoro esistenti in un'architettura più granulare, Tailspin vuole rimuovere le comunicazioni strettamente associate esistenti e le dipendenze dei dati tra questi ruoli.
 
@@ -64,15 +64,15 @@ Il diagramma seguente mostra l'architettura dell'applicazione Surveys sottoposta
 
 **Tailspin.Web** è un servizio senza stato con hosting automatico di un'applicazione ASP.NET MVC che i clienti di Tailspin visitano per creare sondaggi e visualizzare i risultati dei sondaggi. Questo servizio condivide la maggior parte del codice con il servizio *Tailspin.Web* dall'applicazione di Service Fabric trasferita. Come indicato in precedenza, questo servizio usa ASP.NET Core e passa dall'uso di Kestrel come front-end Web all'implementazione di un WebListener.
 
-Anche **Tailspin.Web.Surveys.Public** è un servizio senza stato con hosting automatico di un sito ASP.NET MVC. Gli utenti visitano questo sito per selezionare sondaggi da un elenco e compilarli. Questo servizio condivide la maggior parte del codice con il servizio *Tailspin.Web.Survey.Public* dall'applicazione di Service Fabric trasferita. Anche questo servizio usa ASP.NET Core e passa dall'uso di Kestrel come front-end Web all'implementazione di un WebListener.
+Anche **Tailspin.Web.Survey.Public** è un servizio senza stato con hosting automatico di un sito ASP.NET MVC. Gli utenti visitano questo sito per selezionare sondaggi da un elenco e compilarli. Questo servizio condivide la maggior parte del codice con il servizio *Tailspin.Web.Survey.Public* dall'applicazione di Service Fabric trasferita. Anche questo servizio usa ASP.NET Core e passa dall'uso di Kestrel come front-end Web all'implementazione di un WebListener.
 
-**Tailspin.SurveyResponseService** è un servizio con stato che archivia le risposte ai sondaggi nell'Archiviazione BLOB di Azure. Unisce inoltre le risposte nei dati di analisi dei sondaggi. Il servizio viene implementato come servizio con stato perché usa una coda [ReliableConcurrentQueue][reliable-concurrent-queue] per elaborare in batch le risposte ai sondaggi. Questa funzionalità è stata implementata in origine nel servizio *Tailspin.Web.Survey.Public* nell'applicazione di Service Fabric trasferita. Tailspin ha effettuato il refactoring della funzionalità originale nel servizio per consentirne il ridimensionamento indipendente.
+**Tailspin.SurveyResponseService** è un servizio con stato che archivia le risposte ai sondaggi nell'Archiviazione BLOB di Azure. Unisce inoltre le risposte nei dati di analisi dei sondaggi. Il servizio viene implementato come servizio con stato perché usa una coda [ReliableConcurrentQueue][reliable-concurrent-queue] per elaborare in batch le risposte ai sondaggi. Questa funzionalità è stata implementata in origine nel servizio *Tailspin.AnswerAnalysisService* nell'applicazione di Service Fabric trasferita.
 
-**Tailspin.SurveyManagementService** è un servizio senza stato che archivia e recupera sondaggi e domande dei sondaggi. Il servizio usa l'Archiviazione BLOB di Azure. Anche questa funzionalità è stata implementata in origine nel servizio *Tailspin.AnswerAnalysisService* nell'applicazione di Service Fabric trasferita. Tailspin ha effettuato il refactoring della funzionalità originale in questo servizio, per consentire anche in questo caso il ridimensionamento indipendente.
+**Tailspin.SurveyManagementService** è un servizio senza stato che archivia e recupera sondaggi e domande dei sondaggi. Il servizio usa l'Archiviazione BLOB di Azure. Anche questa funzionalità è stata implementata in origine nei componenti di accesso ai dati dei servizi *Tailspin.Web* e *Tailspin.Web.Survey.Public* nell'applicazione di Service Fabric trasferita. Tailspin ha effettuato il refactoring della funzionalità originale nel servizio per consentirne il ridimensionamento indipendente.
 
-**Tailspin.SurveyAnswerService** è un servizio senza stato che recupera risposte dei sondaggi e analisi dei sondaggi. Anche questo servizio usa l'Archiviazione BLOB di Azure. Anche questa funzionalità è stata implementata in origine nel servizio *Tailspin.AnswerAnalysisService* nell'applicazione di Service Fabric trasferita. Tailspin ha effettuato il refactoring della funzionalità originale in questo servizio perché prevede un carico minore e vuole usare un numero minore di istanze per conservare le risorse.
+**Tailspin.SurveyAnswerService** è un servizio senza stato che recupera risposte dei sondaggi e analisi dei sondaggi. Anche questo servizio usa l'Archiviazione BLOB di Azure. Anche questa funzionalità è stata implementata in origine nei componenti di accesso ai dati del servizio *Tailspin.Web* nell'applicazione di Service Fabric trasferita. Tailspin ha effettuato il refactoring della funzionalità originale in questo servizio perché prevede un carico minore e vuole usare un numero minore di istanze per conservare le risorse.
 
-**Tailspin.SurveyAnalysisService** è un servizio senza stato che salva in modo permanente i dati di riepilogo delle risposte ai sondaggi in una cache Redis per un recupero rapido. Questo servizio viene chiamato da *Tailspin.SurveyResponseService* a ogni risposta a un sondaggio e i nuovi dati relativi alle risposte ai sondaggi vengono uniti ai dati di riepilogo. Il servizio include le funzionalità rimanenti nel servizio *Tailspin.SurveyAnalysisService* dall'applicazione di Service Fabric trasferita.
+**Tailspin.SurveyAnalysisService** è un servizio senza stato che salva in modo permanente i dati di riepilogo delle risposte ai sondaggi in una cache Redis per un recupero rapido. Questo servizio viene chiamato da *Tailspin.SurveyResponseService* a ogni risposta a un sondaggio e i nuovi dati relativi alle risposte ai sondaggi vengono uniti ai dati di riepilogo. Questo servizio include la funzionalità implementata in origine nel servizio *Tailspin.AnswerAnalysisService* dall'applicazione di Service Fabric trasferita.
 
 ## <a name="stateless-versus-stateful-services"></a>Confronto tra servizi con e senza stato
 
