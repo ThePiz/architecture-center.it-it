@@ -3,11 +3,11 @@ title: Antipattern di creazione di istanze non corretta
 description: Evitare di creare continuamente nuove istanze di un oggetto che deve essere creato una sola volta e poi condiviso.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8955f37e76c8b5e66c1ed7737d200d11ed321612
-ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974
+ms.openlocfilehash: 4d5ef9ad9e675b46df94b51e81d7a4bd4c1b25e9
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>Antipattern di creazione di istanze non corretta
 
@@ -22,9 +22,7 @@ Molte librerie forniscono astrazioni di risorse esterne. Internamente, queste cl
 - `Microsoft.Azure.Documents.Client.DocumentClient`. Si connette a un'istanza di database Cosmos
 - `StackExchange.Redis.ConnectionMultiplexer`. Si connette a Redis, incluso Cache Redis di Azure.
 
-Per queste classi è prevista la creazione di una sola istanza, che viene riutilizzata per tutta la durata di un'applicazione. È un errore comune ritenere che queste classi debbano essere acquisite solo quando è necessario e rilasciate rapidamente. (Le librerie elencate di seguito sono librerie .NET, ma il modello non è univoco per .NET).
-
-L'esempio ASP.NET seguente crea un'istanza di `HttpClient` per comunicare con un servizio remoto. L'esempio completo è disponibile [qui][sample-app].
+Per queste classi è prevista la creazione di una sola istanza, che viene riutilizzata per tutta la durata di un'applicazione. È un errore comune ritenere che queste classi debbano essere acquisite solo quando è necessario e rilasciate rapidamente. (Le librerie elencate di seguito sono librerie .NET, ma il modello non è univoco per .NET). L'esempio ASP.NET seguente crea un'istanza di `HttpClient` per comunicare con un servizio remoto. L'esempio completo è disponibile [qui][sample-app].
 
 ```csharp
 public class NewHttpClientInstancePerRequestController : ApiController
@@ -76,18 +74,18 @@ L'esempio seguente usa un'istanza statica di `HttpClient`, condividendo quindi l
 ```csharp
 public class SingleHttpClientInstanceController : ApiController
 {
-    private static readonly HttpClient HttpClient;
+    private static readonly HttpClient httpClient;
 
     static SingleHttpClientInstanceController()
     {
-        HttpClient = new HttpClient();
+        httpClient = new HttpClient();
     }
 
     // This method uses the shared instance of HttpClient for every call to GetProductAsync.
     public async Task<Product> GetProductAsync(string id)
     {
         var hostName = HttpContext.Current.Request.Url.Host;
-        var result = await HttpClient.GetStringAsync(string.Format("http://{0}:8080/api/...", hostName));
+        var result = await httpClient.GetStringAsync(string.Format("http://{0}:8080/api/...", hostName));
         return new Product { Name = result };
     }
 }

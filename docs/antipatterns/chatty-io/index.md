@@ -2,11 +2,11 @@
 title: Antipattern I/O "frammentato"
 description: "Un numero elevato di richieste di I/O può influire negativamente sulle prestazioni e la velocità di risposta."
 author: dragon119
-ms.openlocfilehash: 50001316939b56c9b57a119f6ae20f0878f54c0f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4f0e0e455ceb58317d3029d8ab4631d476802499
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="chatty-io-antipattern"></a>Antipattern I/O "frammentato"
 
@@ -215,7 +215,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - Durante la scrittura dei dati, evitare di bloccare risorse più a lungo del necessario, per ridurre le probabilità di contesa durante un'operazione di lunga durata. Se un'operazione di scrittura si estende su più archivi dati, file o i servizi, adottare un approccio finale coerente. Vedere il [materiale sussidiario sulla coerenza dei dati][data-consistency-guidance].
 
-- Se si memorizzano i dati in memoria prima della loro scrittura, i dati sono vulnerabili in caso di arresto anomalo del processo. Se la velocità dei dati è soggetta a picchi o è relativamente sparsa, potrebbe essere preferibile memorizzare nel buffer i dati utilizzando una coda durevole esterna, ad esempio [Hub eventi](http://azure.microsoft.com/en-us/services/event-hubs/).
+- Se si memorizzano i dati in memoria prima della loro scrittura, i dati sono vulnerabili in caso di arresto anomalo del processo. Se la velocità dei dati è soggetta a picchi o è relativamente sparsa, potrebbe essere preferibile memorizzare nel buffer i dati utilizzando una coda durevole esterna, ad esempio [Hub eventi](http://azure.microsoft.com/services/event-hubs/).
 
 - Si più prendere in considerazione di memorizzare nella cache i dati recuperati da un servizio o da un database. Ciò consente di ridurre il volume di I/O, evitando richieste ripetute per gli stessi dati. Per altre informazioni, vedere [Caching best practices][caching-guidance] (Procedure consigliate per la memorizzazione nella cache).
 
