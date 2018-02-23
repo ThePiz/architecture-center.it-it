@@ -4,11 +4,11 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: da1145e2f2f91befd69505ae9ef2734d6110c1d0
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 6bb623bd8be89573178f250570407bf83d62c098
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -416,7 +416,7 @@ using (var db = new BloggingContext())
 
 ### <a name="more-information"></a>Altre informazioni
 * [Resilienza connessione](/ef/core/miscellaneous/connection-resiliency)
-* [Punto dati - EF Core 1.1](https://msdn.microsoft.com/en-us/magazine/mt745093.aspx)
+* [Punto dati - EF Core 1.1](https://msdn.microsoft.com/magazine/mt745093.aspx)
 
 ## <a name="sql-database-using-adonet-retry-guidelines"></a>Database SQL con ADO.NET - Linee guida per la ripetizione di tentativi
 Il database SQL, in questo caso, è un database SQL ospitato, di varie dimensioni, disponibile come servizio standard (condiviso) o premium (non condiviso).

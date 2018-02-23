@@ -3,11 +3,11 @@ title: Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Az
 description: Come eseguire la migrazione di un'applicazione da Servizi cloud di Azure ad Azure Service Fabric.
 author: MikeWasson
 ms.date: 04/27/2017
-ms.openlocfilehash: 73e34c53ffd2f2eeb466d12a5f6c65dcfdaae389
-ms.sourcegitcommit: 2c9a8edf3e44360d7c02e626ea8ac3b03fdfadba
+ms.openlocfilehash: ce9c138a6b093fb7f0329c619c75bd4f4aacc2e7
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Azure Service Fabric 
 
@@ -227,7 +227,7 @@ Come accennato, il server Web Kestrel richiede un proxy inverso per motivi di si
 
 ### <a name="layer-7-routing"></a>Routing di livello 7
 
-Nell'[applicazione Surveys originale](https://msdn.microsoft.com/en-us/library/hh534477.aspx#sec21) un ruolo Web è in ascolto sulla porta 80 e l'altro ruolo Web è in ascolto sulla porta 443. 
+Nell'[applicazione Surveys originale](https://msdn.microsoft.com/library/hh534477.aspx#sec21) un ruolo Web è in ascolto sulla porta 80 e l'altro ruolo Web è in ascolto sulla porta 443. 
 
 | Sito pubblico | Sito di gestione del sondaggio |
 |-------------|------------------------|
@@ -328,7 +328,7 @@ Al termine del trasferimento dell'applicazione Surveys, Tailspin vuole sfruttare
 [sf-reverse-proxy]: /azure/service-fabric/service-fabric-reverseproxy
 [sf-security]: /azure/service-fabric/service-fabric-cluster-security
 [sf-why-microservices]: /azure/service-fabric/service-fabric-overview-microservices
-[tailspin-book]: https://msdn.microsoft.com/en-us/library/ff966499.aspx
-[tailspin-scenario]: https://msdn.microsoft.com/en-us/library/hh534482.aspx
-[unity]: https://msdn.microsoft.com/en-us/library/ff647202.aspx
+[tailspin-book]: https://msdn.microsoft.com/library/ff966499.aspx
+[tailspin-scenario]: https://msdn.microsoft.com/library/hh534482.aspx
+[unity]: https://msdn.microsoft.com/library/ff647202.aspx
 [vm-scale-sets]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview

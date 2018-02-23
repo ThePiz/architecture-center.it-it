@@ -4,11 +4,11 @@ description: Elenco di controllo contenente linee guida relative a DevOps.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: c435ea0aed9571cb6508d7d23f93414a138998fe
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 356fef2415347ae132915695a25fd9b50779bd8b
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="devops-checklist"></a>Elenco di controllo DevOps
 
@@ -126,7 +126,7 @@ I contenitori creano anche un livello di astrazione tra l'applicazione e il sist
 
 **Usare la gestione della configurazione.** È consigliabile pianificare, registrare e rendere visibili al personale addetto alle operazioni le modifiche di configurazione. A tale scopo è possibile usare un database di gestione o adottare un approccio di configurazione come codice. La configurazione deve essere periodicamente controllata per verificare che funzioni come previsto.
 
-**Ottenere un piano di supporto di Azure e comprendere il processo.** Azure offre una serie di [piani di supporto][azure-support-plans]. Valutare il piano più adatto alle specifiche esigenze e verificare che l'intero team sia in grado di usarlo. I membri del team devono comprendere i dettagli del piano, il processo di supporto e la procedura per aprire un ticket di supporto con Azure. Se è previsto un evento su vasta scala, il supporto di Azure può offrire assistenza per aumentare i limiti del servizio. Per altre informazioni, vedere le [domande frequenti sul supporto di Azure](https://azure.microsoft.com/en-us/support/faq/).
+**Ottenere un piano di supporto di Azure e comprendere il processo.** Azure offre una serie di [piani di supporto][azure-support-plans]. Valutare il piano più adatto alle specifiche esigenze e verificare che l'intero team sia in grado di usarlo. I membri del team devono comprendere i dettagli del piano, il processo di supporto e la procedura per aprire un ticket di supporto con Azure. Se è previsto un evento su vasta scala, il supporto di Azure può offrire assistenza per aumentare i limiti del servizio. Per altre informazioni, vedere le [domande frequenti sul supporto di Azure](https://azure.microsoft.com/support/faq/).
 
 **Seguire i principi dei privilegi minimi in fase di concessione dell'accesso alle risorse.** Gestire con cautela l'accesso alle risorse. L'accesso deve essere negato per impostazione predefinita, a meno che a un utente non venga concesso in modo esplicito di accedere a una risorsa. Concedere l'accesso utente solo in misura necessaria a completare le attività. Tenere traccia delle autorizzazioni utente ed eseguire controlli periodici di sicurezza.
 

@@ -4,11 +4,11 @@ description: Indicazioni sulla rete per la distribuzione di contenuti (CDN) per 
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 73da41edec246b672564dd4a52b317eacf8ad649
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: 9ee9099c85818af9486408f6ece41d3f6fcd9b44
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>Procedure consigliate per l'uso di reti per la distribuzione di contenuti (CDN)
 
@@ -95,5 +95,3 @@ Se si distribuiscono gli asset statici, ad esempio file di caratteri tramite la 
 
 ### <a name="cdn-fallback"></a>Fallback della rete CDN
 Considerare come l'applicazione gestirà un errore o l'indisponibilità temporanea della rete CDN. Le applicazioni client potrebbero riuscire a usare copie delle risorse memorizzate nella cache locale del client durante le richieste precedenti oppure è possibile includere codice che rilevi gli errori e richieda invece risorse dall'origine, ovvero la cartella dell'applicazione o il contenitore BLOB di Azure che contiene le risorse, se la rete CDN non è disponibile.
-
-L'esempio seguente illustra un meccanismo di fallback

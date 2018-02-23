@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: e0a6a91fda6ea43236f6eea552f7b8f8d31160ad
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1536a33884c9c9faa1e3702c951067249e691bf8
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="cache-aside-pattern"></a>Modello cache-aside
 
@@ -125,7 +125,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  Negli esempi viene usata l'API di Cache Redis di Azure per accedere all'archivio e recuperare le informazioni dalla cache. Per altre informazioni, vedere [Come usare Cache Redis di Azure](https://docs.microsoft.com/en-us/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) e [Come creare un'app Web con la cache Redis](https://docs.microsoft.com/en-us/azure/redis-cache/cache-web-app-howto).
+>  Negli esempi viene usata l'API di Cache Redis di Azure per accedere all'archivio e recuperare le informazioni dalla cache. Per altre informazioni, vedere [Come usare Cache Redis di Azure](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) e [Come creare un'app Web con la cache Redis](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto).
 
 Il metodo `UpdateEntityAsync` illustrato di seguito spiega come invalidare un oggetto nella cache quando il valore viene modificato dall'applicazione. Il codice aggiorna l'archivio dati originale e quindi rimuove dalla cache l'elemento memorizzato nella cache.
 
@@ -151,6 +151,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 
 Per l'implementazione di questo modello possono risultare utili anche le informazioni seguenti:
 
-- [Informazioni aggiuntive sulla memorizzazione nella cache](https://docs.microsoft.com/en-us/azure/architecture/best-practices/caching). Include maggiori informazioni su come memorizzare nella cache i dati in una soluzione cloud ed esamina gli aspetti da considerare quando si implementa una cache.
+- [Informazioni aggiuntive sulla memorizzazione nella cache](https://docs.microsoft.com/azure/architecture/best-practices/caching). Include maggiori informazioni su come memorizzare nella cache i dati in una soluzione cloud ed esamina gli aspetti da considerare quando si implementa una cache.
 
 - [Nozioni di base sulla coerenza dei dati](https://msdn.microsoft.com/library/dn589800.aspx). Le applicazioni cloud usano in genere dati che vengono distribuiti in archivi dati. La gestione e il mantenimento della coerenza dei dati in questo ambiente rappresenta un aspetto critico del sistema, in particolare in relazione ai problemi di concorrenza e disponibilità che possono verificarsi. Questo documento illustra i problemi relativi alla coerenza tra dati distribuiti e spiega in che modo un'applicazione può implementare controlli di coerenza per garantire la disponibilità dei dati.

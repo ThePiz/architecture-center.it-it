@@ -1,11 +1,11 @@
 ---
 title: Icone e altri asset per i diagrammi di architettura
 description: Icone, modelli Visio, file PNG e SVG utili per la creazione di diagrammi di architettura
-ms.openlocfilehash: 863c5cd479e6c4b6d57299176b80d02661e5466b
-ms.sourcegitcommit: 662f27f37d45f778ad1b6355fb6fb66e3c65558c
+ms.openlocfilehash: 58a2046c0d463c1f331ea3f950f0c11c273ffc36
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="icons-and-diagrams"></a>Icone e diagrammi
 
@@ -18,7 +18,7 @@ Il set di simboli/icone è una raccolta di asset Visio, PowerPoint, PNG e SVG ch
 
 ![Set di simboli/icone di Cloud ed Enterprise](./_images/CnESymbols.png)
 
-Simboli aggiuntivi per Microsoft Office e tecnologie correlate sono disponibili in [Microsoft Office Visio stencil](http://www.microsoft.com/en-us/download/details.aspx?id=35772) (Stencil Visio per Microsoft Office). Questi simboli non sono ottimizzati per i diagrammi di architettura.   
+Simboli aggiuntivi per Microsoft Office e tecnologie correlate sono disponibili in [Microsoft Office Visio stencil](http://www.microsoft.com/download/details.aspx?id=35772) (Stencil Visio per Microsoft Office). Questi simboli non sono ottimizzati per i diagrammi di architettura.   
 
 > [!NOTE]
 > Questi asset non sono destinati all'uso in interfacce utente. I simboli di terze parti non sono di proprietà di Microsoft.

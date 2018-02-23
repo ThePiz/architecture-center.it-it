@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: a5dc25a4b61ffd13d86f1abb2b839054e5fb4c7f
-ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
+ms.openlocfilehash: 08bf567085a940287de310f61b9f447d0ce5d5ec
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federazione con AD FS di un cliente
 
@@ -63,10 +63,10 @@ Per impostazione predefinita, l'applicazione relying party riceve solo un set fi
 | exp |[Scadenza]. È l'ora dopo la quale il token non verrà più accettato. |
 | iat |Ora di rilascio. È l'ora in cui è stato rilasciato il token. |
 | iss |Autorità emittente. Il valore di questa attestazione è sempre quello dell'istanza AD FS del partner risorse. |
-| name |Nome utente. Esempio: `john@corp.fabrikam.com`. |
+| name |Nome utente. Esempio: `john@corp.fabrikam.com` |
 | nameidentifier |[Identificatore del nome]. È l'identificatore del nome dell'entità per la quale è stato rilasciato il token. |
 | nonce |Nonce sessione. È un valore univoco generato da AD FS per impedire attacchi di tipo replay. |
-| upn |Nome dell'entità utente. Esempio: john@corp.fabrikam.com |
+| upn |Nome dell'entità utente. Esempio: `john@corp.fabrikam.com` |
 | pwd_exp |Periodo di scadenza della password. Corrisponde al numero di secondi fino alla scadenza della password dell'utente o di un segreto di autenticazione simile, ad esempio un PIN. |
 
 > [!NOTE]

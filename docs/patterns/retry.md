@@ -5,12 +5,13 @@ keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: resiliency
-ms.openlocfilehash: 6c02b384e71c068ecbc78f3170d28cea406538e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+pnp.pattern.categories:
+- resiliency
+ms.openlocfilehash: 73fdcbcc2bd75593a4c8e33dc2259c90593e14db
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="retry-pattern"></a>Modello di ripetizione dei tentativi
 
@@ -48,13 +49,13 @@ L'applicazione deve eseguire il wrapping di tutti i tentativi di accesso a un se
 
 Un'applicazione deve registrare i dettagli degli errori e delle operazioni con esito negativo. Queste informazioni sono utili per gli operatori. Se un servizio è frequentemente non disponibile oppure occupato, spesso la causa è l'esaurimento delle risorse. È possibile ridurre la frequenza degli errori ampliando il servizio. Ad esempio, se un servizio di database risulta continuamente sovraccarico, potrebbe essere utile partizionare il database e distribuire il carico su più server.
 
-> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) offre strumenti per la ripetizione dei tentativi di esecuzione delle operazioni su database. La maggior parte dei servizi di Azure e degli SDK client include inoltre un meccanismo di ripetizione dei tentativi. Per altre informazioni, vedere [Retry guidance for specific services](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific) (Linee guida per la ripetizione dei tentativi per servizi specifici).
+> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) offre strumenti per la ripetizione dei tentativi di esecuzione delle operazioni su database. La maggior parte dei servizi di Azure e degli SDK client include inoltre un meccanismo di ripetizione dei tentativi. Per altre informazioni, vedere [Retry guidance for specific services](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific) (Linee guida per la ripetizione dei tentativi per servizi specifici).
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
 Prima di decidere come implementare questo modello, è opportuno considerare quanto segue.
 
-I criteri di ripetizione dei tentativi devono essere adattati ai requisiti aziendali dell'applicazione e alla natura dell'errore. Per alcune operazioni non critiche, è preferibile un'interruzione rapida piuttosto che ripetere vari tentativi con effetti sulla velocità effettiva dell'applicazione. Per un'applicazione Web interattiva che accede a un servizio remoto, ad esempio, è preferibile interrompere l'esecuzione dopo un numero limitato di tentativi e con un breve ritardo tra i tentativi, quindi visualizzare un messaggio appropriato all'utente (ad esempio, "riprovare più tardi"). Per un'applicazione che esegue operazioni in batch, potrebbe essere invece più appropriato aumentare il numero di tentativi con un ritardo esponenzialmente maggiore tra i vari tentativi.
+I criteri di ripetizione dei tentativi devono essere adattati ai requisiti aziendali dell'applicazione e alla natura dell'errore. Per alcune operazioni non critiche, è preferibile fallire e rispondere immediatamente agli errori piuttosto che ripetere vari tentativi con effetti sulla velocità effettiva dell'applicazione. Per un'applicazione Web interattiva che accede a un servizio remoto, ad esempio, è preferibile interrompere l'esecuzione dopo un numero limitato di tentativi e con un breve ritardo tra i tentativi, quindi visualizzare un messaggio appropriato all'utente (ad esempio, "riprovare più tardi"). Per un'applicazione che esegue operazioni in batch, potrebbe essere invece più appropriato aumentare il numero di tentativi con un ritardo esponenzialmente maggiore tra i vari tentativi.
 
 Criteri di ripetizione aggressivi con un ritardo minimo tra tentativi, così come un numero elevato di tentativi, potrebbero peggiorare ulteriormente la situazione per un servizio occupato eseguito ai limiti della capacità. Questo tipo di criteri di ripetizione possono influire anche sulla velocità di risposta dell'applicazione, se tenta continuamente di eseguire un'operazione che non riesce.
 
@@ -68,7 +69,7 @@ Valutare gli effetti della ripetizione di un'operazione che fa parte di una tran
 
 Assicurarsi di testare in modo completo tutto il codice per la ripetizione dei tentativi per un'ampia gamma di condizioni di errore. Verificare che non ci siano effetti gravi sulle prestazioni o l'affidabilità dell'applicazione, che non causi un carico eccessivo su servizi e risorse o che non si generino colli di bottiglia o race condition.
 
-Implementare la logica di ripetizione dei tentativi solo nei casi in cui è noto il contesto completo di un'operazione con esito negativo. Ad esempio, se un'attività che contiene criteri di ripetizione richiama un'altra attività che contiene a sua volta criteri di ripetizione, questo livello aggiuntivo di tentativi può introdurre lunghi ritardi per l'elaborazione. Potrebbe essere più appropriato configurare l'attività di livello più basso in modo che generi errore rapidamente e segnali il motivo dell'errore all'attività che l'ha richiamata. Questa attività di livello superiore può quindi gestire l'errore in base ai propri criteri.
+Implementare la logica di ripetizione dei tentativi solo nei casi in cui è noto il contesto completo di un'operazione con esito negativo. Ad esempio, se un'attività che contiene criteri di ripetizione richiama un'altra attività che contiene a sua volta criteri di ripetizione, questo livello aggiuntivo di tentativi può introdurre lunghi ritardi per l'elaborazione. Potrebbe essere più appropriato configurare l'attività di livello più basso in modo che fallisca e risponda immediatamente agli errori e segnali il motivo dell'errore all'attività che l'ha richiamata. Questa attività di livello superiore può quindi gestire l'errore in base ai propri criteri.
 
 È importante registrare tutti gli errori di connettività che causano un nuovo tentativo, in modo da poter identificare i problemi sottostanti con l'applicazione, i servizi o le risorse.
 
@@ -172,5 +173,5 @@ private bool IsTransient(Exception ex)
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 - [Modello di interruttore](circuit-breaker.md). Il modello di ripetizione dei tentativi è utile per la gestione degli errori temporanei. Se si prevede che un errore sia di maggiore durata, potrebbe essere più appropriato implementare il modello di interruttore. Il modello di ripetizione dei tentativi può essere usato anche in combinazione con un interruttore per ottenere un approccio completo alla gestione degli errori.
-- [Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific)
-- [Resilienza della connessione](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
+- [Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)
+- [Resilienza della connessione](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)

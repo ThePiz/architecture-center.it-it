@@ -3,11 +3,11 @@ title: Scelta di una tecnologia di inserimento di messaggi in tempo reale
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4f76e63a50c1d689ea3a37219a44aa94477a2e2e
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 2e6578b779950b5ef11bda7b8ba1fb2e45e09f4e
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Scelta di una tecnologia di inserimento di messaggi in tempo reale in Azure
 
@@ -70,4 +70,4 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 [1] È anche possibile usare il [gateway del protocollo Azure IoT](/azure/iot-hub/iot-hub-protocol-gateway) come gateway personalizzato per consentire l'adattamento del protocollo per l'hub IoT.
 
-Per altre informazioni, vedere [Confronto tra l'hub IoT e Hub eventi di Azure](/azure/iot-hub/iot-hub-compare-event-hubss).
+Per altre informazioni, vedere [Confronto tra l'hub IoT e Hub eventi di Azure](/azure/iot-hub/iot-hub-compare-event-hubs).

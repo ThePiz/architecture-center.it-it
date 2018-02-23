@@ -2,11 +2,11 @@
 title: Stile di architettura guidato dagli eventi
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture guidate dagli eventi e IoT in Azure
 author: MikeWasson
-ms.openlocfilehash: ff7f936ceabefe7079a1ebbfa717ff4095bf133b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3289bf784b02d62e3d0c1a29b4839c9be3501134
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="event-driven-architecture-style"></a>Stile di architettura guidato dagli eventi
 
@@ -89,7 +89,7 @@ Le caselle in grigio mostrano i componenti di un sistema IoT non direttamente co
  <!-- links -->
 
 [competing-consumers]: ../../patterns/competing-consumers.md
-[iot-ref-arch]: https://azure.microsoft.com/en-us/updates/microsoft-azure-iot-reference-architecture-available/
+[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
 [minimize-coordination]: ../design-principles/minimize-coordination.md
 
 
