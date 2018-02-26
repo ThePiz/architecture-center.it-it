@@ -1,6 +1,6 @@
 - name: Centro architetture Azure
   href: /azure/architecture
-- name: Guida all'adozione del cloud di Azure
+- name: Guida all'adozione del cloud
   href: index.md
   items:
     - name: Adozione di Azure di base
