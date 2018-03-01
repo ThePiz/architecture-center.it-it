@@ -3,11 +3,11 @@ title: Architetture per Big Data
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 6ee44c6d94ae7ac5cb67cb5f16337deb1ffd4b70
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 2a1336faea81470b082d4eef8e2cc53a082c63c7
+ms.sourcegitcommit: 023d88e781f7fe64c62b247d876441ee40921b1b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="big-data-architectures"></a>Architetture per Big Data
 
@@ -15,7 +15,7 @@ Un'architettura per Big Data è progettata per gestire l'inserimento, l'elaboraz
 
 Nel corso degli anni, il panorama dei dati ha subito varie trasformazioni. Il concetto di ciò che è possibile fare, o si prevede di poter fare, è cambiato. I costi di archiviazione sono diminuiti notevolmente, mentre i mezzi disponibili per la raccolta dei dati sono in continua espansione. Alcuni dati arrivano a un ritmo veloce, sempre pronti per essere raccolti e osservati. Altri arrivano invece a un ritmo più lento, ma in blocchi di dimensioni molto grandi, spesso sotto forma di dati cronologici relativi a decenni. Può quindi capitare di dover affrontare un problema che richiede una soluzione di analisi avanzata o di apprendimento automatico. Queste sono le sfide che tentano di risolvere le architetture per Big Data.
 
-Le soluzioni per Big Data implicano in genere uno o più dei seguenti tipi di carico di lavoro:
+Le soluzioni per i Big Data implicano in genere uno o più dei seguenti tipi di carico di lavoro:
 
 * L'elaborazione batch di origini di Big Data inattivi.
 * L'elaborazione in tempo reale di Big Data in movimento.
@@ -25,7 +25,7 @@ Le soluzioni per Big Data implicano in genere uno o più dei seguenti tipi di ca
 Prendere in considerazione l'uso di architetture per Big Data quando è necessario:
 
 * Archiviare ed elaborare i dati in volumi troppo grandi per un database tradizionale.
-* Trasformare i dati non strutturati per consentire l'analisi e la creazione di report.
+* Trasformare i dati non strutturati per consentire l'analisi e il reporting.
 * Acquisire, elaborare e analizzare i flussi di dati non associati in tempo reale o con una latenza bassa.
 
 ## <a name="components-of-a-big-data-architecture"></a>Componenti di un'architettura per Big Data
@@ -34,7 +34,7 @@ Il diagramma seguente mostra i componenti logici relativi a un'architettura per 
 
 ![Diagramma generale della pipeline di dati](./images/big-data-pipeline.png) 
 
-La maggior parte delle architetture per Big Data include alcuni o tutti i componenti illustrati di seguito:
+La maggior parte delle architetture per i Big Data include alcuni o tutti i seguenti componenti:
 
 * **Origini dati**. Il punto di partenza di tutte le soluzioni per Big Data è costituito da una o più origini dati. Tra gli esempi sono inclusi:
 
@@ -52,22 +52,9 @@ La maggior parte delle architetture per Big Data include alcuni o tutti i compon
 
 * **Archivio dati analitici**. Numerose soluzioni per Big Data preparano i dati per l'analisi e quindi servono i dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti analitici. L'archivio dati analitici usato per rispondere a queste query può essere un data warehouse relazionale in stile Kimball, come nella maggior parte delle soluzioni di business intelligence (BI) tradizionali. In alternativa, i dati possono essere presentati tramite una tecnologia NoSQL a bassa latenza come HBase o un database Hive interattivo che fornisce un'astrazione di metadati sui file di dati nell'archivio dati distribuito. Azure SQL Data Warehouse fornisce un servizio gestito per il data warehousing su larga scala basato su cloud. HDInsight supporta Interactive Hive, HBase e Spark SQL, che possono anche essere usati per fornire dati per l'analisi.
 
-* **Analisi e creazione di report**. L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite funzionalità per l'analisi e la creazione di report. Per consentire agli utenti di analizzare i dati, l'architettura può includere un livello di modellazione dei dati, ad esempio un cubo OLAP multidimensionale o un modello di dati tabulari in Azure Analysis Services. Potrebbe inoltre supportare la business intelligence in modalità self-service, usando le tecnologie di modellazione e visualizzazione in Microsoft Power BI o Microsoft Excel. L'analisi e il reporting possono anche assumere la forma di esplorazione interattiva dei dati da parte di data scientist o analisti di dati. Per questi scenari, molti servizi di Azure supportano notebook analitici come Jupyter, consentendo a questi utenti di sfruttare le proprie competenze esistenti con Python o R. Per l'esplorazione di dati su larga scala, è possibile usare Microsoft R Server, sia autonomo che con Spark.
+* **Analisi e creazione di report**. L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite strumenti di analisi e report. Per consentire agli utenti di analizzare i dati, l'architettura può includere un livello di modellazione dei dati, ad esempio un cubo OLAP multidimensionale o un modello di dati tabulari in Azure Analysis Services. Potrebbe inoltre supportare la business intelligence in modalità self-service, usando le tecnologie di modellazione e visualizzazione in Microsoft Power BI o Microsoft Excel. L'analisi e il reporting possono anche assumere la forma di esplorazione interattiva dei dati da parte di data scientist o analisti di dati. Per questi scenari, molti servizi di Azure supportano notebook analitici come Jupyter, consentendo a questi utenti di sfruttare le proprie competenze esistenti con Python o R. Per l'esplorazione di dati su larga scala, è possibile usare Microsoft R Server, sia autonomo che con Spark.
 
 * **Orchestrazione**. La maggior parte delle soluzioni per Big Data consiste in operazioni ripetute di elaborazione dei dati, incapsulate in flussi di lavoro, che trasformano i dati di origine, spostano i dati tra più origini e sink, caricano i dati elaborati in un archivio dati analitico o li inseriscono direttamente in un report o in un dashboard. Per automatizzare questi flussi di lavoro, è possibile usare una tecnologia di orchestrazione come Azure Data Factory o Apache Oozie e Sqoop.
-
-## <a name="data-lake"></a>Data lake
-
-Nella documentazione relativa ai Big Data può essere presente il termine _data lake_, usato per il nome di un prodotto o talvolta anche come termine generico per fare riferimento all'archiviazione di grandi quantità di dati. 
-
-Un data lake prevede un componente di archiviazione e uno di elaborazione. L'archiviazione in un data lake viene realizzata per raggiungere vari obiettivi: tolleranza di errore, scalabilità illimitata ed elevata velocità nell'inserimento dei dati con diverse forme e dimensioni. L'elaborazione in un data lake prevede l'uso di uno o più motori creati tenendo presenti questi obiettivi e che sono in grado di elaborare i dati archiviati nel data lake su larga scala.
-
-Gli archivi di data lake vengono spesso usati in scenari di Internet delle cose o di flussi di eventi perché sono in grado di salvare in modo persistente grandi quantità di dati relazionali e non relazionali, senza alcuna trasformazione o definizione di schema. Vengono creati per gestire volumi elevati di piccole operazioni di scrittura a bassa latenza e sono ottimizzati per offrire un'enorme velocità effettiva.
-
-Un altro termine usato di frequente negli scenari relativi ai dati è _data mart_. Per data mart si intende in genere un archivio in cui i dati sono stati puliti, compressi e strutturati per facilitarne l'utilizzo. A differenza di un data mart, un data lake è pensato per l'inserimento di dati non elaborati. I dati vengono infatti lasciati nella forma originale meno elaborata, per poter essere interrogati in tempi e modi diversi. Se venissero puliti e strutturati in un modo particolare, come in un data mart, sarebbe difficile adattare la modalità di elaborazione e analisi a eventuali nuovi strumenti o tecniche di interrogazione disponibili in futuro. È per questo motivo che i componenti di archiviazione ed elaborazione di un data lake vengono trattati come entità separate.
-
-Servizio di Azure pertinente:
-- [Azure Data Lake](https://azure.microsoft.com/scenarios/data-lake/)
 
 ## <a name="lambda-architecture"></a>Architettura lambda
 
@@ -127,7 +114,7 @@ Di seguito vengono indicati alcuni tipi comuni di elaborazione. Naturalmente, l'
 
 - Gestione di tipi speciali di messaggi non di telemetria dai dispositivi, come le notifiche e gli allarmi. 
 
-- Apprendimento automatico.
+- Machine Learning.
 
 Le caselle in grigio mostrano i componenti di un sistema IoT non direttamente correlati al flusso di eventi, ma che sono stati inclusi per completezza.
 
@@ -139,9 +126,9 @@ Le caselle in grigio mostrano i componenti di un sistema IoT non direttamente co
 
 Servizi di Azure pertinenti:
 
-- [Hub IoT di Azure](https://azure.microsoft.com/services/iot-hub/)
+- [Hub IoT Azure](https://azure.microsoft.com/services/iot-hub/)
 - [Hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/)
-- [Analisi di flusso di Azure](https://azure.microsoft.com/services/stream-analytics/)  
+- [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/)  
 
 Per altre informazioni sulle soluzioni di Internet delle cose in Azure, vedere [Azure IoT reference architecture](https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/) (Architettura di riferimento di Azure IoT).
 

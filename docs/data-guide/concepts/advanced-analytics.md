@@ -3,11 +3,11 @@ title: Analisi avanzata
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 8fd3a4d8eea9e507b3e75ab825c4bd88c0eb5149
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 31ba357fe37b1de35a6eea324d2d1d6766e172e5
+ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/27/2018
 ---
 # <a name="advanced-analytics"></a>Analisi avanzata
 
@@ -35,7 +35,7 @@ La maggior parte delle architetture di analisi avanzata include alcuni o tutti i
 
 * **Orchestrazione**. Anche se le attività iniziali di esplorazione e modellazione dei dati vengono eseguite dai data scientist in modo interattivo, molte soluzioni di analisi avanzata ripetono periodicamente il training dei modelli con nuovi dati, in modo da perfezionare costantemente la precisione dei modelli. La ripetizione del processo di training può essere automatizzata mediante un flusso di lavoro orchestrato.
 
-## <a name="machine-learning"></a>Apprendimento automatico
+## <a name="machine-learning"></a>Machine learning
 L'apprendimento automatico è una tecnica di modellazione matematica usata per eseguire il training di un modello predittivo. Il principio generale consiste nell'applicazione di un algoritmo statistico a un ampio set di dati cronologici per individuare le relazioni tra i vari campi.
 
 La modellazione dell'apprendimento automatico viene normalmente eseguita da data scientist, che devono esaminare attentamente i dati e prepararli prima di eseguire il training di un modello. L'esplorazione e la preparazione dei dati richiedono in genere molte attività interattive di visualizzazione e analisi, che vengono eseguite tramite linguaggi come Python e R in strumenti e ambienti interattivi, appositamente progettati per queste attività.
