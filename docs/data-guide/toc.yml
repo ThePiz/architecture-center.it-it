@@ -39,11 +39,13 @@
               href: concepts/non-relational-data.md
             - name: Uso dei file in formato CSV e JSON
               href: concepts/csv-and-json.md
+            - name: Archivi data lake
+              href: concepts/data-lake.md
             - name: Architetture per Big Data
               href: concepts/big-data.md
             - name: Analisi avanzata
               href: concepts/advanced-analytics.md
-            - name: Machine Learning su larga scala
+            - name: Apprendimento automatico su larga scala
               href: concepts/machine-learning-at-scale.md
         - name: Scenari
           items:
@@ -85,9 +87,9 @@
               href: technology-choices/stream-processing.md
     - name: Problematiche trasversali
       items:
-        - name: Trasferimento dei dati
+        - name: Trasferimento dati
           href: scenarios/data-transfer.md
-        - name: Estensione di soluzioni dati locali nel cloud
+        - name: Estensione di soluzioni dati locali al cloud
           href: scenarios/hybrid-on-premises-and-cloud.md
         - name: Sicurezza delle soluzioni dati
           href: scenarios/securing-data-solutions.md
