@@ -4,11 +4,11 @@ description: Indicazioni sulla rete per la distribuzione di contenuti (CDN) per 
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 9ee9099c85818af9486408f6ece41d3f6fcd9b44
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 42b73db08ecef858f5279ea292cf8c0df77b847c
+ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 02/27/2018
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>Procedure consigliate per l'uso di reti per la distribuzione di contenuti (CDN)
 
@@ -91,7 +91,7 @@ Se si distribuiscono gli asset statici, ad esempio file di caratteri tramite la 
 
 * Configurare la rete CDN in modo che vengano aggiunte intestazioni CORS alle risposte. Per altre informazioni, vedere [Uso della rete CDN di Azure con CORS](/azure/cdn/cdn-cors). 
 * Se l'origine è l'archiviazione BLOB di Azure, aggiungere le regole CORS all'endpoint di archiviazione. Per altre informazioni, vedere [Supporto della condivisione delle risorse tra le origini (CORS) per i servizi di archiviazione Azure](http://msdn.microsoft.com/library/azure/dn535601.aspx).
-* Configurare l'applicazione in modo da impostare le intestazioni CORS. Ad esempio, vedere [Abilitare le richieste tra le origini (CORS)](/aspnet/core/security/cors) nella documentazione di ASP.NET Core.
+* Configurare l'applicazione in modo da impostare le intestazioni CORS. Vedere ad esempio [Abilitare le richieste tra le origini (CORS)](/aspnet/core/security/cors) nella documentazione di ASP.NET Core.
 
 ### <a name="cdn-fallback"></a>Fallback della rete CDN
 Considerare come l'applicazione gestirà un errore o l'indisponibilità temporanea della rete CDN. Le applicazioni client potrebbero riuscire a usare copie delle risorse memorizzate nella cache locale del client durante le richieste precedenti oppure è possibile includere codice che rilevi gli errori e richieda invece risorse dall'origine, ovvero la cartella dell'applicazione o il contenitore BLOB di Azure che contiene le risorse, se la rete CDN non è disponibile.

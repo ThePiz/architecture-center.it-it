@@ -3,11 +3,11 @@ title: Eseguire un server Jenkins in Azure
 description: Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: 9cab4990b259695f310da339bfef3060b0905640
-ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
+ms.openlocfilehash: 724185e43ed743013f52ded04b779552dd8e48c1
+ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 02/27/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
@@ -139,7 +139,7 @@ Usare gli approcci seguenti per bloccare la sicurezza in un server Jenkins di ba
 
 -   Installare il plug-in [Azure Credentials][configure-credential] per usare Key Vault per gestire i segreti degli asset di Azure, gli agenti nella pipeline e i componenti di terze parti.
 
--   Creare un profilo di sicurezza che definisca le risorse necessarie a utenti, servizi e agenti della pipeline per eseguire le operazioni previste, ma esclusivamente quelle. Questo passaggio è essenziale quando si prendono in considerazione le impostazioni di sicurezza.
+-   Usare il controllo degli accessi in base al ruolo per limitare l'accesso dell'entità servizio al minimo necessario per eseguire i processi. Ciò consente di limitare eventuali danni dovuti a processi non autorizzati.
 
 I processi Jenkins spesso richiedono segreti per accedere ai servizi di Azure per cui è necessaria l'autorizzazione, come il servizio contenitore di Azure. Per gestire in modo sicuro questi segreti, usare [Key Vault][key-vault] insieme al [plug-in Azure Credentials][configure-credential]. Usare Key Vault per archiviare le credenziali delle entità servizio, le password, i token e altri segreti.
 
