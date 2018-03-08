@@ -3,11 +3,11 @@ title: Elaborazione batch
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 55113b61c2684a7826fa6c0034503f842cdb840f
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: d3d3b92034c251586ecc9caff2785ecd0808b2a7
+ms.sourcegitcommit: 943e671a8d522cef5ddc8c6e04848134b03c2de4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 03/05/2018
 ---
 # <a name="batch-processing"></a>Elaborazione batch
 
@@ -19,7 +19,7 @@ Ad esempio, i log di un server Web possono essere copiati in una cartella e quin
 
 ## <a name="when-to-use-this-solution"></a>Quando usare questa soluzione
 
-L'elaborazione batch viene usata in una vasta gamma di scenari, dalle semplici trasformazioni di dati fino a pipeline ETL (Extract-Transform-Load) più complete. In un contesto di Big Data l'elaborazione batch può funzionare su set di dati di grandi dimensioni, in cui la fase di calcolo richiede tempi molto lunghi. Ad esempio, vedere [Lambda architecture](../concepts/big-data.md##lambda-architecture) (Architettura lambda). L'elaborazione batch porta in genere a un'ulteriore esplorazione interattiva, fornisce i dati di modellazione per l'apprendimento automatico o scrive i dati in un archivio dati ottimizzato per l'analisi e la visualizzazione.
+L'elaborazione batch viene usata in una vasta gamma di scenari, dalle semplici trasformazioni di dati fino a pipeline ETL (Extract-Transform-Load) più complete. In un contesto di Big Data l'elaborazione batch può funzionare su set di dati di grandi dimensioni, in cui la fase di calcolo richiede tempi molto lunghi. Ad esempio, vedere [Lambda architecture](../concepts/big-data.md#lambda-architecture) (Architettura lambda). L'elaborazione batch porta in genere a un'ulteriore esplorazione interattiva, fornisce i dati di modellazione per l'apprendimento automatico o scrive i dati in un archivio dati ottimizzato per l'analisi e la visualizzazione.
 
 Un esempio di elaborazione batch è la trasformazione di un ampio set di file flat semistrutturati CSV o JSON in un formato schematizzato e strutturato pronto per altre query. I dati vengono in genere convertiti dai formati non elaborati usati per l'inserimento (ad esempio CSV) in formati binari che risultano più efficienti per l'esecuzione di query poiché archiviano i dati in colonne e offrono spesso indici e statistiche inline sui dati.
 
@@ -29,7 +29,7 @@ Un esempio di elaborazione batch è la trasformazione di un ampio set di file fl
 
 - **Orchestrazione degli intervalli di tempo.** Spesso i dati di origine sono inseriti in una gerarchia di cartelle che riflette gli intervalli di elaborazione, organizzati per anno, mese, giorno, ora e così via. In alcuni casi, i dati possono arrivare in ritardo. Ad esempio, si supponga che in un server Web si verifichi un errore e che i log relativi al 7 marzo arrivino nella cartella di elaborazione solo il 9 marzo. Sarà necessario stabilire se devono essere semplicemente ignorati a causa del ritardo o se la logica di elaborazione downstream sarà in grado di gestire i record non disponibili.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 Un'architettura per l'elaborazione batch include i componenti logici seguenti, illustrati nel diagramma precedente.
 
@@ -52,7 +52,7 @@ Per le soluzioni di elaborazione batch in Azure è consigliabile usare le tecnol
 - **Contenitori BLOB del servizio di archiviazione di Azure**. Molti processi aziendali di Azure esistenti prevedono già l'uso di Archiviazione BLOB di Azure. Si tratta quindi di un'ottima scelta per un archivio di Big Data.
 - **Azure Data Lake Store**. Azure Data Lake Store offre archiviazione praticamente illimitata per file di ogni dimensione e opzioni di sicurezza complete. Si tratta quindi di un'ottima scelta per soluzioni per Big Data su larga scala che richiedono un archivio centralizzato per i dati in formati eterogenei.
 
-Per altre informazioni, vedere [Archiviazione dati](../technology-choices/data-storage.md).
+Per altre informazioni, vedere [Archiviazione dei dati](../technology-choices/data-storage.md).
 
 ### <a name="batch-processing"></a>Elaborazione batch
 

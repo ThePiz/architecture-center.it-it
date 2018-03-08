@@ -18,9 +18,6 @@
         - name: Elenco di controllo per l'analisi della progettazione
           tocHref: /azure/architecture/checklist
           topicHref: /azure/architecture/checklist
-        - name: Elasticsearch
-          tocHref: /azure/architecture/elasticsearch
-          topicHref: /azure/architecture/elasticsearch
         - name: Gestire le identità nelle applicazioni multi-tenant
           tocHref: /azure/architecture/multitenant-identity
         - name: Architetture di riferimento
