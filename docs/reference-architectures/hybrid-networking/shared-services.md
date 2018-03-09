@@ -1,24 +1,23 @@
 ---
-title: Implementazione una topologia di rete hub-spoke in Azure
-description: Come implementare una topologia di rete hub-spoke in Azure.
+title: Implementazione di una topologia di rete hub-spoke con servizi condivisi in Azure
+description: Come implementare una topologia di rete hub-spoke con servizi condivisi in Azure.
 author: telmosampaio
-ms.date: 02/23/2018
-pnp.series.title: Implement a hub-spoke network topology in Azure
-pnp.series.prev: expressroute
-ms.openlocfilehash: 1a2855f0d4a903fc4d7a022aef20ea73fe763e2c
+ms.date: 02/25/2018
+pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
+pnp.series.prev: hub-spoke
+ms.openlocfilehash: c0fb1d1ddd7c70ed914d58e7c73b10475b91aedf
 ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 03/08/2018
 ---
-# <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementare una topologia di rete hub-spoke in Azure
+# <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementare una topologia di rete hub-spoke con servizi condivisi in Azure
 
-Questa architettura di riferimento illustra come implementare una topologia hub-spoke in Azure. L'*hub* è una rete virtuale in Azure che funge da punto di connettività centrale alla rete locale. Gli *spoke* sono le reti virtuali che eseguono il peering con l'hub e possono essere usate per isolare i carichi di lavoro. Flussi di traffico tra il data center locale e l'hub attraverso una connessione di gateway VPN o ExpressRoute.  [**Distribuire questa soluzione**](#deploy-the-solution).
+Questa architettura di riferimento, basata sull'architettura di riferimento [hub-spoke][guidance-hub-spoke], include nell'hub servizi condivisi che potranno essere utilizzati da tutti gli spoke. Come primo passo per la migrazione di un data center al cloud e la creazione di un [data center virtuale], i primi servizi da condividere sono quelli di gestione delle identità e di sicurezza. Questa architettura di riferimento illustra come estendere i servizi di Active Directory dal data center locale ad Azure e come aggiungere un'appliance virtuale di rete che possa fungere da firewall in una topologia hub-spoke.  [**Distribuire questa soluzione**](#deploy-the-solution).
 
 ![[0]][0]
 
 *Scaricare un [file di Visio][visio-download] di questa architettura*
-
 
 I vantaggi di questa topologia includono:
 
@@ -47,7 +46,11 @@ L'architettura è costituita dai componenti seguenti.
 
 * **Rete virtuale dell'hub**. Rete virtuale di Azure usata come hub nella topologia hub-spoke. L'hub è il punto di connettività centrale alla rete locale e offre una posizione in cui ospitare servizi che possono essere utilizzati da carichi di lavoro diversi ospitati nelle reti virtuali spoke.
 
-* **Subnet del gateway**. i gateway di rete virtuale vengono mantenuti nella stessa subnet.
+* **Subnet del gateway**. I gateway di rete virtuale vengono mantenuti nella stessa subnet.
+
+* **Subnet dei servizi condivisi**. Una subnet nella rete virtuale dell'hub usata per ospitare servizi che possono essere condivisi tra tutti gli spoke, ad esempio DNS o Active Directory Domain Services.
+
+* **Subnet della rete perimetrale**. Subnet nella rete virtuale hub usata per ospitare appliance virtuali di rete che possono fungere da appliance di sicurezza, ad esempio da firewall.
 
 * **Reti virtuali spoke**. Una o più reti virtuali di Azure usate come spoke nella topologia hub-spoke. Gli spoke possono essere usati per isolare i carichi di lavoro nelle reti virtuali corrispondenti, gestite separatamente rispetto agli altri spoke. Ogni carico di lavoro può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per ulteriori informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] e [Esecuzione di carichi di lavoro della macchina virtuale Linux][linux-vm-ra].
 
@@ -58,46 +61,26 @@ L'architettura è costituita dai componenti seguenti.
 
 ## <a name="recommendations"></a>Raccomandazioni
 
-Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda.
+Tutte le raccomandazioni per l'architettura di riferimento [hub-spoke][guidance-hub-spoke] si applicano anche all'architettura di riferimento con servizi condivisi. 
 
-### <a name="resource-groups"></a>Gruppi di risorse
+Per la maggior parte degli scenari con servizi condivisi sono valide anche le raccomandazioni seguenti. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda.
 
-È possibile implementare la rete virtuale dell'hub e ogni rete virtuale spoke in gruppi di risorse diversi e persino in sottoscrizioni diverse, a condizione che appartengano allo stesso tenant di Azure Active Directory (Azure AD) nella stessa area di Azure. Questo consente di decentralizzare la gestione di ogni carico di lavoro e allo stesso tempo condividere i servizi gestiti nella rete virtuale dell'hub.
+### <a name="identity"></a>Identità
 
-### <a name="vnet-and-gatewaysubnet"></a>Reti virtuali e GatewaySubnet
+La maggior parte delle organizzazioni aziendali ha un ambiente Active Directory Domain Services nel proprio data center locale. Per facilitare la gestione degli asset spostati dalla rete locale ad Azure che dipendono da Active Directory Domain Services, è consigliabile ospitare i controller di dominio di Active Directory Domain Services in Azure.
 
-Creare una subnet denominata *GatewaySubnet*, con un intervallo di indirizzi di /27. Questa subnet è necessaria per il gateway di rete virtuale. Allocare 32 indirizzi a questa subnet contribuirà in futuro a evitare di raggiungere i limiti di dimensioni del gateway.
+Se si usano oggetti Criteri di gruppo che si preferisce controllare separatamente per Azure e l'ambiente locale, usare un diverso sito AD per ogni area di Azure. Inserire i controller di dominio in una rete virtuale centrale (hub) accessibile dai carichi di lavoro dipendenti.
 
-Per altre informazioni sulla configurazione del gateway, vedere le architetture di riferimento seguenti, a seconda del tipo di connessione:
+### <a name="security"></a>Sicurezza
 
-- [Rete ibrida tramite ExpressRoute][guidance-expressroute]
-- [Rete ibrida tramite un gateway VPN][guidance-vpn]
+Quando si spostano carichi di lavoro dall'ambiente locale ad Azure, alcuni di questi dovranno essere ospitati in VM. Per motivi di conformità, potrebbe essere necessario applicare restrizioni sul traffico correlato a tali carichi di lavoro. 
 
-Per una disponibilità più elevata, è possibile usare ExpressRoute più una rete VPN per il failover. Vedere [Connettere una rete locale ad Azure tramite ExpressRoute con failover VPN][hybrid-ha].
+È possibile usare appliance virtuali di rete in Azure per ospitare diversi tipi di servizi di sicurezza e gestione delle prestazioni. Se si ha attualmente familiarità con un determinato set di appliance in locale, è consigliabile usare le stesse appliance virtualizzate in Azure, se possibile.
 
-Una topologia hub-spoke può essere usata anche senza gateway, se non è necessaria la connettività con la rete locale. 
-
-### <a name="vnet-peering"></a>Peering reti virtuali
-
-Il peering reti virtuali è una relazione non transitiva tra due reti virtuali. Se è necessaria la connettività tra gli spoke, considerare l'aggiunta di una connessione peering separata tra di essi.
-
-Tuttavia, se si dispone di più spoke che devono connettersi tra loro, le possibili connessioni peering si esauriranno molto rapidamente, a causa del [limite di peering reti virtuali per ogni rete virtuale][vnet-peering-limit]. In questo scenario, prendere in considerazione l'uso di route definite dall'utente per forzare l'invio del traffico destinato a uno spoke a un'appliance virtuale di rete che funga da router nella rete virtuale dell'hub. Questo consentirà agli spoke di connettersi tra loro.
-
-È anche possibile configurare gli spoke in modo da usare il gateway della rete virtuale dell'hub per comunicare con reti remote. Per consentire il flusso del traffico gateway dallo spoke all'hub e connettersi a reti remote, è necessario:
-
-  - Configurare la connessione peering reti virtuali nell'hub in modo da **consentire il transito gateway**.
-  - Configurare la connessione peering reti virtuali in ogni spoke in modo da **usare gateway remoti**.
-  - Configurare tutte le connessioni peering reti virtuali in modo da **consentire il traffico inoltrato**.
+> [!NOTE]
+> Gli script di distribuzione per questa architettura di riferimento usano una VM Ubuntu con inoltro IP abilitato per simulare un'appliance virtuale di rete.
 
 ## <a name="considerations"></a>Considerazioni
-
-### <a name="spoke-connectivity"></a>Connettività spoke
-
-Se è necessaria la connettività tra spoke, è consigliabile implementare un'appliance virtuale di rete per il routing nell'hub e usare route definite dall'utente nello spoke per inoltrare il traffico all'hub.
-
-![[2]][2]
-
-In questo scenario occorre configurare le connessioni peering in modo da **consentire il traffico inoltrato**.
 
 ### <a name="overcoming-vnet-peering-limits"></a>Superamento dei limiti del peering reti virtuali
 
@@ -131,18 +114,16 @@ Prima di poter distribuire l'architettura di riferimento nella propria sottoscri
 
 Per distribuire il data center locale simulato come rete virtuale di Azure, seguire questa procedura:
 
-1. Passare alla cartella `hybrid-networking\hub-spoke\` per il repository scaricato nel passaggio dei prerequisiti precedente.
+1. Passare alla cartella `hybrid-networking\shared-services-stack\` per il repository scaricato nel passaggio dei prerequisiti precedente.
 
-2. Aprire il file `onprem.json` e immettere un nome utente e una password tra le virgolette nelle righe 36 e 37, come illustrato di seguito, quindi salvare il file.
+2. Aprire il file `onprem.json` e immettere un nome utente e una password tra le virgolette nelle righe 45 e 46, come illustrato di seguito, quindi salvare il file.
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-3. Nella riga 38 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
-
-4. Eseguire `azbb` per distribuire l'ambiente locale simulato, come illustrato di seguito.
+3. Eseguire `azbb` per distribuire l'ambiente locale simulato, come illustrato di seguito.
 
   ```bash
   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
@@ -150,22 +131,22 @@ Per distribuire il data center locale simulato come rete virtuale di Azure, segu
   > [!NOTE]
   > Se si decide di usare un nome del gruppo di risorse diverso da `onprem-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
 
-5. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale e un gateway VPN. La creazione del gateway VPN può richiedere più di 40 minuti.
+4. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale che esegue Windows e un gateway VPN. La creazione del gateway VPN può richiedere più di 40 minuti.
 
 ### <a name="azure-hub-vnet"></a>Rete virtuale dell'hub di Azure
 
 Per distribuire la rete virtuale dell'hub e connettersi alla rete virtuale locale simulata creata in precedenza, eseguire la procedura seguente.
 
-1. Aprire il file `hub-vnet.json` e immettere un nome utente e una password tra le virgolette nelle righe 39 e 40, come illustrato di seguito.
+1. Aprire il file `hub-vnet.json` e immettere un nome utente e una password tra le virgolette nelle righe 50 e 51, come illustrato di seguito.
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-2. Nella riga 41 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
+2. Nella riga 52 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
 
-3. Immettere una chiave condivisa tra le virgolette nella riga 72, come illustrato di seguito, quindi salvare il file.
+3. Immettere una chiave condivisa tra le virgolette nella riga 83, come illustrato di seguito, quindi salvare il file.
 
   ```bash
   "sharedKey": "",
@@ -181,54 +162,59 @@ Per distribuire la rete virtuale dell'hub e connettersi alla rete virtuale local
 
 5. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale, un gateway VPN e una connessione al gateway creato nella sezione precedente. La creazione del gateway VPN può richiedere più di 40 minuti.
 
-### <a name="optional-test-connectivity-from-onprem-to-hub"></a>(Facoltativo) Testare la connettività dall'ambiente locale all'hub
+### <a name="adds-in-azure"></a>Active Directory Domain Services in Azure
 
-Per testare la connettività dall'ambiente locale simulato alla rete virtuale hub con VM Windows, seguire questa procedura.
+Per distribuire i controller di dominio di Active Directory Domain Services in Azure, seguire questa procedura.
 
-1. Dal portale di Azure passare al gruppo di risorse `onprem-jb-rg` e quindi fare clic sulla risorsa macchina virtuale `jb-vm1`.
-
-2.  Nell'angolo superiore sinistro del pannello della VM nel portale fare clic su `Connect` e seguire le istruzioni per connettersi alla VM con Desktop remoto. Assicurarsi di usare il nome utente e la password specificati nelle righe 36 e 37 del file `onprem.json`.
-
-3. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi alla VM jumpbox dell'hub, come illustrato di seguito.
-
-  ```powershell
-  Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
-  ```
-  > [!NOTE]
-  > Per impostazione predefinita, le VM Windows Server non consentono risposte ICMP in Azure. Se si vuole usare `ping` per testare la connettività, è necessario abilitare il traffico ICMP in Windows Firewall con sicurezza avanzata per ogni VM.
-
-Per testare la connettività dall'ambiente locale simulato alla rete virtuale hub con VM Linux, seguire questa procedura:
-
-1. Dal portale di Azure passare al gruppo di risorse `onprem-jb-rg` e quindi fare clic sulla risorsa macchina virtuale `jb-vm1`.
-
-2. Nell'angolo superiore sinistro del pannello della VM nel portale fare clic su `Connect` e quindi copiare il comando `ssh` visualizzato nel portale. 
-
-3. Al prompt Linux eseguire `ssh` per connettersi al jumpbox dell'ambiente locale simulato con le informazioni copiate nel passaggio 2 precedente, come illustrato di seguito.
-
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
-
-4. Usare la password specificata nella riga 37 del file `onprem.json` per connettersi alla VM.
-
-5. Usare il comando `ping` per testare la connettività al jumpbox dell'hub, come illustrato di seguito.
-
-  ```bash
-  ping 10.0.0.68
-  ```
-
-### <a name="azure-spoke-vnets"></a>Reti virtuali spoke di Azure
-
-Per distribuire le reti virtuali spoke, seguire questa procedura.
-
-1. Aprire il file `spoke1.json` e immettere un nome utente e una password tra le virgolette nelle righe 47 e 48, come illustrato di seguito, quindi salvare il file.
+1. Aprire il file `hub-adds.json` e immettere un nome utente e una password tra le virgolette nelle righe 14 e 15, come illustrato di seguito, quindi salvare il file.
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-2. Nella riga 49 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
+2. Eseguire `azbb` per distribuire i controller di dominio di Active Directory Domain Services, come illustrato di seguito.
+
+  ```bash
+  azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
+  ```
+  
+  > [!NOTE]
+  > Se si decide di usare un nome del gruppo di risorse diverso da `hub-adds-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
+
+  > [!NOTE]
+  > Questa parte della distribuzione potrebbe richiedere alcuni minuti, perché prevede l'aggiunta delle due VM al dominio ospitato nel data center locale simulato e quindi l'installazione di Active Directory Domain Services in tali VM.
+
+### <a name="nva"></a>Appliance virtuale di rete
+
+Per distribuire un'appliance virtuale di rete nella subnet `dmz`, seguire questa procedura:
+
+1. Aprire il file `hub-nva.json` e immettere un nome utente e una password tra le virgolette nelle righe 13 e 14, come illustrato di seguito, quindi salvare il file.
+
+  ```bash
+  "adminUsername": "XXX",
+  "adminPassword": "YYY",
+  ```
+2. Eseguire `azbb` per distribuire la VM dell'appliance virtuale di rete e le route definite dall'utente.
+
+  ```bash
+  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
+  ```
+  > [!NOTE]
+  > Se si decide di usare un nome del gruppo di risorse diverso da `hub-nva-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
+
+### <a name="azure-spoke-vnets"></a>Reti virtuali spoke di Azure
+
+Per distribuire le reti virtuali spoke, seguire questa procedura.
+
+1. Aprire il file `spoke1.json` e immettere un nome utente e una password tra le virgolette nelle righe 52 e 53, come illustrato di seguito, quindi salvare il file.
+
+  ```bash
+  "adminUsername": "XXX",
+  "adminPassword": "YYY",
+  ```
+
+2. Nella riga 54 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
 
 3. Eseguire `azbb` per distribuire l'ambiente della prima rete virtuale spoke, come illustrato di seguito.
 
@@ -264,64 +250,11 @@ Per creare una connessione peering dalla rete virtuale hub alle reti virtuali sp
   > [!NOTE]
   > Se si decide di usare un nome del gruppo di risorse diverso da `hub-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
 
-### <a name="test-connectivity"></a>Testare la connettività
-
-Per testare la connettività dall'ambiente locale simulato alle reti virtuali spoke con VM Windows, seguire questa procedura.
-
-1. Dal portale di Azure passare al gruppo di risorse `onprem-jb-rg` e quindi fare clic sulla risorsa macchina virtuale `jb-vm1`.
-
-2.  Nell'angolo superiore sinistro del pannello della VM nel portale fare clic su `Connect` e seguire le istruzioni per connettersi alla VM con Desktop remoto. Assicurarsi di usare il nome utente e la password specificati nelle righe 36 e 37 del file `onprem.json`.
-
-3. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi alla VM jumpbox dell'hub, come illustrato di seguito.
-
-  ```powershell
-  Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
-  Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
-  ```
-
-Per testare la connettività dall'ambiente locale simulato alle reti virtuali spoke con VM Linux, seguire questa procedura:
-
-1. Dal portale di Azure passare al gruppo di risorse `onprem-jb-rg` e quindi fare clic sulla risorsa macchina virtuale `jb-vm1`.
-
-2. Nell'angolo superiore sinistro del pannello della VM nel portale fare clic su `Connect` e quindi copiare il comando `ssh` visualizzato nel portale. 
-
-3. Al prompt Linux eseguire `ssh` per connettersi al jumpbox dell'ambiente locale simulato con le informazioni copiate nel passaggio 2 precedente, come illustrato di seguito.
-
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
-
-5. Usare la password specificata nella riga 37 del file `onprem.json` per connettersi alla VM.
-
-6. Usare il comando `ping` per testare la connettività alle VM jumpbox in ogni spoke, come illustrato di seguito.
-
-  ```bash
-  ping 10.1.0.68
-  ping 10.2.0.68
-  ```
-
-### <a name="add-connectivity-between-spokes"></a>Aggiungere la connettività tra spoke
-
-Se si vuole consentire la connessione tra gli spoke, è necessario usare un'appliance virtuale di rete come router nella rete virtuale hub e forzare il traffico dagli spoke verso il router in caso di tentativo di connessione a un altro spoke. Per distribuire un'appliance virtuale di rete di esempio di base come una singola VM e le route definite dall'utente necessarie per consentire la connessione di due reti virtuali spoke, seguire questa procedura:
-
-1. Aprire il file `hub-nva.json` e immettere un nome utente e una password tra le virgolette nelle righe 13 e 14, come illustrato di seguito, quindi salvare il file.
-
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
-2. Eseguire `azbb` per distribuire la VM dell'appliance virtuale di rete e le route definite dall'utente.
-
-  ```bash
-  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-  ```
-  > [!NOTE]
-  > Se si decide di usare un nome del gruppo di risorse diverso da `hub-nva-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
-
 <!-- links -->
 
 [azure-cli-2]: /azure/install-azure-cli
 [azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
+[guidance-hub-spoke]: ./hub-spoke.md
 [azure-vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [best-practices-security]: /azure/best-practices-network-securit
 [connect-to-an-Azure-vnet]: https://technet.microsoft.com/library/dn786406.aspx
@@ -331,6 +264,7 @@ Se si vuole consentire la connessione tra gli spoke, è necessario usare un'appl
 [hybrid-ha]: ./expressroute-vpn-failover.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
+[data center virtuale]: https://aka.ms/vdc
 [vnet-peering]: /azure/virtual-network/virtual-network-peering-overview
 [vnet-peering-limit]: /azure/azure-subscription-service-limits#networking-limits
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
@@ -338,8 +272,6 @@ Se si vuole consentire la connessione tra gli spoke, è necessario usare un'appl
 
 [visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[0]: ./images/hub-spoke.png "Topologia hub-spoke in Azure"
-[1]: ./images/hub-spoke-gateway-routing.svg "Topologia hub-spoke in Azure con routing transitivo"
-[2]: ./images/hub-spoke-no-gateway-routing.svg "Topologia hub-spoke in Azure con routing transitivo usando un'appliance virtuale di rete"
+[0]: ./images/shared-services.png "Topologia con servizi condivisi in Azure"
 [3]: ./images/hub-spokehub-spoke.svg "Topologia hub-spoke-hub-spoke in Azure"
 [ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

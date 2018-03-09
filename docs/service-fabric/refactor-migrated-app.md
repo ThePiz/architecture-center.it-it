@@ -3,11 +3,11 @@ title: Effettuare il refactoring di un'applicazione di Azure Service Fabric migr
 description: Informazioni su come effettuare il refactoring di un'applicazione di Azure Service Fabric esistente migrata da Servizi cloud di Azure
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 450648fbd0b19cdc7585738701914a1ebc1ed779
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Effettuare il refactoring di un'applicazione di Azure Service Fabric migrata da Servizi cloud di Azure
 
@@ -78,7 +78,7 @@ Anche **Tailspin.Web.Survey.Public** è un servizio senza stato con hosting auto
 
 Azure Service Fabric supporta i modelli di programmazione seguenti:
 * Il modello eseguibile guest consente l'organizzazione di qualsiasi file eseguibile in pacchetti come servizio e la distribuzione in un cluster di Service Fabric. Service Fabric gestisce l'orchestrazione e l'esecuzione degli eseguibili guest.
-* Il modello a contenitori consente la distribuzione dei servizi in immagini del contenitore. Service Fabric supporta la creazione e la gestione di contenitori su contenitori del kernel Linux oltre a contenitori di Windows Server. 
+* Il modello a contenitori consente la distribuzione dei servizi in immagini del contenitore. Service Fabric supporta la creazione e la gestione di contenitori su contenitori del kernel Linux e contenitori di Windows Server. 
 * Il modello di programmazione Reliable Services consente la creazione di servizi con o senza stato, integrati con tutte le funzionalità della piattaforma di Service Fabric. I servizi con stato consentono l'archiviazione dello stato replicato nel cluster di Service Fabric. I servizi senza stato non offrono questa opzione.
 * Il modello di programmazione Reliable Actors consente la creazione di servizi che implementano il modello con criterio Actor virtuale.
 

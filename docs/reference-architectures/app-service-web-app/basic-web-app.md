@@ -4,11 +4,11 @@ description: L'architettura consigliata per l'esecuzione delle applicazioni Web 
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: 598eb547f0e96ae334af391183a792637caa8631
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: 38b0739cc61d679742b610b99e92aaad8d3b394d
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="basic-web-application"></a>Applicazione Web di base
 [!INCLUDE [header](../../_includes/header.md)]
@@ -40,7 +40,7 @@ L'architettura include i componenti seguenti:
 
 * **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure. Per usare un nome di dominio personalizzato, ad esempio `contoso.com`, creare record DNS che eseguono il mapping del nome di dominio personalizzato all'indirizzo IP. Per ulteriori informazioni, vedere [Configurare un nome di dominio personalizzato nel servizio app di Azure][custom-domain-name].  
 
-* **Database SQL di Azure**. Il [database SQL][sql-db] è un database relazionale distribuito come servizio nel cloud.
+* **Database SQL di Azure**. Il [database SQL][sql-db] è un database relazionale distribuito come servizio nel cloud. Il database SQL condivide la base di codice con il motore di database di Microsoft SQL Server. A seconda dei requisiti dell'applicazione, è anche possibile usare [Database di Azure per MySQL](/azure/mysql) o [Database di Azure per PostgreSQL](/azure/postgresql). Questi sono servizi di database completamente gestiti rispettivamente basati sui motori di database open source MySQL Server e Postgres.
 
 * **Server logico**. Nel database SQL di Azure un server logico ospita i database. È possibile creare più database per ogni server logico.
 
@@ -60,7 +60,7 @@ All'utente vengono addebitate le istanze del piano di servizio app anche se l'ap
 ### <a name="sql-database"></a>Database SQL
 Usare la [versione V12][sql-db-v12] del database SQL. Il database SQL supporta i [livelli di servizio ][sql-db-service-tiers] Basic, Standard e Premium con più livelli di prestazioni all'interno di ciascuno di essi, misurati in [DTU (Database Transaction Unit)][sql-dtu]. Eseguire la pianificazione delle capacità e scegliere un livello di prestazioni che soddisfi i propri requisiti.
 
-### <a name="region"></a>Area
+### <a name="region"></a>Region
 Eseguire il provisioning del piano di servizio app e del database SQL nella stessa area per ridurre al minimo la latenza di rete. In genere, è consigliabile selezionare l'area più vicina agli utenti.
 
 Anche il gruppo di risorse è associato a un'area, che specifica dove vengono archiviati i metadati di distribuzione. Inserire il gruppo e le relative risorse nella stessa area, per provare a migliorare la disponibilità durante la distribuzione. 

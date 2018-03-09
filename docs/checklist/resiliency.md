@@ -4,15 +4,15 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 51f807715d0ac929806b9a5a13da4efa00566592
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: ca4bf77c9348f6c656348d9cd61d3a1241d69ba8
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
-La resilienza è la capacità di un sistema di recuperare in caso di errore e continuare a funzionare ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). La progettazione di un'applicazione resiliente richiede la pianificazione e la prevenzione di un'ampia gamma di possibili modalità di errore. Usare questo elenco di controllo per esaminare l'architettura delle applicazioni in relazione alla resilienza. 
+La resilienza è la capacità di un sistema di recuperare in caso di errore e continuare a funzionare ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). La progettazione di un'applicazione resiliente richiede la pianificazione e la prevenzione di un'ampia gamma di possibili modalità di errore. Usare questo elenco di controllo per esaminare l'architettura delle applicazioni in relazione alla resilienza. Vedere anche l'[elenco di controllo per la resilienza per servizi di Azure specifici](./resiliency-per-service.md).
 
 ## <a name="requirements"></a>Requisiti
 
@@ -156,135 +156,10 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Organizzare i gruppi di risorse in base alla funzione e al ciclo di vita.**  Un gruppo di risorse, in genere, contiene risorse che condividono lo stesso ciclo di vita. In questo modo, è più semplice gestire le distribuzioni, eliminare le distribuzioni di test e assegnare i diritti di accesso, riducendo le probabilità che una distribuzione di produzione venga accidentalmente eliminata o modificata. Creare gruppi di risorse separati per gli ambienti di produzione, sviluppo e test. In una distribuzione in più aree, inserire le risorse per ogni area in gruppi di risorse separati. In questo modo diventa più semplice ridistribuire un'area senza influire sulle altre.
 
-## <a name="azure-services"></a>Servizi di Azure.
-Le voci seguenti dell'elenco di controllo si applicano a servizi specifici in Azure.
+## <a name="next-steps"></a>Passaggi successivi
 
-- [Servizio app](#app-service)
-- [Gateway applicazione](#application-gateway)
-- [Cosmos DB](#cosmos-db)
-- [Cache Redis](#redis-cache)
-- [Ricerca](#search)
-- [Archiviazione](#storage)
-- [Database SQL](#sql-database)
-- [SQL Server in esecuzione in una VM](#sql-server-running-in-a-vm)
-- [Gestione traffico](#traffic-manager)
-- [Macchine virtuali](#virtual-machines)
-- [Rete virtuale](#virtual-network)
-
-### <a name="app-service"></a>Servizio app
-
-**Usare il livello Standard o Premium.** Questi livelli supportano gli slot di staging e i backup automatici. Per altre informazioni, vedere [Panoramica approfondita dei piani per Servizio app di Azure](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/)
-
-**Evitare il ridimensionamento.** Selezionare invece un livello e una dimensione di istanza che soddisfino i requisiti di prestazioni in condizioni di carico tipico e quindi [scalare orizzontalmente](/azure/app-service-web/web-sites-scale/) le istanze per gestire le modifiche nel volume del traffico. Il ridimensionamento può determinare il riavvio dell'applicazione.  
-
-**Archiviare la configurazione come impostazioni dell'app.** Usare le impostazioni dell'app per conservare le impostazioni di configurazione come impostazioni dell'app. Definire le impostazioni nei modelli di Resource Manager oppure tramite PowerShell, in modo da poterle applicare come parte di un processo di distribuzione/aggiornamento automatizzato, che è più affidabile. Per altre informazioni, vedere [Configurazione delle app Web in Servizio app di Azure](/azure/app-service-web/web-sites-configure/).
-
-**Creare piani di servizio app separati per la produzione e per il test.** Non usare gli slot nella distribuzione di produzione per il test.  Tutte le app contenute nello stesso piano di servizio app condividono le stesse istanze di VM. L'inserimento delle distribuzioni di produzione e di test nello stesso piano può influire negativamente sulla distribuzione di produzione. I test di carico, ad esempio, possono ridurre le prestazioni del sito di produzione attivo. Se si inseriscono le distribuzioni di test in un piano separato, le si isola dalla versione di produzione.  
-
-**Separare le app Web dalle API Web.** Se la soluzione contiene sia un front-end Web che un'API Web, si può considerare di scomporli in app del Servizio app separate. Questa progettazione rende più semplice scomporre la soluzione in base al carico di lavoro. Si possono eseguire l'app Web e l'API Web in piani di servizio app separati in modo che le si possa scalare in maniera indipendente. Se inizialmente questo livello di scalabilità non è necessario, è possibile distribuire le app nello stesso piano e spostarle successivamente in piani separati, se necessario.
-
-**Evitare di usare la funzionalità di backup del Servizio app per eseguire il backup dei database SQL di Azure.** Usare invece i [backup automatici del database SQL][sql-backup]. Il backup del Servizio app di Azure esporta il database in un file SQL con estensione bacpac, che ha un costo in DTU.  
-
-**Distribuire in uno slot di staging.** Creare uno slot di distribuzione per lo staging. Distribuire gli aggiornamenti dell'applicazione nello slot di staging e verificare la distribuzione prima di scambiarla nell'ambiente di produzione. In questo modo, diminuiscono le probabilità che si esegua un aggiornamento non corretto nell'ambiente di produzione. Assicura inoltre che tutte le istanze siano pronte per essere scambiate nell'ambiente di produzione. Molte applicazioni presentano tempi di riscaldamento e di avvio a freddo piuttosto lunghi. Per altre informazioni, vedere [Configurare ambienti di staging per le app Web nel Servizio app di Azure](/azure/app-service-web/web-sites-staged-publishing/).
-
-**Creare uno slot di distribuzione per contenere l'ultima distribuzione valida nota.** Quando si distribuisce un aggiornamento nell'ambiente di produzione, spostare la distribuzione di produzione precedente nell'ultimo slot valido noto. Questa operazione rende più semplice eseguire il rollback di una distribuzione non corretta. Se viene rilevato un problema in un secondo momento, è possibile ripristinare rapidamente l'ultima versione valida nota. Per altre informazioni, vedere [Applicazione Web di base](../reference-architectures/app-service-web-app/basic-web-app.md).
-
-**Abilitare la registrazione diagnostica**, includendo la registrazione delle applicazioni e del server Web. La registrazione è importante per il monitoraggio e la diagnostica. Vedere [Abilitare la registrazione diagnostica per le app Web nel servizio app di Azure](/azure/app-service-web/web-sites-enable-diagnostic-log/).
-
-**Registrare nell'archivio BLOB.** Questa operazione rende più semplice raccogliere e analizzare i dati.
-
-**Creare un account di archiviazione separato per i log.** Non usare lo stesso account di archiviazione per i log e i dati dell'applicazione. In questo modo si impedisce che la registrazione riduca le prestazioni dell'applicazione.
-
-**Monitorare le prestazioni.** Usare un servizio di monitoraggio delle prestazioni, ad esempio [New Relic](http://newrelic.com/) o [Application Insights](/azure/application-insights/app-insights-overview/) per monitorare le prestazioni dell'applicazione e il comportamento sotto carico.  Il monitoraggio delle prestazioni offre informazioni approfondite in tempo reale sull'applicazione. Consente di diagnosticare i problemi e di eseguire l'analisi della causa radice degli errori.
-
-### <a name="application-gateway"></a>gateway applicazione
-
-**Eseguire il provisioning di almeno due istanze.** Distribuire il gateway applicazione con almeno due istanze. Un'istanza singola è un singolo punto di errore. Usare due o più istanze per la ridondanza e la scalabilità. Per essere idonei al [contratto di servizio](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/), è necessario eseguire il provisioning di due o più istanze di medie o grandi dimensioni.
-
-### <a name="cosmos-db"></a>Cosmos DB
-
-**Replicare il database tra aree.** Azure Cosmos DB consente di associare qualsiasi numero di aree di Azure a un account del database Cosmos DB. Un database Microsoft Azure Cosmos DB può avere più aree di lettura e un'area di scrittura. Se si verifica un errore nell'area di scrittura, è possibile leggere da un'altra replica. Il client SDK gestisce questa situazione automaticamente. È anche possibile eseguire il failover dell'area di scrittura in un'altra area. Per altre informazioni, vedere [Come distribuire i dati a livello globale con Azure Cosmos DB](/azure/cosmos-db/distribute-data-globally).
-
-### <a name="redis-cache"></a>Cache Redis
-
-**Configurare la replica geografica**. La replica geografica fornisce un meccanismo per il collegamento di due istanze di Cache Redis di Azure di livello Premium. I dati scritti nella cache primaria vengono replicati in una cache secondaria di sola lettura. Per altre informazioni, vedere [Come configurare la replica geografica per Cache Redis di Azure](/azure/redis-cache/cache-how-to-geo-replication).
-
-**Configurare la persistenza dei dati.** La persistenza di Redis consente di rendere persistenti i dati archiviati in Redis. È inoltre possibile creare snapshot ed eseguire il backup dei dati, per consentirne il caricamento in caso di errore hardware. Per altre informazioni, vedere [Come configurare la persistenza dei dati per una Cache Redis di Azure Premium](/azure/redis-cache/cache-how-to-premium-persistence).
-
-Se si usa Redis Cache come cache di dati temporanea e non come archivio persistente, questi consigli potrebbero non essere applicabili. 
-
-### <a name="search"></a>Ricerca
-
-**Eseguire il provisioning di più repliche.** Usare almeno due repliche per la disponibilità elevata in lettura o tre per la disponibilità elevata in scrittura.
-
-**Configurare gli indicizzatori per le distribuzioni in più aree.** Con una distribuzione in più aree, si possono considerare le opzioni per la continuità nell'indicizzazione.
-
-  * Se l'origine dati viene replicata geograficamente, occorre puntare ogni indicizzatore di ogni servizio di Ricerca di Azure regionale sulla replica dell'origine dati locale. Tale approccio non è tuttavia consigliato per i set di dati di grandi dimensioni archiviati nel database di SQL Azure. Il motivo è che Ricerca di Azure non può eseguire l'indicizzazione incrementale da repliche di database SQL secondarie, ma solo da repliche primarie. Puntare quindi tutti gli indicizzatori sulla replica primaria. Dopo un failover, puntare gli indicizzatori di Ricerca di Azure sulla nuova replica primaria.  
-  * Se l'origine dati non è replicata geograficamente, puntare più indicizzatori sulla stessa origine dati, in modo che i servizi di Ricerca di Azure in più aree eseguano l'indicizzazione dall'origine dati in modo continuativo e indipendente. Per altre informazioni, vedere [Considerazioni sulle prestazioni e sull'ottimizzazione di Ricerca di Azure][search-optimization].
-
-### <a name="storage"></a>Archiviazione
-
-**Per i dati dell'applicazione, usare l'Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).** L'archiviazione RA-GRS replica i dati in un'area secondaria e fornisce l'accesso in sola lettura dall'area secondaria. Se si verifica un'interruzione dell'archiviazione nell'area primaria, l'applicazione può leggere i dati dall'area secondaria. Per altre informazioni, vedere [Replica di Archiviazione di Azure](/azure/storage/storage-redundancy/).
-
-**Per i dischi di VM, usare Managed Disks.** Il servizio [Managed Disks][managed-disks] offre una maggiore affidabilità per le VM in un set di disponibilità, perché fa in modo che i dischi siano sufficientemente isolati gli uni dagli altri per evitare singoli punti di errore. I dischi gestiti, inoltre, non sono soggetti ai limiti delle operazioni di I/O al secondo dei dischi rigidi virtuali creati in un account di archiviazione. Per altre informazioni, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure][vm-manage-availability].
-
-**Per l'archiviazione code, creare una coda di backup in un'altra area.** Per l'archiviazione code, una replica di sola lettura ha un uso limitato, perché non è possibile accodare o rimuovere oggetti dalla coda. Creare invece una coda di backup in un account di archiviazione in un'altra area. Se si verifica un'interruzione nell'archiviazione, l'applicazione può usare la coda di backup finché l'area primaria non torna nuovamente disponibile. In questo modo, l'applicazione può comunque elaborare nuove richieste.  
-
-### <a name="sql-database"></a>Database SQL
-
-**Usare il livello Standard o Premium.** Questi livelli offrono un periodo di ripristino temporizzato più lungo (35 giorni). Per altre informazioni vedere [SQL Database options and performance](/azure/sql-database/sql-database-service-tiers/) (Prestazioni e opzioni del database SQL).
-
-**Abilitare il controllo del database SQL.** Il controllo può essere usato per diagnosticare errori umani o attacchi dannosi. Per altre informazioni, vedere l' [Introduzione al controllo del database SQL](/azure/sql-database/sql-database-auditing-get-started/).
-
-**Usare la replica geografica attiva.** Usare la replica geografica attiva per crearne una secondaria leggibile in un'altra area.  Se il database primario restituisce un errore o deve semplicemente essere portato offline, eseguire un failover manuale al database secondario.  Nella fase di failover il database secondario rimane in sola lettura.  Per altre informazioni, vedere [SQL Database Active Geo-Replication](/azure/sql-database/sql-database-geo-replication-overview/) (Replica geografica attiva del database SQL).
-
-**Usare il partizionamento orizzontale.** Considerare l'utilizzo del partizionamento orizzontale per il database. Il partizionamento orizzontale può isolare gli errori. Per altre informazioni, vedere [Aumentare il numero di istanze con il database SQL di Azure](/azure/sql-database/sql-database-elastic-scale-introduction/).
-
-**Usare il ripristino temporizzato per recuperare da un errore umano.**  Il ripristino temporizzato riporta il database a un punto precedente nel tempo. Per altre informazioni, vedere [Ripristinare un database SQL di Azure mediante i backup automatici del database][sql-restore].
-
-**Eseguire il ripristino a livello geografico per recuperare da un'interruzione del servizio.** Il ripristino geografico recupera un database da un backup con ridondanza geografica.  Per altre informazioni, vedere [Ripristinare un database SQL di Azure mediante i backup automatici del database][sql-restore].
-
-### <a name="sql-server-running-in-a-vm"></a>SQL Server in esecuzione in una VM
-
-**Replicare il database.** Usare i gruppi di disponibilità AlwaysOn di SQL Server per replicare il database. Questo approccio offre disponibilità elevata se un'istanza di SQL Server ha esito negativo. Per altre informazioni, vedere [Eseguire macchine virtuali Windows per un'applicazione a più livelli](../reference-architectures/virtual-machines-windows/n-tier.md).
-
-**Eseguire il backup del database.** Se si usa già [Backup di Azure](https://azure.microsoft.com/documentation/services/backup/) per eseguire il backup delle VM, considerare di usare [Backup di Azure per carichi di lavoro di SQL Server con DPM](/azure/backup/backup-azure-backup-sql/). Con questo approccio, si usano un solo ruolo di amministratore di backup per l'organizzazione e una procedura di ripristino unificata per le macchine virtuali e SQL Server. Usare altrimenti [Backup gestito di SQL Server in Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
-
-### <a name="traffic-manager"></a>servizio Gestione traffico
-
-**Eseguire il failback manuale.** Dopo un failover di Gestione traffico, eseguire il failback manuale anziché automatico. Prima del failback, verificare che tutti i sottosistemi dell'applicazione siano integri.  In caso contrario, si potrebbe creare una situazione in cui l'applicazione passa alternativamente da un data center all'altro. Per altre informazioni, vedere [Eseguire macchine virtuali in più aree per una disponibilità elevata](../reference-architectures/virtual-machines-windows/multi-region-application.md).
-
-**Creare un endpoint di probe di integrità.** Creare un endpoint personalizzato che segnali l'integrità generale dell'applicazione. Gestione traffico può così eseguire il failover se si verifica un errore in un percorso critico, non solo nel front-end. L'endpoint restituisce un codice di errore HTTP se una qualsiasi dipendenza critica non è integra o non è raggiungibile. Non segnalare tuttavia gli errori relativi ai servizi non critici. In caso contrario, il probe di integrità potrebbe generare il failover quando non è necessario e creare di conseguenza falsi positivi. Per altre informazioni, vedere [Traffic Manager endpoint monitoring and failover](/azure/traffic-manager/traffic-manager-monitoring/) (Monitoraggio degli endpoint di Gestione traffico e failover).
-
-### <a name="virtual-machines"></a>Macchine virtuali
-
-**Evitare di eseguire un carico di lavoro di produzione in una singola VM.** La distribuzione in una singola macchina virtuale non è resistente alle operazioni di manutenzione pianificate o non pianificate. Inserire invece più macchine virtuali in un set di disponibilità o [set di scalabilità di macchine virtuali](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview/), con un servizio di bilanciamento del carico in primo piano.
-
-**Specificare un set di disponibilità quando si esegue il provisioning della VM.** Non è possibile attualmente aggiungere una macchina virtuale a un set di disponibilità dopo avere eseguito il provisioning della macchina virtuale. Quando si aggiunge una nuova macchina virtuale a un set di disponibilità esistente, assicurarsi di creare una scheda di rete per la macchina virtuale e aggiungere la scheda di rete al pool di indirizzi back-end nel servizio di bilanciamento del carico. In caso contrario, il servizio di bilanciamento del carico non instrada il traffico di rete a tale macchina virtuale.
-
-**Inserire ogni livello applicazione in un set di disponibilità separato.** In un'applicazione a più livelli, non inserire le macchine virtuali appartenenti a livelli differenti nello stesso set di disponibilità. Le macchine virtuali in un set di disponibilità sono posizionate in più domini di errore (FD) e di aggiornamento (UD). Per ottenere il vantaggio della ridondanza dei domini di errore e dei domini di aggiornamento, tuttavia, ogni macchina virtuale nel set di disponibilità deve essere in grado di gestire le stesse richieste del client.
-
-**Scegliere le dimensioni di VM corrette in base ai requisiti di prestazioni.** Quando si sposta un carico di lavoro esistente in Azure, per iniziare scegliere le dimensioni di VM più simili a quelle dei server locali. Misurare quindi le prestazioni del carico di lavoro effettivo in relazione agli aspetti di CPU, memoria e operazioni di I/O al secondo del disco e regolare le dimensioni secondo le necessità. Ciò aiuta a garantire il corretto funzionamento dell'applicazione in un ambiente cloud. Inoltre, se sono necessarie più schede di interfaccia di rete, tenerne presente il limite per ogni dimensione.
-
-**Usare Managed Disks per i dischi rigidi virtuali.** Il servizio [Managed Disks][managed-disks] offre una maggiore affidabilità per le VM in un set di disponibilità, perché fa in modo che i dischi siano sufficientemente isolati gli uni dagli altri per evitare singoli punti di errore. I dischi gestiti, inoltre, non sono soggetti ai limiti delle operazioni di I/O al secondo dei dischi rigidi virtuali creati in un account di archiviazione. Per altre informazioni, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure][vm-manage-availability].
-
-**Installare le applicazioni in un disco di dati, non nel disco del sistema operativo.** In caso contrario, è possibile raggiungere il limite delle dimensioni del disco.
-
-**Usare Backup di Azure per eseguire il backup delle VM.** I backup proteggono contro la perdita di dati accidentale. Per altre informazioni, vedere [Protect Azure VMs with a recovery services vault](/azure/backup/backup-azure-vms-first-look-arm/) (Proteggere le VM di Azure con l'insieme di credenziali dei servizi di ripristino).
-
-**Abilitare i log di diagnostica**, inclusi le metriche di integrità di base, i log dell'infrastruttura e la [diagnostica di avvio][boot-diagnostics]. La diagnostica di avvio permette di diagnosticare gli errori di avvio quando la VM passa a uno stato non avviabile. Per altre informazioni, vedere [Overview of Azure Diagnostic Logs][diagnostics-logs] (Panoramica dei log di diagnostica di Azure).
-
-**Usare l'estensione AzureLogCollector.** Solo VM Windows. Questa estensione aggrega i log della piattaforma Azure e li carica in Archiviazione di Azure, senza che l'operatore acceda in remoto alla macchina virtuale. Per altre informazioni, vedere [Estensione AzureLogCollector](/azure/virtual-machines/virtual-machines-windows-log-collector-extension/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-
-### <a name="virtual-network"></a>Rete virtuale
-
-**Per inserire nell'elenco degli elementi consentiti o bloccare gli indirizzi IP pubblici, aggiungere un gruppo di sicurezza di rete (NSG) alla subnet.** Bloccare l'accesso di utenti malintenzionati o consentire l'accesso solo agli utenti che dispongono delle autorizzazioni per accedere all'applicazione.  
-
-**Creare un probe di integrità personalizzato.** I probe di integrità di Load Balancer possono testare i protocolli HTTP o TCP. Se una macchina virtuale viene eseguita in un server HTTP, il migliore indicatore dello stato di integrità è un probe HTTP rispetto a un probe TCP. Per un probe HTTP, usare un endpoint personalizzato che segnali l'integrità complessiva dell'applicazione, incluse tutte le dipendenze critiche. Per altre informazioni, vedere [Panoramica di Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
-
-**Non bloccare il probe di integrità.** Il probe di integrità di Load Balancer viene inviato da un indirizzo IP noto, 168.63.129.16. Non bloccare il traffico da o verso questo indirizzo IP nei criteri del firewall o nelle regole del gruppo di sicurezza di rete. Se si blocca il probe di integrità, il servizio di bilanciamento del carico rimuove la macchina virtuale dalla rotazione.
-
-**Abilitare la registrazione di Load Balancer.** I log mostrano il numero di macchine virtuali nel back-end che non ricevono il traffico di rete a causa di risposte del probe non riuscite. Per altre informazioni, vedere [Log analytics for Azure Load Balancer](/azure/load-balancer/load-balancer-monitor-log/) (Analisi dei log per Azure Load Balancer).
+- [Elenco di controllo per la resilienza per servizi di Azure specifici](./resiliency-per-service.md)
+- [Analisi della modalità di errore](../resiliency/failure-mode-analysis.md)
 
 
 <!-- links -->
@@ -292,22 +167,14 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 [asynchronous-c-sharp]: /dotnet/articles/csharp/async
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
 [azure-backup]: https://azure.microsoft.com/documentation/services/backup/
-[boot-diagnostics]: https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/
 [circuit-breaker]: ../patterns/circuit-breaker.md
 [cloud-service-autoscale]: /azure/cloud-services/cloud-services-how-to-scale/
-[diagnostics-logs]: /azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs/
 [fma]: ../resiliency/failure-mode-analysis.md
-[resilient-deployment]: ../resiliency/index.md#resilient-deployment
 [load-balancer]: /azure/load-balancer/load-balancer-overview/
-[managed-disks]: /azure/storage/storage-managed-disks-overview
 [monitoring-and-diagnostics-guidance]: ../best-practices/monitoring.md
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
 [retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
-[search-optimization]: /azure/search/search-performance-optimization/
-[sql-backup]: /azure/sql-database/sql-database-automated-backups/
-[sql-restore]: /azure/sql-database/sql-database-recovery-using-backups/
 [traffic-manager]: /azure/traffic-manager/traffic-manager-overview/
 [traffic-manager-routing]: /azure/traffic-manager/traffic-manager-routing-methods/
-[vm-manage-availability]: /azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set
 [vmss-autoscale]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview/
