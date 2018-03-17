@@ -2,11 +2,12 @@
 title: Centro architetture Azure
 description: "Il centro architetture Azure è il centro ufficiale per materiale sussidiario, progetti, modelli e procedure consigliate per la creazione di soluzioni con Microsoft Azure. È curato dal team Microsoft modelli e procedure."
 layout: LandingPage
-ms.openlocfilehash: eb069ae80ce70eb66ef57b1e0e21f7181d17d21f
-ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
+ms.topic: landing-page
+ms.openlocfilehash: 31177903bea137b40a457fe9360596e8096d6ab2
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="azure-architecture-center"></a>Centro architetture Azure
 
