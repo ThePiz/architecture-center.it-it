@@ -1,10 +1,10 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: 00abbfdeac89a9006517195bd4bbc514d587fe74
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9bd86f1b3527f1116d4f5169baf76f8a5b9a385b
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Guida all'architettura delle applicazioni in Azure
 
@@ -46,7 +46,7 @@ Infrastruttura non modificabile<br/>
 </tbody>
 </table>
 
-Questa guida è rivolta ai progettisti, agli sviluppatori e ai team operativi. Non è concepita come guida dettagliata all'utilizzo dei singoli servizi Azure. Illustra gli schemi architetturali e le procedure consigliate da applicare in fase di compilazione sulla piattaforma cloud di Azure.
+Questa guida è rivolta ai progettisti, agli sviluppatori e ai team operativi. Non è concepita come guida dettagliata all'utilizzo dei singoli servizi Azure. Illustra gli schemi architetturali e le procedure consigliate da applicare in fase di compilazione sulla piattaforma cloud di Azure. È anche possibile scaricare una [versione e-book della guida][ebook].
 
 ## <a name="how-this-guide-is-structured"></a>Struttura della guida
 
@@ -78,6 +78,7 @@ La Guida all'architettura delle applicazione in Azure è concepita come una seri
 [checklists]: ../checklist/index.md
 [compute-options]: ./technology-choices/compute-comparison.md
 [design-principles]: ./design-principles/index.md
+[ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
 [patterns]: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
 [pillars]: ./pillars.md
 [ref-archs]: ../reference-architectures/index.md
