@@ -9,7 +9,7 @@ ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/14/2017
 ---
-# <a name="ambassador-pattern"></a>Modello ad ambasciata
+# <a name="ambassador-pattern"></a>Modello Ambassador
 
 Creare servizi helper che inviano richieste di rete per conto di un servizio consumer o di un'applicazione. Si può pensare a un servizio ambasciata come un proxy out-of-process che ha un percorso condiviso con il client.
 
@@ -27,9 +27,9 @@ Inserire i framework client e le librerie in un processo esterno che funge da pr
 
 ![](./_images/ambassador.png)
 
-Le funzionalità che vengono scaricate sull'ambasciata possono essere gestite in modo indipendente dall'applicazione. È possibile, non solo aggiornare e modificare l'ambasciata senza interferire con le funzionalità legacy dell'applicazione, ma anche che team separati e specializzati implementino e mantengano la sicurezza, la rete e le funzionalità di autenticazione che sono state spostate nell'ambasciata.
+Le funzionalità che vengono scaricate sull'Ambassador possono essere gestite in modo indipendente dall'applicazione. È possibile, non solo aggiornare e modificare l'Ambassador senza interferire con le funzionalità legacy dell'applicazione, ma anche che team separati e specializzati implementino e mantengano la sicurezza, la rete e le funzionalità di autenticazione che sono state spostate nell'Ambassador.
 
-I servizi ambasciata possono essere distribuiti come un [collaterale][sidecar] che accompagna il ciclo di vita di un'applicazione o un servizio consumer. In alternativa, se un'ambasciata è condivisa da più processi separati in un host comune, può essere distribuita come un daemon o un servizio di Windows. Se il servizio consumer è inserito in contenitori, l'ambasciata dovrebbe essere creata come un contenitore separato nello stesso host, con i collegamenti appropriati configurati per la comunicazione.
+I servizi Ambassador possono essere distribuiti come un [collaterale][sidecar] che accompagna il ciclo di vita di un'applicazione o un servizio consumer. In alternativa, se un Ambassador è condiviso da più processi separati in un host comune, può essere distribuito come un daemon o un servizio di Windows. Se il servizio consumer è inserito in contenitori, l'Ambassador dovrebbe essere creato come un contenitore separato nello stesso host, con i collegamenti appropriati configurati per la comunica
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
