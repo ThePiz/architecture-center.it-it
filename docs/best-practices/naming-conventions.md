@@ -1,6 +1,6 @@
 ---
 title: Convenzioni di denominazione per le risorse di Azure
-description: "Convenzioni di denominazione per le risorse di Azure. Come denominare macchine virtuali, account di archiviazione, reti, reti virtuali, subnet e altre entità di Azure"
+description: Convenzioni di denominazione per le risorse di Azure. Come denominare macchine virtuali, account di archiviazione, reti, reti virtuali, subnet e altre entità di Azure
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices

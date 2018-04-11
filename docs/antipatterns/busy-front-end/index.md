@@ -1,6 +1,6 @@
 ---
 title: Antipattern Front End occupato
-description: "Le attività asincrone in un numero elevato di thread in background può privare delle risorse necessarie altre attività in primo piano."
+description: Le attività asincrone in un numero elevato di thread in background può privare delle risorse necessarie altre attività in primo piano.
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: cedb80ddac5ceb1eb901455df3165993fd28a138

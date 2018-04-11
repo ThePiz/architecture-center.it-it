@@ -1,6 +1,6 @@
 ---
 title: Livellamento del carico basato sulle code
-description: "Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti."
+description: Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017

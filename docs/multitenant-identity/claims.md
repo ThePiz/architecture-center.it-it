@@ -1,6 +1,6 @@
 ---
-title: "Uso delle identità basate sulle attestazioni nelle applicazioni multi-tenant"
-description: "Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione"
+title: Uso delle identità basate sulle attestazioni nelle applicazioni multi-tenant
+description: Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

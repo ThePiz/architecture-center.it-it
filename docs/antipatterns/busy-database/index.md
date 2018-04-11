@@ -1,6 +1,6 @@
 ---
 title: Antipattern del database occupato
-description: "L'esecuzione del processo di offload in un server del database può causare problemi di prestazioni e scalabilità."
+description: L'esecuzione del processo di offload in un server del database può causare problemi di prestazioni e scalabilità.
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 9fdbde0731a1be570ef611894a9d23a1be87f4e7

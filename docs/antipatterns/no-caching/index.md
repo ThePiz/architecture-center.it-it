@@ -1,6 +1,6 @@
 ---
 title: Nessun antipattern della memorizzazione nella cache
-description: "Il recupero ripetuto degli stessi dati può ridurre le prestazioni e la scalabilità."
+description: Il recupero ripetuto degli stessi dati può ridurre le prestazioni e la scalabilità.
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 8a2bc3b473a30536cc1bef9e1dcad87acb46c4a9

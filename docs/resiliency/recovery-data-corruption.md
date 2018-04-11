@@ -1,6 +1,6 @@
 ---
 title: Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati
-description: "Articolo incentrato sul ripristino dal danneggiamento dei dati o dall'eliminazione accidentale di dati e sulla progettazione di applicazioni resilienti, a disponibilità elevata e con tolleranza di errore, oltre che sulla pianificazione del ripristino di emergenza."
+description: Articolo incentrato sul ripristino dal danneggiamento dei dati o dall'eliminazione accidentale di dati e sulla progettazione di applicazioni resilienti, a disponibilità elevata e con tolleranza di errore, oltre che sulla pianificazione del ripristino di emergenza.
 author: MikeWasson
 ms.date: 01/10/2018
 ms.openlocfilehash: 76d2f996750d5a67b67bd5dc4977580f3b8abbc3

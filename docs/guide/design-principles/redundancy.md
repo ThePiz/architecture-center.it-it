@@ -1,6 +1,6 @@
 ---
 title: Rendere ogni elemento ridondante
-description: "Per evitare singoli punti di guasto, è consigliabile applicare la ridondanza nell'applicazione."
+description: Per evitare singoli punti di guasto, è consigliabile applicare la ridondanza nell'applicazione.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 05ccf78c2cfbcd4e2d26200e70463d388d54f671

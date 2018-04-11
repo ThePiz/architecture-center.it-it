@@ -1,6 +1,6 @@
 ---
 title: Archivio di configurazione esterno
-description: "È possibile estrarre le informazioni di configurazione dal pacchetto di distribuzione dell'applicazione e spostarle in una posizione centralizzata."
+description: È possibile estrarre le informazioni di configurazione dal pacchetto di distribuzione dell'applicazione e spostarle in una posizione centralizzata.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017

@@ -1,6 +1,6 @@
 ---
 title: 'Spiegazione: Informazioni su un tenant di Azure Active Directory'
-description: "Illustra il funzionamento interno di Azure Active Directory per fornire l'identità come servizio (IDaaS) in Azure"
+description: Illustra il funzionamento interno di Azure Active Directory per fornire l'identità come servizio (IDaaS) in Azure
 author: petertay
 ms.openlocfilehash: ce5a33b92047e1f360eee8fcbc7a726bcf8cd19f
 ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242

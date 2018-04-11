@@ -1,6 +1,6 @@
 ---
-title: "Coda con priorità"
-description: "Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa."
+title: Coda con priorità
+description: Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017

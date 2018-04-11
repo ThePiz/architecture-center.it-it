@@ -1,6 +1,6 @@
 ---
 title: Progettazione di applicazioni resilienti per Azure
-description: "Come creare applicazioni resilienti in Azure per disponibilità elevata e ripristino di emergenza."
+description: Come creare applicazioni resilienti in Azure per disponibilità elevata e ripristino di emergenza.
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency

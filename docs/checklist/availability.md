@@ -1,6 +1,6 @@
 ---
-title: "Elenco di controllo della disponibilità"
-description: "Elenco di controllo in cui vengono fornite le linee guida per i problemi di disponibilità durante la progettazione."
+title: Elenco di controllo della disponibilità
+description: Elenco di controllo in cui vengono fornite le linee guida per i problemi di disponibilità durante la progettazione.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist

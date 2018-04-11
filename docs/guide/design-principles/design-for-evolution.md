@@ -1,6 +1,6 @@
 ---
 title: Progettare per le modifiche
-description: "Una progettazione in grado di evolversi è fondamentale per l'innovazione continua."
+description: Una progettazione in grado di evolversi è fondamentale per l'innovazione continua.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 35e91228f3fb0a303594ec06f05b6865008e3a4f

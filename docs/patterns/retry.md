@@ -1,6 +1,6 @@
 ---
 title: Retry
-description: "È possibile abilitare un'applicazione per gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza."
+description: È possibile abilitare un'applicazione per gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017

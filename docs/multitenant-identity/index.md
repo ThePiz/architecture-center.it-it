@@ -1,6 +1,6 @@
 ---
-title: "Gestione delle identità per le applicazioni multi-tenant"
-description: "Procedure consigliate per l'autenticazione, l'autorizzazione e la gestione delle identità in applicazioni multi-tenant."
+title: Gestione delle identità per le applicazioni multi-tenant
+description: Procedure consigliate per l'autenticazione, l'autorizzazione e la gestione delle identità in applicazioni multi-tenant.
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

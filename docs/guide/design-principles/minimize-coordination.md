@@ -1,6 +1,6 @@
 ---
 title: Ridurre al minimo il coordinamento
-description: "Ridurre al minimo il coordinamento tra i servizi per le applicazioni per ottenere la scalabilità"
+description: Ridurre al minimo il coordinamento tra i servizi per le applicazioni per ottenere la scalabilità
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70

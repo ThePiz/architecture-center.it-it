@@ -1,6 +1,6 @@
 ---
 title: Antipattern di prestazioni per le applicazioni cloud
-description: "Procedure comuni che possono causare problemi di scalabilità."
+description: Procedure comuni che possono causare problemi di scalabilità.
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 423fe6533e57268610f625f523714cd1bce89546

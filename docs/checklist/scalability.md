@@ -1,6 +1,6 @@
 ---
-title: "Elenco di controllo per la scalabilità"
-description: "Indicazioni sull'elenco di controllo per la scalabilità per le problematiche di progettazione relative alla scalabilità automatica di Azure."
+title: Elenco di controllo per la scalabilità
+description: Indicazioni sull'elenco di controllo per la scalabilità per le problematiche di progettazione relative alla scalabilità automatica di Azure.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
