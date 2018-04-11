@@ -260,4 +260,5 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 
 [state]: http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 [autenticazione]: authenticate.md
+[Authentication]: authenticate.md
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

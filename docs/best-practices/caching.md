@@ -1,6 +1,6 @@
 ---
 title: Informazioni aggiuntive sulla memorizzazione nella cache
-description: "Indicazioni per la memorizzazione nella cache per migliorare le prestazioni e la scalabilità."
+description: Indicazioni per la memorizzazione nella cache per migliorare le prestazioni e la scalabilità.
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices

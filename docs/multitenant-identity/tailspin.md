@@ -67,5 +67,6 @@ ms.lasthandoff: 11/14/2017
 [authentication]: authenticate.md
 
 [Eseguire l'applicazione Surveys]: ./run-the-app.md
+[Run the Surveys application]: ./run-the-app.md
 [ASP.NET Core]: /aspnet/core
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

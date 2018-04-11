@@ -166,6 +166,9 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 [Tailspin]: tailspin.md
 
 [autorizzazione]: authorize.md
+[authorization]: authorize.md
 [Protezione di un'API Web back-end]: web-api.md (Protezione di un'API Web di back-end)
+[Securing a backend web API]: web-api.md
 [manifesto dell'applicazione]: /azure/active-directory/active-directory-application-manifest/
+[application manifest]: /azure/active-directory/active-directory-application-manifest/
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

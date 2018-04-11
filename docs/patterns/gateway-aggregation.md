@@ -1,6 +1,6 @@
 ---
 title: Modello di aggregazione gateway
-description: "Usare un gateway per aggregare più richieste singole in un'unica richiesta."
+description: Usare un gateway per aggregare più richieste singole in un'unica richiesta.
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: f59c8b8b02c6db28024d13621b782997e63a4e9e

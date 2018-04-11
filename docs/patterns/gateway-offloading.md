@@ -1,6 +1,6 @@
 ---
 title: Modello di offload gateway
-description: "Eseguire l'offload delle funzionalità dei servizi condivise o specializzate in un proxy gateway."
+description: Eseguire l'offload delle funzionalità dei servizi condivise o specializzate in un proxy gateway.
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: 6b3e4541aae77349ca91c18c788ddb508912361d

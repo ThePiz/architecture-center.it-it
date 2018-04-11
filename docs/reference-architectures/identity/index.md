@@ -1,6 +1,6 @@
 ---
-title: "Gestione delle identità"
-description: "Illustra e confronta i diversi metodi disponibili per la gestione delle identità in sistemi ibridi che estendono il limite in locale/cloud con Azure."
+title: Gestione delle identità
+description: Illustra e confronta i diversi metodi disponibili per la gestione delle identità in sistemi ibridi che estendono il limite in locale/cloud con Azure.
 layout: LandingPage
 ms.openlocfilehash: de98ee30306f5e712759ab7140bd430cb6d4cd75
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

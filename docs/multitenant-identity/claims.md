@@ -1,6 +1,6 @@
 ---
-title: "Uso delle identità basate sulle attestazioni nelle applicazioni multi-tenant"
-description: "Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione"
+title: Uso delle identità basate sulle attestazioni nelle applicazioni multi-tenant
+description: Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
@@ -117,9 +117,13 @@ ms.lasthandoff: 11/14/2017
 <!-- Links -->
 
 [parametro di ambito]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
+[scope parameter]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [Token e tipi di attestazioni supportati]: /azure/active-directory/active-directory-token-and-claims/
+[Supported Token and Claim Types]: /azure/active-directory/active-directory-token-and-claims/
 [Autorità di certificazione]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[issuer]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [eventi di autenticazione]: authenticate.md#authentication-events
+[Authentication events]: authenticate.md#authentication-events
 [signup]: signup.md
 [Claims-Based Authorization]: /aspnet/core/security/authorization/claims
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

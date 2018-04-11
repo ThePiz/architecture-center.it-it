@@ -1,6 +1,6 @@
 ---
 title: Usare il migliore archivio dati per il processo
-description: "Scegliere la tecnologia di archiviazione che rappresenta la soluzione migliore per i dati e per le modalità d'uso che si adopereranno successivamente"
+description: Scegliere la tecnologia di archiviazione che rappresenta la soluzione migliore per i dati e per le modalità d'uso che si adopereranno successivamente
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: ef9439f7a3766d13b498eac915e0f5afd23de4e2

@@ -1,6 +1,6 @@
 ---
-title: "Stile di architettura a più livelli"
-description: "Descrive i vantaggi, le sfide e le procedure consigliate per le architetture a più livelli in Azure"
+title: Stile di architettura a più livelli
+description: Descrive i vantaggi, le sfide e le procedure consigliate per le architetture a più livelli in Azure
 author: MikeWasson
 ms.openlocfilehash: 8333b789e03a9da2b021abe7d7c193cd2af8d6bf
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

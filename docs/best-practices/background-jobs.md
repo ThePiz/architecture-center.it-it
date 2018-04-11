@@ -1,6 +1,6 @@
 ---
 title: Linee guida per i processi in background
-description: "Indicazioni sulle attività in background eseguite in modo indipendente dall'interfaccia utente."
+description: Indicazioni sulle attività in background eseguite in modo indipendente dall'interfaccia utente.
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices

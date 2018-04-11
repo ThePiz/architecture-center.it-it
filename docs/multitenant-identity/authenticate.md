@@ -1,6 +1,6 @@
 ---
 title: Autorizzazioni nelle applicazioni multi-tenant
-description: "Come un'applicazione multi-tenant può eseguire l'autenticazione degli utenti da Azure AD"
+description: Come un'applicazione multi-tenant può eseguire l'autenticazione degli utenti da Azure AD
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

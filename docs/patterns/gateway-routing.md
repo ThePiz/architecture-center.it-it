@@ -1,6 +1,6 @@
 ---
 title: Modello di routing gateway
-description: "Eseguire il routing delle richieste a più servizi usando un singolo endpoint."
+description: Eseguire il routing delle richieste a più servizi usando un singolo endpoint.
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: 53239b23cfd98fad1edc38ca37c2274d5a9d7a0f

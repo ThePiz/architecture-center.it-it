@@ -103,3 +103,4 @@ ms.lasthandoff: 11/14/2017
 - <span data-ttu-id="bd22c-197">[schema della coda di priorità][].</span><span class="sxs-lookup"><span data-stu-id="bd22c-197">[Priority Queue pattern][].</span></span> <span data-ttu-id="bd22c-198">Un sistema può usare l'accodamento prioritario nell'ambito della strategia di limitazione per garantire le prestazioni per le applicazioni strategiche o di livello superiore, riducendo al contempo le prestazioni delle applicazioni meno importanti.</span><span class="sxs-lookup"><span data-stu-id="bd22c-198">A system can use priority queuing as part of its throttling strategy to maintain performance for critical or higher value applications, while reducing the performance of less important applications.</span></span>
 
 [schema della coda di priorità]: priority-queue.md
+[Priority Queue pattern]: priority-queue.md

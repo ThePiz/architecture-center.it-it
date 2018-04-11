@@ -1,11 +1,12 @@
 ---
 title: Consumer concorrenti
-description: "Consentire a più consumer concorrenti di elaborare i messaggi ricevuti sullo stesso canale di messaggistica."
+description: Consentire a più consumer concorrenti di elaborare i messaggi ricevuti sullo stesso canale di messaggistica.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: messaging
+pnp.pattern.categories:
+- messaging
 ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT

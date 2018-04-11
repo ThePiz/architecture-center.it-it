@@ -1,6 +1,6 @@
 ---
 title: Vista materializzata
-description: "Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie."
+description: Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017

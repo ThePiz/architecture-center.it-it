@@ -1,6 +1,6 @@
 ---
-title: "Indicazioni sulla scalabilità automatica"
-description: "Indicazioni su come implementare la scalabilità automatica per allocare in modo dinamico le risorse richieste da un'applicazione."
+title: Indicazioni sulla scalabilità automatica
+description: Indicazioni su come implementare la scalabilità automatica per allocare in modo dinamico le risorse richieste da un'applicazione.
 author: dragon119
 ms.date: 05/17/2017
 pnp.series.title: Best Practices
