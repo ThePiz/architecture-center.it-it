@@ -1,10 +1,11 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: 9bd86f1b3527f1116d4f5169baf76f8a5b9a385b
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.topic: landing-page
+ms.openlocfilehash: 530844a0d3b1256cec807e7bad509a40dca304f6
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Guida all'architettura delle applicazioni in Azure
 
@@ -54,11 +55,11 @@ La Guida all'architettura delle applicazione in Azure è concepita come una seri
 
 **[Stili di architettura][arch-styles]**. Il primo punto di decisione è il più importante. Che stile di architettura si intende costruire? Sarà un'architettura di microservizi, un'applicazione a più livelli maggiormente tradizionale o una soluzione per Big Data? Sono stati identificati sette stili distinti. Ogni stile offre vantaggi e pone sfide.
 
-> &#10148; Le [architetture di riferimento di Azure][ref-archs] indicano le distribuzioni consigliate in Azure, insieme a considerazioni sulla scalabilità, la disponibilità, la gestibilità e la sicurezza. La maggior parte include anche i modelli di Resource Manager.
+> & #10148; Le [architetture di riferimento di Azure][ref-archs] indicano le distribuzioni consigliate in Azure, insieme a considerazioni sulla scalabilità, la disponibilità, la gestibilità e la sicurezza. La maggior parte include anche i modelli di Resource Manager.
 
 **[Scelte tecnologiche][technology-choices]**. Nella fase iniziale è necessario adottare due scelte tecnologiche in quanto incidono sull'intera architettura. Le scelte riguardano le tecnologie di calcolo e di archiviazione. Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione. L'archiviazione include i database ma anche l'archiviazione per le code di messaggi, le cache, i dati IoT, i dati di log non strutturati e qualsiasi altro elemento in cui è possibile salvare in modo permanente un'applicazione. 
 
-> &#10148; Le [opzioni di calcolo][compute-options] e le [opzioni di archiviazione][storage-options] forniscono criteri di confronto dettagliati per la selezione dei servizi di calcolo e di archiviazione.
+> & #10148; Le [opzioni di calcolo][compute-options] e le [opzioni di archiviazione][storage-options] forniscono criteri di confronto dettagliati per la selezione dei servizi di calcolo e di archiviazione.
 
 **[Principi di progettazione][design-principles]**. Durante il processo di progettazione tenere presente questi dieci principi di alto livello. 
 
@@ -66,11 +67,11 @@ La Guida all'architettura delle applicazione in Azure è concepita come una seri
 
 **[Concetti fondamentali][pillars]**. Un'applicazione cloud efficace è basata su cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza. 
 
-> &#10148; Usare gli [elenchi di controllo per la revisione della progettazione][checklists] per rivedere la progettazione in base a questi concetti fondamentali. 
+> & #10148; Usare gli [elenchi di controllo per la revisione della progettazione][checklists] per rivedere la progettazione in base a questi concetti fondamentali. 
 
 **[Schemi progettuali per il cloud][patterns]**. Questi schemi progettuali sono utili per la compilazione di applicazioni affidabili, scalabili e sicure in Azure. Ogni modello descrive un problema, un modello che risolve il problema e un esempio basato su Azure.
 
-> &#10148; Visualizzare il [catalogo degli schemi progettuali per il cloud](../patterns/index.md) completo.
+> & #10148; Visualizzare il [catalogo degli schemi progettuali per il cloud](../patterns/index.md) completo.
 
 
 [arch-styles]: ./architecture-styles/index.md
