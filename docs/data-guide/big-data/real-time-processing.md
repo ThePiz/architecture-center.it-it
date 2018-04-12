@@ -3,11 +3,11 @@ title: Elaborazione in tempo reale
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: f1054ce5e8c2053aa4f80d8b472604125ba47187
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 8d3497c37d15dc0aa4645ddfce3bd30740217b2c
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="real-time-processing"></a>Elaborazione in tempo reale
 
@@ -49,7 +49,7 @@ Per altre informazioni, vedere [Inserimento di messaggi in tempo reale](../techn
 
 ### <a name="data-storage"></a>Archiviazione dei dati
 
-- **Contenitori BLOB del servizio di archiviazione di Azure** o **Azure Data Lake Store**. I dati in tempo reale in ingresso in genere vengono acquisiti in un broker di messaggi (vedere sopra), ma in alcuni scenari può essere utile monitorare una cartella per elaborare i nuovi file non appena vengono creati o aggiornati. Molte soluzioni di elaborazione in tempo reale combinano inoltre i dati in streaming con i dati di riferimento statici, che possono essere archiviati in un archivio file. L'archiviazione file può essere usata infine come destinazione di output per i dati acquisiti in tempo reale per l'archiviazione o per l'ulteriore elaborazione batch in un'[architettura lambda](../concepts/big-data.md#lambda-architecture).
+- **Contenitori BLOB del servizio di archiviazione di Azure** o **Azure Data Lake Store**. I dati in tempo reale in ingresso in genere vengono acquisiti in un broker di messaggi (vedere sopra), ma in alcuni scenari può essere utile monitorare una cartella per elaborare i nuovi file non appena vengono creati o aggiornati. Molte soluzioni di elaborazione in tempo reale combinano inoltre i dati in streaming con i dati di riferimento statici, che possono essere archiviati in un archivio file. L'archiviazione file può essere usata infine come destinazione di output per i dati acquisiti in tempo reale per l'archiviazione o per l'ulteriore elaborazione batch in un'[architettura lambda](../big-data/index.md#lambda-architecture).
 
 Per altre informazioni, vedere [Archiviazione dei dati](../technology-choices/data-storage.md).
 

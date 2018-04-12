@@ -1,15 +1,16 @@
 ---
-title: 'Materiale tecnico sussidiario: ripristino dall''ambiente locale in Azure'
+title: "Materiale tecnico sussidiario: ripristino dall'ambiente locale in Azure"
 description: Articolo sulla progettazione di sistemi di ripristino dall'infrastruttura locale ad Azure
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: f5ce86dbd605fa7dc74e6a7cc97f0d6c6acd79e5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6992e27d148074b3d60c282318741f45974d1afd
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-on-premises-to-azure"></a>Materiale sussidiario sulla resilienza di Azure: ripristino dall'ambiente locale ad Azure
 Azure offre una serie completa di servizi per abilitare l'estensione di un data center locale ad Azure per scopi di disponibilità elevata e ripristino di emergenza:
 

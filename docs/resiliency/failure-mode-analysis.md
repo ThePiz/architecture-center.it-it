@@ -1,15 +1,15 @@
 ---
-title: "Analisi della modalità di errore"
-description: "Linee guida per l'esecuzione dell'analisi della modalità di errore per soluzioni cloud basate su Azure."
+title: Analisi della modalità di errore
+description: Linee guida per l'esecuzione dell'analisi della modalità di errore per soluzioni cloud basate su Azure.
 author: MikeWasson
 ms.date: 03/24/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: aca2088cb007728c5717a968969000c0a19bcd07
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 8786c411249267e502003a90d5f2ff5e4c786803
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="failure-mode-analysis"></a>Analisi della modalità di errore
 [!INCLUDE [header](../_includes/header.md)]
@@ -122,7 +122,7 @@ Il criterio di ripetizione dei tentativi predefinito usa il backoff esponenziale
 ### <a name="web-or-worker-roles-are-unexpectedlybeing-shut-down"></a>I ruoli di lavoro o Web vengono arrestati in modo imprevisto.
 **Rilevamento** Viene generato l'evento [RoleEnvironment.Stopping][RoleEnvironment.Stopping].
 
-**Ripristino**. Eseguire l'override del metodo [RoleEntryPoint.OnStop][RoleEntryPoint.OnStop] per eseguire normalmente la pulizia. Per altre informazioni, vedere [Come gestire correttamente gli eventi OnStop d Azure][onstop-events] (blog).
+<strong>Ripristino</strong>. Eseguire l'override del metodo [RoleEntryPoint.OnStop][RoleEntryPoint.OnStop] per eseguire normalmente la pulizia. Per altre informazioni, vedere [Come gestire correttamente gli eventi OnStop d Azure][onstop-events] (blog).
 
 ## <a name="cosmos-db"></a>Cosmos DB 
 ### <a name="reading-data-fails"></a>La lettura dei dati non riesce.

@@ -6,19 +6,19 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 86c308d21f19bb3ac2a4a2240a9a03a504de5cf4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 03c4d5fa10c75437a7b066534619ba9a123c350c
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Autorizzazione basata sui ruoli e sulle risorse
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 L' [implementazione di riferimento] è un'applicazione ASP.NET Core. In questo articolo vengono esaminati due approcci generali alle autorizzazioni usando le API di autorizzazione fornite in ASP.NET Core.
 
-* **Autorizzazione basata sui ruoli**. Autorizzazione di un'azione in base ai ruoli assegnati a un utente. Per alcune azioni, ad esempio, è richiesto un ruolo di amministratore.
+* **Role-based authorization**. Autorizzazione di un'azione in base ai ruoli assegnati a un utente. Per alcune azioni, ad esempio, è richiesto un ruolo di amministratore.
 * **Autorizzazione basata sulle risorse**. Autorizzazione di un'azione in base a una determinata risorsa. Ogni risorsa è, ad esempio, assegnata a un proprietario e solo il proprietario può eliminare la risorsa.
 
 In genere, un'app può impiegare una combinazione di entrambi gli approcci. Per eliminare una risorsa, ad esempio, l'utente deve essere proprietario *o* amministratore della risorsa.
@@ -102,7 +102,6 @@ Nelle versioni precedenti di ASP.NET, è necessario impostare la proprietà **Ro
 ```csharp
 // old way
 [Authorize(Roles = "SurveyCreator")]
-
 ```
 
 Questa opzione è ancora supportata in ASP.NET Core, ma presenta alcuni svantaggi rispetto ai criteri di autorizzazione:
@@ -154,11 +153,11 @@ Dal momento che viene passato un oggetto `Survey`, questa chiamata richiamerà `
 Nel codice di autorizzazione, un buon approccio consiste nell'aggregazione di tutte le autorizzazioni dell'utente basate sui ruoli e sulle risorse e nella verifica del set di aggregazione in base all'operazione desiderata.
 Ecco un esempio relativo all'app Surveys. L'applicazione definisce diversi tipi di autorizzazioni:
 
-* Amministratore
+* Admin
 * Collaboratore
 * Autore
 * Proprietario
-* Lettore
+* Reader
 
 Inoltre, l'applicazione definisce un set di operazioni possibili sui sondaggi:
 

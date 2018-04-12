@@ -3,11 +3,11 @@ title: Eseguire un server Jenkins in Azure
 description: Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: 724185e43ed743013f52ded04b779552dd8e48c1
-ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
+ms.openlocfilehash: c07a341bbe4d0304087e4535408967c45d36199e
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
@@ -15,7 +15,7 @@ Questa architettura di riferimento illustra come distribuire e gestire un server
 
 ![Server Jenkins eseguito in Azure][0]
 
-*Scaricare un [file di Visio](https://arch-center.azureedge.net/cdn/Jenkins-architecture.vsdx) contenente questo diagramma dell'architettura.*
+*Scaricare un [file di Visio](https://archcenter.blob.core.windows.net/cdn/Jenkins-architecture.vsdx) contenente questo diagramma dell'architettura.*
 
 Questa architettura supporta il ripristino di emergenza con i servizi di Azure, ma non copre scenari di aumento del numero di istanze più avanzati che prevedono più master o disponibilità elevata senza tempi di inattività. Per informazioni generali sui vari componenti di Azure e un'esercitazione dettagliata per la creazione di una pipeline di integrazione continua/distribuzione continua in Azure, vedere [Jenkins in Azure][jenkins-on-azure].
 
@@ -25,30 +25,30 @@ Questo documento è incentrato sulle operazioni di base in Azure necessarie per 
 
 Questa architettura è costituita dai componenti seguenti:
 
--   **Gruppo di risorse.** Un [gruppo di risorse][rg] viene usato per raggruppare gli asset di Azure in modo che possano essere gestiti in base alla durata, al proprietario e ad altri criteri. Usare gruppi di risorse per distribuire e monitorare gli asset di Azure come gruppo e tenere traccia dei costi per la fatturazione in base al gruppo di risorse. È inoltre possibile eliminare un intero set di risorse, operazione molto utile nelle distribuzioni di test.
+- **Gruppo di risorse.** Un [gruppo di risorse][rg] viene usato per raggruppare gli asset di Azure in modo che possano essere gestiti in base alla durata, al proprietario e ad altri criteri. Usare gruppi di risorse per distribuire e monitorare gli asset di Azure come gruppo e tenere traccia dei costi per la fatturazione in base al gruppo di risorse. È inoltre possibile eliminare un intero set di risorse, operazione molto utile nelle distribuzioni di test.
 
--   **Server Jenkins**. Viene distribuita una macchina virtuale che eseguirà [Jenkins][azure-market] come server di automazione e fungerà da master Jenkins. Questa architettura di riferimento usa il [modello di soluzione per Jenkins in Azure][solution], installato in una macchina virtuale Linux (Ubuntu 16.04 LTS) in Azure. In Azure Marketplace sono disponibili altre offerte Jenkins.
+- **Server Jenkins**. Viene distribuita una macchina virtuale che eseguirà [Jenkins][azure-market] come server di automazione e fungerà da master Jenkins. Questa architettura di riferimento usa il [modello di soluzione per Jenkins in Azure][solution], installato in una macchina virtuale Linux (Ubuntu 16.04 LTS) in Azure. In Azure Marketplace sono disponibili altre offerte Jenkins.
 
-    > [!NOTE]
-    > Nginx viene installato nella VM per fungere da proxy inverso per Jenkins. È possibile configurare Nginx per abilitare SSL per il server Jenkins.
-    > 
-    > 
+  > [!NOTE]
+  > Nginx viene installato nella VM per fungere da proxy inverso per Jenkins. È possibile configurare Nginx per abilitare SSL per il server Jenkins.
+  > 
+  > 
 
--   **Rete virtuale**. Una [rete virtuale][vnet] connette tra loro le risorse di Azure e offre l'isolamento logico. In questa architettura, il server Jenkins viene eseguito in una rete virtuale.
+- **Rete virtuale**. Una [rete virtuale][vnet] connette tra loro le risorse di Azure e offre l'isolamento logico. In questa architettura, il server Jenkins viene eseguito in una rete virtuale.
 
--   **Subnet**. Il server Jenkins viene isolato in una [subnet][subnet] per facilitare la gestione e la separazione del traffico di rete senza alcun impatto sulle prestazioni.
+- **Subnet**. Il server Jenkins viene isolato in una [subnet][subnet] per facilitare la gestione e la separazione del traffico di rete senza alcun impatto sulle prestazioni.
 
--   **Gruppi di sicurezza di rete**. Usare [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete da Internet alla subnet di una rete virtuale.
+- <strong>Gruppi di sicurezza di rete</strong>. Usare [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete da Internet alla subnet di una rete virtuale.
 
--   **Dischi gestiti**. Un [disco gestito][managed-disk] è un disco rigido virtuale permanente usato per l'archiviazione delle applicazioni nonché per mantenere lo stato del server Jenkins e offrire il ripristino di emergenza. I dischi dati vengono archiviati in Archiviazione di Azure. Per prestazioni elevate, è consigliabile usare [Archiviazione Premium][premium].
+- **Dischi gestiti**. Un [disco gestito][managed-disk] è un disco rigido virtuale permanente usato per l'archiviazione delle applicazioni nonché per mantenere lo stato del server Jenkins e offrire il ripristino di emergenza. I dischi dati vengono archiviati in Archiviazione di Azure. Per prestazioni elevate, è consigliabile usare [Archiviazione Premium][premium].
 
--   **Archivio BLOB di Azure**. Il [plug-in Windows Azure Storage][configure-storage] usa l'archivio BLOB di Azure per archiviare gli elementi di compilazione che vengono creati e condivisi con altre compilazioni Jenkins.
+- **Archivio BLOB di Azure**. Il [plug-in Windows Azure Storage][configure-storage] usa l'archivio BLOB di Azure per archiviare gli elementi di compilazione che vengono creati e condivisi con altre compilazioni Jenkins.
 
--   **Azure Active Directory (Azure AD)**. [Azure AD][azure-ad] supporta l'autenticazione degli utenti, consentendo di configurare l'accesso SSO. Le [entità servizio][service-principal] di Azure AD definiscono i criteri e le autorizzazioni per ogni autorizzazione di ruolo nel flusso di lavoro tramite il [controllo degli accessi in base al ruolo][rbac]. Ogni entità servizio è associata a un processo Jenkins.
+- <strong>Azure Active Directory (Azure AD)</strong>. [Azure AD][azure-ad] supporta l'autenticazione degli utenti, consentendo di configurare l'accesso SSO. Le [entità servizio][service-principal] di Azure AD definiscono i criteri e le autorizzazioni per ogni autorizzazione di ruolo nel flusso di lavoro tramite il [controllo degli accessi in base al ruolo][rbac]. Ogni entità servizio è associata a un processo Jenkins.
 
--   **Azure Key Vault**. Per gestire i segreti e le chiavi crittografiche usati, quando necessari, per il provisioning delle risorse di Azure, questa architettura usa [Key Vault][key-vault]. Per un maggiore supporto per l'archiviazione dei segreti associati all'applicazione nella pipeline, vedere anche il plug-in [Azure Credentials][configure-credential] per Jenkins.
+- **Azure Key Vault**. Per gestire i segreti e le chiavi crittografiche usati, quando necessari, per il provisioning delle risorse di Azure, questa architettura usa [Key Vault][key-vault]. Per un maggiore supporto per l'archiviazione dei segreti associati all'applicazione nella pipeline, vedere anche il plug-in [Azure Credentials][configure-credential] per Jenkins.
 
--   **Servizi di monitoraggio di Azure**. Il servizio [monitora][monitor] la macchina virtuale di Azure che ospita Jenkins. Questa distribuzione monitora l'utilizzo della CPU e lo stato della macchina virtuale e invia avvisi.
+- **Servizi di monitoraggio di Azure**. Il servizio [monitora][monitor] la macchina virtuale di Azure che ospita Jenkins. Questa distribuzione monitora l'utilizzo della CPU e lo stato della macchina virtuale e invia avvisi.
 
 ## <a name="recommendations"></a>Raccomandazioni
 

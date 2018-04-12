@@ -1,15 +1,15 @@
 ---
-title: "Eseguire macchine virtuali Windows in più aree di Azure per una disponibilità elevata"
-description: "Come distribuire le macchine virtuali in più aree in Azure per la disponibilità elevata e la resilienza."
+title: Eseguire macchine virtuali Windows in più aree di Azure per una disponibilità elevata
+description: Come distribuire le macchine virtuali in più aree in Azure per la disponibilità elevata e la resilienza.
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 9c54959da96115e55ba8a5c9e0f3c358d29ce5dd
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 9772d57e6a11711d77032b049168565d52d919b8
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-windows-vms-in-multiple-regions-for-high-availability"></a>Eseguire macchine virtuali Windows in più aree per una disponibilità elevata
 
@@ -114,9 +114,9 @@ Per configurare il gruppo di disponibilità:
 * Creare un [Windows Server Failover Clustering][wsfc] (WSFC) che includa le istanze di SQL Server in entrambe le aree. 
 * Creare un gruppo di disponibilità Always On di SQL Server che includa le istanze di SQL Server in entrambe le aree primaria e secondaria. Per la procedura, vedere [Extending Always On Availability Group to Remote Azure Datacenter (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) (Estensione del gruppo di disponibilità Always On al data center di Azure remoto (PowerShell)).
 
-    * Inserire la replica primaria nell'area primaria.
-    * Inserire una o più repliche secondarie nell'area primaria. Configurarle per l'uso del commit sincrono con il failover automatico.
-    * Inserire una o più repliche secondarie nell'area secondaria. Configurarle per l'uso del commit *asincrono* per motivi di prestazioni (in caso contrario, tutte le transazioni T-SQL dovranno attendere l'esecuzione di un round trip in rete all'area secondaria).
+  * Inserire la replica primaria nell'area primaria.
+  * Inserire una o più repliche secondarie nell'area primaria. Configurarle per l'uso del commit sincrono con il failover automatico.
+  * Inserire una o più repliche secondarie nell'area secondaria. Configurarle per l'uso del commit *asincrono* per motivi di prestazioni (in caso contrario, tutte le transazioni T-SQL dovranno attendere l'esecuzione di un round trip in rete all'area secondaria).
 
     > [!NOTE]
     > Le repliche con commit asincrono non supportano il failover automatico.
@@ -182,7 +182,7 @@ Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways

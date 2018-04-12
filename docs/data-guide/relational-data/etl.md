@@ -3,11 +3,11 @@ title: ETL (Extract, Transform, and Load)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a980c1f8aef99fc263083e5e496b1340204f7dac
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="extract-transform-and-load-etl"></a>ETL (Extract, Transform, and Load)
 
@@ -21,7 +21,7 @@ ETL (Extract, Transform, and Load) è una pipeline di dati usata per raccogliere
 
 La trasformazione dei dati che solitamente si verifica include diverse operazioni, ad esempio il filtro, l'ordinamento, l'aggregazione, il join dei dati, la pulizia dei dati, la deduplicazione e la convalida dei dati.
 
-![Processo ETL (Extract-Transform-Load)](./images/etl.png)
+![Processo ETL (Extract-Transform-Load)](../images/etl.png)
 
 Spesso le tre fasi ETL vengono eseguite in parallelo per ridurre i tempi necessari. Ad esempio, mentre i dati vengono estratti, può essere avviato un processo di trasformazione dei dati già ricevuti, che devono essere preparati per il caricamento. Inoltre, può essere avviato un processo di caricamento dei dati preparati, anziché attendere il completamento dell'intero processo di estrazione.
 
@@ -35,7 +35,7 @@ Altri strumenti:
 
 ELT (Extract, Load, and Transform) si differenzia da ETL solo per il punto in cui avviene la trasformazione. Nella pipeline ELT la trasformazione si verifica nell'archivio dati di destinazione. Per trasformare i dati, anziché usare un motore di trasformazione separato, vengono usate le funzionalità di elaborazione dell'archivio dati di destinazione. Rimuovendo il motore di trasformazione dalla pipeline, l'architettura risulta estremamente semplificata. Un altro vantaggio offerto da questo approccio è il ridimensionamento dell'archivio dati di destinazione, che determina anche un miglioramento delle prestazioni della pipeline ELT. Tuttavia, ELT funziona in modo ottimale solo quando il sistema di destinazione è abbastanza potente da trasformare i dati in modo efficiente.
 
-![Processo ELT (Extract-Load-Transform)](./images/elt.png)
+![Processo ELT (Extract-Load-Transform)](../images/elt.png)
 
 Casi d'uso tipici di ELT sono quelli che rientrano nell'ambito dei Big Data. Ad esempio, si potrebbe iniziare con l'estrazione di tutti i dati di origine in file flat in una risorsa di archiviazione scalabile, ad esempio Hadoop Distributed File System (HDFS) o Azure Data Lake Store. È quindi possibile usare tecnologie come Spark, Hive o PolyBase per eseguire query sui dati di origine. Il punto chiave di ELT è che l'archivio dati usato per eseguire la trasformazione è lo stesso in cui i dati vengono alla fine utilizzati. Questo archivio dati esegue le operazioni di lettura direttamente dalla risorsa di archiviazione scalabile, anziché caricare i dati in una risorsa di archiviazione proprietaria. Questo approccio consente di ignorare la fase di copia dei dati presente in ETL, che per i set di dati di grandi dimensioni può essere un'operazione molto dispendiosa in termini di tempo.
 
@@ -62,7 +62,7 @@ Nell'ambito delle pipeline di dati, il flusso di controllo assicura l'elaborazio
 
 I flussi di controllo eseguono i flussi di dati come un'attività. In un'attività Flusso di dati i dati vengono estratti da un'origine, trasformati o caricati in un archivio dati. L'output di un'attività Flusso di dati può costituire l'input per l'attività Flusso di dati successiva e i flussi di dati possono essere eseguiti in parallelo. A differenza di quanto previsto per i flussi di controllo, non è possibile aggiungere vincoli tra le attività di un flusso di dati. Tuttavia, è possibile aggiungere un visualizzatore per osservare i dati che vengono elaborati da ogni attività.
 
-![Flusso di dati eseguito come attività all'interno di un flusso di controllo](./images/control-flow-data-flow.png)
+![Flusso di dati eseguito come attività all'interno di un flusso di controllo](../images/control-flow-data-flow.png)
 
 Nel diagramma precedente sono presenti diverse attività all'interno del flusso di controllo, ognuna della quali è un'attività Flusso di dati. Una delle attività è nidificata all'interno di un contenitore. È possibile usare i contenitori per fornire alle attività una struttura o un'unità di lavoro. Un esempio di questo tipo è costituito dagli elementi ripetitivi all'interno di una raccolta, ad esempio i file di una cartella o le istruzioni di un database.
 
@@ -74,7 +74,7 @@ Altri strumenti:
 
 ## <a name="technology-choices"></a>Scelte di tecnologia
 
-- [Scelta di un archivio dati OLTP in Azure](../technology-choices/oltp-data-stores.md)
-- [Scelta di un archivio dati OLAP in Azure](../technology-choices/olap-data-stores.md)
-- [Data warehouse](../technology-choices/data-warehouses.md)
+- [Scelta di un archivio dati OLTP in Azure](./online-transaction-processing.md#oltp-in-azure)
+- [Scelta di un archivio dati OLAP in Azure](./online-analytical-processing.md#olap-in-azure)
+- [Data warehouse](./data-warehousing.md)
 - [Orchestrazione di pipeline](../technology-choices/pipeline-orchestration-data-movement.md)

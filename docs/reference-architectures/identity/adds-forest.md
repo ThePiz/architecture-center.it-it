@@ -10,11 +10,11 @@ pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: b946afa91e8bd303c51f97e18be170c4105cc8c5
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creare una foresta di risorse di Active Directory Domain Services in Azure
 
@@ -120,8 +120,8 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
      
 5. Se si usa la configurazione locale simulata, configurare la relazione di trust in ingresso:
    
-   1. Connettersi al jumpbox (*ra-adtrust-mgmt-vm1* nel gruppo di risorse *ra-adtrust-security-rg*). Accedere come *testuser* con la password *AweS0me@PW*.
-   2. Nel jumpbox aprire una sessione RDP nella prima macchina virtuale nel dominio *contoso.com* (dominio locale). L'indirizzo IP di questa macchina virtuale è 192.168.0.4. Il nome utente è *contoso\testuser* con password *AweS0me@PW*.
+   1. Connettersi al jumpbox (<em>ra-adtrust-mgmt-vm1</em> nel gruppo di risorse <em>ra-adtrust-security-rg</em>). Accedere come <em>testuser</em> con la password <em>AweS0me@PW</em>.
+   2. Nel jumpbox aprire una sessione RDP nella prima macchina virtuale nel dominio <em>contoso.com</em> (dominio locale). L'indirizzo IP di questa macchina virtuale è 192.168.0.4. Il nome utente è <em>contoso\testuser</em> con password <em>AweS0me@PW</em>.
    3. Scaricare lo script [incoming-trust.ps1][incoming-trust] ed eseguirlo per creare il trust in ingresso dal dominio *treyresearch.com*.
 
 6. Se si usa la propria infrastruttura locale:
@@ -130,7 +130,7 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
    2. Modificare lo script e sostituire il valore della variabile `$TrustedDomainName` con il nome del proprio dominio.
    3. Eseguire lo script.
 
-7. Dal jumpbox connettersi alla prima macchina virtuale nel dominio *treyresearch.com* (il dominio nel cloud). L'indirizzo IP di questa macchina virtuale è 10.0.4.4. Il nome utente è *treyresearch\testuser* con password *AweS0me@PW*.
+7. Dal jumpbox connettersi alla prima macchina virtuale nel dominio <em>treyresearch.com</em> (il dominio nel cloud). L'indirizzo IP di questa macchina virtuale è 10.0.4.4. Il nome utente è <em>treyresearch\testuser</em> con password <em>AweS0me@PW</em>.
 
 8. Scaricare lo script [outgoing-trust.ps1][outgoing-trust] ed eseguirlo per creare il trust in ingresso dal dominio *treyresearch.com*. Se si usano i propri computer locali, prima di tutto modificare lo script. Impostare la variabile `$TrustedDomainName` sul nome del dominio locale e specificare gli indirizzi IP dei server di Active Directory Domain Services per questo dominio nella variabile `$TrustedDomainDnsIpAddresses`.
 
@@ -165,5 +165,5 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
 [standby-operations-masters]: https://technet.microsoft.com/library/cc794737(v=ws.10).aspx
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [0]: ./images/adds-forest.png "Architettura di rete ibrida sicura con domini di Active Directory separati"

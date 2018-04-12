@@ -1,6 +1,6 @@
 ---
 title: Pipe e filtri
-description: "Scomporre un'attività che esegue un'elaborazione complessa in una serie di elementi distinti riutilizzabili."
+description: Scomporre un'attività che esegue un'elaborazione complessa in una serie di elementi distinti riutilizzabili.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - messaging
-ms.openlocfilehash: b41f3e46ad5982a3a4ec6635918481cb440c5e02
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 2c17504f594843c10fcfe221f0087f1087a73fb8
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="pipes-and-filters-pattern"></a>Modello di pipe e filtri
 
@@ -274,7 +274,7 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 }
 ```
 
-##<a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
+## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
 - Un esempio che illustra questo modello è disponibile su [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).

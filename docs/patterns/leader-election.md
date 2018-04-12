@@ -1,6 +1,6 @@
 ---
 title: Designazione leader
-description: "Coordinare le azioni eseguite da una raccolta di istanze di attività di collaborazione in un'applicazione distribuita designando un'istanza come leader, con la responsabilità di gestire le altre istanze."
+description: Coordinare le azioni eseguite da una raccolta di istanze di attività di collaborazione in un'applicazione distribuita designando un'istanza come leader, con la responsabilità di gestire le altre istanze.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: ddb61097ed3229ed0ed517b94c280d3ef892c999
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3e7d47f70f660f2507f0619e1c41bf9a32a25be4
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="leader-election-pattern"></a>Modello Designazione leader
 
@@ -26,7 +26,7 @@ Un'applicazione cloud tipica include molte attività che agiscono in modo coordi
 
 Le istanze delle attività potrebbero essere eseguite separatamente per la maggior parte del tempo, ma potrebbe anche essere necessario coordinare le azioni di ogni istanza per garantire che non entrino in conflitto, non provochino una contesa per le risorse condivise o non interferiscano inavvertitamente con il lavoro di altre istanze delle attività.
 
-ad esempio:
+Ad esempio: 
 
 - In un sistema basato su cloud che implementa la scalabilità orizzontale, più istanze della stessa attività potrebbero essere in esecuzione nello stesso momento con ogni istanza che serve un utente diverso. Se queste istanze scrivono in una risorsa condivisa, è necessario coordinarne le azioni per impedire che le diverse istanze sovrascrivano le modifiche apportate dalle altre.
 - Se le attività eseguono singoli elementi di un calcolo complesso in parallelo, i risultati devono essere aggregati quando sono tutte completate.
@@ -70,9 +70,9 @@ Questo modello potrebbe non essere utile se:
 Il progetto DistributedMutex nella soluzione LeaderElection (un esempio che illustra questo modello è disponibile in [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)) mostra come usare un lease in un BLOB del servizio di archiviazione di Azure per fornire un meccanismo per l'implementazione di un mutex distribuito condiviso. Questo mutex può essere usato per designare un leader in un gruppo di istanze del ruolo in un servizio cloud di Azure. La prima istanza del ruolo ad acquisire il lease viene designata come leader e rimane tale finché non rilascia il lease o non è in grado di rinnovarlo. Altre istanze del ruolo possono continuare a monitorare il lease del BLOB, nel caso in cui il leader non sia più disponibile.
 
 >  Un lease del BLOB è un blocco di scrittura esclusivo su un BLOB. Un singolo BLOB può essere oggetto di un solo lease in qualsiasi punto nel tempo. Un'istanza del ruolo può richiedere un lease per un BLOB specifico e il lease verrà concesso se nessun'altra istanza del ruolo contiene un lease per lo stesso BLOB. In caso contrario, la richiesta genererà un'eccezione.
-
+> 
 > Per evitare che un'istanza del ruolo con errori mantenga il lease per un periodo illimitato, specificare una durata per il lease. Alla scadenza, il lease diventerà disponibile. Tuttavia, mentre un'istanza del ruolo contiene il lease può richiedere che il lease venga rinnovato e il lease verrà concesso per un ulteriore periodo di tempo. L'istanza del ruolo può ripetere continuamente questo processo se vuole mantenere il lease.
-Per altre informazioni sul lease di un BLOB, vedere [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) (Lease Blob (API REST)).
+> Per altre informazioni sul lease di un BLOB, vedere [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) (Lease Blob (API REST)).
 
 La classe `BlobDistributedMutex` nell'esempio di C# seguente contiene il metodo `RunTaskWhenMutexAquired`, che consente a un'istanza del ruolo di tentare di acquisire un lease per un BLOB specificato. I dettagli del BLOB (nome, contenitore e account di archiviazione) vengono passati al costruttore in un oggetto `BlobSettings` quando viene creato l'oggetto `BlobDistributedMutex` (questo oggetto è uno struct semplice incluso nel codice di esempio). Il costruttore accetta inoltre un `Task` che fa riferimento al codice che l'istanza del ruolo dovrebbe eseguire se acquisisce correttamente il lease per il BLOB e viene designato come leader. Si noti che il codice che gestisce i dettagli di basso livello dell'acquisizione del lease viene implementato in una classe helper distinta denominata `BlobLeaseManager`.
 
@@ -194,7 +194,7 @@ Tenere presente i punti seguenti riguardo alla soluzione di esempio:
 
 Per l'implementazione di questo modello possono risultare utili le informazioni aggiuntive seguenti:
 - Questo modello ha un'[applicazione di esempio](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) scaricabile.
-- [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). È possibile avviare e arrestare le istanze degli host delle attività di pari passo con la variazione del carico sull'applicazione. La scalabilità automatica consente di mantenere la velocità effettiva e le prestazioni durante i periodi di massima richiesta di elaborazione.
+- [Scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). È possibile avviare e arrestare le istanze degli host delle attività di pari passo con la variazione del carico sull'applicazione. La scalabilità automatica consente di mantenere la velocità effettiva e le prestazioni durante i periodi di massima richiesta di elaborazione.
 - [Indicazioni sul partizionamento del calcolo](https://msdn.microsoft.com/library/dn589773.aspx). Queste indicazioni descrivono come allocare attività agli host in un servizio cloud, in modo da ridurre al minimo i costi operativi mantenendo la scalabilità, le prestazioni, la disponibilità e la sicurezza del servizio.
 - [Modello asincrono basato su attività](https://msdn.microsoft.com/library/hh873175.aspx).
 - Esempio che illustra l'[algoritmo Bully](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html).

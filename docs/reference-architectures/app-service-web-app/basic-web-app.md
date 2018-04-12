@@ -4,11 +4,11 @@ description: L'architettura consigliata per l'esecuzione delle applicazioni Web 
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: 38b0739cc61d679742b610b99e92aaad8d3b394d
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: efd831b1f54fa0662bdfa9874318e7b314172215
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="basic-web-application"></a>Applicazione Web di base
 [!INCLUDE [header](../../_includes/header.md)]
@@ -157,7 +157,7 @@ Suggerimenti per la risoluzione dei problemi dell'applicazione:
 
 * Usare il [pannello della risoluzione dei problemi] [ troubleshoot-blade] nel portale di Azure per trovare le soluzioni ai problemi più comuni.
 * Abilitare i [flussi di registrazione][web-app-log-stream] per visualizzare le informazioni di registrazione quasi in tempo reale.
-* Il [dashboard Kudu][kudu] include diversi strumenti per il monitoraggio e il debug dell'applicazione. Per altre informazioni, vedere il post di blog relativo agli [strumenti online di Siti Web di Azure che è opportuno conoscere][kudu]. È possibile raggiungere il dashboard Kudu dal portale di Azure. Aprire il pannello per l'app e fare clic su **Strumenti**, quindi su **Kudu**.
+* Il [dashboard Kudu][kudu] include diversi strumenti per il monitoraggio e il debug dell'applicazione. Per altre informazioni, vedere il post di blog relativo agli [strumenti online di Siti Web di Azure che è opportuno conoscere][kudu]. È possibile raggiungere il dashboard Kudu dal portale di Azure. Aprire il pannello per l'app e fare clic su <strong>Strumenti</strong>, quindi su <strong>Kudu</strong>.
 * Se si usa Visual Studio, vedere l'articolo su come [risolvere i problemi relativi a un'app web nel servizio app di Azure con Visual Studio][troubleshoot-web-app] per suggerimenti per il debug e la risoluzione dei problemi.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
@@ -252,7 +252,7 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [ssl-cert]: /azure/app-service-web/web-sites-purchase-ssl-web-site
 [troubleshoot-blade]: https://azure.microsoft.com/updates/self-service-troubleshooting-for-app-service-web-apps-customers/
 [troubleshoot-web-app]: /azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio
-[visio-download]: https://archcenter.azureedge.net/cdn/app-service-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
 [web-app-autoscale]: /azure/app-service-web/web-sites-scale
 [web-app-backup]: /azure/app-service-web/web-sites-backup

@@ -3,11 +3,11 @@ title: Eseguire l'applicazione Surveys
 description: Come eseguire l'applicazione di esempio Surveys in locale
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: d17cd939c1172edd0947b30ea13657806060b5f1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-the-surveys-application"></a>Eseguire l'applicazione Surveys
 
@@ -22,7 +22,7 @@ Di seguito viene presentato un riepilogo dei passaggi:
 5. Eseguire l'applicazione e registrare un nuovo tenant.
 6. Aggiungere i ruoli applicazione agli utenti.
 
-## <a name="prerequisites"></a>Prerequisiti
+## <a name="prerequisites"></a>prerequisiti
 -   [Visual Studio 2017][VS2017]
 -   Account di [Microsoft Azure](https://azure.microsoft.com)
 
@@ -52,15 +52,15 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
 
 3. Fare clic su **Registrazioni per l'app** > **Registrazione nuova applicazione**.
 
-4.  Nel pannello **Crea** immettere le informazioni seguenti:
+4. Nel pannello **Crea** immettere le informazioni seguenti:
 
-  - **Nome**: `Surveys.WebAPI`
+   - **Nome**: `Surveys.WebAPI`
 
-  - **Tipo di applicazione**: `Web app / API`
+   - **Tipo di applicazione**: `Web app / API`
 
-  - **URL di accesso**: `https://localhost:44301/`
+   - **URL di accesso**: `https://localhost:44301/`
    
-  ![](./images/running-the-app/register-web-api.png) 
+   ![](./images/running-the-app/register-web-api.png) 
 
 5. Fare clic su **Crea**.
 
@@ -72,21 +72,21 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
 
     ![Impostazioni](./images/running-the-app/settings.png)
 
-9. Impostare **Multi-tenant** su **Sì**.
+9. Impostare **Multi-tenant** su **SÌ**.
 
-10. Fare clic su **Salva**.
+10. Fare clic su **Save**.
 
 ## <a name="register-the-surveys-web-app"></a>Registrare l'app Web Surveys 
 
-1.  Tornare al pannello **Registrazioni per l'app** e fare clic su **Registrazione nuova applicazione**.
+1. Tornare al pannello **Registrazioni per l'app** e fare clic su **Registrazione nuova applicazione**.
 
-2.  Nel pannello **Crea** immettere le informazioni seguenti:
+2. Nel pannello **Crea** immettere le informazioni seguenti:
 
-  - **Nome**: `Surveys`
-  - **Tipo di applicazione**: `Web app / API`
-  - **URL di accesso**: `https://localhost:44300/`
+   - **Nome**: `Surveys`
+   - **Tipo di applicazione**: `Web app / API`
+   - **URL di accesso**: `https://localhost:44300/`
    
-    Si noti che l'URL di accesso ha un numero di porta diverso dall'app `Surveys.WebAPI` nel passaggio precedente.
+   Si noti che l'URL di accesso ha un numero di porta diverso dall'app `Surveys.WebAPI` nel passaggio precedente.
 
 3. Fare clic su **Crea**.
  
@@ -104,13 +104,13 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
 
 8. Impostare **Multi-tenant** su **SÌ**.
 
-9. Fare clic su **Salva**.
+9. Fare clic su **Save**.
 
 10. Nel pannello **Impostazioni** fare clic su **URL di risposta**.
  
 11. Aggiungere l'URL di risposta seguente : `https://localhost:44300/signin-oidc`.
 
-12. Fare clic su **Salva**.
+12. Fare clic su **Save**.
 
 13. In **ACCESSO ALL'API** fare clic su **Chiavi**.
 
@@ -118,7 +118,7 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
 
 15. Nell'elenco a discesa **Seleziona durata** selezionare **1 anno**. 
 
-16. Fare clic su **Salva**. La chiave verrà generata al salvataggio.
+16. Fare clic su **Save**. La chiave verrà generata al salvataggio.
 
 17. Prima si uscire da questo pannello, copiare il valore della chiave:
 
@@ -150,36 +150,36 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
 
     ![](./images/running-the-app/manifest.png)
  
-3.  Aggiungere il JSON seguente all'elemento `appRoles`. Generare nuovi GUID per le proprietà `id`.
+3. Aggiungere il JSON seguente all'elemento `appRoles`. Generare nuovi GUID per le proprietà `id`.
 
-    ```json
-    {
-      "allowedMemberTypes": ["User"],
-      "description": "Creators can create surveys",
-      "displayName": "SurveyCreator",
-      "id": "<Generate a new GUID. Example: 1b4f816e-5eaf-48b9-8613-7923830595ad>",
-      "isEnabled": true,
-      "value": "SurveyCreator"
-    },
-    {
-      "allowedMemberTypes": ["User"],
-      "description": "Administrators can manage the surveys in their tenant",
-      "displayName": "SurveyAdmin",
-      "id": "<Generate a new GUID>",  
-      "isEnabled": true,
-      "value": "SurveyAdmin"
-    }
-    ```
+   ```json
+   {
+     "allowedMemberTypes": ["User"],
+     "description": "Creators can create surveys",
+     "displayName": "SurveyCreator",
+     "id": "<Generate a new GUID. Example: 1b4f816e-5eaf-48b9-8613-7923830595ad>",
+     "isEnabled": true,
+     "value": "SurveyCreator"
+   },
+   {
+     "allowedMemberTypes": ["User"],
+     "description": "Administrators can manage the surveys in their tenant",
+     "displayName": "SurveyAdmin",
+     "id": "<Generate a new GUID>",  
+     "isEnabled": true,
+     "value": "SurveyAdmin"
+   }
+   ```
 
-5.  Nella proprietà `knownClientApplications` aggiungere l'ID applicazione per l'app Web Surveys, che è stato ottenuto in precedenza durante la registrazione dell'applicazione Surveys. ad esempio:
+4. Nella proprietà `knownClientApplications` aggiungere l'ID applicazione per l'app Web Surveys, che è stato ottenuto in precedenza durante la registrazione dell'applicazione Surveys. Ad esempio: 
 
-  ```json
-  "knownClientApplications": ["be2cea23-aa0e-4e98-8b21-2963d494912e"],
-  ```
+   ```json
+   "knownClientApplications": ["be2cea23-aa0e-4e98-8b21-2963d494912e"],
+   ```
 
-  Questa impostazione aggiunge l'app Surveys all'elenco dei client autorizzati a chiamare l'API Web.
+   Questa impostazione aggiunge l'app Surveys all'elenco dei client autorizzati a chiamare l'API Web.
 
-6.  Fare clic su **Salva**.
+5. Fare clic su **Save**.
 
 Ora ripetere gli stessi passaggi per l'app Surveys, ad eccezione di non aggiungere una voce per `knownClientApplications`. Usare le stesse definizioni dei ruoli, ma generare nuovi GUID per gli ID.
 

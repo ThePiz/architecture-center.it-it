@@ -1,13 +1,13 @@
 ---
 title: Esplorazione interattiva dei dati
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a9e72f4cf88c9082fe79f854dd79e98bfaa918f5
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="interactive-data-exploration"></a>Esplorazione interattiva dei dati
 
@@ -50,9 +50,9 @@ Servizi di Azure pertinenti:
 
 - **Condivisione dei risultati.** Se gli utenti possono creare e condividere report o visualizzazioni di dati, è possibile che sia necessario tenere conto di considerazioni sulla sicurezza.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
-Anche se l'obiettivo di questo scenario è supportare l'analisi interattiva dei dati e le attività di pulizia, campionamento e strutturazione dei dati inerenti al data science, sono spesso necessari processi a esecuzione prolungata. Ecco perché, in questo caso, è necessaria un'architettura di [elaborazione in batch](./batch-processing.md).
+Anche se l'obiettivo di questo scenario è supportare l'analisi interattiva dei dati e le attività di pulizia, campionamento e strutturazione dei dati inerenti al data science, sono spesso necessari processi a esecuzione prolungata. Ecco perché, in questo caso, è necessaria un'architettura di [elaborazione in batch](../big-data/batch-processing.md).
 
 ## <a name="technology-choices"></a>Scelte di tecnologia
 
@@ -60,7 +60,7 @@ Per l'esplorazione interattiva dei dati sono consigliate le tecnologie seguenti.
 
 ### <a name="data-storage"></a>Archiviazione dei dati
 
-- **Contenitori BLOB dell'Archiviazione di Azure** o **Azure Data Lake Store**. I data scientist usano in genere dati di origine non elaborati per poter accedere a tutti i possibili outlier, caratteristiche ed errori nei dati. In uno scenario di Big Data, questi dati sono disponibili in genere come file in un archivio dati.
+- **Contenitori BLOB del servizio di archiviazione di Azure** o **Azure Data Lake Store**. I data scientist usano in genere dati di origine non elaborati per poter accedere a tutti i possibili outlier, caratteristiche ed errori nei dati. In uno scenario di Big Data, questi dati sono disponibili in genere come file in un archivio dati.
 
 Per altre informazioni, vedere [Archiviazione dei dati](../technology-choices/data-storage.md).
 

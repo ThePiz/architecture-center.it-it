@@ -3,11 +3,11 @@ title: Elaborazione dei file in formato CSV e JSON
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 6b888ff230afefbd74249aa913e5bab66d47d7e2
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 02e684d562cfe555f9e3596ad0a2f1a00d05c7a7
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="working-with-csv-and-json-files-for-data-solutions"></a>Uso dei file in formato CSV e JSON per le soluzioni di dati
 
@@ -44,7 +44,7 @@ Entrambi i formati di file CSV e JSON presentano il vantaggio di facilitare lo s
 
 Azure offre diverse soluzioni per l'uso dei file in formato CSV e JSON, a seconda delle esigenze. Le principali aree di destinazione per i file in questo formato sono costituite da Archiviazione di Azure e Azure Data Lake Store. Quasi tutti i servizi di Azure che fanno uso di questi e di altri file basati su testo sono integrati con uno di questi due servizi di archiviazione di oggetti. In alcuni casi, tuttavia, è possibile scegliere di importare direttamente i dati in un database SQL di Azure o in un altro archivio dati. SQL Server offre il supporto nativo per l'archiviazione e l'uso di documenti JSON e consente quindi di [importare ed elaborare questi tipi di file](/sql/relational-databases/json/import-json-documents-into-sql-server) con facilità. È inoltre possibile usare l'utilità SQL Bulk Import per eseguire facilmente l'[importazione di file in formato CSV](/sql/relational-databases/json/import-json-documents-into-sql-server).
 
-A seconda dello scenario, è possibile eseguire l'[elaborazione batch](../scenarios/batch-processing.md) o l'[elaborazione in tempo reale](../scenarios/real-time-processing.md) dei dati.
+A seconda dello scenario, è possibile eseguire l'[elaborazione batch](../big-data/batch-processing.md) o l'[elaborazione in tempo reale](../big-data/real-time-processing.md) dei dati.
 
 ## <a name="challenges"></a>Problematiche
 

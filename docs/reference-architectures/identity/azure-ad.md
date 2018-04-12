@@ -7,11 +7,11 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: dd4cf0369974ea68d240ed294b1c50972d361d74
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 431de4b2e08c79f70cc9830fda8315e07bf22c64
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integrare i domini Active Directory locali con Azure Active Directory
 
@@ -19,7 +19,7 @@ Azure Active Directory (Azure AD) è un servizio per la gestione delle identità
 
 [![0]][0] 
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
 > [!NOTE]
 > Per semplicità questo diagramma mostra solo le connessioni direttamente correlate ad Azure AD e non il traffico correlato al protocollo che può verificarsi durante l'autenticazione e la federazione delle identità. Ad esempio, un'applicazione Web può reindirizzare il Web browser per autenticare la richiesta mediante Azure AD. Una volta autenticata, la richiesta può essere passata nuovamente all'applicazione Web, con le informazioni sull'identità appropriate.
@@ -35,9 +35,9 @@ Gli usi tipici di questa architettura di riferimento includono:
 > Azure AD attualmente supporta solo l'autenticazione utente. Alcune applicazioni e alcuni servizi, ad esempio SQL Server, potrebbero richiedere l'autenticazione computer. In questo caso questa soluzione non è appropriata.
 > 
 
-Per altre considerazioni, vedere [Scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
+Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 L'architettura include i componenti indicati di seguito.
 
@@ -119,7 +119,7 @@ Per altre informazioni su queste topologie, vedere [Topologie per Azure AD Conne
 
 ### <a name="user-authentication"></a>Autenticazione utente
 
-Per impostazione predefinita, il server di sincronizzazione di Azure AD Connect consente di configurare la sincronizzazione delle password tra il dominio locale e Azure AD e il servizio di Azure AD presuppone che gli utenti eseguano l'autenticazione con la stessa password che usano in locale. Per molte organizzazioni questo comportamento è appropriato, ma è necessario considerare l'infrastruttura e i criteri esistenti dell'organizzazione specifica. Ad esempio:
+Per impostazione predefinita, il server di sincronizzazione di Azure AD Connect consente di configurare la sincronizzazione delle password tra il dominio locale e Azure AD e il servizio di Azure AD presuppone che gli utenti eseguano l'autenticazione con la stessa password che usano in locale. Per molte organizzazioni questo comportamento è appropriato, ma è necessario considerare l'infrastruttura e i criteri esistenti dell'organizzazione specifica. Ad esempio: 
 
 * I criteri di sicurezza dell'organizzazione potrebbero non consentire la sincronizzazione degli hash delle password nel cloud.
 * Quando si accede alle risorse del cloud da computer appartenenti al dominio nella rete aziendale, è necessario che gli utenti non vadano incontro ad alcun problema nell’uso dell’SSO.
@@ -260,7 +260,7 @@ Per altre informazioni, vedere l'articolo relativo all'[accesso condizionale di 
 [considerations]: ./considerations.md
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [sla-aad]: https://azure.microsoft.com/support/legal/sla/active-directory/v1_0/
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 
 
 [0]: ./images/azure-ad.png "Architettura identità cloud tramite Azure Active Directory"

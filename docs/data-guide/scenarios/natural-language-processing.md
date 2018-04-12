@@ -1,13 +1,13 @@
 ---
 title: Elaborazione del linguaggio naturale
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: c03e2d017f9b4eb955a0e3494b5bc6c2603d1058
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 0afd8ac9a8a2e56f79ade0b2e10328630866c03c
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="natural-language-processing"></a>Elaborazione del linguaggio naturale
 
@@ -32,9 +32,9 @@ Quando si usa l'elaborazione del linguaggio naturale per estrarre informazioni e
 - L'elaborazione di una raccolta di documenti di testo in formato libero è in genere un'operazione impegnativa a livello di calcolo che richiede lunghi tempi di elaborazione.
 - Senza un formato standardizzato per i documenti, può essere molto difficile ottenere risultati precisi e coerenti usando l'elaborazione di testo in formato libero per estrarre dati specifici da un documento. Se si considera ad esempio una rappresentazione testuale di una fattura, può essere difficile creare un processo che consenta di estrarre correttamente il numero e la data delle fatture di più fornitori.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
-In una soluzione di elaborazione del linguaggio naturale, l'elaborazione di testo in formato libero viene eseguita su documenti che contengono paragrafi di testo. L'architettura globale può essere basata su una pipeline di [elaborazione batch](./batch-processing.md) o di [elaborazione del flusso in tempo reale](./real-time-processing.md).
+In una soluzione di elaborazione del linguaggio naturale, l'elaborazione di testo in formato libero viene eseguita su documenti che contengono paragrafi di testo. L'architettura globale può essere basata su una pipeline di [elaborazione batch](../big-data/batch-processing.md) o di [elaborazione del flusso in tempo reale](../big-data/real-time-processing.md).
 
 Il processo di elaborazione effettivo varia a seconda del risultato desiderato, ma al livello della pipeline, l'elaborazione del linguaggio naturale può essere applicata in modalità batch o in tempo reale. Si prenda ad esempio un'analisi del sentiment applicata a blocchi di testo per generare un punteggio di valutazione. Un'analisi di questo tipo può essere eseguita con un processo batch sui dati presenti nel servizio di archiviazione oppure in tempo reale, usando blocchi di dati più piccoli trasmessi in flusso tramite un servizio di messaggistica.
 

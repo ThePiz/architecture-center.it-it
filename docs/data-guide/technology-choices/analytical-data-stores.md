@@ -1,19 +1,19 @@
 ---
 title: Scelta di un archivio dati analitici
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b2e5e63982d4b89b95cd28e596d3b882a4a2263e
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: cdc32c16e30aec5e1c0cb6959182215f99d56b56
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>Scelta di un archivio dati analitici in Azure
 
-In un'architettura per [Big Data](../concepts/big-data.md) è spesso necessario un archivio dati analitici in grado di servire dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti di analisi. Gli archivi dati analitici che supportano l'esecuzione di query per ottenere dati dal percorso ad accesso frequente e da quello ad accesso sporadico sono collettivamente denominati livello di gestione o archiviazione di gestione dati.
+In un'architettura per [Big Data](../big-data/index.md) è spesso necessario un archivio dati analitici in grado di servire dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti di analisi. Gli archivi dati analitici che supportano l'esecuzione di query per ottenere dati dal percorso ad accesso frequente e da quello ad accesso sporadico sono collettivamente denominati livello di gestione o archiviazione di gestione dati.
 
-Al livello di gestione vengono trattati i dati elaborati ottenuti da entrambi i percorsi. Nell'[architettura lambda](../concepts/big-data.md#lambda-architecture) il livello di gestione è suddiviso in un livello di _elaborazione rapida_, che archivia i dati elaborati in modo incrementale, e in un livello di _elaborazione batch_, che contiene l'output elaborato in batch. Il livello di gestione richiede un solido supporto per le operazioni di lettura casuali a bassa latenza. L'archiviazione dei dati per il livello di elaborazione rapida deve supportare anche le operazioni di scrittura casuali perché il caricamento dei dati in batch nell'archivio causerebbe ritardi indesiderati. Al contrario, l'archiviazione dei dati per il livello di elaborazione batch non deve supportare le operazioni di scrittura casuali, ma solo quelle in batch.
+Al livello di gestione vengono trattati i dati elaborati ottenuti da entrambi i percorsi. Nell'[architettura lambda](../big-data/index.md#lambda-architecture) il livello di gestione è suddiviso in un livello di _elaborazione rapida_, che archivia i dati elaborati in modo incrementale, e in un livello di _elaborazione batch_, che contiene l'output elaborato in batch. Il livello di gestione richiede un solido supporto per le operazioni di lettura casuali a bassa latenza. L'archiviazione dei dati per il livello di elaborazione rapida deve supportare anche le operazioni di scrittura casuali perché il caricamento dei dati in batch nell'archivio causerebbe ritardi indesiderati. Al contrario, l'archiviazione dei dati per il livello di elaborazione batch non deve supportare le operazioni di scrittura casuali, ma solo quelle in batch.
 
 Non esiste un'unica soluzione di gestione dei dati ottimale per tutte le attività di archiviazione dei dati. Le soluzioni più adatte variano in base alle attività da eseguire. La maggior parte delle app cloud e dei processi su Big Data nel mondo reale presenta un'ampia varietà di requisiti di archiviazione dei dati e spesso sfrutta una combinazione di soluzioni di archiviazione.
 
@@ -65,12 +65,12 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
  
 ### <a name="scalability-capabilities"></a>Funzionalità di scalabilità
 
-| | Database SQL | SQL Data Warehouse | HBase/Phoenix in HDInsight | Hive LLAP in HDInsight | Azure Analysis Services | Cosmos DB |
-| --- | --- | --- | --- | --- | --- | --- |
-| Server regionali ridondanti per disponibilità elevata  | Sì | Sì | Sì | No  | No  | Sì | Sì |
-| Supporto per la scalabilità orizzontale delle query  | No  | Sì | Sì | Sì | Sì | Sì |
-| Scalabilità dinamica (aumento delle prestazioni)  | Sì | Sì | No  | No  | Sì | Sì |
-| Supporto per la memorizzazione nella cache dei dati in memoria | Sì | Sì | No  | Sì | Sì | No  |
+|                                                  | Database SQL | SQL Data Warehouse | HBase/Phoenix in HDInsight | Hive LLAP in HDInsight | Azure Analysis Services | Cosmos DB |
+|--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
+| Server regionali ridondanti per disponibilità elevata |     Sì      |        Sì         |            Sì             |           No            |           No             |    Sì    |
+|             Supporto per la scalabilità orizzontale delle query             |      No       |        Sì         |            Sì             |          Sì           |           Sì           |    Sì    |
+|          Scalabilità dinamica (aumento delle prestazioni)          |     Sì      |        Sì         |             No              |           No            |           Sì           |    Sì    |
+|        Supporto per la memorizzazione nella cache dei dati in memoria        |     Sì      |        Sì         |             No              |          Sì           |           Sì           |    No      |
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
 

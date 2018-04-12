@@ -1,15 +1,16 @@
 ---
-title: "Disponibilità elevata per le applicazioni Azure"
-description: "Panoramiche tecniche e informazioni approfondite sulla progettazione e la creazione di applicazioni per la disponibilità elevata in Microsoft Azure."
+title: Disponibilità elevata per le applicazioni Azure
+description: Panoramiche tecniche e informazioni approfondite sulla progettazione e la creazione di applicazioni per la disponibilità elevata in Microsoft Azure.
 author: adamglick
 ms.date: 05/31/2017
-ms.openlocfilehash: 46b7b802326a8de03546528aaeb1a1c6419d41db
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f116b9e64f1722b5141ae90239d5c8a8b4a89487
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="high-availability-for-applications-built-on-microsoft-azure"></a>Disponibilità elevata per le applicazioni basate su Microsoft Azure
 Un'applicazione a disponibilità elevata assorbe le fluttuazioni di disponibilità, carico ed errori temporanei nell'hardware e nei servizi dipendenti. L'applicazione continua a funzionare in modo accettabile in base a quanto definito dai requisiti aziendali o dai contratti di servizio dell'applicazione.
 
@@ -46,7 +47,7 @@ La figura seguente rappresenta due set di disponibilità, rispettivamente per ma
 ![Set di disponibilità per le macchine virtuali di Azure](./images/high-availability-azure-applications/availability-set-for-azure-virtual-machines.png)
 
 > [!NOTE]
-> Nella figura precedente, SQL Server è installato ed eseguito in macchine virtuali. Il database SQL di Azure, al contrario, il database viene fornito come servizio gestito.
+> Nella figura precedente, SQL Server è installato ed eseguito in macchine virtuali. Il database SQL di Azure, al contrario, viene fornito come servizio gestito.
 > 
 > 
 
@@ -56,7 +57,7 @@ La maggior parte delle strategie delle applicazioni per la disponibilità elevat
 ### <a name="asynchronous-communication-and-durable-queues"></a>Comunicazione asincrona e code durevoli
 Per aumentare la disponibilità delle applicazioni Azure, prendere in considerazione la comunicazione asincrona tra servizi a regime di controllo libero. In questo modello, i messaggi vengono scritti nelle code di archiviazione o nelle code del bus di servizio di Azure per l'elaborazione successiva. Quando un messaggio viene scritto nella coda, il controllo torna immediatamente al mittente. L'elaborazione del messaggio viene gestita da un altro servizio dell'applicazione, in genere implementato come ruolo di lavoro. Se il servizio di elaborazione diventa inattivo, i messaggi si accumulano nella coda finché non viene ripristinato il servizio di elaborazione. Non esiste alcuna dipendenza diretta tra mittente front-end ed elaboratore dei messaggi. Questo elimina le chiamate sincrone ai servizi, che nelle applicazioni distribuite possono causare colli di bottiglia.
 
-Una variante di questo modello archivia le informazioni relative alle chiamate al database non riuscite nelle code di Archiviazione di Azure (BLOB, tabelle, code) o del bus di servizio. Se una chiamata sincrona all'interno di un'applicazione verso un altro servizio (come il database SQL di Azure) ha ripetutamente esito negativo, ad esempio, è possibile serializzare tale richiesta in una risorsa di archiviazione durevole. Successivamente, quando il servizio o il database è di nuovo online, l'applicazione può inviare nuovamente la richiesta dalla risorsa di archiviazione. Questo modello si differenzia perché la posizione intermedia viene usata solo caso di errore e non è una parte costante del flusso di lavoro dell'applicazione.
+Una variante di questo modello archivia le informazioni relative alle chiamate al database non riuscite nelle code di Archiviazione di Azure (BLOB, tabelle, code) o del bus di servizio. Se una chiamata sincrona all'interno di un'applicazione verso un altro servizio (come il database SQL di Azure) ha ripetutamente esito negativo, ad esempio, è possibile serializzare tale richiesta in una risorsa di archiviazione durevole. Successivamente, quando il servizio o il database è di nuovo online, l'applicazione può inviare nuovamente la richiesta dalla risorsa di archiviazione. Questo modello si differenzia perché la posizione intermedia viene usata solo in caso di errore e non è una parte costante del flusso di lavoro dell'applicazione.
 
 In entrambi gli scenari, la comunicazione asincrona e l'archiviazione intermedia impediscono a un servizio back-end inattivo di arrestare l'intera applicazione. Le code fungono da intermediario logico. Per altre indicazioni sulla scelta del servizio di accodamento, vedere [Analogie e differenze &mdash; tra le code di Azure e le code del bus di servizio di Azure](/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted/).
 

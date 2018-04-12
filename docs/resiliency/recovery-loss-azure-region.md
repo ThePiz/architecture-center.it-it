@@ -1,15 +1,16 @@
 ---
 title: Recuperare la perdita di un'area di Azure
-description: "Articolo sulla progettazione di applicazioni resilienti, a disponibilità elevata e a tolleranza di errore e pianificazione per il ripristino di emergenza"
+description: Articolo sulla progettazione di applicazioni resilienti, a disponibilità elevata e a tolleranza di errore e pianificazione per il ripristino di emergenza
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: 42a7d865e101b43279f3198f3dd75df1b15a8565
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f551e8af8aece8aa30abfba2438c41c3944209bd
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Materiale sussidiario sulla resilienza di Azure: ripristino dopo un'interruzione di servizio di un'area
 Dal punto di vista fisico e logico, Azure è suddiviso in unità chiamate aree. Un'area è costituita da uno o più data center che si trovano in posizioni molto vicine. 
 

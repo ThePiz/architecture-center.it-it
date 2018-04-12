@@ -1,13 +1,13 @@
 ---
 title: Scelta di una tecnologia per l'archiviazione di dati
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d8f831e758ddc8604758392644a68b56dc51cf57
-ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
+ms.openlocfilehash: b14611a2dc34bcb145cf420441795d4124e7baeb
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>Scelta di una tecnologia per l'archiviazione di Big Data in Azure
 
@@ -109,12 +109,13 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="nosql-database-capabilities"></a>Funzionalità di database NoSQL
 
-| | Azure Cosmos DB | HBase in HDInsight |
-| --- | --- | --- |
-| Modello di database primario | Archivio a documenti, a grafo, a chiave-valore, a colonne esteso | Archivio a colonne esteso |
-| Indici secondari | Sì | No  |
-| Supporto per il linguaggio SQL | Sì | Sì (con il driver JDBC [Phoenix](http://phoenix.apache.org/)) |
-| Consistency | Assoluta, decadimento ristretto, sessione, coerenza del prefisso, finale | Assoluta |
-| Integrazione nativa di Funzioni di Azure | [Sì](/azure/cosmos-db/serverless-computing-database) | No  |
-| Distribuzione globale automatica | [Sì](/azure/cosmos-db/distribute-data-globally) | Non [è possibile configurare una replica di cluster HBase](/azure/hdinsight/hbase/apache-hbase-replication) in aree geografiche con coerenza finale |
-| Modello di prezzi | Unità richiesta (RU) scalabili in modo elastico addebitate al secondo in base alle esigenze, archiviazione scalabile in modo elastico | Prezzi al minuto per il cluster HDInsight (scalabilità orizzontale dei nodi), archiviazione |
+|                                    |                                           Azure Cosmos DB                                           |                                                             HBase in HDInsight                                                             |
+|------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+|       Modello di database primario       |                      Archivio a documenti, a grafo, a chiave-valore, a colonne esteso                      |                                                             Archivio a colonne esteso                                                              |
+|         Indici secondari          |                                                 Sì                                                 |                                                                     No                                                                      |
+|        Supporto per il linguaggio SQL        |                                                 Sì                                                 |                                     Sì (con il driver JDBC [Phoenix](http://phoenix.apache.org/))                                      |
+|            Consistency             |                   Assoluta, decadimento ristretto, sessione, coerenza del prefisso, finale                   |                                                                   Assoluta                                                                   |
+| Integrazione nativa di Funzioni di Azure |                        [Sì](/azure/cosmos-db/serverless-computing-database)                        |                                                                     No                                                                      |
+|   Distribuzione globale automatica    |                          [Sì](/azure/cosmos-db/distribute-data-globally)                           | Non [è possibile configurare una replica di cluster HBase](/azure/hdinsight/hbase/apache-hbase-replication) in aree geografiche con coerenza finale |
+|           Modello di prezzi            | Unità richiesta (RU) scalabili in modo elastico addebitate al secondo in base alle esigenze, archiviazione scalabile in modo elastico |                              Prezzi al minuto per il cluster HDInsight (scalabilità orizzontale dei nodi), archiviazione                               |
+

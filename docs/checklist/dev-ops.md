@@ -4,11 +4,11 @@ description: Elenco di controllo contenente linee guida relative a DevOps.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 356fef2415347ae132915695a25fd9b50779bd8b
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2e338d2f2e61b404223001a61f44e06e89e7f563
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="devops-checklist"></a>Elenco di controllo DevOps
 
@@ -130,7 +130,7 @@ I contenitori creano anche un livello di astrazione tra l'applicazione e il sist
 
 **Seguire i principi dei privilegi minimi in fase di concessione dell'accesso alle risorse.** Gestire con cautela l'accesso alle risorse. L'accesso deve essere negato per impostazione predefinita, a meno che a un utente non venga concesso in modo esplicito di accedere a una risorsa. Concedere l'accesso utente solo in misura necessaria a completare le attività. Tenere traccia delle autorizzazioni utente ed eseguire controlli periodici di sicurezza.
 
-**Usare il controllo degli accessi in base al ruolo.** L'assegnazione di account utente e accessi alle risorse non deve essere un processo manuale. Usare il [controllo degli accessi in base al ruolo] [rbac] per concedere l'accesso in base a identità e gruppi di [Azure Active Directory][azure-ad]. 
+<strong>Usare il controllo degli accessi in base al ruolo.</strong> L'assegnazione di account utente e accessi alle risorse non deve essere un processo manuale. Usare il [controllo degli accessi in base al ruolo] [rbac] per concedere l'accesso in base a identità e gruppi di [Azure Active Directory][azure-ad]. 
 
 **Usare un sistema di rilevamento dei bug per tenere traccia dei problemi.** Senza una procedura efficace per tenere traccia dei problemi, è facile perdere elementi, duplicare il lavoro o introdurre altri problemi. Non basarsi sulle comunicazioni a voce tra gli utenti per tenere traccia dello stato dei bug. Usare un apposito strumento per registrare dettagli sui problemi, assegnare le risorse in grado di risolverli e fornire un audit trail sull'avanzamento e sullo stato. 
 

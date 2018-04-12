@@ -1,15 +1,15 @@
 ---
-title: "Modelli di prestazioni e scalabilità"
-description: "Le prestazioni sono un'indicazione della velocità di risposta con cui un sistema esegue qualsiasi azione all'interno di un determinato intervallo di tempo, mentre la scalabilità è la capacità di un sistema di gestire gli aumenti del carico senza influire sulle prestazioni o di aumentare facilmente le risorse disponibili. In genere le applicazioni cloud hanno carichi di lavoro e picchi di attività variabili. La previsione di questi aspetti, soprattutto in uno scenario multi-tenant, è quasi impossibile. Le applicazioni, invece, devono essere in grado di aumentare le risorse entro i limiti per soddisfare i picchi di domanda e di ridurle quando la domanda diminuisce. La scalabilità non riguarda solo le istanze di calcolo, ma anche altri elementi, come l'archiviazione dei dati, l'infrastruttura di messaggistica e altro."
+title: Modelli di prestazioni e scalabilità
+description: Le prestazioni sono un'indicazione della velocità di risposta con cui un sistema esegue qualsiasi azione all'interno di un determinato intervallo di tempo, mentre la scalabilità è la capacità di un sistema di gestire gli aumenti del carico senza influire sulle prestazioni o di aumentare facilmente le risorse disponibili. In genere le applicazioni cloud hanno carichi di lavoro e picchi di attività variabili. La previsione di questi aspetti, soprattutto in uno scenario multi-tenant, è quasi impossibile. Le applicazioni, invece, devono essere in grado di aumentare le risorse entro i limiti per soddisfare i picchi di domanda e di ridurle quando la domanda diminuisce. La scalabilità non riguarda solo le istanze di calcolo, ma anche altri elementi, come l'archiviazione dei dati, l'infrastruttura di messaggistica e altro.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 26e5fe0bc05bff7b9fb684795a2de3b57d945ae0
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e60c7c5779e73925d7eed51b41eb37e5c2ad49ff
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="performance-and-scalability-patterns"></a>Modelli di prestazioni e scalabilità
 
@@ -17,15 +17,17 @@ ms.lasthandoff: 11/14/2017
 
 Le prestazioni sono un'indicazione della velocità di risposta con cui un sistema esegue qualsiasi azione all'interno di un determinato intervallo di tempo, mentre la scalabilità è la capacità di un sistema di gestire gli aumenti del carico senza influire sulle prestazioni o di aumentare facilmente le risorse disponibili. In genere le applicazioni cloud hanno carichi di lavoro e picchi di attività variabili. La previsione di questi aspetti, soprattutto in uno scenario multi-tenant, è quasi impossibile. Le applicazioni, invece, devono essere in grado di aumentare le risorse entro i limiti per soddisfare i picchi di domanda e di ridurle quando la domanda diminuisce. La scalabilità non riguarda solo le istanze di calcolo, ma anche altri elementi, come l'archiviazione dei dati, l'infrastruttura di messaggistica e altro.
 
-| Modello | Riepilogo |
-| ------- | ------- |
-| [Cache-aside](../cache-aside.md) | Caricare i dati su richiesta in una cache da un archivio dati |
-| [CQRS](../cqrs.md) | Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate. |
-| [Origine eventi](../event-sourcing.md) | Usare un archivio di solo accodamento per registrare la serie completa di eventi che descrivono le azioni eseguite sui dati di un dominio. |
-| [Tabella degli indici](../index-table.md) | Creare indici sui campi negli archivi dati spesso referenziati dalle query. |
-| [Vista materializzata](../materialized-view.md) | Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie. |
-| [Coda di priorità](../priority-queue.md) | Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa. |
-| [Livellamento del carico basato sulle code](../queue-based-load-leveling.md) | Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti. |
-| [Partizionamento orizzontale](../sharding.md) | Dividere un archivio dati in un set di partizioni orizzontali o partizioni. |
-| [Hosting di contenuto statico](../static-content-hosting.md) | Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client. |
-| [Limitazione](../throttling.md) | Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio. |
+
+|                           Modello                            |                                                                        Summary                                                                         |
+|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|               [Cache-aside](../cache-aside.md)               |                                                   Caricare i dati su richiesta in una cache da un archivio dati                                                   |
+|                      [CQRS](../cqrs.md)                      |                           Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate.                           |
+|            [Origine eventi](../event-sourcing.md)            |                     Usare un archivio di solo accodamento per registrare la serie completa di eventi che descrivono le azioni eseguite sui dati di un dominio.                      |
+|               [Tabella degli indici](../index-table.md)               |                                Creare indici sui campi negli archivi dati spesso referenziati dalle query.                                |
+|         [Vista materializzata](../materialized-view.md)         |       Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie.        |
+|            [Coda di priorità](../priority-queue.md)            | Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa. |
+| [Livellamento del carico basato sulle code](../queue-based-load-leveling.md) |              Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti.               |
+|                  [Partizionamento orizzontale](../sharding.md)                  |                                           Dividere un archivio dati in un set di partizioni orizzontali.                                           |
+|    [Hosting di contenuto statico](../static-content-hosting.md)    |                          Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client.                          |
+|                [Limitazione](../throttling.md)                |                Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio.                 |
+

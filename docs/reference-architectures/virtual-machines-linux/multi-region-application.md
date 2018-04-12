@@ -1,15 +1,15 @@
 ---
-title: "Eseguire macchine virtuali Linux in più aree di Azure per una disponibilità elevata"
-description: "Come distribuire le macchine virtuali in più aree in Azure per la disponibilità elevata e la resilienza."
+title: Eseguire macchine virtuali Linux in più aree di Azure per una disponibilità elevata
+description: Come distribuire le macchine virtuali in più aree in Azure per la disponibilità elevata e la resilienza.
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Linux VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 7d720a004d21edbffc0ddeba54e291aa817550e0
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 07ccf44f28203e6d5001475b47adce01437e9600
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="run-linux-vms-in-multiple-regions-for-high-availability"></a>Eseguire macchine virtuali Linux in più aree per una disponibilità elevata
 
@@ -150,6 +150,6 @@ Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx
 [0]: ./images/multi-region-application-diagram.png "Architettura di rete a disponibilità elevata per applicazioni Azure a più livelli"

@@ -1,13 +1,13 @@
 ---
 title: Scelta di una tecnologia di servizi cognitivi
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d97e166abed4670e4bdc797cc8075be3314e677a
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 055769188fbd6742b94094ee18766293812849fa
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Scelta di una tecnologia di servizi cognitivi Microsoft
 
@@ -39,7 +39,7 @@ In Azure sono disponibili numerosi servizi cognitivi. L'elenco aggiornato di que
 - [Sintesi vocale](https://azure.microsoft.com/services/cognitive-services/directory/speech/)
 - [Conoscenza](https://azure.microsoft.com/services/cognitive-services/directory/know/)
 - [Ricerca](https://azure.microsoft.com/services/cognitive-services/directory/search/)
-- [Linguaggio](https://azure.microsoft.com/services/cognitive-services/directory/lang/)
+- [Lingua](https://azure.microsoft.com/services/cognitive-services/directory/lang/)
 
 ## <a name="key-selection-criteria"></a>Criteri di scelta principali
 
@@ -54,35 +54,37 @@ Per limitare le possibilità di scelta, rispondere prima di tutto a queste doman
 Le tabelle seguenti contengono un riepilogo delle differenze principali in termini di funzionalità. 
 
 ### <a name="uses-prebuilt-models"></a>Uso di modelli predefiniti
-| | Tipo di input | Vantaggi principali |
-| --- | --- | --- |
-| API Analisi del testo | Testo | Valutare il sentiment e il rilevamento degli argomenti per identificare le opinioni degli utenti. |
-| API Collegamento entità| Testo | Potenziare i collegamenti dati dell'app con il riconoscimento e la disambiguazione delle entità denominate. |
-| Language Understanding Intelligent Service (LUIS)| Testo | Insegnare alle app come riconoscere i comandi degli utenti. |
-| Servizio QnA Maker| Testo | Estrarre informazioni in formato di domande frequenti per ottenere risposte discorsive e facili da analizzare. |
-| API Analisi linguistica | Testo | Semplificare concetti linguistici complessi e analizzare il testo. |
-| Knowledge Exploration Service | Testo | Abilitare esperienze di ricerca interattive su dati strutturati tramite input in linguaggio naturale. | 
-| Web Language Model API | Testo | Usare modelli di linguaggio predittivi con training su dati Web. | 
-| API Academic Knowledge | Testo | Sfruttare l'ampia varietà di contenuti accademici disponibile in Microsoft Academic Graph popolata da Bing. |
-| API Suggerimenti automatici Bing | Testo | Implementare nell'app opzioni di suggerimento automatico intelligenti per l'esecuzione di ricerche. |
-| API Controllo ortografico Bing | Testo | Rilevare e correggere errori di ortografia nell'app. |
-| API Traduzione testuale | Testo | Usare un sistema di traduzione automatica. |
-| API Consigli | Testo | Prevedere e consigliare gli articoli più appetibili per i clienti. |
-| API Ricerca entità Bing | Testo (query di ricerca Web) | Identificare e ampliare le informazioni sulle entità ricavate dal Web. |
-| API Ricerca immagini Bing | Testo (query di ricerca Web) | Eseguire la ricerca di immagini. |
-| API Ricerca notizie Bing | Testo (query di ricerca Web) | Eseguire la ricerca di notizie. |
-| API Ricerca video Bing | Testo (query di ricerca Web) | Eseguire la ricerca di video. |
-| API Ricerca Web Bing | Testo (query di ricerca Web) | Ottenere risultati di ricerca migliori da miliardi di documenti Web. |.
-| API Riconoscimento vocale Bing | Testo o sintesi vocale | Convertire l'input vocale in testo e viceversa. |
-| API Riconoscimento voce | Sintesi vocale | Usare la sintesi vocale per identificare e autenticare singole voci. |
-| API Traduzione vocale | Sintesi vocale | Eseguire traduzioni vocali in tempo reale. |
-| API Visione artificiale | Immagini (o fotogrammi da video) | Estrarre informazioni utili da immagini, creare automaticamente descrizioni di foto, eseguire la derivazione di tag, riconoscere celebrità, estrarre testo e creare anteprime accurate. |
-| Content Moderator | Testo, immagini o video | Sfruttare funzionalità di moderazione automatizzata di immagini, testo e video. |
-| API Emozioni | Immagini (foto con persone) | Identificare le emozioni delle persone. |
-| API Viso | Immagini (foto con persone) | Rilevare, identificare, analizzare, organizzare e contrassegnare con tag i visi nelle foto. |
-| Indicizzatore video | Video | Approfondimenti video, ad esempio sentiment, trascrizione vocale, convertitore vocale, riconoscimento di volti ed emozioni ed estrazione di parole chiave. | 
+
+|                                                   |             Tipo di input              |                                                                                Vantaggi principali                                                                                |
+|---------------------------------------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                API Analisi del testo                 |                Text                 |                                                       Valutare il sentiment e il rilevamento degli argomenti per identificare le opinioni degli utenti.                                                        |
+|                API Collegamento entità                 |                Text                 |                                               Potenziare i collegamenti dati dell'app con il riconoscimento e la disambiguazione delle entità denominate.                                               |
+| Language Understanding Intelligent Service (LUIS) |                Text                 |                                                          Insegnare alle app come riconoscere i comandi degli utenti.                                                          |
+|                 Servizio QnA Maker                 |                Text                 |                                             Estrarre informazioni in formato di domande frequenti per ottenere risposte discorsive e facili da analizzare.                                              |
+|              API Analisi linguistica              |                Text                 |                                                            Semplificare concetti linguistici complessi e analizzare il testo.                                                             |
+|           Knowledge Exploration Service           |                Text                 |                                          Abilitare esperienze di ricerca interattive su dati strutturati tramite input in linguaggio naturale.                                          |
+|              Web Language Model API               |                Text                 |                                                         Usare modelli di linguaggio predittivi con training su dati Web.                                                         |
+|              API Academic Knowledge               |                Text                 |                                        Sfruttare l'ampia varietà di contenuti accademici disponibile in Microsoft Academic Graph popolata da Bing.                                         |
+|               API Suggerimenti automatici Bing                |                Text                 |                                                        Implementare nell'app opzioni di suggerimento automatico intelligenti per l'esecuzione di ricerche.                                                        |
+|               API Controllo ortografico Bing                |                Text                 |                                                             Rilevare e correggere errori di ortografia nell'app.                                                             |
+|                API Traduzione testuale                |                Text                 |                                                                           Usare un sistema di traduzione automatica.                                                                            |
+|                API Consigli                |                Text                 |                                                             Prevedere e consigliare gli articoli più appetibili per i clienti.                                                              |
+|              API Ricerca entità Bing               |       Testo (query di ricerca Web)       |                                                           Identificare e ampliare le informazioni sulle entità ricavate dal Web.                                                           |
+|               API Ricerca immagini Bing               |       Testo (query di ricerca Web)       |                                                                            Eseguire la ricerca di immagini.                                                                             |
+|               API Ricerca notizie Bing                |       Testo (query di ricerca Web)       |                                                                             Eseguire la ricerca di notizie.                                                                              |
+|               API Ricerca video Bing               |       Testo (query di ricerca Web)       |                                                                            Eseguire la ricerca di video.                                                                             |
+|                API Ricerca Web Bing                |       Testo (query di ricerca Web)       |                                                        Ottenere risultati di ricerca migliori da miliardi di documenti Web.                                                        |
+|                  API Riconoscimento vocale Bing                  |           Testo o sintesi vocale            |                                                                  Convertire l'input vocale in testo e viceversa.                                                                   |
+|              API Riconoscimento voce              |               Sintesi vocale                |                                                       Usare la sintesi vocale per identificare e autenticare singole voci.                                                        |
+|               API Traduzione vocale               |               Sintesi vocale                |                                                                   Eseguire traduzioni vocali in tempo reale.                                                                   |
+|                API Visione artificiale                |    Immagini (o fotogrammi da video)    | Estrarre informazioni utili da immagini, creare automaticamente descrizioni di foto, eseguire la derivazione di tag, riconoscere celebrità, estrarre testo e creare anteprime accurate. |
+|                 Content Moderator                 |        Testo, immagini o video        |                                                               Sfruttare funzionalità di moderazione automatizzata di immagini, testo e video.                                                                |
+|                    API Emozioni                    | Immagini (foto con persone) |                                                              Identificare le emozioni delle persone.                                                               |
+|                     API Viso                      | Immagini (foto con persone) |                                                       Rilevare, identificare, analizzare, organizzare e contrassegnare con tag i visi nelle foto.                                                       |
+|                   Indicizzatore video                   |                Video                |                        Approfondimenti video, ad esempio sentiment, trascrizione vocale, convertitore vocale, riconoscimento di volti ed emozioni ed estrazione di parole chiave.                         |
 
 ### <a name="trained-with-custom-data-you-provide"></a>Training con dati personalizzati forniti dall'utente
+
 | | Tipo di input | Vantaggi principali |
 | --- | --- | --- |
 | Servizio visione personalizzata | Immagini (o fotogrammi da video) | Personalizzare i modelli di visione artificiale. |

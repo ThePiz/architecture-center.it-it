@@ -1,17 +1,17 @@
 ---
 title: Applicazione Web scalabile
-description: "Miglioramento della scalabilità in un'applicazione Web eseguita in Microsoft Azure."
+description: Miglioramento della scalabilità in un'applicazione Web eseguita in Microsoft Azure.
 author: MikeWasson
 pnp.series.title: Azure App Service
 pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: 4ad12fb041a79fcb706530c9968fd0f96211d7f9
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 6459acebfa25491332e2118b9e8fe51d5fc79ff3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Migliorare la scalabilità in un'applicazione Web
 
@@ -30,7 +30,7 @@ Questa architettura si basa su quella illustrata in [Applicazione Web di base][b
 * **Processo Web**. Usare [Processi Web di Azure][webjobs] per eseguire attività ad esecuzione prolungata in background. I processi Web possono essere eseguiti in base a una pianificazione, in modalità continua o in risposta a un trigger, come l'inserimento di un messaggio in una coda. Un processo Web viene eseguito come processo in background nel contesto di un'app del servizio app.
 * **Coda**. Nell'architettura illustrata qui l'applicazione accoda le attività in background inserendo un messaggio in una coda dell'[archivio code di Azure][queue-storage]. Il messaggio attiva una funzione nel processo Web. In alternativa, è possibile usare le code del bus di servizio. Per un confronto, vedere [Analogie e differenze tra le code di Azure e le code del bus di servizio][queues-compared].
 * **Cache**. Archiviare i dati semistatici nella [cache Redis di Azure][azure-redis].  
-* **Rete CDN**. Usare la [rete per la distribuzione di contenuti di Azure][azure-cdn] (rete CDN) per memorizzare nella cache il contenuto disponibile pubblicamente, in modo da ridurre la latenza e accelerare la distribuzione del contenuto.
+* <strong>Rete CDN</strong>. Usare la [rete per la distribuzione di contenuti di Azure][azure-cdn] (rete CDN) per memorizzare nella cache il contenuto disponibile pubblicamente, in modo da ridurre la latenza e accelerare la distribuzione del contenuto.
 * **Archiviazione dei dati**. Usare un [database SQL di Azure][sql-db] per i dati relazionali. Per i dati non relazionali considerare invece un archivio NoSQL, ad esempio [Cosmos DB][cosmosdb].
 * **Ricerca di Azure**. Usare il servizio [Ricerca di Azure][azure-search] per aggiungere funzionalità di ricerca come i suggerimenti per la ricerca, la ricerca fuzzy e la ricerca specifica della lingua. Il servizio Ricerca di Azure viene in genere usato in combinazione con un altro archivio dati, soprattutto se l'archivio dati primario richiede la coerenza assoluta. In questo approccio, archiviare i dati autorevoli nell'altro archivio dati e l'indice di ricerca in Ricerca di Azure. Ricerca di Azure può essere usato anche per creare un unico indice di ricerca da più archivi dati.  
 * **Messaggio di posta elettronica o SMS**. Usare un servizio di terze parti come SendGrid o Twilio per inviare messaggi di posta elettronica o SMS invece di incorporare questa funzionalità direttamente nell'applicazione.
@@ -148,7 +148,7 @@ Usare [Transparent Data Encryption][sql-encryption] se occorre crittografare i d
 [sql-elastic]: /azure/sql-database/sql-database-elastic-scale-introduction
 [sql-encryption]: https://msdn.microsoft.com/library/dn948096.aspx
 [tm]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/app-service-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [web-app-multi-region]: ./multi-region.md
 [webjobs-guidance]: ../../best-practices/background-jobs.md
 [webjobs]: /azure/app-service/app-service-webjobs-readme

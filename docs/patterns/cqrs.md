@@ -9,11 +9,11 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 80f4a8880cf2212acf82dadb67b0181e1cbae099
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: ce8d20ae82ae7d5ba00b4bc264a5c4d90fc383bd
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)
 
@@ -69,7 +69,7 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
 - È possibile applicare il modello CQRS a sezioni limitate del sistema in cui è più rilevante.
 
-- Un approccio tipico alla distribuzione di coerenza finale consiste nell'usare l'origine evento in combinazione con CQRS in modo che il modello di scrittura sia un flusso di sola aggiunta di eventi guidati dall'esecuzione dei comandi. Tali eventi vengono usati per aggiornare le viste materializzate che agiscono come modello di lettura. Per altre informazioni, vedere [Origine evento e modello CQRS](https://msdn.microsoft.com/library/dn568103.aspx#EventSourcingandCQRS).
+- Un approccio tipico alla distribuzione di coerenza finale consiste nell'usare l'origine evento in combinazione con CQRS in modo che il modello di scrittura sia un flusso di sola aggiunta di eventi guidati dall'esecuzione dei comandi. Tali eventi vengono usati per aggiornare le viste materializzate che agiscono come modello di lettura. Per altre informazioni, vedere [Origine evento e modello CQRS](/azure/architecture/patterns/cqrs#event-sourcing-and-cqrs).
 
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello
 

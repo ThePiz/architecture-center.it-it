@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: d5d4e99a6ff49cb823f592c83590471c0d68bfd1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="event-sourcing-pattern"></a>Modello di origine eventi
 
@@ -52,17 +52,17 @@ La figura illustra una panoramica del modello, incluse alcune delle opzioni rela
 
 Il modello di origine eventi offre i vantaggi seguenti:
 
-Gli eventi non sono modificabili e possono essere memorizzati con un'operazione di solo accodamento. L'interfaccia utente, il flusso di lavoro o il processo che ha avviato un evento può continuare e le attività che gestiscono gli eventi possono essere eseguite in background. Questo vantaggio, combinato con l'assenza di conflitti durante l'elaborazione delle transazioni, può migliorare notevolmente le prestazioni e la scalabilità delle applicazioni, soprattutto in termini di interfaccia utente o livello di presentazione.
+- Gli eventi non sono modificabili e possono essere memorizzati con un'operazione di solo accodamento. L'interfaccia utente, il flusso di lavoro o il processo che ha avviato un evento può continuare e le attività che gestiscono gli eventi possono essere eseguite in background. Questo vantaggio, combinato con l'assenza di conflitti durante l'elaborazione delle transazioni, può migliorare notevolmente le prestazioni e la scalabilità delle applicazioni, soprattutto in termini di interfaccia utente o livello di presentazione.
 
-Gli eventi sono oggetti semplici che descrivono un'azione che si è verificata, insieme a eventuali dati associati necessari per descrivere l'azione rappresentata dall'evento. Gli eventi non aggiornano direttamente un archivio dati. Vengono semplicemente registrati per essere gestiti al momento opportuno. Questi fattori possono semplificare l'implementazione e la gestione.
+- Gli eventi sono oggetti semplici che descrivono un'azione che si è verificata, insieme a eventuali dati associati necessari per descrivere l'azione rappresentata dall'evento. Gli eventi non aggiornano direttamente un archivio dati. Vengono semplicemente registrati per essere gestiti al momento opportuno. Questi fattori possono semplificare l'implementazione e la gestione.
 
-Gli eventi, in genere, sono facilmente comprensibili per gli esperti del settore, mentre la [mancata corrispondenza di impedenza object-relational](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch) può rendere difficile la comprensione delle tabelle di database complesse. Le tabelle sono costrutti artificiali che rappresentano lo stato corrente del sistema, non gli eventi che si sono verificati.
+- Gli eventi, in genere, sono facilmente comprensibili per gli esperti del settore, mentre la [mancata corrispondenza di impedenza object-relational](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch) può rendere difficile la comprensione delle tabelle di database complesse. Le tabelle sono costrutti artificiali che rappresentano lo stato corrente del sistema, non gli eventi che si sono verificati.
 
-La funzione di origine eventi contribuisce a impedire conflitti generati da aggiornamenti simultanei in quanto evita la necessità di aggiornare direttamente gli oggetti nell'archivio dati. La progettazione del modello di dominio, tuttavia, non prevede ancora la protezione da richieste che possono determinare uno stato incoerente.
+- La funzione di origine eventi contribuisce a impedire conflitti generati da aggiornamenti simultanei in quanto evita la necessità di aggiornare direttamente gli oggetti nell'archivio dati. La progettazione del modello di dominio, tuttavia, non prevede ancora la protezione da richieste che possono determinare uno stato incoerente.
 
-L'archiviazione di solo accodamento degli eventi offre un audit trail che consente di monitorare le azioni intraprese in un archivio dati, di rigenerare lo stato corrente come proiezioni o viste materializzate riproducendo gli eventi in qualsiasi momento e di semplificare le operazioni di test e debug del sistema. La necessità di usare eventi di compensazione per annullare le modifiche fornisce inoltre una cronologia delle modifiche annullate, possibilità che non sarebbe consentita se il modello archiviasse semplicemente lo stato corrente. L'elenco degli eventi può essere usato anche per analizzare le prestazioni delle applicazioni e individuare tendenze di comportamento degli utenti, nonché per ottenere altre informazioni aziendali utili.
+- L'archiviazione di solo accodamento degli eventi offre un audit trail che consente di monitorare le azioni intraprese in un archivio dati, di rigenerare lo stato corrente come proiezioni o viste materializzate riproducendo gli eventi in qualsiasi momento e di semplificare le operazioni di test e debug del sistema. La necessità di usare eventi di compensazione per annullare le modifiche fornisce inoltre una cronologia delle modifiche annullate, possibilità che non sarebbe consentita se il modello archiviasse semplicemente lo stato corrente. L'elenco degli eventi può essere usato anche per analizzare le prestazioni delle applicazioni e individuare tendenze di comportamento degli utenti, nonché per ottenere altre informazioni aziendali utili.
 
-L'archivio eventi genera eventi e le attività eseguono operazioni in risposta agli eventi. È questa separazione tra le attività e gli eventi a garantire flessibilità ed estensibilità. Le attività sono a conoscenza del tipo di evento e dei dati relativi all'evento, ma non dell'operazione che l'evento ha generato. Ogni evento, inoltre, può essere gestito da più attività. Questo aspetto semplifica l'integrazione con altri servizi e sistemi che restano in ascolto solo di nuovi eventi generati dall'archivio eventi. Gli eventi che danno origine a nuovi eventi, tuttavia, tendono a essere di livello molto basso e può essere necessario generare eventi di integrazione specifici.
+- L'archivio eventi genera eventi e le attività eseguono operazioni in risposta agli eventi. È questa separazione tra le attività e gli eventi a garantire flessibilità ed estensibilità. Le attività sono a conoscenza del tipo di evento e dei dati relativi all'evento, ma non dell'operazione che l'evento ha generato. Ogni evento, inoltre, può essere gestito da più attività. Questo aspetto semplifica l'integrazione con altri servizi e sistemi che restano in ascolto solo di nuovi eventi generati dall'archivio eventi. Gli eventi che danno origine a nuovi eventi, tuttavia, tendono a essere di livello molto basso e può essere necessario generare eventi di integrazione specifici.
 
 > Il modello di origine eventi viene spesso combinato con il modello CQRS per l'esecuzione di attività di gestione dati in risposta agli eventi e per la materializzazione delle viste a partire da eventi archiviati.
 

@@ -2,11 +2,11 @@
 title: Modelli di progettazione cloud
 description: Schemi progettuali del cloud per Microsoft Azure
 keywords: Azure
-ms.openlocfilehash: bf9fb2555f5c80cab9e4616ba52155bf1284d26f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0b564931fe027e42b3a6db1a5d6a207e6441e536
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="cloud-design-patterns"></a>Modelli di progettazione cloud
 
@@ -70,44 +70,45 @@ Ogni schema descrive il problema che risolve, le considerazioni per l'applicazio
     <td style="width: 64px; vertical-align: middle;"><a href="./category/security.md"><img src="_images/category/security.svg" alt="Security" /></a></td>
     <td>
         <h3><a href="./category/security.md">Sicurezza</a></h3>
-        <p>La sicurezza è la capacità di un sistema di impedire azioni dannose o accidentali al di fuori dell'utilizzo designato e di impedire la divulgazione o la perdita di informazioni. Le applicazioni cloud sono esposte in Internet al di fuori dei limiti locali attendibili, spesso sono aperte al pubblico e possono essere usate da utenti non attendibili. Le applicazioni devono essere progettate e distribuite in modo da proteggerle da attacchi dannosi, limitare l'accesso solo agli utenti approvati e proteggere i dati sensibili.</p>
+        <p>La sicurezza è la capacità di un sistema di impedire azioni dannose o accidentali al di fuori dell'utilizzo designato e di impedire la divulgazione o la perdita di informazioni. Le applicazioni cloud sono esposte in Internet fuori dai limiti locali attendibili, spesso sono aperte al pubblico e possono essere usate da utenti non attendibili. Le applicazioni devono essere progettate e distribuite in modo da proteggerle da attacchi dannosi, limitare l'accesso solo agli utenti approvati e proteggere i dati sensibili.</p>
     </td>
 </tr>
 </table>
 
 ## <a name="catalog-of-patterns"></a>Catalogo dei modelli
 
-| Modello | Riepilogo |
-| ------- | ------- |
-| [Ambasciatore](./ambassador.md) | Creare servizi helper che inviano richieste di rete per conto di un servizio consumer o di un'applicazione. |
-| [Livello anti-danneggiamento](./anti-corruption-layer.md) | Implementare un livello adapter o di interfaccia tra un'applicazione moderna e un sistema legacy. |
-| [Back-end per front-end](./backends-for-frontends.md) | Creare servizi back-end separati che vengono usati da interfacce o applicazioni front-end specifiche. |
-| [A scomparti](./bulkhead.md) | Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti. |
-| [Cache-aside](./cache-aside.md) | Caricare i dati su richiesta in una cache da un archivio dati. |
-| [Interruttore](./circuit-breaker.md) | Gestire gli errori la cui correzione potrebbe richiedere una quantità variabile di tempo in fase di connessione a una risorsa o a un servizio remoto. |
-| [CQRS](./cqrs.md) | Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate. |
-| [Transazioni di compensazione](./compensating-transaction.md) | Annullare il lavoro eseguito da una serie di passaggi che insieme definiscono un'operazione coerente. |
-| [Consumer concorrenti](./competing-consumers.md) | Consentire a più consumer concorrenti di elaborare i messaggi ricevuti sullo stesso canale di messaggistica. |
-| [Consolidamento delle risorse di calcolo](./compute-resource-consolidation.md) | Consolidare più attività o operazioni in un'unica unità di calcolo |
-| [Origine eventi](./event-sourcing.md) | Usare un archivio di solo accodamento per registrare la serie completa di eventi che descrivono le azioni eseguite sui dati di un dominio. |
-| [Archivio di configurazione esterno](./external-configuration-store.md) | È possibile estrarre le informazioni di configurazione dal pacchetto di distribuzione dell'applicazione e spostarle in una posizione centralizzata. |
-| [Identità federata](./federated-identity.md) | È possibile delegare l'autenticazione a un provider di identità esterno. |
-| [Gatekeeper](./gatekeeper.md) | Proteggere le applicazioni e i servizi usando un'istanza host dedicata che funga da broker tra i client e l'applicazione o il servizio, convalidi e purifichi le richieste e passi le richieste e i dati tra di essi. |
-| [Aggregazione gateway](./gateway-aggregation.md) | Usare un gateway per aggregare più richieste singole in una singola richiesta. |
-| [Offload gateway](./gateway-offloading.md) | Eseguire l'offload delle funzionalità dei servizi condivisi o specializzati su un proxy gateway. |
-| [Routing gateway](./gateway-routing.md) | Eseguire il routing delle richieste a più servizi usando un singolo endpoint. |
-| [Monitoraggio endpoint di integrità](./health-endpoint-monitoring.md) | Implementare controlli funzionali all'interno di un'applicazione a cui strumenti esterni possono accedere tramite endpoint esposti a intervalli regolari. |
-| [Tabella degli indici](./index-table.md) | Creare indici sui campi negli archivi dati spesso referenziati dalle query. |
-| [Designazione leader](./leader-election.md) | Coordinare le azioni eseguite da una raccolta di istanze di attività di collaborazione in un'applicazione distribuita designando un'istanza come leader, con la responsabilità di gestire le altre istanze. |
-| [Vista materializzata](./materialized-view.md) | Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie. |
-| [Pipe e filtri](./pipes-and-filters.md) | Scomporre un'attività che esegue un'elaborazione complessa in una serie di elementi distinti riutilizzabili. |
-| [Coda di priorità](./priority-queue.md) | Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa. |
-| [Livellamento del carico basato sulle code](./queue-based-load-leveling.md) | Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i sovraccarichi a intermittenza. |
-| [Nuovo tentativo](./retry.md) | È possibile abilitare un'applicazione per gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza. |
-| [Supervisione agente di pianificazione](./scheduler-agent-supervisor.md) | Coordinare un set di azioni in un set distribuito di servizi e di altre risorse remote. |
-| [Partizionamento orizzontale](./sharding.md) | Dividere un archivio dati in un set di partizioni orizzontali o partizioni. |
-| [Collaterale](./sidecar.md) | Distribuire i componenti di un'applicazione in un processo o in un contenitore separato per fornire isolamento e incapsulamento. |
-| [Hosting di contenuto statico](./static-content-hosting.md) | Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client. |
-| [Sostituzione](./strangler.md) | Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi. |
-| [Limitazione](./throttling.md) | Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio. |
-| [Passepartout](./valet-key.md) | Usare un token o una chiave che fornisca ai client l'accesso diretto limitato a una risorsa o a un servizio specifico. |
+|                                Modello                                |                                                                                                         Summary                                                                                                         |
+|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                     [Ambasciata](./ambassador.md)                     |                                                            Creare servizi helper che inviano richieste di rete per conto di un servizio consumer o di un'applicazione.                                                            |
+|          [Livello antidanneggiamento](./anti-corruption-layer.md)          |                                                                  Implementare un livello adapter o di interfaccia tra un'applicazione moderna e un sistema legacy.                                                                  |
+|         [Back-end per front-end](./backends-for-frontends.md)         |                                                            Creare servizi back-end separati che vengono usati da interfacce o applicazioni front-end specifiche.                                                             |
+|                       [A scomparti](./bulkhead.md)                       |                                                        Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti.                                                        |
+|                    [Cache-aside](./cache-aside.md)                    |                                                                                   Caricare i dati su richiesta in una cache da un archivio dati.                                                                                    |
+|                [Interruttore](./circuit-breaker.md)                |                                                     Gestire gli errori la cui correzione potrebbe richiedere una quantità variabile di tempo in fase di connessione a una risorsa o a un servizio remoto.                                                     |
+|                           [CQRS](./cqrs.md)                           |                                                           Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate.                                                            |
+|       [Transazione di compensazione](./compensating-transaction.md)       |                                                         Annullare il lavoro eseguito da una serie di passaggi che insieme definiscono un'operazione coerente.                                                         |
+|            [Consumer concorrenti](./competing-consumers.md)            |                                                            Consentire a più consumer concorrenti di elaborare i messaggi ricevuti sullo stesso canale di messaggistica.                                                             |
+| [Consolidamento delle risorse di calcolo](./compute-resource-consolidation.md) |                                                                        Consolidare più attività o operazioni in un'unica unità di calcolo                                                                        |
+|                 [Origine eventi](./event-sourcing.md)                 |                                                      Usare un archivio di solo accodamento per registrare la serie completa di eventi che descrivono le azioni eseguite sui dati di un dominio.                                                      |
+|   [Archivio di configurazione esterno](./external-configuration-store.md)   |                                                           È possibile estrarre le informazioni di configurazione dal pacchetto di distribuzione dell'applicazione e spostarle in una posizione centralizzata.                                                           |
+|             [Identità federativa](./federated-identity.md)             |                                                                                È possibile delegare l'autenticazione a un provider di identità esterno.                                                                                |
+|                     [Gatekeeper](./gatekeeper.md)                     | Proteggere le applicazioni e i servizi usando un'istanza host dedicata che funga da broker tra i client e l'applicazione o il servizio, convalidi e purifichi le richieste e passi le richieste e i dati tra di essi. |
+|            [Aggregazione gateway](./gateway-aggregation.md)            |                                                                     Usare un gateway per aggregare più richieste singole in un'unica richiesta.                                                                      |
+|             [Offload del gateway](./gateway-offloading.md)             |                                                                         Eseguire l'offload delle funzionalità dei servizi condivise o specializzate in un proxy gateway.                                                                         |
+|                [Routing del gateway](./gateway-routing.md)                |                                                                              Eseguire il routing delle richieste a più servizi, usando un singolo endpoint.                                                                               |
+|     [Monitoraggio endpoint di integrità](./health-endpoint-monitoring.md)     |                                              Implementare controlli funzionali all'interno di un'applicazione a cui strumenti esterni possono accedere tramite endpoint esposti a intervalli regolari.                                               |
+|                    [Tabella degli indici](./index-table.md)                    |                                                                Creare indici sui campi negli archivi dati spesso referenziati dalle query.                                                                 |
+|                [Designazione leader](./leader-election.md)                |   Coordinare le azioni eseguite da una raccolta di istanze di attività di collaborazione in un'applicazione distribuita designando un'istanza come leader, con la responsabilità di gestire le altre istanze.    |
+|              [Vista materializzata](./materialized-view.md)              |                                        Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie.                                        |
+|              [Pipe e filtri](./pipes-and-filters.md)              |                                                        Scomporre un'attività che esegue un'elaborazione complessa in una serie di elementi distinti riutilizzabili.                                                        |
+|                 [Coda di priorità](./priority-queue.md)                 |                                 Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa.                                  |
+|      [Livellamento del carico basato sulle code](./queue-based-load-leveling.md)      |                                               Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti.                                               |
+|                          [Nuovo tentativo](./retry.md)                          |               È possibile abilitare un'applicazione per gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza.                |
+|     [Supervisione agente di pianificazione](./scheduler-agent-supervisor.md)     |                                                              Coordinare un set di azioni in un set distribuito di servizi e di altre risorse remote.                                                               |
+|                       [Partizionamento orizzontale](./sharding.md)                       |                                                                           Dividere un archivio dati in un set di partizioni orizzontali o partizioni.                                                                            |
+|                        [Collaterale](./sidecar.md)                        |                                                    Distribuire i componenti di un'applicazione in un processo o in un contenitore separato per fornire isolamento e incapsulamento.                                                     |
+|         [Hosting di contenuto statico](./static-content-hosting.md)         |                                                          Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client.                                                           |
+|                      [Sostituzione](./strangler.md)                      |                                            Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi.                                            |
+|                     [Limitazione](./throttling.md)                     |                                                 Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio.                                                 |
+|                      [Passepartout](./valet-key.md)                      |                                                        Usare un token o una chiave che fornisca ai client l'accesso diretto limitato a una specifica risorsa o a un servizio.                                                        |
+

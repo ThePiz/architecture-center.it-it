@@ -1,13 +1,13 @@
 ---
 title: Scelta di una tecnologia per l'elaborazione batch
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bfb850ee8e9d8fd41927b4ca3b612e15b5ae6b11
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 0117798af82f2caa6704dc86e88be57f09c381ea
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Scelta di una tecnologia per l'elaborazione batch in Azure
 
@@ -19,7 +19,7 @@ Il requisito chiave per questi motori di elaborazione batch è la capacità di a
 
 In Azure tutti gli archivi dati elencati di seguito soddisfano i requisiti di base per l'elaborazione batch:
 
-- [Azure Data Lake Analytics](/azure/data-lake-analytics/)
+- [Azure Data Lake Analytics.](/azure/data-lake-analytics/)
 - [Azure SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-overview-what-is)
 - [HDInsight con Spark](/azure/hdinsight/spark/apache-spark-overview)
 - [HDInsight con Hive](/azure/hdinsight/hadoop/hdinsight-use-hive)
@@ -53,8 +53,9 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Modello di prezzi | Per processo batch | Per ora di cluster | Per ora di cluster | Per ora di cluster | Per ora di cluster |  
 
 [1] Con configurazione e scalabilità manuali.
- 
+
 ### <a name="integration-capabilities"></a>Funzionalità di integrazione
+
 | | Azure Data Lake Analytics. | SQL Data Warehouse | HDInsight con Spark | HDInsight con Hive | HDInsight con Hive LLAP |
 | --- | --- | --- | --- | --- | --- |
 | Accesso da Azure Data Lake Store | Sì | Sì | Sì | Sì | Sì |
@@ -62,6 +63,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Query da archivi relazionali esterni | Sì | No  | Sì | No  | No  |
 
 ### <a name="scalability-capabilities"></a>Funzionalità di scalabilità
+
 | | Azure Data Lake Analytics. | SQL Data Warehouse | HDInsight con Spark | HDInsight con Hive | HDInsight con Hive LLAP |
 | --- | --- | --- | --- | --- | --- |
 | Granularità della scalabilità orizzontale  | Per processo | Per cluster | Per cluster | Per cluster | Per cluster |
@@ -69,6 +71,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Memorizzazione nella cache dei dati in memoria | No  | Sì | Sì | No  | Sì | 
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
+
 | | Azure Data Lake Analytics. | SQL Data Warehouse | HDInsight con Spark | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- |
 | Authentication  | Azure Active Directory (Azure AD) | SQL/Azure AD | No  | locale/Azure AD <sup>1</sup> | locale/Azure AD <sup>1</sup> |

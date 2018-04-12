@@ -7,11 +7,11 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: 66b2605c551148fadcdee6808c4e85940089f1e5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: dafcee6607d9cc7c56c332f9ed5d9568ff70f0e7
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Connettere una rete locale ad Azure tramite un gateway VPN
 
@@ -19,9 +19,9 @@ Questa architettura di riferimento mostra come estendere una rete locale ad Azur
 
 ![[0]][0]
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architecture 
 
 L'architettura è costituita dai componenti seguenti.
 
@@ -31,12 +31,12 @@ L'architettura è costituita dai componenti seguenti.
 
 * **Rete virtuale**. L'applicazione cloud e i componenti del gateway VPN di Azure si trovano nella stessa [rete virtuale][azure-virtual-network].
 
-* **Gateway VPN di Azure**. Il servizio [gateway VPN][azure-vpn-gateway] consente di connettere la rete virtuale alla rete locale tramite un'appliance VPN. Per altre informazioni, vedere [Connettere una rete locale a una rete virtuale di Microsoft Azure][connect-to-an-Azure-vnet]. Il gateway VPN include gli elementi seguenti:
+* **Gateway VPN di Azure**. Il servizio [gateway VPN][azure-vpn-gateway] consente di connettere la rete virtuale alla rete locale tramite un'appliance VPN. Per maggiori informazioni, consultare [Connettere una rete locale a una rete virtuale di Microsoft Azure][connect-to-an-Azure-vnet]. Il gateway VPN include gli elementi seguenti:
   
   * **Gateway di rete virtuale**. Risorsa che fornisce un'appliance VPN virtuale per la rete virtuale ed è responsabile del routing del traffico dalla rete locale alla rete virtuale.
   * **Gateway di rete locale**. Astrazione dell'appliance VPN locale. Il routing del traffico di rete dall'applicazione cloud alla rete locale viene eseguito tramite il gateway.
   * **Connessione**. La connessione ha proprietà che specificano il tipo di connessione (IPSec) e la chiave condivisa con l'appliance VPN locale per crittografare il traffico.
-  * **Subnet del gateway**. Il gateway di rete virtuale viene mantenuto nella propria subnet, che è soggetta a vari requisiti, descritti nella sezione Raccomandazioni di seguito.
+  * **Subnet del gateway**: Il gateway di rete virtuale viene mantenuto nella propria subnet, che è soggetta a vari requisiti, descritti nella sezione Raccomandazioni di seguito.
 
 * **Applicazione cloud**. Applicazione contenuta in Azure. Può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per altre informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] ed [Esecuzione di carichi di lavoro della macchina virtuale di Linux][linux-vm-ra].
 
@@ -163,7 +163,7 @@ Se l'applicazione nella rete virtuale invia dati a Internet, è possibile consid
 > 
 
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi 
+## <a name="troubleshooting"></a>risoluzione dei problemi 
 
 Per informazioni generali sulla risoluzione dei problemi relativi a errori comuni correlati alla VPN, vedere [Troubleshooting common VPN related errors (Risoluzione dei problemi relativi a errori comuni correlati alla VPN)][troubleshooting-vpn-errors].
 
@@ -488,7 +488,7 @@ Per distribuire la soluzione, seguire questa procedura.
 [application-insights]: /azure/application-insights/app-insights-overview-usage
 [forced-tunneling]: https://azure.microsoft.com/documentation/articles/vpn-gateway-about-forced-tunneling/
 [vpn-appliances]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
-[visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [vpn-appliance-ipsec]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices#ipsec-parameters
 <!--[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/Deploy-ReferenceArchitecture.ps1-->
 <!--[solution-script-bash]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/deploy-reference-architecture.sh-->

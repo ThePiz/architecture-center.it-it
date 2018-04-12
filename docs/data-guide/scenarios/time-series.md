@@ -1,13 +1,13 @@
 ---
 title: Dati di serie temporali
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: ceb8f34d4fd950e5270edfea05945a824c4492f0
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 80ff6c45988062afcb0eb92cc79e640d39dbb21f
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="time-series-solutions"></a>Soluzioni per serie temporali
 
@@ -42,7 +42,7 @@ Le serie temporali offrono i vantaggi seguenti:
 
 I dati raccolti dai dispositivi IoT sono una scelta naturale per l'archiviazione e l'analisi delle serie temporali. I dati in arrivo vengono inseriti e solo raramente aggiornati. I dati vengono contrassegnati con un timestamp e inseriti nell'ordine di ricezione. In genere vengono visualizzati in ordine cronologico, in modo da consentire agli utenti di individuare tendenze e anomalie e usare le informazioni per l'analisi predittiva.
 
-Per altre informazioni, vedere [Internet delle cose](../concepts/big-data.md#internet-of-things-iot).
+Per altre informazioni, vedere [Internet delle cose](../big-data/index.md#internet-of-things-iot).
 
 ### <a name="real-time-analytics"></a>Analisi in tempo reale
 
@@ -55,9 +55,9 @@ In teoria, potrebbe essere presente un livello di elaborazione del flusso capace
 * I dati di serie temporali si presentano spesso con volumi molto elevati, specialmente negli scenari IoT. L'archiviazione, l'indicizzazione, l'esecuzione di query, l'analisi e la visualizzazione dei dati di serie temporali possono trasformarsi in operazioni molto complesse. 
 * Può essere difficile trovare il giusto equilibrio tra spazio di archiviazione ad alta velocità e potenti operazioni di calcolo per la gestione delle analisi in tempo reale, riducendo al tempo stesso il Time-to-Market e i costi complessivi.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
-In molti scenari che coinvolgono dati di serie temporali, ad esempio IoT, i dati vengono acquisiti in tempo reale. Di conseguenza, l'architettura più adatta è quella basata sull'[elaborazione in tempo reale](./real-time-processing.md). 
+In molti scenari che coinvolgono dati di serie temporali, ad esempio IoT, i dati vengono acquisiti in tempo reale. Di conseguenza, l'architettura più adatta è quella basata sull'[elaborazione in tempo reale](../big-data/real-time-processing.md). 
 
 I dati estratti da una o più origini dati vengono inseriti nel livello di buffering del flusso tramite l'[hub IoT](/azure/iot-hub/), [Hub eventi](/azure/event-hubs/) o [Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction). Successivamente, i dati vengono elaborati nel livello di elaborazione del flusso che facoltativamente può passare i dati elaborati a un servizio di apprendimento automatico per l'analisi predittiva. I dati elaborati vengono archiviati in un archivio dati analitici, ad esempio [HBase](/azure/hdinsight/hbase/apache-hbase-overview), [Azure Cosmos DB](/azure/cosmos-db/), Azure Data Lake o Archiviazione BLOB. È possibile usare un'applicazione o un servizio di analisi e report, ad esempio Power BI oppure OpenTSDB (se archiviato in HBase) per visualizzare i dati di serie temporali per l'analisi.
 

@@ -1,13 +1,13 @@
 ---
 title: Distribuire SAP NetWeaver e SAP HANA in Azure
-description: "Procedure consolidate per l'esecuzione di SAP HANA in un ambiente a disponibilità elevata in Azure."
+description: Procedure consolidate per l'esecuzione di SAP HANA in un ambiente a disponibilità elevata in Azure.
 author: njray
 ms.date: 06/29/2017
-ms.openlocfilehash: 27a97103c0c6f305cb8e830d670c8d0ba7e22aa5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 33171164c59a520a87ef3209c5bb1b208377221c
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="deploy-sap-netweaver-and-sap-hana-on-azure"></a>Distribuire SAP NetWeaver e SAP HANA in Azure
 
@@ -15,14 +15,14 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 ![0][0]
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
 > [!NOTE]
 > La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft. Per informazioni sulla relazione tra Microsoft e SAP, vedere [SAP HANA in Azure][sap-hana-on-azure].
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
-Questa architettura è costituita dai componenti seguenti.
+L'architettura è costituita dai componenti seguenti.
 
 - **Rete virtuale**. Una rete virtuale è una rappresentazione di una rete isolata logicamente in Azure. Tutte le macchine virtuali in questa architettura di riferimento vengono distribuite nella stessa rete virtuale. La rete virtuale viene ulteriormente suddivisa in subnet. Creare una subnet separata per ogni livello, che comprenda applicazione (SAP NetWeaver), database (SAP HANA), gestione (il jumpbox) e Active Directory.
 
@@ -133,7 +133,7 @@ Per la crittografia dei dati a riposo SAP HANA, è consigliabile usare la tecnol
 Gli script di distribuzione per questa architettura di riferimento è disponibile in [GitHub][github].
 
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
 - È necessario avere accesso al Centro Download del Software SAP per completare l'installazione.
  
@@ -235,7 +235,7 @@ Dopo aver distribuito l'infrastruttura SAP, installare e configurare le applicaz
 [sap-hana-on-azure]: https://azure.microsoft.com/services/virtual-machines/sap-hana/
 [sap-netweaver-dr]: http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx
 [sap-security]: https://archive.sap.com/documents/docs/DOC-62943
-[visio-download]: https://archcenter.azureedge.net/cdn/SAP-HANA-architecture.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/SAP-HANA-architecture.vsdx
 [vm-sizes-mem]: /azure/virtual-machines/windows/sizes-memory
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm
 [0]: ./images/sap-hana.png "Architettura di SAP HANA con Microsoft Azure"

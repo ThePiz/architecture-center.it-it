@@ -1,13 +1,13 @@
 ---
 title: Usare un oggetto come parametro in un modello di Azure Resource Manager
-description: "Viene descritto come estendere la funzionalità dei modelli di Azure Resource Manager per usare oggetti come parametri"
+description: Viene descritto come estendere la funzionalità dei modelli di Azure Resource Manager per usare oggetti come parametri
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 08ee1cf2924f78ce366c58e20e84a512785f85cc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 76f8b9d459f4ab3147b52762b7c26552ec92c7a3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Usare un oggetto come parametro in un modello di Azure Resource Manager
 
@@ -294,7 +294,6 @@ Osservare ora il modello. La prima risorsa denominata `NSG1` distribuisce il gru
   ],          
   "outputs": {}
 }
-
 ```
 
 È opportuno esaminare più approfonditamente come si specificano i valori delle proprietà nella risorsa figlio `securityRules`. A tutte la proprietà viene fatto riferimento tramite la funzione `parameter()`, si usa poi l'operatore punto per fare riferimento alla matrice `securityRules`, indicizzata in base al valore attuale dell'iterazione. Infine, si usa un altro operatore punto per fare riferimento al nome dell'oggetto. 

@@ -1,15 +1,16 @@
 ---
 title: 'Indicazioni tecniche: ripristino da errori locali in Azure'
-description: "Articolo incentrato sugli errori locali in Azure per comprendere e progettare applicazioni resilienti a disponibilità elevata e tolleranza di errore e pianificare il ripristino di emergenza."
+description: Articolo incentrato sugli errori locali in Azure per comprendere e progettare applicazioni resilienti a disponibilità elevata e tolleranza di errore e pianificare il ripristino di emergenza.
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: 180eb465e5f82406bb03924a29d5b06d43bbaa24
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5fc929bd1affe3dd6616f908bae0e7d2fefb89d5
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-local-failures-in-azure"></a>Informazioni tecniche sulla resilienza di Azure - Ripristino da errori locali in Azure
 
 Esistono due principali minacce alla disponibilità delle applicazioni:

@@ -1,5 +1,5 @@
 ---
-title: "Monitoraggio endpoint di integrità"
+title: Monitoraggio endpoint di integrità
 description: Implementare controlli funzionali all'interno di un'applicazione a cui gli strumenti esterni possono accedere tramite endpoint esposti a intervalli regolari.
 keywords: schema progettuale
 author: dragon119
@@ -9,11 +9,11 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 36171d568b9b5bfbbd48ee762b16adea695cf0e9
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Modello di monitoraggio endpoint di integrità
 
@@ -82,9 +82,9 @@ Come configurare la sicurezza per gli endpoint di monitoraggio per la protezione
 
 - Proteggere l'endpoint richiedendo l'autenticazione. A tale scopo, usare una chiave di sicurezza dell'autenticazione nell'intestazione della richiesta o passare le credenziali con la richiesta, a condizione che lo strumento o il servizio di monitoraggio supporti l'autenticazione.
 
- - Usare un endpoint oscuro o nascosto. Ad esempio, esporre l'endpoint in un indirizzo IP diverso da quello usato dall'URL dell'applicazione predefinito, configurare l'endpoint su una porta HTTP non standard e/o usare un percorso complesso per la pagina di test. È in genere possibile specificare indirizzi e porte di endpoint aggiuntivi nella configurazione dell'applicazione e aggiungere voci per questi endpoint al server DNS, se necessario, per evitare di dover specificare direttamente l'indirizzo IP.
+  - Usare un endpoint oscuro o nascosto. Ad esempio, esporre l'endpoint in un indirizzo IP diverso da quello usato dall'URL dell'applicazione predefinito, configurare l'endpoint su una porta HTTP non standard e/o usare un percorso complesso per la pagina di test. È in genere possibile specificare indirizzi e porte di endpoint aggiuntivi nella configurazione dell'applicazione e aggiungere voci per questi endpoint al server DNS, se necessario, per evitare di dover specificare direttamente l'indirizzo IP.
 
- - Esporre un metodo su un endpoint che accetta un parametro, ad esempio un valore di chiave o di modalità di operazione. A seconda del valore specificato per questo parametro, quando si riceve una richiesta il codice può eseguire un test o un set di test specifico oppure restituire un errore 404 (non trovato) se il valore del parametro non viene riconosciuto. Nella configurazione dell'applicazione è possibile impostare i valori dei parametri riconosciuti.
+  - Esporre un metodo su un endpoint che accetta un parametro, ad esempio un valore di chiave o di modalità di operazione. A seconda del valore specificato per questo parametro, quando si riceve una richiesta il codice può eseguire un test o un set di test specifico oppure restituire un errore 404 (non trovato) se il valore del parametro non viene riconosciuto. Nella configurazione dell'applicazione è possibile impostare i valori dei parametri riconosciuti.
 
      >  Gli attacchi DoS hanno in genere un impatto inferiore su un endpoint separato che esegue test funzionali di base senza compromettere il funzionamento dell'applicazione. Evitare se possibile di usare un test che possa esporre informazioni riservate. Se è necessario restituire informazioni che potrebbero essere utili a un utente malintenzionato, valutare un modo per proteggere l'endpoint e i dati da un accesso non autorizzato. In questo caso, affidarsi all'oscuramento non è sufficiente. È opportuno valutare anche l'uso di una connessione HTTPS e la crittografia dei dati sensibili, sebbene aumenti il carico sul server.
 

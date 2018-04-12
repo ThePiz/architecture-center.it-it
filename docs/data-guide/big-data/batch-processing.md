@@ -3,11 +3,11 @@ title: Elaborazione batch
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d3d3b92034c251586ecc9caff2785ecd0808b2a7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="batch-processing"></a>Elaborazione batch
 
@@ -19,7 +19,7 @@ Ad esempio, i log di un server Web possono essere copiati in una cartella e quin
 
 ## <a name="when-to-use-this-solution"></a>Quando usare questa soluzione
 
-L'elaborazione batch viene usata in una vasta gamma di scenari, dalle semplici trasformazioni di dati fino a pipeline ETL (Extract-Transform-Load) più complete. In un contesto di Big Data l'elaborazione batch può funzionare su set di dati di grandi dimensioni, in cui la fase di calcolo richiede tempi molto lunghi. Ad esempio, vedere [Lambda architecture](../concepts/big-data.md#lambda-architecture) (Architettura lambda). L'elaborazione batch porta in genere a un'ulteriore esplorazione interattiva, fornisce i dati di modellazione per l'apprendimento automatico o scrive i dati in un archivio dati ottimizzato per l'analisi e la visualizzazione.
+L'elaborazione batch viene usata in una vasta gamma di scenari, dalle semplici trasformazioni di dati fino a pipeline ETL (Extract-Transform-Load) più complete. In un contesto di Big Data l'elaborazione batch può funzionare su set di dati di grandi dimensioni, in cui la fase di calcolo richiede tempi molto lunghi. Ad esempio, vedere [Lambda architecture](../big-data/index.md#lambda-architecture) (Architettura lambda). L'elaborazione batch porta in genere a un'ulteriore esplorazione interattiva, fornisce i dati di modellazione per l'apprendimento automatico o scrive i dati in un archivio dati ottimizzato per l'analisi e la visualizzazione.
 
 Un esempio di elaborazione batch è la trasformazione di un ampio set di file flat semistrutturati CSV o JSON in un formato schematizzato e strutturato pronto per altre query. I dati vengono in genere convertiti dai formati non elaborati usati per l'inserimento (ad esempio CSV) in formati binari che risultano più efficienti per l'esecuzione di query poiché archiviano i dati in colonne e offrono spesso indici e statistiche inline sui dati.
 

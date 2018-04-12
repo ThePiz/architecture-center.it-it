@@ -9,11 +9,11 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: b8c9ae0621c087c68d449dd13e60046104c01513
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 87489b7b81cf323c221466c539ee14ea90e23c14
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Estendere Active Directory Federation Services in Azure
 
@@ -250,7 +250,7 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
 
 5. Riavviare il jumpbox (*ra-adfs-mgmt-vm1* nel gruppo *ra-adfs-security-rg* group) per rendere effettive le rispettive impostazioni DNS.
 
-6. [Ottenere un certificato SSL per AD FS] [ adfs_certificates] e installarlo nelle macchine virtuali AD FS. Si noti che è possibile connettersi tramite il jumpbox. Gli indirizzi IP sono *10.0.5.4* e *10.0.5.5*. Il nome utente predefinito è *contoso\testuser* e la password è *AweSome@PW*.
+6. [Ottenere un certificato SSL per AD FS] [ adfs_certificates] e installarlo nelle macchine virtuali AD FS. Si noti che è possibile connettersi tramite il jumpbox. Gli indirizzi IP sono <em>10.0.5.4</em> e <em>10.0.5.5</em>. Il nome utente predefinito è <em>contoso\testuser</em> e la password è <em>AweSome@PW</em>.
    
    > [!NOTE]
    > A questo punto, i commenti nello script Deploy-ReferenceArchitecture.ps1 includono le istruzioni dettagliate per la creazione di un'autorità di certificazione di prova autofirmata con il comando `makecert`. È tuttavia consigliabile eseguire questi passaggi solo come **test** e non usare i certificati generati da makecert in un ambiente di produzione.
@@ -263,7 +263,7 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
     .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Adfs
     ``` 
 
-8. Nel jumpbox passare a `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm` per testare l'installazione di AD FS (potrebbe essere visualizzato un avviso certificato che è possibile ignorare per questo test). Verificare che venga visualizzata la pagina di accesso di Contoso Corporation. Accedere con nome utente *contoso\testuser* e password *AweS0me@PW*.
+8. Nel jumpbox passare a `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm` per testare l'installazione di AD FS (potrebbe essere visualizzato un avviso certificato che è possibile ignorare per questo test). Verificare che venga visualizzata la pagina di accesso di Contoso Corporation. Accedere con nome utente <em>contoso\testuser</em> e password <em>AweS0me@PW</em>.
 
 9. Installare il certificato SSL nelle macchine virtuali proxy AD FS. Gli indirizzi IP sono *10.0.6.4* e *10.0.6.5*.
 
@@ -322,5 +322,5 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
 [github]: https://github.com/mspnp/reference-architectures/tree/master/identity/adfs
 [adfs_certificates]: https://technet.microsoft.com/library/dn781428(v=ws.11).aspx
 [considerations]: ./considerations.md
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [0]: ./images/adfs.png "Architettura di rete ibrida protetta con Active Directory"
