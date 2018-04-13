@@ -3,56 +3,36 @@
 - name: Guida all'architettura dei dati
   href: index.md
   items:
-    - name: Sistemi RDBMS tradizionali
+    - name: Carichi di lavoro RDBMS tradizionali
       items:
-        - name: Concetti
-          items:
-            - name: Dati relazionali
-              href: concepts/relational-data.md
-            - name: Dati transazionali
-              href: concepts/transactional-data.md
-            - name: Modellazione semantica
-              href: concepts/semantic-modeling.md
+        - name: Panoramica
+          href: relational-data/index.md
+        - name: OLTP (Online Transaction Processing)
+          href: relational-data/online-transaction-processing.md
+        - name: Data warehousing
+          href: relational-data/data-warehousing.md
+        - name: OLAP (Online Analytical Processing)
+          href: relational-data/online-analytical-processing.md
+        - name: 'ETL (Extract, Transform, and Load)'
+          href: relational-data/etl.md
+    - name: Architetture per Big Data
+      items:
+        - name: Panoramica
+          href: big-data/index.md
+        - name: Elaborazione batch
+          href: big-data/batch-processing.md
+        - name: Elaborazione in tempo reale
+          href: big-data/real-time-processing.md
+        - name: Apprendimento automatico su larga scala
+          href: big-data/machine-learning-at-scale.md
+        - name: Archivi dati non relazionali
+          href: big-data/non-relational-data.md
         - name: Scenari
           items:
-            - name: OLTP (Online Transaction Processing)
-              href: scenarios/online-transaction-processing.md
-            - name: OLAP (Online Analytical Processing)
-              href: scenarios/online-analytical-processing.md
-            - name: Data warehousing
-              href: scenarios/data-warehousing.md
-            - name: 'ETL (Extract, Transform, and Load)'
-              href: scenarios/etl.md
-        - name: Scelte di tecnologia
-          items:
-            - name: Data warehouse
-              href: technology-choices/data-warehouses.md
-            - name: OLAP (Online Analytical Processing)
-              href: technology-choices/olap-data-stores.md
-            - name: OLTP (Online Transaction Processing)
-              href: technology-choices/oltp-data-stores.md
-    - name: Big Data e NoSQL
-      items:
-        - name: Concetti
-          items:
-            - name: Archivi dati non relazionali
-              href: concepts/non-relational-data.md
-            - name: Uso dei file in formato CSV e JSON
-              href: concepts/csv-and-json.md
-            - name: Archivi data lake
-              href: concepts/data-lake.md
-            - name: Architetture per Big Data
-              href: concepts/big-data.md
             - name: Analisi avanzata
-              href: concepts/advanced-analytics.md
-            - name: Apprendimento automatico su larga scala
-              href: concepts/machine-learning-at-scale.md
-        - name: Scenari
-          items:
-            - name: Elaborazione batch
-              href: scenarios/batch-processing.md
-            - name: Elaborazione in tempo reale
-              href: scenarios/real-time-processing.md
+              href: scenarios/advanced-analytics.md
+            - name: Archivi data lake
+              href: scenarios/data-lake.md
             - name: Ricerca di testo in formato libero
               href: scenarios/search.md
             - name: Esplorazione interattiva dei dati
@@ -61,6 +41,8 @@
               href: scenarios/natural-language-processing.md
             - name: Soluzioni per serie temporali
               href: scenarios/time-series.md
+            - name: Uso dei file in formato CSV e JSON
+              href: scenarios/csv-and-json.md
         - name: Scelte di tecnologia
           items:
             - name: Archivio dati analitici
