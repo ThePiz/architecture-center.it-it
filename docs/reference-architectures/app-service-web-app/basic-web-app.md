@@ -258,4 +258,4 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [web-app-backup]: /azure/app-service-web/web-sites-backup
 [web-app-log-stream]: /azure/app-service-web/web-sites-enable-diagnostic-log#streamlogs
 [0]: ./images/basic-web-app.png "Architettura di un'applicazione Web Azure di base"
-[1]: ./images/paas-basic-web-app-staging-slots.png "Swapping slots for production and staging deployments" (Scambio di slot per le distribuzioni di produzione e gestione temporanea)
+[1]: ./images/paas-basic-web-app-staging-slots.png "Swapping slots for production and staging deployments"
