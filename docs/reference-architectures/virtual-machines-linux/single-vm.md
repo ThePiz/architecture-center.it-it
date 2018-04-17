@@ -1,16 +1,16 @@
 ---
 title: Eseguire una macchina virtuale Linux in Azure
-description: "Informazioni su come eseguire una VM in Azure, con particolare attenzione a scalabilità, resilienza, gestibilità e sicurezza."
+description: Informazioni su come eseguire una VM in Azure, con particolare attenzione a scalabilità, resilienza, gestibilità e sicurezza.
 author: telmosampaio
-ms.date: 12/12/2017
+ms.date: 04/03/2018
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: 7caef46e53b42011b5a12ef53384c0352b9b9a72
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 50e23b00dd898c0b8e6230730ecf27323ee50d14
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Eseguire una macchina virtuale Linux in Azure
 
@@ -22,31 +22,37 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 ## <a name="architecture"></a>Architecture
 
-Il provisioning di una macchina virtuale di Azure richiede componenti aggiuntivi, quali risorse di calcolo, di rete e di archiviazione.
+Il provisioning di una macchina virtuale di Azure richiede componenti aggiuntivi oltre alla VM stessa, incluse risorse di rete e di archiviazione.
 
-* **Gruppo di risorse.** Un [gruppo di risorse][resource-manager-overview] è un contenitore in cui risiedono le risorse correlate. In genere, è necessario raggruppare le risorse in una soluzione in base alla loro durata e alle persone che le gestiranno. Per il carico di lavoro di una singola macchina virtuale è possibile creare un unico gruppo di risorse per tutte le risorse.
+* **Gruppo di risorse.** Un [gruppo di risorse][resource-manager-overview] è un contenitore logico di risorse correlate di Azure. È generalmente necessario raggruppare le risorse in base alla loro durata e alle persone che le gestiranno. 
+
 * **VM**. È possibile eseguire il provisioning di una macchina virtuale da un elenco di immagini pubblicate, da un'immagine gestita personalizzata o da un file del disco rigido virtuale (VHD) caricato nell'archivio BLOB di Azure. Azure supporta l'esecuzione di molte distribuzioni Linux diffuse, tra cui CentOS, Debian, Red Hat Enterprise, Ubuntu e FreeBSD. Per altre informazioni, vedere [Azure e Linux][azure-linux].
-* **Disco del sistema operativo.** Il disco del sistema operativo è un disco rigido virtuale archiviato in [Archiviazione di Azure][azure-storage], dove viene conservato anche quando il computer host è inattivo. Per le macchine virtuali Linux, il disco del sistema operativo è `/dev/sda1`.
-* **Disco temporaneo.** La VM viene creata con un disco temporaneo. Questo disco viene archiviato in un'unità fisica nel computer host. **Non** viene salvato nell'Archiviazione di Azure ed è possibile che venga eliminato durante i riavvii e altri eventi del ciclo di vita della macchina virtuale. Usare questo disco solo per dati temporanei, ad esempio file di paging o di scambio. Per le macchine virtuali Linux, il disco temporaneo è `/dev/sdb1` ed è montato in `/mnt/resource` o `/mnt`.
-* **Dischi dati.** Un [disco dati][data-disk] è un VHD persistente usato per i dati dell'applicazione. I dischi dati vengono archiviati nell'Archiviazione di Azure, come il disco del sistema operativo.
-* **Rete virtuale (VNet) e subnet.** Ogni macchina virtuale di Azure viene distribuita in una rete virtuale che può essere suddivisa in più subnet.
+
+* **Managed Disks**. [Azure Managed Disks][managed-disks] semplifica la gestione dei dischi, gestendo automaticamente le risorse di archiviazione. Il disco del sistema operativo è un disco rigido virtuale archiviato in [Archiviazione di Azure][azure-storage], dove viene conservato anche quando il computer host è inattivo. Per le macchine virtuali Linux, il disco del sistema operativo è `/dev/sda1`. Si consiglia anche di creare uno o più [dischi dati][data-disk], ovvero dischi rigidi virtuali usati per i dati dell'applicazione. 
+
+* **Disco temporaneo.** La VM viene creata con un disco temporaneo. Questo disco viene archiviato in un'unità fisica nel computer host. *Non* viene salvato nell'Archiviazione di Azure ed è possibile che venga eliminato durante i riavvii e altri eventi del ciclo di vita della macchina virtuale. Usare questo disco solo per dati temporanei, ad esempio file di paging o di scambio. Per le macchine virtuali Linux, il disco temporaneo è `/dev/sdb1` ed è montato in `/mnt/resource` o `/mnt`.
+
+* **Rete virtuale (VNet).** Ogni macchina virtuale di Azure viene distribuita in una rete virtuale che può essere suddivisa in più subnet.
+
+* **Interfaccia di rete (NIC)**. La scheda di interfaccia di rete consente alla VM di comunicare con la rete virtuale.
+
 * **Indirizzo IP pubblico.** È necessario un indirizzo IP pubblico per comunicare con la macchina virtuale, ad esempio tramite SSH.
+
 * **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
-* **Interfaccia di rete (NIC)**. Una scheda di interfaccia di rete assegnata consente alla macchina virtuale di comunicare con la rete virtuale.
-* **Gruppo di sicurezza di rete**. I [gruppi di sicurezza di rete][nsg] vengono usati per consentire o negare il traffico di rete verso una risorsa di rete. Un NSG può essere associato a una singola scheda di interfaccia di rete o a una subnet. Se lo si associa a una subnet, le regole dell’NSG si applicano a tutte le VM nella subnet.
+
+* **Gruppo di sicurezza di rete**. I [gruppi di sicurezza di rete][nsg] vengono usati per consentire o negare il traffico di rete verso le macchine virtuali. I gruppi di sicurezza di rete possono essere associati a subnet o singole istanze di macchina virtuale.
+
 * **Diagnostica.** La registrazione diagnostica è essenziale per la gestione e la risoluzione dei problemi della macchina virtuale.
 
 ## <a name="recommendations"></a>Raccomandazioni
 
-Questa architettura mostra le indicazioni di base per l'esecuzione di una macchina virtuale Linux in Azure. Non è tuttavia consigliabile usare una singola macchina virtuale per carichi di lavoro di importanza strategica, perché in questo modo viene creato un singolo punto di guasto. Per una disponibilità più elevata, distribuire più VM in un [set di disponibilità][availability-set]. Per altre informazioni, vedere [Esecuzione di più VM in Azure][multi-vm]. 
+Questa architettura mostra le indicazioni di base per l'esecuzione di una macchina virtuale Linux in Azure. Non è tuttavia consigliabile usare una singola macchina virtuale per carichi di lavoro di importanza strategica, perché in questo modo viene creato un singolo punto di guasto. Per una maggiore disponibilità, distribuire due o più macchine virtuali con bilanciamento del carico. Per altre informazioni, vedere [Esecuzione di più VM in Azure][multi-vm].
 
 ### <a name="vm-recommendations"></a>Indicazioni per le VM
 
-Azure offre macchine virtuali di diverse dimensioni. [Archiviazione Premium][premium-storage] è consigliata per le sue prestazioni elevate e la bassa latenza ed è [supportata con specifiche dimensioni di macchina virtuale][premium-storage-supported]. Selezionare una di queste dimensioni, a meno che non si abbia un carico di lavoro specializzato, ad esempio di High-Performance Computing. Per altre informazioni, vedere [Dimensioni delle macchine virtuali][virtual-machine-sizes].
+Azure offre macchine virtuali di diverse dimensioni. Per altre informazioni, vedere [Dimensioni delle macchine virtuali in Azure][virtual-machine-sizes]. Se si sposta un carico di lavoro esistente in Azure, per iniziare scegliere le dimensioni della VM più simili a quelle dei server locali. Misurare quindi le prestazioni del carico di lavoro effettivo in relazione alla CPU, alla memoria e alle operazioni di input/output al secondo (IOPS) del disco e regolare le dimensioni in base alle necessità. Se sono necessarie più schede di interfaccia di rete per la macchina virtuale, tenere presente che per ogni [dimensione di macchina virtuale][vm-size-tables] è definito un numero massimo di schede.
 
-Se si sposta un carico di lavoro esistente in Azure, per iniziare scegliere le dimensioni della VM più simili a quelle dei server locali. Misurare quindi le prestazioni del carico di lavoro effettivo in relazione alla CPU, alla memoria e alle operazioni di input/output al secondo (IOPS) del disco e regolare le dimensioni in base alle necessità. Se sono necessarie più schede di interfaccia di rete per la macchina virtuale, tenere presente che per ogni [dimensione di macchina virtuale][vm-size-tables] è definito un numero massimo di schede.
-
-Quando si esegue il provisioning delle risorse di Azure, è necessario specificare un'area. È in genere consigliabile scegliere la località più vicina agli utenti interni o ai clienti. È tuttavia possibile che non tutte le dimensioni di macchina virtuale siano disponibili in tutte le aree. Per altre informazioni, vedere i [servizi disponibili in base all'area][services-by-region]. Per visualizzare un elenco delle dimensioni di macchina virtuale disponibili in un'area specifica, eseguire il comando seguente dall'interfaccia della riga di comando di Azure:
+È in genere consigliabile scegliere l'area di Azure più vicina agli utenti interni o ai clienti. È tuttavia possibile che non tutte le dimensioni di macchina virtuale siano disponibili in tutte le aree. Per altre informazioni, vedere i [servizi disponibili in base all'area][services-by-region]. Per visualizzare un elenco delle dimensioni di macchina virtuale disponibili in un'area specifica, eseguire il comando seguente dall'interfaccia della riga di comando di Azure:
 
 ```
 az vm list-sizes --location <location>
@@ -60,13 +66,9 @@ Abilitare il monitoraggio e la diagnostica, tra cui le metriche di base sull'int
 
 Per ottimizzare le prestazioni I/O del disco, si consiglia di usare [Archiviazione Premium][premium-storage], che archivia i dati in unità SSD (Solid State Drive). I costi dipendono dalla capacità del disco sottoposto a provisioning. Anche IOPS e velocità effettiva, ovvero la velocità di trasferimento dati, dipendono dalle dimensioni del disco. Quando si effettua il provisioning di un disco è quindi consigliabile tenere in considerazione tutti e tre i fattori, ovvero capacità, IOPS e velocità effettiva. 
 
-È consigliabile anche usare [dischi gestiti](/azure/storage/storage-managed-disks-overview). I dischi gestiti non richiedono un account di archiviazione. È sufficiente specificare le dimensioni e il tipo di disco per distribuirlo come risorsa a disponibilità elevata.
+È anche consigliabile usare [Managed Disks][managed-disks]. I dischi gestiti non richiedono un account di archiviazione. È sufficiente specificare le dimensioni e il tipo di disco per distribuirlo come risorsa a disponibilità elevata.
 
-Se non si usano dischi non gestiti, creare account di archiviazione di Azure separati per ogni macchina virtuale che dovrà contenere i dischi rigidi virtuali, in modo da evitare di raggiungere i [limiti di operazioni di I/O al secondo][vm-disk-limits] (IOPS) per gli account di archiviazione.
-
-Aggiungere uno o più dischi dati. Quando si crea un VHD, il disco non è formattato. Accedere alla VM per formattare il disco. Se non si usano dischi gestiti e sono presenti molti dischi dati, occorre prestare attenzione ai limiti totali di I/O dell'account di archiviazione. Per altre informazioni, vedere [Limiti relativi ai dischi della macchina virtuale][vm-disk-limits].
-
-Nella shell di Linux, i dischi dati vengono visualizzati come `/dev/sdc`, `/dev/sdd` e così via. È possibile eseguire `lsblk` per elencare i dispositivi a blocchi, ad esempio i dischi. Per usare un disco dati, creare una partizione e un file system, quindi montare il disco. Ad esempio: 
+Aggiungere uno o più dischi dati. Quando si crea un VHD, il disco non è formattato. Accedere alla VM per formattare il disco. Nella shell di Linux, i dischi dati vengono visualizzati come `/dev/sdc`, `/dev/sdd` e così via. È possibile eseguire `lsblk` per elencare i dispositivi a blocchi, ad esempio i dischi. Per usare un disco dati, creare una partizione e un file system, quindi montare il disco. Ad esempio: 
 
 ```bat
 # Create a partition.
@@ -84,7 +86,11 @@ Quando si aggiunge un disco dati, al disco viene assegnato un ID numero di unit�
 
 È possibile modificare l'utilità di pianificazione I/O per ottimizzare le prestazioni nelle unità SSD, dato che i dischi delle VM negli account di archiviazione Premium sono SSD. Normalmente si consiglia di usare l'utilità di pianificazione NOOP per le unità SSD, ma è necessario usare uno strumento come [iostat] per monitorare le prestazioni di I/O del disco relative al proprio carico di lavoro.
 
-Per prestazioni ottimali, creare un account di archiviazione separato per i log di diagnostica. Un account di archiviazione con ridondanza locale standard è sufficiente per i log di diagnostica.
+Creare un account di archiviazione per conservare i log di diagnostica. Un account di archiviazione con ridondanza locale standard è sufficiente per i log di diagnostica.
+
+> [!NOTE]
+> Se non si usa Managed Disks, creare account di archiviazione di Azure separati per ogni macchina virtuale che dovrà contenere i dischi rigidi virtuali, per evitare di raggiungere i [limiti di operazioni di I/O al secondo][vm-disk-limits] per gli account di archiviazione. Prestare attenzione ai limiti totali di I/O dell'account di archiviazione. Per altre informazioni, vedere [Limiti relativi ai dischi della macchina virtuale][vm-disk-limits].
+
 
 ### <a name="network-recommendations"></a>Indicazioni per la rete
 
@@ -99,15 +105,13 @@ Per abilitare l'accesso SSH, aggiungere una regola al gruppo di sicurezza di ret
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
-È possibile aumentare o ridurre le prestazioni di una VM [cambiando le dimensioni della macchina virtuale][vm-resize]. Per ottenere la scalabilità orizzontale, inserire due o più macchine virtuali nell'ambito di un servizio di bilanciamento del carico. Per informazioni dettagliate, vedere [Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità][multi-vm].
+È possibile aumentare o ridurre le prestazioni di una VM [cambiando le dimensioni della macchina virtuale][vm-resize]. Per ottenere la scalabilità orizzontale, inserire due o più macchine virtuali nell'ambito di un servizio di bilanciamento del carico. Per altre informazioni, vedere [Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità][multi-vm].
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
 Per una disponibilità più elevata, distribuire più macchine virtuali in un set di disponibilità. Sarà così disponibile anche un [contratto di servizio][vm-sla] di livello più elevato.
 
 È possibile che la VM sia interessata da attività di [manutenzione pianificata][planned-maintenance] o [manutenzione non pianificata][manage-vm-availability]. È possibile usare i [log di riavvio della VM][reboot-logs] per determinare se un riavvio della VM è stato provocato da attività di manutenzione pianificata.
-
-I dischi rigidi virtuali vengono archiviati in [Archiviazione di Azure][azure-storage], che viene replicato per assicurare durabilità e disponibilità.
 
 Per proteggersi dalla perdita accidentale di dati durante le operazioni normali, ad esempio a causa di un errore dell'utente, è consigliabile implementare anche i backup temporizzati usando [snapshot di BLOB][blob-snapshot] o un altro strumento.
 
@@ -117,13 +121,9 @@ Per proteggersi dalla perdita accidentale di dati durante le operazioni normali,
 
 **SSH**. Prima di creare una VM Linux, generare una coppia di chiavi RSA pubblica/privata a 2.048 bit. Quando si crea la VM, utilizzare il file di chiave pubblica. Per altre informazioni, vedere [Come usare SSH con Linux e Mac in Azure][ssh-linux].
 
-**Arresto di una VM.** Azure distingue tra gli stati "Arrestato" e "Deallocato". L'addebito avviene quando lo stato della VM viene arrestato, ma non quando la VM viene deallocata.
+**Arresto di una VM.** Azure distingue tra gli stati "Arrestato" e "Deallocato". L'addebito avviene quando lo stato della VM viene arrestato, ma non quando la VM viene deallocata. Anche il pulsante **Arresta** nel portale di Azure consente di deallocare la VM. Se l'arresto viene effettuato tramite il sistema operativo ad accesso eseguito, la VM viene arrestata ma **non** deallocata, quindi gli addebiti continueranno a essere effettuati.
 
-Anche il pulsante **Arresta** nel portale di Azure consente di deallocare la VM. Se l'arresto viene effettuato tramite il sistema operativo ad accesso eseguito, la VM viene arrestata ma **non** deallocata, quindi gli addebiti continueranno a essere effettuati.
-
-**Eliminazione di una VM.** Se si elimina una VM, i VHD non vengono eliminati. È quindi possibile eliminare in modo sicuro la macchina virtuale senza perdere dati. Verranno tuttavia applicati comunque addebiti per l'archiviazione. Per eliminare il VHD, eliminare il file dall'[archivio BLOB][blob-storage].
-
-Per impedire l'eliminazione accidentale, usare un [blocco di risorsa][resource-lock] per bloccare l'intero gruppo di risorse o le singole risorse, ad esempio una macchina virtuale.
+**Eliminazione di una VM.** Se si elimina una VM, i VHD non vengono eliminati. È quindi possibile eliminare in modo sicuro la macchina virtuale senza perdere dati. Verranno tuttavia applicati comunque addebiti per l'archiviazione. Per eliminare il VHD, eliminare il file dall'[archivio BLOB][blob-storage]. Per impedire l'eliminazione accidentale, usare un [blocco di risorsa][resource-lock] per bloccare l'intero gruppo di risorse o le singole risorse, ad esempio una macchina virtuale.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
 
@@ -151,42 +151,50 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github-folde
   * Una macchina virtuale che esegue la versione più recente di Ubuntu 16.04.3 LTS.
   * Un'estensione script personalizzata di esempio che formatta i due dischi rigidi e distribuisce Apache HTTP Server sulla macchina virtuale Ubuntu.
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
-Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
-
-1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento AzureCAT][ref-arch-repo].
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][ref-arch-repo].
 
 2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per istruzioni sull'installazione dell'interfaccia della riga di comando, vedere [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
 
 3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
 
-4. Da un prompt dei comandi, di Bash o di PowerShell accedere al proprio account di Azure usando uno dei comandi riportati di seguito e seguire le istruzioni.
+4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con il comando seguente.
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
+
+5. Creare una coppia di chiavi SSH. Per altre informazioni, vedere [Come creare e usare una coppia di chiavi SSH pubblica e privata per le macchine virtuali Linux in Azure](/azure/virtual-machines/linux/mac-create-ssh-keys).
 
 ### <a name="deploy-the-solution-using-azbb"></a>Distribuire la soluzione mediante azbb
 
-Per distribuire il carico di lavoro della singola macchina virtuale di esempio, eseguire questa procedura:
+Per distribuire questa architettura di riferimento, eseguire questa procedura:
 
-1. Passare alla cartella `virtual-machines\single-vm\parameters\linux` per il repository scaricato nel passaggio dei prerequisiti precedente.
+1. Passare alla cartella `virtual-machines/single-vm/parameters/linux` per il repository scaricato nel passaggio dei prerequisiti precedente.
 
-2. Aprire il file `single-vm-v2.json` e immettere un nome utente e una chiave SSH pubblica tra virgolette, come illustrato di seguito, quindi salvare il file.
+2. Aprire il file `single-vm-v2.json` e immettere un nome utente e una chiave SSH pubblica tra virgolette, quindi salvare il file.
 
-  ```bash
-  "adminUsername": "",
-  "sshPublicKey": "",
-  ```
+   ```bash
+   "adminUsername": "<your username>",
+   "sshPublicKey": "ssh-rsa AAAAB3NzaC1...",
+   ```
 
 3. Eseguire `azbb` per distribuire la macchina virtuale di esempio, come illustrato di seguito.
 
-  ```bash
-  azbb -s <subscription_id> -g <resource_group_name> -l <location> -p single-vm-v2.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g <resource_group_name> -l <location> -p single-vm-v2.json --deploy
+   ```
 
-Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio, visitare il [repository GitHub][git].
+Per verificare la distribuzione, eseguire questo comando dell'interfaccia della riga di comando di Azure per trovare l'indirizzo IP pubblico della macchina virtuale:
+
+```bash
+az vm show -n ra-single-linux-vm1 -g <resource-group-name> -d -o table
+```
+
+Se si passa a questo indirizzo in un Web browser, verrà visualizzata la home page di Apache2 predefinita.
+
+Per informazioni sulla personalizzazione di questa distribuzione, visitare il [repository GitHub][git] di Microsoft.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -214,6 +222,7 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
 [iostat]: https://en.wikipedia.org/wiki/Iostat
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-linux-manage-availability
+[managed-disks]: /azure/storage/storage-managed-disks-overview
 [multi-vm]: multi-vm.md
 [naming-conventions]: /azure/architecture/best-practices/naming-conventions.md
 [nsg]: /azure/virtual-network/virtual-networks-nsg
@@ -236,7 +245,7 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [ssh-linux]: /azure/virtual-machines/virtual-machines-linux-mac-create-ssh-keys
 [static-ip]: /azure/virtual-network/virtual-networks-reserved-public-ip
 [virtual-machine-sizes]: /azure/virtual-machines/virtual-machines-linux-sizes
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vm-disk-limits]: /azure/azure-subscription-service-limits#virtual-machine-disk-limits
 [vm-resize]: /azure/virtual-machines/virtual-machines-linux-change-vm-size
 [vm-size-tables]: /azure/virtual-machines/virtual-machines-linux-sizes

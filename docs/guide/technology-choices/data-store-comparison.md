@@ -2,11 +2,11 @@
 title: Criteri per la scelta di un archivio dati
 description: Panoramica delle opzioni di calcolo di Azure
 author: MikeWasson
-ms.openlocfilehash: 7fb75cd334438c5b985fa04ad8afe3236f2391f8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9cb2f77b854a38450490bc96bf0b6a2998ceb1c7
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Criteri per la scelta di un archivio dati
 
@@ -61,7 +61,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="relational-database-management-systems-rdbms"></a>Sistemi di gestione di database relazionali (RDBMS)
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>La creazione di nuovi record e l'aggiornamento dei dati esistenti avvengono regolarmente.</li>
@@ -74,7 +74,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>I dati sono altamente normalizzati.</li>
@@ -87,7 +87,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Line-of-business (gestione risorse umane, CRM, ERP)</li>
@@ -105,7 +105,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="document-databases"></a>Database di documenti
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Utilizzo generico.</li>
@@ -117,7 +117,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
             <li>I singoli documenti vengono recuperati e scritti come un unico blocco.</li>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>I dati possono essere gestiti in modo denormalizzato.</li>
@@ -129,7 +129,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Catalogo prodotti</li>
@@ -146,10 +146,10 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 </tr>
 </table>
 
-## <a name="keyvalue-stores"></a>Archivi chiave-valore
+## <a name="keyvalue-stores"></a>Archivi chiave/valore
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>I dati sono identificabili e accessibili tramite un'unica chiave ID, come un dizionario.</li>
@@ -160,7 +160,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>I dati tendono a essere di grandi dimensioni.</li>
@@ -170,7 +170,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Memorizzazione dei dati nella cache</li>
@@ -186,7 +186,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="graph-databases"></a>Database di grafi
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Le relazioni tra gli elementi di dati sono molto complesse e prevedono molti hop tra gli elementi di dati correlati.</li>
@@ -195,7 +195,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>I dati sono costituiti da nodi e relazioni.</li>
@@ -205,7 +205,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Organigrammi</li>
@@ -221,7 +221,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="column-family-databases"></a>Database a colonne
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>La maggior parte dei database a colonne esegue le operazioni di scrittura molto rapidamente.</li>
@@ -232,7 +232,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>I dati vengono archiviati in tabelle composte da una colonna chiave e una o più famiglie di colonne.</li>
@@ -242,7 +242,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Raccomandazioni</li>
@@ -262,7 +262,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="search-engine-databases"></a>Database di motori di ricerca
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Indicizzazione dei dati da più origini e servizi.</li>
@@ -274,7 +274,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>Semistrutturati o non strutturati</li>
@@ -283,7 +283,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Cataloghi prodotti</li>
@@ -299,7 +299,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="data-warehouse"></a>Data warehouse
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Analisi dei dati</li>
@@ -307,17 +307,17 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>Dati cronologici da più origini.</li>
-            <li>In genere denormalizzato in uno schema "star" o "snowflake", costituito da tabelle dei fatti e delle dimensioni.</li>
+            <li>In genere denormalizzato in uno schema &quot;star&quot; o &quot;snowflake&quot;, costituito da tabelle dei fatti e delle dimensioni.</li>
             <li>In genere caricato con nuovi dati in base a una pianificazione.</li>
-            <li>Le tabelle delle dimensioni includono spesso più versioni cronologiche di un'entità, detta *dimensione a modifica lenta*.</li>
+            <li>Le tabelle delle dimensioni includono spesso più versioni cronologiche di un'entità, detta <em>dimensione a modifica lenta</em>.</li>
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>Un data warehouse aziendale che fornisce dati per modelli di analisi, report e dashboard.
     </td>
 </tr>
@@ -327,7 +327,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="time-series-databases"></a>Database di serie temporali
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Le operazioni sono prevalentemente (95-99%) di scrittura.</li>
@@ -340,7 +340,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>Come chiave primaria e meccanismo di ordinamento viene usato un timestamp.</li>
@@ -349,7 +349,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Monitoraggio e telemetria eventi.</li>
@@ -362,7 +362,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="object-storage"></a>Archiviazione di oggetti
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Identificato dalla chiave.</li>
@@ -372,7 +372,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>I dati sono di grandi dimensioni.</li>
@@ -381,7 +381,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Immagini, video, documenti di Office, file PDF</li>
@@ -397,7 +397,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 ## <a name="shared-files"></a>File condivisi
 
 <table>
-<tr><td>**Carico di lavoro**</td>
+<tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
             <li>Migrazione da app esistenti che interagiscono con il file system.</li>
@@ -405,7 +405,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo di dati**</td>
+<tr><td><strong>Tipo di dati</strong></td>
     <td>
         <ul>
             <li>File in un set gerarchico di cartelle.</li>
@@ -413,7 +413,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td>**esempi**</td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>File legacy</li>

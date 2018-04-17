@@ -1,11 +1,11 @@
 ---
 title: Icone e altri asset per i diagrammi di architettura
 description: Icone, modelli Visio, file PNG e SVG utili per la creazione di diagrammi di architettura
-ms.openlocfilehash: 58a2046c0d463c1f331ea3f950f0c11c273ffc36
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: f65a09450ba1b7154e6d43bbc7bdb65212b21828
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="icons-and-diagrams"></a>Icone e diagrammi
 
@@ -27,6 +27,10 @@ Simboli aggiuntivi per Microsoft Office e tecnologie correlate sono disponibili 
 ## <a name="reference-architectures-visio-template"></a>Modelli Visio di architetture di riferimento 
 
 È possibile [scaricare in formato Visio](https://aka.ms/arch-diagrams) una versione dei diagrammi usati nelle [Architetture di riferimento](../reference-architectures/index.md).
+
+## <a name="solution-architecture-diagrams"></a>Diagrammi delle architetture delle soluzioni
+
+Microsoft pubblica le [architetture delle soluzioni e i diagrammi associati](https://azure.microsoft.com/solutions/architecture/). I diagrammi possono essere scaricati in formato SVG. Il formato SVG può essere aperto e successivamente modificato con molti strumenti, tra cui Visio e PowerPoint. Se si separa il diagramma, è possibile selezionare le singole icone.   
 
 ## <a name="3d-blueprint-visio-template"></a>3D Blueprint Visio Template
 

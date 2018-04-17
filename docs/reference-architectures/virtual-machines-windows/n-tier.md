@@ -1,16 +1,16 @@
 ---
-title: "Eseguire macchine virtuali Windows per un'architettura a più livelli"
-description: "Come implementare un'architettura a più livelli in Azure, prestando particolare attenzione ai livelli di disponibilità, sicurezza, scalabilità e gestibilità."
+title: Eseguire macchine virtuali Windows per un'architettura a più livelli
+description: Come implementare un'architettura a più livelli in Azure, prestando particolare attenzione ai livelli di disponibilità, sicurezza, scalabilità e gestibilità.
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: 0654239a5bbd966a2aa776415b7f15ae723ffd63
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 5ed94eb9ab8203d35d9597336e367d54e03944d7
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-windows-vms-for-an-n-tier-application"></a>Eseguire macchine virtuali Windows per un'applicazione a più livelli
 
@@ -29,7 +29,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 * **Servizi di bilanciamento del carico.** Usare un [servizio di bilanciamento del carico con connessione Internet][load-balancer-external] per distribuire il traffico Internet in entrata al livello Web e un [servizio di bilanciamento del carico interno][load-balancer-internal] per distribuire il traffico di rete dal livello Web al livello business.
 * **Jumpbox.** Detto anche [bastion host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete (NSG) che consente il traffico remoto solo da Indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. L'NSG dovrebbe consentire il traffico RDP (Remote Desktop Protocol).
 * **Monitoraggio.** Il software di monitoraggio, come [Nagios], [Zabbix] o [Icinga], può fornire informazioni dettagliate sul tempo di risposta, il tempo di attività delle macchine virtuali e l'integrità generale del sistema. Installare il software di monitoraggio in una macchina virtuale collocata in una subnet di gestione separata.
-* **Gruppi di sicurezza di rete.** Usare i [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete nella rete virtuale. Ad esempio, nell'architettura a 3 livelli illustrata qui il livello database non accetta traffico dal front-end Web, solo dal livello business e dalla subnet di gestione.
+* <strong>Gruppi di sicurezza di rete.</strong> Usare i [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete nella rete virtuale. Ad esempio, nell'architettura a 3 livelli illustrata qui il livello database non accetta traffico dal front-end Web, solo dal livello business e dalla subnet di gestione.
 * **Gruppo di disponibilità AlwaysOn di SQL Server.** Assicura disponibilità elevata al livello dati, abilitando la replica e il failover.
 * **Server di Active Directory Domain Services.** Nelle versioni precedenti a Windows Server 2016 i gruppi di disponibilità AlwaysOn di SQL Server devono far parte di un dominio, in quanto questi gruppi dipendono dalla tecnologia WSFC (Windows Server Failover Cluster). A partire da Windows Server 2016 è possibile creare un cluster di failover senza Active Directory, nel qual caso i server di Active Directory Domain Services non sono necessari per questa architettura. Per altre informazioni, vedere [Novità di Clustering di failover in Windows Server 2016][wsfc-whats-new].
 * **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
@@ -82,10 +82,10 @@ Configurare il gruppo di disponibilità AlwaysOn di SQL Server nel modo seguente
 3. Creare un listener del gruppo di disponibilità ed eseguire il mapping del nome DNS del listener all'indirizzo IP di un servizio di bilanciamento del carico interno. 
 4. Creare una regola di bilanciamento del carico per la porta di ascolto di SQL Server (porta TCP 1433 per impostazione predefinita). La regola di bilanciamento del carico deve abilitare l'*indirizzo IP mobile*, detto anche Direct Server Return, per fare in modo che la macchina virtuale risponda direttamente al client, permettendo una connessione diretta alla replica primaria.
   
-  > [!NOTE]
-  > Quando l'indirizzo IP mobile è abilitato, il numero di porta front-end deve corrispondere al numero di porta back-end nella regola di bilanciamento del carico.
-  > 
-  > 
+   > [!NOTE]
+   > Quando l'indirizzo IP mobile è abilitato, il numero di porta front-end deve corrispondere al numero di porta back-end nella regola di bilanciamento del carico.
+   > 
+   > 
 
 Quando un client SQL cerca di connettersi, il servizio di bilanciamento del carico indirizza la richiesta di connessione alla replica primaria. In caso di failover a un'altra replica, il servizio di bilanciamento del carico indirizza automaticamente le richieste successive a una nuova replica primaria. Per altre informazioni, vedere [Configure an ILB listener for SQL Server Always On Availability Groups][sql-alwayson-ilb] (Configurare un listener ILB per i gruppi di disponibilità AlwaysOn di SQL Server).
 
@@ -131,25 +131,25 @@ Per semplificare la gestione dell'intero sistema, usare strumenti di amministraz
 
 Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>Prerequisiti
+### <a name="prerequisites"></a>prerequisiti
 
 Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
 
-1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento AzureCAT][ref-arch-repo].
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][ref-arch-repo].
 
 2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per installare l'interfaccia della riga di comando, seguire le istruzioni in [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
 
 3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
 
-  ```bash
-  npm install -g @mspnp/azure-building-blocks
-  ```
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
 
 4. Da un prompt dei comandi, di Bash o di PowerShell accedere al proprio account di Azure usando uno dei comandi riportati di seguito e seguire le istruzioni.
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-solution-using-azbb"></a>Distribuire la soluzione mediante azbb
 
@@ -159,18 +159,18 @@ Per distribuire le macchine virtuali Windows per un'architettura di riferimento 
 
 2. Il file di parametri specifica un nome utente amministratore predefinito e una password per ogni macchina virtuale nella distribuzione. È necessario modificare questi elementi prima di distribuire l'architettura di riferimento. Aprire il file `n-tier-windows.json` e sostituire ogni campo **adminUsername** e **adminPassword** con le nuove impostazioni.
   
-  > [!NOTE]
-  > Durante questa distribuzione vengono eseguiti molti script, sia negli oggetti **VirtualMachineExtension** sia nelle impostazioni **extensions** per alcuni degli oggetti **VirtualMachine**. Alcuni di questi script richiedono il nome utente amministratore e la password appena modificati. È consigliabile esaminare questi script per assicurarsi di aver specificato le credenziali corrette. La distribuzione può non riuscire se non si specificano le credenziali corrette.
-  > 
-  > 
+   > [!NOTE]
+   > Durante questa distribuzione vengono eseguiti molti script, sia negli oggetti **VirtualMachineExtension** sia nelle impostazioni **extensions** per alcuni degli oggetti **VirtualMachine**. Alcuni di questi script richiedono il nome utente amministratore e la password appena modificati. È consigliabile esaminare questi script per assicurarsi di aver specificato le credenziali corrette. La distribuzione può non riuscire se non si specificano le credenziali corrette.
+   > 
+   > 
 
 Salvare il file.
 
 3. Distribuire l'architettura di riferimento usando lo strumento da riga di comando **azbb**, come mostrato di seguito.
 
-  ```bash
-  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
-  ```
+   ```bash
+   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
+   ```
 
 Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio usando blocchi predefiniti di Azure, visitare il [repository GitHub][git].
 
@@ -216,5 +216,5 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [Nagios]: https://www.nagios.org/
 [Zabbix]: http://www.zabbix.com/
 [Icinga]: http://www.icinga.org/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [0]: ./images/n-tier-diagram.png "Architettura a più livelli con Microsoft Azure"

@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 0cbcf0a8af1a8e20f2a1c024f5146a37176c5d1e
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 9a6bd1332ea59923b32379018060403024b15e10
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -153,7 +153,7 @@ In Azure sono disponibili numerose funzionalità per rendere ridondante un'appli
 
 **Set di disponibilità**. Per proteggersi da errori hardware localizzati, ad esempio un disco o un commutatore di rete non funzionante, distribuire due o più macchine virtuali in un set di disponibilità. Un set di disponibilità è costituito da due o più *domini di errore* che condividono una fonte di alimentazione e uno switch di rete comuni. Le macchine virtuali in un set di disponibilità vengono distribuite tra i domini di errore, in modo che, se un dominio di errore è interessato da un errore hardware, il traffico di rete possa comunque essere indirizzato alle macchine virtuali negli altri domini di errore. Per altre informazioni sui set di disponibilità, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure](/azure/virtual-machines/windows/manage-availability).
 
-**Zone di disponibilità (anteprima)**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. 
+**Zone di disponibilità**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. 
 
 **Aree associate**. Per proteggere un'applicazione da un'interruzione dell'alimentazione a livello di area, è possibile distribuire l'applicazione in più aree, tramite Gestione traffico di Microsoft Azure in modo da distribuire il traffico Internet in aree diverse. Ogni area di Azure è associata a un'altra area e la combinazione di queste aree costituisce una [coppia di aree](/azure/best-practices-availability-paired-regions). Ad eccezione del Brasile meridionale, le coppie di aree hanno la stessa collocazione geografica in modo da soddisfare i requisiti di residenza dei dati ai fini della giurisdizione per le imposizioni fiscali e normative.
 
@@ -161,10 +161,10 @@ Quando si progetta un'applicazione con più aree, tenere presente che la latenza
 
 | &nbsp; | Set di disponibilità | Zona di disponibilità | Area associata |
 |--------|------------------|-------------------|---------------|
-| Ambito dell'errore | Rack | Data center | Area |
-| Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | Gestione traffico |
-| Latenza di rete | Molto bassa | Bassa | Medio-alta |
-| Rete virtuale  | VNet | VNet | Peering reti virtuali tra aree (anteprima) |
+| Ambito dell'errore | Rack | Data center | Region |
+| Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | servizio Gestione traffico |
+| Latenza di rete | Molto bassa | Basso | Medio-alta |
+| Rete virtuale  | VNet | VNet | Peering reti virtuali tra aree |
 
 ## <a name="designing-for-resiliency"></a>Progettazione per la resilienza
 Durante la fase di progettazione, è consigliabile eseguire un'analisi della modalità di errore (FMA). L'obiettivo di quest'analisi è di identificare i possibili punti di errore e definire il modo in cui l'applicazione risponde a tali errori.

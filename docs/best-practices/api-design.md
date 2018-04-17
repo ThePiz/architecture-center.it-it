@@ -1,14 +1,14 @@
 ---
-title: "Linee guida per la progettazione di un’API"
+title: Linee guida per la progettazione di un’API
 description: Linee guida su come creare un'API Web progettata correttamente.
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: f0813c18da03b9deeabbf529a560c60e8ce579d8
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: a8c4a81835ebd3ebdba2fd2cec624a9a9d5646f5
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="api-design"></a>Progettazione API
 
@@ -394,7 +394,7 @@ Il controllo delle versioni consente a un’API Web di indicare le funzionalità
 ### <a name="no-versioning"></a>Nessun controllo delle versioni
 Si tratta dell'approccio più semplice e può essere accettabile per alcune API interne. Grandi cambiamenti potrebbero essere rappresentati come nuove risorse o nuovi collegamenti.  L’aggiunta di contenuto alle risorse esistenti potrebbe non presentare una modifica sostanziale in quanto le applicazioni client che non prevedono di visualizzare che questo contenuto lo ignoreranno semplicemente.
 
-Una richiesta all'URI *http://adventure-works.com/customers/3*, ad esempio, restituirà i dettagli di un singolo cliente contenente i campi `id`, `name`, e `address` previsti dall'applicazione client:
+Una richiesta all'URI *http://adventure-works.com/customers/3*, ad esempio, restituirà i dettagli di un singolo cliente contenente i campi `id`, `name` e `address` previsti dall'applicazione client:
 
 ```HTTP
 HTTP/1.1 200 OK

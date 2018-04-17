@@ -2,11 +2,11 @@
 title: 'Spiegazione: Funzionamento di Azure'
 description: Illustra il funzionamento interno di Azure
 author: petertay
-ms.openlocfilehash: 847d24b7057d80f3d34aac7900cfb64fec60a640
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: b4830fec69ac6d256d934d91ea2c295219925a9a
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="explainer-how-does-azure-work"></a>Spiegazione: Funzionamento di Azure
 
@@ -22,7 +22,7 @@ All'interno di ogni rack o cluster, la maggior parte dei server ha il compito di
 
 Ogni istanza del controller di infrastruttura è connessa a un altro set di server che eseguono il software di orchestrazione del cloud, in genere denominato **front-end**. Il front-end ospita i servizi Web, le API RESTful e i database interni di Azure usati per tutte le funzioni eseguite dal cloud. 
 
-Tra i servizi ospitati dal front-end sono inclusi quelli che gestiscono le richieste dei clienti per allocare le risorse di Azure, ad esempio le [reti virtuali][vnet], le [macchine virtuali][vms] e i servizi come [CosmosDB]. Per prima cosa, il front-end convalida l'utente e verifica che sia autorizzato ad allocare le risorse richieste. In caso affermativo, il front-end cerca in un database un rack di server con capacità sufficiente e quindi indica al controller di infrastruttura nel rack di allocare la risorsa.
+Tra i servizi ospitati dal front-end sono inclusi quelli che gestiscono le richieste dei clienti per allocare le risorse di Azure, ad esempio le [reti virtuali][vnet], le [macchine virtuali][vms] e i servizi come [CosmosDB][cosmosdb]. Per prima cosa, il front-end convalida l'utente e verifica che sia autorizzato ad allocare le risorse richieste. In caso affermativo, il front-end cerca in un database un rack di server con capacità sufficiente e quindi indica al controller di infrastruttura nel rack di allocare la risorsa.
 
 In ultima analisi, Azure è semplicemente un enorme insieme di server e componenti hardware di rete, unito a un set complesso di applicazioni distribuite che orchestrano la configurazione e il funzionamento del software e dell'hardware virtualizzato su tali server. È proprio questa orchestrazione a rendere Azure così potente. Gli utenti non sono più responsabili della gestione e dell'aggiornamento dell'hardware, poiché tutte queste attività vengono svolte dietro le quinte da Azure. 
 

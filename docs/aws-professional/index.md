@@ -5,11 +5,11 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: b8698675efa42bb3fae73cefe7b078942549b412
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -118,7 +118,7 @@ La tabella seguente riepiloga ogni opzione.
 | Ambito dell'errore | Rack | Data center | Region |
 | Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | servizio Gestione traffico |
 | Latenza di rete | Molto bassa | Basso | Medio-alta |
-| Reti virtuali  | VNet | VNet | Peering reti virtuali tra aree (anteprima) |
+| Reti virtuali  | VNet | VNet | Peering reti virtuali tra aree |
 
 ### <a name="availability-sets"></a>Set di disponibilità 
 
@@ -130,7 +130,7 @@ Per garantire che in ogni ruolo sia presente un'istanza operativa, i set di disp
 
 ![Set di disponibilità di Azure per ogni ruolo applicazione](./images/three-tier-example.png "Set di disponibilità di Azure per ogni ruolo applicazione")
 
-### <a name="availability-zones-preview"></a>Zone di disponibilità (anteprima)
+### <a name="availability-zones"></a>Zone di disponibilità
 
 Una [zona di disponibilità](/azure/availability-zones/az-overview) è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. 
 

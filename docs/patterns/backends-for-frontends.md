@@ -3,11 +3,11 @@ title: Modello back-end per front-end
 description: Creare servizi back-end separati che vengono utilizzati da interfacce o applicazioni front-end specifiche.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 87acd39d021c5e44594a2e7c9574e4dd363ce83b
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="backends-for-frontends-pattern"></a>Modello back-end per front-end
 
@@ -17,7 +17,7 @@ Creare servizi back-end separati che vengono utilizzati da interfacce o applicaz
 
 Un'applicazione può essere destinata inizialmente un'interfaccia utente Web desktop. In genere, viene sviluppato in parallelo un servizio back-end che fornisce le funzionalità necessarie per tale interfaccia utente. Con l'aumentare della base utenti dell'applicazione, viene sviluppata un'applicazione per dispositivi mobili che deve interagire con lo stesso back-end. Il servizio back-end diventa un back-end generico, che soddisfa i requisiti di entrambe le interfacce, desktop e per dispositivi mobili.
 
-Ma le funzionalità di un dispositivo mobile sono notevolmente diverse da quelle di browser desktop, in termini di dimensioni dello schermo, prestazioni e limitazioni di visualizzazione. Di conseguenza, i requisiti per un back-end dell'applicazione per dispositivi mobili sono diversi rispetto a quelli dell'interfaccia utente Web desktop. 
+Le funzionalità di un dispositivo mobile sono tuttavia notevolmente diverse da quelle di browser desktop, in termini di dimensioni dello schermo, prestazioni e limitazioni di visualizzazione. Di conseguenza, i requisiti per un back-end dell'applicazione per dispositivi mobili sono diversi rispetto a quelli dell'interfaccia utente Web desktop. 
 
 Queste differenze determinano la necessità di definire requisiti diversi per il back-end. Il back-end richiede modifiche regolari e significative, valide sia per l'interfaccia utente Web desktop che per l'applicazione per dispositivi mobili. Spesso, i team che si occupano delle interfacce lavorano sui singoli front-end, di conseguenza il back-end diventa un collo di bottiglia nel processo di sviluppo. I diversi requisiti per gli aggiornamenti e la necessità di garantire l'operatività del servizio per entrambi i front-end possono comportare un notevole dispendio di energie su un'unica risorsa distribuibile.
 

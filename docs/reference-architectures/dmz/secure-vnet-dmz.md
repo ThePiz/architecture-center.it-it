@@ -7,11 +7,11 @@ pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 372d5bb0fc0e3c272843e062210dec5c15b2b78a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c88545b1fcae49b413e7e2b6ac5bd92d3fd3456d
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Rete perimetrale tra Azure e Internet
 
@@ -19,7 +19,7 @@ Questa architettura di riferimento consente di visualizzare una rete ibrida sicu
 
 [![0]][0] 
 
-*Scaricare un [file di Visio][visio-download] di questa architettura.*
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
 Questa architettura di riferimento amplia l'architettura descritta in [Implementing a DMZ between Azure and your on-premises datacenter][implementing-a-secure-hybrid-network-architecture] (Implementazione di una rete perimetrale tra Azure e il data center locale). Tale architettura aggiunge una rete perimetrale pubblica che gestisce il traffico Internet, in aggiunta alla rete perimetrale privata che gestisce il traffico proveniente dalla rete locale 
 
@@ -28,7 +28,7 @@ Gli usi tipici di questa architettura includono:
 * Applicazioni ibride in cui i carichi di lavoro vengono eseguiti in parte localmente e in parte in Azure.
 * Infrastruttura di Azure che instrada il traffico in ingresso proveniente da reti locali e da Internet.
 
-## <a name="architecture"></a>Architettura
+## <a name="architecture"></a>Architecture
 
 L'architettura è costituita dai componenti seguenti.
 
@@ -42,7 +42,7 @@ L'architettura è costituita dai componenti seguenti.
 
 Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda. 
 
-### <a name="nva-recommendations"></a>Raccomandazioni sulle NVA
+### <a name="nva-recommendations"></a>Raccomandazioni per le appliance virtuali di rete
 
 È consigliabile usare un set di NVA per il traffico che ha origine in Internet e un altro per il traffico che ha origine in locale. L'uso di un solo set di NVA per entrambi i tipi di traffico è un rischio per la sicurezza, poiché non fornisce alcun perimetro di sicurezza tra i due set di traffico di rete. L'uso di NVA separate riduce la complessità del controllo delle regole di sicurezza e definisce chiaramente la corrispondenza tra le regole e le richieste di rete in ingresso. Un set di NVA implementa le regole per il solo traffico Internet, mentre un altro set implementa le regole relative al solo traffico locale.
 
@@ -64,7 +64,7 @@ Il servizio di bilanciamento del carico con connessione Internet richiede che og
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 
-Il monitoraggio e la gestione delle NVA nella rete perimetrale pubblica devono essere eseguiti dal jumpbox nella subnet di gestione. Come descritto in [Implementing a DMZ between Azure and your on-premises datacenter][implementing-a-secure-hybrid-network-architecture] (Implementazione di una rete perimetrale tra Azure e il data center locale), definire una route di rete singola proveniente dalla rete locale al jumpbox tramite il gateway, per limitare l'accesso.
+Il monitoraggio e la gestione delle appliance virtuali di rete nella rete perimetrale pubblica devono essere eseguiti dal jumpbox nella subnet di gestione. Come descritto in [Implementing a DMZ between Azure and your on-premises datacenter][implementing-a-secure-hybrid-network-architecture] (Implementazione di una rete perimetrale tra Azure e il data center locale), definire una route di rete singola proveniente dalla rete locale al jumpbox tramite il gateway, per limitare l'accesso.
 
 Se la connettività gateway dalla rete locale ad Azure non è attiva, è comunque possibile raggiungere il jumpbox attraverso la distribuzione di un indirizzo IP pubblico, aggiungendolo al jumpbox ed eseguendo la registrazione da Internet.
 
@@ -119,7 +119,7 @@ Questa architettura di riferimento implementa più livelli di sicurezza:
 [load-balancer]: /azure/load-balancer/load-balancer-Internet-overview
 [network-security-group]: /azure/virtual-network/virtual-networks-nsg
 
-[visio-download]: https://archcenter.azureedge.net/cdn/dmz-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/dmz-reference-architectures.vsdx
 
 
 [0]: ./images/dmz-public.png "Architettura di rete ibrida sicura"
