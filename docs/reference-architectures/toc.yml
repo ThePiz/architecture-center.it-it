@@ -12,6 +12,10 @@
           href: app-service-web-app/scalable-web-app.md
         - name: Distribuzione in più aree
           href: app-service-web-app/multi-region.md
+    - name: Architetture di dati
+      items:
+        - name: Business intelligence aziendale con SQL Data Warehouse
+          href: data/enterprise-bi-sqldw.md
     - name: Reti ibride
       href: hybrid-networking/index.md
       items:
