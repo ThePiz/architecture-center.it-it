@@ -149,13 +149,13 @@ Durante lo scambio di uno slot di distribuzione, le impostazioni dell'app vengon
 ### <a name="diagnostics-and-monitoring"></a>Diagnostica e monitoraggio
 Abilitare la [registrazione diagnostica][diagnostic-logs], includendo la registrazione delle applicazioni e del server Web. Configurare la registrazione per l'uso dell'archiviazione BLOB. Per prestazioni ottimali, creare un account di archiviazione separato per i log di diagnostica. Non usare lo stesso account di archiviazione per i log e i dati dell'applicazione. Per informazioni più dettagliate sulla registrazione, vedere l'articolo sulle [linee guida di monitoraggio e diagnostica][monitoring-guidance].
 
-Usare un servizio, quale [New Relic] [ new-relic] o [Application Insights] [ app-insights], per monitorare le prestazioni e il comportamento dell'applicazione in condizioni di carico. Tenere presenti i [limiti di velocità dati][app-insights-data-rate] per Application Insights.
+Usare un servizio, quale [New Relic][new-relic] o [Application Insights][app-insights], per monitorare le prestazioni e il comportamento dell'applicazione in condizioni di carico. Tenere presenti i [limiti di velocità dati][app-insights-data-rate] per Application Insights.
 
 Eseguire il test di carico usando uno strumento come [Visual Studio Team Services][vsts]. Per una panoramica generale dell'analisi delle prestazioni nelle applicazioni cloud, vedere l'articolo relativo alle [nozioni di base sull'analisi delle prestazioni][perf-analysis].
 
 Suggerimenti per la risoluzione dei problemi dell'applicazione:
 
-* Usare il [pannello della risoluzione dei problemi] [ troubleshoot-blade] nel portale di Azure per trovare le soluzioni ai problemi più comuni.
+* Usare il [pannello della risoluzione dei problemi][troubleshoot-blade] nel portale di Azure per trovare le soluzioni ai problemi più comuni.
 * Abilitare i [flussi di registrazione][web-app-log-stream] per visualizzare le informazioni di registrazione quasi in tempo reale.
 * Il [dashboard Kudu][kudu] include diversi strumenti per il monitoraggio e il debug dell'applicazione. Per altre informazioni, vedere il post di blog relativo agli [strumenti online di Siti Web di Azure che è opportuno conoscere][kudu]. È possibile raggiungere il dashboard Kudu dal portale di Azure. Aprire il pannello per l'app e fare clic su <strong>Strumenti</strong>, quindi su <strong>Kudu</strong>.
 * Se si usa Visual Studio, vedere l'articolo su come [risolvere i problemi relativi a un'app web nel servizio app di Azure con Visual Studio][troubleshoot-web-app] per suggerimenti per il debug e la risoluzione dei problemi.
