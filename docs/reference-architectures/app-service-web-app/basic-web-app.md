@@ -103,7 +103,7 @@ Al momento della scrittura, il contratto di servizio (SLA) per il servizio app �
 In caso di perdita di dati, il database SQL offre funzionalità di ripristino temporizzato e geografico. Tali funzionalità sono disponibili in tutti i livelli e vengono abilitate automaticamente. Non è necessario pianificare o gestire i backup. 
 
 - Usare il ripristino temporizzato per eseguire il [ripristino da un errore umano][sql-human-error] e riportare il database a un determinato momento precedente. 
-- Usare il ripristino geografico per eseguire il [ripristino da un'interruzione del servizio] [ sql-outage-recovery] recuperando un database da un backup con ridondanza geografica. 
+- Usare il ripristino geografico per eseguire il [ripristino da un'interruzione del servizio][sql-outage-recovery] recuperando un database da un backup con ridondanza geografica. 
 
 Per altre informazioni, vedere l'articolo relativo alla [continuità aziendale del cloud e al ripristino di emergenza del database con database SQL][sql-backup].
 
