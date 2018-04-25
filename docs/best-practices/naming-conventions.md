@@ -4,11 +4,11 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f814201901af69b816d7f1588e58057b252b22db
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: f3f010ceb3c810caafa53523de63aa787d392aa1
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -102,7 +102,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 |Nome della coda |Account di archiviazione |3-63 |Lettere minuscole |Alfanumerico e trattino |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
 |Nome tabella | Account di archiviazione |3-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`<service short name><context>` |`awesomeservicelogs` |
 |Nome file | Account di archiviazione |3-63 |Lettere minuscole | Alfanumerico |`<variable based on blob usage>` |`<variable based on blob usage>` |
-|Archivio Data Lake | Globale |3-24 |Lettere minuscole | Alfanumerico |`<name>-dls` |`telemetry-dls` |
+|Archivio Data Lake | Globale |3-24 |Lettere minuscole | Alfanumerico |`<name>dls` |`telemetrydls` |
 
 ### <a name="networking"></a>Rete
 
