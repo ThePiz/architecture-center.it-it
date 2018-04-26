@@ -20,14 +20,17 @@
           href: architecture-styles/big-data.md
         - name: Big Compute
           href: architecture-styles/big-compute.md
-    - name: Scelte di tecnologia
-      href: technology-choices/index.md
+    - name: Scelta di un servizio di calcolo
       items:
-        - name: Panoramica sulle opzioni di calcolo
+        - name: Panoramica
           href: technology-choices/compute-overview.md
+        - name: Albero delle decisioni
+          href: technology-choices/compute-decision-tree.md
         - name: Confronto delle funzionalità
           href: technology-choices/compute-comparison.md
-        - name: Panoramica sull'archivio dati
+    - name: Scelta di un archivio dati
+      items:
+        - name: Panoramica
           href: technology-choices/data-store-overview.md
         - name: Confronto dell'archivio dati
           href: technology-choices/data-store-comparison.md
@@ -54,7 +57,7 @@
           href: design-principles/design-for-evolution.md
         - name: Build per le esigenze aziendali
           href: design-principles/build-for-business.md
-    - name: Punti chiave della qualità del software
+    - name: Concetti fondamentali della qualità del software
       href: pillars.md
     - name: Modelli di progettazione
       href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
