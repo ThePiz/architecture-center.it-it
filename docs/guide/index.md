@@ -1,15 +1,17 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 530844a0d3b1256cec807e7bad509a40dca304f6
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Guida all'architettura delle applicazioni in Azure
 
 Questa guida presenta un approccio strutturato alla progettazione di applicazioni in Azure che assicurano disponibilità elevata, resilienza e scalabilità. È basata su procedure comprovate apprese nel corso delle interazioni con i clienti.
+
+<br/>
 
 <img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
@@ -53,25 +55,49 @@ Questa guida è rivolta ai progettisti, agli sviluppatori e ai team operativi. N
 
 La Guida all'architettura delle applicazione in Azure è concepita come una serie di passaggi, dall'architettura e la progettazione fino all'implementazione. Per ogni passaggio è disponibile materiale sussidiario utile per la progettazione dell'architettura dell'applicazione.
 
-**[Stili di architettura][arch-styles]**. Il primo punto di decisione è il più importante. Che stile di architettura si intende costruire? Sarà un'architettura di microservizi, un'applicazione a più livelli maggiormente tradizionale o una soluzione per Big Data? Sono stati identificati sette stili distinti. Ogni stile offre vantaggi e pone sfide.
+### <a name="architecture-styles"></a>Stili di architettura
 
-> &#10148; Le [architetture di riferimento di Azure][ref-archs] indicano le distribuzioni consigliate in Azure, insieme a considerazioni sulla scalabilità, la disponibilità, la gestibilità e la sicurezza. La maggior parte include anche i modelli di Resource Manager.
+Il primo punto di decisione è il più importante. Che stile di architettura si intende costruire? Sarà un'architettura di microservizi, un'applicazione a più livelli maggiormente tradizionale o una soluzione per Big Data? Sono stati identificati alcuni stili distinti. Ogni stile offre vantaggi e pone sfide.
 
-**[Scelte tecnologiche][technology-choices]**. Nella fase iniziale è necessario adottare due scelte tecnologiche in quanto incidono sull'intera architettura. Le scelte riguardano le tecnologie di calcolo e di archiviazione. Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione. L'archiviazione include i database ma anche l'archiviazione per le code di messaggi, le cache, i dati IoT, i dati di log non strutturati e qualsiasi altro elemento in cui è possibile salvare in modo permanente un'applicazione. 
+Altre informazioni:
 
-> &#10148; Le [opzioni di calcolo][compute-options] e le [opzioni di archiviazione][storage-options] forniscono criteri di confronto dettagliati per la selezione dei servizi di calcolo e di archiviazione.
+- [Stili di architettura][arch-styles]
+- [Architetture di riferimento di Azure][ref-archs]
 
-**[Principi di progettazione][design-principles]**. Durante il processo di progettazione tenere presente questi dieci principi di alto livello. 
+### <a name="technology-choices"></a>Scelte di tecnologia
 
-> &#10148; L'articolo [Procedure consigliate][best-practices] fornisce indicazioni specifiche su aree, come la scalabilità automatica, la memorizzazione nella cache, il partizionamento dei dati, la progettazione di API e altro.   
+Nella fase iniziale è necessario adottare due scelte tecnologiche in quanto incidono sull'intera architettura. Si tratta della scelta del servizio di calcolo e degli archivi dati. *Calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui vengono eseguite le applicazioni. Gli *archivi dati* includono i database ma anche l'archiviazione per le code di messaggi, le cache, i log e qualsiasi altro elemento in cui è possibile salvare in modo permanente un'applicazione. 
 
-**[Concetti fondamentali][pillars]**. Un'applicazione cloud efficace è basata su cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza. 
+Altre informazioni:
 
-> &#10148; Usare gli [elenchi di controllo per la revisione della progettazione][checklists] per rivedere la progettazione in base a questi concetti fondamentali. 
+- [Scelta di un servizio di calcolo](./technology-choices/compute-overview.md)
+- [Scelta di un archivio dati](./technology-choices/data-store-overview.md)
 
-**[Schemi progettuali per il cloud][patterns]**. Questi schemi progettuali sono utili per la compilazione di applicazioni affidabili, scalabili e sicure in Azure. Ogni modello descrive un problema, un modello che risolve il problema e un esempio basato su Azure.
+### <a name="design-principles"></a>Principi di progettazione
 
-> &#10148; Visualizzare il [catalogo degli schemi progettuali per il cloud](../patterns/index.md) completo.
+Sono stati identificati i principi di progettazione generali che consentiranno di rendere l'applicazione più scalabile, resiliente e gestibile. Questi principi di progettazione sono applicabili a qualunque stile di architettura. Durante il processo di progettazione tenere presente questi dieci principi di alto livello. È quindi possibile prendere in considerazione il set di procedure consigliate per aspetti specifici dell'architettura, ad esempio il ridimensionamento automatico, la memorizzazione nella cache, il partizionamento dei dati, la progettazione delle API e altro ancora.
+
+Altre informazioni:
+
+- [Principi di progettazione per le applicazioni Azure][design-principles]
+- [Procedure consigliate per lo sviluppo per il cloud][best-practices]
+
+### <a name="quality-pillars"></a>Concetti fondamentali per la qualità
+
+Un'applicazione cloud efficace è basata su cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza. Usare gli elenchi di controllo per la revisione dell'architettura per rivedere la progettazione in base a questi concetti fondamentali.
+
+Altre informazioni:
+
+- [Concetti fondamentali della qualità del software][pillars]
+- [Elenchi di controllo per l'analisi della progettazione][checklists] 
+
+### <a name="cloud-design-patterns"></a>Schemi progettuali per il cloud
+
+Gli schemi progettuali sono soluzioni generali per problemi comuni di progettazione del software. Sono stati identificati alcuni schemi progettuali che risultano particolarmente utili durante la progettazione di applicazioni distribuite per il cloud.
+
+Altre informazioni:
+
+- [Catalogo di schemi progettuali per il cloud](../patterns/index.md)
 
 
 [arch-styles]: ./architecture-styles/index.md

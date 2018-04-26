@@ -10,9 +10,10 @@
   items:
     - name: Stili di architettura
       href: guide/architecture-styles/index.md
-    - name: Scelte di tecnologia
-      href: guide/technology-choices/index.md
-      items: null
+    - name: Scelta di un servizio di calcolo
+      href: guide/technology-choices/compute-overview.md
+    - name: Scelta di un archivio dati
+      href: guide/technology-choices/data-store-overview.md
     - name: Principi di progettazione
       href: guide/design-principles/index.md
     - name: Concetti fondamentali della qualità del software
