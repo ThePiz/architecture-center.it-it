@@ -3,11 +3,11 @@ title: Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati
 description: Articolo incentrato sul ripristino dal danneggiamento dei dati o dall'eliminazione accidentale di dati e sulla progettazione di applicazioni resilienti, a disponibilità elevata e con tolleranza di errore, oltre che sulla pianificazione del ripristino di emergenza.
 author: MikeWasson
 ms.date: 01/10/2018
-ms.openlocfilehash: 76d2f996750d5a67b67bd5dc4977580f3b8abbc3
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: b0716de39fe69d607b9a63e51356d28bbcdbfeae
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a>Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati 
 
@@ -23,7 +23,7 @@ Archiviazione di Azure offre la resilienza dei dati tramite repliche automatizza
 
 - **BLOB in blocchi**. Creare uno snapshot temporizzato di ogni BLOB in blocchi. Per ulteriori informazioni, vedere [Creazione di uno Snapshot di un BLOB](/rest/api/storageservices/creating-a-snapshot-of-a-blob). Per ogni snapshot viene addebitato solo lo spazio richiesto per l'archiviazione delle differenze all'interno del BLOB dall'ultimo stato dello snapshot. Gli snapshot dipendono dall'esistenza del BLOB originale su cui si basano, quindi è consigliabile un'operazione di copia in un altro BLOB o in un altro account di archiviazione. In questo modo si garantisce che i dati di backup vengano correttamente protetti da eliminazioni accidentali. È possibile usare [AzCopy](/azure/storage/common/storage-use-azcopy) o [Azure PowerShell](/azure/storage/common/storage-powershell-guide-full) per copiare i BLOB in un altro account di archiviazione.
 
-- **File**. Usare gli [snapshot di condivisione (anteprima)](/azure/storage/files/storage-how-to-use-files-snapshots), AzCopy o PowerShell per copiare i file in un altro account di archiviazione.
+- **File**. Usare gli [snapshot di condivisione](/azure/storage/files/storage-snapshots-files), AzCopy o PowerShell per copiare i file in un altro account di archiviazione.
 
 - **Tabelle**. Usare AzCopy per esportare i dati delle tabelle in un altro account di archiviazione in un'altra area.
 

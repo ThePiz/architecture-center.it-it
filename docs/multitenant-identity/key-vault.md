@@ -5,15 +5,15 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 45d1564c255f2450f68c5e92ebe0d7de0c40ae31
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d49129a38d0413f6006095f03b817885e1ce6c92
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>Usare Azure Key Vault per proteggere i segreti dell'applicazione
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 Alcune impostazioni dell'applicazione sono sensibili e devono essere protette, ad esempio:
 
@@ -120,7 +120,7 @@ Impostare ora questo utente come proprietario della sottoscrizione.
     ],
     ```          
 
-6. Fare clic su **Salva**.  
+6. Fare clic su **Save**.  
 
 7. Ripetere i passaggi da 3 a 6 per aggiungere al manifesto dell'applicazione lo stesso frammento JSON dell'API Web (Surveys.WebAPI).
 
@@ -167,7 +167,7 @@ Impostare ora questo utente come proprietario della sottoscrizione.
     ```
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true" 
     ```
-    dove 
+    dove
    
    * key vault name: nome assegnato all'insieme di credenziali delle chiavi nel passaggio precedente.
    * Redis DNS name: nome DNS dell'istanza della cache Redis.

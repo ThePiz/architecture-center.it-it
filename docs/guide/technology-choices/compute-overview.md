@@ -2,11 +2,12 @@
 title: Panoramica delle opzioni di calcolo di Azure
 description: Panoramica delle opzioni di calcolo di Azure
 author: MikeWasson
-ms.openlocfilehash: a23dd49f24bc52db6f357540e3ebccb19e0497ee
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 04/21/2018
+ms.openlocfilehash: 6781e1f1f6e239e3853920cb544092538cccfc62
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="overview-of-azure-compute-options"></a>Panoramica delle opzioni di calcolo di Azure
 
@@ -42,4 +43,6 @@ Ecco alcuni fattori da considerare per la scelta di un'opzione di calcolo:
 - Quali sono le limitazioni complessive di ogni servizio? 
 - Quali tipi di architetture applicative sono appropriati per questo servizio? 
 
-Per un confronto più dettagliato delle opzioni di calcolo di Azure, vedere [Criteri per la scelta di un'opzione di calcolo di Azure](./compute-comparison.md).
+Per selezionare un servizio di calcolo per l'applicazione, usare l'[Albero delle decisioni per i servizi di calcolo di Azure](./compute-decision-tree.md)
+
+Per un confronto più dettagliato delle opzioni di calcolo di Azure, vedere [Criteri per la scelta di un servizio di calcolo di Azure](./compute-comparison.md).

@@ -3,11 +3,11 @@ title: Modello A scomparti
 description: Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: a2c499d77fafc4bee6b74ee0e0d84e6c23b47851
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9917870e1dcbed87aaa41e051f1622ad4950456a
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="bulkhead-pattern"></a>Modello A scomparti
 
@@ -51,7 +51,7 @@ Il diagramma seguente mostra più client che chiamano un singolo servizio. Ad og
 - Quando si suddividono i consumer in scomparti, valutare l'uso di processi, pool di thread e semafori. Progetti come [Netflix Hystrix] [ hystrix] e [Polly] [ polly] offrono un framework per la creazione di scomparti per consumer.
 - Quando si suddividono i servizi in scomparti, valutarne la distribuzione in macchine virtuali, contenitori o processi distinti. I contenitori offrono un buon bilanciamento dell'isolamento delle risorse con un sovraccarico non significativo.
 - I servizi che comunicano tramite messaggi asincroni possono essere isolati usando diversi set di code. Ogni coda può disporre di un set dedicato di istanze che elabora i messaggi nella coda o di un singolo gruppo di istanze che usa un algoritmo per rimuovere la coda ed elaborare gli invii.
-- Determinare il livello di granularità degli scomparti. Se, ad esempio, si distribuiscono i tenant tra partizioni, è possibile posizionare ogni tenant in una partizione distinta, e posizionare diversi tenant in una sola partizione.
+- Determinare il livello di granularità degli scomparti. Se, ad esempio, si distribuiscono i tenant tra partizioni, è possibile posizionare ogni tenant in una partizione distinta o posizionare diversi tenant in una sola partizione.
 - Monitorare le prestazioni e il contratto di servizio di ogni partizione.
 
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello

@@ -7,11 +7,11 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 431de4b2e08c79f70cc9830fda8315e07bf22c64
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 9475d669b2cb8888a7ceabed7e36317fe63681fd
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integrare i domini Active Directory locali con Azure Active Directory
 
@@ -119,9 +119,9 @@ Per altre informazioni su queste topologie, vedere [Topologie per Azure AD Conne
 
 ### <a name="user-authentication"></a>Autenticazione utente
 
-Per impostazione predefinita, il server di sincronizzazione di Azure AD Connect consente di configurare la sincronizzazione delle password tra il dominio locale e Azure AD e il servizio di Azure AD presuppone che gli utenti eseguano l'autenticazione con la stessa password che usano in locale. Per molte organizzazioni questo comportamento è appropriato, ma è necessario considerare l'infrastruttura e i criteri esistenti dell'organizzazione specifica. Ad esempio: 
+Per impostazione predefinita, il server di sincronizzazione di Azure AD Connect consente di configurare la sincronizzazione degli hash delle password tra il dominio locale e Azure AD e il servizio di Azure AD presuppone che gli utenti eseguano l'autenticazione con la stessa password che usano in locale. Per molte organizzazioni questo comportamento è appropriato, ma è necessario considerare l'infrastruttura e i criteri esistenti dell'organizzazione specifica. Ad esempio: 
 
-* I criteri di sicurezza dell'organizzazione potrebbero non consentire la sincronizzazione degli hash delle password nel cloud.
+* I criteri di sicurezza dell'organizzazione potrebbero non consentire la sincronizzazione degli hash delle password nel cloud. In questo caso l'organizzazione dovrà prendere in considerazione l'[autenticazione pass-through](/azure/active-directory/connect/active-directory-aadconnect-pass-through-authentication).
 * Quando si accede alle risorse del cloud da computer appartenenti al dominio nella rete aziendale, è necessario che gli utenti non vadano incontro ad alcun problema nell’uso dell’SSO.
 * L'organizzazione potrebbe avere già distribuito Active Directory Federation Services (ADFS) o provider federativi di terze parti. È possibile configurare Azure AD in modo che per implementare l'autenticazione e SSO usi questa infrastruttura anziché le informazioni relative alle password che si trovano nel cloud.
 
