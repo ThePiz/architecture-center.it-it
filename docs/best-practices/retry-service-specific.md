@@ -4,11 +4,11 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 332f96e73def360926b6a934bbb1361b2254ec41
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: c80a4aa232cca1283d84368a36dd7341cab8a314
+ms.sourcegitcommit: 3846a0ab2b2b2552202a3c9c21af0097a145ffc6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/29/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -924,7 +924,7 @@ Nella libreria di autenticazione di Active Directory è previsto un meccanismo d
 Quando si usa Azure Active Directory, tenere presente le linee guida seguenti:
 
 * Quando possibile, usare la libreria ADAL e il supporto incorporato per le ripetzioni dei tentativi.
-* Se si usa l'API REST per Azure Active Directory, è necessario ripetere l'operazione solo se il risultato è un errore compreso nell'intervallo 5xx (ad esempio 500 - Errore interno del server, 502 - Gateway non valido, 503 - Servizio non disponibile o 504 - Timeout gateway). Non ripetere nuovi tentativi per altri tipi di errore.
+* Se si usa l'API REST per Azure Active Directory, ripetere l'operazione se il codice di risultato è 429 (Troppe richieste) oppure un errore compreso nell'intervallo 5xx. Non ripetere nuovi tentativi per altri tipi di errore.
 * Negli scenari in batch di Azure Active Directory è opportuno usare criteri di backoff esponenziale.
 
 È consigliabile iniziare le operazioni di ripetizione dei tentativi usando le impostazioni seguenti. Si tratta di impostazioni di uso generale ed è quindi necessario monitorare le operazioni e personalizzare i valori in base allo scenario.
@@ -989,6 +989,7 @@ Quando si accede a servizi di Azure o di terze parti, tenere presente quanto seg
 * La logica di rilevamento degli errori temporanei dipenderà dall'API client effettiva usata per richiamare le chiamate REST. Alcuni client, ad esempio la nuova classe **HttpClient** , non genereranno eccezioni per le richieste completate con un codice di stato HTTP di errore. In questo modo, le prestazioni risulteranno migliorate ma non sarà possibile usare il Blocco di applicazioni per la gestione degli errori temporanei. Una soluzione potrebbe essere quella di eseguire il wrapping della chiamata all'API REST con un codice che genera eccezioni per i codici di stato HTTP di errore, che verrebbero quindi elaborati dal blocco. In alternativa, è possibile usare un meccanismo diverso per la gestione dei nuovi tentativi.
 * Il codice di stato HTTP restituito dal servizio consente di stabilire se l'errore è temporaneo. È possibile che sia necessario esaminare le eccezioni generate da un client o dal framework di ripetizione dei tentativi per accedere al codice di stato o determinare il tipo di eccezione equivalente. I seguenti codici HTTP indicano, in genere, che è opportuno eseguire un nuovo tentativo:
   * 408 - Timeout richiesta
+  * 429 - Numero eccessivo di richieste
   * 500 - Errore interno del server
   * 502 - Gateway non valido
   * 503 - Servizio non disponibile
