@@ -3,11 +3,11 @@ title: Eseguire un server Jenkins in Azure
 description: Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: c07a341bbe4d0304087e4535408967c45d36199e
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 5f9c54e71a8750e88de1ae633ccc1316f8375d3a
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
@@ -113,13 +113,13 @@ La selezione della dimensione corretta del server dipende dalle dimensioni del c
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
-Valutare i requisiti di disponibilità del flusso di lavoro e come ripristinare lo stato di Jenkins in caso di arresto del server Jenkins. Per valutare i requisiti di disponibilità, considerare due metriche comuni:
+Nel contesto di un server Jenkins, disponibilità significa poter ripristinare tutte le informazioni relative allo stato associate al flusso di lavoro, come i risultati dei test, le librerie create o altri elementi. Per ripristinare il flusso di lavoro in caso di arresto del server Jenkins è necessario mantenere gli elementi o lo stato del flusso di lavoro di importanza critica. Per valutare i requisiti di disponibilità, considerare due metriche comuni:
 
 -   L'obiettivo del tempo di ripristino (RTO) specifica per quanto tempo è possibile non usare Jenkins.
 
 -   L'obiettivo del punto di ripristino (RPO) indica quanti dati è possibile permettersi di perdere se un'interruzione del servizio influisce su Jenkins.
 
-In pratica, RTO e RPO implicano ridondanza e backup. La disponibilità non riguarda il ripristino dell'hardware, che fa parte di Azure, ma piuttosto il mantenimento dello stato del server Jenkins. Questa architettura di riferimento usa il [contratto di servizio di Azure][sla], che garantisce un tempo di attività del 99,9% per una singola macchina virtuale. Se questo contratto di servizio non soddisfa gli specifici requisiti in termini di tempo di attività, assicurarsi di avere un piano per il ripristino di emergenza oppure valutare la possibilità di usare una distribuzione di [server Jenkins multimaster][multi-master] (non illustrata in questo documento).
+In pratica, RTO e RPO implicano ridondanza e backup. La disponibilità non riguarda il ripristino dell'hardware, che fa parte di Azure, ma piuttosto il mantenimento dello stato del server Jenkins. Microsoft offre un [contratto di servizio][sla] per le singole istanze di VM. Se questo contratto di servizio non soddisfa gli specifici requisiti in termini di tempo di attività, assicurarsi di avere un piano per il ripristino di emergenza oppure valutare la possibilità di usare una distribuzione di [server Jenkins multimaster][multi-master] (non illustrata in questo documento).
 
 Valutare la possibilità di usare gli [script][disaster] per il ripristino di emergenza nel passaggio 7 della distribuzione per creare un account di archiviazione di Azure con dischi gestiti per archiviare lo stato del server Jenkins. In caso di arresto di Jenkins, è possibile ripristinarne lo stato archiviato in questo account di archiviazione separato.
 
@@ -127,7 +127,7 @@ Valutare la possibilità di usare gli [script][disaster] per il ripristino di em
 
 Usare gli approcci seguenti per bloccare la sicurezza in un server Jenkins di base, perché nello stato di base non è sicuro.
 
--   Configurare un modo per proteggere l'accesso al server Jenkins. Per impostazione predefinita, questa architettura usa HTTP, che non è sicuro, e ha un indirizzo IP pubblico. Per un accesso sicuro, valutare la possibilità di configurare [HTTPS nel server Nginx][nginx] in uso.
+-   Configurare un modo sicuro per accedere al server Jenkins. Questa architettura usa HTTP e ha un indirizzo IP pubblico, ma HTTP non è sicuro per impostazione predefinita. Per un accesso sicuro, valutare la possibilità di configurare [HTTPS nel server Nginx][nginx] in uso.
 
     > [!NOTE]
     > Quando si aggiunge SSL al server, creare una regola NSG per la subnet Jenkins per aprire la porta 443. Per altre informazioni, vedere [Come aprire le porte per una macchina virtuale con il portale di Azure][port443].
