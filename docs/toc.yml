@@ -33,16 +33,14 @@
       href: reference-architectures/identity/index.md
     - name: Server Jenkins
       href: reference-architectures/jenkins/index.md
+    - name: Applicazione a più livelli
+      href: reference-architectures/n-tier/index.md
     - name: Rete perimetrale
       href: reference-architectures/dmz/index.md
     - name: SAP NetWeaver e SAP HANA
       href: reference-architectures/sap/index.md
     - name: SharePoint Server 2016
       href: reference-architectures/sharepoint/index.md
-    - name: Carichi di lavoro della macchina virtuale (Linux)
-      href: reference-architectures/virtual-machines-linux/index.md
-    - name: Carichi di lavoro della macchina virtuale (Windows)
-      href: reference-architectures/virtual-machines-windows/index.md
 - name: Modelli di progettazione cloud
   href: patterns/index.md
   items:
