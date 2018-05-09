@@ -3,11 +3,11 @@ title: Architetture di riferimento di Azure
 description: Architetture di riferimento, progetti e materiale sussidiario per l'implementazione per carichi di lavoro comuni in Azure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 9708c975e543a04cafe22f38194e833be44d7b81
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 4c0006404ed0c0f603e9599cd9c04e6d02fdbfeb
+ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 05/06/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -19,47 +19,30 @@ Le nostre architetture di riferimento sono disposte per scenario, con le archite
 
 <section class="series">
     <ul class="panelContent">
-    <!-- Windows VM workloads -->
+
+<!-- N-tier -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./virtual-machines-windows/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./n-tier/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./virtual-machines-windows/images/n-tier.svg" height="140px" />
+                            <img src="./n-tier/images/n-tier-sql-server.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Carichi di lavoro della macchina virtualeWindows</h3>
-                        <p>Questa serie inizia con le procedure consigliate per l'esecuzione di una singola VM Windows, quindi più VM con bilanciamento del carico e infine un'applicazione a più livelli con più aree.</p>
+                        <h3>Applicazione a più livelli</h3>
+                        <p>Distribuire un'applicazione a più livelli in Azure per Windows o Linux.</p>
+                        <p>Le configurazioni illustrate si riferiscono a SQL Server e Apache Cassandra. Per la disponibilità elevata, distribuire una configurazione attiva-passiva in due aree.</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- Linux VM workloads -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./virtual-machines-linux/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./virtual-machines-linux/images/n-tier.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Carichi di lavoro della macchina virtuale di Linux</h3>
-                        <p>Questa serie inizia con le procedure consigliate per l'esecuzione di una singola VM Linux, quindi più VM con bilanciamento del carico e infine un'applicazione a più livelli con più aree.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hybrid network -->
+
+<!-- Hybrid network -->
 <li style="display: flex; flex-direction: column;">
     <a href="./hybrid-networking/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -73,6 +56,7 @@ Le nostre architetture di riferimento sono disposte per scenario, con le archite
                     <div class="cardText">
                         <h3>Rete ibrida</h3>
                         <p>Questa serie mostra le opzioni per la creazione di una connessione di rete tra una rete locale e Azure.</p>
+                        <p>Le configurazioni includono VPN da sito a sito oppure Azure ExpressRoute per una connessione privata e dedicata.</p>
                     </div>
                 </div>
             </div>
