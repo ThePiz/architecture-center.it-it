@@ -2,11 +2,11 @@
 title: Stili di architettura
 description: Stili di architettura comuni per le applicazioni cloud
 layout: LandingPage
-ms.openlocfilehash: 15a316f9ebf7cfe4e72a6992f264a68abb904819
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e647d1a0f3305e7754859e5ab8a9a3b46c3d4fb6
+ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 05/07/2018
 ---
 # <a name="architecture-styles"></a>Stili di architettura
 
@@ -65,6 +65,7 @@ L'**[architettura basata su eventi](./event-driven.md)** usa un modello pubblica
 Si consideri un'architettura basata su eventi per le applicazioni che accettano ed elaborano una grande quantità di dati con una latenza molto bassa, come le soluzioni IoT. Lo stile è utile anche quando sottosistemi diversi devono eseguire diversi tipi di elaborazione sugli stessi dati di evento.
 
 <br />
+
 ### <a name="big-data-big-compute"></a>Big Data e Big Compute
 
 **[Big Data](./big-data.md)** e **[Big Compute](./big-compute.md)** sono stili architettura specializzati per carichi di lavoro che soddisfano determinati profili specifici. Lo stile Big Data divide un set di dati molto grandi in blocchi, eseguendo elaborazione parallela sull'intero set per analisi e creazione di report. Lo stile Big Compute, anche chiamato calcolo ad alte prestazioni (HPC, high-performance computing), esegue calcoli paralleli in un numero elevato (migliaia) di core. I domini includono simulazioni, modellazione e rendering 3D.
@@ -89,7 +90,7 @@ La tabella seguente riepiloga il modo in cui ogni stile gestisce le dipendenze e
 | Stile di architettura |  Gestione delle dipendenze | Tipo di dominio |
 |--------------------|------------------------|-------------|
 | A più livelli | Livelli orizzontali divisi per subnet | Dominio aziendale tradizionale. La frequenza degli aggiornamenti è bassa. |
-| Web-coda-ruolo di lavoro | Processi front-end e back-end, disaccoppiati dalla messaggistica asincrona. | Dominio relativamente semplice con alcune attività con utilizzo intensivo di risorse. |
+| Web/coda/ruolo di lavoro | Processi front-end e back-end, disaccoppiati dalla messaggistica asincrona. | Dominio relativamente semplice con alcune attività con utilizzo intensivo di risorse. |
 | Microservizi | Servizi scomposti verticalmente (funzionalmente) che di chiamano a vicenda attraverso le API. | Dominio complicato. Aggiornamenti frequenti. |
 | CQRS | Separazione di lettura/scrittura. Lo schema e la scala sono ottimizzati separatamente. | Dominio di collaborazione in cui un numero elevato di utenti accede agli stessi dati. |
 | Architettura basata su eventi. | Produttore/consumer. Vista indipendente per sottosistema. | Sistemi IoT e in tempo reale |
