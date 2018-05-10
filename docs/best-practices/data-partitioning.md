@@ -525,7 +525,7 @@ Per un esempio di soluzione che supporta la migrazione online, vedere l'articolo
 Quando si esaminano le strategie per l'implementazione della coerenza dei dati, anche i modelli seguenti possono essere rilevanti per il proprio scenario:
 
 * La pagina relativa alla [Introduzione alla coerenza dei dati] nel sito Web Microsoft descrive le strategie per la gestione della coerenza in un ambiente distribuito, ad esempio il cloud.
-* La pagina [Linee guida di partizionamento di dati] nel sito Web Microsoft offre una panoramica generale sulla progettazione delle partizioni per soddisfare diversi criteri in una soluzione distribuita.
+* La pagina [Data Partitioning Guidance] nel sito Web Microsoft offre una panoramica generale sulla progettazione delle partizioni per soddisfare diversi criteri in una soluzione distribuita.
 * Il [modello di partizionamento orizzontale] descritto nel sito Web Microsoft riepiloga alcune strategie comuni per il partizionamento orizzontale dei dati.
 * L' [ITP (Index Table Pattern)] descritto nel sito Web Microsoft illustra come creare indici secondari nei dati. Un'applicazione consente di recuperare rapidamente i dati con questo approccio, usando le query che non fanno riferimento alla chiave primaria di una raccolta.
 * Il [modello di vista materializzata] descritto nel sito Web Microsoft illustra come generare viste prepopolate che riepilogano i dati per favorire operazioni di query rapide. Questo approccio può essere utile in un archivio dati partizionati se le partizioni che contengono dati riepilogati vengono distribuite tra più siti.
@@ -535,7 +535,7 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 * La pagina [Informazioni sul database SQL] nel sito Web Microsoft contiene informazioni dettagliate sulla creazione e l'uso di database SQL.
 * La pagina [Panoramica sulle funzionalità di database elastico] nel sito Web Microsoft offre un'introduzione completa al database elastico.
 * La pagina [Scalabilità tramite lo strumento di suddivisione-unione del database elastico] nel sito Web Microsoft contiene informazioni sull'uso del servizio di suddivisione-unione per gestire le partizioni del database elastico.
-* La pagina [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](https://msdn.microsoft.com/library/azure/dn249410.aspx) nel sito Web Microsoft descrive gli attuali limiti di ridimensionamento e velocità effettiva dell'archiviazione di Azure.
+* La pagina [Azure storage scalability and performance targets](https://msdn.microsoft.com/library/azure/dn249410.aspx) (Obiettivi di scalabilità e prestazioni per Archiviazione di Azure) nel sito Web Microsoft descrive gli attuali limiti di ridimensionamento e velocità effettiva dell'archiviazione di Azure.
 * La pagina [Esecuzione di transazioni di gruppi di entità] nel sito Web Microsoft offre informazioni dettagliate sull'implementazione di operazioni transazionali su entità archiviate nell'archiviazione tabelle di Azure.
 * L'articolo [Guida alla progettazione della tabella di archiviazione di Azure] nel sito Web Microsoft include informazioni dettagliate sul partizionamento dei dati nell'archiviazione tabelle di Azure.
 * La pagina [Uso di una rete di distribuzione dei contenuti di Azure] nel sito Web Microsoft descrive come replicare i dati presenti nell'archivio BLOB di Azure usando la rete per la distribuzione di contenuti di Azure.
@@ -551,9 +551,9 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 [azure-limits]: /azure/azure-subscription-service-limits
 [Rete di distribuzione dei contenuti di Microsoft Azure]: /azure/cdn/cdn-overview
 [Cache Redis di Azure]: http://azure.microsoft.com/services/cache/
-[Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
-[Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
-[Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx (Creazione di una soluzione Polyglot)
+[Obiettivi di scalabilità e prestazioni per Archiviazione di Azure]: /azure/storage/storage-scalability-targets
+[Guida alla progettazione della tabella di archiviazione di Azure]: /azure/storage/storage-table-design-guide
+[Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Introduzione alla coerenza dei dati]: http://aka.ms/Data-Consistency-Primer
@@ -564,13 +564,13 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
 [Linee guida e consigli per Reliable Collections in Azure Service Fabric]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
-[Index Table Pattern]: http://aka.ms/Index-Table-Pattern
-[Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
+[ITP (Index Table Pattern)]: http://aka.ms/Index-Table-Pattern
+[modello di vista materializzata]: http://aka.ms/Materialized-View-Pattern
 [Esecuzione di query su più partizioni]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Panoramica di Azure Service Fabric]: /azure/service-fabric/service-fabric-overview
 [Partizionare Reliable Services di Service Fabric]: /azure/service-fabric/service-fabric-concepts-partitioning
 [partizionamento e alla suddivisione dei dati in più istanze di Redis]: http://redis.io/topics/partitioning
-[Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
+[Esecuzione di transazioni di gruppi di entità]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Esercitazione del cluster Redis]: http://redis.io/topics/cluster-tutorial
 [esecuzione di Redis in una macchina virtuale CentOS Linux in Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
 [Scalabilità tramite lo strumento di suddivisione-unione del database elastico]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
