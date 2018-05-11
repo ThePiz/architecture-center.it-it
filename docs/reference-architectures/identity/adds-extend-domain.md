@@ -2,15 +2,15 @@
 title: Estendere Active Directory Domain Services in Azure
 description: Estendere il dominio Active Directory locale ad Azure
 author: telmosampaio
-ms.date: 04/13/2018
+ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: bcd1e2b1b925a5d64665c5651c24589a77e39ec9
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: 763fffd321a1b50a562ef462dab59aafae717908
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
@@ -104,7 +104,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="prerequisites"></a>prerequisiti
 
-1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][ref-arch-repo].
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][github].
 
 2. Installare l'[Interfaccia della riga di comando di Azure 2.0][azure-cli-2].
 
@@ -118,34 +118,11 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>Distribuire il data center locale simulato
 
-1. Passare alla cartella `identity/adds-extend-domain` del repository di architetture di riferimento.
+1. Passare alla cartella `identity/adds-extend-domain` del repository GitHub.
 
-2. Aprire il file `onprem.json` . Cercare `adminPassword` e aggiungere i valori per le password. Nel file sono disponibili tre istanze.
+2. Aprire il file `onprem.json` . Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password.
 
-    ```bash
-    "adminUsername": "testuser",
-    "adminPassword": "<password>",
-    ```
-
-3. Nello stesso file, cercare `protectedSettings` e aggiungere i valori per le password. Sono presenti due istanze di `protectedSettings`, una per ogni server AD.
-
-    ```bash
-    "protectedSettings": {
-      "configurationArguments": {
-        ...
-        "AdminCreds": {
-          "UserName": "testadminuser",
-          "Password": "<password>"
-        },
-        "SafeModeAdminCreds": {
-          "UserName": "testsafeadminuser",
-          "Password": "<password>"
-        }
-      }
-    }
-    ```
-
-4. Eseguire il comando seguente e attendere il completamento della distribuzione:
+3. Eseguire il comando seguente e attendere il completamento della distribuzione:
 
     ```bash
     azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
@@ -153,38 +130,15 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="deploy-the-azure-vnet"></a>Distribuire la rete virtuale di Azure
 
-1. Aprire il file `azure.json` .  Cercare `adminPassword` e aggiungere i valori per le password. Nel file sono disponibili tre istanze.
+1. Aprire il file `azure.json` .  Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password. 
 
-    ```bash
-    "adminUsername": "testuser",
-    "adminPassword": "<password>",
-    ```
-
-2. Nello stesso file, cercare `protectedSettings` e aggiungere i valori per le password. Sono presenti due istanze di `protectedSettings`, una per ogni server AD.
-
-    ```bash
-    "protectedSettings": {
-      "configurationArguments": {
-        ...
-        "AdminCreds": {
-          "UserName": "testadminuser",
-          "Password": "<password>"
-        },
-        "SafeModeAdminCreds": {
-          "UserName": "testsafeadminuser",
-          "Password": "<password>"
-        }
-      }
-    }
-    ```
-
-3. Per `sharedKey`, immettere una chiave condivisa per la connessione VPN. Sono presenti due istanze di `sharedKey` nel file parametro.
+2. Nello stesso file cercare le istanze di `sharedKey` e immettere le chiavi condivise per la connessione VPN. 
 
     ```bash
     "sharedKey": "",
     ```
 
-4. Eseguire il comando seguente e attendere il completamento della distribuzione.
+3. Eseguire il comando seguente e attendere il completamento della distribuzione.
 
     ```bash
     azbb -s <subscription_id> -g <resource group> -l <location> -p onoprem.json --deploy
@@ -194,17 +148,19 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="test-connectivity-with-the-azure-vnet"></a>Testare la connettività con la rete virtuale di Azure
 
-Una volta completata da distribuzione, è possibile testare la connettività dall'ambiente locale simulato nella rete virtuale di Azure.
+Dopo aver completato la distribuzione, è possibile testare la connettività dall'ambiente locale simulato nella rete virtuale di Azure.
 
-1. Usare il portale di Azure per trovare la macchina virtuale di Azure denominata `ra-onpremise-mgmt-vm1`.
+1. Usare il portale di Azure per passare al gruppo di risorse creato.
 
-2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `onprem.json`.
+2. Trovare la macchina virtuale denominata `ra-onpremise-mgmt-vm1`.
 
-3. All'interno della sessione di desktop remoto, aprire un'altra sessione di desktop remoto per 10.0.4.4, ovvero l'indirizzo IP della macchina virtuale denominata `adds-vm1`. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `azure.json`.
+3. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `onprem.json`.
 
-4. Dalla sessione di desktop remoto per `adds-vm1`, passare a **Server Manager** e fare clic su **Add other servers to manage** (Aggiungi altri server da gestire). 
+4. All'interno della sessione di desktop remoto, aprire un'altra sessione di desktop remoto per 10.0.4.4, ovvero l'indirizzo IP della macchina virtuale denominata `adds-vm1`. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `azure.json`.
 
-5. Nella scheda **Active Directory**, fare clic su **Find now** (Trova ora). Verrà visualizzato un elenco di Active Directory, Active Directory Domain Services e macchine virtuali Web.
+5. Dalla sessione di desktop remoto per `adds-vm1`, passare a **Server Manager** e fare clic su **Add other servers to manage** (Aggiungi altri server da gestire). 
+
+6. Nella scheda **Active Directory**, fare clic su **Find now** (Trova ora). Verrà visualizzato un elenco di Active Directory, Active Directory Domain Services e macchine virtuali Web.
 
    ![](./images/add-servers-dialog.png)
 

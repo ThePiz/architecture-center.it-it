@@ -4,11 +4,11 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f3f010ceb3c810caafa53523de63aa787d392aa1
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: b4f40c427fc91c6b00d934c9a5dacdca91a55690
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -65,7 +65,7 @@ Gli affissi possono fare riferimento ai diversi aspetti che descrivono le specif
 | Prodotto o servizio |service |Identifica il prodotto, l'applicazione o il servizio supportato dalla risorsa |
 | Ruolo |sql, web, messaggistica |Identifica il ruolo della risorsa associata. |
 
-Quando si sviluppa una convenzione di denominazione specifica per la società o i progetti, è importante scegliere un set comune di affissi, nonché la loro posizione, ovvero se si tratta di prefissi o suffissi.
+Quando si sviluppa una convenzione di denominazione specifica per l'azienda o i progetti, è importante scegliere un set comune di affissi, nonché la loro posizione, ovvero se si tratta di prefissi o suffissi.
 
 ## <a name="naming-rules-and-restrictions"></a>Regole di denominazione e restrizioni
 
@@ -102,7 +102,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 |Nome della coda |Account di archiviazione |3-63 |Lettere minuscole |Alfanumerico e trattino |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
 |Nome tabella | Account di archiviazione |3-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`<service short name><context>` |`awesomeservicelogs` |
 |Nome file | Account di archiviazione |3-63 |Lettere minuscole | Alfanumerico |`<variable based on blob usage>` |`<variable based on blob usage>` |
-|Archivio Data Lake | Globale |3-24 |Lettere minuscole | Alfanumerico |`<name>dls` |`telemetrydls` |
+|Data Lake Store | Globale |3-24 |Lettere minuscole | Alfanumerico |`<name>dls` |`telemetrydls` |
 
 ### <a name="networking"></a>Rete
 
@@ -114,8 +114,8 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 |Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |
 |Indirizzo IP pubblico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-pip` |
-|Bilanciamento del carico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
-|Configurazione di regole del servizio di bilanciamento del carico |Bilanciamento del carico |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
+|Load Balancer |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
+|Configurazione di regole del servizio di bilanciamento del carico |Load Balancer |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
 |Gateway applicazione di Azure |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
 |Profilo di Gestione traffico |Gruppo di risorse |1-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno e punto |`<descriptive context>` |`app1` |
 

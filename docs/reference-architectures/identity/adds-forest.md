@@ -5,16 +5,16 @@ description: >-
 
   linee guida, gateway vpn, expressroute, bilanciamento del carico, rete virtuale, active directory
 author: telmosampaio
-ms.date: 11/28/2016
+ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 047ecea41ba30ce4cccf17b8c4964a37ae60150f
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creare una foresta di risorse di Active Directory Domain Services in Azure
 
@@ -90,51 +90,71 @@ Per considerazioni sulla sicurezza specifiche di Active Directory, vedere la sez
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una soluzione per la distribuzione di questa architettura di riferimento è disponibile in [GitHub][github]. Per eseguire lo script di PowerShell che distribuisce la soluzione è necessaria l'ultima versione dell'interfaccia della riga di comando di Azure. Per distribuire l'architettura di riferimento, eseguire la procedura seguente:
+Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si noti che l'intera distribuzione può richiedere fino a due ore, incluso la creazione del gateway VPN e l'esecuzione degli script che consentono di configurare Active Directory Domain Services.
 
-1. Scaricare o clonare la cartella della soluzione da [GitHub][github] al computer locale.
+### <a name="prerequisites"></a>prerequisiti
 
-2. Aprire l'interfaccia della riga di comando di Azure e passare alla cartella della soluzione locale.
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][github].
 
-3. Eseguire il comando seguente:
-   
-    ```Powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
+2. Installare l'[Interfaccia della riga di comando di Azure 2.0][azure-cli-2].
+
+3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
+
+4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con il comando seguente.
+
+   ```bash
+   az login
+   ```
+
+### <a name="deploy-the-simulated-on-premises-datacenter"></a>Distribuire il data center locale simulato
+
+1. Passare alla cartella `identity/adds-forest` del repository GitHub.
+
+2. Aprire il file `onprem.json` . Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password.
+
+3. Eseguire il comando seguente e attendere il completamento della distribuzione:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
     ```
-   
-    Sostituire `<subscription id>` con l'ID della sottoscrizione di Azure.
-   
-    Per `<location>`, specificare un'area di Azure, come `eastus` o `westus`.
-   
-    Il parametro `<mode>` controlla la granularità della distribuzione e può essere uno dei valori seguenti:
-   
-   * `Onpremise`: distribuisce l'ambiente locale simulato.
-   * `Infrastructure`: distribuisce l'infrastruttura di rete virtuale e il jumpbox in Azure.
-   * `CreateVpn`: distribuisce il gateway di rete virtuale di Azure e lo connette alla rete locale simulata.
-   * `AzureADDS`: distribuisce le macchine virtuali che agiscono come server Active Directory Domain Services, distribuisce Active Directory in queste macchine virtuali e distribuisce il dominio in Azure.
-   * `WebTier`: distribuisce le macchine virtuali e il software di bilanciamento del carico di livello Web.
-   * `Prepare`: distribuisce tutte le distribuzioni precedenti. **Questa è l'opzione consigliata se non si ha una rete locale esistente, ma si vuole distribuire l'architettura di riferimento completa descritta in precedenza a scopo di testing o valutazione.** 
-   * `Workload`: distribuisce le macchine virtuali e il software di bilanciamento del carico di livello Web e business. Si noti che queste macchine virtuali non sono incluse nella distribuzione `Prepare`.
 
-4. Attendere il completamento della distribuzione. Se si sta distribuendo la distribuzione `Prepare`, saranno necessarie diverse ore.
-     
-5. Se si usa la configurazione locale simulata, configurare la relazione di trust in ingresso:
-   
-   1. Connettersi al jumpbox (<em>ra-adtrust-mgmt-vm1</em> nel gruppo di risorse <em>ra-adtrust-security-rg</em>). Accedere come <em>testuser</em> con la password <em>AweS0me@PW</em>.
-   2. Nel jumpbox aprire una sessione RDP nella prima macchina virtuale nel dominio <em>contoso.com</em> (dominio locale). L'indirizzo IP di questa macchina virtuale è 192.168.0.4. Il nome utente è <em>contoso\testuser</em> con password <em>AweS0me@PW</em>.
-   3. Scaricare lo script [incoming-trust.ps1][incoming-trust] ed eseguirlo per creare il trust in ingresso dal dominio *treyresearch.com*.
+### <a name="deploy-the-azure-vnet"></a>Distribuire la rete virtuale di Azure
 
-6. Se si usa la propria infrastruttura locale:
-   
-   1. Scaricare lo script [incoming-trust.ps1][incoming-trust].
-   2. Modificare lo script e sostituire il valore della variabile `$TrustedDomainName` con il nome del proprio dominio.
-   3. Eseguire lo script.
+1. Aprire il file `azure.json` . Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password.
 
-7. Dal jumpbox connettersi alla prima macchina virtuale nel dominio <em>treyresearch.com</em> (il dominio nel cloud). L'indirizzo IP di questa macchina virtuale è 10.0.4.4. Il nome utente è <em>treyresearch\testuser</em> con password <em>AweS0me@PW</em>.
+2. Nello stesso file cercare le istanze di `sharedKey` e immettere le chiavi condivise per la connessione VPN. 
 
-8. Scaricare lo script [outgoing-trust.ps1][outgoing-trust] ed eseguirlo per creare il trust in ingresso dal dominio *treyresearch.com*. Se si usano i propri computer locali, prima di tutto modificare lo script. Impostare la variabile `$TrustedDomainName` sul nome del dominio locale e specificare gli indirizzi IP dei server di Active Directory Domain Services per questo dominio nella variabile `$TrustedDomainDnsIpAddresses`.
+    ```bash
+    "sharedKey": "",
+    ```
 
-9. Attendere qualche minuto per il completamento dei passaggi precedenti, quindi connettersi a una macchina virtuale locale ed eseguire la procedura descritta nell'articolo [Verificare un trust][verify-a-trust] per determinare se la relazione di trust tra i domini *contoso.com* e *treyresearch.com* è configurata correttamente.
+3. Eseguire il comando seguente e attendere il completamento della distribuzione.
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onoprem.json --deploy
+    ```
+
+   Eseguire la distribuzione nello stesso gruppo di risorse della rete virtuale locale.
+
+
+### <a name="test-the-ad-trust-relation"></a>Testare la relazione di trust di Active Directory
+
+1. Usare il portale di Azure per passare al gruppo di risorse creato.
+
+2. Usare il portale di Azure per trovare la macchina virtuale di Azure denominata `ra-adt-mgmt-vm1`.
+
+2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `onprem.json`.
+
+3. All'interno della sessione Desktop remoto, aprire un'altra sessione Desktop remoto per 192.168.0.4, ovvero l'indirizzo IP della macchina virtuale denominata `ra-adtrust-onpremise-ad-vm1`. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `azure.json`.
+
+4. Dall'interno della sessione Desktop remoto per `ra-adtrust-onpremise-ad-vm1`, passare a **Server Manager** e fare clic su **Strumenti** > **Domini e trust di Active Directory**. 
+
+5. Nel riquadro sinistro fare clic su contoso.com e selezionare **Proprietà**.
+
+6. Scegliere la scheda **Trust**. Sarà visibile treyresearch.net elencato come trust in ingresso.
+
+![](./images/ad-forest-trust.png)
+
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -144,6 +164,8 @@ Una soluzione per la distribuzione di questa architettura di riferimento è disp
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
 [adfs]: adfs.md
+[azure-cli-2]: /azure/install-azure-cli
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md
