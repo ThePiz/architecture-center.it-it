@@ -1,18 +1,18 @@
 ---
-title: Rete perimetrale
+title: Architetture di riferimento per la rete perimetrale
 description: Questo articolo illustra e confronta i diversi metodi disponibili per proteggere da intrusioni non autorizzate applicazioni e componenti in esecuzione in Azure come parte di un sistema ibrido.
 layout: LandingPage
-ms.openlocfilehash: 98df0a25767c7a7282e67381c6465fe3263ce1fa
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 759418af013aac1f284d582bacc432325361d815
+ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 05/11/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
 <!-- See data in index.json -->
 
-# <a name="network-dmz"></a>Rete perimetrale
+# <a name="network-dmz-reference-architectures"></a>Architetture di riferimento per la rete perimetrale
 
 Queste architetture di riferimento mostrano procedure comprovate per la creazione di una rete perimetrale che protegge il confine tra una rete virtuale di Azure e una rete locale o Internet.
 
