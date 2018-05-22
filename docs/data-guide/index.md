@@ -5,11 +5,11 @@ author: zoinerTejada
 ms:date: 02/12/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0975d056aa971c627ca91c9fc05c4e16e07b6fc0
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 63c1cca45fe9d99b5d0679360ef487c3a42da956
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="azure-data-architecture-guide"></a>Guida all'architettura dei dati di Azure
 
@@ -21,7 +21,7 @@ Il cloud sta cambiando il modo di progettare le applicazioni, inclusa la modalit
 
 ## <a name="how-this-guide-is-structured"></a>Struttura della guida
 
-Questa guida è strutturata su due categorie generali di soluzione per i dati: *carichi di lavoro RDMBS tradizionali* e *soluzioni per Big Data*. 
+Questa guida è strutturata in base a due categorie generali di soluzione dati: i *carichi di lavoro RDBMS tradizionali* e le *soluzioni per Big Data*. 
 
 **[Carichi di lavoro RDBMS tradizionali](./relational-data/index.md)**. Questi carichi di lavoro includono elaborazione di transazioni online, ovvero OLTP, e Online Analytical Processing, ovvero OLAP. I dati nei sistemi OLTP in genere sono dati relazionali con uno schema predefinito e un set di vincoli per mantenere l'integrità referenziale. Spesso i dati provenienti da più origini nell'organizzazione possono essere consolidati in un data warehouse, usando un processo ETL per spostare e trasformare i dati di origine.
 
