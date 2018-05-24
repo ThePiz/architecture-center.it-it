@@ -4,11 +4,11 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: b4f40c427fc91c6b00d934c9a5dacdca91a55690
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.openlocfilehash: df536a4b34a29b93edc4e03fa1142e20fe84a6a7
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/03/2018
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -85,7 +85,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
-|Macchina virtuale |Gruppo di risorse |1-15 (Windows), 1-64 (Linux) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
+|Macchina virtuale |Gruppo di risorse |1-15 (Windows), 1-64 (Linux) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico e trattino |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
 |App per le funzioni | Globale |1-60 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico e trattino |`<name>-func` |`calcprofit-func` |
 
 > [!NOTE]
