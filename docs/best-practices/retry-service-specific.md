@@ -4,11 +4,12 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: d03cc9dd1af92a91bbfab1ebc8c438e6312eeb49
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
+ms.locfileid: "34423018"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -855,7 +856,7 @@ Le tabelle seguenti mostrano le impostazioni predefinite per i criteri di ripeti
 
 | **Impostazione** | **Valore predefinito** | **Significato** |
 | --- | --- | --- |
-| MaximumExecutionTime | 120 secondi | Tempo di esecuzione massimo per la richiesta, inclusi tutti i potenziali tentativi. |
+| MaximumExecutionTime | Nessuna | Tempo di esecuzione massimo per la richiesta, inclusi tutti i potenziali tentativi. Se non è specificato, il tempo che una richiesta è autorizzata a impiegare è illimitato. In altre parole, la richiesta potrebbe bloccarsi. |
 | ServerTimeout | Nessuna | Intervallo di timeout del server per la richiesta (il valore viene arrotondato a secondi). Se non specificato, verrà usato il valore predefinito per tutte le richieste al server. In genere, la scelta migliore è omettere questa impostazione in modo che venga usato il valore predefinito del server. | 
 | LocationMode | Nessuna | Se l'account di archiviazione viene creato con l'opzione di replica "archiviazione con ridondanza geografica e accesso in lettura (RA-GRS)", è possibile usare la modalità percorso per indicare in corrispondenza di quale percorso deve essere ricevuta la richiesta. Ad esempio, se è specificata l'opzione **PrimaryThenSecondary** , le richieste vengono sempre inviate prima al percorso primario. Se una richiesta ha esito negativo, viene quindi inviata al percorso secondario. |
 | RetryPolicy | ExponentialPolicy | Per informazioni dettagliate su ogni opzione, vedere le sezioni seguenti. |

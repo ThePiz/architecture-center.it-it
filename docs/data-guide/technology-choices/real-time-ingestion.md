@@ -3,11 +3,12 @@ title: Scelta di una tecnologia di inserimento di messaggi in tempo reale
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 2e6578b779950b5ef11bda7b8ba1fb2e45e09f4e
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 5eaac023e28fc502e5a4e6ebc17e32832f7557c0
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 05/21/2018
+ms.locfileid: "34422984"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Scelta di una tecnologia di inserimento di messaggi in tempo reale in Azure
 
