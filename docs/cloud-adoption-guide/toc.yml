@@ -10,6 +10,8 @@
           items:
             - name: 'Spiegazione: Funzionamento di Azure'
               href: adoption-intro/azure-explainer.md
+            - name: 'Spiegazione: Informazioni sulla governance delle risorse cloud'
+              href: adoption-intro/governance-explainer.md
         - name: Informazioni sull'identità digitale in Azure
           items:
             - name: 'Spiegazione: Informazioni su un tenant di Azure Active Directory'
@@ -62,3 +64,8 @@
                   href: /azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
                 - name: 'Indicazioni: Procedure consigliate per la distribuzione di una VM Linux in Azure'
                   href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+    - name: Adozione di Azure intermedia
+      href: intermediate-stage/overview.md
+      items:
+        - name: Guida alla progettazione della governance
+          href: intermediate-stage/governance-design-guide.md
