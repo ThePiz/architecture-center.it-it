@@ -17,11 +17,13 @@
             - name: 'Spiegazione: Informazioni su un tenant di Azure Active Directory'
               href: adoption-intro/tenant-explainer.md
             - name: 'Procedura: Ottenere un tenant di Azure Active Directory'
-              href: /azure/active-directory/develop/active-directory-howto-tenant?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/develop/active-directory-howto-tenant
+              maintainContext: true
             - name: 'Indicazioni: Struttura di un tenant di Azure AD'
               href: adoption-intro/tenant.md
             - name: 'Procedura: Aggiungere un utente a un tenant di Azure AD'
-              href: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/add-users-azure-active-directory
+              maintainContext: true
         - name: Informazioni sulle sottoscrizioni di Azure
           items:
             - name: 'Spiegazione: Informazioni sulla sottoscrizione di Azure'
@@ -35,35 +37,46 @@
             - name: 'Spiegazione: Informazioni sul gruppo di risorse di Azure'
               href: adoption-intro/resource-group-explainer.md
             - name: 'Spiegazione: Informazioni sull''accesso alle risorse in Azure'
-              href: /azure/active-directory/active-directory-understanding-resource-access?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/active-directory-understanding-resource-access
+              maintainContext: true
             - name: 'Procedura: Creare un gruppo di risorse con il portale'
-              href: /azure/azure-resource-manager/resource-group-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/azure-resource-manager/resource-group-portal
+              maintainContext: true
             - name: 'Indicazioni: Struttura del gruppo di risorse'
               href: adoption-intro/resource-group.md
             - name: 'Indicazioni: Convenzioni di denominazione delle risorse di Azure'
-              href: /azure/architecture/best-practices/naming-conventions?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/architecture/best-practices/naming-conventions
+              maintainContext: true
         - name: Distribuzione di architetture di base in Azure
           items:
             - name: Architettura PaaS (Platform as a Service)
               items:
                 - name: 'Procedura: Come distribuire un''applicazione Web di base in Azure'
-                  href: /azure/app-service?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/app-service
+                  maintainContext: true
                 - name: 'Indicazioni: Procedure consigliate per le applicazioni Web in Azure'
-                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app
+                  maintainContext: true
             - name: 'Infrastruttura distribuita come servizio (IaaS, Infrastructure as a Service)'
               items:
                 - name: 'Spiegazione: Informazioni sulla rete virtuale di Azure'
-                  href: /azure/virtual-network/virtual-networks-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-overview
+                  maintainContext: true
                 - name: 'Procedura: Distribuire una rete virtuale in Azure'
-                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal
+                  maintainContext: true
                 - name: 'Procedura: Distribuire un singolo carico di lavoro IaaS di VM Windows in Azure'
-                  href: /azure/virtual-machines/windows/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-machines/windows/quick-create-portal
+                  maintainContext: true
                 - name: 'Indicazioni: Procedure consigliate per la distribuzione di una VM Windows in Azure'
-                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm
+                  maintainContext: true
                 - name: 'Procedura: Distribuire un singolo carico di lavoro IaaS di VM Linux in Azure'
-                  href: /azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-machines/linux/quick-create-portal
+                  maintainContext: true
                 - name: 'Indicazioni: Procedure consigliate per la distribuzione di una VM Linux in Azure'
-                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm
+                  maintainContext: true
     - name: Adozione di Azure intermedia
       href: intermediate-stage/overview.md
       items:
