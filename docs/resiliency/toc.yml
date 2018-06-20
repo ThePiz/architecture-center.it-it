@@ -5,9 +5,11 @@
     - name: Progettazione di applicazioni resilienti
       href: index.md
     - name: Elenco di controllo per la resilienza (generale)
-      href: ../checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+      href: ../checklist/resiliency.md
+      maintainContext: true
     - name: Elenco di controllo per la resilienza (servizi di Azure)
-      href: ../checklist/resiliency-per-service.md?toc=/azure/architecture/resiliency/toc.json
+      href: ../checklist/resiliency-per-service.md
+      maintainContext: true
     - name: Analisi della modalità di errore
       href: failure-mode-analysis.md
     - name: Materiale sussidiario aggiuntivo
