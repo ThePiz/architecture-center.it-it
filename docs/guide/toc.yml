@@ -60,4 +60,5 @@
     - name: Concetti fondamentali della qualità del software
       href: pillars.md
     - name: Modelli di progettazione
-      href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
+      href: ../patterns/index.md
+      maintainContext: true
