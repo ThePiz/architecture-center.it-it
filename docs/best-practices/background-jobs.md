@@ -9,6 +9,7 @@ ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/01/2018
+ms.locfileid: "28907047"
 ---
 # <a name="background-jobs"></a>Processi in background
 [!INCLUDE [header](../_includes/header.md)]

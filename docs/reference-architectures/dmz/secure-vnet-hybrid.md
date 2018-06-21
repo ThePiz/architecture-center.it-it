@@ -12,6 +12,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30849655"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Rete perimetrale tra Azure e il data center locale
 

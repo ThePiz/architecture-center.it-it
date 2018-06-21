@@ -8,6 +8,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270020"
 ---
 # <a name="backends-for-frontends-pattern"></a>Modello back-end per front-end
 

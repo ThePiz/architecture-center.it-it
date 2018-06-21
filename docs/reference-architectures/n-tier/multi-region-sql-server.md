@@ -10,6 +10,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673573"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>Applicazione a più livelli per più aree per la disponibilità elevata
 

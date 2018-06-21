@@ -8,6 +8,7 @@ ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 05/11/2018
+ms.locfileid: "34062817"
 ---
 # <a name="machine-learning-at-scale"></a>Apprendimento automatico su larga scala
 
