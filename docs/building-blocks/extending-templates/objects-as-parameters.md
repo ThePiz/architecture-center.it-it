@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847176"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a><span data-ttu-id="b98c2-103">Usare un oggetto come parametro in un modello di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="b98c2-103">Use an object as a parameter in an Azure Resource Manager template</span></span>
 

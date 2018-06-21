@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478307"
 ---
 # <a name="explainer-what-is-an-azure-subscription"></a><span data-ttu-id="9e5cf-103">Spiegazione: Informazioni sulla sottoscrizione di Azure</span><span class="sxs-lookup"><span data-stu-id="9e5cf-103">Explainer: What is an Azure subscription?</span></span>
 

@@ -7,6 +7,7 @@ ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/09/2018
+ms.locfileid: "29062099"
 ---
 # <a name="guidance-azure-resource-group-design"></a><span data-ttu-id="ff981-103">Indicazioni: Struttura di un gruppo di risorse di Azure</span><span class="sxs-lookup"><span data-stu-id="ff981-103">Guidance: Azure resource group design</span></span>
 

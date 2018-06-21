@@ -12,6 +12,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270320"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a><span data-ttu-id="d8ff0-103">Connettere una rete locale ad Azure tramite ExpressRoute</span><span class="sxs-lookup"><span data-stu-id="d8ff0-103">Connect an on-premises network to Azure using ExpressRoute</span></span>
 

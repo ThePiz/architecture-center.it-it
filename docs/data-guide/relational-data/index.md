@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30298822"
 ---
 # <a name="traditional-relational-database-solutions"></a><span data-ttu-id="3c501-102">Soluzioni per i database relazionali tradizionali</span><span class="sxs-lookup"><span data-stu-id="3c501-102">Traditional relational database solutions</span></span>
 

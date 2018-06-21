@@ -8,6 +8,7 @@ ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 01/05/2018
+ms.locfileid: "27595986"
 ---
 # <a name="no-caching-antipattern"></a><span data-ttu-id="852d8-103">Nessun antipattern della memorizzazione nella cache</span><span class="sxs-lookup"><span data-stu-id="852d8-103">No Caching antipattern</span></span>
 

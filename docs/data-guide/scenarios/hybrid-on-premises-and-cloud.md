@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29289687"
 ---
 # <a name="extending-on-premises-data-solutions-to-the-cloud"></a><span data-ttu-id="69ba7-102">Estensione di soluzioni dati locali al cloud</span><span class="sxs-lookup"><span data-stu-id="69ba7-102">Extending on-premises data solutions to the cloud</span></span>
 

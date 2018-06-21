@@ -11,6 +11,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477445"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a><span data-ttu-id="4241b-103">Federazione con AD FS di un cliente</span><span class="sxs-lookup"><span data-stu-id="4241b-103">Federate with a customer's AD FS</span></span>
 

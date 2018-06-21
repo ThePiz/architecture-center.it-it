@@ -9,6 +9,7 @@ ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/23/2017
+ms.locfileid: "25545979"
 ---
 # <a name="transient-fault-handling"></a><span data-ttu-id="012aa-103">Gestione degli errori temporanei</span><span class="sxs-lookup"><span data-stu-id="012aa-103">Transient fault handling</span></span>
 

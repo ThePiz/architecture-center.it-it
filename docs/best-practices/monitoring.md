@@ -9,6 +9,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24539018"
 ---
 # <a name="monitoring-and-diagnostics"></a><span data-ttu-id="1e810-103">Monitoraggio e diagnostica</span><span class="sxs-lookup"><span data-stu-id="1e810-103">Monitoring and diagnostics</span></span>
 [!INCLUDE [header](../_includes/header.md)]

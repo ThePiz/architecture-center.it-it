@@ -12,6 +12,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846509"
 ---
 # <a name="improve-scalability-in-a-web-application"></a><span data-ttu-id="0e544-103">Migliorare la scalabilità in un'applicazione Web</span><span class="sxs-lookup"><span data-stu-id="0e544-103">Improve scalability in a web application</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288933"
 ---
 # <a name="choosing-a-machine-learning-technology-in-azure"></a><span data-ttu-id="ec894-102">Scelta di una tecnologia di apprendimento automatico in Azure</span><span class="sxs-lookup"><span data-stu-id="ec894-102">Choosing a machine learning technology in Azure</span></span>
 

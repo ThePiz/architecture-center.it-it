@@ -13,6 +13,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847108"
 ---
 # <a name="pipes-and-filters-pattern"></a><span data-ttu-id="eac24-104">Modello di pipe e filtri</span><span class="sxs-lookup"><span data-stu-id="eac24-104">Pipes and Filters pattern</span></span>
 

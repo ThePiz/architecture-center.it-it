@@ -19,6 +19,7 @@ ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 05/17/2018
+ms.locfileid: "34299909"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a><span data-ttu-id="b4697-103">Esempi di implementazione di scaffold enterprise di Azure</span><span class="sxs-lookup"><span data-stu-id="b4697-103">Examples of implementing Azure enterprise scaffold</span></span>
 <span data-ttu-id="b4697-104">In questo articolo vengono forniti esempi di come un'azienda può implementare gli elementi consigliati per uno [scaffold enterprise di Azure](subscription-governance.md).</span><span class="sxs-lookup"><span data-stu-id="b4697-104">This article provides examples of how an enterprise can implement the recommendations for an [Azure enterprise scaffold](subscription-governance.md).</span></span> <span data-ttu-id="b4697-105">Usa una società fittizia denominata Contoso per illustrare le procedure consigliate per scenari comuni.</span><span class="sxs-lookup"><span data-stu-id="b4697-105">It uses a fictional company named Contoso to illustrate best practices for common scenarios.</span></span>

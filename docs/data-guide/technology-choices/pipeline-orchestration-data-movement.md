@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288803"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a><span data-ttu-id="bcefb-102">Scelta di una tecnologia di orchestrazione di una pipeline di dati in Azure</span><span class="sxs-lookup"><span data-stu-id="bcefb-102">Choosing a data pipeline orchestration technology in Azure</span></span>
 

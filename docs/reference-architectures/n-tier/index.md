@@ -4,8 +4,10 @@ description: Vengono illustrate alcune architetture comuni per la distribuzione 
 layout: LandingPage
 ms.openlocfilehash: 288acc36e7c310e70240caa3ed9f2095bbb8bc58
 ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 05/10/2018
+ms.locfileid: "34007626"
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->

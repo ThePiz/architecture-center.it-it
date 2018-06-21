@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477741"
 ---
 # <a name="chatty-io-antipattern"></a><span data-ttu-id="9e8b6-103">Antipattern I/O "frammentato"</span><span class="sxs-lookup"><span data-stu-id="9e8b6-103">Chatty I/O antipattern</span></span>
 

@@ -6,6 +6,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30269938"
 ---
 # <a name="icons-and-diagrams"></a><span data-ttu-id="9e3c9-103">Icone e diagrammi</span><span class="sxs-lookup"><span data-stu-id="9e3c9-103">Icons and diagrams</span></span>
 

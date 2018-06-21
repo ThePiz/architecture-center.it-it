@@ -11,6 +11,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359240"
 ---
 # <a name="cache-access-tokens"></a><span data-ttu-id="a49e3-103">Memorizzare nella cache i token di accesso</span><span class="sxs-lookup"><span data-stu-id="a49e3-103">Cache access tokens</span></span>
 

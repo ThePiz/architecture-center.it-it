@@ -12,6 +12,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270473"
 ---
 # <a name="circuit-breaker-pattern"></a><span data-ttu-id="223a2-104">Modello a interruttore</span><span class="sxs-lookup"><span data-stu-id="223a2-104">Circuit Breaker pattern</span></span>
 

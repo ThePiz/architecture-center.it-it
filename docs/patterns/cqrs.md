@@ -14,6 +14,7 @@ ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 05/07/2018
+ms.locfileid: "33811050"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a><span data-ttu-id="00d48-104">Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)</span><span class="sxs-lookup"><span data-stu-id="00d48-104">Command and Query Responsibility Segregation (CQRS) pattern</span></span>
 

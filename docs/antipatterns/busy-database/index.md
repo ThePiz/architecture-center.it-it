@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538794"
 ---
 # <a name="busy-database-antipattern"></a><span data-ttu-id="d38cc-103">Antipattern del database occupato</span><span class="sxs-lookup"><span data-stu-id="d38cc-103">Busy Database antipattern</span></span>
 

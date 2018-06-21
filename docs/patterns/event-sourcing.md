@@ -13,6 +13,7 @@ ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 03/17/2018
+ms.locfileid: "29963211"
 ---
 # <a name="event-sourcing-pattern"></a><span data-ttu-id="89880-104">Modello di origine eventi</span><span class="sxs-lookup"><span data-stu-id="89880-104">Event Sourcing pattern</span></span>
 

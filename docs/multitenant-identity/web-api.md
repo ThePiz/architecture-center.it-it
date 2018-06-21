@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541466"
 ---
 # <a name="secure-a-backend-web-api"></a><span data-ttu-id="6a783-103">Proteggere un'API Web back-end</span><span class="sxs-lookup"><span data-stu-id="6a783-103">Secure a backend web API</span></span>
 
