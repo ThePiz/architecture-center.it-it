@@ -7,11 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 85191fc630549559f8a1395e5a8622a7a6140a2d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252925"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Modello di consolidamento delle risorse di calcolo
 
@@ -88,7 +89,7 @@ Quando si compila un servizio cloud in Azure, è possibile consolidare l'elabora
 
 Il ruolo è responsabile di avviare e arrestare le attività. Quando il controller di infrastruttura di Azure carica un ruolo, viene generato l'evento `Start` per il ruolo. È possibile eseguire l'override del metodo `OnStart` della classe `WebRole` o `WorkerRole` per gestire questo evento, ad esempio per inizializzare i dati e altre risorse da cui dipendono le attività di questo metodo.
 
-Quando il metodo `OnStart ` viene completato, il ruolo può iniziare a rispondere alle richieste. È possibile trovare altre informazioni e istruzioni sull'uso dei metodi `OnStart` e `Run` in un ruolo nella sezione [Application Startup Processes](https://msdn.microsoft.com/library/ff803371.aspx#sec16) (Processi di avvio dell'applicazione) nel manuale dei modelli e procedure [Moving Applications to the Cloud](https://msdn.microsoft.com/library/ff728592.aspx) (Spostamento di applicazioni nel Cloud).
+Quando il metodo `OnStart` viene completato, il ruolo può iniziare a rispondere alle richieste. È possibile trovare altre informazioni e istruzioni sull'uso dei metodi `OnStart` e `Run` in un ruolo nella sezione [Application Startup Processes](https://msdn.microsoft.com/library/ff803371.aspx#sec16) (Processi di avvio dell'applicazione) nel manuale dei modelli e procedure [Moving Applications to the Cloud](https://msdn.microsoft.com/library/ff728592.aspx) (Spostamento di applicazioni nel Cloud).
 
 > Mantenere il codice nel metodo `OnStart` il più conciso possibile. Azure non impone alcun limite per il tempo impiegato per completare questo metodo, ma il ruolo non sarà in grado di rispondere alle richieste di rete inviate fino al completamento del metodo.
 

@@ -2,12 +2,12 @@
 title: Usare servizi gestiti
 description: Quando possibile, usare la piattaforma distribuita come servizio (PaaS) rispetto all'infrastruttura distribuita come servizio (IaaS)
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 7156c073db3e047fb38e031309ddb637a9e44c02
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6d3cfb2e97b5a9b25bb1afd72059e981ef45c0d8
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206720"
 ---
 # <a name="use-managed-services"></a>Usare servizi gestiti
 
@@ -27,6 +27,6 @@ Naturalmente, l'applicazione può avere requisiti specifici che rendono più app
 | IIS | Servizio app |
 | MongoDB | Cosmos DB |
 | Redis | Cache Redis di Azure |
-| SQL Server | Database SQL di Azure |
+| SQL Server | database SQL di Azure |
 
 

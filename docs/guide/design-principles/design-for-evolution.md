@@ -3,11 +3,12 @@ title: Progettare per le modifiche
 description: Una progettazione in grado di evolversi è fondamentale per l'innovazione continua.
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 35e91228f3fb0a303594ec06f05b6865008e3a4f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d05c1813dbc49f3ed8378cac4ea0c584ebdd9ff7
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252891"
 ---
 # <a name="design-for-evolution"></a>Progettare per l'evoluzione
 
@@ -21,7 +22,7 @@ I microservizi stanno diventando un modo comune per ottenere una progettazione i
 
 ## <a name="recommendations"></a>Raccomandazioni
 
-**Applicare coesione elevata e regime di controllo libero**. Un servizio è *coesivo* se fornisce funzionalità correlate logicamente. I servizi sono *a regime di controllo libero* se è possibile modificare un servizio senza modificare l'altro. La coesione elevata significa in genere che le modifiche in una funzione richiederanno modifiche in altre funzioni correlate. Se quando si aggiorna un servizio sono necessari aggiornamenti coordinati ad altri servizi, i servizi potrebbero non essere coesivi. Uno degli obiettivi della progettazione basata su dominio è quello di identificare tali limiti.
+**Applicare coesione elevata e regime di controllo libero**. Un servizio è *coesivo* se fornisce funzionalità correlate logicamente. I servizi sono *a regime di controllo libero* se è possibile modificare un servizio senza modificare l'altro. La coesione elevata significa in genere che le modifiche in una funzione richiederanno modifiche in altre funzioni correlate. Se quando si aggiorna un servizio sono necessari aggiornamenti coordinati ad altri servizi, i servizi potrebbero non essere coesivi. Uno degli obiettivi della progettazione basata su dominio è quello di identificare tali confini.
 
 **Incapsulare le informazioni di dominio**. Quando un client utilizza un servizio, la responsabilità di applicare le regole business del dominio non deve cadere sul client. Il servizio deve invece incapsulare tutte le informazioni di dominio che ricadono sotto la sua responsabilità. In caso contrario, ogni client dovrebbe applicare le regole business e le informazioni di dominio si troverebbero sparse in diverse parti dell'applicazione. 
 

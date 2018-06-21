@@ -4,12 +4,12 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: f02843f179671da04bc2f09326b58075b432ba95
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423018"
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35253078"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -38,6 +38,9 @@ La tabella seguente riepiloga le caratteristiche dei meccanismi di ripetizione d
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
 Azure Active Directory è una soluzione cloud completa per la gestione delle identità e dell'accesso che combina servizi directory di importanza strategica, governance avanzata delle identità e gestione della sicurezza e dell'accesso alle applicazioni. Azure AD offre inoltre agli sviluppatori una piattaforma di gestione delle identità per consentire il controllo dell'accesso alle applicazioni in base a regole e criteri centralizzati.
+
+> [!NOTE]
+> Per informazioni sulla ripetizione dei tentativi negli endpoint dell'identità del servizio gestita, vedere [Come usare un'identità del servizio gestita di una macchina virtuale di Azure per l'acquisizione di token](/azure/active-directory/managed-service-identity/how-to-use-vm-token#error-handling).
 
 ### <a name="retry-mechanism"></a>Meccanismo di ripetizione dei tentativi
 Nella libreria di autenticazione di Active Directory è previsto un meccanismo di ripetizione dei tentativi incorporato per Azure Active Directory. Per evitare blocchi imprevisti, è consigliabile che le librerie di terze parti e il codice dell'applicazione **non** ripetano i tentativi di connessione non riusciti, ma consentano ad ADAL di gestire i tentativi. 

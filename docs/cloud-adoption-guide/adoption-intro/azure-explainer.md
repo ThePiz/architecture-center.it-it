@@ -2,15 +2,18 @@
 title: 'Spiegazione: Funzionamento di Azure'
 description: Illustra il funzionamento interno di Azure
 author: petertay
-ms.openlocfilehash: b4830fec69ac6d256d934d91ea2c295219925a9a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 88514ba01efabe38a1b92d135321c2e44cef004e
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206464"
 ---
 # <a name="explainer-how-does-azure-work"></a>Spiegazione: Funzionamento di Azure
 
 Azure è una piattaforma cloud pubblica di Microsoft. Azure offre un'ampia varietà di servizi di tipo piattaforma distribuita come servizio (PaaS), infrastruttura distribuita come servizio (IaaS), database distribuito come servizio (DBaaS) e molti altri. Ma che cos'è esattamente Azure e come funziona?
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo] 
 
 Come altre piattaforme cloud, Azure si basa su una tecnologia nota come **virtualizzazione**. Quasi tutto l'hardware di computer può essere emulato in software perché è costituito semplicemente da un set di istruzioni codificate in silicone in modo permanente o semipermanente. Usando un livello di emulazione che associa le istruzioni del software a quelle dell'hardware, un componente hardware virtualizzato può essere eseguito nel software come un componente fisico realmente esistente.
 
@@ -28,7 +31,7 @@ In ultima analisi, Azure è semplicemente un enorme insieme di server e componen
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Ora che si è compreso il funzionamento interno di Azure, il primo passaggio per l'adozione di Azure è quello di [comprendere il concetto di identità digitale in Azure](tenant-explainer.md). Si sarà quindi pronti per [creare il primo utente in Azure AD][docs-add-users-to-aad].
+* Dopo aver compreso il funzionamento interno di Azure, leggere le informazioni sulla [governance dell'accesso alle risorse](governance-explainer.md). Procedere quindi con il primo passaggio per l'adozione di Azure, ovvero la [comprensione dell'identità digitale in Azure](tenant-explainer.md). Una volta completato tale passaggio, sarà possibile [creare il primo utente in Azure AD][docs-add-users-to-aad].
 
 <!-- Links -->
 

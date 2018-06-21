@@ -3,11 +3,12 @@ title: Data warehousing e data mart
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 552cdfad2d571c93f83bc1e4ff0d09ac12d0b6a4
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252806"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Data warehousing e data mart
 
@@ -142,7 +143,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | --- | --- | --- | --- | --- | --- | -- |
 | Server regionali ridondanti per disponibilità elevata  | Sì | Sì | Sì | No  | No  |
 | Supporto per la scalabilità orizzontale delle query (query distribuite)  | No  | No  | Sì | Sì | Sì |
-| Scalabilità dinamica (aumento delle prestazioni)  | Sì | No  | Sì <sup>1</sup> | No  | No  |
+| Scalabilità dinamica | Sì | No  | Sì <sup>1</sup> | No  | No  |
 | Supporto per la memorizzazione nella cache dei dati in memoria | Sì |  Sì | No  | Sì | Sì |
 
 [1] SQL Data Warehouse consente di aumentare o ridurre le prestazioni modificando il numero di unità Data Warehouse (DWU). Vedere [Gestire la potenza di calcolo in Azure SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).

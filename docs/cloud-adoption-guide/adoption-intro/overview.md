@@ -2,11 +2,12 @@
 title: 'Adozione di Azure: Adozione di base'
 description: Descrive il livello di base di conoscenza richiesto per l'adozione di Azure da parte di un'organizzazione
 author: petertay
-ms.openlocfilehash: e9421b610e4eb07a3ed37bca56e513b0689484ef
-ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974
+ms.openlocfilehash: 3f522d1662849d651423d8022ad152c64692b823
+ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35290476"
 ---
 # <a name="adopting-azure-foundational"></a>Adozione di Azure: Adozione di base
 
@@ -16,6 +17,7 @@ L'elenco seguente include le attività per il completamento della fase di adozio
 
 1. Informazioni sugli elementi interni di Azure:
     - **Spiegazione:** [Funzionamento di Azure](azure-explainer.md)
+    - **Spiegazione:** [Informazioni sulla governance delle risorse cloud](governance-explainer.md)
 2. Informazioni sull'identità digitale aziendale in Azure:
     - **Spiegazione:** [Informazioni su un tenant di Azure Active Directory](tenant-explainer.md)
     - **Procedura:** [Ottenere un tenant di Azure Active Directory](/azure/active-directory/develop/active-directory-howto-tenant?toc=/azure/architecture/cloud-adoption-guide/toc.json)
@@ -33,14 +35,14 @@ L'elenco seguente include le attività per il completamento della fase di adozio
     - **Indicazioni:** [Convenzioni di denominazione per le risorse di Azure](/azure/architecture/best-practices/naming-conventions?toc=/azure/architecture/cloud-adoption-guide/toc.json)
 5. Distribuire un'architettura di Azure di base:
     - Per informazioni sui diversi tipi di opzioni di calcolo di Azure, ad esempio infrastruttura distribuita come servizio (IaaS, Infrastructure as a Service) e piattaforma distribuita come servizio (PaaS, Platform as a Service), vedere la [panoramica delle opzioni di calcolo di Azure](/azure/architecture/guide/technology-choices/compute-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json).
-    - Dopo aver compreso i diversi tipi di opzioni di calcolo di Azure, selezionare un'applicazione Web PaaS o una macchina virtuale IaaS come prima risorsa in Azure:
+    - Dopo aver compreso i diversi tipi di opzioni di calcolo di Azure, selezionare un'applicazione Web (PaaS) o una macchina virtuale (IaaS) come prima risorsa in Azure:
     - PaaS - Introduzione alla piattaforma come servizio:
         - **Procedura:** [Distribuire un'applicazione Web di base in Azure](/azure/app-service/app-service-web-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json)
         - **Indicazioni:** Procedure comprovate per la distribuzione di una [applicazione Web di base](/azure/architecture/reference-architectures/app-service-web-app/basic-web-app?toc=/azure/architecture/cloud-adoption-guide/toc.json) in Azure
     - IaaS - Introduzione alle reti virtuali:
         - **Spiegazione:** [Rete virtuale di Azure](/azure/virtual-network/virtual-networks-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json)
         - **Procedura:** [Distribuire una rete virtuale in Azure usando il portale](/azure/virtual-network/virtual-networks-create-vnet-arm-pportal?toc=/azure/architecture/cloud-adoption-guide/toc.json)
-    - IaaS - Distribuire il carico di lavoro di una singola macchina virtuale (VM)(Windows e Linux):
+    - IaaS - Distribuire il carico di lavoro di una singola macchina virtuale (VM) (Windows e Linux):
         - **Procedura:** [Distribuire una VM di Windows in Azure tramite il portale](/azure/virtual-machines/windows/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json)
         - **Indicazioni:** [Procedure comprovate per l'esecuzione di una VM di Windows in Azure](/azure/architecture/reference-architectures/virtual-machines-windows/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json)
         - **Procedura:** [Distribuire una VM di Linux in Azure tramite il portale](/azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json)

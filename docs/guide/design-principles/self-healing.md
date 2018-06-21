@@ -2,12 +2,12 @@
 title: Progettazione per la correzione automatica
 description: In caso di guasto, le applicazioni resilienti possono essere ripristinate senza alcun intervento manuale.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 0782b65b77615f7c006724264ab0ca2d2c7c04e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 508341ba428b294cf268e34e922aced9d2d67579
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206650"
 ---
 # <a name="design-for-self-healing"></a>Progettazione per la correzione automatica
 
@@ -29,7 +29,7 @@ La modalità di risposta a un determinato tipo di errore può dipendere dai requ
 
 **Ritentare le operazioni non riuscite**. Gli errori temporanei possono dipendere da una perdita momentanea della connettività di rete, da una connessione a un database eliminato o da un timeout che si verifica quando un servizio è occupato. Per gestire gli errori temporanei, nell'applicazione va prevista una logica di ripetizione dei tentativi. In molti servizi di Azure, l'SDK client implementa i tentativi automatici. Per altre informazioni, vedere [Gestione degli errori temporanei][transient-fault-handling] e [Modello Ripetizione dei tentativi][retry].
 
-**Proteggere dagli errori i servizi remoti (Interruttore)**. Effettuare un tentativo dopo un errore temporaneo è un metodo valido, ma se il problema persiste può accadere che si ricevano segnalazioni di malfunzionamento del servizio da un numero eccessivo di chiamanti. Il sommarsi delle richieste può innescare errori a catena. Usare il [modello Interruttore] [ circuit-breaker] per interrompere rapidamente un'operazione che avrà probabilmente esito negativo senza effettuare la chiamata da remoto.  
+**Proteggere dagli errori i servizi remoti (Interruttore)**. Effettuare un tentativo dopo un errore temporaneo è un metodo valido, ma se il problema persiste può accadere che si ricevano segnalazioni di malfunzionamento del servizio da un numero eccessivo di chiamanti. Il sommarsi delle richieste può innescare errori a catena. Usare il [modello Interruttore][circuit-breaker] per fallire e rispondere immediatamente agli errori per un'operazione che avrà probabilmente esito negativo senza effettuare la chiamata da remoto.  
 
 **Isolare le risorse critiche (A scomparti)**. Gli errori in un sottosistema possono propagarsi. Questa situazione può verificarsi se un errore fa sì che alcune risorse, come i thread o i socket, non siano liberate in modo tempestivo, causandone l'esaurimento. Per evitare questo problema, è possibile suddividere un sistema in gruppi isolati, in modo che un errore in una partizione non causi l'arresto dell'intero sistema.  
 

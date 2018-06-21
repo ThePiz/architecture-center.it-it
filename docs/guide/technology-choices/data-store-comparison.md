@@ -2,11 +2,12 @@
 title: Criteri per la scelta di un archivio dati
 description: Panoramica delle opzioni di calcolo di Azure
 author: MikeWasson
-ms.openlocfilehash: 9cb2f77b854a38450490bc96bf0b6a2998ceb1c7
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 70f746f80c29623004620d83eb38747777df7f84
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252874"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Criteri per la scelta di un archivio dati
 
@@ -330,7 +331,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
 <tr><td><strong>Carico di lavoro</strong></td>
     <td>
         <ul>
-            <li>Le operazioni sono prevalentemente (95-99%) di scrittura.</li>
+            <li>Le stragrande maggioranza delle operazioni (95-99%) è di scrittura.</li>
             <li>I record vengono in genere aggiunti in sequenza in ordine temporale.</li>
             <li>Gli aggiornamenti sono rari.</li>
             <li>Le eliminazioni vengono eseguite in blocco e in blocchi o record contigui.</li>

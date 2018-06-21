@@ -1,17 +1,18 @@
 ---
 title: Modello di routing gateway
-description: Eseguire il routing delle richieste a più servizi usando un singolo endpoint.
+description: Eseguire il routing delle richieste a più servizi, usando un singolo endpoint.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 53239b23cfd98fad1edc38ca37c2274d5a9d7a0f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252601"
 ---
 # <a name="gateway-routing-pattern"></a>Modello di routing gateway
 
-Eseguire il routing delle richieste a più servizi usando un singolo endpoint. Questo modello è utile quando si vuole esporre più servizi in un singolo endpoint ed eseguire il routing al servizio appropriato in base alla richiesta.
+Eseguire il routing delle richieste a più servizi, usando un singolo endpoint. Questo modello è utile quando si vuole esporre più servizi in un singolo endpoint ed eseguire il routing al servizio appropriato in base alla richiesta.
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
@@ -31,7 +32,7 @@ Questo modello è utile anche per la distribuzione, perché consente di gestire 
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
-- Il servizio gateway può introdurre un singolo punto di guasto. Assicurarsi che sia progettato correttamente per soddisfare i requisiti di disponibilità. Durante l'implementazione, considerare le capacità di resilienza e tolleranza di errore.
+- Il servizio gateway può introdurre un punto di errore singolo. Assicurarsi che sia progettato correttamente per soddisfare i requisiti di disponibilità. Durante l'implementazione, considerare le capacità di resilienza e tolleranza di errore.
 - Il servizio gateway può introdurre un collo di bottiglia. Verificare che il gateway offra prestazioni adeguate per gestire il carico e consenta facile scalabilità in base alle proprie aspettative di crescita.
 - Eseguire test di carico sul gateway per assicurarsi di non introdurre errori a catena per i servizi.
 - Il routing gateway è di livello 7. Può essere basato su IP, porta, intestazione o URL.

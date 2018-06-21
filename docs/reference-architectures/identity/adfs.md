@@ -9,11 +9,12 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: 87489b7b81cf323c221466c539ee14ea90e23c14
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 37edae209334da96aa9c121b1ac68c5e1d363323
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252730"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Estendere Active Directory Federation Services in Azure
 
@@ -118,7 +119,7 @@ Configurare i servizi di bilanciamento del carico per le macchine virtuali AD FS
 * Usare un bilanciamento del carico di Azure per fornire l'accesso esterno alle macchine virtuali WAP e un bilanciamento del carico interno per distribuire il carico tra i server AD FS nella farm.
 * Passare solo il traffico presente sulla porta 443 (HTTPS) ai server AD FS/WAP.
 * Assegnare un indirizzo IP statico al bilanciamento del carico.
-* Creare un probe di integrità tramite il protocollo TCP anziché HTTPS. È possibile eseguire il ping della porta 443 per verificare il funzionamento di un server AD FS.
+* Creare un probe di integrità usando HTTP in `/adfs/probe`. Per altre informazioni, vedere [Hardware Load Balancer Health Checks and Web Application Proxy / AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/) (Controlli di integrità del servizio Load Balancer hardware e Proxy applicazione Web/AD FS 2012 R2).
   
   > [!NOTE]
   > I server AD FS usano il protocollo SNI (Server Name Indication), pertanto il tentativo di eseguire il probe tramite un endpoint HTTPS dal bilanciamento del carico non riesce.

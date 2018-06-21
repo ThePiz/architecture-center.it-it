@@ -2,11 +2,12 @@
 title: Concetti fondamentali della qualità del software
 description: 'Descrive i cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza.'
 author: MikeWasson
-ms.openlocfilehash: 1d5e30602cafa0d39f92de3101974e77ae258595
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 117706046ca1a9b7f3203a99737347809d0c323f
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252788"
 ---
 # <a name="pillars-of-software-quality"></a>Concetti fondamentali della qualità del software 
 
@@ -93,7 +94,7 @@ Tutti questi fattori significano che le applicazioni cloud devono essere progett
 - Azure Managed Disks vengono collocati automaticamente in diverse unità di scala di archiviazione, per limitare gli effetti dei guasti hardware.
 - Le macchine virtuali in un set di disponibilità vengono distribuite in più domini di errore. Un dominio di errore è un gruppo di macchine virtuali che condividono un'unità di alimentazione o un commutatore di rete comune. La distribuzione di macchine virtuali nei domini di errore limita l'impatto di guasti dell'hardware fisico, interruzioni di rete o interruzioni dell'alimentazione.
 
-Ciò premesso è ancora necessario sviluppare la resilienza dell'applicazione. Le strategie di resilienza possono essere applicate a tutti i livelli dell'architettura. Alcune mitigazioni sono di natura più tattica, ad esempio ritentare una chiamata remota dopo un errore di rete temporaneo. Altre mitigazioni sono più strategiche, come il failover dell'intera applicazione in un'area secondaria. Le mitigazioni tattiche possono fare una grande differenza. Sebbene sia raro che un'intera area subisca un'interruzione, i problemi temporanei, come la congestione della rete sono più comuni ed è quindi opportuno affrontarli per primi. Eseguire correttamente il monitoraggio e la diagnostica è importante sia per rilevare gli errori, sia per individuare le cause radice.
+Ciò premesso, è comunque necessario integrare la resilienza nell'applicazione. Le strategie di resilienza possono essere applicate a tutti i livelli dell'architettura. Alcune mitigazioni sono di natura più tattica, ad esempio ritentare una chiamata remota dopo un errore di rete temporaneo. Altre mitigazioni sono più strategiche, come il failover dell'intera applicazione in un'area secondaria. Le mitigazioni tattiche possono fare una grande differenza. Sebbene sia raro che un'intera area subisca un'interruzione, i problemi temporanei, come la congestione della rete sono più comuni ed è quindi opportuno affrontarli per primi. Eseguire correttamente il monitoraggio e la diagnostica è importante sia per rilevare gli errori, sia per individuare le cause radice.
 
 Quando si progetta un'applicazione resiliente, è necessario comprendere i requisiti di disponibilità. Quanto tempo di inattività è accettabile? La risposta è in parte in funzione dei costi. Quanto costa un potenziale tempo di inattività all'azienda? Quanto si deve investire per rendere l'applicazione a disponibilità elevata?
 

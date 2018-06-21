@@ -3,11 +3,12 @@ title: Scelta di una tecnologia per il trasferimento dei dati
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bb0732b0f771a4c9e1a4e565875576c08484490a
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252754"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Trasferimento dei dati da e verso Azure
 
@@ -54,9 +55,9 @@ Prendere in considerazione le opzioni seguenti se si prevede di trasferire solo 
 
 - **Azure Storage Explorer**. [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) è uno strumento multipiattaforma che consente di gestire il contenuto degli account di archiviazione di Azure. Con questo strumento è possibile caricare, scaricare e gestire BLOB, file, code, tabelle ed entità di Azure Cosmos DB. Usarlo con l'archiviazione BLOB per gestire BLOB e cartelle e anche per caricare e scaricare BLOB tra il file system locale e l'archiviazione BLOB o tra gli account di archiviazione.
 
-- **Portale di Azure**. L'archiviazione BLOB e Data Lake Store offrono entrambi un'interfaccia basata sul Web per esplorare i file e caricare nuovi file uno alla volta. Si tratta di un'ottima scelta se non si vogliono installare strumenti o eseguire comandi per esplorare rapidamente i file o caricare contemporaneamente un certo numero di nuovi file.
+- **portale di Azure**. L'archiviazione BLOB e Data Lake Store offrono entrambi un'interfaccia basata sul Web per esplorare i file e caricare nuovi file uno alla volta. Si tratta di un'ottima scelta se non si vogliono installare strumenti o eseguire comandi per esplorare rapidamente i file o caricare contemporaneamente un certo numero di nuovi file.
 
-## <a name="data-pipeline"></a>Pipeline di dati
+## <a name="data-pipeline"></a>Data Pipeline
 
 **Azure Data Factory**. [Azure Data Factory](/azure/data-factory/) è un servizio gestito particolarmente adatto per trasferire abitualmente file tra un certo numero di servizi di Azure, il sistema locale o una combinazione dei due. Con Azure Data Factory è possibile creare e pianificare flussi di lavoro basati sui dati, detti pipeline, che inseriscono dati provenienti da archivi diversi. Azure Data Factory può elaborare e trasformare i dati usando servizi di calcolo, ad esempio Azure HDInsight Hadoop, Spark, Azure Data Lake Analytics e Azure Machine Learning. Creando flussi di lavoro basati sui dati è possibile [orchestrare](../technology-choices/pipeline-orchestration-data-movement.md) e automatizzare le attività di spostamento e trasformazione dei dati.
 
@@ -68,7 +69,7 @@ Per gli scenari di trasferimento dei dati, rispondere prima di tutto a queste do
 
 - Si preferisce creare script per le attività di trasferimento dei dati, in modo da poterli riutilizzare? In caso affermativo, scegliere una delle opzioni che prevedono l'uso di una riga di comando o Azure Data Factory.
 
-- È necessario trasferire una grande quantità di dati attraverso una connessione di rete? In caso affermativo, scegliere un'opzione ottimizzata per Big Data.
+- È necessario trasferire una grande quantità di dati attraverso una connessione di rete? In questo caso, scegliere un'opzione ottimizzata per i Big Data.
 
 - È necessario trasferire dati da o verso un database relazionale? In caso affermativo, scegliere un'opzione con il supporto per uno o più database relazionali. Si noti che per alcune di queste opzioni è richiesto anche un cluster Hadoop.
 
@@ -121,11 +122,11 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="graphical-interface-and-azure-data-factory"></a>Interfaccia grafica e Azure Data Factory
 
-| | Azure Storage Explorer | Portale di Azure * | Data factory di Azure |
+| | Esplora archivi Azure | Portale di Azure * | Data factory di Azure |
 | --- | --- | --- | --- |
 | Ottimizzazione per Big Data | No  | No  | Sì | 
 | Copia in database relazionale | No  | No  | Sì |
-| Copia da database relazionale | No  | No  | Sì |
+| Copia in database relazionale | No  | No  | Sì |
 | Copia in archiviazione BLOB | Sì | No  | Sì |
 | Copia da archiviazione BLOB | Sì | No  | Sì |
 | Copia in Data Lake Store | No  | No  | Sì |
