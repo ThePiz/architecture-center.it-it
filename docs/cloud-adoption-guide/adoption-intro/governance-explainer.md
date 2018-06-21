@@ -2,12 +2,12 @@
 title: 'Spiegazione: Informazioni sulla governance cloud'
 description: Viene illustrato il concetto di governance delle risorse in Azure e nel cloud
 author: petertay
-ms.openlocfilehash: 63b04089aad5fc736641f8aaa6ff5247ea8ba13e
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291115"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206481"
 ---
 # <a name="explainer-what-is-cloud-resource-governance"></a>Spiegazione: Informazioni sulla governance delle risorse cloud
 
@@ -16,6 +16,8 @@ Nell'articolo [Spiegazione: Funzionamento di Azure](azure-explainer.md) si è ap
 Tuttavia, sebbene offrire agli sviluppatori un accesso illimitato alle risorse garantisca loro ampia flessibilità, ciò può anche comportare costi imprevisti. Un team di sviluppo, ad esempio, potrebbe avere l'approvazione per distribuire un set di risorse per i test, ma potrebbe dimenticarsi di eliminare tali risorse al termine della fase di test. Queste risorse continueranno ad accumulare costi anche se il loro uso non è più approvato o necessario. 
 
 La soluzione a questo problema è la **governance** dell'accesso alle risorse. Per governance si intende il processo continuativo di gestione, monitoraggio e controllo dell'uso delle risorse di Azure per soddisfare gli obiettivi e i requisiti dell'organizzazione. 
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
 Questi obiettivi e requisiti sono univoci per ogni organizzazione, quindi non è possibile definire un approccio alla governance appropriato per tutti. Azure implementa due strumenti di governance principali, il **controllo degli accessi in base al ruolo** e i **criteri delle risorse**, che ogni organizzazione può usare per progettare un modello di governance personalizzato.
 
