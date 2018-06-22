@@ -2,12 +2,13 @@
 title: Albero delle decisioni per i servizi di calcolo di Azure
 description: Diagramma di flusso per la selezione di un servizio di calcolo
 author: MikeWasson
-ms.date: 04/21/2018
-ms.openlocfilehash: 3dcfbd156d4fced863a56bcc8bb74483aa665f9f
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.date: 06/13/2018
+ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/11/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206727"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Albero delle decisioni per i servizi di calcolo di Azure
 
@@ -25,5 +26,20 @@ Azure offre una serie di modi per ospitare il codice dell'applicazione. Il termi
 
 Se l'applicazione è costituita da più carichi di lavoro, valutare ogni carico di lavoro separatamente. Una soluzione completa può includere due o più servizi di calcolo.
 
+## <a name="flowchart"></a>Diagramma di flusso
+
 ![](../images/compute-decision-tree.svg)
 
+## <a name="definitions"></a>Definizioni
+
+- Il termine **greenfield** descrive un progetto software completamente nuovo e creato da zero. Non include codice legacy. 
+
+- Il termine **brownfield** indica un progetto software basato su un'applicazione esistente. Può ereditare codice legacy o framework.
+
+- La **modalità lift-and-shift** è una strategia per la migrazione di un carico di lavoro sul cloud senza necessità di riprogettare l'applicazione o apportare modifiche al codice. Viene definita anche *rehosting*. Per altre informazioni, vedere il [Centro migrazione di Azure](https://azure.microsoft.com/migration/).
+
+- L'**ottimizzazione per il cloud** è una strategia per la migrazione al cloud tramite il refactoring di un'applicazione per sfruttare i vantaggi delle funzionalità native del cloud.
+
+## <a name="next-steps"></a>Passaggi successivi
+
+Per altri criteri da prendere in considerazione, vedere [Criteri per la scelta di un servizio di calcolo di Azure](./compute-comparison.md).

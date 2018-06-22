@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42d91da3eacdcda66b82dff82ba444170c11d7d1
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35253061"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206379"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -34,7 +34,7 @@ Ecco un modello consigliato per la denominazione delle sottoscrizioni:
 `<Company> <Department (optional)> <Product Line (optional)> <Environment>`
 
 * La società in genere sarà la stessa per ogni sottoscrizione. Tuttavia, alcune aziende possono avere società affiliate all'interno della struttura organizzativa. Queste società possono essere gestite da un gruppo IT centrale. In questi casi, potrebbero essere differenziate con il nome della società padre, *Contoso*, e il nome della società affiliata, *Northwind*.
-* Reparto (Department) è un nome all'interno dell'organizzazione in cui lavora un gruppo di utenti. Questo elemento nello spazio dei nomi è facoltativo.
+* Reparto (Department) è un nome all'interno dell'organizzazione che include un gruppo di utenti. Questo elemento nello spazio dei nomi è facoltativo.
 * Linea di prodotti (Product line) è un nome specifico per un prodotto o una funzione eseguita all'interno del reparto. Generalmente è facoltativo per servizi e applicazioni interni. Tuttavia, è consigliabile usarlo per i servizi pubblici che dovranno essere facilmente separati e identificati, ad esempio per avere una netta separazione dei record di fatturazione.
 * Ambiente (Environment) è il nome che descrive il ciclo di vita della distribuzione di applicazioni o servizi, ad esempio Sviluppo, Controllo di qualità o Produzione.
 

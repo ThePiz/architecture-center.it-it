@@ -5,11 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: f04af90f328a0434d44ca7ea90309f3209a3b69d
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: 4ebb0d4df3e1907662537516cae1f077e68e47b4
+ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36209577"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementare una topologia di rete hub-spoke in Azure
 
@@ -194,7 +195,7 @@ Testare la connettività dall'ambiente locale simulato alla rete virtuale hub de
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
 
-2. Fare clic su `Connect` per aprire una sessione di rimozione accesso per la macchina virtuale. Usare la password specificata nel file parametro `onprem.json`.
+2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Usare la password specificata nel file parametro `onprem.json`.
 
 3. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi alla macchina virtuale jumpbox nella rete virtuale dell'hub.
 
@@ -270,9 +271,9 @@ Testare la connettività dall'ambiente locale simulato alle reti virtuali spoke.
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
 
-2. Fare clic su `Connect` per aprire una sessione di rimozione accesso per la macchina virtuale. Usare la password specificata nel file parametro `onprem.json`.
+2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Usare la password specificata nel file parametro `onprem.json`.
 
-3. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi alla macchina virtuale jumpbox nella rete virtuale dell'hub.
+3. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi alle macchine virtuali nelle reti virtuali spoke.
 
    ```powershell
    Test-NetConnection 10.1.0.68 -CommonTCPPort RDP

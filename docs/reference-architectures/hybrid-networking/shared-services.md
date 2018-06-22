@@ -2,14 +2,15 @@
 title: Implementazione di una topologia di rete hub-spoke con servizi condivisi in Azure
 description: Come implementare una topologia di rete hub-spoke con servizi condivisi in Azure.
 author: telmosampaio
-ms.date: 02/25/2018
+ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 83367a3be2f7a1e33c2ef7018d42f70aae99104d
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: 5e5029dd7de78c6953229364f9e8ae2789c2b348
+ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36209560"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementare una topologia di rete hub-spoke con servizi condivisi in Azure
 
@@ -92,19 +93,26 @@ Considerare inoltre i servizi condivisi nell'hub, per assicurarsi che quest'ulti
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una distribuzione di questa architettura è disponibile in [GitHub][ref-arch-repo]. Usa VM Ubuntu in ogni rete virtuale per testare la connettività. Nella subnet **shared-services** della **rete virtuale dell'hub** non sono effettivamente ospitati servizi.
+Una distribuzione di questa architettura è disponibile in [GitHub][ref-arch-repo]. La distribuzione crea i seguenti gruppi di risorse nella sottoscrizione:
+
+- hub-adds-rg
+- hub-nva-rg
+- hub-vnet-rg
+- onprem-vnet-rg
+- spoke1-vnet-rg
+- spoke2-vent-rg
+
+I file parametro di modello fanno riferimento a questi nomi; pertanto, se questi vengono modificati, aggiornare i file parametro in modo che corrispondano.
 
 ### <a name="prerequisites"></a>prerequisiti
 
-Prima di poter distribuire l'architettura di riferimento nella propria sottoscrizione, è necessario eseguire i passaggi seguenti.
-
 1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][ref-arch-repo].
 
-2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per istruzioni sull'installazione dell'interfaccia della riga di comando, vedere [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
+2. Installare l'[Interfaccia della riga di comando di Azure 2.0][azure-cli-2].
 
 3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
 
-4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con questo comando e seguire le istruzioni.
+4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con il comando seguente.
 
    ```bash
    az login
@@ -112,143 +120,137 @@ Prima di poter distribuire l'architettura di riferimento nella propria sottoscri
 
 ### <a name="deploy-the-simulated-on-premises-datacenter-using-azbb"></a>Distribuire il data center locale simulato con azbb
 
-Per distribuire il data center locale simulato come rete virtuale di Azure, seguire questa procedura:
+Questo passaggio distribuisce il data center locale simulato come rete virtuale di Azure.
 
-1. Passare alla cartella `hybrid-networking\shared-services-stack\` per il repository scaricato nel passaggio dei prerequisiti precedente.
+1. Passare alla cartella `hybrid-networking\shared-services-stack\` del repository GitHub.
 
-2. Aprire il file `onprem.json` e immettere un nome utente e una password tra le virgolette nelle righe 45 e 46, come illustrato di seguito, quindi salvare il file.
+2. Aprire il file `onprem.json` . 
+
+3. Cercare tutte le istanze di `Password` e `adminPassword`. Immettere i valori per nome utente e password nei parametri e salvare il file. 
+
+4. Eseguire il comando seguente:
 
    ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
+   azbb -s <subscription_id> -g onprem-vnet-rg -l <location> -p onprem.json --deploy
+   ```
+5. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale che esegue Windows e un gateway VPN. La creazione del gateway VPN può richiedere più di 40 minuti.
+
+### <a name="deploy-the-hub-vnet"></a>Distribuire la rete virtuale dell'hub
+
+Questo passaggio distribuisce la rete virtuale dell'hub e la connette alla rete virtuale locale simulata.
+
+1. Aprire il file `hub-vnet.json` . 
+
+2. Cercare `adminPassword` e immettere un nome utente e una password nei parametri. 
+
+3. Cercare tutte le istanze di `sharedKey` e immettere un valore per una chiave condivisa. Salvare il file.
+
+   ```bash
+   "sharedKey": "abc123",
    ```
 
-3. Eseguire `azbb` per distribuire l'ambiente locale simulato, come illustrato di seguito.
+4. Eseguire il comando seguente:
 
    ```bash
-   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
-   ```
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `onprem-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
-
-4. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale che esegue Windows e un gateway VPN. La creazione del gateway VPN può richiedere più di 40 minuti.
-
-### <a name="azure-hub-vnet"></a>Rete virtuale dell'hub di Azure
-
-Per distribuire la rete virtuale dell'hub e connettersi alla rete virtuale locale simulata creata in precedenza, eseguire la procedura seguente.
-
-1. Aprire il file `hub-vnet.json` e immettere un nome utente e una password tra le virgolette nelle righe 50 e 51, come illustrato di seguito.
-
-   ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
+   azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet.json --deploy
    ```
 
-2. Nella riga 52 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
+5. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale, un gateway VPN e una connessione al gateway creato nella sezione precedente. Il completamento del gateway VPN può richiedere più di 40 minuti.
 
-3. Immettere una chiave condivisa tra le virgolette nella riga 83, come illustrato di seguito, quindi salvare il file.
+### <a name="deploy-ad-ds-in-azure"></a>Distribuire AD DS in Azure
 
-   ```bash
-   "sharedKey": "",
-   ```
+Questo passaggio distribuisce i controller di dominio di AD DS in Azure.
 
-4. Eseguire `azbb` per distribuire l'ambiente locale simulato, come illustrato di seguito.
+1. Aprire il file `hub-adds.json` .
 
-   ```bash
-   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet.json --deploy
-   ```
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `hub-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
+2. Cercare tutte le istanze di `Password` e `adminPassword`. Immettere i valori per nome utente e password nei parametri e salvare il file. 
 
-5. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale, un gateway VPN e una connessione al gateway creato nella sezione precedente. La creazione del gateway VPN può richiedere più di 40 minuti.
-
-### <a name="adds-in-azure"></a>Active Directory Domain Services in Azure
-
-Per distribuire i controller di dominio di Active Directory Domain Services in Azure, seguire questa procedura.
-
-1. Aprire il file `hub-adds.json` e immettere un nome utente e una password tra le virgolette nelle righe 14 e 15, come illustrato di seguito, quindi salvare il file.
+3. Eseguire il comando seguente:
 
    ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
-   ```
-
-2. Eseguire `azbb` per distribuire i controller di dominio di Active Directory Domain Services, come illustrato di seguito.
-
-   ```bash
-   azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
+   azbb -s <subscription_id> -g hub-adds-rg -l <location> -p hub-adds.json --deploy
    ```
   
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `hub-adds-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
+Questo passaggio della distribuzione può richiedere alcuni minuti perché aggiunge le due macchine virtuali al dominio ospitato nel data center locale simulato e installa AD DS nelle due VM.
 
-   > [!NOTE]
-   > Questa parte della distribuzione potrebbe richiedere alcuni minuti, perché prevede l'aggiunta delle due VM al dominio ospitato nel data center locale simulato e quindi l'installazione di Active Directory Domain Services in tali VM.
+### <a name="deploy-the-spoke-vnets"></a>Distribuire le reti virtuali spoke
 
-### <a name="nva"></a>Appliance virtuale di rete
+Questo passaggio distribuisce le reti virtuali spoke.
 
-Per distribuire un'appliance virtuale di rete nella subnet `dmz`, seguire questa procedura:
+1. Aprire il file `spoke1.json` .
 
-1. Aprire il file `hub-nva.json` e immettere un nome utente e una password tra le virgolette nelle righe 13 e 14, come illustrato di seguito, quindi salvare il file.
+2. Cercare `adminPassword` e immettere un nome utente e una password nei parametri. 
 
-   ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
-   ```
-2. Eseguire `azbb` per distribuire la VM dell'appliance virtuale di rete e le route definite dall'utente.
+3. Eseguire il comando seguente:
 
    ```bash
-   azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-   ```
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `hub-nva-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
-
-### <a name="azure-spoke-vnets"></a>Reti virtuali spoke di Azure
-
-Per distribuire le reti virtuali spoke, seguire questa procedura.
-
-1. Aprire il file `spoke1.json` e immettere un nome utente e una password tra le virgolette nelle righe 52 e 53, come illustrato di seguito, quindi salvare il file.
-
-   ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
-   ```
-
-2. Nella riga 54 digitare `Windows` o `Linux` per `osType` per installare Windows Server 2016 Datacenter o Ubuntu 16.04 come sistema operativo per il jumpbox.
-
-3. Eseguire `azbb` per distribuire l'ambiente della prima rete virtuale spoke, come illustrato di seguito.
-
-   ```bash
-   azbb -s <subscription_id> -g spoke1-vnet-rg - l <location> -p spoke1.json --deploy
+   azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
   
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `spoke1-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
+4. Ripetere i passaggi 1 e 2 per il file `spoke2.json`.
 
-4. Ripetere il passaggio 1 precedente per il file `spoke2.json`.
-
-5. Eseguire `azbb` per distribuire l'ambiente della seconda rete virtuale spoke, come illustrato di seguito.
+5. Eseguire il comando seguente:
 
    ```bash
-   azbb -s <subscription_id> -g spoke2-vnet-rg - l <location> -p spoke2.json --deploy
+   azbb -s <subscription_id> -g spoke2-vnet-rg -l <location> -p spoke2.json --deploy
    ```
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `spoke2-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
 
-### <a name="azure-hub-vnet-peering-to-spoke-vnets"></a>Peering reti virtuali dell'hub di Azure alle reti virtuali spoke
+### <a name="peer-the-hub-vnet-to-the-spoke-vnets"></a>Eseguire il peering della rete virtuale dell'hub e delle reti virtuali spoke
 
-Per creare una connessione peering dalla rete virtuale hub alle reti virtuali spoke, seguire questa procedura.
+Per creare una connessione peering dalla rete virtuale dell'hub alle reti virtuali spoke, eseguire questo comando:
 
-1. Aprire il file `hub-vnet-peering.json` e verificare che il nome del gruppo di risorse e il nome della rete virtuale per ogni peering reti virtuali, a partire dalla riga 29, siano corretti.
+```bash
+azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet-peering.json --deploy
+```
 
-2. Eseguire `azbb` per distribuire l'ambiente della prima rete virtuale spoke, come illustrato di seguito.
+### <a name="deploy-the-nva"></a>Distribuire un'appliance virtuale di rete
+
+Questo passaggio distribuisce un'appliance virtuale di rete nella subnet `dmz`.
+
+1. Aprire il file `hub-nva.json` .
+
+2. Cercare `adminPassword` e immettere un nome utente e una password nei parametri. 
+
+3. Eseguire il comando seguente:
 
    ```bash
-   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet-peering.json --deploy
+   azbb -s <subscription_id> -g hub-nva-rg -l <location> -p hub-nva.json --deploy
    ```
 
-   > [!NOTE]
-   > Se si decide di usare un nome del gruppo di risorse diverso da `hub-vnet-rg`, assicurarsi di cercare tutti i file di parametri che usano tale nome e modificarli in modo da usare il nome del gruppo di risorse scelto.
+### <a name="test-connectivity"></a>Testare la connettività 
+
+Testare la connettività dall'ambiente locale simulato alla rete virtuale hub dell'hub.
+
+1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
+
+2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Usare la password specificata nel file parametro `onprem.json`.
+
+3. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi alla macchina virtuale jumpbox nella rete virtuale dell'hub.
+
+   ```powershell
+   Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
+   ```
+L'output dovrebbe essere simile al seguente:
+
+```powershell
+ComputerName     : 10.0.0.68
+RemoteAddress    : 10.0.0.68
+RemotePort       : 3389
+InterfaceAlias   : Ethernet 2
+SourceAddress    : 192.168.1.000
+TcpTestSucceeded : True
+```
+
+> [!NOTE]
+> Per impostazione predefinita, le VM Windows Server non consentono risposte ICMP in Azure. Se si vuole usare `ping` per testare la connettività, è necessario abilitare il traffico ICMP in Windows Firewall con sicurezza avanzata per ogni VM.
+
+Ripetere gli stessi passaggi per testare la connettività alle reti virtuali spoke:
+
+```powershell
+Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
+Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
+```
+
 
 <!-- links -->
 
