@@ -2,12 +2,12 @@
 title: 'Adozione di Azure: livello intermedio'
 description: Viene descritto il livello intermedio di conoscenze richiesto per l'adozione di Azure da parte di un'organizzazione
 author: petertay
-ms.openlocfilehash: 39b98595dd615ba1aa36921e48a0b23797bebaa0
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291152"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206362"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Guida all'adozione del cloud di Azure: panoramica del livello intermedio
 
@@ -53,31 +53,31 @@ Il modello di governance cloud dell'organizzazione rappresenta l'intersezione tr
 A tale scopo, seguire questa procedura:
 
 1. Creare un [account di Azure](/azure/active-directory/sign-up-organization), se l'organizzazione non ne ha già uno. La persona che effettua l'iscrizione per l'account di Azure diventa l'amministratore account di Azure e i leader dell'organizzazione devono scegliere una persona che assuma questo ruolo. Questo utente sarà responsabile di:
-  * Creazione delle sottoscrizioni.
-  * Creazione e amministrazione dei tenant di [Azure Active Directory (AD)](/azure/active-directory/active-directory-whatis) in cui viene archiviata l'identità utente per le sottoscrizioni.    
+    * Creazione delle sottoscrizioni.
+    * Creazione e amministrazione dei tenant di [Azure Active Directory (AD)](/azure/active-directory/active-directory-whatis) in cui viene archiviata l'identità utente per le sottoscrizioni.    
 2. Il team di leader dell'organizzazione decide quali utenti sono responsabili di:
-  * Gestione dell'identità utente. Per impostazione predefinita, viene creato un [tenant di Azure AD](/azure/active-directory/develop/active-directory-howto-tenant) quando viene creato l'account di Azure dell'organizzazione e l'amministratore account viene aggiunto come [amministratore globale di Azure AD](/azure/active-directory/active-directory-assign-admin-roles-azure-portal#details-about-the-global-administrator-role). L'organizzazione può scegliere un altro utente per gestire l'identità utente [assegnando il ruolo di amministratore globale di Azure AD a tale utente](/azure/active-directory/active-directory-users-assign-role-azure-portal). 
-  * Sottoscrizioni, che richiedono che tali utenti:
-    * Gestiscano i costi associati all'utilizzo delle risorse nella sottoscrizione.
-    * Implementino e gestiscano il modello di autorizzazioni minime per l'accesso alle risorse.
-    * Tengano traccia dei limiti dei servizi.
-  * Servizi di infrastruttura condivisi (se l'organizzazione decide di usare questo modello), che richiedono che l'utente sia responsabile di:
-    * Connettività di rete da ambiente locale ad Azure. 
-    * Proprietà della connettività di rete all'interno di Azure tramite il peering reti virtuali.
-  * Proprietari dei carichi di lavoro. 
+    * Gestione dell'identità utente. Per impostazione predefinita, viene creato un [tenant di Azure AD](/azure/active-directory/develop/active-directory-howto-tenant) quando viene creato l'account di Azure dell'organizzazione e l'amministratore account viene aggiunto come [amministratore globale di Azure AD](/azure/active-directory/active-directory-assign-admin-roles-azure-portal#details-about-the-global-administrator-role). L'organizzazione può scegliere un altro utente per gestire l'identità utente [assegnando il ruolo di amministratore globale di Azure AD a tale utente](/azure/active-directory/active-directory-users-assign-role-azure-portal). 
+    * Sottoscrizioni, che richiedono che tali utenti:
+        * Gestiscano i costi associati all'utilizzo delle risorse nella sottoscrizione.
+        * Implementino e gestiscano il modello di autorizzazioni minime per l'accesso alle risorse.
+        * Tengano traccia dei limiti dei servizi.
+    * Servizi di infrastruttura condivisi (se l'organizzazione decide di usare questo modello), che richiedono che l'utente sia responsabile di:
+        * Connettività di rete da ambiente locale ad Azure. 
+        * Proprietà della connettività di rete all'interno di Azure tramite il peering reti virtuali.
+    * Proprietari dei carichi di lavoro. 
 3. L'amministratore globale di Azure AD [crea i nuovi account utente](/azure/active-directory/add-users-azure-active-directory) per:
-  * La persona che sarà il **proprietario della sottoscrizione** per ogni sottoscrizione associata a ogni ambiente. Si noti che questo è necessario solo se l'**amministratore del servizio** di sottoscrizione non ha il compito di gestire l'accesso alle risorse per ogni sottoscrizione/ambiente.
-  * La persona che sarà l'**utente delle operazioni di rete**.
-  * I **proprietari dei carichi di lavoro**.
+    * La persona che sarà il **proprietario della sottoscrizione** per ogni sottoscrizione associata a ogni ambiente. Si noti che questo è necessario solo se l'**amministratore del servizio** di sottoscrizione non ha il compito di gestire l'accesso alle risorse per ogni sottoscrizione/ambiente.
+    * La persona che sarà l'**utente delle operazioni di rete**.
+    * I **proprietari dei carichi di lavoro**.
 4. L'amministratore account di Azure crea le tre sottoscrizioni seguenti usando il [portale degli account di Azure](https://account.azure.com):
-  * Una sottoscrizione per l'ambiente di **infrastruttura condivisa**.
-  * Una sottoscrizione per l'ambiente di **produzione**. 
-  * Una sottoscrizione per l'ambiente di **sviluppo**. 
+    * Una sottoscrizione per l'ambiente di **infrastruttura condivisa**.
+    * Una sottoscrizione per l'ambiente di **produzione**. 
+    * Una sottoscrizione per l'ambiente di **sviluppo**. 
 5. L'amministratore account di Azure [aggiunge il proprietario del servizio di sottoscrizione a ogni sottoscrizione](/azure/billing/billing-add-change-azure-subscription-administrator#add-an-rbac-owner-admin-for-a-subscription-in-azure-portal).
-6. Creare un processo di approvazione per i **proprietari dei carichi di lavoro** per richiedere la creazione dei gruppi di risorse. Il processo di approvazione può essere implementato in molti modi, ad esempio tramite posta elettronica oppure usando uno strumento di gestione dei processi come i [flussi di lavoro di Sharepoint](https://support.office.com/article/introduction-to-sharepoint-workflow-07982276-54e8-4e17-8699-5056eff4d9e3). Il processo di approvazione può seguire questi passaggi:
-  1. Il **proprietario del carico di lavoro** prepara una distinta base per le risorse di Azure necessarie nell'ambiente di **sviluppo**, di **produzione** o in entrambi e la invia al **proprietario della sottoscrizione**.
-  2. Il **proprietario della sottoscrizione** esamina la distinta base e convalida le risorse richieste per garantire che siano appropriate per l'uso previsto, ad esempio verificando che le [dimensioni delle macchine virtuali](/azure/virtual-machines/windows/sizes) richieste siano corrette.
-  3. Se la richiesta non viene approvata, viene inviata una notifica al **proprietario del carico di lavoro**. Se la richiesta viene approvata, il **proprietario della sottoscrizione** [crea il gruppo di risorse richiesto](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups) seguendo le [convenzioni di denominazione](/azure/architecture/best-practices/naming-conventions) dell'organizzazione, [aggiunge il **proprietario del carico di lavoro**](/azure/role-based-access-control/role-assignments-portal#add-access) con il [**ruolo di collaboratore** ](/azure/role-based-access-control/built-in-roles#contributor)e invia una notifica al **proprietario del carico di lavoro** per comunicare che il gruppo di risorse è stato creato.
+6. Creare un processo di approvazione per i **proprietari dei carichi di lavoro** per richiedere la creazione dei gruppi di risorse. Il processo di approvazione può essere implementato in molti modi, ad esempio tramite posta elettronica oppure usando uno strumento di gestione dei processi come i [flussi di lavoro di Sharepoint](https://support.office.com/article/introduction-to-sharepoint-workflow-07982276-54e8-4e17-8699-5056eff4d9e3). Il processo di approvazione può seguire questi passaggi:  
+    * Il **proprietario del carico di lavoro** prepara una distinta base per le risorse di Azure necessarie nell'ambiente di **sviluppo**, di **produzione** o in entrambi e la invia al **proprietario della sottoscrizione**.
+    * Il **proprietario della sottoscrizione** esamina la distinta base e convalida le risorse richieste per garantire che siano appropriate per l'uso previsto, ad esempio verificando che le [dimensioni delle macchine virtuali](/azure/virtual-machines/windows/sizes) richieste siano corrette.
+    * Se la richiesta non viene approvata, viene inviata una notifica al **proprietario del carico di lavoro**. Se la richiesta viene approvata, il **proprietario della sottoscrizione** [crea il gruppo di risorse richiesto](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups) seguendo le [convenzioni di denominazione](/azure/architecture/best-practices/naming-conventions) dell'organizzazione, [aggiunge il **proprietario del carico di lavoro**](/azure/role-based-access-control/role-assignments-portal#add-access) con il [**ruolo di collaboratore** ](/azure/role-based-access-control/built-in-roles#contributor)e invia una notifica al **proprietario del carico di lavoro** per comunicare che il gruppo di risorse è stato creato.
 7. Creare un processo di approvazione per i proprietari del carico di lavoro per richiedere una connessione peering reti virtuali dal proprietario dell'infrastruttura condivisa. Come con il passaggio precedente, questo processo di approvazione può essere implementato tramite posta elettronica o tramite uno strumento di gestione dei processi.
 
 Ora che il modello di governance è stato implementato, è possibile distribuire i servizi di infrastruttura condivisa.
