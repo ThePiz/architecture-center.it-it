@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 03c4d5fa10c75437a7b066534619ba9a123c350c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
+ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30849672"
+ms.lasthandoff: 06/22/2018
+ms.locfileid: "36327654"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Autorizzazione basata sui ruoli e sulle risorse
 
@@ -33,7 +33,7 @@ L'applicazione [Tailspin Surveys][Tailspin] definisce i ruoli seguenti:
 
 I ruoli si applicano agli *utenti* dell'applicazione. Nell'applicazione Surveys, un utente può essere amministratore, autore o lettore.
 
-Per una discussione su come definire e gestire i ruoli, vedere l'articolo relativo ai [ruoli dell'applicazione].
+Per una discussione su come definire e gestire i ruoli, vedere l'articolo relativo ai [Ruoli applicazione].
 
 Il codice di autorizzazione risulterà invariato indipendentemente dalla modalità di gestione dei ruoli. ASP.NET Core 1.0 include un'astrazione denominata [Criteri di autorizzazione][policies]. Questa funzionalità consente di definire i criteri di autorizzazione nel codice e quindi applicare i criteri alle azioni del controller. I criteri vengono separati dal controller.
 
@@ -250,7 +250,7 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 <!-- Links -->
 [Tailspin]: tailspin.md
 
-[ruoli dell'applicazione]: app-roles.md
+[Ruoli applicazione]: app-roles.md
 [policies]: /aspnet/core/security/authorization/policies
 [implementazione di riferimento]: tailspin.md
 [Configurazione del middleware di autenticazione]: authenticate.md#configure-the-auth-middleware
