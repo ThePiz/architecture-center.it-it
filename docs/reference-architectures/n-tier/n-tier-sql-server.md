@@ -2,16 +2,13 @@
 title: Applicazione a più livelli con SQL Server
 description: Come implementare un'architettura a più livelli in Azure per la disponibilità, la sicurezza, la scalabilità e la gestibilità.
 author: MikeWasson
-ms.date: 05/03/2018
-pnp.series.title: Windows VM workloads
-pnp.series.next: multi-region-application
-pnp.series.prev: multi-vm
-ms.openlocfilehash: 0f170f2fbcbbfeace53db199cb5d3949415b5546
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 06/23/2018
+ms.openlocfilehash: 050ea9b3104a2dc9af4cdaad3b4540cd75434e9d
+ms.sourcegitcommit: 767c8570d7ab85551c2686c095b39a56d813664b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673593"
+ms.lasthandoff: 06/24/2018
+ms.locfileid: "36746673"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Applicazione a più livelli con SQL Server
 
@@ -43,9 +40,11 @@ L'architettura include i componenti seguenti:
 
 * **Jumpbox.** Detto anche [bastion host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete (NSG) che consente il traffico remoto solo da Indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. L'NSG dovrebbe consentire il traffico RDP (Remote Desktop Protocol).
 
-* **Gruppo di disponibilità AlwaysOn di SQL Server.** Assicura disponibilità elevata al livello dati, abilitando la replica e il failover.
+* **Gruppo di disponibilità AlwaysOn di SQL Server.** Assicura disponibilità elevata al livello dati, abilitando la replica e il failover. Usa la tecnologia Windows Server Failover Cluster (WSFC) per il failover.
 
-* **Server di Active Directory Domain Services.** I gruppi di disponibilità AlwaysOn di SQL Server vengono aggiunti a un dominio per abilitare la tecnologia Windows Server Failover Cluster (WSFC) per il failover. 
+* **Server di Active Directory Domain Services.** Gli oggetti computer per il cluster di failover e i ruoli del cluster associati vengono creati in Active Directory Domain Services (AD DS).
+
+* **Cloud di controllo**. Un cluster di failover richiede che più della metà dei nodi sia in esecuzione (quorum). Se il cluster ha solo due nodi, una partizione di rete potrebbe indurre ogni nodo a ritenere di essere il nodo master. In tal caso, è necessario un *controllo* per stabilire la prevalenza e ottenere il quorum. Un controllo è una risorsa, ad esempio un disco condiviso, che può stabilire la prevalenza per ottenere il quorum. Il cloud di controllo è un tipo di controllo che usa Archiviazione BLOB di Azure. Per altre informazioni sul concetto di quorum, vedere [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Informazioni su cluster e quorum del pool). Per altre informazioni sul controllo cloud, vedere [Distribuire un cloud di controllo per un cluster di failover](/windows-server/failover-clustering/deploy-cloud-witness). 
 
 * **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 
@@ -157,13 +156,13 @@ Crittografare i dati sensibili inattivi e usare[Azure Key Vault][azure-key-vault
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. 
+Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. Si noti che l'intera distribuzione può richiedere fino a due ore, inclusa l'esecuzione di script per configurare Active Directory Domain Services, il cluster di failover di Windows Server e il gruppo di disponibilità di SQL Server.
 
 ### <a name="prerequisites"></a>prerequisiti
 
 1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][ref-arch-repo].
 
-2. Verificare che nel computer sia installata l'interfaccia della riga di comando di Azure 2.0. Per installare l'interfaccia della riga di comando, seguire le istruzioni in [Installare l'interfaccia della riga di comando di Azure 2.0][azure-cli-2].
+2. Installare l'[Interfaccia della riga di comando di Azure 2.0][azure-cli-2].
 
 3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
 
@@ -171,32 +170,80 @@ Una distribuzione di questa architettura di riferimento è disponibile in [GitHu
    npm install -g @mspnp/azure-building-blocks
    ```
 
-4. Da un prompt dei comandi, di Bash o di PowerShell accedere al proprio account di Azure usando uno dei comandi riportati di seguito e seguire le istruzioni.
+4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con il comando seguente.
 
    ```bash
    az login
    ```
 
-### <a name="deploy-the-solution-using-azbb"></a>Distribuire la soluzione mediante azbb
+### <a name="deploy-the-solution"></a>Distribuire la soluzione 
 
-Per distribuire le macchine virtuali Windows per un'architettura di riferimento per applicazioni a più livelli, seguire questi passaggi:
+1. Usare il comando seguente per creare un gruppo di risorse.
 
-1. Passare alla cartella `virtual-machines\n-tier-windows` per il repository clonato nel passaggio 1 dei prerequisiti nella sezione precedente.
+    ```bash
+    az group create --location <location> --name <resource-group-name>
+    ```
 
-2. Il file di parametri specifica un nome utente amministratore predefinito e una password per ogni macchina virtuale nella distribuzione. È necessario modificare questi elementi prima di distribuire l'architettura di riferimento. Aprire il file `n-tier-windows.json` e sostituire ogni campo **adminUsername** e **adminPassword** con le nuove impostazioni.
-  
-   > [!NOTE]
-   > Durante questa distribuzione vengono eseguiti molti script, sia negli oggetti **VirtualMachineExtension** sia nelle impostazioni **extensions** per alcuni degli oggetti **VirtualMachine**. Alcuni di questi script richiedono il nome utente amministratore e la password appena modificati. È consigliabile esaminare questi script per assicurarsi di aver specificato le credenziali corrette. La distribuzione può non riuscire se non si specificano le credenziali corrette.
-   > 
-   > 
+2. Usare il comando seguente per creare un account di archiviazione per il cloud di controllo.
 
-Salvare il file.
+    ```bash
+    az storage account create --location <location> \
+      --name <storage-account-name> \
+      --resource-group <resource-group-name> \
+      --sku Standard_LRS
+    ```
 
-3. Distribuire l'architettura di riferimento usando lo strumento da riga di comando **azbb**, come mostrato di seguito.
+3. Passare alla cartella `virtual-machines\n-tier-windows` del repository GitHub di architetture di riferimento.
 
-   ```bash
-   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
-   ```
+4. Aprire il file `n-tier-windows.json` . 
+
+5. Cercare tutte le istanze di "witnessStorageBlobEndPoint" e sostituire il testo segnaposto con il nome dell'account di archiviazione del passaggio 2.
+
+    ```json
+    "witnessStorageBlobEndPoint": "https://[replace-with-storageaccountname].blob.core.windows.net",
+    ```
+
+6. Usare il comando seguente per elencare le chiavi dell'account di archiviazione.
+
+    ```bash
+    az storage account keys list \
+      --account-name <storage-account-name> \
+      --resource-group <resource-group-name>
+    ```
+
+    L'output sarà simile al seguente. Copiare il valore di `key1`.
+
+    ```json
+    [
+    {
+        "keyName": "key1",
+        "permissions": "Full",
+        "value": "..."
+    },
+    {
+        "keyName": "key2",
+        "permissions": "Full",
+        "value": "..."
+    }
+    ]
+    ```
+
+7. Nel file `n-tier-windows.json` cercare tutte le istanze di "witnessStorageAccountKey" e incollare la chiave dell'account.
+
+    ```json
+    "witnessStorageAccountKey": "[replace-with-storagekey]"
+    ```
+
+8. Nel file `n-tier-windows.json` cercare tutte le istanze di `testPassw0rd!23`, `test$!Passw0rd111` e `AweS0me@SQLServicePW`. Sostituirle con le proprie password e salvare il file.
+
+    > [!NOTE]
+    > Se si modifica il nome dell'utente amministratore, è necessario aggiornare anche i blocchi `extensions` nel file JSON. 
+
+9. Usare il comando seguente per distribuire l'architettura.
+
+    ```bash
+    azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
+    ```
 
 Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio usando blocchi predefiniti di Azure, visitare il [repository GitHub][git].
 

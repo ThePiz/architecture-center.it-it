@@ -3,12 +3,12 @@ title: Albero delle decisioni per i servizi di calcolo di Azure
 description: Diagramma di flusso per la selezione di un servizio di calcolo
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
+ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206727"
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36338184"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Albero delle decisioni per i servizi di calcolo di Azure
 
@@ -25,6 +25,8 @@ Azure offre una serie di modi per ospitare il codice dell'applicazione. Il termi
 - [Tabelle di confronto tra i servizi di calcolo](./compute-comparison.md)
 
 Se l'applicazione è costituita da più carichi di lavoro, valutare ogni carico di lavoro separatamente. Una soluzione completa può includere due o più servizi di calcolo.
+
+Per altre informazioni sulle opzioni per l'hosting di contenitori in Azure, vedere https://azure.microsoft.com/overview/containers/.
 
 ## <a name="flowchart"></a>Diagramma di flusso
 

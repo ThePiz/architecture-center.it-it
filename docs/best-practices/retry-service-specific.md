@@ -4,12 +4,12 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: f02843f179671da04bc2f09326b58075b432ba95
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: 77cf5d90373da2118d34301bd5c790080d3cf63f
+ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35253078"
+ms.lasthandoff: 06/22/2018
+ms.locfileid: "36327688"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -325,7 +325,7 @@ Il bus di servizio implementa la ripetizione dei tentativi usando implementazion
 * La [classe RetryExponential](http://msdn.microsoft.com/library/microsoft.servicebus.retryexponential.aspx). Espone proprietà che controllano l'intervallo di backoff, il numero di tentativi e la proprietà **TerminationTimeBuffer** usata per limitare il tempo complessivo per il completamento dell'operazione.
 * La [classe NoRetry](http://msdn.microsoft.com/library/microsoft.servicebus.noretry.aspx). Viene usata quando non è necessario eseguire nuovi tentativi al livello dell'API del bus di servizio, ad esempio quando i nuovi tentativi vengono gestiti da un altro processo nell'ambito di un'operazione in batch o composta da più passaggi.
 
-Alcune azioni del bus di servizio possono restituire un intervallo di eccezioni, come elencato in [Appendice: eccezioni di messaggistica](http://msdn.microsoft.com/library/hh418082.aspx). L'elenco fornisce informazioni su quali delle eccezioni indicano che è opportuno ripetere l'operazione. [ServerBusyException](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.serverbusyexception.aspx) , ad esempio, indica che il client deve attendere un determinato intervallo di tempo, quindi ripetere l'operazione. Un'occorrenza di **ServerBusyException** induce inoltre il bus di servizio a passare a una modalità diversa, in cui viene aggiunto un ulteriore intervallo di 10 secondi all'intervallo tra i tentativi elaborato. Questa modalità viene reimpostata dopo un breve intervallo di tempo.
+Le azioni del bus di servizio possono restituire una serie di eccezioni, elencate in [Eccezioni di messaggistica del bus di servizio](/azure/service-bus-messaging/service-bus-messaging-exceptions). L'elenco fornisce informazioni su quali delle eccezioni indicano che è opportuno ripetere l'operazione. **ServerBusyException** , ad esempio, indica che il client deve attendere un determinato intervallo di tempo, quindi ripetere l'operazione. Un'occorrenza di **ServerBusyException** induce inoltre il bus di servizio a passare a una modalità diversa, in cui viene aggiunto un ulteriore intervallo di 10 secondi all'intervallo tra i tentativi elaborato. Questa modalità viene reimpostata dopo un breve intervallo di tempo.
 
 Le eccezioni restituite dal bus di servizio espongono la proprietà **IsTransient** che indica se il client deve ripetere l'operazione. I criteri **RetryExponential** incorporati si basano sulla proprietà **IsTransient** della classe **MessagingException**, che costituisce la classe di base per tutte le eccezioni del bus di servizio. Se si creano implementazioni personalizzate della classe di base **RetryPolicy**, è possibile usare una combinazione del tipo di eccezione e della proprietà **IsTransient** per ottenere un controllo più preciso sulle azioni di ripetizione dei tentativi. Se si identifica un'eccezione di tipo **QuotaExceededException** , ad esempio, è possibile intraprendere le azioni necessarie per esaurire la coda prima di riprovare a inviare un messaggio.
 
