@@ -16,6 +16,8 @@
       items:
         - name: Business intelligence aziendale con SQL Data Warehouse
           href: data/enterprise-bi-sqldw.md
+        - name: Business intelligence aziendale automatizzata con SQL Data Warehouse e Data Factory
+          href: data/enterprise-bi-adf.md
     - name: Reti ibride
       href: hybrid-networking/index.md
       items:
