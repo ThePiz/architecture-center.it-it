@@ -3,12 +3,12 @@ title: Applicazione a più livelli con SQL Server
 description: Come implementare un'architettura a più livelli in Azure per la disponibilità, la sicurezza, la scalabilità e la gestibilità.
 author: MikeWasson
 ms.date: 06/23/2018
-ms.openlocfilehash: 050ea9b3104a2dc9af4cdaad3b4540cd75434e9d
-ms.sourcegitcommit: 767c8570d7ab85551c2686c095b39a56d813664b
+ms.openlocfilehash: 7c8184d25cf6b3bd358adc2728329fd3bd08503a
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/24/2018
-ms.locfileid: "36746673"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142302"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Applicazione a più livelli con SQL Server
 
@@ -160,23 +160,9 @@ Una distribuzione di questa architettura di riferimento è disponibile in [GitHu
 
 ### <a name="prerequisites"></a>prerequisiti
 
-1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][ref-arch-repo].
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-2. Installare l'[Interfaccia della riga di comando di Azure 2.0][azure-cli-2].
-
-3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
-
-   ```bash
-   npm install -g @mspnp/azure-building-blocks
-   ```
-
-4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con il comando seguente.
-
-   ```bash
-   az login
-   ```
-
-### <a name="deploy-the-solution"></a>Distribuire la soluzione 
+### <a name="deploy-the-solution"></a>Distribuire la soluzione
 
 1. Usare il comando seguente per creare un gruppo di risorse.
 
@@ -252,11 +238,9 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-dc]: multi-region-sql-server.md
 [n-tier]: n-tier.md
-[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-windows-manage-availability#configure-each-application-tier-into-separate-availability-sets
 [azure-cli]: /azure/virtual-machines-command-line-tools
-[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [azure-dns]: /azure/dns/dns-overview
 [azure-key-vault]: https://azure.microsoft.com/services/key-vault
 [bastion host]: https://en.wikipedia.org/wiki/Bastion_host
@@ -274,7 +258,6 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [indirizzo IP pubblico]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
-[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [sql-alwayson]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-alwayson-force-failover]: https://msdn.microsoft.com/library/ff877957.aspx
 [sql-alwayson-getting-started]: https://msdn.microsoft.com/library/gg509118.aspx

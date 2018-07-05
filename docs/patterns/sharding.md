@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 328483e24c75137f07576104d50dc59d426b8ac4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543018"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091105"
 ---
 # <a name="sharding-pattern"></a>Modello di partizionamento orizzontale
 
@@ -221,5 +221,4 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 - [Modello di vista materializzata](materialized-view.md). Per mantenere le prestazioni di alcune operazioni di query, è utile creare viste materializzate grado di aggregare e riepilogare i dati, soprattutto se questi dati di riepilogo si basano su informazioni distribuite in più partizioni. Descrive come generare e popolare queste viste.
 - [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html) (Lezioni sul partizionamento) sul blog Adding Simplicity.
 - [Database Sharding](http://dbshards.com/database-sharding/) (Partizionamento orizzontale dei database) nel sito Web CodeFutures.
-- [Scalability Strategies Primer: Database Sharding](http://blog.maxindelicato.com/2008/12/scalability-strategies-primer-database-sharding.html) (Nozioni di base sulle strategie di scalabilità: partizionamento orizzontale dei database) sul blog di Max Indelicato.
 - [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx) (Creazione di database scalabili: vantaggi e svantaggi di vari schemi di partizionamento orizzontale dei database) sul blog di Dare Obasanjo.

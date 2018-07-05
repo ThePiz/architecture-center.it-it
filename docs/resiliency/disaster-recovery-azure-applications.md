@@ -3,12 +3,12 @@ title: Ripristino di emergenza per le applicazioni basate su Azure
 description: Panoramiche tecniche e informazioni approfondite sulla progettazione e la creazione di applicazioni per il ripristino di emergenza in Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 7235e752cf1b96e392a700b223d63b07c0f85b66
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
+ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477775"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37343380"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Ripristino di emergenza per le applicazioni basate su Azure
 
@@ -278,7 +278,7 @@ Verificare gli script più volte dall'inizio alla fine. Dopo avere verificato le
 Una procedura consigliata per l'automazione consiste nel creare un repository di script di PowerShell, o script dell'interfaccia della riga di comando, per il ripristino di emergenza di Azure. Contrassegnarli e classificarli chiaramente per agevolare l'accesso. Designare una persona principale che gestisca il repository e il controllo delle versioni degli script. Documentarli accuratamente con spiegazioni dei parametri ed esempi di utilizzo. Accertarsi anche che la documentazione sia sincronizzata con le distribuzioni di Azure. Ciò evidenzia lo scopo di avere una persona principale responsabile di tutte le parti del repository.
 
 ## <a name="failure-detection"></a>rilevamento degli errori
-Per poter gestire correttamente i problemi relativi a disponibilità e ripristino di emergenza, è necessario poter rilevare e diagnosticare gli errori. Eseguire il monitoraggio avanzato del server e della distribuzione per riconoscere rapidamente quando un sistema o i relativi componenti diventano improvvisamente non disponibili. Parte di questa attività può essere eseguita dagli strumenti di monitoraggio che valutano lo stato complessivo del servizio cloud e delle relative dipendenze. Uno strumento Microsoft appropriato è [System Center 2016](https://www.microsoft.com/server-cloud/products/system-center-2016/). Anche strumenti di terze parti possono offrire funzionalità di monitoraggio. La maggior parte delle soluzioni di monitoraggio controlla i contatori delle prestazioni chiave e la disponibilità dei servizi.
+Per poter gestire correttamente i problemi relativi a disponibilità e ripristino di emergenza, è necessario poter rilevare e diagnosticare gli errori. Eseguire il monitoraggio avanzato del server e della distribuzione per riconoscere rapidamente quando un sistema o i relativi componenti diventano improvvisamente non disponibili. Parte di questa attività può essere eseguita dagli strumenti di monitoraggio che valutano lo stato complessivo del servizio cloud e delle relative dipendenze. Uno strumento Microsoft appropriato è [System Center 2016](https://www.microsoft.com/cloud-platform/system-center). Anche strumenti di terze parti possono offrire funzionalità di monitoraggio. La maggior parte delle soluzioni di monitoraggio controlla i contatori delle prestazioni chiave e la disponibilità dei servizi.
 
 Anche se questi strumenti sono essenziali, è comunque necessario pianificare il rilevamento e la segnalazione degli errori in un servizio cloud. È necessaria anche una pianificazione per un uso corretto della Diagnostica di Microsoft Azure. Anche contatori delle prestazioni personalizzati o voci del log eventi possono far parte della strategia complessiva. In questo modo è possibile avere più dati in caso di errore per diagnosticare rapidamente il problema e ripristinare tutte le funzionalità. Sono inoltre disponibili altre metriche che gli strumenti di monitoraggio possono usare per determinare l'integrità di un'applicazione. Per altre informazioni, vedere [Abilitazione di Diagnostica di Azure in servizi cloud di Azure](/azure/cloud-services/cloud-services-dotnet-diagnostics/). Per informazioni su come pianificare un "modello di integrità" generale, vedere l'articolo su [FailSafe: Informazioni aggiuntive per architetture cloud resilienti](https://channel9.msdn.com/Series/FailSafe).
 
@@ -300,7 +300,7 @@ Gli argomenti che seguono descrivono i servizi di Azure specifici per il riprist
 | Service | Argomento |
 |---------|-------|
 | Servizi cloud | [Operazioni da eseguire in caso di un'interruzione del servizio Azure con impatto sui servizi cloud di Azure](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
-| Insieme di credenziali di chiave | [Disponibilità e ridondanza in Azure Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) |
+| Key Vault | [Disponibilità e ridondanza in Azure Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |Archiviazione | [Cosa fare se si verifica un'interruzione di Archiviazione di Azure](/azure/storage/storage-disaster-recovery-guidance) |
 | Database SQL | [Ripristinare un database SQL di Azure o eseguire il failover in un database secondario](/azure/sql-database/sql-database-disaster-recovery) |
 | Macchine virtuali | [Cosa fare in caso di un'interruzione di servizio di Azure che influisce sulle macchine virtuali di Azure](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |

@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 3e7d47f70f660f2507f0619e1c41bf9a32a25be4
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
+ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846652"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37348270"
 ---
 # <a name="leader-election-pattern"></a>Modello Designazione leader
 
@@ -200,6 +200,5 @@ Per l'implementazione di questo modello possono risultare utili le informazioni 
 - [Modello asincrono basato su attività](https://msdn.microsoft.com/library/hh873175.aspx).
 - Esempio che illustra l'[algoritmo Bully](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html).
 - Esempio che illustra l'[algoritmo Ring](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html).
-- Articolo su [Apache Zookeeper in Microsoft Azure](https://msopentech.com/opentech-projects/apache-zookeeper-on-windows-azure-2/) sul sito Web Microsoft Open Technologies.
 - [Apache Curator](http://curator.apache.org/), una libreria client per Apache ZooKeeper.
 - Articolo [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) (Lease Blob (API REST)) su MSDN.

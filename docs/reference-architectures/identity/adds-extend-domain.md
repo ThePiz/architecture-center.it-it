@@ -6,12 +6,12 @@ ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 763fffd321a1b50a562ef462dab59aafae717908
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.openlocfilehash: ecf24a05d071c0d0283fc962b13285108b5ac4bd
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/03/2018
-ms.locfileid: "32323874"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142274"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
@@ -105,17 +105,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="prerequisites"></a>prerequisiti
 
-1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento][github].
-
-2. Installare l'[Interfaccia della riga di comando di Azure 2.0][azure-cli-2].
-
-3. Installare il pacchetto npm dei [blocchi predefiniti di Azure][azbb].
-
-4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con il comando seguente.
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>Distribuire il data center locale simulato
 
