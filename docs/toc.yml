@@ -127,6 +127,8 @@
       maintainContext: true
     - name: Analisi della modalità di errore
       href: resiliency/failure-mode-analysis.md
+- name: Scenari di esempio
+  href: example-scenario/index.md
 - name: Guide relative agli scenari
   items:
     - name: Azure per i professionisti AWS
