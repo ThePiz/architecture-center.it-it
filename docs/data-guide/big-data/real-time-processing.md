@@ -3,12 +3,12 @@ title: Elaborazione in tempo reale
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 8d3497c37d15dc0aa4645ddfce3bd30740217b2c
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298629"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37090986"
 ---
 # <a name="real-time-processing"></a>Elaborazione in tempo reale
 
@@ -56,7 +56,7 @@ Per altre informazioni, vedere [Archiviazione dei dati](../technology-choices/da
 
 ### <a name="stream-processing"></a>Elaborazione del flusso
 
-- **Analisi di flusso di Azure**. Analisi di flusso di Azure può eseguire query perpetue su un flusso non associato di dati. Tali query utilizzano flussi di dati da risorse di archiviazione o da broker di messaggi, filtrano e aggregano i dati in base a finestre temporali e scrivono i risultati in sink come risorse di archiviazione, database o direttamente in report in Power BI.
+- **Analisi di flusso di Azure**. Analisi di flusso di Azure può eseguire query perpetue su un flusso non associato di dati. Tali query utilizzano flussi di dati da risorse di archiviazione o da broker di messaggi, filtrano e aggregano i dati in base a finestre temporali e scrivono i risultati in sink come risorse di archiviazione, database o direttamente in report in Power BI. Analisi di flusso usa un linguaggio di query basato su SQL che supporta costrutti temporali e geospaziali e può essere esteso tramite JavaScript.
 - **Storm**. Apache Storm è un framework open source per l'elaborazione dei flussi che usa una topologia di spout e bolt per utilizzare, elaborare ed eseguire l'output dei risultati da origini di dati in streaming in tempo reale. È possibile eseguire il provisioning di Storm in un cluster HDInsight di Azure e implementare una topologia in Java o in C#.
 - **Spark Streaming**. Apache Spark è una piattaforma distribuita open source per l'elaborazione generale di dati. Spark include l'API Spark Streaming, in cui è possibile scrivere codice in qualsiasi linguaggio Spark supportato, tra cui Java, Scala e Python. Spark 2.0 ha introdotto l'API Spark Structured Streaming, che offre un modello di programmazione più semplice e coerente. Spark 2.0 è disponibile in Azure come cluster HDInsight.
 

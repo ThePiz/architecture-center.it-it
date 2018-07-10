@@ -2,21 +2,21 @@
 title: Implementazione di un'architettura di rete ibrida sicura in Azure
 description: Come implementare un'architettura di rete ibrida sicura in Azure.
 author: telmosampaio
-ms.date: 11/23/2016
+ms.date: 07/01/2018
 pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 81dea2e4439d5a01ebb88ab86dc0a59609bb7bc3
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
+ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30849655"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37403165"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Rete perimetrale tra Azure e il data center locale
 
-Questa architettura di riferimento consente di visualizzare una rete ibrida sicura che estende una rete locale in Azure. L'architettura implementa una *rete perimetrale* tra la rete locale e una rete virtuale di Azure (VNet). La rete perimetrale include appliance virtuali di rete (NVA) che implementano funzionalità di sicurezza quali firewall e ispezione dei pacchetti. Tutto il traffico in uscita dalla rete virtuale viene sottoposto a tunneling forzato verso Internet attraverso la rete locale, in modo da poter essere controllato.
+Questa architettura di riferimento consente di visualizzare una rete ibrida sicura che estende una rete locale in Azure. L'architettura implementa una *rete perimetrale* tra la rete locale e una rete virtuale di Azure (VNet). La rete perimetrale include appliance virtuali di rete (NVA) che implementano funzionalità di sicurezza quali firewall e ispezione dei pacchetti. Tutto il traffico in uscita dalla rete virtuale viene sottoposto a tunneling forzato verso Internet attraverso la rete locale, in modo da poter essere controllato. [**Distribuire questa soluzione**.](#deploy-the-solution)
 
 [![0]][0] 
 
@@ -159,19 +159,65 @@ Il traffico tra i livelli viene limitato tramite i gruppi di sicurezza di rete. 
 ### <a name="devops-access"></a>Accesso DevOps
 Utilizzare il [controllo degli accessi in base al ruolo][rbac] per limitare le operazioni che il team DevOps può eseguire in ogni livello. Quando si concedono le autorizzazioni, usare il [principio del privilegio minimo][security-principle-of-least-privilege]. Registrare tutte le operazioni amministrative ed eseguire controlli regolari per assicurare che eventuali modifiche alla configurazione siano state pianificate.
 
-## <a name="solution-deployment"></a>Distribuzione della soluzione
+## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-È disponibile una distribuzione per un'architettura di riferimento che implementa queste raccomandazioni su [GitHub][github-folder]. L'architettura di riferimento può essere distribuita seguendo le istruzioni seguenti:
+È disponibile una distribuzione per un'architettura di riferimento che implementa queste raccomandazioni su [GitHub][github-folder]. 
 
-1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fdmz%2Fsecure-vnet-hybrid%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. Dopo avere aperto il collegamento nel portale di Azure, è necessario immettere i valori per alcune impostazioni:   
-   * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-private-dmz-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
-3. Attendere il completamento della distribuzione.
-4. I file di parametri includono una password e un nome utente amministratore hardcoded. È fortemente consigliato sostituirli immediatamente. Selezionare ogni macchina virtuale presente nella distribuzione nel portale di Azure, quindi fare clic su **Reimposta password** nel pannello **Supporto e risoluzione dei problemi**. Selezionare **Reimposta password** nella casella di riepilogo a discesa **Modalità**, quindi selezionare un nuovo **Nome utente** e una nuova **Password**. Fare clic sul pulsante **Aggiorna** per salvare.
+### <a name="prerequisites"></a>prerequisiti
+
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+
+### <a name="deploy-resources"></a>Distribuire le risorse
+
+1. Passare alla cartella `/dmz/secure-vnet-hybrid` del repository GitHub di architetture di riferimento.
+
+2. Eseguire il comando seguente:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
+    ```
+
+3. Eseguire il comando seguente:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-hybrid.json --deploy
+    ```
+
+### <a name="connect-the-on-premises-and-azure-gateways"></a>Connettere i gateway locali e di Azure
+
+In questo passaggio verranno connessi i due gateway di rete locali.
+
+1. Nel portale di Azure passare al gruppo di risorse creato. 
+
+2. Trovare la risorsa denominata `ra-vpn-vgw-pip` e copiare l'indirizzo IP mostrato nel pannello **Panoramica**.
+
+3. Trovare la risorsa denominata `onprem-vpn-lgw`.
+
+4. Fare clic sul pannello **Configurazione**. In **Indirizzo IP** incollare l'indirizzo IP dal passaggio 2.
+
+    ![](./images/local-net-gw.png)
+
+5. Fare clic su **Salva** e attendere il completamento dell'operazione. L'operazione potrebbe richiedere circa 5 minuti.
+
+6. Trovare la risorsa denominata `onprem-vpn-gateway1-pip`. Copiare l'indirizzo IP mostrato nel pannello **Panoramica**.
+
+7. Trovare la risorsa denominata `ra-vpn-lgw`. 
+
+8. Fare clic sul pannello **Configurazione**. In **Indirizzo IP** incollare l'indirizzo IP dal passaggio 6.
+
+9. Fare clic su **Salva** e attendere il completamento dell'operazione.
+
+10. Per verificare la connessione, passare al pannello **Connessioni** per ogni gateway. Lo stato dovrebbe essere **Connesso**.
+
+### <a name="verify-that-network-traffic-reaches-the-web-tier"></a>Verificare che il traffico di rete raggiunga il livello Web
+
+1. Nel portale di Azure passare al gruppo di risorse creato. 
+
+2. Trovare la risorsa denominata `int-dmz-lb`, che corrisponde al servizio di bilanciamento del carico situato davanti alla rete perimetrale privata. Copiare l'indirizzo IP privato dal pannello **Panoramica**.
+
+3. Trovare la macchina virtuale denominata `jb-vm1`. Fare clic su **Connetti** e usare Desktop remoto per connettersi alla VM. Il nome utente e la password sono specificati nel file onprem.json.
+
+4. Dalla sessione di Desktop remoto aprire un Web browser e passare all'indirizzo IP specificato nel passaggio 2. Dovrebbe essere visualizzata la home page predefinita del server Apache2.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

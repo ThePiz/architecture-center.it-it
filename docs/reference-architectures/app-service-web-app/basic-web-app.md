@@ -4,12 +4,12 @@ description: L'architettura consigliata per l'esecuzione delle applicazioni Web 
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: efd831b1f54fa0662bdfa9874318e7b314172215
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: bc8cf9b5c66fc451d097cbc992ecb9a249645dce
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846404"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091122"
 ---
 # <a name="basic-web-application"></a>Applicazione Web di base
 [!INCLUDE [header](../../_includes/header.md)]
@@ -104,7 +104,7 @@ Al momento della scrittura, il contratto di servizio (SLA) per il servizio app �
 In caso di perdita di dati, il database SQL offre funzionalità di ripristino temporizzato e geografico. Tali funzionalità sono disponibili in tutti i livelli e vengono abilitate automaticamente. Non è necessario pianificare o gestire i backup. 
 
 - Usare il ripristino temporizzato per eseguire il [ripristino da un errore umano][sql-human-error] e riportare il database a un determinato momento precedente. 
-- Usare il ripristino geografico per eseguire il [ripristino da un'interruzione del servizio][sql-outage-recovery] recuperando un database da un backup con ridondanza geografica. 
+- Usare il ripristino geografico per eseguire il [ripristino da un'interruzione del servizio] [ sql-outage-recovery] recuperando un database da un backup con ridondanza geografica. 
 
 Per altre informazioni, vedere l'articolo relativo alla [continuità aziendale del cloud e al ripristino di emergenza del database con database SQL][sql-backup].
 
@@ -150,13 +150,13 @@ Durante lo scambio di uno slot di distribuzione, le impostazioni dell'app vengon
 ### <a name="diagnostics-and-monitoring"></a>Diagnostica e monitoraggio
 Abilitare la [registrazione diagnostica][diagnostic-logs], includendo la registrazione delle applicazioni e del server Web. Configurare la registrazione per l'uso dell'archiviazione BLOB. Per prestazioni ottimali, creare un account di archiviazione separato per i log di diagnostica. Non usare lo stesso account di archiviazione per i log e i dati dell'applicazione. Per informazioni più dettagliate sulla registrazione, vedere l'articolo sulle [linee guida di monitoraggio e diagnostica][monitoring-guidance].
 
-Usare un servizio, quale [New Relic][new-relic] o [Application Insights][app-insights], per monitorare le prestazioni e il comportamento dell'applicazione in condizioni di carico. Tenere presenti i [limiti di velocità dati][app-insights-data-rate] per Application Insights.
+Usare un servizio, quale [New Relic] [ new-relic] o [Application Insights] [ app-insights], per monitorare le prestazioni e il comportamento dell'applicazione in condizioni di carico. Tenere presenti i [limiti di velocità dati][app-insights-data-rate] per Application Insights.
 
 Eseguire il test di carico usando uno strumento come [Visual Studio Team Services][vsts]. Per una panoramica generale dell'analisi delle prestazioni nelle applicazioni cloud, vedere l'articolo relativo alle [nozioni di base sull'analisi delle prestazioni][perf-analysis].
 
 Suggerimenti per la risoluzione dei problemi dell'applicazione:
 
-* Usare il [pannello della risoluzione dei problemi][troubleshoot-blade] nel portale di Azure per trovare le soluzioni ai problemi più comuni.
+* Usare il [pannello della risoluzione dei problemi] [ troubleshoot-blade] nel portale di Azure per trovare le soluzioni ai problemi più comuni.
 * Abilitare i [flussi di registrazione][web-app-log-stream] per visualizzare le informazioni di registrazione quasi in tempo reale.
 * Il [dashboard Kudu][kudu] include diversi strumenti per il monitoraggio e il debug dell'applicazione. Per altre informazioni, vedere il post di blog relativo agli [strumenti online di Siti Web di Azure che è opportuno conoscere][kudu]. È possibile raggiungere il dashboard Kudu dal portale di Azure. Aprire il pannello per l'app e fare clic su <strong>Strumenti</strong>, quindi su <strong>Kudu</strong>.
 * Se si usa Visual Studio, vedere l'articolo su come [risolvere i problemi relativi a un'app web nel servizio app di Azure con Visual Studio][troubleshoot-web-app] per suggerimenti per il debug e la risoluzione dei problemi.
@@ -259,4 +259,4 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [web-app-backup]: /azure/app-service-web/web-sites-backup
 [web-app-log-stream]: /azure/app-service-web/web-sites-enable-diagnostic-log#streamlogs
 [0]: ./images/basic-web-app.png "Architettura di un'applicazione Web Azure di base"
-[1]: ./images/paas-basic-web-app-staging-slots.png "Swapping slots for production and staging deployments"
+[1]: ./images/paas-basic-web-app-staging-slots.png "Swapping slots for production and staging deployments" (Scambio di slot per le distribuzioni di produzione e gestione temporanea)

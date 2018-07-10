@@ -1,40 +1,48 @@
 ---
 title: Business intelligence aziendale con SQL Data Warehouse
 description: Usare Azure per ottenere informazioni aziendali dettagliate da dati relazionali archiviati in locale
-author: alexbuckgit
-ms.date: 04/13/2018
-ms.openlocfilehash: b5e5aa32fc9cc8c7b8b5a42c9a4fc3e0216b2f72
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+author: MikeWasson
+ms.date: 07/01/2018
+ms.openlocfilehash: e3542e40b4b6d1f604f93bb21528f34ba7f22fc6
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012837"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142336"
 ---
 # <a name="enterprise-bi-with-sql-data-warehouse"></a>Business intelligence aziendale con SQL Data Warehouse
- 
+
 Questa architettura di riferimento implementa una pipeline [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (extract-load-transform) che sposta i dati da un database di SQL Server locale in SQL Data Warehouse e trasforma i dati per l'analisi. [**Distribuire questa soluzione**.](#deploy-the-solution)
 
 ![](./images/enterprise-bi-sqldw.png)
 
 **Scenario**: un'organizzazione ha un ampio set di dati OLTP archiviati in un database di SQL Server locale. L'organizzazione vuole usare SQL Data Warehouse per eseguire l'analisi tramite Power BI. 
 
-Questa architettura di riferimento è progettata per processi occasionali o su richiesta. Per spostare i dati in modo continuativo (con cadenza oraria o giornaliera) è consigliabile usare Azure Data Factory per definire un flusso di lavoro automatizzato.
+Questa architettura di riferimento è progettata per processi occasionali o su richiesta. Per spostare i dati in modo continuativo (con cadenza oraria o giornaliera) è consigliabile usare Azure Data Factory per definire un flusso di lavoro automatizzato. Per un'architettura di riferimento che usa Data Factory, vedere [Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory](./enterprise-bi-adf.md).
 
 ## <a name="architecture"></a>Architecture
 
 L'architettura è costituita dai componenti seguenti.
 
-**SQL Server**. I dati di origine si trovano in un database di SQL Server locale. Per simulare l'ambiente locale, gli script di distribuzione per questa architettura eseguono il provisioning di una macchina virtuale in Azure con SQL Server installato. 
+### <a name="data-source"></a>Origine dati
+
+**SQL Server**. I dati di origine si trovano in un database di SQL Server locale. Per simulare l'ambiente locale, gli script di distribuzione per questa architettura eseguono il provisioning di una macchina virtuale in Azure con SQL Server installato. Il [database OLTP di esempio "Wide World Importers"][wwi] viene usato come dati di origine.
+
+### <a name="ingestion-and-data-storage"></a>Inserimento e archiviazione dei dati
 
 **Archiviazione BLOB**. L'archiviazione BLOB viene usata come area di staging per copiare i dati prima di caricarli in SQL Data Warehouse.
 
 **Azure SQL Data Warehouse**. [SQL Data Warehouse](/azure/sql-data-warehouse/) è un sistema distribuito progettato per eseguire analisi su dati di grandi dimensioni. Supporta l'elaborazione parallela su larga scala (MPP), che può essere usata per l'esecuzione di analisi ad alte prestazioni. 
+
+### <a name="analysis-and-reporting"></a>Analisi e creazione di report
 
 **Azure Analysis Services**. [Analysis Services](/azure/analysis-services/) è un servizio completamente gestito che offre funzionalità di creazione di modelli di dati. Usare Analysis Services per creare un modello semantico in cui gli utenti possono eseguire query. Analysis Services è particolarmente utile in uno scenario di dashboard di Business Intelligence. In questa architettura, Analysis Services legge i dati dal data warehouse per elaborare il modello semantico e gestisce in modo efficiente le query dashboard. Analysis Services supporta anche la concorrenza elastica, tramite il ridimensionamento di repliche per un'elaborazione delle query più veloce.
 
 Attualmente, Azure Analysis Services supporta modelli tabulari, ma non modelli multidimensionali. I modelli tabulari usano costrutti di modellazione relazionale (tabelle e colonne), mentre i modelli multidimensionali usano costrutti di modellazione OLAP (cubi, dimensioni e misure). Se sono necessari i modelli multidimensionali, usare SQL Server Analysis Services (SSAS). Per altre informazioni, vedere [Confronto tra soluzioni tabulari e multidimensionali](/sql/analysis-services/comparing-tabular-and-multidimensional-solutions-ssas).
 
 **Power BI**. Power BI è una suite di strumenti di analisi aziendale che consente di analizzare dati e condividere informazioni dettagliate. In questa architettura viene eseguita una query del modello semantico archiviato in Analysis Services.
+
+### <a name="authentication"></a>Authentication
 
 **Azure Active Directory** (Azure AD) autentica gli utenti che si connettono al server di Analysis Services tramite Power BI.
 
@@ -188,21 +196,13 @@ Una distribuzione di questa architettura di riferimento è disponibile in [GitHu
 
 ### <a name="prerequisites"></a>prerequisiti
 
-1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il repository GitHub delle [architetture di riferimento di Azure][ref-arch-repo].
-
-2. Installare i [blocchi predefiniti di Azure][azbb-wiki] (azbb).
-
-3. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure con questo comando e seguire le istruzioni.
-
-  ```bash
-  az login  
-  ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-server"></a>Distribuire il server locale simulato
 
-Innanzitutto verrà distribuita una macchina virtuale come server locale simulato, che include SQL Server 2017 e strumenti correlati. In questo passaggio viene caricato anche il [database Wide World Importers OLTP](/sql/sample/world-wide-importers/wide-world-importers-oltp-database) di esempio in SQL Server.
+Innanzitutto verrà distribuita una macchina virtuale come server locale simulato, che include SQL Server 2017 e strumenti correlati. In questo passaggio viene caricato anche il [database OLTP "Wide World Importers"][wwi] in SQL Server.
 
-1. Passare alla cartella `data\enterprise-bi-sqldw\onprem\templates` del repository scaricato nel passaggio dei prerequisiti precedente.
+1. Passare alla cartella `data\enterprise_bi_sqldw\onprem\templates` del repository.
 
 2. Nel file `onprem.parameters.json`, sostituire i valori per `adminUsername` e `adminPassword`. Modificare anche i valori della sezione `SqlUserCredentials` in modo che corrispondano al nome utente e alla password. Si noti il prefisso `.\\` nella proprietà Nome utente.
     
@@ -216,28 +216,39 @@ Innanzitutto verrà distribuita una macchina virtuale come server locale simulat
 3. Eseguire `azbb` come illustrato di seguito per distribuire il server locale.
 
     ```bash
-    azbb -s <subscription_id> -g <resource_group_name> -l <location> -p onprem.parameters.json --deploy
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.parameters.json --deploy
     ```
+
+    Specificare un'area che supporta SQL Data Warehouse e Azure Analysis Services. Vedere [Prodotti di Azure in base all'area](https://azure.microsoft.com/global-infrastructure/services/).
 
 4. La distribuzione potrebbe richiedere dai 20 ai 30 minuti, inclusa l'esecuzione dello script [DSC](/powershell/dsc/overview) per installare gli strumenti e il ripristino del database. Verificare la distribuzione nel portale di Azure esaminando le risorse nel gruppo di risorse. Verrà visualizzata la macchina virtuale `sql-vm1` e le risorse associate.
 
 ### <a name="deploy-the-azure-resources"></a>Distribuire le risorse di Azure
 
-In questo passaggio viene eseguito il provisioning di Azure SQL Data Warehouse e Azure Analysis Services, assieme a un account di archiviazione. Se lo si desidera, è possibile eseguire questo passaggio in parallelo con il passaggio precedente.
+In questo passaggio viene eseguito il provisioning di SQL Data Warehouse e Azure Analysis Services, assieme a un account di archiviazione. Se lo si desidera, è possibile eseguire questo passaggio in parallelo con il passaggio precedente.
 
-1. Passare alla cartella `data\enterprise-bi-sqldw\azure\templates` del repository scaricato nel passaggio dei prerequisiti precedente.
+1. Passare alla cartella `data\enterprise_bi_sqldw\azure\templates` del repository.
 
-2. Eseguire il seguente comando dell'interfaccia della riga di comando di Azure per creare un gruppo di risorse, sostituendo i parametri tra parentesi quadre specificati. Si noti che è possibile eseguire la distribuzione in un gruppo di risorse diverso rispetto a quello usato per il server locale nel passaggio precedente. 
-
-    ```bash
-    az group create --name <resource_group_name> --location <location>  
-    ```
-
-3. Eseguire il seguente comando dell'interfaccia della riga di comando di Azure per distribuire le risorse di Azure, sostituendo i parametri tra parentesi quadre specificati. Il parametro `storageAccountName` deve seguire le [regole di denominazione](../../best-practices/naming-conventions.md#naming-rules-and-restrictions) per gli account di archiviazione. Per il parametro `analysisServerAdmin`, usare il nome dell'entità utente (UPN) di Azure Active Directory.
+2. Eseguire il comando dell'interfaccia della riga di comando di Azure per creare un gruppo di risorse. È possibile eseguire la distribuzione in un gruppo di risorse diverso rispetto al passaggio precedente, ma scegliere la stessa area. 
 
     ```bash
-    az group deployment create --resource-group <resource_group_name> --template-file azure-resources-deploy.json --parameters "dwServerName"="<server_name>" "dwAdminLogin"="<admin_username>" "dwAdminPassword"="<password>" "storageAccountName"="<storage_account_name>" "analysisServerName"="<analysis_server_name>" "analysisServerAdmin"="user@contoso.com"
+    az group create --name <resource_group_name> --location <region>  
     ```
+
+3. Eseguire il comando seguente dell'interfaccia della riga di comando di Azure per distribuire le risorse di Azure. Sostituire i valori dei parametri visualizzati tra parentesi acute. 
+
+    ```bash
+    az group deployment create --resource-group <resource_group_name> \
+     --template-file azure-resources-deploy.json \
+     --parameters "dwServerName"="<server_name>" \
+     "dwAdminLogin"="<admin_username>" "dwAdminPassword"="<password>" \ 
+     "storageAccountName"="<storage_account_name>" \
+     "analysisServerName"="<analysis_server_name>" \
+     "analysisServerAdmin"="user@contoso.com"
+    ```
+
+    - Il parametro `storageAccountName` deve seguire le [regole di denominazione](../../best-practices/naming-conventions.md#naming-rules-and-restrictions) per gli account di archiviazione.
+    - Per il parametro `analysisServerAdmin`, usare il nome dell'entità utente (UPN) di Azure Active Directory.
 
 4. Verificare la distribuzione nel portale di Azure esaminando le risorse nel gruppo di risorse. Verrà visualizzato un account di archiviazione, un'istanza di Azure SQL Data Warehouse e un'istanza di Analysis Services.
 
@@ -261,7 +272,7 @@ In questo passaggio verrà eseguito uno script di PowerShell che usa bcp per esp
 
 3. Nel portale di Azure, verificare che i dati di origine siano stati copiati nell'archivio BLOB passando all'account di archiviazione, selezionando il servizio BLOB e aprendo il contenitore `wwi`. Verrà visualizzato un elenco di tabelle con il prefisso `WorldWideImporters_Application_*`.
 
-### <a name="execute-the-data-warehouse-scripts"></a>Eseguire gli script del data warehouse
+### <a name="run-the-data-warehouse-scripts"></a>Eseguire gli script di data warehouse
 
 1. Dalla sessione di desktop remoto, avviare SQL Server Management Studio (SSMS). 
 
@@ -298,7 +309,7 @@ In SMSS verrà visualizzato un set di tabelle `prd.*` nel database `wwi`. Per ve
 SELECT TOP 10 * FROM prd.CityDimensions
 ```
 
-### <a name="build-the-azure-analysis-services-model"></a>Compilare il modello di Azure Analysis Services
+## <a name="build-the-analysis-services-model"></a>Compilare il modello di Analysis Services
 
 In questo passaggio verrà creato un modello tabulare per importare i dati dal data warehouse, per poi distribuire il modello ad Azure Analysis Services.
 
@@ -347,7 +358,7 @@ In questo passaggio verrà creato un modello tabulare per importare i dati dal d
 
     ![](./images/analysis-services-models.png)
 
-### <a name="analyze-the-data-in-power-bi-desktop"></a>Analizzare i dati in Power BI Desktop
+## <a name="analyze-the-data-in-power-bi-desktop"></a>Analizzare i dati in Power BI Desktop
 
 In questo passaggio, si userà Power BI per creare un report dai dati in Analysis Services.
 
@@ -367,11 +378,11 @@ In questo passaggio, si userà Power BI per creare un report dai dati in Analysi
 
 6. Nel riquadro **Campi**, espandere **prd.CityDimensions**.
 
-7. Trascinare **prd.CityDimensions** > **WWI City ID** (ID città WWI) nell'**area Asse**.
+7. Trascinare **prd.CityDimensions** > **WWI City ID** nell'area **Asse**.
 
 8. Trascinare **prd.CityDimensions** > **Città** nell'area **Legenda**.
 
-9. Nel riquadro Campi, espandere **prd.SalesFact**.
+9. Nel riquadro **Campi** espandere **prd.SalesFact**.
 
 10. Trascinare **prd.SalesFact** > **Totale tasse escluse** nell'area **Valore**.
 
@@ -404,4 +415,4 @@ Per altre informazioni su Power BI Desktop, vedere [Introduzione a Power BI Desk
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [ref-arch-repo-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
-
+[wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

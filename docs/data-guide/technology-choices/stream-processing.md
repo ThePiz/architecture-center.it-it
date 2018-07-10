@@ -3,12 +3,12 @@ title: Scelta di una tecnologia per l'elaborazione di flussi
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 29e4cd3d5ea6e10f036bfe226152290512dafa65
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848649"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091064"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Scelta di una tecnologia per l'elaborazione di flussi in Azure
 
@@ -53,8 +53,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Analisi di flusso di Azure | HDInsight con Spark Streaming | Apache Spark in Azure Databricks | HDInsight con Storm | Funzioni di Azure | Processi Web del servizio app di Azure |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Input | [Input di Analisi di flusso](/azure/stream-analytics/stream-analytics-define-inputs)  | Hub eventi, hub IoT, Kafka, HDFS, BLOB del servizio di archiviazione, Azure Data Lake Store  | Hub eventi, hub IoT, Kafka, HDFS, BLOB del servizio di archiviazione, Azure Data Lake Store  | Hub eventi, hub IoT, BLOB del servizio di archiviazione, Azure Data Lake Store  | [Binding supportati](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Bus di servizio, Code di archiviazione, BLOB del servizio di archiviazione, Hub eventi, WebHooks, Cosmos DB, File |
-| Sink |  [Output di Analisi di flusso](/azure/stream-analytics/stream-analytics-define-outputs) | HDFS, Kafka, BLOB del servizio di archiviazione, Azure Data Lake Store, Cosmos DB | HDFS, Kafka, BLOB del servizio di archiviazione, Azure Data Lake Store, Cosmos DB | Hub eventi, bus di servizio, Kafka | [Binding supportati](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Bus di servizio, Code di archiviazione, BLOB del servizio di archiviazione, Hub eventi, WebHooks, Cosmos DB, File | 
+| Input | Hub eventi di Azure, hub IoT di Azure, archiviazione BLOB di Azure  | Hub eventi, hub IoT, Kafka, HDFS, BLOB del servizio di archiviazione, Azure Data Lake Store  | Hub eventi, hub IoT, Kafka, HDFS, BLOB del servizio di archiviazione, Azure Data Lake Store  | Hub eventi, hub IoT, BLOB del servizio di archiviazione, Azure Data Lake Store  | [Binding supportati](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Bus di servizio, Code di archiviazione, BLOB del servizio di archiviazione, Hub eventi, WebHooks, Cosmos DB, File |
+| Sink |  Azure Data Lake Store, database SQL di Azure SQL, BLOB di archiviazione, Hub eventi, Power BI, archiviazione tabelle, code del bus di servizio, argomenti del bus di servizio, Cosmos DB, Funzioni di Azure  | HDFS, Kafka, BLOB del servizio di archiviazione, Azure Data Lake Store, Cosmos DB | HDFS, Kafka, BLOB del servizio di archiviazione, Azure Data Lake Store, Cosmos DB | Hub eventi, bus di servizio, Kafka | [Binding supportati](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Bus di servizio, Code di archiviazione, BLOB del servizio di archiviazione, Hub eventi, WebHooks, Cosmos DB, File | 
 
 ### <a name="processing-capabilities"></a>Funzionalità di elaborazione
 
