@@ -3,21 +3,23 @@ title: Distribuire SAP NetWeaver (Windows) per AnyDB in macchine virtuali di Azu
 description: Procedure consolidate per l'esecuzione di SAP S/4HANA in un ambiente Linux su Azure con disponibilità elevata.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 0efe3e78d9e1809fdab52044b75e432742786b79
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423062"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864539"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Distribuire SAP NetWeaver (Windows) per AnyDB in macchine virtuali di Azure
 
 Questa architettura di riferimento mostra un set di procedure consolidate per l'esecuzione di SAP NetWeaver in un ambiente Windows su Azure con disponibilità elevata. Il database è AnyDB, il termine SAP che indica qualsiasi DBMS supportato oltre a SAP HANA. Questa architettura viene distribuita con dimensioni di macchina virtuale (VM) specifiche, che possono essere modificate in base alle esigenze dell'organizzazione.
 
-![](./images/sap-s4hana.png)
- 
+![](./images/sap-netweaver.png)
+
+*Scaricare un [file Visio][visio-download] di questa architettura.*
+
 > [!NOTE] 
-> La distribuzione di prodotti SAP in base a questa architettura di riferimento richiede le licenze appropriate per i prodotti SAP e altre tecnologie non Microsoft.
+> La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft.
 
 ## <a name="architecture"></a>Architecture
 L'architettura è costituita dall'infrastruttura e dai principali componenti software seguenti.
@@ -167,10 +169,11 @@ Per crittografare dischi di macchine virtuali di Azure, è possibile usare [Crit
 
 ## <a name="communities"></a>Community
 
-Le community possono rispondere alle domande ed essere utili per configurare correttamente la distribuzione. Fare riferimento alle risorse seguenti:
+Le community possono rispondere alle domande ed essere utili per configurare correttamente la distribuzione. Valutare gli aspetti seguenti:
 
 - Blog [Running SAP Applications on the Microsoft Platform](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/) (Esecuzione di applicazioni SAP nella piattaforma Microsoft)
 - [Supporto della community di Azure](https://azure.microsoft.com/support/community/)
 - [Community SAP](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
 
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

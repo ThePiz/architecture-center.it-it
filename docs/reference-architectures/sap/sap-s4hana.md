@@ -3,25 +3,26 @@ title: SAP S/4HANA per le macchine virtuali Linux in Azure
 description: Procedure consolidate per l'esecuzione di SAP S/4HANA in un ambiente Linux su Azure con disponibilità elevata.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: d24ef6f9e4eae460d0d0dcfff35568c812d09951
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423067"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864505"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>SAP S/4HANA per le macchine virtuali Linux in Azure
 
 Questa architettura di riferimento mostra un set di procedure consolidate per l'esecuzione di S/4HANA in un ambiente a disponibilità elevata che supporta il ripristino di emergenza in Azure. Questa architettura viene distribuita con dimensioni di macchina virtuale (VM) specifiche, che possono essere modificate in base alle esigenze dell'organizzazione. 
 
-
 ![](./images/sap-s4hana.png)
+
+*Scaricare un [file Visio][visio-download] di questa architettura.*
+
+> [!NOTE] 
+> La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft.
 
 ## <a name="architecture"></a>Architecture
  
-> [!NOTE] 
-> La distribuzione di prodotti SAP in base a questa architettura di riferimento richiede le licenze appropriate per i prodotti SAP e altre tecnologie non Microsoft.
-
 Questa architettura di riferimento descrive un sistema di produzione di livello aziendale. Questa configurazione può essere ridotta a una singola macchina virtuale in base alle esigenze aziendali. Sono tuttavia necessari i componenti seguenti:
 
 **Rete virtuale**. Il servizio [Rete virtuale di Azure](/azure/virtual-network/virtual-networks-overview) connette in modo sicuro tra loro le risorse di Azure. In questa architettura la rete virtuale si connette a un ambiente locale tramite un gateway distribuito nell'hub di una [topologia hub-spoke](../hybrid-networking/hub-spoke.md). Lo spoke è la rete virtuale usata per le applicazioni SAP.
@@ -197,3 +198,5 @@ Le community possono rispondere alle domande ed essere utili per configurare cor
 - [Supporto della community di Azure](https://azure.microsoft.com/support/community/)
 - [Community SAP](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
+
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
 ms.openlocfilehash: 00309e58c163a64f6d9796bedc19d936afcd09ab
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270289"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958824"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Eseguire un'applicazione Web in più aree geografiche
 [!INCLUDE [header](../../_includes/header.md)]
@@ -87,7 +87,7 @@ Per l'archiviazione code, creare una coda di backup nell'area secondaria. Durant
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
 
-### <a name="traffic-manager"></a>servizio Gestione traffico
+### <a name="traffic-manager"></a>Gestione traffico
 
 Gestione traffico effettua automaticamente il failover se l'area primaria non è più disponibile. Quando Gestione traffico effettua il failover, per un periodo di tempo i client non riescono a raggiungere l'applicazione. La durata di questo periodo è influenzata dai fattori seguenti:
 
@@ -118,7 +118,7 @@ Per altre informazioni, vedere [Cosa fare se si verifica un'interruzione di Arch
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 
-### <a name="traffic-manager"></a>servizio Gestione traffico
+### <a name="traffic-manager"></a>Gestione traffico
 
 Se Gestione traffico effettua il failover, è consigliabile eseguire un failback manuale invece di implementare un failback automatico. In caso contrario, si potrebbe creare una situazione in cui l'applicazione passa alternativamente da un'area all'altra. Verificare che tutti i sottosistemi dell'applicazione siano integri prima del failback.
 

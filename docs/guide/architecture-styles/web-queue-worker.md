@@ -3,11 +3,11 @@ title: Stile di architettura Web/coda/ruolo di lavoro
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per l'architettura Web/coda/ruolo di lavoro in Azure
 author: MikeWasson
 ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539802"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958790"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Stile di architettura Web/coda/ruolo di lavoro
 
@@ -78,7 +78,7 @@ Per l'archiviazione, scegliere le tecnologie più adatte in base alle esigenze d
 
 Per altre informazioni, vedere [App Service web application reference architecture][scalable-web-app] (Architettura di riferimento per le applicazioni Web di Servizio app).
 
-### <a name="additional-considerations"></a>Considerazioni aggiuntive
+### <a name="additional-considerations"></a>Ulteriori considerazioni
 
 - Non tutte le transazioni devono passare dalla coda e dal ruolo di lavoro per l'archiviazione. Il front-end Web può eseguire semplici operazioni di lettura/scrittura direttamente. I ruoli di lavoro sono progettati per attività a elevato utilizzo di risorse o flussi di lavoro a esecuzione prolungata. In alcuni casi, un ruolo di lavoro può essere totalmente superfluo.
 
