@@ -3,12 +3,12 @@ title: Centro architetture Azure
 description: Il centro architetture Azure è il centro ufficiale per materiale sussidiario, progetti, modelli e procedure consigliate per la creazione di soluzioni con Microsoft Azure. È curato dal team Microsoft modelli e procedure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0ac5dd79f765fe9b649cc2ca83c0213b4ba28544
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847731"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987591"
 ---
 # <a name="azure-architecture-center"></a>Centro architetture Azure
 
@@ -78,8 +78,8 @@ ms.locfileid: "30847731"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>Creazione di microservizi in Azure</h3>
-                            <p>Questa serie in più parti illustra il processo di progettazione e creazione di un'architettura di microservizi in Azure. È inclusa un'implementazione di riferimento.</p>
+                            <h3>Creare microservizi in Azure</h3>
+                            <p>Questa guida alla progettazione illustra il processo di progettazione e creazione di un'architettura di microservizi in Azure. È inclusa un'implementazione di riferimento.</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ ms.locfileid: "30847731"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>Procedure consigliate per le applicazioni cloud</h3>
+                            <h3>Procedure consigliate per il cloud</h3>
                             <p>Procedure consigliate per le applicazioni cloud, che illustra aspetti come la scalabilità automatica, la memorizzazione nella cache, il partizionamento dei dati, la progettazione di API e altro.</p>
                         </div>
                     </div>
@@ -138,7 +138,7 @@ ms.locfileid: "30847731"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>Progettazione per la resilienza</h3>
+                            <h3>Progettare per la resilienza</h3>
                             <p>Informazioni su come progettare applicazioni resilienti per Azure.</p>
                         </div>
                     </div>
@@ -246,46 +246,6 @@ ms.locfileid: "30847731"
             </div>
         </a>
     </li>
-    <!-- Sharepoint -->
-    <li>
-        <a href="/azure/architecture/reference-architectures/sharepoint">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="/azure/architecture/reference-architectures/sharepoint/images/sharepoint.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Eseguire SharePoint Server 2016 in Azure</h3>
-                            <p>Distribuire ed eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- SAP -->
-    <li>
-        <a href="/azure/architecture/reference-architectures/sap">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="/azure/architecture/reference-architectures/sap/images/sap.svg" width="100%" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Eseguire SAP HANA in Azure</h3>
-                            <p>Distribuire ed eseguire SAP NetWeaver e SAP HANA in un ambiente a disponibilità elevata in Azure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
     <!-- Multitenant identity -->
     <li>
         <a href="/azure/architecture/multitenant-identity">
@@ -300,46 +260,6 @@ ms.locfileid: "30847731"
                         <div class="cardText">
                             <h3>Gestione delle identità per le applicazioni multi-tenant</h3>
                             <p>Informazioni sulle procedure consigliate per il multi-tenancy, quando si usa Azure AD per la gestione delle identità.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- AzureCAT blog -->
-    <li>
-        <a href="https://blogs.msdn.microsoft.com/azurecat/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/azurecat.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Team di consulenza clienti di Azure</h3>
-                            <p>Blog del team AzureCAT</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- SQL CAT blog -->
-    <li>
-        <a href="https://blogs.msdn.microsoft.com/sqlcat/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/sqlcat.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Team di consulenza clienti di SQL Server</h3>
-                            <p>Blog del team SQLCAT</p>
                         </div>
                     </div>
                 </div>
