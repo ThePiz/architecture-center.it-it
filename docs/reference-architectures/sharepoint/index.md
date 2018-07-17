@@ -2,13 +2,13 @@
 title: Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 description: Procedure consolidate per la configurazione di una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 author: njray
-ms.date: 08/01/2017
-ms.openlocfilehash: d1e3f0b73c94844ac649bf2abb6917809202fdb7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.date: 07/14/2018
+ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270123"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060898"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 
@@ -18,7 +18,7 @@ Questa architettura di riferimento mostra una serie di procedure comprovate per 
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 Questa architettura si basa su quella illustrata in [Eseguire macchine virtuali Windows per un'applicazione a più livelli][windows-n-tier]. Distribuisce una farm di SharePoint Server 2016 a disponibilità elevata all'interno di una rete virtuale Azure. Questa architettura è adatta a un ambiente di test o di produzione, a un'infrastruttura ibrida SharePoint con Office 365 o come base per uno scenario di ripristino di emergenza.
 
@@ -38,7 +38,9 @@ Questa architettura è costituita dai componenti seguenti:
 
 - **Gateway**. Il gateway fornisce una connessione tra la rete virtuale di Azure e la rete locale. La connessione può usare ExpressRoute o la VPN da sito a sito. Per altre informazioni, vedere [Connect an on-premises network to Azure][hybrid-ra] (Connettere una rete locale ad Azure).
 
-- **Controller di dominio di Windows Server Active Directory (AD)**. SharePoint Server 2016 non supporta l'utilizzo di Azure Active Directory Domain Services ed è quindi necessario distribuire i controller di dominio di Windows Server AD. Questi controller di dominio vengono eseguiti nella rete virtuale di Azure e hanno una relazione di trust con la foresta di Windows Server AD locale. Le richieste Web dei client per le risorse della farm di SharePoint vengono autenticate nella rete virtuale, anziché inviare questo traffico di autenticazione attraverso la connessione del gateway alla rete locale. In DNS, i record Intranet A o CNAME vengono creati in modo che gli utenti della Intranet possano risolvere il nome della farm di SharePoint all'indirizzo IP privato del bilanciamento del carico interno.
+- **Controller di dominio di Windows Server Active Directory (AD)**. Questa architettura di riferimento distribuisce i controller di dominio AD di Windows Server. Questi controller di dominio vengono eseguiti nella rete virtuale di Azure e hanno una relazione di trust con la foresta di Windows Server AD locale. Le richieste Web dei client per le risorse della farm di SharePoint vengono autenticate nella rete virtuale, anziché inviare questo traffico di autenticazione attraverso la connessione del gateway alla rete locale. In DNS, i record Intranet A o CNAME vengono creati in modo che gli utenti della Intranet possano risolvere il nome della farm di SharePoint all'indirizzo IP privato del bilanciamento del carico interno.
+
+  SharePoint Server 2016 supporta anche l'uso di [Azure Active Directory Domain Services](/azure/active-directory-domain-services/). Azure AD Domain Services fornisce servizi di dominio gestiti, per non dover distribuire e gestire controller di dominio in Azure.
 
 - **Gruppo di disponibilità Always On di SQL Server**. Per la disponibilità elevata del database SQL Server è consigliabile usare i [gruppi di disponibilità Always On di SQL Server][sql-always-on]. Per SQL Server vengono usate due macchine virtuali. Una contiene la replica di database primaria e l'altra contiene la replica secondaria. 
 
@@ -48,7 +50,7 @@ Questa architettura è costituita dai componenti seguenti:
 
 - **Jumpbox**. detto anche [bastion host][bastion-host]. È una macchina virtuale sicura in rete che viene usata dagli amministratori per connettersi alle altre macchine virtuali. Il jumpbox ha un gruppo di sicurezza di rete che consente il traffico remoto solo da indirizzi IP pubblici inclusi in un elenco di indirizzi attendibili. L'NSG dovrebbe consentire il traffico RDP (Remote Desktop Protocol).
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Usare queste indicazioni come punto di partenza.
 
@@ -170,78 +172,104 @@ Inoltre è sempre consigliabile pianificare la protezione avanzata della sicurez
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Gli script di distribuzione per questa architettura di riferimento è disponibile in [GitHub][github]. 
+Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github]. Il completamento dell'intera distribuzione può richiedere alcune ore.
 
-È possibile distribuire questa architettura in modo incrementale o in una sola volta. La prima volta è consigliabile usare una distribuzione incrementale, che consenta di esaminare ogni singolo passaggio di distribuzione. Specificare l'incremento usando uno dei seguenti parametri *mode*.
+La distribuzione crea i seguenti gruppi di risorse nella sottoscrizione:
 
-| Mode           | Risultato                                                                                                            |
-|----------------|-------------------------------------------------------------------------------------------------------------------------|
-| onprem         | (Facoltativo) Distribuisce un ambiente di rete locale simulato ai fini di test o di valutazione. Questo passaggio non implica la connessione a una rete locale effettiva. |
-| infrastructure | Distribuisce l'infrastruttura di rete SharePoint 2016 e il jumpbox in Azure.                                                |
-| createvpn      | Distribuisce un gateway di rete virtuale per le reti locali e SharePoint e le connette. Eseguire questo passaggio solo se è stato eseguito il passaggio `onprem`.                |
-| workload       | Distribuisce i server SharePoint nella rete SharePoint.                                                               |
-| security       | Distribuisce il gruppo di sicurezza di rete nella rete SharePoint.                                                           |
-| tutti            | Implementa tutte le distribuzioni precedenti.                            
+- ra-onprem-sp2016-rg
+- ra-sp2016-network-rg
 
+I file parametro di modello fanno riferimento a questi nomi; pertanto, se questi vengono modificati, aggiornare i file parametro in modo che corrispondano. 
 
-Per distribuire l'architettura in modo incrementale con un ambiente di rete locale simulato, eseguire i passaggi seguenti nell'ordine:
-
-1. onprem
-2. infrastructure
-3. createvpn
-4. workload
-5. security
-
-Per distribuire l'architettura in modo incrementale senza un ambiente di rete locale simulato, eseguire i passaggi seguenti nell'ordine:
-
-1. infrastructure
-2. workload
-3. security
-
-Per distribuire tutti gli elementi in un unico passaggio, usare `all`. Si noti che l'intero processo potrebbe richiedere diverse ore.
+I file dei parametri comprendono una password hardcoded in diverse posizioni. Modificare questi valori prima di eseguire la distribuzione.
 
 ### <a name="prerequisites"></a>prerequisiti
 
-* Installare la versione più recente di [Azure PowerShell][azure-ps].
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-* Prima di distribuire questa architettura di riferimento, verificare che la sottoscrizione disponga di una quota sufficiente di almeno 38 core. In caso contrario, usare il portale di Azure per inviare una richiesta di supporto per aumentare la quota.
+### <a name="deploy-the-solution"></a>Distribuire la soluzione 
 
-* Per stimare il costo di questa distribuzione, vedere il [Calcolatore dei prezzi di Azure][azure-pricing].
+1. Eseguire il comando seguente per distribuire una rete locale simulata.
 
-### <a name="deploy-the-reference-architecture"></a>Distribuire l'architettura di riferimento
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p onprem.json --deploy
+    ```
 
-1.  Scaricare o clonare il [repository GitHub][github] nel computer locale.
+2. Eseguire il comando seguente per distribuire la rete virtuale di Azure e il gateway VPN.
 
-2.  Aprire una finestra di PowerShell e passare alla cartella `/sharepoint/sharepoint-2016`.
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p connections.json --deploy
+    ```
 
-3.  Eseguire il comando di PowerShell seguente. Per \<subscription id\> usare l'ID della sottoscrizione di Azure. Per \<location\> specificare un'area di Azure, come `eastus` o `westus`. Per \<mode\> specificare `onprem`, `infrastructure`, `createvpn`, `workload`, `security` o `all`.
+3. Eseguire il comando seguente per distribuire il jumpbox, i controller di dominio di AD e le VM di SQL Server.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
+    ```
+
+4. Eseguire il comando seguente per creare il cluster di failover e il gruppo di disponibilità. 
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure2-cluster.json --deploy
+
+5. Run the following command to deploy the remaining VMs.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
+    ```
+
+A questo punto, assicurarsi che sia possibile stabilire una connessione TCP dal front-end Web al servizio di bilanciamento del carico per il gruppo di disponibilità AlwaysOn di SQL Server. A questo scopo, seguire questa procedura:
+
+1. Usare il portale di Azure per trovare la macchina virtuale denominata `ra-sp-jb-vm1` nel gruppo di risorse `ra-sp2016-network-rg`. Questa è la VM del jumpbox.
+
+2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Usare la password specificata nel file parametro `azure1.json`.
+
+3. Dalla sessione di Desktop remoto accedere a 10.0.5.4. Si tratta dell'indirizzo IP della macchina virtuale denominata `ra-sp-app-vm1`.
+
+4. Aprire una console PowerShell nella VM e usare il cmdlet `Test-NetConnection` per verificare la possibilità di connettersi al servizio di bilanciamento del carico.
 
     ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
-    ```   
-4. Quando richiesto, accedere all'account di Azure. Gli script di distribuzione possono richiedere diverse ore per essere completati, a seconda della modalità selezionata.
+    Test-NetConnection 10.0.3.100 -Port 1433
+    ```
 
-5. Al termine della distribuzione eseguire gli script per configurare i gruppi di disponibilità Always On di SQL Server. Per informazioni dettagliate, vedere il file [Leggimi][readme].
+L'output dovrebbe essere simile al seguente:
 
-> [!WARNING]
-> I file dei parametri comprendono una password hardcoded (`AweS0me@PW`) in diverse posizioni. Modificare questi valori prima di eseguire la distribuzione.
+```powershell
+ComputerName     : 10.0.3.100
+RemoteAddress    : 10.0.3.100
+RemotePort       : 1433
+InterfaceAlias   : Ethernet 3
+SourceAddress    : 10.0.0.132
+TcpTestSucceeded : True
+```
 
+In caso di errore, usare il portale di Azure per riavviare la VM denominata `ra-sp-sql-vm2`. Dopo il riavvio della macchina virtuale, eseguire di nuovo il comando `Test-NetConnection`. Potrebbe essere necessario attendere circa un minuto dopo il riavvio della VM prima che venga stabilita la connessione. 
 
-## <a name="validate-the-deployment"></a>Convalidare la distribuzione
+Completare quindi la distribuzione come indicato di seguito.
 
-Dopo avere distribuito l'architettura di riferimento, i gruppi di risorse seguenti vengono elencati sotto la sottoscrizione usata:
+1. Eseguire il comando seguente per distribuire il nodo primario della farm di SharePoint.
 
-| Gruppo di risorse        | Scopo                                                                                         |
-|-----------------------|-------------------------------------------------------------------------------------------------|
-| ra-onprem-sp2016-rg   | La rete locale simulata con Active Directory, federata con la rete di SharePoint 2016 |
-| ra-sp2016-network-rg  | Infrastruttura per supportare la distribuzione di SharePoint                                                 |
-| ra-sp2016-workload-rg | Le risorse SharePoint e di supporto                                                             |
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure4-sharepoint-server.json --deploy
+    ```
 
-### <a name="validate-access-to-the-sharepoint-site-from-the-on-premises-network"></a>Convalidare l'accesso al sito SharePoint dalla rete locale
+2. Eseguire il comando seguente per distribuire la cache, le funzionalità di ricerca e il Web di SharePoint.
 
-1. Nel [portale di Azure][azure-portal] in **Gruppi di risorse** selezionare il gruppo di risorse `ra-onprem-sp2016-rg`.
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure5-sharepoint-farm.json --deploy
+    ```
 
-2. Nell'elenco di risorse selezionare la risorsa di macchina virtuale denominata `ra-adds-user-vm1`. 
+3. Eseguire il comando seguente per creare le regole del gruppo di sicurezza di rete.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure6-security.json --deploy
+    ```
+
+### <a name="validate-the-deployment"></a>Convalidare la distribuzione
+
+1. Nel [portale di Azure][azure-portal] passare al gruppo di risorse `ra-onprem-sp2016-rg`.
+
+2. Nell'elenco di risorse selezionare la risorsa di macchina virtuale denominata `ra-onpr-u-vm1`. 
 
 3. Connettersi alla macchina virtuale, come descritto in [Connettersi alla macchina virtuale][connect-to-vm]. Il nome utente è `\onpremuser`.
 
@@ -250,38 +278,6 @@ Dopo avere distribuito l'architettura di riferimento, i gruppi di risorse seguen
 6.  Nella casella **Sicurezza di Windows** accedere al portale di SharePoint usando `contoso.local\testuser` per il nome utente.
 
 Questo accesso crea un tunnel dal dominio Fabrikam.com usato dalla rete locale al dominio contoso.local usato dal portale SharePoint. Quando si apre il sito di SharePoint, verrà visualizzato il sito demo radice.
-
-### <a name="validate-jumpbox-access-to-vms-and-check-configuration-settings"></a>Convalidare l'accesso jumpbox alle macchine virtuali e verificare le impostazioni di configurazione
-
-1.  Nel [portale di Azure][azure-portal] in **Gruppi di risorse** selezionare il gruppo di risorse `ra-sp2016-network-rg`.
-
-2.  Nell'elenco di risorse selezionare la risorsa di macchina virtuale denominata `ra-sp2016-jb-vm1`, ovvero il jumpbox.
-
-3. Connettersi alla macchina virtuale, come descritto in [Connettersi alla macchina virtuale][connect-to-vm]. Il nome utente è `testuser`.
-
-4.  Dopo l'accesso al jumpbox aprire una sessione RDP dal jumpbox. Connettersi ad altre macchine virtuali nella rete virtuale. Il nome utente è `testuser`. È possibile ignorare l'avviso sul certificato di protezione del computer remoto.
-
-5.  Quando si apre la connessione remota alla macchina virtuale, verificare la configurazione e apportare le modifiche usando gli strumenti di amministrazione, ad esempio Server Manager.
-
-La tabella seguente mostra le macchine virtuali distribuite. 
-
-| Nome risorsa      | Scopo                                   | Gruppo di risorse        | Nome macchina virtuale                       |
-|--------------------|-------------------------------------------|-----------------------|-------------------------------|
-| Ra-sp2016-ad-vm1   | Active Directory + DNS                    | Ra-sp2016-network-rg  | Ad1.contoso.local             |
-| Ra-sp2016-ad-vm2   | Active Directory + DNS                    | Ra-sp2016-network-rg  | Ad2.contoso.local             |
-| Ra-sp2016-fsw-vm1  | SharePoint                                | Ra-sp2016-network-rg  | Fsw1.contoso.local            |
-| Ra-sp2016-jb-vm1   | Jumpbox                                   | Ra-sp2016-network-rg  | Jb (usare un indirizzo IP pubblico per l'accesso) |
-| Ra-sp2016-sql-vm1  | SQL Always On - Failover                  | Ra-sp2016-network-rg  | Sq1.contoso.local             |
-| Ra-sp2016-sql-vm2  | SQL Always On - Primario                   | Ra-sp2016-network-rg  | Sq2.contoso.local             |
-| Ra-sp2016-app-vm1  | MinRole applicazione SharePoint 2016       | Ra-sp2016-workload-rg | App1.contoso.local            |
-| Ra-sp2016-app-vm2  | MinRole applicazione SharePoint 2016       | Ra-sp2016-workload-rg | App2.contoso.local            |
-| Ra-sp2016-dch-vm1  | MinRole cache distribuita SharePoint 2016 | Ra-sp2016-workload-rg | Dch1.contoso.local            |
-| Ra-sp2016-dch-vm2  | MinRole cache distribuita SharePoint 2016 | Ra-sp2016-workload-rg | Dch2.contoso.local            |
-| Ra-sp2016-srch-vm1 | MinRole ricerca SharePoint 2016            | Ra-sp2016-workload-rg | Srch1.contoso.local           |
-| Ra-sp2016-srch-vm2 | MinRole ricerca SharePoint 2016            | Ra-sp2016-workload-rg | Srch2.contoso.local           |
-| Ra-sp2016-wfe-vm1  | MinRole front end Web SharePoint 2016     | Ra-sp2016-workload-rg | Wfe1.contoso.local            |
-| Ra-sp2016-wfe-vm2  | MinRole front end Web SharePoint 2016     | Ra-sp2016-workload-rg | Wfe2.contoso.local            |
-
 
 **_Collaboratori di questa architettura di riferimento_**&mdash; Joe Davies, Bob Fox, Neil Hodgkinson e Paul Stork
 
