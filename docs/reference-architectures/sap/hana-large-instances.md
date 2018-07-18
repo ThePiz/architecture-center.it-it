@@ -3,18 +3,20 @@ title: Eseguire SAP HANA in istanze Large di Azure
 description: Procedure consolidate per l'esecuzione di SAP HANA in un ambiente a disponibilità elevata in istanze Large di Azure.
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: 7605fa8a0012aaef3f7323c6f88614b640152e3b
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 746161ac51335af5c48a559830d6e0345dcfb7b1
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423059"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864522"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Eseguire SAP HANA in istanze Large di Azure
 
 Questa architettura di riferimento mostra un set di procedure consolidate per l'esecuzione di SAP HANA in Azure (istanze Large) con disponibilità elevata e ripristino di emergenza. Questa offerta, definita istanze Large di HANA, viene distribuita in server fisici nelle aree di Azure. 
 
 ![0][0]
+
+*Scaricare un [file Visio][visio-download] di questa architettura.*
 
 > [!NOTE]
 > La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft.
@@ -96,8 +98,7 @@ Se si dispone già di distribuzioni SAP, SAP fornisce report utilizzabili per co
 
 La ridondanza delle risorse è il tema generale nelle soluzioni di infrastruttura a disponibilità elevata. Per le organizzazioni che hanno contratti di servizio meno rigorosi, le macchine virtuali di Azure a istanza singola offrono un contratto di servizio per il tempo di attività. Per altre informazioni, vedere [Contratti di servizio di Azure](https://azure.microsoft.com/support/legal/sla/).
 
-Per progettare e implementare una corretta strategia di [disponibilità elevata e ripristino di emergenza][hli-hadr], collaborare con SAP, con l'integratore di sistemi di fiducia o con Microsoft. Questa architettura segue il [
-Contratto di servizio][sla] di Azure per HANA in Azure (istanze Large). Per valutare i propri requisiti di disponibilità, prendere in considerazione tutti i singoli punti di guasto, il livello desiderato di tempo di attività per i servizi e queste metriche comuni:
+Per progettare e implementare una corretta strategia di [disponibilità elevata e ripristino di emergenza][hli-hadr], collaborare con SAP, con l'integratore di sistemi di fiducia o con Microsoft. Questa architettura rispetta il [contratto di servizio][sla] di Azure per HANA in Azure (istanze Large). Per valutare i propri requisiti di disponibilità, prendere in considerazione tutti i singoli punti di guasto, il livello desiderato di tempo di attività per i servizi e queste metriche comuni:
 
 - Obiettivo tempo di ripristino (RTO) indica il tempo durante il quale il server di istanze Large di HANA non è disponibile.
 
@@ -202,3 +203,5 @@ Le community possono rispondere alle domande ed essere utili per configurare cor
 [type]: /azure/virtual-machines/workloads/sap/hana-installation
 [vnet]: /azure/virtual-network/virtual-networks-overview
 [0]: ./images/sap-hana-large-instances.png "Architettura di SAP HANA mediante le istanze Large di Azure"
+
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

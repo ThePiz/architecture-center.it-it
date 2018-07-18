@@ -4,12 +4,12 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 77cf5d90373da2118d34301bd5c790080d3cf63f
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327688"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843627"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -383,7 +383,7 @@ Quando si usa il bus di servizio, tenere presente le linee guida seguenti:
 \* Non è incluso l'ulteriore intervallo aggiunto se viene restituita una risposta di server occupato.
 
 ### <a name="telemetry"></a>Telemetria
-Il bus di servizio registra i tentativi come eventi ETW tramite un oggetto **EventSource**. È necessario associare un **EventListener** all'origine eventi per acquisire gli eventi e visualizzarli nel visualizzatore delle prestazioni o scriverli in un log di destinazione appropriato. A questo scopo, è possibile usare il [blocco applicativo di registrazione semantica](http://msdn.microsoft.com/library/dn775006.aspx) . Gli eventi di ripetizione dei tentativi sono caratterizzati dal formato seguente:
+Il bus di servizio registra i tentativi come eventi ETW tramite un oggetto **EventSource**. È necessario associare un **EventListener** all'origine eventi per acquisire gli eventi e visualizzarli nel visualizzatore delle prestazioni o scriverli in un log di destinazione appropriato. Gli eventi di ripetizione dei tentativi sono caratterizzati dal formato seguente:
 
 ```text
 Microsoft-ServiceBus-Client/RetryPolicyIteration
@@ -985,8 +985,8 @@ namespace RetryCodeSamples
 Quando si accede a servizi di Azure o di terze parti, tenere presente quanto segue:
 
 * Usare un approccio sistematico per gestire la ripetizione di tentativi, ad esempio sotto forma di codice riusabile, in modo da poter applicare una metodologia coerente tra tutti i client e le soluzioni.
-* Valutare la possibilità di usare un framework di ripetizione dei tentativi, come il Blocco di applicazioni per la gestione degli errori temporanei, per gestire la ripetizione di tentativi se il client o il servizio di destinazione non dispone di un meccanismo di ripetizione dei tentativi incorporato. In questo modo, sarà possibile implementare un comportamento coerente per la gestione dei nuovi tentativi e usufruire di un'adeguata strategia di ripetizione dei tentativi predefinita per il servizio di destinazione. Potrebbe essere necessario, tuttavia, creare un codice di ripetizione dei tentativi personalizzato per i servizi che presentano un comportamento non standard, ovvero non basato sulle eccezioni per stabilire gli errori temporanei, oppure se si desidera usare un metodo **Retry-Response** per gestire il comportamento di ripetizione dei tentativi.
-* La logica di rilevamento degli errori temporanei dipenderà dall'API client effettiva usata per richiamare le chiamate REST. Alcuni client, ad esempio la nuova classe **HttpClient** , non genereranno eccezioni per le richieste completate con un codice di stato HTTP di errore. In questo modo, le prestazioni risulteranno migliorate ma non sarà possibile usare il Blocco di applicazioni per la gestione degli errori temporanei. Una soluzione potrebbe essere quella di eseguire il wrapping della chiamata all'API REST con un codice che genera eccezioni per i codici di stato HTTP di errore, che verrebbero quindi elaborati dal blocco. In alternativa, è possibile usare un meccanismo diverso per la gestione dei nuovi tentativi.
+* Valutare la possibilità di usare un framework di ripetizione dei tentativi come [Polly][polly] per gestire la ripetizione di tentativi se nel client o nel servizio di destinazione non è incorporato un meccanismo di ripetizione dei tentativi. In questo modo, sarà possibile implementare un comportamento coerente per la gestione dei nuovi tentativi e usufruire di un'adeguata strategia di ripetizione dei tentativi predefinita per il servizio di destinazione. Potrebbe essere necessario, tuttavia, creare un codice di ripetizione dei tentativi personalizzato per i servizi che presentano un comportamento non standard, ovvero non basato sulle eccezioni per stabilire gli errori temporanei, oppure se si desidera usare un metodo **Retry-Response** per gestire il comportamento di ripetizione dei tentativi.
+* La logica di rilevamento degli errori temporanei dipenderà dall'API client effettiva usata per richiamare le chiamate REST. Alcuni client, ad esempio la nuova classe **HttpClient** , non genereranno eccezioni per le richieste completate con un codice di stato HTTP di errore. 
 * Il codice di stato HTTP restituito dal servizio consente di stabilire se l'errore è temporaneo. È possibile che sia necessario esaminare le eccezioni generate da un client o dal framework di ripetizione dei tentativi per accedere al codice di stato o determinare il tipo di eccezione equivalente. I seguenti codici HTTP indicano, in genere, che è opportuno eseguire un nuovo tentativo:
   * 408 - Timeout richiesta
   * 429 - Numero eccessivo di richieste
@@ -999,7 +999,7 @@ Quando si accede a servizi di Azure o di terze parti, tenere presente quanto seg
   * WebExceptionStatus.ConnectFailure
   * WebExceptionStatus.Timeout
   * WebExceptionStatus.RequestCanceled
-* In caso di stato non disponibile di un servizio, l'intervallo di tempo appropriato prima di un nuovo tentativo può essere riportato nell'intestazione della risposta **Retry-After** o in un'altra intestazione personalizzata del servizio. Alcuni servizi possono anche inviare informazioni aggiuntive come intestazioni personalizzate o incorporate nel contenuto della risposta. Il Blocco di applicazioni per la gestione degli errori temporanei non può usare intestazioni "retry-after" standard o personalizzate.
+* In caso di stato non disponibile di un servizio, l'intervallo di tempo appropriato prima di un nuovo tentativo può essere riportato nell'intestazione della risposta **Retry-After** o in un'altra intestazione personalizzata del servizio. Alcuni servizi possono anche inviare informazioni aggiuntive come intestazioni personalizzate o incorporate nel contenuto della risposta. 
 * Non eseguire nuovi tentativi in caso di codici di stato che rappresentano errori client (errori nell'intervallo 4xx), ad eccezione di 408 - Timeout richiesta.
 * Verificare accuratamente le strategie e i meccanismi di ripetizione dei tentativi in condizioni diverse, ad esempio in vari stati di rete e carichi di sistema.
 
