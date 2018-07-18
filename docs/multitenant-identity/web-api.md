@@ -6,16 +6,16 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: 65529280c5849e36ed7ff23de08a0b485034d0d8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 2d02ff7be04c6ebec888039453fe1ac7e957b301
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541466"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843675"
 ---
 # <a name="secure-a-backend-web-api"></a>Proteggere un'API Web back-end
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 L'applicazione [Tailspin Surveys] usa un'API Web back-end per gestire le operazioni CRUD nei sondaggi. Ad esempio, quando un utente fa clic su "My Surveys" l'applicazione Web invia una richiesta HTTP all'API Web:
 
@@ -68,7 +68,7 @@ L'applicazione Tailspin implementa l'identità utente delegato. Le principali di
 In entrambi gli approcci, l'applicazione Web deve ottenere un token di accesso che corrisponde alle credenziali necessarie per chiamare l'API Web.
 
 * Per l'identità utente delegato il token deve provenire da IDP, in grado di rilasciare un token per conto dell'utente.
-* Per le credenziali client, un'applicazione può ottenere il token da IDP oppure ospitare il proprio token server. Tuttavia, non scrivere un token server da zero: usare un framework ben collaudato, ad esempio [IdentityServer3]. Se si esegue l'autenticazione con Azure AD, è consigliabile ottenere il token di accesso da Azure AD, anche con il flusso di credenziali del client.
+* Per le credenziali client, un'applicazione può ottenere il token da IDP oppure ospitare il proprio token server. Non scrivere però un server di token da zero. Usare un framework ben collaudato come [IdentityServer4]. Se si esegue l'autenticazione con Azure AD, è consigliabile ottenere il token di accesso da Azure AD, anche con il flusso di credenziali del client.
 
 Il resto di questo articolo presuppone l'autenticazione dell'applicazione con Azure AD.
 
@@ -79,7 +79,7 @@ Per consentire ad Azure AD di emettere un token di connessione per l'API Web, è
 
 1. Registrare l'API Web in Azure AD.
 
-2. Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` . Vedere l'articolo su come [aggiornare i manifesti delle applicazioni].
+2. Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` . Vedere l'articolo su come [Aggiornare i manifesti dell'applicazione].
 
 3. Autorizzare l'applicazione Web a chiamare l'API Web. Nel portale di gestione di Microsoft Azure è possibile impostare due tipi di autorizzazioni: "Autorizzazioni applicazione" per l'identità dell'applicazione (flusso di credenziali client) o "Autorizzazioni delegate" per l'identità utente delegato.
    
@@ -271,10 +271,10 @@ public void ConfigureServices(IServiceCollection services)
 [JwtBearer]: https://www.nuget.org/packages/Microsoft.AspNet.Authentication.JwtBearer
 
 [Tailspin Surveys]: tailspin.md
-[IdentityServer3]: https://github.com/IdentityServer/IdentityServer3
-[aggiornare i manifesti delle applicazioni]: ./run-the-app.md#update-the-application-manifests
-[memorizzazione nella cache dei token]: token-cache.md
-[iscrizione del tenant]: signup.md
+[IdentityServer4]: https://github.com/IdentityServer/IdentityServer4
+[Aggiornare i manifesti dell'applicazione]: ./run-the-app.md#update-the-application-manifests
+[Memorizzazione nella cache dei token]: token-cache.md
+[Iscrizione del tenant]: signup.md
 [claims-transformation]: claims.md#claims-transformations
 [Authorization]: authorize.md
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

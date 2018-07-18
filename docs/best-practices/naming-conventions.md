@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206379"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864556"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -122,7 +122,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 
 ## <a name="organize-resources-with-tags"></a>Organizza le risorse con i tag
 
-Azure Resource Manager supporta l'aggiunta di tag alle entità con stringhe di testo arbitrario per identificare il contesto e semplificare l'automazione.  Ad esempio, un tag `"sqlVersion: "sql2014ee"` può identificare tutte le macchine virtuali in una distribuzione che esegue SQL Server 2014 Enterprise Edition per eseguire uno script automatizzato su di esse.  I tag devono essere usati per ottimizzare e migliorare il contesto unitamente alle convenzioni di denominazione scelte.
+Azure Resource Manager supporta l'aggiunta di tag alle entità con stringhe di testo arbitrario per identificare il contesto e semplificare l'automazione.  Il tag `"sqlVersion"="sql2014ee"`, ad esempio, potrebbe identificare le VM che eseguono SQL Server 2014 Enterprise Edition. I tag devono essere usati per ottimizzare e migliorare il contesto unitamente alle convenzioni di denominazione scelte.
 
 > [!TIP]
 > Un altro vantaggio di tag è che si estendono ai gruppi di risorse e quindi consentono di collegare e mettere in correlazione le entità tra le diverse distribuzioni.
