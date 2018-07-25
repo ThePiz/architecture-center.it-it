@@ -14,12 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: rodend;karlku;tomfitz
-ms.openlocfilehash: 8bc2ed253b951ea04eb25b76f67dcc2092dc94ad
-ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
+ms.openlocfilehash: b0c92667cc7f4cb2349cd87275c0ce63f2604978
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/17/2018
-ms.locfileid: "34299917"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987751"
 ---
 # <a name="azure-enterprise-scaffold---prescriptive-subscription-governance"></a>Scaffold Azure enterprise: governance prescrittiva per le sottoscrizioni
 Le organizzazioni stanno adottando sempre di più il cloud pubblico per la sua agilità e la sua flessibilità. Usano i punti di forza del cloud per generare ricavi o ottimizzare le risorse per l'azienda. Microsoft Azure fornisce numerosi servizi che le organizzazioni possono assemblare come blocchi predefiniti per affrontare le esigenze di una vasta gamma di applicazioni e carichi di lavoro. 
@@ -140,6 +140,21 @@ Per visualizzare il funzionamento dell'ambiente, è necessario controllare l'att
 
 I log attività da distribuzioni Resource Manager consentono di determinare le **operazioni** che hanno avuto luogo e chi le ha eseguite. I log attività possono essere raccolti e aggregati tramite  strumenti quali Log Analytics.
 
+
+## <a name="resource-group"></a>Gruppo di risorse
+Resource Manager consente di inserire le risorse in gruppi significativi per gestione, fatturazione o affinità naturale. Come accennato in precedenza, Azure offre due modelli di distribuzione. Nel modello di distribuzione classica, quello precedente, l'unità di base per la gestione era la sottoscrizione. Era difficile suddividere le risorse all'interno di una sottoscrizione e questo comportava la creazione di un numero elevato di sottoscrizioni. Con il modello di Resource Manager, sono stati introdotti i gruppi di risorse. I gruppi di risorse sono contenitori di risorse che hanno un ciclo di vita comune o condividono un attributo, ad esempio "tutti i server SQL" o "Applicazione A".
+
+I gruppi di risorse non possono essere contenuti in un altro gruppo di risorse e le risorse possono appartenere a un solo gruppo di risorse. Determinate azioni possono essere applicate a tutte le risorse di un gruppo di risorse. Ad esempio, l'eliminazione di un gruppo di risorse comporta la rimozione di tutte le risorse all'interno del gruppo di risorse. In genere, un'intera applicazione o il sistema correlato vengono posizionati nello stesso gruppo di risorse. Ad esempio, un'applicazione a tre livelli denominata Applicazione Web Contoso conterrebbe il server Web, il server applicazioni e il server SQL nello stesso gruppo di risorse.
+
+> [!TIP]
+> La modalità di organizzazione dei gruppi di risorse può variare da carichi di lavoro di tipo "IT tradizionale" a carichi di lavoro di tipo "IT agile":
+> 
+> * I carichi di lavoro di tipo "IT tradizionale" sono più comunemente raggruppati in base agli elementi all'interno di uno stesso ciclo di vita, ad esempio un'applicazione. Il raggruppamento in base all'applicazione consente la gestione di singole applicazioni.
+> * I carichi di lavoro di tipo "IT agile" tendono a concentrarsi su applicazioni cloud orientate ai clienti esterni. I gruppi di risorse devono riflettere i livelli di distribuzione (ad esempio livello Web, un livello di app) e la gestione.
+> 
+> Conoscere il carico di lavoro aiuta a sviluppare una strategia di gruppo di risorse.
+
+
 ## <a name="resource-tags"></a>Tag delle risorse
 Man mano che gli utenti all'interno dell'organizzazione aggiungono risorse alla sottoscrizione, diventa sempre più importante associare le risorse al reparto, all'ambiente e ai clienti giusti. È possibile allegare metadati alle risorse tramite [tag](/azure/azure-resource-manager/resource-group-using-tags). Usare tag per fornire informazioni su risorsa o proprietario. I tag consentono non solo di aggregare e raggruppare le risorse in vari modi, ma anche di usare i dati a scopo di chargeback. È possibile assegnare tag alle risorse con un massimo di 15 coppie di chiave:valore. 
 
@@ -166,25 +181,14 @@ Per altri esempi di tag, vedere [Recommended Naming Conventions for Azure Resour
 > 
 > Questa strategia di assegnazione dei tag identifica all'interno delle sottoscrizioni quali metadati servono per azienda, finanze, sicurezza, gestione dei rischi e gestione globale dell'ambiente. 
 
-## <a name="resource-group"></a>Gruppo di risorse
-Resource Manager consente di inserire le risorse in gruppi significativi per gestione, fatturazione o affinità naturale. Come accennato in precedenza, Azure offre due modelli di distribuzione. Nel modello di distribuzione classica, quello precedente, l'unità di base per la gestione era la sottoscrizione. Era difficile suddividere le risorse all'interno di una sottoscrizione e questo comportava la creazione di un numero elevato di sottoscrizioni. Con il modello di Resource Manager, sono stati introdotti i gruppi di risorse. I gruppi di risorse sono contenitori di risorse che hanno un ciclo di vita comune o condividono un attributo, ad esempio "tutti i server SQL" o "Applicazione A".
 
-I gruppi di risorse non possono essere contenuti in un altro gruppo di risorse e le risorse possono appartenere a un solo gruppo di risorse. Determinate azioni possono essere applicate a tutte le risorse di un gruppo di risorse. Ad esempio, l'eliminazione di un gruppo di risorse comporta la rimozione di tutte le risorse all'interno del gruppo di risorse. In genere, un'intera applicazione o il sistema correlato vengono posizionati nello stesso gruppo di risorse. Ad esempio, un'applicazione a tre livelli denominata Applicazione Web Contoso conterrebbe il server Web, il server applicazioni e il server SQL nello stesso gruppo di risorse.
-
-> [!TIP]
-> La modalità di organizzazione dei gruppi di risorse può variare da carichi di lavoro di tipo "IT tradizionale" a carichi di lavoro di tipo "IT agile":
-> 
-> * I carichi di lavoro di tipo "IT tradizionale" sono più comunemente raggruppati in base agli elementi all'interno di uno stesso ciclo di vita, ad esempio un'applicazione. Il raggruppamento in base all'applicazione consente la gestione di singole applicazioni.
-> * I carichi di lavoro di tipo "IT agile" tendono a concentrarsi su applicazioni cloud orientate ai clienti esterni. I gruppi di risorse devono riflettere i livelli di distribuzione (ad esempio livello Web, un livello di app) e la gestione.
-> 
-> Conoscere il carico di lavoro aiuta a sviluppare una strategia di gruppo di risorse.
 
 ## <a name="role-based-access-control"></a>Controllo degli accessi in base al ruolo
 Probabilmente ci si sta domandando chi deve avere accesso alle risorse e come è possibile controllare tale accesso. È fondamentale consentire o impedire l'accesso al Portale di Azure e controllare l'accesso alle risorse del portale. 
 
 Quando Azure è stato originariamente rilasciato, i controlli degli accessi a una sottoscrizione erano elementari: Amministratore o Coamministratore. L'accesso a una sottoscrizione nel modello classico implicava l'accesso a tutte le risorse del portale. Questa mancanza di un controllo granulare ha portato alla proliferazione di sottoscrizioni per fornire un livello ragionevole di controllo degli accessi per un'iscrizione ad Azure.
 
-La proliferazione di sottoscrizioni non è più necessaria. Con il controllo degli accessi in base al ruolo, è possibile assegnare ruoli standard agli utenti (ad esempio tipi di ruoli comuni come "lettore" e "scrittore"). È inoltre possibile definire ruoli personalizzati.
+La proliferazione di sottoscrizioni non è più necessaria. Con il [controllo degli accessi in base al ruolo](/azure/role-based-access-control/overview) è possibile assegnare gli utenti a ruoli standard, come tipi comuni di ruoli di lettura e di scrittura. È inoltre possibile definire ruoli personalizzati.
 
 > [!TIP]
 > Per implementare il controllo degli accessi in base al ruolo:
@@ -229,7 +233,7 @@ Fra i ruoli predefiniti, solo a Proprietario e Amministratore Accesso utenti son
 > 
 > Questi suggerimenti aiutano a implementare risorse di rete sicure.
 
-### <a name="automation"></a>Automazione
+## <a name="automation"></a>Automazione
 La gestione singola delle risorse è sia dispendiosa in termini di tempo che potenzialmente soggetta a errori per certe operazioni. Azure offre varie funzionalità di automazione tra cui Automazione di Azure, App per la logica e Funzioni di Azure. [Automazione di Azure](/azure/automation/automation-intro) consente agli amministratori di creare e definire i runbook per gestire attività comuni nella gestione delle risorse. I runbook vengono creati attraverso un edito di codice PowerShell o un editor grafico. È possibile creare flussi di lavoro complessi in più fasi. Automazione di Azure è spesso usata per gestire attività comuni quali l'arresto di risorse inutilizzate o la creazione di risorse in risposta a un trigger specifico senza bisogno dell'intervento umano.
 
 > [!TIP]

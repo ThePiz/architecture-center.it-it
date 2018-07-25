@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864556"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987734"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -78,7 +78,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
-|Gruppo di risorse |Sottoscrizione |1-90 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura, parentesi, trattino e punto (tranne alla fine) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Gruppo di risorse |Sottoscrizione |1-90 |Non fa distinzione tra maiuscole e minuscole |Caratteri alfanumerici, di sottolineatura e Unicode, parentesi, trattino e punto (tranne alla fine) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Set di disponibilità |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |Entità associata |512 (nome), 256 (valore) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico |`"key" : "value"` |`"department" : "Central IT"` |
 

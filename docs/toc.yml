@@ -458,75 +458,46 @@
       items:
         - name: Panoramica
           href: cloud-adoption-guide/adoption-intro/overview.md
-        - name: Informazioni sugli elementi interni di Azure
+        - name: Informazioni sui meccanismi interni di Azure
           items:
-            - name: 'Spiegazione: Funzionamento di Azure'
+            - name: Funzionamento di Azure
               href: cloud-adoption-guide/adoption-intro/azure-explainer.md
-            - name: 'Spiegazione: Informazioni sulla governance delle risorse cloud'
+            - name: Informazioni sulla governance delle risorse cloud
               href: cloud-adoption-guide/adoption-intro/governance-explainer.md
-        - name: Informazioni sull'identità digitale in Azure
+        - name: Informazioni sulla governance dell'accesso alle risorse di Azure
           items:
-            - name: 'Spiegazione: Informazioni su un tenant di Azure Active Directory'
-              href: cloud-adoption-guide/adoption-intro/tenant-explainer.md
-            - name: 'Procedura: Ottenere un tenant di Azure Active Directory'
-              href: /azure/active-directory/develop/active-directory-howto-tenant
-              maintainContext: true
-            - name: 'Indicazioni: Struttura di un tenant di Azure AD'
-              href: cloud-adoption-guide/adoption-intro/tenant.md
-            - name: 'Procedura: Aggiungere un utente a un tenant di Azure AD'
-              href: /azure/active-directory/add-users-azure-active-directory
-              maintainContext: true
-        - name: Informazioni sulle sottoscrizioni di Azure
-          items:
-            - name: 'Spiegazione: Informazioni sulla sottoscrizione di Azure'
-              href: cloud-adoption-guide/adoption-intro/subscription-explainer.md
-            - name: 'Indicazioni: Struttura della sottoscrizione di Azure'
-              href: cloud-adoption-guide/adoption-intro/subscription.md
-        - name: Informazioni sulla gestione delle risorse in Azure
-          items:
-            - name: 'Spiegazione: Informazioni su Azure Resource Manager'
-              href: cloud-adoption-guide/adoption-intro/resource-manager-explainer.md
-            - name: 'Spiegazione: Informazioni sul gruppo di risorse di Azure'
-              href: cloud-adoption-guide/adoption-intro/resource-group-explainer.md
-            - name: 'Spiegazione: Informazioni sull''accesso alle risorse in Azure'
-              href: /azure/active-directory/active-directory-understanding-resource-access
-              maintainContext: true
-            - name: 'Procedura: Creare un gruppo di risorse con il portale'
-              href: /azure/azure-resource-manager/resource-group-portal
-              maintainContext: true
-            - name: 'Indicazioni: Struttura del gruppo di risorse'
-              href: cloud-adoption-guide/adoption-intro/resource-group.md
-            - name: 'Indicazioni: Convenzioni di denominazione delle risorse di Azure'
-              href: /azure/architecture/best-practices/naming-conventions
-              maintainContext: true
+            - name: Informazioni sulla gestione dell'accesso alle risorse in Azure
+              href: cloud-adoption-guide/adoption-intro/azure-resource-access.md
+            - name: Guida alla progettazione della governance di Azure
+              href: cloud-adoption-guide/adoption-intro/governance-how-to.md
         - name: Distribuzione di architetture di base in Azure
           items:
             - name: Architettura PaaS (Platform as a Service)
               items:
-                - name: 'Procedura: Come distribuire un''applicazione Web di base in Azure'
+                - name: Distribuire un'applicazione Web di base in Azure
                   href: /azure/app-service
                   maintainContext: true
-                - name: 'Indicazioni: Procedure consigliate per le applicazioni Web in Azure'
+                - name: Procedure consigliate per le applicazioni Web in Azure
                   href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app
                   maintainContext: true
             - name: 'Infrastruttura distribuita come servizio (IaaS, Infrastructure as a Service)'
               items:
-                - name: 'Spiegazione: Informazioni sulla rete virtuale di Azure'
+                - name: Informazioni sulla rete virtuale di Azure
                   href: /azure/virtual-network/virtual-networks-overview
                   maintainContext: true
-                - name: 'Procedura: Distribuire una rete virtuale in Azure'
+                - name: Distribuire una rete virtuale in Azure
                   href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal
                   maintainContext: true
-                - name: 'Procedura: Distribuire un singolo carico di lavoro IaaS di VM Windows in Azure'
+                - name: Distribuire un singolo carico di lavoro IaaS di VM Windows in Azure
                   href: /azure/virtual-machines/windows/quick-create-portal
                   maintainContext: true
-                - name: 'Indicazioni: Procedure consigliate per la distribuzione di una VM Windows in Azure'
+                - name: Procedure consigliate per la distribuzione di una VM Windows in Azure
                   href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm
                   maintainContext: true
-                - name: 'Procedura: Distribuire un singolo carico di lavoro IaaS di VM Linux in Azure'
+                - name: Distribuire un singolo carico di lavoro IaaS di VM Linux in Azure
                   href: /azure/virtual-machines/linux/quick-create-portal
                   maintainContext: true
-                - name: 'Indicazioni: Procedure consigliate per la distribuzione di una VM Linux in Azure'
+                - name: Procedure consigliate per la distribuzione di una VM Linux in Azure
                   href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm
                   maintainContext: true
     - name: Adozione di Azure intermedia

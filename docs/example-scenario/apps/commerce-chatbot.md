@@ -1,26 +1,26 @@
 ---
-title: Chatbot di conversazione di Azure per prenotazioni di hotel
-description: Soluzione collaudata per creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot, Servizi cognitivi e LUIS, un database SQL di Azure e Application Insights.
+title: Chatbot di conversazione per prenotazioni di hotel in Azure
+description: Scenario collaudato per creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot, Servizi cognitivi e LUIS, un database SQL di Azure e Application Insights.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 85bdc3194961bbbd8d89db34e5c56e4baa8d8599
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891329"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060864"
 ---
-# <a name="conversational-azure-chatbot-for-hotel-reservations"></a>Chatbot di conversazione di Azure per prenotazioni di hotel
+# <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Chatbot di conversazione per prenotazioni di hotel in Azure
 
-Questo scenario di esempio è applicabile ad aziende che devono integrare un chatbot di conversazione nelle applicazioni. In questa soluzione, un chatbot C# viene usato per una catena di hotel che consente ai clienti di controllare la disponibilità e prenotare l'alloggio tramite un'applicazione Web o per dispositivi mobili.
+Questo scenario di esempio è applicabile ad aziende che devono integrare un chatbot di conversazione nelle applicazioni. In questo scenario, un chatbot C# viene usato per una catena di hotel che consente ai clienti di controllare la disponibilità e prenotare l'alloggio tramite un'applicazione Web o per dispositivi mobili.
 
 Gli scenari di esempio includono la possibilità per i clienti di visualizzare la disponibilità in hotel e prenotare le camere, esaminare il menu da asporto di un ristorante e ordinare cibo oppure cercare fotografie e ordinarne le stampe. Generalmente le aziende devono assumere e formare rappresentanti del servizio clienti per soddisfare queste richieste, mentre i clienti devono attendere che ne sia disponibile uno per ottenere assistenza.
 
 Con servizi di Azure come il servizio Bot e Language Understanding o Speech API, le aziende possono assistere i clienti ed elaborare gli ordini o le prenotazioni con bot scalabili e automatizzati.
 
-## <a name="potential-use-cases"></a>Potenziali casi d'uso
+## <a name="related-use-cases"></a>Casi d'uso correlati
 
-Prendere in considerazione questa soluzione per i casi d'uso seguenti:
+Prendere in considerazione questo scenario per i casi d'uso seguenti:
 
 * Visualizzare il menu da asporto di un ristorante e ordinare cibo
 * Controllare la disponibilità in hotel e prenotare una camera
@@ -30,7 +30,7 @@ Prendere in considerazione questa soluzione per i casi d'uso seguenti:
 
 ![Panoramica dell'architettura dei componenti di Azure coinvolti in un chatbot di conversazione][architecture]
 
-Questa soluzione include un bot di conversazione che svolge le funzioni di un receptionist di un hotel. Il flusso dei dati attraverso la soluzione avviene come segue:
+Questo scenario include un bot di conversazione che svolge le funzioni di un receptionist di un hotel. Il flusso dei dati nello scenario avviene come segue:
 
 1. Il cliente accede al chatbot con un'app Web o per dispositivi mobili.
 2. L'utente viene autenticato con Azure Active Directory B2C (Business to Consumer).
@@ -58,19 +58,19 @@ Questa soluzione include un bot di conversazione che svolge le funzioni di un re
 
 ### <a name="availability"></a>Disponibilità
 
-Questa soluzione usa il database SQL di Azure per archiviare le prenotazioni dei clienti. Il servizio database SQL include database con ridondanza della zona, gruppi di failover e replica geografica. Per altre informazioni, vedere la sezione relativa alle [funzionalità per la disponibilità del database SQL di Azure][sqlavailability-docs].
+Questo scenario usa il database SQL di Azure per archiviare le prenotazioni dei clienti. Il servizio database SQL include database con ridondanza della zona, gruppi di failover e replica geografica. Per altre informazioni, vedere la sezione relativa alle [funzionalità per la disponibilità del database SQL di Azure][sqlavailability-docs].
 
-Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
+Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
 
 ### <a name="scalability"></a>Scalabilità
 
-Questa soluzione usa il servizio app di Azure. Con il servizio app, è possibile ridimensionare automaticamente il numero di istanze in cui viene eseguito il bot. Questa funzionalità consente di far fronte alla domanda dei clienti per l'applicazione Web e il chatbot. Per altre informazioni sul ridimensionamento automatico, vedere le [procedure consigliate per la scalabilità automatica][autoscaling] in Centro architetture.
+Questo scenario usa il servizio app di Azure. Con il servizio app, è possibile ridimensionare automaticamente il numero di istanze in cui viene eseguito il bot. Questa funzionalità consente di far fronte alla domanda dei clienti per l'applicazione Web e il chatbot. Per altre informazioni sul ridimensionamento automatico, vedere le [procedure consigliate per la scalabilità automatica][autoscaling] in Centro architetture.
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
 ### <a name="security"></a>Sicurezza
 
-Per l'autenticazione degli utenti, questa soluzione usa Azure Active Directory B2C (Business to Consumer). Con AAD B2C, il chatbot non archivia credenziali o informazioni riservate degli account dei clienti. Per altre informazioni, vedere la [panoramica di Azure Active Directory B2C][aadb2c-docs].
+Per l'autenticazione degli utenti, questo scenario usa Azure Active Directory B2C (Business to Consumer). Con AAD B2C, il chatbot non archivia credenziali o informazioni riservate degli account dei clienti. Per altre informazioni, vedere la [panoramica di Azure Active Directory B2C][aadb2c-docs].
 
 Alle informazioni archiviate nel database SQL di Azure viene applicata la crittografia dei dati inattivi con Transparent Data Encryption (TDE). Il database SQL offre anche Always Encrypted, che crittografa i dati durante l'esecuzione di query e l'elaborazione. Per altre informazioni sulla sicurezza del database SQL, vedere la sezione relativa a [sicurezza e conformità del database SQL di Azure][sqlsecurity-docs].
 
@@ -78,15 +78,15 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 ### <a name="resiliency"></a>Resilienza
 
-Questa soluzione usa il database SQL di Azure per archiviare le prenotazioni dei clienti. Il servizio database SQL include database con ridondanza della zona, gruppi di failover, replica geografica e backup automatici. Queste funzionalità consentono all'applicazione di rimanere in esecuzione in caso di interruzioni o eventi di manutenzione. Per altre informazioni, vedere la sezione relativa alle [funzionalità per la disponibilità del database SQL di Azure][sqlavailability-docs].
+Questo scenario usa il database SQL di Azure per archiviare le prenotazioni dei clienti. Il servizio database SQL include database con ridondanza della zona, gruppi di failover, replica geografica e backup automatici. Queste funzionalità consentono all'applicazione di rimanere in esecuzione in caso di interruzioni o eventi di manutenzione. Per altre informazioni, vedere la sezione relativa alle [funzionalità per la disponibilità del database SQL di Azure][sqlavailability-docs].
 
-Per monitorare l'integrità dell'applicazione, questa soluzione usa Application Insights. Con Application Insights, è possibile generare avvisi e rispondere a problemi di prestazioni che influirebbero sull'esperienza dei clienti e sulla disponibilità del chatbot. Per altre informazioni, vedere [Informazioni su Application Insights][appinsights-docs].
+Per monitorare l'integrità dell'applicazione, questo scenario usa Application Insights. Con Application Insights, è possibile generare avvisi e rispondere a problemi di prestazioni che influirebbero sull'esperienza dei clienti e sulla disponibilità del chatbot. Per altre informazioni, vedere [Informazioni su Application Insights][appinsights-docs].
 
 Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
 
-## <a name="deploy-the-solution"></a>Distribuire la soluzione
+## <a name="deploy-the-scenario"></a>Distribuire lo scenario
 
-Questa soluzione è suddivisa in tre componenti per consentire l'esplorazione delle aree di maggiore interesse:
+Questo scenario è suddiviso in tre componenti per consentire l'esplorazione delle aree di maggiore interesse:
 
 * [Componenti dell'infrastruttura](#deploy-infrastructure-components). Usare un modello di Azure Resource Manager per distribuire i componenti dell'infrastruttura di base di un servizio app, dell'app Web, di Application Insights, dell'account di archiviazione, di SQL Server e del database SQL.
 * [Chatbot per l'app Web](#deploy-web-app-chatbot). Usare l'interfaccia della riga di comando di Azure per distribuire un bot con il servizio Bot e l'app LUIS (Language Understanding Intelligent Service).
@@ -135,11 +135,11 @@ In GitHub è disponibile un'applicazione C# di esempio:
 
 * [Esempio C# Commerce Bot](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
 
-L'applicazione di esempio include i componenti di autenticazione di Azure Active Directory e l'integrazione con il componente LUIS (Language Understanding Intelligent Service) di Servizi cognitivi. L'applicazione richiede Visual Studio per la compilazione e la distribuzione della soluzione. Altre informazioni sulla configurazione di AAD B2C e dell'app LUIS sono disponibili nella documentazione del repository GitHub.
+L'applicazione di esempio include i componenti di autenticazione di Azure Active Directory e l'integrazione con il componente LUIS (Language Understanding Intelligent Service) di Servizi cognitivi. L'applicazione richiede Visual Studio per la creazione e la distribuzione dello scenario. Altre informazioni sulla configurazione di AAD B2C e dell'app LUIS sono disponibili nella documentazione del repository GitHub.
 
 ## <a name="pricing"></a>Prezzi
 
-Per esaminare il costo di esecuzione della soluzione, nel calcolatore dei costi sono preconfigurati tutti i servizi. Per verificare la variazione dei prezzi per un determinato caso d'uso, modificare le variabili appropriate in base al traffico previsto.
+Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi sono preconfigurati tutti i servizi. Per verificare la variazione dei prezzi per un determinato caso d'uso, modificare le variabili appropriate in base
 
 Sono stati definiti tre profili di costo di esempio in base alla quantità di messaggi che si prevede venga elaborata dal chatbot.
 
