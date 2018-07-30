@@ -1,20 +1,16 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: 3a667334be682e7e96c6dd30bd401a7e4c608108
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "31771687"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334267"
 ---
 # <a name="azure-application-architecture-guide"></a>Guida all'architettura delle applicazioni in Azure
 
 Questa guida presenta un approccio strutturato alla progettazione di applicazioni in Azure che assicurano disponibilità elevata, resilienza e scalabilità. È basata su procedure comprovate apprese nel corso delle interazioni con i clienti.
-
-<br/>
-
-<img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
 ## <a name="introduction"></a>Introduzione
 
@@ -62,8 +58,7 @@ Il primo punto di decisione è il più importante. Che stile di architettura si 
 
 Altre informazioni:
 
-- [Stili di architettura][arch-styles]
-- [Architetture di riferimento di Azure][ref-archs]
+- [Stili di architettura](./architecture-styles/index.md)
 
 ### <a name="technology-choices"></a>Scelte di tecnologia
 
@@ -80,36 +75,14 @@ Sono stati identificati i principi di progettazione generali che consentiranno d
 
 Altre informazioni:
 
-- [Principi di progettazione per le applicazioni Azure][design-principles]
-- [Procedure consigliate per lo sviluppo per il cloud][best-practices]
+- [Principi di progettazione](./design-principles/index.md)
+
 
 ### <a name="quality-pillars"></a>Concetti fondamentali per la qualità
 
 Un'applicazione cloud efficace è basata su cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza. Usare gli elenchi di controllo per la revisione dell'architettura per rivedere la progettazione in base a questi concetti fondamentali.
 
-Altre informazioni:
-
-- [Concetti fondamentali della qualità del software][pillars]
-- [Elenchi di controllo per l'analisi della progettazione][checklists] 
-
-### <a name="cloud-design-patterns"></a>Schemi progettuali per il cloud
-
-Gli schemi progettuali sono soluzioni generali per problemi comuni di progettazione del software. Sono stati identificati alcuni schemi progettuali che risultano particolarmente utili durante la progettazione di applicazioni distribuite per il cloud.
-
-Altre informazioni:
-
-- [Catalogo di schemi progettuali per il cloud](../patterns/index.md)
+- [Concetti fondamentali per la qualità](./pillars.md)
 
 
-[arch-styles]: ./architecture-styles/index.md
-[best-practices]: ../best-practices/index.md
-[checklists]: ../checklist/index.md
-[compute-options]: ./technology-choices/compute-comparison.md
-[design-principles]: ./design-principles/index.md
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
-[patterns]: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
-[pillars]: ./pillars.md
-[ref-archs]: ../reference-architectures/index.md
-[storage-options]: ./technology-choices/data-store-comparison.md
-[technology-choices]: ./technology-choices/index.md
-
