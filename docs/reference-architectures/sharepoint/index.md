@@ -3,12 +3,12 @@ title: Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in A
 description: Procedure consolidate per la configurazione di una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 author: njray
 ms.date: 07/14/2018
-ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 04c69309e9f96e3bf7cd7faabeedd9b6d9da1ebd
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060898"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334131"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 
@@ -66,19 +66,21 @@ La subnet per il gateway deve essere denominata *GatewaySubnet*. Assegnare lo sp
 
 ### <a name="vm-recommendations"></a>Indicazioni per le VM
 
-Questa architettura, basata sulle dimensioni della macchina virtuale Standard DSv2, richiede almeno 38 core:
+Questa architettura richiede un minimo di 44 core:
 
 - 8 server SharePoint su Standard_DS3_v2 (ognuno con 4 core) = 32 core
 - 2 controller di dominio Active Directory su Standard_DS1_v2 (ognuno con 1 core) = 2 core
-- 2 VM di SQL Server su Standard_DS1_v2 = 2 core
+- 2 VM SQL Server su Standard_DS3_v2 = 8 core
 - 1 maggioranza di nodi su Standard_DS1_v2 = 1 core
 - 1 server di gestione su Standard_DS1_v2 = 1 core
 
-Il numero totale di core dipenderà dalle dimensioni della macchina virtuale selezionate. Per altre informazioni, vedere [Indicazioni su SharePoint Server](#sharepoint-server-recommendations) di seguito.
-
 Assicurarsi che la sottoscrizione di Azure disponga di una quota di core sufficiente per la distribuzione; in caso contrario la distribuzione avrà esito negativo. Vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi][quotas]. 
+
+Per tutti i ruoli di SharePoint tranne l'indicizzatore di ricerca, è consigliabile usare la dimensione di macchina virtuale [Standard_DS3_v2][vm-sizes-general]. La dimensione dell'indicizzatore di ricerca deve essere almeno [Standard_DS13_v2] [ vm-sizes-memory]. Per i test, i file dei parametri per questa architettura di riferimento indicano la dimensione DS3_v2 più piccola per il ruolo di indicizzatore di ricerca. Per una distribuzione di produzione, aggiornare i file dei parametri per l'uso della dimensione DS13 o superiore. Per altre informazioni, vedere i [requisiti hardware e software per SharePoint Server 2016][sharepoint-reqs]. 
+
+Per le VM SQL Server è consigliabile un minimo di 4 core e 8 GB di RAM. I file dei parametri per questa architettura di riferimento indicano la dimensione DS3_v2. Per una distribuzione di produzione, potrebbe essere necessario specificare una dimensione di VM maggiore. Per altre informazioni, vedere [Pianificazione e configurazione dell'archiviazione e della capacità di SQL Server (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements). 
  
-### <a name="nsg-recommendations"></a>Indicazioni sui gruppi di sicurezza di rete
+### <a name="nsg-recommendations"></a>Consigli per i gruppi di sicurezza di rete
 
 È consigliabile disporre di un gruppo di sicurezza di rete per ogni subnet che include macchine virtuali per consentire l'isolamento delle subnet. Per configurare l'isolamento delle subnet, aggiungere regole dei gruppi di sicurezza di rete che definiscono il traffico in ingresso o in uscita consentito o negato per ogni subnet. Per altre informazioni, vedere [Filtrare il traffico di rete con gruppi di sicurezza di rete][virtual-networks-nsg]. 
 
@@ -109,18 +111,12 @@ Prima di configurare la farm di SharePoint, accertarsi che sia disponibile un ac
 - Account utente con privilegi avanzati per la cache
 - Account lettore con privilegi avanzati per la cache
 
-Per tutti i ruoli tranne l'indicizzatore di ricerca, è consigliabile usare la dimensione di macchina virtuale [Standard_DS3_v2][vm-sizes-general]. La dimensione dell'indicizzatore di ricerca deve essere almeno [Standard_DS13_v2] [ vm-sizes-memory]. 
-
-> [!NOTE]
-> Il modello di Resource Manager per questa architettura di riferimento usa in questo caso la dimensione DS3 più piccola per il test della distribuzione. Per una distribuzione in produzione usare la dimensione DS13 o una superiore. 
-
-Per i carichi di lavoro in produzione, vedere i [requisiti hardware e software per SharePoint Server 2016][sharepoint-reqs]. 
-
 Per soddisfare il requisito di supporto per la velocità effettiva del disco di almeno 200 MB al secondo, assicurarsi di pianificare l'architettura di ricerca. Vedere [Pianificare l'architettura di ricerca a livello aziendale in SharePoint Server 2013][sharepoint-search]. Seguire anche le istruzioni in [Best practices for crawling in SharePoint Server 2016][sharepoint-crawling] (Procedure consigliate per la ricerca per indicizzazione in SharePoint Server 2016).
 
 Inoltre è possibile archiviare i dati dei componenti di ricerca in una partizione o in un volume di archiviazione separato con prestazioni elevate. Per ridurre il carico e migliorare la velocità effettiva, configurare gli account utente per la cache di oggetti che sono necessari in questa architettura. Dividere i file del sistema operativo Windows Server, i file di programma di SharePoint Server 2016 e i log di diagnostica in tre partizioni o volumi di archiviazione separati con prestazioni normali. 
 
 Per altre informazioni su queste indicazioni, vedere [Account amministrativi e di servizio per la distribuzione iniziale in SharePoint Server 2016][sharepoint-accounts].
+
 
 ### <a name="hybrid-workloads"></a>Carichi di lavoro ibridi
 
@@ -183,7 +179,7 @@ I file parametro di modello fanno riferimento a questi nomi; pertanto, se questi
 
 I file dei parametri comprendono una password hardcoded in diverse posizioni. Modificare questi valori prima di eseguire la distribuzione.
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
