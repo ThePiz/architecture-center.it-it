@@ -3,12 +3,12 @@ title: Eseguire l'applicazione Surveys
 description: Come eseguire l'applicazione di esempio Surveys in locale
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: d4fa8122794740e6935293147d999b26d9485d90
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848683"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229100"
 ---
 # <a name="run-the-surveys-application"></a>Eseguire l'applicazione Surveys
 
@@ -23,7 +23,7 @@ Di seguito viene presentato un riepilogo dei passaggi:
 5. Eseguire l'applicazione e registrare un nuovo tenant.
 6. Aggiungere i ruoli applicazione agli utenti.
 
-## <a name="prerequisites"></a>prerequisiti
+## <a name="prerequisites"></a>Prerequisiti
 -   [Visual Studio 2017][VS2017]
 -   Account di [Microsoft Azure](https://azure.microsoft.com)
 
@@ -35,13 +35,13 @@ In questo passaggio si creerà una directory di Azure AD per Tailspin.
 
 1. Accedere al [portale di Azure][portal].
 
-2. Fare clic su **Nuovo** > **Sicurezza e identità** > **Azure Active Directory**.
+2. Fare clic su **+ Crea una risorsa** > **Identità** > **Azure Active Directory**.
 
 3. Immettere `Tailspin` per il nome dell'organizzazione e un nome di dominio. Il nome di dominio avrà la forma di `xxxx.onmicrosoft.com` e deve essere globalmente univoco. 
 
     ![](./images/running-the-app/new-tenant.png)
 
-4. Fare clic su **Crea**. La creazione della nuova directory può richiedere alcuni minuti.
+4. Fare clic su **Create**(Crea). La creazione della nuova directory può richiedere alcuni minuti.
 
 Per completare lo scenario end-to-end, sarà necessario usare una seconda directory Azure AD per rappresentare un cliente che procede alla registrazione per l'applicazione. È possibile usare la directory di Azure AD predefinita (non Tailspin) o creare una nuova directory per questo scopo. Negli esempi, viene usato Contoso come cliente fittizio.
 
@@ -63,11 +63,11 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
    
    ![](./images/running-the-app/register-web-api.png) 
 
-5. Fare clic su **Crea**.
+5. Fare clic su **Create**(Crea).
 
 6. Nel pannello **Registrazioni per l'app** selezionare la nuova applicazione **Surveys.WebAPI**.
  
-7. Fare clic su **Proprietà**.
+7. Fare clic su **Impostazioni** > **Proprietà**.
 
 8. Nella casella di modifica **URI ID app** immettere `https://<domain>/surveys.webapi`, dove `<domain>` è il nome di dominio della directory. Ad esempio: `https://tailspin.onmicrosoft.com/surveys.webapi`
 
@@ -89,7 +89,7 @@ Per completare lo scenario end-to-end, sarà necessario usare una seconda direct
    
    Si noti che l'URL di accesso ha un numero di porta diverso dall'app `Surveys.WebAPI` nel passaggio precedente.
 
-3. Fare clic su **Crea**.
+3. Fare clic su **Create**(Crea).
  
 4. Nel pannello **Registrazioni per l'app** selezionare la nuova applicazione **Surveys**.
  
@@ -188,11 +188,11 @@ Ora ripetere gli stessi passaggi per l'app Surveys, ad eccezione di non aggiunge
 
 L'applicazione Surveys usa Redis per memorizzare nella cache i token di accesso OAuth 2. Per creare la cache:
 
-1.  Accedere al [portale di Azure](https://portal.azure.com) e fare clic su **Nuovo** > **Database** > **Cache Redis**.
+1.  Passare al [portale di Azure](https://portal.azure.com) e fare clic su **+ Crea una risorsa** > **Database** > **Cache Redis**.
 
 2.  Inserire le informazioni necessarie, tra cui nome DNS, gruppo di risorse, posizione e piano tariffario. È possibile creare un nuovo gruppo di risorse o usarne uno esistente.
 
-3. Fare clic su **Crea**.
+3. Fare clic su **Create**(Crea).
 
 4. Dopo aver creato la cache Redis, passare alla risorsa nel portale.
 

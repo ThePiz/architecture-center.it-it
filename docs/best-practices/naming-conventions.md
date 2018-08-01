@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987734"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229151"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -119,6 +119,13 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 |Configurazione di regole del servizio di bilanciamento del carico |Load Balancer |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
 |Gateway applicazione di Azure |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
 |Profilo di Gestione traffico |Gruppo di risorse |1-63 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno e punto |`<descriptive context>` |`app1` |
+
+### <a name="containers"></a>Contenitori
+
+| Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
+| --- | --- | --- | --- | --- | --- | --- |
+|Registro di sistema del contenitore | Globale |5-50 |Non fa distinzione tra maiuscole e minuscole | Alfanumerico |`<service short name>registry` |`app1registry` |
+
 
 ## <a name="organize-resources-with-tags"></a>Organizza le risorse con i tag
 
