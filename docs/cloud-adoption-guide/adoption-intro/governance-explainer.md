@@ -1,17 +1,17 @@
 ---
-title: 'Spiegazione: Informazioni sulla governance cloud'
-description: Viene illustrato il concetto di governance delle risorse in Azure e nel cloud
+title: Informazioni sulla governance cloud
+description: Spiegazione del concetto di governance dell'accesso alle risorse in Azure
 author: petertay
-ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 3338ed5652296c5cd01277a51be1cb5893320b65
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206481"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229202"
 ---
-# <a name="explainer-what-is-cloud-resource-governance"></a>Spiegazione: Informazioni sulla governance delle risorse cloud
+# <a name="what-is-cloud-resource-governance"></a>Informazioni sulla governance delle risorse cloud
 
-Nell'articolo [Spiegazione: Funzionamento di Azure](azure-explainer.md) si è appreso che Azure è costituito da un insieme di server e componenti hardware di rete che eseguono software e hardware virtualizzati per conto degli utenti. Azure consente ai reparti che si occupano di IT e sviluppo dell'organizzazione di lavorare in modo flessibile, creando, leggendo, aggiornando ed eliminando facilmente le risorse in base alle esigenze.
+Nell'articolo [Funzionamento di Azure](azure-explainer.md) si è appreso che Azure è un insieme di server e componenti hardware di rete che eseguono software e hardware virtualizzati per conto degli utenti. Azure consente ai reparti che si occupano di IT e sviluppo dell'organizzazione di lavorare in modo flessibile, creando, leggendo, aggiornando ed eliminando facilmente le risorse in base alle esigenze.
 
 Tuttavia, sebbene offrire agli sviluppatori un accesso illimitato alle risorse garantisca loro ampia flessibilità, ciò può anche comportare costi imprevisti. Un team di sviluppo, ad esempio, potrebbe avere l'approvazione per distribuire un set di risorse per i test, ma potrebbe dimenticarsi di eliminare tali risorse al termine della fase di test. Queste risorse continueranno ad accumulare costi anche se il loro uso non è più approvato o necessario. 
 
@@ -29,8 +29,4 @@ Quando si configurano questi strumenti, è importante trovare il giusto equilibr
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Il passaggio successivo nell'adozione di Azure consiste nel [comprendere l'identità digitale in Azure](tenant-explainer.md) e [creare il primo utente in Azure AD][docs-add-users-to-aad].
-
-<!-- Links -->
-
-[docs-add-users-to-aad]: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+Ora che si è appreso il concetto di governance delle risorse cloud, si apprenderà [come viene gestito l'accesso alle risorse](azure-resource-access.md) in Azure, quindi [come progettare un modello di governance](governance-how-to.md).

@@ -2,12 +2,12 @@
 title: 'Adozione di Azure: livello intermedio'
 description: Viene descritto il livello intermedio di conoscenze richiesto per l'adozione di Azure da parte di un'organizzazione
 author: petertay
-ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: a1f93616f5f1ecf4f395ce39bbb037ef6ab5991b
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206362"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229236"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Guida all'adozione del cloud di Azure: panoramica del livello intermedio
 
@@ -27,7 +27,7 @@ I destinatari di questa fase della guida sono gli utenti tipo seguenti all'inter
 
 Nella fase di adozione di base sono state apprese alcune nozioni di base sui meccanismi interni di Azure e su come vengono create, lette, aggiornate ed eliminate le risorse. Sono state inoltre fornite informazioni sull'identità e sul fatto che Azure consideri attendibile solo Azure Active Directory (AD) per autenticare e autorizzare gli utenti che richiedono l'accesso alle risorse.
 
-Si è anche appreso come configurare gli strumenti di governance di Azure per gestire l'uso delle risorse di Azure all'interno dell'organizzazione. Nella fase di base è stato analizzato come gestire l'accesso di un singolo team alle risorse necessarie per distribuire un carico di lavoro semplice. In realtà, spesso un'organizzazione è costituita da più team che lavorano a più carichi di lavoro contemporaneamente. 
+Si è anche appreso come configurare gli strumenti di governance di Azure per gestire l'uso delle risorse di Azure all'interno dell'organizzazione. È stato analizzato come gestire l'accesso di un singolo team alle risorse necessarie per distribuire un carico di lavoro semplice. In realtà, spesso un'organizzazione è costituita da più team che lavorano a più carichi di lavoro contemporaneamente. 
 
 Prima di iniziare, verrà esaminato il significato effettivo del termine **carico di lavoro**. Questo termine viene in genere inteso come un'unità arbitraria di funzionalità, ad esempio un'applicazione o un servizio. È possibile pensare a un carico di lavoro in termini di elementi di codice distribuiti in un server, nonché di altri servizi necessari, ad esempio un database. Questa definizione è utile per un'applicazione o un servizio locale, ma nel cloud è necessario estenderla. 
 

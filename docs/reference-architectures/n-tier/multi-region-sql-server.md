@@ -2,15 +2,15 @@
 title: Applicazione a più livelli per più aree per la disponibilità elevata
 description: Come distribuire le macchine virtuali in più aree in Azure per la disponibilità elevata e la resilienza.
 author: MikeWasson
-ms.date: 05/03/2018
+ms.date: 07/19/2018
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 48943094e7847e39b9fdc4c3f71e27f2e6e41293
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: a8dafab9ce8312004e99f0f19d06d6b47b6b19d8
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673573"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229253"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>Applicazione a più livelli per più aree per la disponibilità elevata
 
@@ -20,7 +20,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architettura 
 
 Questa architettura si basa su quella illustrata in [Applicazione a più livelli con SQL Server](n-tier-sql-server.md). 
 
@@ -40,7 +40,7 @@ Questa architettura si basa su quella illustrata in [Applicazione a più livelli
 
 * **Gateway VPN**. Creare un [gateway VPN][vpn-gateway] in ogni rete virtuale e configurare una [connessione da rete virtuale a rete virtuale][vnet-to-vnet] per consentire il traffico di rete tra le due reti virtuali. Questa condizione è richiesta per il gruppo di disponibilità Always On di SQL Server.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 Un'architettura di tipo multi-area può fornire una maggiore disponibilità rispetto alla distribuzione in un'unica area. Se un'interruzione a livello di area interessa l'area primaria, è possibile usare [Gestione traffico][traffic-manager] per effettuare il failover all'area secondaria. Questa architettura è utile anche in caso di errore di un singolo sottosistema dell'applicazione.
 
@@ -80,18 +80,18 @@ Se Gestione traffico effettua il failover, è consigliabile eseguire un failback
 
 Si noti che Gestione traffico effettua automaticamente il failback per impostazione predefinita. Per evitare questa situazione, ridurre manualmente la priorità dell'area primaria dopo un evento di failover. Ad esempio, si supponga che l'area primaria sia di priorità 1 e la secondaria di priorità 2. Dopo un failover, impostare l'area primaria sul livello di priorità 3 per evitare il failback automatico. Quando si è pronti per il cambio, aggiornare la priorità impostandola su 1.
 
-Il comando seguente dell'[interfaccia della riga di comando di Azure][install-azure-cli] aggiorna la priorità:
+Il comando seguente dell'[interfaccia della riga di comando di Azure][azure-cli] aggiorna la priorità:
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 Un altro approccio consiste nel disabilitare temporaneamente l'endpoint finché non si è pronti per eseguire il failback:
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --status Disabled
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --endpoint-status Disabled
 ```
 
 A seconda della causa di un failover, potrebbe essere necessario ridistribuire le risorse all'interno di un'area. Prima di eseguire nuovamente il failback, eseguire un test della conformità operativa, che avrà lo scopo di verificare gli elementi seguenti:
@@ -109,10 +109,10 @@ Per configurare il gruppo di disponibilità:
 * Collocare almeno due controller di dominio in ogni area.
 * Assegnare a ogni controller di dominio un indirizzo IP statico.
 * Creare una connessione da rete virtuale a rete virtuale per consentire la comunicazione tra le reti virtuali.
-* Per ogni rete virtuale, aggiungere gli indirizzi IP dei controller di dominio (da entrambe le aree) all'elenco dei server DNS. È possibile usare il comando dell'interfaccia della riga di comando seguente. Per altre informazioni, vedere [Gestire server DNS usati da una rete virtuale][vnet-dns].
+* Per ogni rete virtuale, aggiungere gli indirizzi IP dei controller di dominio (da entrambe le aree) all'elenco dei server DNS. È possibile usare il comando dell'interfaccia della riga di comando seguente. Per altre informazioni, vedere [Modificare i server DNS][vnet-dns].
 
     ```bat
-    azure network vnet set --resource-group dc01-rg --name dc01-vnet --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
+    az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
 * Creare un [Windows Server Failover Clustering][wsfc] (WSFC) che includa le istanze di SQL Server in entrambe le aree. 
@@ -171,7 +171,7 @@ Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
-[install-azure-cli]: /azure/xplat-cli-install
+[azure-cli]: /cli/azure/
 [regional-pairs]: /azure/best-practices-availability-paired-regions
 [resource groups]: /azure/azure-resource-manager/resource-group-overview
 [resource-group-links]: /azure/resource-group-link-resources
@@ -185,7 +185,7 @@ Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
+[vnet-dns]: /azure/virtual-network/manage-virtual-network#change-dns-servers
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx
