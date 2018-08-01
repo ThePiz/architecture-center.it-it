@@ -4,13 +4,12 @@ description: Come creare applicazioni resilienti in Azure per disponibilità ele
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 9a6bd1332ea59923b32379018060403024b15e10
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: c32f093da4c47ef655dfca89b0410f063e9fe212
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012638"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352587"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -47,11 +46,11 @@ La resilienza non è un componente aggiuntivo, ma deve essere progettata nel sis
 4. **Testare** l'implementazione attraverso la simulazione di errori e l'attivazione di failover forzati. 
 5. **Distribuire** l'applicazione nell'ambiente di produzione servendosi di un processo ripetibile e affidabile. 
 6. **Monitorare** l'applicazione per rilevare gli errori: monitorando il sistema, è possibile misurare l'integrità dell'applicazione e rispondere agli eventi imprevisti, se necessario. 
-7. **Rispondere**, se si verificano, a eventi imprevisti che richiedono interventi manuali.
+7. **Rispondere** se si verificano errori che richiedono interventi manuali.
 
 Nella parte restante di questo articolo verrà approfondito più nel dettaglio ognuno di questi passaggi.
 
-## <a name="defining-your-resiliency-requirements"></a>Definizione dei requisiti di resilienza
+## <a name="define-your-availability-requirements"></a>Definire i requisiti di disponibilità
 La pianificazione della resilienza inizia con i requisiti aziendali. Di seguito sono illustrati alcuni approcci per considerare la resilienza in questi termini.
 
 ### <a name="decompose-by-workload"></a>Scomporre in base al carico di lavoro
@@ -140,7 +139,28 @@ In aggiunta, l'esecuzione del failover non è istantanea e può causare periodi 
 
 Il numero calcolato dei contratti di servizio è una baseline utile, ma non fornisce tutte le informazioni riguardanti la disponibilità. Spesso un'applicazione può ridurre le prestazioni in modo non drastico e graduale nel caso di errore di un percorso non critico. Si consideri un'applicazione in cui viene visualizzato un catalogo di libri. Nel caso in cui l'applicazione non possa recuperare l'immagine di anteprima di una copertina, si potrebbe visualizzare un'immagine segnaposto. In tal caso, l'errore nell'ottenimento dell'immagine non riduce i tempi di attività dell'applicazione, sebbene condizioni l'esperienza utente.  
 
-## <a name="redundancy-and-designing-for-failure"></a>Ridondanza e progettazione per gli errori
+## <a name="design-for-resiliency"></a>Progettare per la resilienza
+
+Durante la fase di progettazione, è consigliabile eseguire un'analisi della modalità di errore (FMA). L'obiettivo di quest'analisi è di identificare i possibili punti di errore e definire il modo in cui l'applicazione risponde a tali errori.
+
+* Come rileverà l'applicazione questo tipo di errore?
+* Come risponderà l'applicazione a questo tipo di errore?
+* Come si potrà registrare e monitorare questo tipo di errore? 
+
+Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche per Azure, vedere [Azure resiliency guidance: Failure mode analysis][fma] (Guida alla resilienza di Azure: analisi della modalità di errore).
+
+### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>Esempio di identificazione di modalità di errore e di strategia di rilevamento
+**Punto di errore:** Chiamata a un servizio Web / API esterno
+
+| Modalità di errore | Strategia di rilevamento |
+| --- | --- |
+| Il servizio non è disponibile |HTTP 5xx |
+| Limitazione |HTTP 429 (Troppe richieste) |
+| Authentication |HTTP 401 (Non autorizzato) |
+| Risposta lenta |Timeout della richiesta |
+
+
+### <a name="redundancy-and-designing-for-failure"></a>Ridondanza e progettazione per gli errori
 
 L'ambito di impatto degli errori può variare. Alcuni errori hardware, come nel caso di un disco danneggiato, possono influire su un singolo computer host. Un commutatore di rete non funzionante può invece influire su un intero rack di server. Gli errori che causano l'interruzione di un intero data center, ad esempio l'interruzione dell'alimentazione in un data center, sono invece meno comuni. Sono infine rari i casi in cui un'intera area risulta non disponibile.
 
@@ -163,94 +183,47 @@ Quando si progetta un'applicazione con più aree, tenere presente che la latenza
 | &nbsp; | Set di disponibilità | Zona di disponibilità | Area associata |
 |--------|------------------|-------------------|---------------|
 | Ambito dell'errore | Rack | Data center | Region |
-| Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | servizio Gestione traffico |
+| Routing delle richieste | Load Balancer | Bilanciamento del carico tra zone | Gestione traffico |
 | Latenza di rete | Molto bassa | Basso | Medio-alta |
 | Rete virtuale  | VNet | VNet | Peering reti virtuali tra aree |
 
-## <a name="designing-for-resiliency"></a>Progettazione per la resilienza
-Durante la fase di progettazione, è consigliabile eseguire un'analisi della modalità di errore (FMA). L'obiettivo di quest'analisi è di identificare i possibili punti di errore e definire il modo in cui l'applicazione risponde a tali errori.
-
-* Come rileverà l'applicazione questo tipo di errore?
-* Come risponderà l'applicazione a questo tipo di errore?
-* Come si potrà registrare e monitorare questo tipo di errore? 
-
-Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche per Azure, vedere [Azure resiliency guidance: Failure mode analysis][fma] (Guida alla resilienza di Azure: analisi della modalità di errore).
-
-### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>Esempio di identificazione di modalità di errore e di strategia di rilevamento
-**Punto di errore:** Chiamata a un servizio Web / API esterno
-
-| Modalità di errore | Strategia di rilevamento |
-| --- | --- |
-| Il servizio non è disponibile |HTTP 5xx |
-| Limitazione |HTTP 429 (Troppe richieste) |
-| Authentication |HTTP 401 (Non autorizzato) |
-| Risposta lenta |Timeout della richiesta |
-
-## <a name="resiliency-strategies"></a>Strategie di resilienza
+## <a name="implement-resiliency-strategies"></a>Implementare strategie di resilienza
 Questa sezione fornisce un sondaggio su alcune strategie di resilienza comuni. La maggior parte di queste sono limitate a una tecnologia particolare. Le descrizioni in questa sezione fanno un riepilogo dell'idea generale alla base di ogni tecnica, con collegamenti ad altri documenti.
 
-### <a name="retry-transient-failures"></a>Ripetere gli errori temporanei
-Gli errori temporanei possono dipendere da una perdita temporanea della connettività di rete, da una connessione a un database eliminato o da un timeout quando un servizio è occupato. Spesso, un errore temporaneo può essere risolto semplicemente eseguendo nuovamente la richiesta. Per molti servizi di Azure, il client SDK implementa automaticamente nuovi tentativi, in modo trasparente al chiamante. Vedere [Retry service specific guidance][retry-service-specific guidance] (Linee guida specifiche del servizio di ripetizione dei tentativi).
+**Riprovare in caso di errori temporanei**. Gli errori temporanei possono dipendere da una perdita temporanea della connettività di rete, da una connessione a un database eliminato o da un timeout quando un servizio è occupato. Spesso, un errore temporaneo può essere risolto semplicemente eseguendo nuovamente la richiesta. Per molti servizi di Azure, il client SDK implementa automaticamente nuovi tentativi, in modo trasparente al chiamante. Vedere [Retry service specific guidance][retry-service-specific guidance] (Linee guida specifiche del servizio di ripetizione dei tentativi).
 
-Ogni nuovo tentativo si aggiunge alla latenza totale e, in aggiunta, un numero eccessivo di richieste non riuscite può causare un collo di bottiglia, poiché le richieste in sospeso si accumulano nella coda. Queste richieste bloccate potrebbero tenere in sospeso risorse di sistema critiche, come la memoria, i thread, le connessioni di database e così via, che possono causare errori a catena. Per evitare questa problematica, aumentare il ritardo tra ogni nuovo tentativo e l'altro e limitare il numero totale di richieste non riuscite.
+Ogni nuovo tentativo si aggiunge alla latenza totale e, in aggiunta, un numero eccessivo di richieste non riuscite può causare un collo di bottiglia, poiché le richieste in sospeso si accumulano nella coda. Queste richieste bloccate potrebbero tenere in sospeso risorse di sistema critiche, come la memoria, i thread, le connessioni di database e così via, che possono causare errori a catena. Per evitare questa problematica, aumentare il ritardo tra ogni nuovo tentativo e l'altro e limitare il numero totale di richieste non riuscite. 
 
-![Contratto di servizio composito](./images/retry.png)
+![](./images/retry.png)
 
-Per altre informazioni, vedere il [Retry Pattern][retry-pattern] (Modello di ripetizione dei tentativi).
-
-### <a name="load-balance-across-instances"></a>Bilanciare il carico tra più istanze
-Ai fini della scalabilità, un'applicazione cloud deve essere in grado di scalare orizzontalmente aggiungendo altre istanze. Questo approccio migliora anche la resilienza, poiché le istanze danneggiate possono essere rimosse dalla rotazione.  
-
-Ad esempio: 
+**Bilanciare il carico tra più istanze**. Ai fini della scalabilità, un'applicazione cloud deve essere in grado di scalare orizzontalmente aggiungendo altre istanze. Questo approccio migliora anche la resilienza, poiché le istanze danneggiate possono essere rimosse dalla rotazione. Ad esempio: 
 
 * Inserire due o più macchine virtuali dietro al bilanciamento del carico: quest'ultimo distribuisce il traffico a tutte le macchine virtuali. Vedere [Run load-balanced VMs for scalability and availability][ra-multi-vm] (Eseguire macchine virtuali con carico bilanciato per la scalabilità e la disponibilità).
 * Scalare orizzontalmente un'applicazione del servizio app di Azure a più istanze: il servizio app bilancia automaticamente il carico tra le istanze. Vedere [Basic web application][ra-basic-web] (Applicazione Web di base).
 * Usare [Gestione traffico][tm] per distribuire il traffico in un set di endpoint.
 
-### <a name="replicate-data"></a>Replicare i dati
-La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione forniscono funzioni di replica predefinite, tra cui Database SQL di Azure, Cosmos DB e Apache Cassandra.  
-
-È importante considerare i percorsi sia di lettura che di scrittura: in base alla tecnologia di archiviazione, potrebbero essere fornite più repliche scrivibili, o una singola replica scrivibile e più repliche di sola lettura. 
+**Replicare i dati**. La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione forniscono funzioni di replica predefinite, tra cui Database SQL di Azure, Cosmos DB e Apache Cassandra. È importante considerare i percorsi sia di lettura che di scrittura: in base alla tecnologia di archiviazione, potrebbero essere fornite più repliche scrivibili, o una singola replica scrivibile e più repliche di sola lettura. 
 
 Per ottimizzare la disponibilità, è possibile posizionare le repliche in più aree. Tuttavia, ciò aumenta la latenza quando si replicano i dati. In genere, la replica tra aree viene eseguita in modo asincrono e ciò implica un modello di coerenza finale e la potenziale perdita di dati se una replica ha esito negativo. 
 
-### <a name="degrade-gracefully"></a>Ridurre le prestazioni in modo non drastico
-Se un servizio ha esito negativo e non è presente un percorso di failover, l'applicazione potrebbe essere in grado di ridurre le prestazioni gradualmente pur fornendo un'esperienza utente accettabile. Ad esempio: 
+**Ridurre le prestazioni in modo graduale**. Se un servizio ha esito negativo e non è presente un percorso di failover, l'applicazione potrebbe essere in grado di ridurre le prestazioni gradualmente pur fornendo un'esperienza utente accettabile. Ad esempio: 
 
 * Inserire un elemento di lavoro in una coda, in modo da gestirlo in un secondo momento. 
 * Restituire un valore stimato.
 * Usare i dati memorizzati nella cache locale. 
 * Far visualizzare all'utente un messaggio di errore. (Questa opzione è migliore dell'applicazione che smette di risponde alle richieste).
 
-### <a name="throttle-high-volume-users"></a>Limitare volumi elevati di utenti
-A volte un numero ridotto di utenti crea un carico eccessivo e ciò può avere un impatto anche sugli altri utenti, riducendo la disponibilità complessiva dell'applicazione.
+**Limitare gli utenti con volumi elevati**. A volte un numero ridotto di utenti crea un carico eccessivo e ciò può avere un impatto anche sugli altri utenti, riducendo la disponibilità complessiva dell'applicazione.
 
 Quando un singolo client esegue un numero eccessivo di richieste, l'applicazione può limitare il client per un determinato periodo di tempo. Durante il periodo di limitazione, infatti, l'applicazione rifiuta alcune o tutte le richieste provenienti da quel client (a seconda della precisa strategia di limitazione delle richieste applicata). La soglia per la limitazione potrebbe dipendere dal livello di servizio del cliente. 
 
-La limitazione delle richieste non implica necessariamente che il client debba eseguire azioni malintenzionate, me solo che il client superi la propria quota del servizio. In alcuni casi, un consumer potrebbe superare di molto la quota o, altrimenti, potrebbe comportarsi in modo errato. In tal caso, si potrebbe andare avanti e bloccare l'utente. In genere questo avviene bloccando una chiave API o un intervallo di indirizzi IP.
+La limitazione delle richieste non implica necessariamente che il client debba eseguire azioni malintenzionate, me solo che il client superi la propria quota del servizio. In alcuni casi, un consumer potrebbe superare di molto la quota o, altrimenti, potrebbe comportarsi in modo errato. In tal caso, si potrebbe andare avanti e bloccare l'utente. In genere questo avviene bloccando una chiave API o un intervallo di indirizzi IP. Per altre informazioni, vedere l'articolo [Throttling Pattern][throttling-pattern] (Modello di limitazione).
 
-Per altre informazioni, vedere l'articolo [Throttling Pattern][throttling-pattern] (Modello di limitazione).
+**Usare un interruttore**. Il [modello a interruttore][circuit-breaker-pattern] può impedire a un'applicazione di tentare ripetutamente un'operazione che probabilmente continuerà a restituire un errore. L'interruttore esegue il wrapping delle chiamate a un servizio e tiene traccia del numero di errori recenti. Se il conteggio degli errori supera una soglia, l'interruttore inizia a restituire un codice di errore senza chiamare il servizio. In questo modo il servizio ha il tempo di ripristinarsi. 
 
-### <a name="use-a-circuit-breaker"></a>Usare un interruttore
-Il modello a interruttore può impedire a un'applicazione di tentare ripetutamente un'operazione che probabilmente continuerà a restituire un errore. Questo sistema è simile a un interruttore elettrico vero e proprio che interrompe il flusso di corrente quando un circuito è sovraccarico.
+**Usare il livellamento del carico per contenere i picchi di traffico**. Nelle applicazioni possono verificarsi picchi improvvisi di traffico, che possono sovraccaricare i servizi nel back-end. Se un servizio back-end non può rispondere alle richieste in modo sufficientemente rapido, ciò potrebbe comportare che le richieste si mettano in coda (backup) o che il servizio limiti l'applicazione. Per evitare questo problema, è possibile usare una coda come un buffer. Quando è presente un nuovo elemento di lavoro, anziché chiamare subito il servizio back-end, l'applicazione mette in coda un elemento di lavoro per eseguirlo in modo asincrono. La coda si comporta come un buffer che contiene i picchi di carico. Per altre informazioni, vedere [Queue-Based Load Leveling Pattern][load-leveling-pattern] (Modello di livellamento del carico basato sulle code).
 
-L'interruttore di questo modello esegue il wrapping delle chiamate a un servizio e si compone di tre stadi:
-
-* **Chiuso**. Questo è lo stato normale in cui l'interruttore invia le richieste al servizio e un contatore tiene traccia del numero di errori recenti. Se il conteggio degli errori supera una soglia all'interno di un determinato periodo di tempo, l'interruttore passa allo stato aperto. 
-* **Aperto**. In questo stato l'interruttore blocca immediatamente tutte le richieste, senza chiamare il servizio. L'applicazione deve usare un percorso di mitigazione come, ad esempio, leggere i dati da una replica o semplicemente restituire un errore all'utente. Quando l'interruttore passa ad aperto, viene avviato un timer e, nel momento in cui il tempo scade, l'interruttore passa allo stato semiaperto.
-* **Semiaperto**. Durante questo stato, l'interruttore permette che solo un numero limitato di richieste venga indirizzato al servizio: se queste richieste hanno esito positivo, si presuppone che il servizio venga ripristinato e l'interruttore passa nuovamente allo stato chiuso, in caso contrario, si ripristina allo stato aperto. Lo stato semiaperto impedisce che un servizio di ripristino venga improvvisamente sommerso da richieste.
-
-Per altri dettagli, vedere [Modello a interruttore][circuit-breaker-pattern].
-
-### <a name="use-load-leveling-to-smooth-out-spikes-in-traffic"></a>Usare il livellamento del carico per contenere i picchi di traffico
-Nelle applicazioni possono verificarsi picchi improvvisi di traffico, che possono sovraccaricare i servizi nel back-end. Se un servizio back-end non può rispondere alle richieste in modo sufficientemente rapido, ciò potrebbe comportare che le richieste si mettano in coda (backup) o che il servizio limiti l'applicazione.
-
-Per evitare questo problema, è possibile usare una coda come un buffer. Quando è presente un nuovo elemento di lavoro, anziché chiamare subito il servizio back-end, l'applicazione mette in coda un elemento di lavoro per eseguirlo in modo asincrono. La coda si comporta come un buffer che contiene i picchi di carico. 
-
-Per altre informazioni, vedere [Queue-Based Load Leveling Pattern][load-leveling-pattern] (Modello di livellamento del carico basato sulle code).
-
-### <a name="isolate-critical-resources"></a>Isolare le risorse critiche
-In alcuni casi gli errori in un sottosistema si possono propagare a catena, causando errori in altre parti dell'applicazione. Questa situazione può verificarsi se un errore porta alcune risorse, come i thread o i socket, a non essere liberate in modo tempestivo, causandone l'esaurimento. 
+**Isolare le risorse critiche**. In alcuni casi gli errori in un sottosistema si possono propagare a catena, causando errori in altre parti dell'applicazione. Questa situazione può verificarsi se un errore porta alcune risorse, come i thread o i socket, a non essere liberate in modo tempestivo, causandone l'esaurimento. 
 
 Per evitare questo problema, è possibile partizionare un sistema in gruppi isolati, in modo che un errore in una partizione non causi l'arresto dell'intero sistema. Questo modello talvolta viene denominato Bulkhead pattern (modello a scomparti).
 
@@ -260,19 +233,13 @@ Esempi:
 * Usare pool di thread distinti per isolare le chiamate a servizi diversi: questo consente di evitare errori a catena in caso di errore di uno dei servizi. Per un esempio, vedere [Hystrix library][hystrix] di Netflix.
 * Usare i [containers][containers] (visualizzazione a livello di sistema operativo) per limitare le risorse disponibili a un sottosistema specifico. 
 
-![Contratto di servizio composito](./images/bulkhead.png)
+![](./images/bulkhead.png)
 
-### <a name="apply-compensating-transactions"></a>Applicare le transazioni di compensazione
-Una transazione di compensazione è una transazione che annulla gli effetti di un'altra transazione completata.
-
-In un sistema distribuito può essere molto difficile ottenere una consistenza transazionale di alto livello. Le transazioni di compensazione sono un modo per ottenere la consistenza attraverso una serie di transazioni singole di dimensioni inferiori, che possono essere annullate a ogni passaggio.
+**Applicare le transazioni di compensazione**. Una [transazione di compensazione][compensating-transaction-pattern] è una transazione che annulla gli effetti di un'altra transazione completata. In un sistema distribuito può essere molto difficile ottenere una consistenza transazionale di alto livello. Le transazioni di compensazione sono un modo per ottenere la consistenza attraverso una serie di transazioni singole di dimensioni inferiori, che possono essere annullate a ogni passaggio.
 
 Per organizzare un viaggio, ad esempio, un cliente potrebbe prenotare un'automobile, una camera di albergo e un volo. Se uno di questi passaggi fallisce, l'intera operazione ha esito negativo. Anziché tentare di usare una singola transazione distribuita per l'intera operazione, è possibile definire una transazione di compensazione per ogni passaggio. Per esempio, per annullare la prenotazione di un'auto, si cancella tale prenotazione. Per completare l'intera operazione, un coordinatore esegue ogni passaggio: se un passaggio ha esito negativo, si applicano le transazioni di compensazione per annullare qualunque passaggio che sia stato completato. 
 
-Per informazioni aggiuntive, vedere [Compensating Transaction Pattern][compensating-transaction-pattern] (Modello di transazioni di compensazione). 
-
-
-## <a name="testing-for-resiliency"></a>Eseguire il test per la resilienza
+## <a name="test-for-resiliency"></a>Eseguire test per la resilienza
 In genere non è possibile testare resilienza nello stesso modo in cui si esegue il test della funzionalità di un'applicazione (eseguendo gli unit test e così via). Infatti, è necessario testare il modo in cui il carico di lavoro end-to-end viene eseguito in condizioni di errore che si verificano solo in modo intermittente.
 
 Il test è un processo iterativo: testare l'applicazione, misurare il risultato, analizzare e indirizzare gli eventuali errori che si verificano e ripetere il processo.
@@ -294,12 +261,12 @@ Questa è un'altra ragione per cui è importante analizzare i punti di errore po
 
 **Test di carico**. Eseguire il test di carico nell'applicazione con uno strumento come [Visual Studio Team Services][vsts] o [Apache JMeter][jmeter]. Il test di carico è fondamentale per l'identificazione di errori che si verificano solo in condizioni di carico come, ad esempio, il database back-end sovraccarico o la limitazione delle richieste di servizio. Eseguire il test per il carico di picco, usando dati di produzione oppure dati sintetici che siano più simili possibile ai dati di produzione. L'obiettivo consiste nel verificare il comportamento dell'applicazione in condizioni reali.   
 
-## <a name="resilient-deployment"></a>Distribuzione resiliente
+## <a name="deploy-using-reliable-processes"></a>Distribuire con processi affidabili
 Una volta che un'applicazione viene distribuita nell'ambiente di produzione, gli aggiornamenti sono una possibile fonte di errori. Nel peggiore dei casi, un aggiornamento non valido può causare tempi di inattività. Per evitare questo problema, il processo di distribuzione deve essere prevedibile e ripetibile. La distribuzione include il provisioning delle risorse di Azure, la distribuzione del codice dell'applicazione e l'applicazione delle impostazioni di configurazione. Un aggiornamento può interessare tutte e tre le fasi oppure un subset. 
 
 Il punto essenziale è che le distribuzioni manuali sono inclini all'errore. Perciò, è consigliabile disporre di un processo automatico e idempotente che si possa eseguire su richiesta ed eseguire nuovamente in caso di problemi. 
 
-* Usare i modelli di Resource Manager per automatizzare il provisioning delle risorse di Azure.
+* Usare i modelli di Azure Resource Manager per automatizzare il provisioning delle risorse di Azure.
 * Usare [Panoramica della piattaforma DSC di Automazione di Azure][dsc] per configurare le VM.
 * Usare un processo di distribuzione automatizzata per il codice dell'applicazione.
 
@@ -315,7 +282,7 @@ Un'altra domanda è come si possa implementare un aggiornamento dell'applicazion
 
 Qualunque approccio si adotti, nel caso in cui la nuova versione non funzioni, assicurarsi che sia possibile eseguire il rollback all'ultima distribuzione valida conosciuta. In aggiunta, se si verificano errori, i registri applicazioni indicano quale versione ha causato l'errore. 
 
-## <a name="monitoring-and-diagnostics"></a>Monitoraggio e diagnostica
+## <a name="monitor-to-detect-failures"></a>Monitorare per rilevare gli errori
 Il monitoraggio e la diagnostica sono fondamentali per la resilienza, infatti, se qualcosa non riesce, è necessario sapere che è sorto un problema ed è indispensabile avere informazioni approfondite sulla causa dell'errore. 
 
 Il monitoraggio di un sistema distribuito su vasta scala costituisce una sfida significativa. Si pensi a un'applicazione che esegue alcune dozzine di macchine virtuali &mdash; non è pratico accedere a ogni macchina virtuale, una alla volta, ed esaminare il file di log, tentando di risolvere un problema. In aggiunta, il numero di istanze di VM probabilmente non è statico. Le VM, infatti, vengono aggiunte e rimosse con l'aumentare e il ridursi dell'applicazione e, in alcuni casi, un'istanza può avere esito negativo e può essere necessario che venga sottoposta a un nuovo provisioning. Si consideri anche che un'applicazione cloud tipica potrebbe usare più archivi di dati (archiviazione di Azure, database SQL, Cosmos DB, cache redis) e un'azione utente singola può estendersi a più sottosistemi. 
@@ -341,7 +308,7 @@ Per questo motivo i registri applicazioni sono una fonte importante di dati di d
 
 Per maggiori informazioni sul monitoraggio e la diagnostica, vedere [Monitoring and diagnostics guidance][monitoring-guidance] (Monitoraggio e diagnostica).
 
-## <a name="manual-failure-responses"></a>Risposte manuali agli errori
+## <a name="respond-to-failures"></a>Rispondere agli errori
 Nelle sezioni precedenti sono state trattate le strategie di ripristino automatico, che sono fondamentali per la disponibilità elevata. Tuttavia, a volte, è necessario intervenire manualmente.
 
 * **Avvisi**. Monitorare l'applicazione per quei segnali di avviso che potrebbero richiedere un intervento proattivo. Se viene visualizzato, ad esempio, che il database SQL o Cosmos DB limitano in modo consistente l'applicazione, potrebbe essere necessario aumentare la capacità del database o ottimizzare le query. In questo esempio, anche se l'applicazione può gestire gli errori di limitazione delle richieste in modo trasparente, i dati di telemetria dovrebbero comunque generare un avviso in modo che si possa procedere nel controllo.  
