@@ -4,12 +4,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ca4bf77c9348f6c656348d9cd61d3a1241d69ba8
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782615"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352645"
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -17,7 +17,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 ## <a name="requirements"></a>Requisiti
 
-**Definire i requisiti di disponibilità del cliente.** Il cliente ha sicuramente la necessità di soddisfare alcuni requisiti di disponibilità per i componenti dell'applicazione e ciò influisce sulla progettazione dell'applicazione. È quindi necessario concordare con il cliente gli obiettivi di disponibilità di ogni parte dell'applicazione. In caso contrario, il progetto potrebbe non soddisfare le aspettative del cliente. Per altre informazioni, vedere [Definizione dei requisiti di resilienza](../resiliency/index.md#defining-your-resiliency-requirements).
+**Definire i requisiti di disponibilità del cliente.** Il cliente ha sicuramente la necessità di soddisfare alcuni requisiti di disponibilità per i componenti dell'applicazione e ciò influisce sulla progettazione dell'applicazione. È quindi necessario concordare con il cliente gli obiettivi di disponibilità di ogni parte dell'applicazione. In caso contrario, il progetto potrebbe non soddisfare le aspettative del cliente. Per altre informazioni, vedere [Progettazione di applicazioni resilienti per Azure](../resiliency/index.md).
 
 ## <a name="application-design"></a>Progettazione di applicazioni
 
@@ -58,7 +58,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Assicurarsi che qualsiasi servizio di terze parti in uso sia accompagnato da un contratto di servizio.** Se l'applicazione dipende da un servizio di terze parti la cui disponibilità non è garantita da un contratto di servizio, anche la disponibilità dell'applicazione non può essere garantita. Il contratto di servizio dell'applicazione vale tanto quanto il componente meno disponibile dell'applicazione.
 
-**Implementare modelli di resilienza per operazioni remote laddove appropriato.** Se l'applicazione dipende dalla comunicazione tra servizi remoti, seguire gli schemi progettuali per la gestione di errori temporanei, ad esempio il [modello a ripetizione][retry-pattern] e il [modello a interruttore][circuit-breaker]. Per altre informazioni, vedere [Strategie di resilienza](../resiliency/index.md#resiliency-strategies).
+**Implementare modelli di resilienza per operazioni remote laddove appropriato.** Se l'applicazione dipende dalla comunicazione tra servizi remoti, seguire gli [schemi progettuali](../patterns/category/resiliency.md) per la gestione di errori temporanei, ad esempio il [modello di ripetizione dei tentativi][retry-pattern] e il [modello a interruttore][circuit-breaker]. 
 
 **Implementare le operazioni asincrone ogni volta che sia possibile.** Le operazioni sincrone possono monopolizzare le risorse e bloccare altre operazioni mentre il chiamante attende il completamento del processo. Progettare ogni parte dell'applicazione in modo da consentire le operazioni asincrone ogni volta che sia possibile. Per altre informazioni su come implementare la programmazione asincrona in C#, vedere [Asynchronous Programming with async and await][asynchronous-c-sharp] (Programmazione asincrona con async e await).
 
