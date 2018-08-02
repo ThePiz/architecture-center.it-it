@@ -3,12 +3,12 @@ title: Pipeline di integrazione continua/distribuzione continua per carichi di l
 description: Scenario collaudato per creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d9f6571234a0c3e67a233cfda1a37f6fb32929a3
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060762"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334216"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 
@@ -119,7 +119,7 @@ Il completamento della distribuzione può richiedere 15-20 minuti.
 
 ## <a name="pricing"></a>Prezzi
 
-Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi sono preconfigurati tutti i servizi. Per verificare la variazione dei prezzi per un determinato caso d'uso, modificare le variabili appropriate in base al traffico previsto.
+Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi sono preconfigurati tutti i servizi. Per verificare la variazione dei prezzi per un determinato caso d'uso, modificare le variabili appropriate in base
 
 Sono stati definiti tre profili di costo di esempio in base al numero di immagini di contenitori da archiviare e ai nodi Kubernetes per l'esecuzione delle applicazioni.
 

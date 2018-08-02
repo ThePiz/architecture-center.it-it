@@ -4,12 +4,12 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843627"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334165"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -23,7 +23,7 @@ La tabella seguente riepiloga le caratteristiche dei meccanismi di ripetizione d
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |Nativo nella libreria ADAL |Incorporato nella libreria ADAL |Interno |Nessuna |
 | **[Cosmos DB](#cosmos-db)** |Native nel servizio |Non configurabili |Globale |TraceSource |
-| **[Hub eventi](#azure-event-hubs)** |Native nel client |Programmatica |Client |Nessuna |
+| **[Hub eventi](#event-hubs)** |Native nel client |Programmatica |Client |Nessuna |
 | **[Cache Redis](#azure-redis-cache)** |Native nel client |Programmatica |Client |TextWriter |
 | **[Ricerca](#azure-search)** |Native nel client |Programmatica |Client |ETW o personalizzato |
 | **[Bus di servizio](#service-bus)** |Native nel client |Programmatica |Gestore dello spazio dei nomi, factory di messaggistica e client |ETW |

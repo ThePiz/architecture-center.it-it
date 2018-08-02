@@ -4,12 +4,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per i pro
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 324d8200d822eb1a7dce95ba4b2a7f29b00fb291
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: cea5baf8c37bf793c5de60f6c2be809629df072b
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/19/2018
-ms.locfileid: "27973111"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352628"
 ---
 # <a name="availability-checklist"></a>Elenco di controllo della disponibilità
 
@@ -21,7 +21,7 @@ La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed
 
 **Scomporre i carichi di lavoro in base all'obiettivo a livello di servizio.** Se un servizio è composto da carichi di lavoro critici e meno critici, gestirli in modo diverso e specificare le funzionalità del servizio e il numero di istanze per soddisfare i rispettivi requisiti di disponibilità.
 
-**Ridurre al minimo e comprendere le dipendenze del servizio.** Ridurre al minimo il numero dei servizi diversi utilizzati laddove possibile e assicurarsi di comprendere tutte le dipendenze di funzionalità e servizi presenti nel sistema. Ciò include la natura di tali dipendenze e l'impatto dell’errore o del peggioramento delle prestazioni in ciascuna di esse sull’applicazione globale. Vedere [Definizione dei requisiti di resilienza](../resiliency/index.md#defining-your-resiliency-requirements).
+**Ridurre al minimo e comprendere le dipendenze del servizio.** Ridurre al minimo il numero dei servizi diversi utilizzati laddove possibile e assicurarsi di comprendere tutte le dipendenze di funzionalità e servizi presenti nel sistema. Ciò include la natura di tali dipendenze e l'impatto dell’errore o del peggioramento delle prestazioni in ciascuna di esse sull’applicazione globale.
 
 **Progettare attività e messaggi in modo che siano idempotenti, se possibile**. Un'operazione è idempotente se può essere ripetuta più volte producendo lo stesso risultato. L'idempotenza può garantire che richieste duplicate non causino problemi. I consumer di messaggi e le operazioni da essi effettuate devono essere idempotenti, affinché la ripetizione di un'operazione eseguita in precedenza non invalidi i risultati. Ciò potrebbe significare rilevamento di messaggi duplicati, oppure la garanzia di coerenza tramite un approccio ottimistico alla gestione dei conflitti.
 
