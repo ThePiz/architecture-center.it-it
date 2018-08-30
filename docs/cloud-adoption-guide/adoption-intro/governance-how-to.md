@@ -2,12 +2,12 @@
 title: Guida alla progettazione della governance di Azure
 description: Guida alla configurazione dei controlli della governance di Azure per consentire all'utente di distribuire un carico di lavoro semplice
 author: petertay
-ms.openlocfilehash: 78545400fc0b09262dce3d0e577442443468b2ed
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 88cd24a46a6bdaca4e0dd18706af1f7e3fe3bce2
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229576"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016075"
 ---
 # <a name="azure-governance-design-guide"></a>Guida alla progettazione della governance di Azure
 
@@ -24,7 +24,7 @@ Nella fase di adozione iniziale, l'obiettivo è distribuire un carico di lavoro 
 Prima di iniziare a progettare il modello di governance, è importante capire come avviene la concessione in licenza di Azure, perché gli account amministrativi associati alla licenza di Azure hanno il massimo livello di accesso a tutte le risorse di Azure. Questi account amministrativi costituiscono la base del modello di governance.  
 
 > [!NOTE]
-> Se l'organizzazione ha già un [Contratto Enterprise Microsoft](https://www.microsoft.com/licensing/licensing-programs/enterprise.aspx) che non include Azure, è possibile aggiungere Azure assumendo un impegno monetario iniziale. Per altre informazioni, vedere [Licenze di Azure per l'azienda](https://azure.microsoft.com/pricing/enterprise-agreement/). 
+> Se l'organizzazione ha già un [Contratto Enterprise Microsoft](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx) che non include Azure, è possibile aggiungere Azure assumendo un impegno monetario iniziale. Per altre informazioni, vedere [Licenze di Azure per l'azienda](https://azure.microsoft.com/pricing/enterprise-agreement/). 
 
 Quando Azure è stato aggiunto al Contratto Enterprise Microsoft, all'organizzazione è stato chiesto di creare un **account Azure**. Durante il processo di creazione dell'account, sono stati creati un **proprietario dell'account Azure** e un tenant di Azure Active Directory (Azure AD) con un account di **amministratore globale**. Un tenant di Azure AD è un costrutto logico che rappresenta un'istanza sicura e dedicata di Azure AD.
 

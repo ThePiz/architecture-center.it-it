@@ -4,12 +4,12 @@ description: Architettura consigliata per un'applicazione Web a disponibilità e
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 00309e58c163a64f6d9796bedc19d936afcd09ab
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: 2efcc591695e1c592053ea32832fe15e624df2e1
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958824"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016099"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Eseguire un'applicazione Web in più aree geografiche
 [!INCLUDE [header](../../_includes/header.md)]
@@ -20,7 +20,7 @@ Questa architettura di riferimento mostra come eseguire un'applicazione del serv
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architettura 
 
 Questa architettura si basa su quella illustrata in [Migliorare la scalabilità in un'applicazione Web][guidance-web-apps-scalability]. Le differenze principali sono le seguenti:
 
@@ -40,7 +40,7 @@ Sono disponibili diversi approcci generali per ottenere una disponibilità eleva
 Questa architettura di riferimento è incentrata sulla modalità attivo/passivo con hot standby, usando Gestione traffico per il failover. 
 
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Seguire le raccomandazioni contenute in questa sezione come punto di partenza.
 
@@ -163,7 +163,7 @@ Se nel database primario si verifica un errore, effettuare un failover manuale a
 [storage-outage]: /azure/storage/storage-disaster-recovery-guidance
 [tm-configure-failover]: /azure/traffic-manager/traffic-manager-configure-failover-routing-method
 [tm-monitoring]: /azure/traffic-manager/traffic-manager-monitoring
-[tm-ps]: https://msdn.microsoft.com/library/mt125941.aspx
+[tm-ps]: /powershell/module/azurerm.trafficmanager
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/

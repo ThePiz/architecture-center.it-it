@@ -2,12 +2,12 @@
 title: Stile di architettura guidato dagli eventi
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture guidate dagli eventi e IoT in Azure
 author: MikeWasson
-ms.openlocfilehash: 3289bf784b02d62e3d0c1a29b4839c9be3501134
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: dbf6be5ed386d06f96c876993ad03e7cb0e3dded
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478324"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016058"
 ---
 # <a name="event-driven-architecture-style"></a>Stile di architettura guidato dagli eventi
 
@@ -55,42 +55,9 @@ Nel diagramma logico raffigurato sopra ogni tipo di consumer viene mostrato come
 - Recapito garantito. In alcuni sistemi, in particolare in scenari IoT, è essenziale garantire che gli eventi vengano recapitati.
 - Elaborazione degli eventi in ordine o esattamente una volta. In genere, ogni tipo di consumer viene eseguito in più istanze, per motivi di resilienza e scalabilità. Questo approccio può rivelarsi problematico se gli eventi devono essere elaborati in ordine (all'interno di un tipo di consumer) o se la logica di elaborazione non è idempotente.
 
-## <a name="iot-architecture"></a>Architettura IoT
-
-Le architetture guidate dagli eventi sono centrali per le soluzioni IoT. Il diagramma seguente mostra una possibile architettura logica per IoT. Il diagramma evidenzia i componenti del flusso di eventi dell'architettura.
-
-![](./images/iot.png)
-
-Il **gateway cloud** inserisce gli eventi di dispositivo in corrispondenza dei limiti del cloud, usando un sistema di messaggistica a bassa latenza affidabile.
-
-I dispositivi possono inviare eventi direttamente al gateway cloud oppure attraverso un **gateway sul campo**. Un gateway sul campo è un dispositivo o un software specializzato che si trova in genere nella stessa posizione dei dispositivi e che riceve gli eventi e li inoltra al gateway cloud. Il gateway sul campo può anche pre-elaborare gli eventi di dispositivo non elaborati, eseguendo funzioni come l'applicazione di filtri, l'aggregazione o la trasformazione del protocollo.
-
-Dopo l'inserimento, gli eventi passano da uno o più **elaboratori di flussi**, che possono instradare i dati (ad esempio all'archiviazione) o eseguire analisi e altri tipi di elaborazione.
-
-Di seguito vengono indicati alcuni tipi comuni di elaborazione. Naturalmente, l'elenco non è esaustivo.
-
-- Scrittura dei dati di evento nell'archiviazione offline sicura per l'analisi batch.
-
-- Analisi Percorso critico, che analizza il flusso di eventi (quasi) in tempo reale, per rilevare le anomalie, riconoscere i modelli in base a intervalli di tempo ricorrenti o attivare avvisi quando si verifica una condizione specifica nel flusso. 
-
-- Gestione di tipi speciali di messaggi non di telemetria dai dispositivi, come le notifiche e gli allarmi. 
-
-- Machine Learning.
-
-Le caselle in grigio mostrano i componenti di un sistema IoT non direttamente correlati al flusso di eventi, ma che sono stati inclusi per completezza.
-
-- Il **registro dei dispositivi** è un database dei dispositivi di cui è stato effettuato il provisioning e include gli ID dispositivo e in genere i metadati dei dispositivi, come la posizione.
-
-- L'**API di provisioning** è un'interfaccia esterna comune per il provisioning e la registrazione di nuovi dispositivi.
-
-- Alcune soluzioni IoT consentono l'invio di **messaggi di comando e controllo** ai dispositivi.
-
-> Questa sezione ha presentato una visualizzazione di livello notevolmente elevato di uno scenario IoT, in cui potrebbe essere necessario tenere presenti alcune sottigliezze e problematiche. Per un'analisi più approfondita dell'architettura di riferimento, con tutte le considerazioni correlate, vedere [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Architettura di riferimento di Microsoft Azure IoT).
-
  <!-- links -->
 
 [competing-consumers]: ../../patterns/competing-consumers.md
-[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
 [minimize-coordination]: ../design-principles/minimize-coordination.md
 
 
