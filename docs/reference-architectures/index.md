@@ -3,12 +3,13 @@ title: Architetture di riferimento di Azure
 description: Architetture di riferimento, progetti e materiale sussidiario per l'implementazione per carichi di lavoro comuni in Azure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 374ca51d70e4999fbb1bacf47547040db6f0071f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.date: 08/30/2018
+ms.openlocfilehash: e9b3a65c48c759f9fc07da9f2c4195fc2db4c782
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987625"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325572"
 ---
 # <a name="azure-reference-architectures"></a>Architetture di riferimento di Azure
 
@@ -52,6 +53,26 @@ Passare a: [Big data](#big-data-solutions) | [Applicazioni Web](#web-application
                     <div class="cardText">
                         <h3>Business intelligence aziendale automatizzata con Azure Data Factory</h3>
                         <p>Automatizzare una pipeline ELT per eseguire il caricamento incrementale da un database locale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Stream Analytics -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/stream-processing-stream-analytics.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/azure-analysis-service.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Elaborazione di flussi con Analisi di flusso di Azure</h3>
+                        <p>Pipeline di elaborazione flusso end-to-end che mette in correlazione i record da due flussi dati per calcolare una media mobile.</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +123,7 @@ Passare a: [Big data](#big-data-solutions) | [Applicazioni Web](#web-application
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./app-service-web-app/multi-region.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
