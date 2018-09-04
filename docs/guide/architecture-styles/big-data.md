@@ -2,12 +2,12 @@
 title: Stile di architettura per Big Data
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture per i Big Data in Azure
 author: MikeWasson
-ms.openlocfilehash: 4e8b58d5fa0f6a441d70e05ec7d6a0e668712563
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d76192cf2fc680497ece0123ef412971c025f9dc
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540890"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016020"
 ---
 # <a name="big-data-architecture-style"></a>Stile di architettura per Big Data
 
@@ -91,3 +91,39 @@ Prendere in considerazione questo stile di architettura quando è necessario:
 - **Orchestrare l'inserimento di dati**. In alcuni casi, le applicazioni aziendali esistenti possono scrivere file di dati per l'elaborazione batch direttamente nei contenitori BLOB di archiviazione di Azure, dove possono essere usati da HDInsight o Azure Data Lake Analytics. Tuttavia sarà spesso necessario orchestrare l'inserimento di dati da origini dati locali o esterne nel data lake. Usare un flusso di lavoro o una pipeline di orchestrazione, ad esempio quelli supportati da Azure Data Factory oppure Oozie, per ottenere questo risultato in modo prevedibile e gestibile a livello centrale.
 
 - **Eseguire lo scrubbing dei dati sensibili in anticipo**. Il flusso di lavoro per l'inserimento dei dati dovrebbe eseguire lo scrubbing dei dati sensibili all'inizio del processo, per evitare di archiviarli nel data lake.
+
+## <a name="iot-architecture"></a>Architettura IoT
+
+Internet delle cose (IoT) è un subset specifico di soluzioni per Big Data. Il diagramma seguente mostra una possibile architettura logica per IoT. Il diagramma evidenzia i componenti del flusso di eventi dell'architettura.
+
+![](./images/iot.png)
+
+Il **gateway cloud** inserisce gli eventi di dispositivo in corrispondenza dei limiti del cloud, usando un sistema di messaggistica a bassa latenza affidabile.
+
+I dispositivi possono inviare eventi direttamente al gateway cloud oppure attraverso un **gateway sul campo**. Un gateway sul campo è un dispositivo o un software specializzato che si trova in genere nella stessa posizione dei dispositivi e che riceve gli eventi e li inoltra al gateway cloud. Il gateway sul campo può anche pre-elaborare gli eventi di dispositivo non elaborati, eseguendo funzioni come l'applicazione di filtri, l'aggregazione o la trasformazione del protocollo.
+
+Dopo l'inserimento, gli eventi passano da uno o più **elaboratori di flussi**, che possono instradare i dati (ad esempio all'archiviazione) o eseguire analisi e altri tipi di elaborazione.
+
+Di seguito vengono indicati alcuni tipi comuni di elaborazione. Naturalmente, l'elenco non è esaustivo.
+
+- Scrittura dei dati di evento nell'archiviazione offline sicura per l'analisi batch.
+
+- Analisi Percorso critico, che analizza il flusso di eventi (quasi) in tempo reale, per rilevare le anomalie, riconoscere i modelli in base a intervalli di tempo ricorrenti o attivare avvisi quando si verifica una condizione specifica nel flusso. 
+
+- Gestione di tipi speciali di messaggi non di telemetria dai dispositivi, come le notifiche e gli allarmi. 
+
+- Machine Learning.
+
+Le caselle in grigio mostrano i componenti di un sistema IoT non direttamente correlati al flusso di eventi, ma che sono stati inclusi per completezza.
+
+- Il **registro dei dispositivi** è un database dei dispositivi di cui è stato effettuato il provisioning e include gli ID dispositivo e in genere i metadati dei dispositivi, come la posizione.
+
+- L'**API di provisioning** è un'interfaccia esterna comune per il provisioning e la registrazione di nuovi dispositivi.
+
+- Alcune soluzioni IoT consentono l'invio di **messaggi di comando e controllo** ai dispositivi.
+
+> Questa sezione ha presentato una visualizzazione di livello notevolmente elevato di uno scenario IoT, in cui potrebbe essere necessario tenere presenti alcune sottigliezze e problematiche. Per un'analisi più approfondita dell'architettura di riferimento, con tutte le considerazioni correlate, vedere [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Architettura di riferimento di Microsoft Azure IoT).
+
+ <!-- links -->
+
+[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
