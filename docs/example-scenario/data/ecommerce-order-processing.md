@@ -3,12 +3,12 @@ title: Elaborazione degli ordini scalabile in Azure
 description: Scenario di esempio per la creazione di una pipeline di elaborazione degli ordini altamente scalabile con Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 541b5e9f523c64bc55526e4e2dffc57a5212e67f
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060982"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016104"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Elaborazione degli ordini scalabile in Azure
 
@@ -41,7 +41,7 @@ Questa architettura indica i componenti chiave di una pipeline per l'elaborazion
 
 ### <a name="components"></a>Componenti
 
-* [Cosmos DB][docs-cosmos-db] è il database multimodello di Microsoft, distribuito a livello globale, che consente di ridimensionare in modo flessibile e indipendente la velocità effettiva e le risorse di archiviazione delle soluzioni, in un numero qualsiasi di aree geografiche. Offre garanzie di produttività, latenza, disponibilità e coerenza con contratti di servizio completi. Questo scenario usa Cosmos DB per l'archiviazione di flussi di eventi e l'archiviazione di snapshot e sfrutta le funzioni di feed di modifiche di Cosmos DB per garantire la coerenza dei dati e il recupero da errori. 
+* [Cosmos DB][docs-cosmos-db] è il database multimodello di Microsoft, distribuito a livello globale, che consente di ridimensionare in modo flessibile e indipendente la velocità effettiva e le risorse di archiviazione delle soluzioni, in un numero qualsiasi di aree geografiche. Offre garanzie di produttività, latenza, disponibilità e coerenza con contratti di servizio completi. Questo scenario usa Cosmos DB per l'archiviazione di flussi di eventi e l'archiviazione di snapshot e sfrutta le funzioni di [feed di modifiche di Cosmos DB][docs-cosmos-db-change-feed] per garantire la coerenza dei dati e il recupero da errori. 
 * [Apache Kafka in HDInsight][docs-kafka] è un'implementazione di servizi gestiti di Apache Kafka, una piattaforma di streaming distribuita open-source per la creazione di applicazioni e pipeline di dati in streaming in tempo reale. Kafka offre anche una funzionalità di broker di messaggi simile a una coda di messaggi, in cui è possibile pubblicare e sottoscrivere flussi dei dati denominati. Questo scenario usa Kafka per l'elaborazione di eventi in ingresso e downstream nella pipeline di elaborazione degli ordini. 
 
 ## <a name="considerations"></a>Considerazioni
@@ -107,6 +107,7 @@ Altre risorse correlate includono:
 [architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
+[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases

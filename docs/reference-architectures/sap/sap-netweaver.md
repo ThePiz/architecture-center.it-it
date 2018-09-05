@@ -3,12 +3,12 @@ title: Distribuire SAP NetWeaver (Windows) per AnyDB in macchine virtuali di Azu
 description: Procedure consolidate per l'esecuzione di SAP S/4HANA in un ambiente Linux su Azure con disponibilità elevata.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864539"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016070"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Distribuire SAP NetWeaver (Windows) per AnyDB in macchine virtuali di Azure
 
@@ -21,7 +21,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 > [!NOTE] 
 > La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 L'architettura è costituita dall'infrastruttura e dai principali componenti software seguenti.
 
 **Rete virtuale**. Il servizio Rete virtuale di Azure connette in modo sicuro tra loro le risorse di Azure. In questa architettura la rete virtuale si connette a un ambiente locale tramite un gateway VPN distribuito nell'hub di una topologia [hub-spoke](../hybrid-networking/hub-spoke.md). Lo spoke è la rete virtuale usata per le applicazioni SAP e il livello database.
@@ -35,7 +35,7 @@ L'architettura è costituita dall'infrastruttura e dai principali componenti sof
 - **Jumpbox**. Detto anche bastion host. È una macchina virtuale sicura in rete usata dagli amministratori per connettersi alle altre macchine virtuali.
 - **Controller di dominio Active Directory di Windows Server**. I controller di dominio vengono usati in tutte le macchine virtuali e tutti gli utenti nel dominio.
 
-**Servizi di bilanciamento del carico**. Per ottenere disponibilità elevata, vengono usati sia servizi di bilanciamento del carico SAP sia [Azure Load Balancer](/azure/load-balancer/load-balancer-overview). Le istanze di Azure Load Balancer vengono usate per distribuire il carico alle macchine virtuali nella subnet del livello applicazione.
+**Servizi di bilanciamento del carico**. Le istanze di [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) vengono usate per distribuire il carico alle macchine virtuali nella subnet del livello applicazione. Al livello dati è possibile ottenere la disponibilità elevata usando i servizi di bilanciamento del carico SAP predefiniti, Azure Load Balancer o altri meccanismi, a seconda del sistema di gestione database. Per altre informazioni, vedere [Distribuzione DBMS di Macchine virtuali di Azure per SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide). 
 
 **Set di disponibilità**. Le macchine virtuali per i ruoli SAP Web Dispatcher, server applicazioni SAP e (A)SCS sono raggruppate in [set di disponibilità](/azure/virtual-machines/windows/tutorial-availability-sets) e viene effettuato il provisioning di almeno due macchine virtuali per ogni ruolo. Questo approccio rende le macchine virtuali idonee per un [contratto di servizio](https://azure.microsoft.com/support/legal/sla/virtual-machines) di livello superiore.
 
@@ -47,7 +47,7 @@ L'architettura è costituita dall'infrastruttura e dai principali componenti sof
 
 **Archiviazione di Azure**. Per fornire l'archiviazione permanente di un disco rigido virtuale di una macchina virtuale, è necessario usare [Archiviazione di Azure](/azure/storage/storage-standard-storage). Il servizio viene usato anche da [Cloud Witness](/windows-server/failover-clustering/deploy-cloud-witness) per implementare un'operazione del cluster di failover. 
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Usare queste indicazioni come punto di partenza.
 
 ### <a name="sap-web-dispatcher-pool"></a>Pool di componenti SAP Web Dispatcher
