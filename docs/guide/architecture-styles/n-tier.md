@@ -2,12 +2,13 @@
 title: Stile di architettura a più livelli
 description: Descrive i vantaggi, le sfide e le procedure consigliate per le architetture a più livelli in Azure
 author: MikeWasson
-ms.openlocfilehash: 8333b789e03a9da2b021abe7d7c193cd2af8d6bf
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 08/30/2018
+ms.openlocfilehash: 2a113cefec8bd1c6c524030fbc459851094c09d6
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540378"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325751"
 ---
 # <a name="n-tier-architecture-style"></a>Stile di architettura a più livelli
 
@@ -83,7 +84,7 @@ Per maggiori dettagli e per un modello di Resource Manager distribuibile, vedere
 - [Eseguire macchine virtuali Windows per un'applicazione a più livelli][n-tier-windows]
 - [Eseguire macchine virtuali Linux per un'applicazione a più livelli][n-tier-linux]
 
-### <a name="additional-considerations"></a>Considerazioni aggiuntive
+### <a name="additional-considerations"></a>Ulteriori considerazioni
 
 - Le architetture a più livelli non sono limitate a tre livelli fisici. Applicazioni più complesse possono contenere un numero maggiore di livelli. In tal caso, provare a usare il routing di livello 7 per indirizzare le richieste a un livello specifico.
 

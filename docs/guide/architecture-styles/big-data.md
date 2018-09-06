@@ -2,12 +2,13 @@
 title: Stile di architettura per Big Data
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture per i Big Data in Azure
 author: MikeWasson
-ms.openlocfilehash: d76192cf2fc680497ece0123ef412971c025f9dc
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.date: 08/30/2018
+ms.openlocfilehash: 073a1a88f1aaca7f09bd1f47ba79216b0727ca24
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43016020"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325372"
 ---
 # <a name="big-data-architecture-style"></a>Stile di architettura per Big Data
 

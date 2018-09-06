@@ -2,12 +2,13 @@
 title: Compilazione per le esigenze aziendali
 description: Ogni decisione di progettazione deve essere giustificata da un requisito aziendale
 author: MikeWasson
-ms.openlocfilehash: 768f2298860d91774d93c1917cf95000bb2b873d
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: f3086b36be0ead7466c33cd083f29f2c67bed440
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206639"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325901"
 ---
 # <a name="build-for-the-needs-of-the-business"></a>Compilazione per le esigenze aziendali
 
@@ -15,7 +16,7 @@ ms.locfileid: "36206639"
 
 Questo principio di progettazione può sembrare ovvio, ma è essenziale da tenere a mente quando si progetta una soluzione. Si prevedono milioni di utenti o solo alcune migliaia? Un'interruzione dell'applicazione di un'ora è accettabile? Si prevedono forti picchi di traffico o un carico di lavoro molto prevedibile? In ultima analisi, ogni decisione di progettazione deve essere giustificata da un requisito aziendale. 
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 **Definire gli obiettivi di business**, inclusi obiettivo del tempo di ripristino (RTO), obiettivo del punto di ripristino (RPO) e massima interruzione tollerabile (MTO). Questi dati devono guidare le decisioni sull'architettura. Per ottenere un RTO basso, ad esempio, è possibile implementare il failover automatico a un'area secondaria. Tuttavia, se la soluzione può tollerare un RTO superiore, questo livello di ridondanza potrebbe non essere necessario.
 

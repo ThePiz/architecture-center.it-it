@@ -2,12 +2,13 @@
 title: Usare il migliore archivio dati per il processo
 description: Scegliere la tecnologia di archiviazione che rappresenta la soluzione migliore per i dati e per le modalità d'uso che si adopereranno successivamente
 author: MikeWasson
-ms.openlocfilehash: c3619012e8c199d154e4ac432ce03b2a9295c26f
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 25839f5a749881f415c923db5497984d32b8ac91
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206632"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326092"
 ---
 # <a name="use-the-best-data-store-for-the-job"></a>Usare il migliore archivio dati per il processo
 
@@ -25,7 +26,7 @@ Ad esempio, è possibile archiviare un catalogo di prodotti in un database di do
 
 Tenere presente che i dati non includono solo i dati applicazioni persistenti, ma anche i registri applicazioni, gli eventi, i messaggi e le cache.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 **Non usare un database relazionale per tutte le funzioni**. Prendere in considerazione altri archivi dati, quando è appropriato. Vedere [Choose the right data store][data-store-overview] (Scegliere il giusto archivio dati).
 

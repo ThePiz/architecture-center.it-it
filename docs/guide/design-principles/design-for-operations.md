@@ -2,12 +2,13 @@
 title: Progettare per le operazioni
 description: Progettare un'applicazione per offrire al team operativo degli strumenti necessari
 author: MikeWasson
-ms.openlocfilehash: 5b9f76c27656e5154fb039ca41976f7209395cd8
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: a73479a7661c042d05db61907d1f993fc04ac11d
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206616"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326239"
 ---
 # <a name="design-for-operations"></a>Progettare per le operazioni
 
@@ -23,7 +24,7 @@ Il cloud ha significativamente modificato il ruolo dei team operativi, che non s
 
 Per le applicazioni cloud è particolarmente importante poter contare su funzionalità affidabili di registrazione e analisi. Coinvolgere il team operativo nelle attività di progettazione e pianificazione, per garantire che l'applicazione fornisca loro i dati e le informazioni dettagliate di cui hanno bisogno per svolgere il loro lavoro.  <!-- to do: Link to DevOps checklist -->
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 **Rendere ogni elemento osservabile**. Dopo la distribuzione e l'esecuzione di una soluzione, i log e le analisi costituiscono la principale fonte di informazioni sul sistema. L'*analisi* registra un percorso nel sistema ed è utile per individuare colli di bottiglia, problemi di prestazioni e punti di guasto. La *registrazione* acquisisce singoli eventi, quali modifiche dello stato dell'applicazione, errori ed eccezioni. Eseguire registrazioni nell'ambiente di produzione, in caso contrario si perderanno i dati dettagliati proprio quando sono più necessari.
 

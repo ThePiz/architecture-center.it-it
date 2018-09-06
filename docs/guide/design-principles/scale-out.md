@@ -2,12 +2,13 @@
 title: Progettare per la scalabilità orizzontale
 description: Le applicazioni cloud devono essere progettate per la scalabilità orizzontale.
 author: MikeWasson
-ms.openlocfilehash: 8207f322d4312f6a30a8b0db7328b272c1d82de0
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 9b57f4e6a17eece4f5283436e104c286602bb54f
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206728"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325655"
 ---
 # <a name="design-to-scale-out"></a>Progettare per la scalabilità orizzontale
 
@@ -15,7 +16,7 @@ ms.locfileid: "36206728"
 
 Un importante vantaggio del cloud è la scalabilità elastica, ovvero la possibilità di usare la capacità necessaria, aumentandola quando aumenta il carico e riducendola quando la capacità aggiuntiva non è necessaria. Progettare l'applicazione in modo che consenta la scalabilità orizzontale, aggiungendo o rimuovendo nuove istanze in base alle esigenze.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 **Evitare la persistenza delle istanze**. Si parla di persistenza, o *affinità di sessione*, quando le richieste dello stesso client vengono sempre instradate allo stesso server. La persistenza limita la capacità di scalabilità orizzontale dell'applicazione. Il traffico di un utente con volumi elevati, ad esempio, non viene distribuito tra più istanze. Tra le cause della persistenza ci sono lo stato sessione in memoria e l'uso di chiavi specifiche del computer per la crittografia. Assicurarsi che qualsiasi istanza possa gestire qualsiasi richiesta. 
 

@@ -2,12 +2,13 @@
 title: Rendere ogni elemento ridondante
 description: Per evitare singoli punti di guasto, è consigliabile applicare la ridondanza nell'applicazione.
 author: MikeWasson
-ms.openlocfilehash: 4f6e3404b2aaf9c28dfd6812975c2709d8cc8c85
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 0df9e0bded9b8719d43b9ba328c2de6a10b37f92
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206649"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325462"
 ---
 # <a name="make-all-things-redundant"></a>Rendere ogni elemento ridondante
 
@@ -15,7 +16,7 @@ ms.locfileid: "36206649"
 
 Un'applicazione resiliente consente di risolvere più facilmente gli errori. È quindi opportuno identificare i percorsi critici nell'applicazione e verificare se in ogni punto del percorso sia prevista una certa ridondanza, in modo che in caso di errore di un sottosistema, l'applicazione possa effettuare il failover in un altro sottosistema.
 
-## <a name="recommendations"></a>Raccomandazioni 
+## <a name="recommendations"></a>Consigli 
 
 **Prendere in considerazione i requisiti aziendali**. La ridondanza implementata in un sistema può influire sui costi e sulla complessità del sistema stesso. L'architettura deve quindi tenere in considerazione i requisiti aziendali, tra cui il cosiddetto RTO (Recovery Time Objective), ovvero il tempo necessario per il recupero dell'operatività. Ad esempio, una distribuzione in più aree è più costosa rispetto a una in una singola area ed è più complicata da gestire. È quindi necessario definire apposite procedure operative per gestire il failover e il failback. L'incremento dei costi e la maggiore complessità potrebbero essere giustificabili per alcuni scenari aziendali e non per altri.
 

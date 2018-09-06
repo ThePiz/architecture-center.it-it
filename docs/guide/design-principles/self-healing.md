@@ -2,12 +2,13 @@
 title: Progettazione per la correzione automatica
 description: In caso di guasto, le applicazioni resilienti possono essere ripristinate senza alcun intervento manuale.
 author: MikeWasson
-ms.openlocfilehash: 508341ba428b294cf268e34e922aced9d2d67579
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: f85e3881fe7753f0551d1d31dd64b4631b441686
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206650"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325809"
 ---
 # <a name="design-for-self-healing"></a>Progettazione per la correzione automatica
 
@@ -25,7 +26,7 @@ La modalità di risposta a un determinato tipo di errore può dipendere dai requ
 
 È bene inoltre non valutare solo eventi importanti come le interruzioni a livello di area, in genere rare. È consigliabile invece concentrarsi sulla gestione degli errori locali e di breve durata, ad esempio gli errori di connettività di rete o le connessioni di database non riuscite.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 **Ritentare le operazioni non riuscite**. Gli errori temporanei possono dipendere da una perdita momentanea della connettività di rete, da una connessione a un database eliminato o da un timeout che si verifica quando un servizio è occupato. Per gestire gli errori temporanei, nell'applicazione va prevista una logica di ripetizione dei tentativi. In molti servizi di Azure, l'SDK client implementa i tentativi automatici. Per altre informazioni, vedere [Gestione degli errori temporanei][transient-fault-handling] e [Modello Ripetizione dei tentativi][retry].
 

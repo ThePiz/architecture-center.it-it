@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229151"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326321"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -111,10 +111,10 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 | --- | --- | --- | --- | --- | --- | --- |
 |Rete virtuale |Gruppo di risorse |2-64 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service short name>-vnet` |`profx-vnet` |
 |Subnet |Rete virtuale padre |2-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`web` |
-|Interfaccia di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Interfaccia di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vmname>-nic<num>` |`profx-sql1-vm1-nic1` |
 |Gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |Regola del gruppo di sicurezza di rete |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`sql-allow` |
-|Indirizzo IP pubblico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Indirizzo IP pubblico |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<vm or service name>-pip` |`profx-sql1-vm1-pip` |
 |Load Balancer |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-lb` |`profx-lb` |
 |Configurazione di regole del servizio di bilanciamento del carico |Load Balancer |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<descriptive context>` |`http` |
 |Gateway applicazione di Azure |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, segno meno, carattere di sottolineatura e punto |`<service or role>-agw` |`profx-agw` |
@@ -195,4 +195,4 @@ Non è possibile modificare il nome del contenitore o dell'account di archiviazi
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-subscription-governance
+[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold

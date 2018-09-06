@@ -2,12 +2,13 @@
 title: Creare partizioni per ovviare ai limiti
 description: Usare il partizionamento per risolvere il problema dei limiti a livello di calcolo, database e rete
 author: MikeWasson
-ms.openlocfilehash: 86306c6c33ea7a93c4c1f868d820cc522095a8b7
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 2f6bf797c2c7e5af7c487635c19eaf77eee77dec
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206640"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326297"
 ---
 # <a name="partition-around-limits"></a>Creare partizioni per ovviare ai limiti
 
@@ -33,7 +34,7 @@ Un database può essere partizionato *orizzontalmente*, *verticalmente* o dal pu
 
 Per informazioni più dettagliate, vedere [Data partitioning][data-partitioning-guidance] (Partizionamento dei dati).
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 **Partizionare diverse parti dell'applicazione**. I database sono un candidato ottimale per il partizionamento, ma prendere in considerazione anche le risorse di archiviazione, la cache, le code e le istanze di calcolo.
 
