@@ -6,12 +6,12 @@ ms.date: 12/06/2016
 pnp.series.title: Network DMZ
 pnp.series.prev: secure-vnet-dmz
 cardTitle: Deploy highly available network virtual appliances
-ms.openlocfilehash: fe279eea3f9cb024d6c6c14943013b9b9a87bc9c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 556ec1e78960d64cce3bf803fc46c9146ce2584d
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847748"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675832"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Distribuire appliance virtuali di rete con disponibilità elevata
 
@@ -92,6 +92,7 @@ La figura precedente illustra un cluster di esempio [ZooKeeper][zookeeper] che o
 ## <a name="next-steps"></a>Passaggi successivi
 * Informazioni su come [implementare una rete perimetrale tra Azure e il data center locale][dmz-on-prem] con le appliance virtuali di rete di livello 7.
 * Informazioni su come [implementare una rete perimetrale tra Azure e Internet][dmz-internet] con le appliance virtuali di rete di livello 7.
+* [Risoluzione dei problemi delle appliance virtuali di rete in Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
 
 <!-- links -->
 [cloud-security]: /azure/best-practices-network-security

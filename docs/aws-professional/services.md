@@ -5,12 +5,12 @@ keywords: confronto tra servizi cloud, servizi cloud a confronto, multi-cloud, c
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 7a650eee1a42860c6c41db2572cf2feb71844999
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 4c78f45c654a40142ff25736b83a5b6b10591fc6
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016012"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325013"
 ---
 # <a name="aws-to-azure-services-comparison"></a>Confronto tra i servizi di Azure e AWS
 
@@ -172,6 +172,7 @@ Per una panoramica di Azure per gli utenti di AWS, vedere l'[introduzione ad Azu
 |             Firewall             |                    Web application firewall                    |                                 [Web application firewall del gateway applicazione di Azure (anteprima)](https://azure.microsoft.com/updates/application-gateway-web-application-firewall-in-public-preview/)                                 |                                                                                     Firewall che protegge le applicazioni Web dai comuni exploit Web. Gli utenti possono definire regole di sicurezza Web personalizzabili.                                                                                      |
 |             Sicurezza             |                           Inspector                            |                                                                           [Centro sicurezza](https://azure.microsoft.com/services/security-center/)                                                                            |                                                  Servizio automatico di valutazione della sicurezza che migliora la sicurezza e la conformità delle applicazioni. Valuta automaticamente le applicazioni per individuare vulnerabilità o deviazioni dalle procedure consigliate.                                                  |
 |     <strong>&nbsp;</strong>      |                      Gestione certificati                       |                                                  [Certificati del servizio app disponibili nel portale](https://azure.microsoft.com/blog/internals-of-app-service-certificate/)                                                   |                                                                                               Servizio che consente ai clienti di creare, gestire e utilizzare certificati in tutta semplicità nel cloud.                                                                                                |
+| &nbsp; | GuardDuty | Azure AD, Operations Management Suite (OMS), Centro sicurezza | Azure offre funzionalità incorporate di rilevamento delle minacce avanzate, che possono essere configurate e personalizzate per rispettare i requisiti. Per altre informazioni, vedere [Rilevamento delle minacce avanzato in Azure](/azure/security/azure-threat-detection). |
 |        Servizi directory        | AWS Directory Service + Windows Server Active Directory su AWS |                                       [Azure Active Directory Domain Services + Windows Server Active Directory su Azure IaaS](https://azure.microsoft.com/services/active-directory/)                                        | Soluzione cloud completa per la gestione delle identità e degli accessi che offre un solido set di funzionalità per gestire utenti e gruppi. Aiuta a proteggere l'accesso ad applicazioni locali e cloud, tra cui i servizi online di Microsoft come Office 365 e molte applicazioni SaaS non Microsoft. |
 |     <strong>&nbsp;</strong>      |                            Cognito                             |                                                                   [Azure Active Directory B2C](https://azure.microsoft.com/services/active-directory-b2c/)                                                                    |                                                                          Servizio di gestione delle identità globale a disponibilità elevata per le applicazioni rivolte agli utenti, con scalabilità fino a centinaia di milioni di identità.                                                                           |
 |     <strong>&nbsp;</strong>      |                     AWS Directory Service                      |                                                                 [Windows Server Active Directory](https://azure.microsoft.com/services/active-directory-ds/)                                                                  |                                                                                                                Servizi per il supporto di Microsoft Active Directory nel cloud.                                                                                                                |

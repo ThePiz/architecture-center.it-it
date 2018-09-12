@@ -3,12 +3,12 @@ title: Esplorazione interattiva dei dati
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 2e3d61fa5e1903c7fee6ebc84db3fa7c28d515cb
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30297957"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325118"
 ---
 # <a name="interactive-data-exploration"></a>Esplorazione interattiva dei dati
 
@@ -51,7 +51,7 @@ Servizi di Azure pertinenti:
 
 - **Condivisione dei risultati.** Se gli utenti possono creare e condividere report o visualizzazioni di dati, è possibile che sia necessario tenere conto di considerazioni sulla sicurezza.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 Anche se l'obiettivo di questo scenario è supportare l'analisi interattiva dei dati e le attività di pulizia, campionamento e strutturazione dei dati inerenti al data science, sono spesso necessari processi a esecuzione prolungata. Ecco perché, in questo caso, è necessaria un'architettura di [elaborazione in batch](../big-data/batch-processing.md).
 
@@ -82,6 +82,7 @@ Per altre informazioni, vedere [Analytical data stores](../technology-choices/an
 ### <a name="analytics-and-reporting"></a>Analisi e report
 
 - **Jupyter**. I notebook di Jupyter offrono un'interfaccia basata su browser per l'esecuzione di codice nei linguaggi R, Python e Scala. Se si usa R Server o Spark per l'elaborazione in batch dei dati o se si usa SQL Spark per definire uno schema delle tabelle per l'esecuzione di query, Jupyter può essere una scelta ottimale per l'esecuzione di query nei dati. Se invece si usa Spark, è possibile usare l'API del dataframe Spark standard, l'API di Spark SQL o istruzioni SQL incorporate per eseguire query sui dati e generare visualizzazioni.
+- **Drill**. Se si desidera eseguire l'esplorazione dei dati ad hoc, [Apache Drill](https://drill.apache.org/) è un motore di query SQL senza schema. Poiché non è necessario uno schema, è possibile eseguire query sui dati da un'ampia gamma di origini dati: il motore comprende automaticamente la struttura dei dati.
 - **Client Interactive Hive**. Se si usa un cluster Interactive Hive per eseguire query sui dati, è possibile usare la visualizzazione Hive nel dashboard del cluster Ambari, lo strumento da riga di comando Beeline o qualsiasi strumento basato su ODBC (tramite Hive ODBC Driver), ad esempio Microsoft Excel o Power BI.
 
 Per altre informazioni, vedere [Data analytics and reporting technology](../technology-choices/analysis-visualizations-reporting.md) (Tecnologia per l'analisi dei dati e la creazione di report).

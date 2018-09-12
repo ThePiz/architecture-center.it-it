@@ -7,12 +7,12 @@ pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: e397a8691a1b7b37cc0129d914dc85d92c876139
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403165"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675808"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Rete perimetrale tra Azure e il data center locale
 
@@ -28,7 +28,7 @@ Questa architettura richiede una connessione al data center locale mediante un [
 * Infrastruttura che richiede un controllo granulare sul traffico in ingresso in una rete virtuale di Azure da un data center locale.
 * Applicazioni che devono controllare il traffico in uscita. Questo è spesso un requisito normativo di molti sistemi commerciali, usato per evitare la divulgazione di informazioni private.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti seguenti.
 
@@ -46,7 +46,7 @@ L'architettura è costituita dai componenti seguenti.
 
 * **Subnet di gestione.** Questa subnet include macchine virtuali che implementano le funzionalità di gestione e monitoraggio per i componenti in esecuzione nella rete virtuale.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda. 
 
@@ -163,7 +163,7 @@ Utilizzare il [controllo degli accessi in base al ruolo][rbac] per limitare le o
 
 È disponibile una distribuzione per un'architettura di riferimento che implementa queste raccomandazioni su [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -226,6 +226,7 @@ In questo passaggio verranno connessi i due gateway di rete locali.
 * Per ulteriori informazioni sulla gestione della sicurezza di rete con Azure, vedere [Servizi cloud Microsoft e sicurezza di rete][cloud-services-network-security].
 * Per informazioni dettagliate sulla protezione delle risorse in Azure, vedere [Introduzione alla sicurezza in Microsoft Azure][getting-started-with-azure-security]. 
 * Per ulteriori dettagli su come risolvere i problemi di sicurezza in una connessione al gateway di Azure, vedere gli articoli [Implementazione di un'architettura di rete ibrida con Azure e una VPN locale][guidance-vpn-gateway-security] e [Implementazione di un'architettura di rete ibrida con Azure ExpressRoute][guidance-expressroute-security].
+* [Risoluzione dei problemi delle appliance virtuali di rete in Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
   > 
 
 <!-- links -->
