@@ -4,12 +4,12 @@ description: Come creare applicazioni resilienti in Azure per disponibilità ele
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: c32f093da4c47ef655dfca89b0410f063e9fe212
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: b92a26323b4329f3dbe4f941b98da0080e730d65
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352587"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389435"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -259,7 +259,7 @@ Misurare i tempi di ripristino e verificare che i requisiti aziendali siano sodd
 
 Questa è un'altra ragione per cui è importante analizzare i punti di errore possibili durante la fase di progettazione. I risultati dell'analisi devono essere di input per il piano di test.
 
-**Test di carico**. Eseguire il test di carico nell'applicazione con uno strumento come [Visual Studio Team Services][vsts] o [Apache JMeter][jmeter]. Il test di carico è fondamentale per l'identificazione di errori che si verificano solo in condizioni di carico come, ad esempio, il database back-end sovraccarico o la limitazione delle richieste di servizio. Eseguire il test per il carico di picco, usando dati di produzione oppure dati sintetici che siano più simili possibile ai dati di produzione. L'obiettivo consiste nel verificare il comportamento dell'applicazione in condizioni reali.   
+**Test di carico**. Il test di carico è fondamentale per l'identificazione di errori che si verificano solo in condizioni di carico come, ad esempio, il database back-end sovraccarico o la limitazione delle richieste di servizio. Eseguire il test per il carico di picco, usando dati di produzione oppure dati sintetici che siano più simili possibile ai dati di produzione. L'obiettivo consiste nel verificare il comportamento dell'applicazione in condizioni reali.   
 
 ## <a name="deploy-using-reliable-processes"></a>Distribuire con processi affidabili
 Una volta che un'applicazione viene distribuita nell'ambiente di produzione, gli aggiornamenti sono una possibile fonte di errori. Nel peggiore dei casi, un aggiornamento non valido può causare tempi di inattività. Per evitare questo problema, il processo di distribuzione deve essere prevedibile e ripetibile. La distribuzione include il provisioning delle risorse di Azure, la distribuzione del codice dell'applicazione e l'applicazione delle impostazioni di configurazione. Un aggiornamento può interessare tutte e tre le fasi oppure un subset. 
@@ -355,4 +355,3 @@ Di seguito sono riportati alcuni punti chiave illustrati nell'articolo:
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
