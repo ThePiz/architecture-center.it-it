@@ -2,12 +2,13 @@
 title: "Adozione del cloud nell'organizzazione: gestione dell'accesso alle risorse in Azure"
 description: "Spiegazione dei costrutti di gestione dell'accesso alle risorse in Azure: Azure Resource Manager, sottoscrizioni, gruppi di risorse e risorse"
 author: petertaylor9999
-ms.openlocfilehash: cd26b73e0327fa15b6ae29492b45331a19b9d6c2
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: 2e64d8828574ebe216da1e76b19ec3ce5aeda993
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327082"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389078"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>Adozione del cloud nell'organizzazione: gestione dell'accesso alle risorse in Azure
 
@@ -81,7 +82,7 @@ Il controllo successivo consiste nel verificare che l'utente abbia autorizzazion
 ![](../_images/governance-1-18.png)   
 *Figura 10. A ogni utente del tenant vengono assegnati uno o più ruoli di controllo degli accessi in base al ruolo.*
 
-Un ruolo di controllo degli accessi in base al ruolo specifica un insieme di autorizzazioni che un utente può avere per una risorsa specifica. Quando il ruolo viene assegnato all'utente, tali autorizzazioni vengono applicate. Ad esempio, il ruolo di [proprietario**** predefinito](/azure/role-based-access-control/built-in-roles#owner) consente all'utente di eseguire qualsiasi azione su una risorsa.
+Un ruolo di controllo degli accessi in base al ruolo specifica un insieme di autorizzazioni che un utente può avere per una risorsa specifica. Quando il ruolo viene assegnato all'utente, tali autorizzazioni vengono applicate. Ad esempio, il ruolo di [**proprietario** predefinito](/azure/role-based-access-control/built-in-roles#owner) consente all'utente di eseguire qualsiasi azione su una risorsa.
 
 Il controllo successivo verifica che la richiesta sia consentita nelle impostazioni specificate per i [criteri delle risorse di Azure](/azure/azure-policy/). I criteri delle risorse di Azure specificano le operazioni consentite per una determinata risorsa. Ad esempio, un criterio delle risorse di Azure può specificare che agli utenti sia consentito distribuire solo un tipo specifico di macchina virtuale.
 
