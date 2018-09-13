@@ -2,12 +2,13 @@
 title: "Adozione del cloud nell'organizzazione: distribuire un carico di lavoro di base"
 description: Descrive come distribuire un carico di lavoro di base in Azure
 author: petertaylor9999
-ms.openlocfilehash: d6dd8e107b4b9e48697c4c7bc4d32018eb79de0b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: e615ba33fb713278a3695057e61d99c92b72b3f2
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327756"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389315"
 ---
 # <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>Adozione del cloud nell'organizzazione: distribuire un carico di lavoro di base
 

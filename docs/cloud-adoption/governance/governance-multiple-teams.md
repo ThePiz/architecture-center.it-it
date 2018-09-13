@@ -2,19 +2,17 @@
 title: "Adozione del cloud nell'organizzazione: progettazione della governance per più team"
 description: Guida alla configurazione dei controlli della governance di Azure per più team, più carichi di lavoro e più ambienti
 author: petertaylor9999
-ms.openlocfilehash: 2ad9fac6604d2766fed1df828f63e65c8a570888
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: ac2a63ad6ced1039290dc0bf5132b0d87a2c79cf
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327726"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389418"
 ---
 # <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>Adozione del cloud nell'organizzazione: progettazione della governance per più team
 
 L'obiettivo di questa guida è illustrare il processo di progettazione di un modello di governance delle risorse in Azure per supportare più team, più carichi di lavoro e più ambienti.  Verranno esaminati alcuni ipotetici requisiti di governance, quindi verranno illustrate diverse implementazioni di esempio che soddisfano tali requisiti.
-
-> [!NOTE]
-> Per una discussione più dettagliata sugli **ambienti** vedere 
 
 I requisiti sono:
 * L'azienda prevede di passare i nuovi ruoli cloud e le nuove responsabilità a un insieme di utenti e pertanto richiede la gestione delle identità per più team con diverse esigenze di accesso alle risorse in Azure. Il sistema di gestione delle identità è necessario per memorizzare l'identità degli utenti seguenti:
