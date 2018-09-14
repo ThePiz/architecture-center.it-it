@@ -5,10 +5,10 @@ author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
 ms.openlocfilehash: d1d9c1b3cf07f724eb010fc260d86ceb84b789ca
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/13/2018
 ms.locfileid: "29059973"
 ---
 # <a name="data-partitioning"></a>Partizionamento dei dati
@@ -117,7 +117,7 @@ Quando si progettano le partizioni per la scalabilità, attenersi alla seguente 
 
 Si noti che alcuni ambienti cloud allocano risorse in termini di limiti di infrastruttura. Assicurarsi che tali limiti forniscano spazio sufficiente per una crescita anticipata del volume di dati, in termini di archiviazione dei dati, potenza di elaborazione e larghezza di banda.
 
-Ad esempio, se si usa l'archiviazione tabelle di Azure, una partizione occupata potrebbe richiedere più risorse rispetto a quelli disponibili per una singola partizione per gestire le richieste. (È previsto un limite per il volume di richieste che possono essere gestite da una singola partizione in un determinato periodo di tempo. Per altre informazioni, vedere la pagina [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure] nel sito Web Microsoft.
+Ad esempio, se si usa l'archiviazione tabelle di Azure, una partizione occupata potrebbe richiedere più risorse rispetto a quelli disponibili per una singola partizione per gestire le richieste. (È previsto un limite per il volume di richieste che possono essere gestite da una singola partizione in un determinato periodo di tempo. Per altre informazioni, vedere la pagina [Azure Storage Scalability and Performance Targets] nel sito Web Microsoft.
 
  In questo caso, è possibile che la partizione debba essere ripartizionata in modo da ripartire il carico. Se la dimensione totale o la velocità effettiva delle tabelle supera la capacità di un account di archiviazione, può essere necessario creare ulteriori account di archiviazione e suddividere le tabelle tra questi. Se il numero di account di archiviazione supera il numero di account disponibili per una sottoscrizione, può essere necessario usare più sottoscrizioni.
 
@@ -264,7 +264,7 @@ L'archiviazione tabelle e l'archiviazione BLOB sono essenzialmente archivi chiav
 * L'**archiviazione con ridondanza della zona** che mantiene tre copie dei dati distribuiti tra più data center diversi nella stessa area o in due aree geograficamente vicine. Questa forma di ridondanza permette di proteggersi da emergenze che si verificano all'interno di un singolo centro dati, ma non offrono protezione da disconnessioni di rete su larga scala che interessano un'intera area. Si noti che l'archiviazione con ridondanza della zona attualmente è disponibile solo per i BLOB in blocchi.
 * L'**archiviazione con ridondanza geografica** che mantiene sei copie dei dati: tre copie in un'unica area (l'area locale) e le altre tre copie in un'area remota. Questa forma di ridondanza fornisce il massimo livello di protezione dalle emergenze.
 
-Microsoft ha pubblicato gli obiettivi di scalabilità per Archiviazione di Azure. Per altre informazioni, vedere la pagina [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure] nel sito Web Microsoft. Attualmente, la capacità dell'account di archiviazione totale non può superare i 500 TB. Sono incluse le dimensioni dei dati contenuti in archiviazione tabelle, archiviazione file e archiviazione BLOB, nonché i messaggi in sospeso mantenuti nella coda di archiviazione.
+Microsoft ha pubblicato gli obiettivi di scalabilità per Archiviazione di Azure. Per altre informazioni, vedere la pagina [Azure Storage Scalability and Performance Targets] nel sito Web Microsoft. Attualmente, la capacità dell'account di archiviazione totale non può superare i 500 TB. Sono incluse le dimensioni dei dati contenuti in archiviazione tabelle, archiviazione file e archiviazione BLOB, nonché i messaggi in sospeso mantenuti nella coda di archiviazione.
 
 La frequenza massima della richiesta per un account di archiviazione, presupponendo dimensioni di 1 kB per entità, BLOB o messaggio, è di 20.000 richieste al secondo. Un account di archiviazione con un massimo di 1.000 operazioni di I/O al secondo, ovvero 8 kB, per ogni condivisione file. Se è probabile che il sistema superi questi limiti, è consigliabile partizionare il carico tra più account di archiviazione. Ogni sottoscrizione di Azure consente di creare fino a 200 account di archiviazione. Si noti tuttavia che questi limiti possono cambiare nel tempo.
 
@@ -274,7 +274,7 @@ L'archiviazione tabelle di Azure è un archivio chiave-valore progettato in base
 * **La chiave di partizione**. Si tratta di un valore di stringa che determina la partizione in cui l'archiviazione tabelle di Azure inserisce l'entità. Tutte le entità con la stessa chiave di partizione verranno archiviate nella stessa partizione.
 * **La chiave di riga**. Si tratta di un altro valore di stringa che identifica l'entità all'interno della partizione. Tutte le entità all'interno di una partizione vengono ordinate in base al livello lessicale, in ordine crescente, per chiave. La combinazione chiave di partizione/chiave di riga deve essere univoca per ogni entità e non può superare 1 KB di lunghezza.
 
-Il resto dei dati di un'entità è costituito da campi definiti dall'applicazione. Non vengono applicati schemi particolari e ogni riga può contenere un diverso set di campi definiti dall'applicazione. L'unica limitazione è che la dimensione massima di un'entità, incluse le chiavi di riga e di partizione, è attualmente di 1 MB. La dimensione massima di una tabella è di 200 TB, ma questi valori potrebbero cambiare in futuro. Per informazioni aggiornate su questi limiti, vedere la pagina [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure] nel sito Web Microsoft.
+Il resto dei dati di un'entità è costituito da campi definiti dall'applicazione. Non vengono applicati schemi particolari e ogni riga può contenere un diverso set di campi definiti dall'applicazione. L'unica limitazione è che la dimensione massima di un'entità, incluse le chiavi di riga e di partizione, è attualmente di 1 MB. La dimensione massima di una tabella è di 200 TB, ma questi valori potrebbero cambiare in futuro. Per informazioni aggiornate su questi limiti, vedere la pagina [Azure Storage Scalability and Performance Targets] nel sito Web Microsoft.
 
 Se si sta tentando di archiviare entità che superano questa capacità, è possibile suddividerle in più tabelle. Usare il partizionamento verticale per suddividere i campi in gruppi ai quali con maggior probabilità viene eseguito l'accesso contemporaneamente.
 
@@ -303,18 +303,18 @@ Quando si progettano le entità per l'archiviazione tabelle di Azure, tenere pre
   > Se un'entità dispone di una chiave naturale, è consigliabile utilizzarla come chiave di partizione e specificare una stringa vuota come chiave di riga. Se un'entità dispone di una chiave composta che comprende due proprietà, selezionare la proprietà che cambia più lentamente come chiave di partizione e l'altra proprietà come chiave di riga. Se un'entità dispone di più di due proprietà chiave, utilizzare una concatenazione delle proprietà per fornire le chiavi di partizione e di riga.
   >
   >
-* Se si eseguono regolarmente query che ricercano i dati usando campi diversi dalle chiavi di partizione e di riga, si consiglia di implementare l' [ITP (Index Table Pattern)].
+* Se si eseguono regolarmente query che ricercano i dati usando campi diversi dalle chiavi di partizione e di riga, si consiglia di implementare l' [Index Table Pattern].
 * Se le chiavi di partizione vengono generate usando una sequenza monotona di aumento o diminuzione (ad esempio "0001", "0002", "0003" e così via) e ogni partizione contiene solo una quantità limitata di dati, l'archiviazione tabelle di Azure può raggruppare fisicamente queste partizioni nello stesso server. Questo meccanismo presuppone che l'applicazione più probabilmente eseguirà query su un intervallo contiguo di partizioni (query di intervallo) ed è ottimizzato per questo caso. Questo approccio può tuttavia causare aree sensibili focalizzate su un singolo server poiché tutti gli inserimenti di nuove entità saranno probabilmente concentrati su una delle due estremità degli intervalli contigui. Permette inoltre di ridurre la scalabilità. Per distribuire il carico in modo più uniforme tra i server, prendere in considerazione la chiave di partizione per rendere più casuale la sequenza.
-* Archiviazione tabelle di Azure supporta le operazioni transazionali per le entità che appartengono alla stessa partizione. Ciò significa che un'applicazione può eseguire più operazioni di inserimento, aggiornamento, eliminazione, sostituzione o unione come unità atomica, a condizione che la transazione non includa più di 100 entità e che il payload della richiesta non superi i 4 MB. Le operazioni che si estendono su più partizioni non sono transazionali e potrebbe essere necessario implementare la coerenza finale come descritto nella sezione relativa [Introduzione alla coerenza dei dati]. Per altre informazioni sull'archiviazione tabelle e sulle transazioni, visitare la pagina [Esecuzione di transazioni di gruppi di entità] nel sito Web Microsoft.
+* Archiviazione tabelle di Azure supporta le operazioni transazionali per le entità che appartengono alla stessa partizione. Ciò significa che un'applicazione può eseguire più operazioni di inserimento, aggiornamento, eliminazione, sostituzione o unione come unità atomica, a condizione che la transazione non includa più di 100 entità e che il payload della richiesta non superi i 4 MB. Le operazioni che si estendono su più partizioni non sono transazionali e potrebbe essere necessario implementare la coerenza finale come descritto nella sezione relativa [Introduzione alla coerenza dei dati]. Per altre informazioni sull'archiviazione tabelle e sulle transazioni, visitare la pagina [Performing Entity Group Transactions] nel sito Web Microsoft.
 * Prestare attenzione alla granularità della chiave di partizione per le ragioni seguenti:
   * Se si usa la stessa chiave di partizione per ogni entità, il servizio di archiviazione tabelle crea una singola partizione di grandi dimensioni che viene mantenuta in un unico server. Questo impedisce di scalabilità orizzontale e concentra il carico su un singolo server. Di conseguenza, questo approccio è adatto solo per sistemi che gestiscono un numero ridotto di entità. Tuttavia, questo approccio garantisce che tutte le entità possano partecipare alle transazioni del gruppo di entità.
   * Se si usa una chiave di partizione univoca per ogni entità, il servizio di archiviazione tabelle crea una partizione separata per ogni entità causando la presenza di un numero elevato di partizioni piccole, a seconda delle dimensioni delle entità. Questo approccio è più scalabile rispetto all'uso di una singola chiave di partizione, ma le transazioni dei gruppi di entità non saranno possibili. Inoltre, le query che recuperano più di un'entità potrebbero implicare la lettura da più di un server. Tuttavia, se l'applicazione esegue query di intervallo,  l'utilizzo di una sequenza monotona per generare le chiavi di partizione può ottimizzare le query.
   * La condivisione della chiave di partizione in un sottoinsieme di entità consente di raggruppare le entità correlate nella stessa partizione. È possibile eseguire le operazioni che coinvolgono le entità correlate usando transazioni dei gruppi di entità, mentre le query che recuperano un set di entità correlate possono essere soddisfatte tramite l'accesso a un singolo server.
 
-Per altre informazioni sul partizionamento dei dati nell'archiviazione tabelle di Azure, vedere l'articolo [Guida alla progettazione della tabella di archiviazione di Azure] nel sito Web Microsoft.
+Per altre informazioni sul partizionamento dei dati nell'archiviazione tabelle di Azure, vedere l'articolo [Azure Storage Table Design Guide] nel sito Web Microsoft.
 
 ## <a name="partitioning-azure-blob-storage"></a>Partizionamento di archiviazione blob di Azure
-L'archivio BLOB di Azure consente di contenere oggetti binari di grandi dimensioni, attualmente fino a 5 TB per i BLOB in blocchi o 1 TB per i BLOB di pagine. Per informazioni aggiornate, vedere la pagina [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure] nel sito Web Microsoft. Utilizzo dei BLOB in blocchi in scenari come i flussi dove è necessario caricare o scaricare rapidamente grandi volumi di dati. Utilizzo dei BLOB di pagine per le applicazioni che richiedono accesso casuale anziché seriale a parti dei dati.
+L'archivio BLOB di Azure consente di contenere oggetti binari di grandi dimensioni, attualmente fino a 5 TB per i BLOB in blocchi o 1 TB per i BLOB di pagine. Per informazioni aggiornate, vedere la pagina [Azure Storage Scalability and Performance Targets] nel sito Web Microsoft. Utilizzo dei BLOB in blocchi in scenari come i flussi dove è necessario caricare o scaricare rapidamente grandi volumi di dati. Utilizzo dei BLOB di pagine per le applicazioni che richiedono accesso casuale anziché seriale a parti dei dati.
 
 Ogni blob (blocco o pagina) viene conservato in un contenitore in un account di archiviazione Azure. È possibile usare i contenitori per raggruppare BLOB correlati con gli stessi requisiti di sicurezza. Questo raggruppamento è logico e non fisico. All'interno di un contenitore ogni BLOB ha un nome univoco.
 
@@ -322,7 +322,7 @@ La chiave di partizione per un BLOB è il nome account + il nome del contenitore
 
 Le operazioni di scrittura di un singolo blocco (blob in blocchi) o una pagina (blob di pagine) sono atomiche, ma le operazioni che interessano blocchi, pagine o BLOB non lo sono. Se è necessario garantire la coerenza durante l'esecuzione di operazioni di scrittura in blocchi, pagine e BLOB, sarà necessario estrarre un blocco di scrittura usando un lease del BLOB.
 
-L'archivio BLOB di Azure supporta velocità di trasferimento fino a 60 MB al secondo o 500 richieste al secondo per ogni BLOB. Se si prevede di superare tali limiti e i dati BLOB sono relativamente statici, provare a replicare BLOB usando la Rete di distribuzione dei contenuti di Azure. Per altre informazioni, vedere la pagina [Rete di distribuzione dei contenuti di Microsoft Azure] nel sito Web Microsoft. Per altre indicazioni e considerazioni, vedere [Uso di una rete di distribuzione dei contenuti di Azure].
+L'archivio BLOB di Azure supporta velocità di trasferimento fino a 60 MB al secondo o 500 richieste al secondo per ogni BLOB. Se si prevede di superare tali limiti e i dati BLOB sono relativamente statici, provare a replicare BLOB usando la Rete di distribuzione dei contenuti di Azure. Per altre informazioni, vedere la pagina [Rete per la distribuzione di contenuti di Azure] nel sito Web Microsoft. Per altre indicazioni e considerazioni, vedere [Uso della rete CDN di Azure].
 
 ## <a name="partitioning-azure-storage-queues"></a>Partizionamento di code di archiviazione di Azure
 Le code di archiviazione di Azure consentono di implementare la messaggistica asincrona tra processi. Un account di archiviazione di Azure può contenere qualsiasi numero di code e ogni coda può contenere qualsiasi numero di messaggi. L'unica limitazione è lo spazio disponibile nell'account di archiviazione. La dimensione massima di un singolo messaggio è di 64 KB. Se sono necessari messaggi di dimensioni superiori, utilizzare Code del bus di servizio di Azure.
@@ -453,7 +453,7 @@ Quando si decide come partizionare i dati con Cache Redis di Azure, tenere prese
 >
 
 * È possibile implementare il partizionamento verticale archiviando le informazioni correlate in aggregazioni diverse nello stesso database. Ad esempio, in un'applicazione di e-commerce è possibile archiviare le informazioni sui prodotti cui viene eseguito l'accesso di frequente in un hash di Redis e le informazioni dettagliate usate meno frequentemente in un altro hash.
-  Entrambi gli hash possono usare lo stesso ID prodotto come parte della chiave. Ad esempio, è possibile usare "prodotto: *nn*", dove *nn* è l'ID prodotto, per le informazioni sul prodotto e "dettagli_prodotto: *nn*" per i dati dettagliati. Questa strategia può contribuire a ridurre il volume dei dati recuperati dalla maggior parte delle query.
+  Entrambi gli hash possono usare lo stesso ID prodotto come parte della chiave. Ad esempio, è possibile usare "prodotto: *nn*" (dove *nn* è l'ID prodotto) per le informazioni sul prodotto e "dettagli_prodotto: *nn*" per i dati dettagliati. Questa strategia può contribuire a ridurre il volume dei dati recuperati dalla maggior parte delle query.
 * Sebbene sia possibile ripartizionare un archivio dati Redis, tenere presente che si tratta di un'attività lunga e complessa. Il clustering Redis può ripartizionare i dati automaticamente, ma questa funzionalità non è disponibile con Cache Redis di Azure. Di conseguenza, quando si progetta lo schema di partizionamento, cercare di lasciare spazio libero sufficiente in ogni partizione per consentire la crescita dei dati prevista nel tempo. Tuttavia, tenere presente che Cache Redis di Azure consente di memorizzare dati temporaneamente e che i dati contenuti nella cache possono avere una durata limitata, specificata come valore time-to-live (TTL). Per i dati relativamente volatili, il TTL può essere più breve, ma per i dati statici il TTL può essere molto più lungo. Evitare di archiviare grandi quantità di dati di lunga durata nella cache, se il volume dei dati riempe la cache. È possibile specificare un criterio di rimozione che spinge la Cache Redis di Azure a rimuovere i dati se lo spazio è prezioso.
 
   > [!NOTE]
@@ -528,18 +528,18 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 * La pagina relativa alla [Introduzione alla coerenza dei dati] nel sito Web Microsoft descrive le strategie per la gestione della coerenza in un ambiente distribuito, ad esempio il cloud.
 * La pagina [Data Partitioning Guidance] nel sito Web Microsoft offre una panoramica generale sulla progettazione delle partizioni per soddisfare diversi criteri in una soluzione distribuita.
 * Il [modello di partizionamento orizzontale] descritto nel sito Web Microsoft riepiloga alcune strategie comuni per il partizionamento orizzontale dei dati.
-* L' [ITP (Index Table Pattern)] descritto nel sito Web Microsoft illustra come creare indici secondari nei dati. Un'applicazione consente di recuperare rapidamente i dati con questo approccio, usando le query che non fanno riferimento alla chiave primaria di una raccolta.
-* Il [modello di vista materializzata] descritto nel sito Web Microsoft illustra come generare viste prepopolate che riepilogano i dati per favorire operazioni di query rapide. Questo approccio può essere utile in un archivio dati partizionati se le partizioni che contengono dati riepilogati vengono distribuite tra più siti.
-* L'articolo [Uso di una rete di distribuzione dei contenuti di Azure] nel sito Web Microsoft offre altre istruzioni per la configurazione e l'uso della rete per la distribuzione di contenuti di Azure.
+* L' [Index Table Pattern] descritto nel sito Web Microsoft illustra come creare indici secondari nei dati. Un'applicazione consente di recuperare rapidamente i dati con questo approccio, usando le query che non fanno riferimento alla chiave primaria di una raccolta.
+* Il [Materialized View Pattern] descritto nel sito Web Microsoft illustra come generare viste prepopolate che riepilogano i dati per favorire operazioni di query rapide. Questo approccio può essere utile in un archivio dati partizionati se le partizioni che contengono dati riepilogati vengono distribuite tra più siti.
+* L'articolo [Uso della rete CDN di Azure] nel sito Web Microsoft offre altre istruzioni per la configurazione e l'uso della rete per la distribuzione di contenuti di Azure.
 
 ## <a name="more-information"></a>Altre informazioni
 * La pagina [Informazioni sul database SQL] nel sito Web Microsoft contiene informazioni dettagliate sulla creazione e l'uso di database SQL.
 * La pagina [Panoramica sulle funzionalità di database elastico] nel sito Web Microsoft offre un'introduzione completa al database elastico.
 * La pagina [Scalabilità tramite lo strumento di suddivisione-unione del database elastico] nel sito Web Microsoft contiene informazioni sull'uso del servizio di suddivisione-unione per gestire le partizioni del database elastico.
-* La pagina [Azure storage scalability and performance targets](https://msdn.microsoft.com/library/azure/dn249410.aspx) (Obiettivi di scalabilità e prestazioni per Archiviazione di Azure) nel sito Web Microsoft descrive gli attuali limiti di ridimensionamento e velocità effettiva dell'archiviazione di Azure.
-* La pagina [Esecuzione di transazioni di gruppi di entità] nel sito Web Microsoft offre informazioni dettagliate sull'implementazione di operazioni transazionali su entità archiviate nell'archiviazione tabelle di Azure.
-* L'articolo [Guida alla progettazione della tabella di archiviazione di Azure] nel sito Web Microsoft include informazioni dettagliate sul partizionamento dei dati nell'archiviazione tabelle di Azure.
-* La pagina [Uso di una rete di distribuzione dei contenuti di Azure] nel sito Web Microsoft descrive come replicare i dati presenti nell'archivio BLOB di Azure usando la rete per la distribuzione di contenuti di Azure.
+* La pagina [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](https://msdn.microsoft.com/library/azure/dn249410.aspx) nel sito Web Microsoft descrive gli attuali limiti di ridimensionamento e velocità effettiva dell'archiviazione di Azure.
+* La pagina [Performing Entity Group Transactions] nel sito Web Microsoft offre informazioni dettagliate sull'implementazione di operazioni transazionali su entità archiviate nell'archiviazione tabelle di Azure.
+* L'articolo [Azure Storage Table Design Guide] nel sito Web Microsoft include informazioni dettagliate sul partizionamento dei dati nell'archiviazione tabelle di Azure.
+* La pagina [Uso della rete CDN di Azure] nel sito Web Microsoft descrive come replicare i dati presenti nell'archivio BLOB di Azure usando la rete per la distribuzione di contenuti di Azure.
 * La pagina [Che cos'è la Ricerca di Azure?] nel sito Web Microsoft offre una descrizione completa delle funzionalità disponibili in Ricerca di Azure.
 * La pagina [Limiti dei servizi in Ricerca di Azure] nel sito Web Microsoft include informazioni sulla capacità di ogni istanza di Ricerca di Azure.
 * La pagina [Tipi di dati supportati (Ricerca di Azure)] nel sito Web Microsoft riepiloga i tipi di dati che è possibile usare nei documenti e indici in cui è possibile eseguire ricerche.
@@ -550,11 +550,11 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 
 [Disponibilità e coerenza nell'Hub eventi]: /azure/event-hubs/event-hubs-availability-and-consistency
 [azure-limits]: /azure/azure-subscription-service-limits
-[Rete di distribuzione dei contenuti di Microsoft Azure]: /azure/cdn/cdn-overview
+[Rete per la distribuzione di contenuti di Azure]: /azure/cdn/cdn-overview
 [Cache Redis di Azure]: http://azure.microsoft.com/services/cache/
-[Obiettivi di scalabilità e prestazioni per Archiviazione di Azure]: /azure/storage/storage-scalability-targets
-[Guida alla progettazione della tabella di archiviazione di Azure]: /azure/storage/storage-table-design-guide
-[Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx
+[Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
+[Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
+[Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx (Creazione di una soluzione Polyglot)
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Introduzione alla coerenza dei dati]: http://aka.ms/Data-Consistency-Primer
@@ -565,17 +565,17 @@ Quando si esaminano le strategie per l'implementazione della coerenza dei dati, 
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
 [Linee guida e consigli per Reliable Collections in Azure Service Fabric]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
-[ITP (Index Table Pattern)]: http://aka.ms/Index-Table-Pattern
-[modello di vista materializzata]: http://aka.ms/Materialized-View-Pattern
+[Index Table Pattern]: http://aka.ms/Index-Table-Pattern
+[Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
 [Esecuzione di query su più partizioni]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Panoramica di Azure Service Fabric]: /azure/service-fabric/service-fabric-overview
 [Partizionare Reliable Services di Service Fabric]: /azure/service-fabric/service-fabric-concepts-partitioning
 [partizionamento e alla suddivisione dei dati in più istanze di Redis]: http://redis.io/topics/partitioning
-[Esecuzione di transazioni di gruppi di entità]: https://msdn.microsoft.com/library/azure/dd894038.aspx
+[Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Esercitazione del cluster Redis]: http://redis.io/topics/cluster-tutorial
 [esecuzione di Redis in una macchina virtuale CentOS Linux in Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
 [Scalabilità tramite lo strumento di suddivisione-unione del database elastico]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
-[Uso di una rete di distribuzione dei contenuti di Azure]: /azure/cdn/cdn-create-new-endpoint
+[Uso della rete CDN di Azure]: /azure/cdn/cdn-create-new-endpoint
 [Quote del bus di servizio]: /azure/service-bus-messaging/service-bus-quotas
 [service-fabric-reliable-collections]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections
 [Limiti dei servizi in Ricerca di Azure]:  /azure/search/search-limits-quotas-capacity
