@@ -3,12 +3,12 @@ title: Centro architetture Azure
 description: Il centro architetture Azure è il centro ufficiale per materiale sussidiario, progetti, modelli e procedure consigliate per la creazione di soluzioni con Microsoft Azure. È curato dal team Microsoft modelli e procedure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: ea3784a23c73c7f0eb103a0cb19e2c6b70ea9d7c
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987591"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584647"
 ---
 # <a name="azure-architecture-center"></a>Centro architetture Azure
 
@@ -46,16 +46,16 @@ ms.locfileid: "38987591"
             </div>
         </a>
     </li>
-    <!-- Cloud design patterns -->
+    <!-- Cloud Adoption -->
     <li>
-        <a href="/azure/architecture/patterns/">
+        <a href="/azure/architecture/cloud-adoption/">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
-                        <img src="_images/cloud-design-patterns.svg" alt="" />
+                        <img src="_images/cloud-adoption.svg" alt="" />
                         <div class="cardText">
-                            <h3>Modelli di progettazione cloud</h3>
-                            <p>Modelli di progettazione per sviluppatori e architetti di soluzioni. Ogni modello descrive un problema, un modello che risolve il problema e un esempio basato su Azure.</p>
+                            <h3>Adozione del cloud nell'organizzazione</h3>
+                            <p>Questa guida descrive il processo per creare una strategia di adozione del cloud a livello di organizzazione. È incentrata su idoneità, governance e infrastruttura dell'organizzazione.</p>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,26 @@ ms.locfileid: "38987591"
             </div>
         </a>
     </li>
+    <!-- design patterns -->
+    <li>
+        <a href="/azure/architecture/microservices">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/cloud-design-patterns.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Modelli di progettazione cloud</h3>
+                            <p>Modelli di progettazione per sviluppatori e architetti di soluzioni. Ogni modello descrive un problema, un modello che risolve il problema e un esempio basato su Azure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
     <!-- Checklists -->
     <li>
         <a href="/azure/architecture/checklist/">
@@ -240,26 +260,6 @@ ms.locfileid: "38987591"
                         <div class="cardText">
                             <h3>Antipattern delle prestazioni</h3>
                             <p>Informazioni si come rilevare e risolvere alcune cause comuni di problemi di prestazioni e scalabilità nelle applicazioni cloud.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Multitenant identity -->
-    <li>
-        <a href="/azure/architecture/multitenant-identity">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/multitenant-identity.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Gestione delle identità per le applicazioni multi-tenant</h3>
-                            <p>Informazioni sulle procedure consigliate per il multi-tenancy, quando si usa Azure AD per la gestione delle identità.</p>
                         </div>
                     </div>
                 </div>
