@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326321"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329879"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -45,7 +45,7 @@ Ecco un modello consigliato per la denominazione delle sottoscrizioni:
 | Contoso |IT |InternalApps |Produzione |Contoso IT InternalApps Produzione |
 | Contoso |IT |InternalApps |Sviluppo |Contoso IT InternalApps Sviluppo |
 
-Per altre informazioni su come organizzare le sottoscrizioni per aziende di grandi dimensioni, consultare le [indicazioni sulla governance prescrittiva per le sottoscrizioni][scaffold].
+Per altre informazioni su come organizzare le sottoscrizioni per aziende di grandi dimensioni, consultare [Scaffold Azure enterprise: governance prescrittiva per le sottoscrizioni][scaffold].
 
 ## <a name="use-affixes-to-avoid-ambiguity"></a>Usare affissi per evitare ambiguità
 
@@ -195,4 +195,4 @@ Non è possibile modificare il nome del contenitore o dell'account di archiviazi
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold
+[scaffold]: /azure/architecture/cloud-adoption/appendix/azure-scaffold

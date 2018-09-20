@@ -3,12 +3,12 @@ title: Eseguire una macchina virtuale (VM) Windows in Azure
 description: Come eseguire una macchina virtuale Windows in Azure, con particolare attenzione a scalabilità, resilienza, gestibilità e sicurezza.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: d790c9a6693dca751e0ba05f1fd3c23756cf53bb
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: a20359f90e7b20486defce3110b2db6f7e0027ba
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142217"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584698"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>Eseguire una macchina virtuale (VM) Windows in Azure
 
@@ -116,6 +116,8 @@ Per verificare le azioni di provisioning e altri eventi della VM, usare i [log d
 
 **Crittografia dei dati.** Se è necessario crittografare i dischi del sistema operativo e i dischi dati, usare [Crittografia dischi di Azure ][disk-encryption]. 
 
+**Protezione DDoS**. Si consiglia di abilitare [Protezione DDoS standard](/azure/virtual-network/ddos-protection-overview), che offre una mitigazione DDoS aggiuntiva per le risorse in una rete virtuale. Anche se la protezione DDoS di base è abilitata automaticamente come parte della piattaforma Azure, Protezione DDoS standard offre funzionalità di mitigazione ottimizzate in modo specifico per le risorse di rete virtuale di Azure.  
+
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
 Una distribuzione di questa architettura è disponibile in [GitHub][github-folder]. Ecco cosa viene distribuito:
@@ -125,7 +127,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github-folde
   * Una macchina virtuale che esegue la versione più recente di Windows Server 2016 Datacenter Edition.
   * Un'estensione script personalizzata di esempio che formatta i due dischi dati e uno script DSC di PowerShell che distribuisce Internet Information Services (IIS).
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

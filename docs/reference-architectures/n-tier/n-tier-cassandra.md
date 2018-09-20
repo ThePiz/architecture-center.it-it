@@ -3,12 +3,12 @@ title: Applicazione a più livelli con Apache Cassandra
 description: Come eseguire macchine virtuali Linux per un'architettura a più livelli in Microsoft Azure.
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: fa5faeda4ef1dcae46181c0a3be8f4e139dc27d0
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142234"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584715"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>Applicazione a più livelli con Apache Cassandra
 
@@ -18,7 +18,7 @@ Questa architettura di riferimento illustra come distribuire macchine virtuali e
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architettura 
 
 L'architettura include i componenti seguenti:
 
@@ -44,7 +44,7 @@ L'architettura include i componenti seguenti:
 
 * **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Usare queste indicazioni come punto di partenza. 
 
@@ -138,11 +138,13 @@ Valutare l'aggiunta di un'appliance virtuale di rete per creare una rete perimet
 
 Crittografare i dati sensibili inattivi e usare[Azure Key Vault][azure-key-vault] per gestire le chiavi di crittografia del database. Key Vault consente di archiviare le chiavi di crittografia in moduli di protezione hardware. È anche consigliabile archiviare in Key Vault i segreti dell'applicazione, ad esempio le stringhe di connessione di database.
 
+Si consiglia di abilitare [Protezione DDoS standard](/azure/virtual-network/ddos-protection-overview), che offre una mitigazione DDoS aggiuntiva per le risorse in una rete virtuale. Anche se la protezione DDoS di base è abilitata automaticamente come parte della piattaforma Azure, Protezione DDoS standard offre funzionalità di mitigazione ottimizzate in modo specifico per le risorse di rete virtuale di Azure.  
+
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
 Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

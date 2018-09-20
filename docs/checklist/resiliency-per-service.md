@@ -4,12 +4,12 @@ description: Elenco di controllo contenente indicazioni per la resilienza per va
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 25d961d6bb753b1f515fc073e51bbb912cc59db7
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29783510"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584766"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Elenco di controllo per la resilienza per servizi di Azure specifici
 
@@ -41,7 +41,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Monitorare le prestazioni.** Usare un servizio di monitoraggio delle prestazioni, ad esempio [New Relic](http://newrelic.com/) o [Application Insights](/azure/application-insights/app-insights-overview/) per monitorare le prestazioni dell'applicazione e il comportamento sotto carico.  Il monitoraggio delle prestazioni offre informazioni approfondite in tempo reale sull'applicazione. Consente di diagnosticare i problemi e di eseguire l'analisi della causa radice degli errori.
 
-## <a name="application-gateway"></a>gateway applicazione
+## <a name="application-gateway"></a>Gateway applicazione
 
 **Eseguire il provisioning di almeno due istanze.** Distribuire il gateway applicazione con almeno due istanze. Un'istanza singola è un singolo punto di errore. Usare due o più istanze per la ridondanza e la scalabilità. Per essere idonei al [contratto di servizio](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/), è necessario eseguire il provisioning di due o più istanze di medie o grandi dimensioni.
 
@@ -100,13 +100,17 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
 **Eseguire il ripristino a livello geografico per recuperare da un'interruzione del servizio.** Il ripristino geografico recupera un database da un backup con ridondanza geografica.  Per altre informazioni, vedere [Ripristinare un database SQL di Azure mediante i backup automatici del database][sql-restore].
 
+## <a name="sql-data-warehouse"></a>SQL Data Warehouse
+
+**Non disabilitare il backup geografico.** Per impostazione predefinita, SQL Data Warehouse esegue il backup completo dei dati ogni 24 ore per il ripristino di emergenza. È sconsigliato disattivare la funzionalità. Per altre informazioni, consultare [Backup geografici](/azure/sql-data-warehouse/backup-and-restore#geo-backups).
+
 ## <a name="sql-server-running-in-a-vm"></a>SQL Server in esecuzione in una VM
 
 **Replicare il database.** Usare i gruppi di disponibilità AlwaysOn di SQL Server per replicare il database. Questo approccio offre disponibilità elevata se un'istanza di SQL Server ha esito negativo. Per altre informazioni, vedere [Eseguire macchine virtuali Windows per un'applicazione a più livelli](../reference-architectures/virtual-machines-windows/n-tier.md).
 
 **Eseguire il backup del database.** Se si usa già [Backup di Azure](https://azure.microsoft.com/documentation/services/backup/) per eseguire il backup delle VM, considerare di usare [Backup di Azure per carichi di lavoro di SQL Server con DPM](/azure/backup/backup-azure-backup-sql/). Con questo approccio, si usano un solo ruolo di amministratore di backup per l'organizzazione e una procedura di ripristino unificata per le macchine virtuali e SQL Server. Usare altrimenti [Backup gestito di SQL Server in Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
 
-## <a name="traffic-manager"></a>servizio Gestione traffico
+## <a name="traffic-manager"></a>Gestione traffico
 
 **Eseguire il failback manuale.** Dopo un failover di Gestione traffico, eseguire il failback manuale anziché automatico. Prima del failback, verificare che tutti i sottosistemi dell'applicazione siano integri.  In caso contrario, si potrebbe creare una situazione in cui l'applicazione passa alternativamente da un data center all'altro. Per altre informazioni, vedere [Eseguire macchine virtuali in più aree per una disponibilità elevata](../reference-architectures/virtual-machines-windows/multi-region-application.md).
 

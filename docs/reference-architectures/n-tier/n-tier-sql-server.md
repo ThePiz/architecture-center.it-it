@@ -3,12 +3,12 @@ title: Applicazione a più livelli con SQL Server
 description: Come implementare un'architettura a più livelli in Azure per la disponibilità, la sicurezza, la scalabilità e la gestibilità.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 3a291b9492c94450a42de96bea2135190c163fe7
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326057"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584749"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Applicazione a più livelli con SQL Server
 
@@ -154,6 +154,8 @@ Valutare l'aggiunta di un'appliance virtuale di rete per creare una rete perimet
 
 Crittografare i dati sensibili inattivi e usare[Azure Key Vault][azure-key-vault] per gestire le chiavi di crittografia del database. Key Vault consente di archiviare le chiavi di crittografia in moduli di protezione hardware. Per altre informazioni, vedere [Configurare l'integrazione di Azure Key Vault per SQL Server in macchine virtuali di Azure][sql-keyvault]. È anche consigliabile archiviare in Key Vault i segreti dell'applicazione, ad esempio le stringhe di connessione di database.
 
+Si consiglia di abilitare [Protezione DDoS standard](/azure/virtual-network/ddos-protection-overview), che offre una mitigazione DDoS aggiuntiva per le risorse in una rete virtuale. Anche se la protezione DDoS di base è abilitata automaticamente come parte della piattaforma Azure, Protezione DDoS standard offre funzionalità di mitigazione ottimizzate in modo specifico per le risorse di rete virtuale di Azure.  
+
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
 Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. Si noti che l'intera distribuzione può richiedere fino a due ore, inclusa l'esecuzione di script per configurare Active Directory Domain Services, il cluster di failover di Windows Server e il gruppo di disponibilità di SQL Server.
@@ -220,7 +222,7 @@ Una distribuzione di questa architettura di riferimento è disponibile in [GitHu
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. Nel file `n-tier-windows.json` cercare tutte le istanze di `[replace-with-password]` e sostituirle con una password complessa. Salvare il file.
+8. Nel file `n-tier-windows.json` cercare tutte le istanze di `[replace-with-password]` e `[replace-with-sql-password]`, poi sostituirle con una password complessa. Salvare il file.
 
     > [!NOTE]
     > Se si modifica il nome dell'utente amministratore, è necessario aggiornare anche i blocchi `extensions` nel file JSON. 

@@ -5,12 +5,12 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012621"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329896"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -117,7 +117,7 @@ La tabella seguente riepiloga ogni opzione.
 | &nbsp; | Set di disponibilità | Zona di disponibilità | Area associata |
 |--------|------------------|-------------------|---------------|
 | Ambito dell'errore | Rack | Data center | Region |
-| Routing delle richieste | Bilanciamento del carico | Bilanciamento del carico tra zone | servizio Gestione traffico |
+| Routing delle richieste | Load Balancer | Bilanciamento del carico tra zone | Gestione traffico |
 | Latenza di rete | Molto bassa | Basso | Medio-alta |
 | Reti virtuali  | VNet | VNet | Peering reti virtuali tra aree |
 
@@ -156,7 +156,7 @@ In Azure, il backup dell'[archiviazione con ridondanza geografica](https://azure
 
 ## <a name="services"></a>Services
 
-Consultare la [tabella di confronto dei servizi di AWS e di Azure](https://aka.ms/azure4aws-services) per un elenco completo delle corrispondenze tra servizi e piattaforme.
+Per un elenco di come i servizi eseguono il mapping tra le piattaforme, consultare [Confronto tra i servizi di Azure e AWS](./services.md).
 
 Non tutti i servizi e i prodotti Azure sono disponibili in tutte le regioni. Consultare la pagina [Prodotti in base all'area](https://azure.microsoft.com/regions/services/) per altre informazioni. Per informazioni sui tempi di attività garantiti e le politiche di credito per i tempi di inattività, leggere la pagina dei [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
 
@@ -175,8 +175,6 @@ Sebbene i tipi di istanze AWS e le dimensioni delle macchine virtuali di Azure a
 -   [Dimensioni delle macchine virtuali in Azure (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
 A differenza della fatturazione al secondo di AWS, le macchine virtuali su richiesta di Azure hanno una fatturazione al minuto.
-
-In Azure non sono presenti elementi equivalenti alle istanze Spot o agli host dedicati di EC2.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS e Archiviazione di Azure per i dischi della macchina virtuale
 
@@ -428,8 +426,6 @@ Gli hub di notifica non supportano l'invio di messaggi SMS o di posta elettronic
 
 ## <a name="next-steps"></a>Passaggi successivi
 
--   [Tabella di confronto dei servizi di AWS e di Azure](https://aka.ms/azure4aws-services)
-
 -   [Quadro generale interattivo della piattaforma Azure](http://azureplatform.azurewebsites.net/)
 
 -   [Inizia a usare Azure](https://azure.microsoft.com/get-started/)
@@ -437,8 +433,6 @@ Gli hub di notifica non supportano l'invio di messaggi SMS o di posta elettronic
 -   [Architetture delle soluzioni di Azure](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Architetture di riferimento di Azure](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [Modelli e procedure - Informazioni aggiuntive su Azure](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [Corso online gratuito: Microsoft Azure per i professionisti AWS](http://aka.ms/azureforaws)
 
