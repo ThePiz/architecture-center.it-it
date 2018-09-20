@@ -3,12 +3,12 @@ title: Ripristino di emergenza per le applicazioni basate su Azure
 description: Panoramiche tecniche e informazioni approfondite sulla progettazione e la creazione di applicazioni per il ripristino di emergenza in Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
-ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
+ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
+ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37343380"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45556683"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Ripristino di emergenza per le applicazioni basate su Azure
 
@@ -299,7 +299,10 @@ Gli argomenti che seguono descrivono i servizi di Azure specifici per il riprist
 
 | Service | Argomento |
 |---------|-------|
+| Database di Azure per MySQL | [Panoramica della continuità aziendale con Database di Azure per MySQL](/azure/mysql/concepts-business-continuity) |
+| Database di Azure per PostgreSQL | [Panoramica della continuità aziendale con Database di Azure per PostgreSQL](/azure/postgresql/concepts-business-continuity)
 | Servizi cloud | [Operazioni da eseguire in caso di un'interruzione del servizio Azure con impatto sui servizi cloud di Azure](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
+| Cosmos DB | [Failover a livello di area automatici per la continuità aziendale in Azure Cosmos DB](/azure/cosmos-db/regional-failover)
 | Key Vault | [Disponibilità e ridondanza in Azure Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |Archiviazione | [Cosa fare se si verifica un'interruzione di Archiviazione di Azure](/azure/storage/storage-disaster-recovery-guidance) |
 | Database SQL | [Ripristinare un database SQL di Azure o eseguire il failover in un database secondario](/azure/sql-database/sql-database-disaster-recovery) |

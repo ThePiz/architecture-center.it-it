@@ -3,12 +3,12 @@ title: Elaborazione degli ordini scalabile in Azure
 description: Scenario di esempio per la creazione di una pipeline di elaborazione degli ordini altamente scalabile con Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: aa7281263db7cc72781b740941f3b86dad025baa
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016104"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389112"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Elaborazione degli ordini scalabile in Azure
 
@@ -41,7 +41,7 @@ Questa architettura indica i componenti chiave di una pipeline per l'elaborazion
 
 ### <a name="components"></a>Componenti
 
-* [Cosmos DB][docs-cosmos-db] è il database multimodello di Microsoft, distribuito a livello globale, che consente di ridimensionare in modo flessibile e indipendente la velocità effettiva e le risorse di archiviazione delle soluzioni, in un numero qualsiasi di aree geografiche. Offre garanzie di produttività, latenza, disponibilità e coerenza con contratti di servizio completi. Questo scenario usa Cosmos DB per l'archiviazione di flussi di eventi e l'archiviazione di snapshot e sfrutta le funzioni di [feed di modifiche di Cosmos DB][docs-cosmos-db-change-feed] per garantire la coerenza dei dati e il recupero da errori. 
+* [Cosmos DB][docs-cosmos-db] è il database multimodello di Microsoft, distribuito a livello globale, che consente di ridimensionare in modo flessibile e indipendente la velocità effettiva e le risorse di archiviazione delle soluzioni, in un numero qualsiasi di aree geografiche. Offre garanzie di produttività, latenza, disponibilità e coerenza con contratti di servizio completi. Questo scenario usa Cosmos DB per l'archiviazione di flussi di eventi e l'archiviazione di snapshot e sfrutta le funzioni di [feed di modifiche di Cosmos DB][docs-cosmos-db-change-feed] per garantire la coerenza dei dati e il recupero da errori.
 * [Apache Kafka in HDInsight][docs-kafka] è un'implementazione di servizi gestiti di Apache Kafka, una piattaforma di streaming distribuita open-source per la creazione di applicazioni e pipeline di dati in streaming in tempo reale. Kafka offre anche una funzionalità di broker di messaggi simile a una coda di messaggi, in cui è possibile pubblicare e sottoscrivere flussi dei dati denominati. Questo scenario usa Kafka per l'elaborazione di eventi in ingresso e downstream nella pipeline di elaborazione degli ordini. 
 
 ## <a name="considerations"></a>Considerazioni
@@ -83,13 +83,13 @@ La valuta di Azure Cosmos DB è l'unità richiesta (UR). Con le unità richiesta
 
 Sono stati definiti tre profili di costo di esempio in base alla quantità di attività prevista.
 
-* [Small][small-pricing]: corrisponde a 5 unità richiesta riservate con un archivio dati di 1 TB in Cosmos DB e un piccolo cluster Kafka (D3 v2).
-* [Medium][medium-pricing]: corrisponde a 50 unità richiesta riservate con un archivio dati di 10 TB in Cosmos DB e un cluster Kafka di medie dimensioni (D4 v2).
-* [Large][large-pricing]: corrisponde a 500 unità richiesta riservate con un archivio dati di 30 TB in Cosmos DB e un cluster Kafka di grandi dimensioni (D5 v2).
+* [Small][small-pricing]: questo esempio di prezzi corrisponde a 5 unità richiesta riservate con un archivio dati di 1 TB in Cosmos DB e un piccolo cluster Kafka (D3 v2).
+* [Medium][medium-pricing]: questo esempio di prezzi corrisponde a 50 unità richiesta riservate con un archivio dati di 10 TB in Cosmos DB e un cluster Kafka di medie dimensioni (D4 v2).
+* [Large][large-pricing]: questo esempio di prezzi corrisponde a 500 unità richiesta riservate con un archivio dati di 30 TB in Cosmos DB e un cluster Kafka di grandi dimensioni (D5 v2).
 
 ## <a name="related-resources"></a>Risorse correlate
 
-Questo scenario di esempio si basa su una versione più estesa di questa architettura, creata da [Jet.com](https://jet.com) per la propria pipeline di elaborazione degli ordini end-to-end. Per altre informazioni, vedere il [profilo tecnico del cliente jet.com][source-document] e la [presentazione di jet.com a Build 2018][source-presentation]. 
+Questo scenario di esempio si basa su una versione più estesa di questa architettura, creata da [Jet.com](https://jet.com) per la propria pipeline di elaborazione degli ordini end-to-end. Per altre informazioni, vedere il [profilo tecnico del cliente jet.com][source-document] e la [presentazione di jet.com a Build 2018][source-presentation].
 
 Altre risorse correlate includono:
 * _[Designing Data-Intensive Applications](https://dataintensive.net/)_ di Martin Kleppmann (O'Reilly Media, 2017).
@@ -104,10 +104,9 @@ Altre risorse correlate includono:
 [small-pricing]: https://azure.com/e/3d43949ffbb945a88cc0a126dc3a0e6e
 [medium-pricing]: https://azure.com/e/1f1e7bf2a6ad4f7799581211f4369b9b
 [large-pricing]: https://azure.com/e/75207172ece94cf6b5fb354a2252b333
-[architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
+[architecture-diagram]: ./media/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
-[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases

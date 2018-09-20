@@ -3,12 +3,12 @@ title: SAP per carichi di lavoro di sviluppo/test
 description: Scenario SAP per un ambiente di sviluppo/test
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 675a5cb4b1ee4001ca50d24c145ce1a177f90da4
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: d0f266e40969cf4782e69041889a686387499722
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060962"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389180"
 ---
 # <a name="sap-for-devtest-workloads"></a>SAP per carichi di lavoro di sviluppo/test
 
@@ -34,7 +34,7 @@ Prendere in considerazione questo scenario per i casi d'uso seguenti:
 Questo scenario prevede il provisioning di un singolo database di sistema SAP e un server applicazioni SAP in un'unica macchina virtuale. Il flusso dei dati nello scenario avviene come segue:
 
 1. I clienti dal livello presentazione usano in locale l'interfaccia utente grafica SAP o altre interfacce utente (Internet Explorer, Excel o un'altra applicazione Web) per accedere al sistema SAP basato su Azure.
-2. Per la connettività viene usata la connessione ExpressRoute stabilita, che termina nel gateway ExpressRoute in Azure. Il traffico di rete viene indirizzato attraverso il gateway ExpressRoute alla subnet del gateway, da questa alla subnet spoke del livello applicazione (vedere il modello [hub-spoke][hub-spoke]) e quindi tramite un gateway di sicurezza di rete alla macchina virtuale dell'applicazione SAP.
+2. Per la connettività viene usata una connessione ExpressRoute stabilita, che termina nel gateway ExpressRoute in Azure. Il traffico di rete viene indirizzato attraverso il gateway ExpressRoute alla subnet del gateway, da questa alla subnet spoke del livello applicazione (vedere il modello [hub-spoke][hub-spoke]) e quindi tramite un gateway di sicurezza di rete alla macchina virtuale dell'applicazione SAP.
 3. I server di gestione delle identità offrono servizi di autenticazione.
 4. Il jumpbox offre funzionalità di gestione locale.
 
@@ -77,22 +77,22 @@ Sono stati definiti quattro profili di costo di esempio in base alla quantità d
 Grande|32000|E32s_v3|3xP20, 1xP10|[Large](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)|
 Molto grande|64000|M64s|4xP20, 1xP10|[Extra Large](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)|
 
-Nota: i prezzi offrono una guida e indicano solo le VM e i costi di archiviazione (escludendo gli addebiti per rete, archivio di backup e dati in ingresso/uscita).
+Nota: i prezzi offrono una guida e indicano solo le macchine virtuali e i costi di archiviazione (escludendo gli addebiti per rete, archivio di backup e dati in ingresso/uscita).
 
-* [Small](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): un sistema di piccole dimensioni è costituito da una VM di tipo D8s_v3 con 8 vCPU, 32 GB di RAM e 200 GB di archiviazione temporanea, nonché due dischi di archiviazione Premium da 512 GB e uno da 128 GB.
-* [Medium](https://azure.com/e/465bd07047d148baab032b2f461550cd): un sistema di medie dimensioni è costituito da una VM di tipo D16s_v3 con 16 vCPU, 64 GB di RAM e 400 GB di archiviazione temporanea, nonché tre dischi di archiviazione Premium da 512 GB e uno da 128 GB.
-* [Large](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): un sistema di grandi dimensioni è costituito da una VM di tipo E32s_v3 con 32 vCPU, 256 GB di RAM e 512 GB di archiviazione temporanea, nonché tre dischi di archiviazione Premium da 512 GB e uno da 128 GB.
-* [Extra Large](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): un sistema di dimensioni molto grandi è costituito da una VM di tipo M64s con 64 vCPU, 1024 GB di RAM e 2000 GB di archiviazione temporanea, nonché quattro dischi di archiviazione Premium da 512 GB e uno da 128 GB.
+* [Small](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): un sistema di piccole dimensioni è costituito da una macchina virtuale di tipo D8s_v3 con 8 vCPU, 32 GB di RAM e 200 GB di archiviazione temporanea, nonché due dischi di archiviazione Premium da 512 GB e uno da 128 GB.
+* [Medium](https://azure.com/e/465bd07047d148baab032b2f461550cd): un sistema di medie dimensioni è costituito da una macchina virtuale di tipo D16s_v3 con 16 vCPU, 64 GB di RAM e 400 GB di archiviazione temporanea, nonché tre dischi di archiviazione Premium da 512 GB e uno da 128 GB.
+* [Large](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): un sistema di grandi dimensioni è costituito da una macchina virtuale di tipo E32s_v3 con 32 vCPU, 256 GB di RAM e 512 GB di archiviazione temporanea, nonché tre dischi di archiviazione Premium da 512 GB e uno da 128 GB.
+* [Extra Large](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): un sistema di dimensioni molto grandi è costituito da una macchina virtuale di tipo M64s con 64 vCPU, 1024 GB di RAM e 2000 GB di archiviazione temporanea, nonché quattro dischi di archiviazione Premium da 512 GB e uno da 128 GB.
 
 ## <a name="deployment"></a>Distribuzione
 
-Per distribuire un'infrastruttura sottostante simile allo scenario descritto sopra, usare il pulsante di seguito.
+Per distribuire un'infrastruttura sottostante simile allo scenario descritto sopra, usare il pulsante di seguito
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-2tier%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-\* SAP non verrà installato. L'installazione dovrà essere eseguita manualmente al termine della creazione dell'infrastruttura.
+\* SAP non sarà installato automaticamente. Installarlo manualmente dopo aver compilato l'infrastruttura.
 
 <!-- links -->
 [reference architecture]:  /azure/architecture/reference-architectures/sap

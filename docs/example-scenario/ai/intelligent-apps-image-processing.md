@@ -3,12 +3,12 @@ title: Classificazione delle immagini per richieste di indennizzo assicurativo i
 description: Scenario collaudato per integrare l'elaborazione di immagini nelle applicazioni Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0ca0b46e83219afc5e22c2ac6467bf4be945c97a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060830"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389163"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Classificazione delle immagini per richieste di indennizzo assicurativo in Azure
 
@@ -16,7 +16,7 @@ Questo scenario di esempio è applicabile ad aziende che devono elaborare immagi
 
 Le potenziali applicazioni includono la classificazione di immagini per un sito Web di abbigliamento, l'analisi di testo e immagini per richieste di indennizzo assicurativo e la comprensione di dati di telemetria provenienti da screenshot di giochi. Generalmente le aziende devono sviluppare competenze nei modelli di apprendimento automatico, eseguire il training dei modelli e infine eseguire un processo personalizzato sulle immagini per ricavarne dati.
 
-Con servizi di Azure come l'API Visione artificiale e Funzioni di Azure, le aziende possono eliminare l'esigenza di gestire singoli server riducendo al tempo stesso i costi e sfruttando le competenze già sviluppate da Microsoft in relazione all'elaborazione di immagini con Servizi cognitivi. Questo scenario riguarda specificamente l'elaborazione di immagini. Per altre esigenze di intelligenza artificiale, prendere in considerazione l'intera famiglia di prodotti [Servizi cognitivi][cognitive-docs].
+Con servizi di Azure come l'API Visione artificiale e Funzioni di Azure, le aziende possono eliminare l'esigenza di gestire singoli server riducendo al tempo stesso i costi e sfruttando le competenze già sviluppate da Microsoft in relazione all'elaborazione di immagini con Servizi cognitivi. Questo scenario di esempio riguarda specificamente un caso d'uso di elaborazione di immagini. Per altre esigenze di intelligenza artificiale, prendere in considerazione l'intera famiglia di prodotti [Servizi cognitivi][cognitive-docs].
 
 ## <a name="related-use-cases"></a>Casi d'uso correlati
 
@@ -63,11 +63,11 @@ Questo scenario include i componenti back-end di un'applicazione Web o per dispo
 
 ### <a name="scalability"></a>Scalabilità
 
-Per la maggior parte, tutti i componenti di questo scenario sono servizi gestiti con scalabilità automatica. Esistono alcune eccezioni significative. Funzioni di Azure ha un limite massimo di 200 istanze. Se è necessaria una scalabilità superiore, prendere in considerazione più aree o piani app.
+La maggior parte dei componenti di questo scenario è costituita da servizi gestiti con scalabilità automatica. Esistono alcune eccezioni significative. Funzioni di Azure ha un limite massimo di 200 istanze. Se è necessaria una scalabilità superiore, prendere in considerazione più aree o piani app.
 
-Cosmos DB non offre scalabilità automatica in termini di unità richiesta (UR) sottoposte a provisioning.  Per indicazioni su come stimare i propri requisiti, vedere l'articolo relativo alle [unità richiesta][request-units] nella documentazione. Per sfruttare appieno la scalabilità in Cosmos DB, è consigliabile esaminare anche le [chiavi di partizione][partition-key].
+Cosmos DB non offre scalabilità automatica in termini di unità richiesta (UR) sottoposte a provisioning.  Per indicazioni su come stimare i propri requisiti, vedere l'articolo relativo alle [unità richiesta][request-units] nella documentazione. Per sfruttare appieno la scalabilità in Cosmos DB, esaminare le [chiavi di partizione][partition-key].
 
-I database NoSQL spesso privilegiano la disponibilità, la scalabilità e la partizione rispetto alla coerenza (nel senso del teorema CAP).  Nel caso dei modelli di dati chiave-valore usati in questo scenario, tuttavia,la coerenza delle transazione è raramente necessaria perché le operazioni sono per la maggior parte atomiche per definizione. Altre indicazioni per [scegliere l'archivio dati corretto](../../guide/technology-choices/data-store-overview.md) sono disponibili in Centro architetture.
+I database NoSQL spesso privilegiano la disponibilità, la scalabilità e la partizione rispetto alla coerenza (nel senso del teorema CAP).  In questo scenario di esempio viene usato un modello di dati chiave-valore e la coerenza delle transazione è raramente necessaria perché le operazioni sono per la maggior parte atomiche per definizione. Materiale sussidiario per [scegliere l'archivio dati corretto](../../guide/technology-choices/data-store-overview.md) sono disponibili in Centro architetture di Azure.
 
 Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
@@ -87,17 +87,17 @@ Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Pr
 
 Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi sono preconfigurati tutti i servizi. Per verificare la variazione dei prezzi per un determinato caso d'uso, modificare le variabili appropriate in base
 
-Sono stati definiti tre profili di costo di esempio in base alla quantità di traffico, supponendo che tutte le immagini siano di 100 KB.
+Sono stati definiti tre profili di costo di esempio in base alla quantità di traffico, supponendo che tutte le immagini siano di 100 KB:
 
-* [Small][pricing]: correlato all'elaborazione di meno di 5000 immagini al mese.
-* [Medium][medium-pricing]: correlato all'elaborazione di 500.000 immagini al mese.
-* [Large][large-pricing]: correlato all'elaborazione di 50 milioni di immagini al mese.
+* [Small][pricing]: questo esempio di prezzi è correlato all'elaborazione di &lt; 5000 immagini al mese.
+* [Medium][medium-pricing]: questo esempio di prezzi è correlato all'elaborazione di 500.000 immagini al mese.
+* [Large][large-pricing]: questo esempio di prezzi è correlato all'elaborazione di 50 milioni di immagini al mese.
 
 ## <a name="related-resources"></a>Risorse correlate
 
 Per un percorso di apprendimento guidato per questo scenario, vedere [Build a serverless web app in Azure][serverless] (Creare un'app Web senza server in Azure).  
 
-Prima dell'inclusione in un ambiente di produzione, esaminare le [procedure consigliate][functions-best-practices] per Funzioni di Azure.
+Prima di implementare questo scenario di esempio in un ambiente di produzione, esaminare le [procedure consigliate][functions-best-practices] per Funzioni di Azure.
 
 <!-- links -->
 [pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380

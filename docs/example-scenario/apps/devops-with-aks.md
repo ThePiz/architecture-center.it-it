@@ -3,12 +3,12 @@ title: Pipeline di integrazione continua/distribuzione continua per carichi di l
 description: Scenario collaudato per creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334216"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389384"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 
@@ -44,7 +44,7 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 ### <a name="components"></a>Componenti
 
 * [Jenkins][jenkins] è un server di automazione open source che può integrarsi con i servizi di Azure per supportare l'integrazione continua e la distribuzione continua. In questo scenario, Jenkins orchestra la creazione di nuove immagini del contenitore in base ai commit nel controllo del codice sorgente, esegue il push di tali immagini in Registro contenitori di Azure e quindi aggiorna le istanze dell'applicazione nel servizio Kubernetes di Azure.
-* [Macchine virtuali Linux di Azure][azurevm-docs] vengono usate per eseguire le istanze di Jenkins e Grafana.
+* Le [macchine virtuali Linux di Azure][azurevm-docs] rappresentano la piattaforma IaaS usata per eseguire le istanze di Jenkins e Grafana.
 * [Registro contenitori di Azure][azureacr-docs] archivia e gestisce le immagini del contenitore usate dal cluster del servizio Kubernetes di Azure. Le immagini vengono archiviate in modo sicuro e possono essere replicate dalla piattaforma Azure in altre aree per ridurre i tempi di distribuzione.
 * Il [servizio Kubernetes di Azure][azureaks-docs] è una piattaforma Kubernetes gestita che consente di distribuire e gestire applicazioni in contenitori senza competenze nell'orchestrazione di contenitori. Come servizio Kubernetes ospitato, Azure gestisce attività critiche quali il monitoraggio dell'integrità e la manutenzione per l'utente.
 * [Azure Cosmos DB][azurecosmosdb-docs] è un database multimodello distribuito a livello globale che consente di scegliere tra vari modelli di database e di coerenza in base alle esigenze. Con Cosmos DB è possibile eseguire la replica dei dati a livello globale e non è necessario distribuire e configurare componenti di replica o gestione cluster.
@@ -53,7 +53,7 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 
 ### <a name="alternatives"></a>Alternative
 
-* [Visual Studio Team Services][vsts] e Team Foundation Server consentono di implementare una pipeline di integrazione, test e distribuzione continui per qualsiasi app.
+* [Azure Pipelines][azure-pipelines] consente di implementare una pipeline di integrazione, test e distribuzione continui per qualsiasi app.
 * [Kubernetes][kubernetes] può essere eseguito direttamente in VM di Azure anziché tramite un servizio gestito, se si vuole ottenere maggiore controllo sul cluster.
 * [Service Fabric][service-fabric] è un altro agente di orchestrazione di contenitori che può sostituire il servizio Kubernetes di Azure.
 
@@ -65,7 +65,7 @@ Per monitorare le prestazioni dell'applicazione e segnalare i problemi, questo s
 
 Nell'ambito del cluster del servizio Kubernetes di Azure, un servizio di bilanciamento del carico distribuisce il traffico dell'applicazione a uno o più contenitori (pod) in cui viene eseguita. Questo approccio per l'esecuzione di applicazioni in contenitori in Kubernetes offre un'infrastruttura a disponibilità elevata per i clienti.
 
-Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture.
+Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture di Azure.
 
 ### <a name="scalability"></a>Scalabilità
 
@@ -73,11 +73,11 @@ Il servizio Kubernetes di Azure consente di ridimensionare il numero di nodi del
 
 I dati dell'applicazione vengono archiviati in Azure Cosmos DB, un database multimodello con distribuzione e scalabilità a livello globale. Con Cosmos DB non è necessario ridimensionare l'infrastruttura come con i componenti di database tradizionali ed è possibile scegliere di eseguire la replica di Cosmos DB a livello globale per soddisfare le esigenze dei clienti.
 
-Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] disponibile in Centro architetture.
+Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture di Azure.
 
 ### <a name="security"></a>Sicurezza
 
-Per ridurre al minimo la superficie di attacco, questo scenario non espone l'istanza di VM Jenkins tramite HTTP. Per tutte le attività di gestione che richiedono l'interazione con Jenkins, si crea una connessione remota sicura usando un tunnel SSH dal computer locale. Per le istanze di VM Jenkins e Grafana è consentita solo l'autenticazione con chiave pubblica SSH. Gli accessi basati su password sono disabilitati. Per altre informazioni, vedere [Eseguire un server Jenkins in Azure](../../reference-architectures/jenkins/index.md).
+Per ridurre al minimo il footprint di attacco, questo scenario non espone l'istanza di macchina virtuale Jenkins tramite HTTP. Per tutte le attività di gestione che richiedono l'interazione con Jenkins, si crea una connessione remota sicura usando un tunnel SSH dal computer locale. Per le istanze di VM Jenkins e Grafana è consentita solo l'autenticazione con chiave pubblica SSH. Gli accessi basati su password sono disabilitati. Per altre informazioni, vedere [Eseguire un server Jenkins in Azure](../../reference-architectures/jenkins/index.md).
 
 Per la separazione delle credenziali e delle autorizzazioni, questo scenario usa un'entità servizio dedicata di Azure Active Directory (AD). Le credenziali per questa entità servizio vengono archiviate come oggetto credenziali sicuro in Jenkins in modo che non siano direttamente esposte e visibili negli script o nella pipeline di compilazione.
 
@@ -123,9 +123,9 @@ Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi s
 
 Sono stati definiti tre profili di costo di esempio in base al numero di immagini di contenitori da archiviare e ai nodi Kubernetes per l'esecuzione delle applicazioni.
 
-* [Small][small-pricing]: correlato a 1000 compilazioni di contenitori al mese.
-* [Medium][medium-pricing]: correlato a 100.000 compilazioni di contenitori al mese.
-* [Large][large-pricing]: correlato a 1.000.000 compilazioni di contenitori al mese.
+* [Small][small-pricing]: questo esempio di prezzi è correlato a 1.000 compilazioni di contenitori al mese.
+* [Medium][medium-pricing]: questo esempio di prezzi è correlato a 100.000 compilazioni di contenitori al mese.
+* [Large][large-pricing]: questo esempio di prezzi è correlato a 1.000.000 compilazioni di contenitori al mese.
 
 ## <a name="related-resources"></a>Risorse correlate
 
@@ -149,7 +149,7 @@ In questo scenario sono stati usati Registro contenitori di Azure e il servizio 
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md
 [sshkeydocs]: /azure/virtual-machines/linux/mac-create-ssh-keys
-[vsts]: /vsts/?view=vsts
+[azure-pipelines]: /azure/devops/pipelines
 [kubernetes]: https://kubernetes.io/
 [service-fabric]: /azure/service-fabric/
 

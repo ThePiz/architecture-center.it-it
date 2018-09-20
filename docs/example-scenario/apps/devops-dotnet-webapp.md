@@ -3,16 +3,16 @@ title: Pipeline di integrazione continua/distribuzione continua con VSTS
 description: Esempio di creazione e rilascio di un'app .NET in App Web di Azure
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: ae4ac5fc02cc841fc39b3cbef46124fe9da75e9b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: aea757087f4a505a8c52658abe1841c5455977cc
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39061012"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389274"
 ---
 # <a name="cicd-pipeline-with-vsts"></a>Pipeline di integrazione continua/distribuzione continua con VSTS
 
-DevOps integra sviluppo, controllo di qualità e operazioni IT e richiede una cultura unificata e un set consolidato di processi per la distribuzione di software.
+DevOps integra sviluppo, controllo di qualità e operazioni IT. e richiede una cultura unificata e un set consolidato di processi per la distribuzione di software.
 
 Questo scenario di esempio illustra come i team di sviluppo possono usare Visual Studio Team Services per distribuire un'applicazione Web .NET a due livelli nel servizio app di Azure. L'applicazione Web dipende da servizi PaaS (piattaforma distribuita come servizio) di Azure downstream. Questo documento evidenzia anche alcune considerazioni da valutare quando si progetta uno scenario di questo tipo con servizi PaaS di Azure.
 
@@ -50,13 +50,13 @@ Questo scenario include una pipeline DevOps per un'applicazione Web .NET che usa
 
 Questo articolo è incentrato su Visual Studio Team Services, ma è possibile anche usare [Team Foundation Server][team-foundation-server] come strumento sostitutivo locale. In alternativa, è anche disponibile una raccolta di tecnologie che possono essere usate insieme per una pipeline di sviluppo open source con [Jenkins][jenkins-on-azure].
 
-Per un'infrastruttura distribuita come codice, nel progetto DevOps di Azure sono inclusi [modelli di Azure Resource Manager][arm-templates], ma si può prendere in considerazione [Terraform][terraform] o [Chef][chef] se si sono effettuati investimenti corrispondenti. Se si preferisce una distribuzione basata su IaaS (infrastruttura distribuita come servizio) ed è necessaria la gestione della configurazione, si può prendere in considerazione [Desired State Configuration per Azure][desired-state-configuration], [Ansible][ansible] o [Chef][chef].
+Per un'infrastruttura distribuita come codice, nel progetto DevOps di Azure sono inclusi [modelli di Azure Resource Manager][arm-templates], ma si può prendere in considerazione [Terraform][terraform] o [Chef][chef] se si sono effettuati investimenti corrispondenti. Se si preferisce una distribuzione basata su IaaS (infrastruttura distribuita come servizio) ed è necessaria la gestione della configurazione, si può prendere in considerazione [Automation State Configuration per Azure][desired-state-configuration], [Ansible][ansible] o [Chef][chef].
 
 ### <a name="alternatives-to-web-app-hosting"></a>Alternative all'hosting in App Web
 
 Alternative all'hosting in App Web di Azure
 
-* [VM][compare-vm-hosting]: per carichi di lavoro che richiedono un livello elevato di controllo o dipendono da servizi/componenti del sistema operativo non consentiti con App Web (ad esempio, COM o GAC di Windows).
+* [Macchine virtuali][compare-vm-hosting]: per carichi di lavoro che richiedono un livello elevato di controllo o dipendono da servizi/componenti del sistema operativo non consentiti con App Web (ad esempio, COM o GAC di Windows)
 * [Hosting in contenitori][azure-containers]: per i casi in cui sono presenti dipendenze a livello di sistema operativo e requisiti di portabilità o densità di hosting.
 * [Service Fabric][service-fabric]: opzione valida se l'architettura dei carichi di lavoro è incentrata su componenti distribuiti per cui sono utili la distribuzione e l'esecuzione in un cluster con un livello elevato di controllo. È possibile usare Service Fabric anche per l'hosting di contenitori.
 * [Funzioni di Azure senza server][azure-functions]: opzione valida se l'architettura dei carichi di lavoro è incentrata su componenti distribuiti specifici che richiedono dipendenze minime, nei casi in cui l'esecuzione dei singoli componenti è prevista solo su richiesta (non in modo continuo) e non è necessaria l'orchestrazione dei componenti.
@@ -118,7 +118,7 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 Esaminare i [modelli di progettazione tipici per la resilienza][design-patterns-resiliency] e valutare la possibilità di implementarli, quando opportuno.
 
-In Centro architetture sono disponibili diverse [procedure consigliate per la resilienza per il servizio app][resiliency-app-service].
+In Centro architetture di Azure sono disponibili diverse [procedure consigliate per il servizio app][resiliency-app-service].
 
 Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
 
@@ -131,11 +131,11 @@ Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Pr
 
 ### <a name="walk-through"></a>Procedura dettagliata
 
-In questo scenario si userà il progetto DevOps di Azure per creare la pipeline di integrazione continua/distribuzione continua.
+In questo scenario si userà il progetto DevOps di Azure per creare la pipeline di CI/CD.
 
 Il progetto DevOps distribuirà un piano di servizio app, il servizio app e una risorsa di Application Insights e configurerà il progetto di Visual Studio Team Services.
 
-Quando è disponibile il progetto DevOps e la compilazione è completata, esaminare le modifiche al codice, gli elementi di lavoro e i risultati dei test associati. Si rileverà che non vengono visualizzati risultati dei test, perché il codice non contiene test da eseguire.
+Una volta implementato il progetto DevOps e completata la compilazione, esaminare le modifiche al codice, gli elementi di lavoro e i risultati dei test associati. Si rileverà che non vengono visualizzati risultati dei test, perché il codice non contiene test da eseguire.
 
 Esaminare le definizioni di versione. Si noti che è stata configurata una pipeline di versione con cui l'applicazione viene rilasciata nell'ambiente di sviluppo. Osservare la presenza di un a **trigger di distribuzione continua** impostato dall'artefatto di compilazione **Drop**, con rilasci automatici negli ambienti di sviluppo. In un processo di distribuzione continua, i rilasci possono estendersi a più ambienti. Un rilascio può riguardare l'infrastruttura (con tecniche come l'infrastruttura distribuita come codice) nonché distribuire i pacchetti dell'applicazione e tutte le attività post-configurazione.
 

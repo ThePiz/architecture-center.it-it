@@ -3,12 +3,12 @@ title: Applicazione Web Windows sicura per i settori regolamentati
 description: Scenario collaudato per la creazione di un'applicazione Web multilivello sicura con Windows Server in Azure che usa set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: aba714fc1955341645d0faa400768bc09fb8e50b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 3572f215d9134a6650d76e1b14458226334c6f42
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060992"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389285"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Applicazione Web Windows sicura per i settori regolamentati
 
@@ -40,7 +40,7 @@ Questo scenario descrive un'applicazione multilivello per settori regolamentati 
 
 * Il [gateway applicazione di Azure][appgateway-docs] è un servizio di bilanciamento del carico del traffico Web di livello 7, con riconoscimento delle applicazioni e in grado di distribuire il traffico in base a regole di routing specifiche. Il gateway applicazione può anche gestire l'offload SSL per migliorare le prestazioni del server Web.
 * La [rete virtuale di Azure][vnet-docs] consente a risorse quali le macchine virtuali di comunicare in modo sicuro tra loro, con Internet e con le reti locali. Le reti virtuali forniscono isolamento e segmentazione, filtrano e instradano il traffico e consentono la connessione tra posizioni. Questo scenario usa due reti virtuali combinate con i gruppi di sicurezza di rete appropriati per fornire una [rete perimetrale][dmz] e l'isolamento dei componenti dell'applicazione. Il peering di rete virtuale collega le due reti.
-* I [set di scalabilità di macchine virtuali di Azure][scaleset-docs] consentono di creare e gestire un gruppo di VM con bilanciamento del carico identiche. Il numero di istanze di macchine virtuali può aumentare o diminuire automaticamente in risposta alla domanda o a una pianificazione definita. Questo scenario usa due set di scalabilità di macchine virtuali separati, uno per le istanze dell'applicazione ASP.NET di front-end e uno per le istanze di macchina virtuale del cluster SQL Server di back-end. È possibile usare la configurazione dello stato desiderato di PowerShell o l'estensione di script personalizzati di Azure per fornire alle istanze di macchina virtuale il software e le impostazioni di configurazione necessari.
+* I [set di scalabilità di macchine virtuali di Azure][scaleset-docs] consentono di creare e gestire un gruppo di macchine virtuali con bilanciamento del carico identiche. Il numero di istanze di macchine virtuali può aumentare o diminuire automaticamente in risposta alla domanda o a una pianificazione definita. Questo scenario usa due set di scalabilità di macchine virtuali separati, uno per le istanze dell'applicazione ASP.NET di front-end e uno per le istanze di macchina virtuale del cluster SQL Server di back-end. È possibile usare la configurazione dello stato desiderato di PowerShell o l'estensione di script personalizzati di Azure per fornire alle istanze di macchina virtuale il software e le impostazioni di configurazione necessari.
 * I [gruppi di sicurezza di rete][nsg-docs] contengono un elenco di regole di sicurezza che consentono o impediscono il traffico di rete in ingresso o in uscita in base all'indirizzo IP di origine o di destinazione, alla porta e al protocollo. Le reti virtuali in questo scenario sono protette da regole dei gruppi di sicurezza di rete che limitano il flusso del traffico tra i componenti dell'applicazione.
 * [Azure Load Balancer][loadbalancer-docs] distribuisce il traffico in ingresso in base a regole e probe di integrità. Un servizio di bilanciamento del carico offre bassa latenza e velocità effettiva elevata, oltre a una scalabilità fino a milioni di flussi per tutte le applicazioni TCP e UDP. Questo scenario usa un servizio di bilanciamento del carico interno per distribuire il traffico dal livello dell'applicazione front-end al cluster SQL Server di back-end.
 * [Archiviazione BLOB di Azure][cloudwitness-docs] funge da posizione di cloud di controllo per il cluster SQL Server. Questo controllo viene usato per operazioni e decisioni di cluster che richiedono un voto aggiuntivo per stabilire il quorum. L'uso del cloud di controllo elimina la necessità di una VM aggiuntiva che funga da controllo di condivisione file tradizionale.
@@ -86,7 +86,7 @@ Per indicazioni generali sulla progettazione di scenari resilienti, vedere [Prog
 **Prerequisiti**
 
 * È necessario un account Azure esistente. Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) prima di iniziare.
-* Per distribuire un cluster SQL Server nel set di scalabilità di back-end, è necessario un dominio di Active Directory Domain Services.
+* Per distribuire un cluster SQL Server nel set di scalabilità di back-end, è necessario un dominio di Azure Active Directory Domain Services.
 
 Per distribuire l'infrastruttura di base per questo scenario con un modello di Azure Resource Manager, seguire questa procedura.
 
@@ -106,9 +106,9 @@ Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi s
 
 Sono disponibili tre profili di costo di esempio, basati sul numero di istanze di macchina virtuale del set di scalabilità che eseguono le applicazioni.
 
-* [Small][small-pricing]: due istanze di macchina virtuale front-end e due istanze di macchina virtuale back-end.
-* [Medium][medium-pricing]: 20 istanze di macchina virtuale front-end e 5 istanze di macchina virtuale back-end.
-* [Large][large-pricing]: 100 istanze di macchina virtuale front-end e 10 istanze di macchina virtuale back-end.
+* [Small][small-pricing]: in questo esempio di prezzi vengono correlate due istanze di macchina virtuale front-end e due istanze di macchina virtuale back-end.
+* [Medium][medium-pricing]: in questo esempio di prezzi vengono correlate 20 istanze di macchina virtuale front-end e 5 istanze di macchina virtuale back-end.
+* [Large][large-pricing]: in questo esempio di prezzi vengono correlate 100 istanze di macchina virtuale front-end e 10 istanze di macchina virtuale back-end.
 
 ## <a name="related-resources"></a>Risorse correlate
 

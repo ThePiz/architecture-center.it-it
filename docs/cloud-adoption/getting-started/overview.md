@@ -2,12 +2,13 @@
 title: "Adozione del cloud nell'organizzazione: introduzione"
 description: Viene descritta una panoramica della prima fase della trasformazione digitale di un'organizzazione che adotta tecnologie cloud di Azure
 author: petertaylor9999
-ms.openlocfilehash: 25d1afe4d048b07a350dfc1b5c463b1d5425a8a4
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: b51e834a56f4d9818ca9475f959c3f888bae20bc
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327101"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389305"
 ---
 # <a name="enterprise-cloud-adoption-getting-started"></a>Adozione del cloud nell'organizzazione: introduzione 
 
@@ -35,6 +36,8 @@ Ad esempio, un team per la strategia cloud potrebbe essere guidato dal CTO e cos
 
 È anche importante formare altri due team di alto livello: un team di governance e un team per la sicurezza. Questi sono responsabili della progettazione, dell'implementazione e del controllo continuo della governance e dei criteri di sicurezza aziendali. Il team di governance deve essere composto da membri che hanno lavorato con la protezione degli asset, la gestione dei costi, i criteri di gruppo e gli argomenti correlati. Il team per la sicurezza deve essere composto da membri abbastanza esperti di standard di sicurezza attuali del settore, nonché di requisiti di sicurezza aziendale.
 
+![Team di strategia cloud, di concerto con i team di governance e sicurezza](../_images/getting-started-overview-1.png)
+
 Il team di governance è responsabile della progettazione e dell'implementazione di un modello di governance aziendale nel cloud, nonché della distribuzione e della manutenzione degli asset dell'infrastruttura condivisa che fanno parte della trasformazione digitale. Questi asset includono risorse hardware, software e cloud necessarie per connettere la rete locale alla rete virtuale nel cloud.
 
 Il team per la sicurezza è responsabile della progettazione e dell'implementazione di criteri di sicurezza aziendali nel cloud e lavora a stretto contatto con il team di governance. Il team per la sicurezza possiede l'estensione del limite di sicurezza della rete locale per includere la rete virtuale nel cloud. Questo potrebbe avvenire tramite il possesso e la manutenzione dei firewall in entrata e in uscita nella rete virtuale cloud nonché garantendo che gli strumenti e i criteri impediscono la distribuzione di risorse non autorizzate.
@@ -42,6 +45,8 @@ Il team per la sicurezza è responsabile della progettazione e dell'implementazi
 ## <a name="step-2-learn-whats-new-in-the-cloud"></a>Passaggio 2: Apprendere le novità del cloud
  
 Il passaggio successivo nella trasformazione digitale dell'organizzazione è dedicato ai membri del team per la strategia cloud che apprenderanno in che modo la tecnologia cloud cambierà le attività aziendali dell'organizzazione. Consiste nella preparazione e nella pianificazione dei cambiamenti dell'azienda, del personale e delle tecnologie. È importante che i membri del team per la strategia cloud comprendano le novità e le differenze del cloud rispetto al sistema locale.
+
+![I team di strategia cloud, governance e sicurezza apprendono le procedure consigliate per il funzionamento nel cloud.](../_images/getting-started-overview-2.png)
 
 Il punto di partenza per comprendere il cloud consiste nell'imparare [come funziona Azure](what-is-azure.md) a livello elevato. Successivamente si apprendono le nozioni di base della [governance in Azure](what-is-governance.md) per prepararsi a [capire la gestione dell'accesso alle risorse](azure-resource-access.md).
 
@@ -80,6 +85,8 @@ Il risultato di questo processo è un elenco classificato per stack di soluzioni
 Dopo aver enumerato e classificato gli obiettivi della trasformazione digitale e aver proposto soluzioni di alto livello, il passaggio successivo richiede che il team per la strategia cloud allinei ogni soluzione di alto livello con i team di progettazione e implementazione in ciascun gruppo aziendale. 
 
 Prendendo in considerazione gli elenchi classificati, i team analizzano ogni soluzione di alto livello per eseguirne la progettazione. Il processo di progettazione comporta la specifica della nuova infrastruttura e dei nuovi carichi di lavoro. È anche possibile che vengano modificati i ruoli del personale e i processi che seguono. È inoltre estremamente importante in questa fase per ogni team di progettazione coinvolgere sia i team di governance che i team per la sicurezza, per analizzare ogni progetto. Tutti i progetti devono rispettare i criteri e le procedure definite dai team di governance e per la sicurezza, e questi ultimi devono essere coinvolti nella finalizzazione di ciascun progetto.
+
+![Il team di strategia cloud trasferisce soluzioni di alto livello ai team di progettazione e implementazione.](../_images/getting-started-overview-3.png)
 
 La progettazione di ogni soluzione è un'attività complessa e quando i progetti vengono creati è necessario considerarli nel contesto della progettazione delle soluzioni di altri team. Ad esempio, se molti di questi progetti comportano una migrazione di servizi e applicazioni locali esistenti nel cloud, potrebbe essere più efficiente raggrupparli e progettare una strategia di migrazione globale. In un altro esempio, potrebbe non essere possibile eseguire la migrazione di alcune applicazioni e servizi locali esistenti e la soluzione potrebbe consistere nel sostituirli con nuovi progetti di sviluppo o servizi di terze parti. In questo caso potrebbe essere più efficiente raggrupparli e determinarne la sovrapposizione per stabilire se un servizio di terze parti può essere usato per più di una soluzione.
 

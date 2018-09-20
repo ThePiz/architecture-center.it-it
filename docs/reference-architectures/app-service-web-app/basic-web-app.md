@@ -4,12 +4,12 @@ description: L'architettura consigliata per l'esecuzione delle applicazioni Web 
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: bc8cf9b5c66fc451d097cbc992ecb9a249645dce
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: e4992564bc4e8a7b71fc7c5f0bf1662f5e13d5c1
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958841"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389401"
 ---
 # <a name="basic-web-application"></a>Applicazione Web di base
 [!INCLUDE [header](../../_includes/header.md)]
@@ -20,7 +20,7 @@ Questa architettura di riferimento mostra un set di procedure collaudate per un'
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architettura 
 
 > [!NOTE]
 > Questa architettura non è incentrata sullo sviluppo delle applicazioni e non usa uno specifico framework applicazione, ma ha piuttosto l'obiettivo di comprendere l'interazione tra i diversi servizi di Azure.
@@ -49,7 +49,7 @@ L'architettura include i componenti seguenti:
 
 * **Azure Active Directory** (Azure AD). Usare Azure AD o un altro provider di identità per l'autenticazione.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 I requisiti della propria organizzazione potrebbero essere diversi da quelli dell'architettura descritta in questo articolo. Seguire le raccomandazioni contenute in questa sezione come punto di partenza.
 
@@ -152,7 +152,7 @@ Abilitare la [registrazione diagnostica][diagnostic-logs], includendo la registr
 
 Usare un servizio, quale [New Relic] [ new-relic] o [Application Insights] [ app-insights], per monitorare le prestazioni e il comportamento dell'applicazione in condizioni di carico. Tenere presenti i [limiti di velocità dati][app-insights-data-rate] per Application Insights.
 
-Eseguire il test di carico usando uno strumento come [Visual Studio Team Services][vsts]. Per una panoramica generale dell'analisi delle prestazioni nelle applicazioni cloud, vedere l'articolo relativo alle [nozioni di base sull'analisi delle prestazioni][perf-analysis].
+Eseguire il test di carico usando uno strumento come [Azure DevOps][azure-devops] o [Visual Studio Team Foundation Server][tfs]. Per una panoramica generale dell'analisi delle prestazioni nelle applicazioni cloud, vedere l'articolo relativo alle [nozioni di base sull'analisi delle prestazioni][perf-analysis].
 
 Suggerimenti per la risoluzione dei problemi dell'applicazione:
 
@@ -224,6 +224,7 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [app-service-security]: /azure/app-service-web/web-sites-security
 [app-settings]: /azure/app-service-web/web-sites-configure
 [arm-template]: /azure/azure-resource-manager/resource-group-overview#resource-groups
+[azure-devops]: /azure/devops/
 [azure-dns]: /azure/dns/dns-overview
 [custom-domain-name]: /azure/app-service-web/web-sites-custom-domain-name
 [deploy]: /azure/app-service-web/web-sites-deploy
@@ -252,9 +253,9 @@ Per altre informazioni, vedere [Distribuire le risorse con i modelli di Azure Re
 [sql-resource-limits]: /azure/sql-database/sql-database-resource-limits
 [ssl-cert]: /azure/app-service-web/web-sites-purchase-ssl-web-site
 [troubleshoot-blade]: https://azure.microsoft.com/updates/self-service-troubleshooting-for-app-service-web-apps-customers/
+[tfs]: /tfs/index
 [troubleshoot-web-app]: /azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
-[vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
 [web-app-autoscale]: /azure/app-service-web/web-sites-scale
 [web-app-backup]: /azure/app-service-web/web-sites-backup
 [web-app-log-stream]: /azure/app-service-web/web-sites-enable-diagnostic-log#streamlogs

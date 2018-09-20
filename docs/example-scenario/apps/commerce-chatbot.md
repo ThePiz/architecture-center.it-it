@@ -3,12 +3,12 @@ title: Chatbot di conversazione per prenotazioni di hotel in Azure
 description: Scenario collaudato per creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot, Servizi cognitivi e LUIS, un database SQL di Azure e Application Insights.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 95a0fd77a99a348704a1d916de534a98d0b03448
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060864"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389333"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Chatbot di conversazione per prenotazioni di hotel in Azure
 
@@ -44,7 +44,7 @@ Questo scenario include un bot di conversazione che svolge le funzioni di un rec
 * [Azure Active Directory ][aad-docs] è il servizio directory e di gestione delle identità multi-tenant basato sul cloud di Microsoft. Azure AD supporta un connettore B2C che consente di identificare gli utenti con ID esterni come Google, Facebook o un account Microsoft.
 * Il [servizio app][appservice-docs] consente di creare e ospitare applicazioni Web nel linguaggio di programmazione preferito senza gestire l'infrastruttura.
 * Il [servizio Bot][botservice-docs] offre gli strumenti per creare, testare, distribuire e gestire bot intelligenti.
-* [Servizi cognitivi][cognitive-docs] consente di usare algoritmi intelligenti per vedere, ascoltare, parlare, comprendere e interpretare le esigenze degli utenti tramite i metodi di comunicazione naturali.
+* [Servizi cognitivi][cognitive-docs] consente di usare algoritmi intelligenti per vedere, ascoltare, parlare, comprendere e interpretare le esigenze degli utenti tramite metodi di comunicazione naturali.
 * Il [database SQL][sqldatabase-docs] è un servizio di database cloud relazionale completamente gestito compatibile con il motore di SQL Server.
 * [Application Insights][appinsights-docs] è un servizio di gestione delle prestazioni applicative (APM, Application Performance Management) estendibile che consente di monitorare le prestazioni di applicazioni come il chatbot.
 
@@ -64,7 +64,7 @@ Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo 
 
 ### <a name="scalability"></a>Scalabilità
 
-Questo scenario usa il servizio app di Azure. Con il servizio app, è possibile ridimensionare automaticamente il numero di istanze in cui viene eseguito il bot. Questa funzionalità consente di far fronte alla domanda dei clienti per l'applicazione Web e il chatbot. Per altre informazioni sul ridimensionamento automatico, vedere le [procedure consigliate per la scalabilità automatica][autoscaling] in Centro architetture.
+Questo scenario usa il servizio app di Azure. Con il servizio app, è possibile ridimensionare automaticamente il numero di istanze in cui viene eseguito il bot. Questa funzionalità consente di far fronte alla domanda dei clienti per l'applicazione Web e il chatbot. Per altre informazioni sul ridimensionamento automatico, vedere le [procedure consigliate per la scalabilità automatica][autoscaling] in Centro architetture di Azure.
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
@@ -141,11 +141,11 @@ L'applicazione di esempio include i componenti di autenticazione di Azure Active
 
 Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi sono preconfigurati tutti i servizi. Per verificare la variazione dei prezzi per un determinato caso d'uso, modificare le variabili appropriate in base
 
-Sono stati definiti tre profili di costo di esempio in base alla quantità di messaggi che si prevede venga elaborata dal chatbot.
+Sono stati definiti tre profili di costo di esempio in base al numero di messaggi che si prevede venga elaborato dal chatbot:
 
-* [Small][small-pricing]: correlato all'elaborazione di meno di 10.000 messaggi al mese.
-* [Medium][medium-pricing]: correlato all'elaborazione di meno di 500.000 messaggi al mese.
-* [Large][large-pricing]: correlato all'elaborazione di meno di 10 milioni di messaggi al mese.
+* [Small][small-pricing]: questo esempio di prezzi è correlato all'elaborazione di meno di 10.000 messaggi al mese.
+* [Medium][medium-pricing]: questo esempio di prezzi è correlato all'elaborazione di meno di 500.000 messaggi al mese.
+* [Large][large-pricing]: questo esempio di prezzi è correlato all'elaborazione di meno di 10 milioni di messaggi al mese.
 
 ## <a name="related-resources"></a>Risorse correlate
 

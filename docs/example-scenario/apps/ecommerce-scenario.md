@@ -3,14 +3,14 @@ title: Front-end per e-commerce in Azure
 description: Scenario comprovato di hosting di un sito di e-commerce in Azure
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 568821e97c6b90a36429dfa8ec0ef9ed38c7963c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 1af481476c74b365ce5145636426683c6896b00b
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060972"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389197"
 ---
-# <a name="e-commerce-front-end-on-azure"></a>Front-end per e-commerce in Azure
+# <a name="e-commerce-frontend-on-azure"></a>Front-end per e-commerce in Azure
 
 Questo scenario di esempio descrive l'implementazione di un front end di e-commerce usando gli strumenti della piattaforma distribuita come servizio (PaaS) di Azure. Molti siti di e-commerce sono soggetti a stagionalità e variabilità del traffico nel tempo. Quando la richiesta di prodotti o servizi decolla, in modo prevedibile o imprevedibile, l'uso di strumenti PaaS consente di gestire più clienti e più transazioni automaticamente. Questo scenario sfrutta inoltre l'economia del cloud, pagando solo la capacità effettivamente usata.
 
@@ -64,12 +64,12 @@ Altre opzioni per il livello Web e le funzioni includono:
 
 * [Service Fabric][docs-service-fabric]: piattaforma incentrata su componenti distribuiti per i quali sono utili la distribuzione e l'esecuzione in un cluster con un livello elevato di controllo. È possibile usare Service Fabric anche per l'hosting di contenitori.
 * [Servizio Kubernetes di Azure][docs-kubernetes-service]: piattaforma per la creazione e la distribuzione di soluzioni basate su contenitori che possono essere usate come un'unica implementazione di un'architettura di microservizi. Ciò consente la scalabilità indipendente dei diversi componenti dell'applicazione su richiesta.
-* [Istanze di contenitore di Azure][docs-container-instances]: modalità di distribuzione ed esecuzione rapida di contenitori con ciclo di vita breve. Questi contenitori vengono solitamente distribuiti per eseguire un processo di elaborazione rapido, come l'elaborazione di un messaggio o l'esecuzione di un calcolo, quindi vengono immediatamente sottoposti a deprovisioning al termine dell'operazione.
+* [Istanze di contenitore di Azure][docs-container-instances]: modalità di distribuzione ed esecuzione rapida di contenitori con ciclo di vita breve. Questi contenitori vengono distribuiti per eseguire un processo di elaborazione rapido, come l'elaborazione di un messaggio o l'esecuzione di un calcolo, quindi vengono immediatamente sottoposti a deprovisioning al termine dell'operazione.
 * È possibile usare il bus di servizio al posto delle code di archiviazione.
 
 Altre opzioni per il livello dati includono:
 
-* [Cosmos DB][docs-cosmosdb]: database multimodello di Microsoft distribuito a livello globale. Offre una piattaforma per eseguire altri modelli di dati come Mongo DB, Cassandra, dati Graph o un semplice archivio tabelle.
+* [Cosmos DB][docs-cosmosdb]: database multimodello di Microsoft distribuito a livello globale. Questo servizio offre una piattaforma per eseguire altri modelli di dati come Mongo DB, Cassandra, dati Graph o un semplice archivio tabelle.
 
 ## <a name="considerations"></a>Considerazioni
 
@@ -77,13 +77,13 @@ Altre opzioni per il livello dati includono:
 
 * Durante la creazione di un'applicazione cloud, valutare la possibilità di sfruttare i [modelli di progettazione tipici per la disponibilità][design-patterns-availability].
 * Esaminare le considerazioni sulla disponibilità riportate in relazione all'[architettura di riferimento per applicazioni Web del servizio app][app-service-reference-architecture] appropriata.
-* Per altre considerazioni sulla disponibilità, vedere l'[elenco di controllo della disponibilità][availability] in Centro architetture.
+* Per altre considerazioni sulla disponibilità, vedere l'[elenco di controllo della disponibilità][availability] in Centro architetture di Azure.
 
 ### <a name="scalability"></a>Scalabilità
 
 * Durante la creazione di un'applicazione cloud, tenere presenti i [modelli di progettazione tipici per la scalabilità][design-patterns-scalability].
 * Esaminare le considerazioni sulla scalabilità riportate in relazione all'[architettura di riferimento per applicazioni Web del servizio app][app-service-reference-architecture] appropriata.
-* Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] disponibile in Centro architetture.
+* Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture di Azure.
 
 ### <a name="security"></a>Sicurezza
 
@@ -96,13 +96,13 @@ Altre opzioni per il livello dati includono:
 
 * Valutare la possibilità di sfruttare il [modello a interruttore][circuit-breaker] per offrire una gestione degli errori senza interruzioni se una parte dell'applicazione non è disponibile.
 * Esaminare i [modelli di progettazione tipici per la resilienza][design-patterns-resiliency] e valutare la possibilità di implementarli, quando opportuno.
-* In Centro architetture sono disponibili diverse [procedure consigliate per la resilienza per il servizio app][resiliency-app-service].
+* In Centro architetture di Azure sono disponibili diverse [procedure consigliate per il servizio app][resiliency-app-service].
 * Valutare la possibilità di usare la [replica geografica attiva][sql-geo-replication] per il livello dati e l'archiviazione [con ridondanza geografica][storage-geo-redudancy] per le immagini e le code.
-* Per una discussione più approfondita sulla [resilienza][resiliency], vedere l'articolo corrispondente in Centro architetture.
+* Per una discussione più approfondita sulla [resilienza][resiliency], vedere l'articolo corrispondente in Centro architetture di Azure.
 
 ## <a name="deploy-the-scenario"></a>Distribuire lo scenario
 
-Per distribuire questo scenario, è possibile seguire l'[esercitazione dettagliata][end-to-end-walkthrough] che illustra come distribuire manualmente ogni componente. Questa esercitazione fornisce anche un'applicazione .NET di esempio che esegue una semplice applicazione per l'acquisto di biglietti. È anche disponibile un modello di Azure Resource Manager per automatizzare la distribuzione della maggior parte delle risorse di Azure.
+Per distribuire questo scenario, è possibile seguire l'[esercitazione dettagliata][end-to-end-walkthrough] che illustra come distribuire manualmente ogni componente. Questa esercitazione fornisce anche un'applicazione .NET di esempio che esegue una semplice applicazione per l'acquisto di biglietti. È anche disponibile un modello di Resource Manager per automatizzare la distribuzione della maggior parte delle risorse di Azure.
 
 ## <a name="pricing"></a>Prezzi
 
@@ -110,9 +110,9 @@ Esaminare il costo di esecuzione dello scenario. Nel calcolatore dei costi sono 
 
 Sono stati definiti tre profili di costo di esempio in base alla quantità di traffico prevista.
 
-* [Small][small-pricing]: rappresenta i componenti necessari per un'istanza di livello produzione minima. In questo caso si ipotizza un numero limitato di utenti, ovvero solo alcune migliaia al mese. L'app usa una singola istanza di un'app Web standard, sufficiente per abilitare la scalabilità automatica. Ognuno degli altri componenti viene ridimensionato a un livello Basic che consente un costo minimo, garantendo comunque un supporto con contratto di servizio e capacità sufficiente per gestire un carico di lavoro a livello di produzione.
-* [Medium][medium-pricing]: rappresenta i componenti indicativi di una distribuzione di medie dimensioni. In questo caso si stimano circa 100.000 utenti che usano il sistema nel corso di un mese. Il traffico previsto viene gestito in una singola istanza del servizio app con un livello Standard moderato. Al calcolatore vengono anche aggiunti livelli moderati di servizi cognitivi e di ricerca.
-* [Large][large-pricing]: rappresenta un'applicazione su larga scala, nell'ordine di milioni di utenti al mese, con il trasferimento di terabyte di dati. Questo livello di utilizzo richiede app Web di livello Premium con prestazioni elevate, distribuite in più aree e gestite da Gestione traffico. I dati sono costituiti da archivi, database e rete CDN, configurati per terabyte di dati.
+* [Small][small-pricing]: questo esempio di prezzi rappresenta i componenti necessari per un'istanza di livello produzione minima. In questo caso si ipotizza un numero limitato di utenti, ovvero solo alcune migliaia al mese. L'app usa una singola istanza di un'app Web standard, sufficiente per abilitare la scalabilità automatica. Ognuno degli altri componenti viene ridimensionato a un livello Basic che consente un costo minimo, garantendo comunque un supporto con contratto di servizio e capacità sufficiente per gestire un carico di lavoro a livello di produzione.
+* [Medium][medium-pricing]: questo esempio di prezzi rappresenta i componenti indicativi di una distribuzione di medie dimensioni. In questo caso si stimano circa 100.000 utenti che usano il sistema nel corso di un mese. Il traffico previsto viene gestito in una singola istanza del servizio app con un livello Standard moderato. Al calcolatore vengono anche aggiunti livelli moderati di servizi cognitivi e di ricerca.
+* [Large][large-pricing]: questo esempio di prezzi rappresenta un'applicazione su larga scala, nell'ordine di milioni di utenti al mese, con il trasferimento di terabyte di dati. Questo livello di utilizzo richiede app Web di livello Premium con prestazioni elevate, distribuite in più aree e gestite da Gestione traffico. I dati sono costituiti da archivi, database e rete CDN, configurati per terabyte di dati.
 
 ## <a name="related-resources"></a>Risorse correlate
 

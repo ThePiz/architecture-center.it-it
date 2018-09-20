@@ -3,16 +3,16 @@ title: Rendering di video 3D in Azure
 description: Esecuzione di carichi di lavoro HPC nativi in Azure con il servizio Azure Batch
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: e629e2ba0b9490e534057fee33f7bededa9656af
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 723d437671c52dc9f717bef9641663d0e7a8fbc4
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229185"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389350"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Rendering di video 3D in Azure
 
-Il rendering 3D è un processo di lunga durata il cui completamento richiede un'elevata quantità di tempo CPU.  In un singolo computer, il processo di generazione di un file video da asset statici può richiedere ore o addirittura giorni, a seconda della lunghezza e della complessità del video che si intende produrre.  Per eseguire queste attività, molte aziende acquistano costosi computer desktop di fascia alta oppure investono in farm di rendering di grandi dimensioni a cui possono inviare i processi.  Sfruttando Azure Batch, tuttavia, la stessa potenza è disponibile quando necessario e si arresta in caso contrario, senza investimenti di capitale.
+Il rendering 3D è un processo di lunga durata il cui completamento richiede un'elevata quantità di tempo di CPU.  In un singolo computer, il processo di generazione di un file video da asset statici può richiedere ore o addirittura giorni, a seconda della lunghezza e della complessità del video che si intende produrre.  Per eseguire queste attività, molte aziende acquistano costosi computer desktop di fascia alta oppure investono in farm di rendering di grandi dimensioni a cui possono inviare i processi.  Sfruttando Azure Batch, tuttavia, la stessa potenza è disponibile quando necessario e si arresta in caso contrario, senza investimenti di capitale.
 
 Batch offre un'esperienza di gestione e di pianificazione dei processi coerente indipendentemente dal fatto che si selezionino nodi di calcolo Windows Server o Linux. Con Batch, è possibile usare le applicazioni Windows o Linux esistenti, come AutoDesk Maya e Blender, per eseguire processi di rendering su larga scala in Azure.
 
@@ -46,25 +46,27 @@ Azure Batch si basa sulle tecnologie Azure seguenti:
 
 * I [gruppi di risorse][resource-groups] sono un contenitore logico per le risorse di Azure.
 * Le [reti virtuali][vnet] vengono usate sia per il nodo head che per le risorse di calcolo.
-* Gli [account di archiviazione][storage] vengono usati per la sincronizzazione e la conservazione dati.
-* I [set di scalabilità di macchine virtuali][vmss] vengono utilizzati da CycleCloud per le risorse di calcolo.
+* Gli account di [archiviazione][storage] vengono usati per la sincronizzazione e la conservazione dei dati
+* I [set di scalabilità di macchine virtuali][vmss] vengono usati da CycleCloud per le risorse di calcolo
 
 ## <a name="considerations"></a>Considerazioni
 
 ### <a name="machine-sizes-available-for-azure-batch"></a>Dimensioni di macchine virtuali disponibili per Azure Batch
-Nonostante la maggior parte dei clienti di soluzioni di rendering scelga risorse con un'elevata potenza di CPU, la scelta delle VM per altri carichi di lavoro che usano set di scalabilità di macchine virtuali potrebbe essere effettuata in modo diverso e dipendere dai fattori seguenti:
-  - L'esecuzione dell'applicazione è associata alla memoria?
-  - L'applicazione deve usare GPU? 
-  - I tipi di processi presentano elevati livelli di parallelismo o richiedono connettività InfiniBand per processi strettamente associati?
-  - È necessaria un'elevata velocità di I/O nelle risorse di archiviazione nei nodi di calcolo?
 
-Azure offre numerose dimensioni di VM che possono soddisfare ognuno dei requisiti delle applicazioni indicati sopra. Alcune sono specifiche per HPC, ma anche le dimensioni più ridotte possono essere utilizzate per ottenere un'efficace implementazione a griglia.
+Nonostante la maggior parte dei clienti di soluzioni di rendering scelga risorse con un'elevata potenza di CPU, la scelta delle macchine virtuali per altri carichi di lavoro che usano set di scalabilità di macchine virtuali potrebbe essere effettuata in modo diverso e dipendere dai fattori seguenti:
 
-  - [Dimensioni di VM HPC][compute-hpc]: dato che il rendering è associato alla CPU, è consigliabile usare VM di Azure serie H.  Queste VM sono specificamente realizzate per esigenze di calcolo di fascia alta, sono disponibili in dimensioni da 8 a 16 vCPU core e sono dotate di memoria DDR4, archiviazione temporanea in unità SSD e tecnologia Haswell E5 Intel.
-  - [Dimensioni di VM GPU][compute-gpu]: le dimensioni di VM ottimizzate per la GPU sono macchine virtuali specializzate disponibili con una o più GPU NVIDIA. Queste dimensioni sono progettate per carichi di lavoro di visualizzazione oppure a elevato utilizzo di calcolo o di grafica.
-    - Le dimensioni NC, NCv2, NCv3 e ND sono ottimizzate per applicazioni e algoritmi a elevato utilizzo di calcolo e reti, come applicazioni e simulazioni basate su OpenCL e CUDA, intelligenza artificiale e Deep Learning. Le dimensioni NV sono ottimizzate e progettate per scenari di visualizzazione remota, streaming, giochi, codifica e VDI che utilizzano framework come OpenGL e DirectX.
-  - [Dimensioni di VM ottimizzate per la memoria][compute-memory]: quando è necessaria una maggiore quantità di memoria, queste dimensioni di VM offrono un rapporto memoria-CPU superiore.
-  - [Dimensioni di VM per utilizzo generico][compute-general]: sono disponibili anche dimensioni di VM per utilizzo generico che offrono un rapporto CPU-memoria equilibrato.
+* L'esecuzione dell'applicazione è associata alla memoria?
+* L'applicazione deve usare GPU? 
+* I tipi di processi presentano elevati livelli di parallelismo o richiedono connettività InfiniBand per processi strettamente associati?
+* È necessaria un'elevata velocità di I/O nelle risorse di archiviazione nei nodi di calcolo
+
+Azure offre numerose dimensioni di macchine virtuali che possono soddisfare ognuno dei requisiti delle applicazioni indicati sopra. Alcune sono specifiche per HPC, ma anche le dimensioni più ridotte possono essere usate per ottenere un'efficace implementazione a griglia:
+
+* [Dimensioni di macchine virtuali HPC][compute-hpc]: dato che il rendering è associato alla CPU, è consigliabile usare macchine virtuali di Azure serie H.  Queste macchine virtuali sono specificamente realizzate per esigenze di calcolo di fascia alta, sono disponibili in dimensioni da 8 a 16 vCPU core e sono dotate di memoria DDR4, archiviazione temporanea in unità SSD e tecnologia Haswell E5 Intel.
+* [Dimensioni di VM GPU][compute-gpu]: le dimensioni di VM ottimizzate per la GPU sono macchine virtuali specializzate disponibili con una o più GPU NVIDIA. Queste dimensioni sono progettate per carichi di lavoro di visualizzazione oppure a elevato utilizzo di calcolo o di grafica.
+* Le dimensioni NC, NCv2, NCv3 e ND sono ottimizzate per applicazioni e algoritmi a elevato utilizzo di calcolo e reti, come applicazioni e simulazioni basate su OpenCL e CUDA, intelligenza artificiale e Deep Learning. Le dimensioni NV sono ottimizzate e progettate per scenari di visualizzazione remota, streaming, giochi, codifica e VDI che utilizzano framework come OpenGL e DirectX.
+* [Dimensioni di macchine virtuali ottimizzate per la memoria][compute-memory]: quando è necessaria una maggiore quantità di memoria, queste dimensioni di macchine virtuali offrono un rapporto memoria-CPU superiore.
+* [Dimensioni di macchine virtuali per utilizzo generico][compute-general]: sono disponibili anche dimensioni di macchine virtuali per utilizzo generico che offrono un rapporto CPU-memoria equilibrato.
 
 ### <a name="alternatives"></a>Alternative
 
@@ -74,7 +76,7 @@ Per una panoramica completa di tutte le soluzioni HPC disponibili in Azure, vede
 
 ### <a name="availability"></a>Disponibilità
 
-Funzionalità di monitoraggio dei componenti di Azure Batch sono disponibili tramite diversi servizi, strumenti e API. Per altre informazioni, vedere l'articolo [Monitorare le soluzioni Batch][batch-monitor].
+Funzionalità di monitoraggio dei componenti di Azure Batch sono disponibili tramite diversi servizi, strumenti e API. Il monitoraggio è illustrato in maggiore dettaglio nell'articolo [Monitorare le soluzioni Batch][batch-monitor].
 
 ### <a name="scalability"></a>Scalabilità
 
@@ -88,7 +90,7 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 Attualmente non sono presenti funzionalità di failover in Azure Batch, ma è consigliabile usare questa procedura per garantire la disponibilità in caso di interruzione non pianificata:
 
-* Creare un account Azure Batch in una località di Azure alternativa con un account di archiviazione alternativo
+* Creare un account Azure Batch in un percorso di Azure alternativo con un account di archiviazione alternativo
 * Creare gli stessi pool di nodi con lo stesso nome, con 0 nodi allocati
 * Assicurarsi che le applicazioni vengano create e aggiornate nell'account di archiviazione alternativo
 * Caricare i file di input e inviare i processi all'account Azure Batch alternativo
@@ -97,49 +99,49 @@ Attualmente non sono presenti funzionalità di failover in Azure Batch, ma è co
 
 ### <a name="creating-an-azure-batch-account-and-pools-manually"></a>Creazione manuale di un account e dei pool Azure Batch
 
-Questo scenario di esempio sarà utile per apprendere il funzionamento di Azure Batch e presenta Azure Batch Labs come soluzione SaaS di esempio che è possibile sviluppare per i clienti:
+Questo scenario di esempio è utile per apprendere il funzionamento di Azure Batch e presenta Azure Batch Labs come soluzione SaaS di esempio che è possibile sviluppare per i clienti:
 
 [Azure Batch Masterclass][batch-labs-masterclass]
 
-### <a name="deploying-the-sample-scenario-using-an-azure-resource-manager-arm-template"></a>Distribuzione dello scenario di esempio con un modello di Azure Resource Manager
+### <a name="deploying-the-sample-scenario-using-an-azure-resource-manager-template"></a>Distribuzione dello scenario di esempio con un modello di Azure Resource Manager
 
 Il modello distribuirà quanto segue:
-  - Un nuovo account Azure Batch
-  - Un account di archiviazione
-  - Un pool di nodi associato all'account Batch
-  - Il pool di nodi verrà configurato per l'uso di VM A2 v2 con immagini di Canonical Ubuntu
-  - Il pool di nodi conterrà inizialmente 0 VM e richiederà il ridimensionamento manuale per l'aggiunta di VM
+
+* Un nuovo account Azure Batch
+* Un account di archiviazione
+* Un pool di nodi associato all'account Batch
+* Il pool di nodi verrà configurato per l'uso di VM A2 v2 con immagini di Canonical Ubuntu
+* Il pool di nodi conterrà inizialmente 0 macchine virtuali e richiederà il ridimensionamento manuale per l'aggiunta di macchine virtuali
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fhpc%2Fbatchcreatewithpools.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-[Altre informazioni sui modelli di Azure Resource Manager][azure-arm-templates]
+[Altre informazioni sui modelli di Resource Manager][azure-arm-templates]
 
 ## <a name="pricing"></a>Prezzi
 
-Il costo correlato all'uso di Azure Batch dipenderà dalle dimensioni di VM usate per i pool e dalla durata dell'allocazione e dell'esecuzione. Alla creazione di un account Azure Batch non è associato alcun costo. È necessario tenere in considerazione anche le risorse di archiviazione e i dati in uscita, perché comportano l'applicazione di costi aggiuntivi.
+Il costo correlato all'uso di Azure Batch dipenderà dalle dimensioni delle macchine virtuali usate per i pool e dalla durata dell'allocazione e dell'esecuzione. Alla creazione di un account Azure Batch non è associato alcun costo. È necessario tenere in considerazione le risorse di archiviazione e i dati in uscita, perché comportano l'applicazione di costi aggiuntivi.
 
 Di seguito sono riportati esempi dei costi che potrebbero essere addebitati per un processo completato in 8 ore con un diverso numero di server.
 
-
-- 100 VM con CPU ad alte prestazioni: [stima dei costi][hpc-est-high]
+* 100 macchine virtuali con CPU ad alte prestazioni: [stima dei costi][hpc-est-high]
 
   100 x H16m (16 core, 225 GB di RAM, 512 GB di archiviazione Premium), 2 TB di archiviazione BLOB, 1 TB in uscita
 
-- 50 VM con CPU ad alte prestazioni: [stima dei costi][hpc-est-med]
+* 50 macchine virtuali con CPU ad alte prestazioni: [stima dei costi][hpc-est-med]
 
   50 x H16m (16 core, 225 GB di RAM, 512 GB di archiviazione Premium), 2 TB di archiviazione BLOB, 1 TB in uscita
 
-- 10 VM con CPU ad alte prestazioni: [stima dei costi][hpc-est-low]
+* 10 macchine virtuali con CPU ad alte prestazioni: [stima dei costi][hpc-est-low]
   
   10 x H16m (16 core, 225 GB di RAM, 512 GB di archiviazione Premium), 2 TB di archiviazione BLOB, 1 TB in uscita
 
-### <a name="low-priority-vm-pricing"></a>Prezzi delle VM per priorità bassa
+### <a name="low-priority-vm-pricing"></a>Prezzi delle macchine virtuali per priorità bassa
 
-Azure Batch supporta anche l'uso di VM per priorità bassa* nei pool di nodi e questo può offrire un significativo risparmio sui costi. Per un confronto dei prezzi tra VM standard e VM per priorità bassa e per altre informazioni sulle macchine virtuali per priorità bassa, vedere [Prezzi di Batch][batch-pricing].
+Azure Batch supporta anche l'uso di macchine virtuali per priorità bassa* nei pool di nodi e questo può offrire un significativo risparmio sui costi. Per un confronto dei prezzi tra macchine virtuali standard e macchine virtuali per priorità bassa e per altre informazioni sulle macchine virtuali per priorità bassa, vedere [Prezzi di Batch][batch-pricing].
 
-\* Si noti che le VM per priorità bassa sono idonee all'esecuzione solo di determinati carichi di lavoro e applicazioni.
+\* Si noti che le macchine virtuali per priorità bassa sono idonee all'esecuzione solo di determinati carichi di lavoro e applicazioni.
 
 ## <a name="related-resources"></a>Risorse correlate
 
