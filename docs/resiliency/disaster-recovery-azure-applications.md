@@ -2,13 +2,13 @@
 title: Ripristino di emergenza per le applicazioni basate su Azure
 description: Panoramiche tecniche e informazioni approfondite sulla progettazione e la creazione di applicazioni per il ripristino di emergenza in Microsoft Azure.
 author: adamglick
-ms.date: 05/26/2017
-ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
-ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
+ms.date: 09/12/2018
+ms.openlocfilehash: 4f879445154e37502bbeeeb90939737b6072e6ec
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45556683"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584800"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Ripristino di emergenza per le applicazioni basate su Azure
 
@@ -118,6 +118,9 @@ Per i livelli Basic, Standard e Premium del database SQL è possibile sfruttare 
 
 La ridondanza predefinita del servizio di archiviazione di Azure crea due repliche del file di backup nella stessa area. La frequenza di esecuzione del processo di backup determina tuttavia l'RPO, ovvero la quantità di dati che potrebbero andare persi negli scenari di emergenza. Se ad esempio si esegue un backup ogni ora esatta e l'emergenza si verifica due minuti prima dello scadere dell'ora, si perderanno 58 minuti di dati registrati dopo l'ultimo backup. Inoltre, per tutelarsi da un'eventuale interruzione a livello di un'area, è consigliabile copiare i file BACPAC in un'area alternativa. Sarà quindi possibile ripristinare questi backup nell'area alternativa. Per altre informazioni, vedere [Panoramica: Continuità aziendale del cloud e ripristino di emergenza del database con database SQL](/azure/sql-database/sql-database-business-continuity/).
 
+#### <a name="sql-data-warehouse"></a>SQL Data Warehouse
+Per SQL Data Warehouse, usare [i backup geografici](/azure/sql-data-warehouse/backup-and-restore#geo-backups) per eseguire il ripristino a un'area geografica abbinata per il ripristino di emergenza. Questi backup vengono eseguiti ogni 24 ore e possono essere ripristinati entro 20 minuti nell'area geografica abbinata. Questa funzionalità è attivata per impostazione predefinita per tutti i data warehouse SQL. Per altre informazioni su come ripristinare il data warehouse, vedere [Eseguire il ripristino da un'area geografica di Azure con PowerShell](/azure/sql-data-warehouse/sql-data-warehouse-restore#restore-from-an-azure-geographical-region-using-powershell).
+
 #### <a name="azure-storage"></a>Archiviazione di Azure
 Per Archiviazione di Azure è possibile sviluppare un processo di backup personalizzato o usare strumenti di backup di terze parti. Si noti che nella maggior parte delle progettazioni di applicazioni in cui le risorse di archiviazione fanno riferimento le une alle altre esistono complessità aggiuntive. Si consideri ad esempio un database SQL con una colonna di collegamento a un BLOB in Archiviazione di Azure. Se i backup non vengono eseguiti contemporaneamente, è possibile che il database contenga il puntatore a un BLOB di cui non è stato eseguito il backup prima dell'errore. L'applicazione o il piano di ripristino di emergenza devono implementare i processi per la gestione di questa incoerenza dopo un ripristino.
 
@@ -127,7 +130,7 @@ Altre piattaforme di dati ospitati IaaS (infrastructure-as-a-service), ad esempi
 ### <a name="reference-data-pattern-for-disaster-recovery"></a>Modelli di dati di riferimento per il ripristino di emergenza
 I dati di riferimento sono dati di sola lettura che supportano le funzionalità di un'applicazione. In genere non sono soggetti a modifiche frequenti. Anche se il backup e il ripristino rappresentano un metodo per gestire le interruzioni a livello di area, l'RTO è relativamente lungo. Quando si distribuisce l'applicazione in un'area secondaria, è possibile adottare alcune strategie che migliorano l'RTO per i dati di riferimento.
 
-Poiché i dati di riferimento vengono raramente modificati, è possibile migliorare l'RTO mantenendo una copia permanente di tali dati nell'area secondaria. Ciò consente di eliminare i tempi necessari per ripristinare i backup in caso di emergenza. Per soddisfare i requisiti di ripristino di emergenza in più aree, è necessario distribuire insieme l'applicazione e i dati di riferimento in più aree. Come indicato in [Modello dei dati di riferimento per la disponibilità elevata](high-availability-azure-applications.md#reference-data-pattern-for-high-availability), i dati di riferimento possono essere distribuiti al ruolo stesso, a una risorsa di archiviazione esterna o a una combinazione di entrambi.
+Poiché i dati di riferimento vengono raramente modificati, è possibile migliorare l'RTO mantenendo una copia permanente di tali dati nell'area secondaria. Ciò consente di eliminare i tempi necessari per ripristinare i backup in caso di emergenza. Per soddisfare i requisiti di ripristino di emergenza in più aree, è necessario distribuire insieme l'applicazione e i dati di riferimento in più aree. I dati di riferimento possono essere distribuiti al ruolo stesso, a una risorsa di archiviazione esterna o a una combinazione di entrambi.
 
 Il modello di distribuzione dei dati di riferimento tra nodi di calcolo soddisfa i requisiti di ripristino di emergenza in modo implicito. La distribuzione dei dati di riferimento al database SQL richiede la distribuzione di una copia dei dati in ogni area. La stessa strategia è applicabile ad Archiviazione di Azure. È necessario distribuire una copia di tutti i dati di riferimento archiviati nel servizio Archiviazione di Azure all'area primaria e a quella secondaria.
 
@@ -153,7 +156,7 @@ In una potenziale implementazione si potrebbe usare la coda intermedia illustrat
 
 > [!NOTE]
 > Questo articolo si incentra soprattutto sulla piattaforma distribuita come servizio (PaaS). Esistono comunque altre opzioni di replica e disponibilità per applicazioni ibride che usano macchine virtuali di Azure. Queste applicazioni ibride usano l'infrastruttura come servizio (IaaS) per ospitare SQL Server in macchine virtuali in Azure. Ciò consente di adottare gli approcci tradizionali di SQL Server alla disponibilità, ad esempio Gruppi di disponibilità AlwaysOn o il log shipping. Alcune tecniche, come AlwaysOn, funzionano solo tra istanze di SQL Server locali e macchine virtuali di Azure. Per altre informazioni, vedere [Disponibilità elevata e ripristino di emergenza per SQL Server nelle macchine virtuali di Azure](/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr/).
-> 
+>
 > 
 
 #### <a name="reduced-application-functionality-for-transaction-capture"></a>Funzionalità ridotte dell'applicazione per l'acquisizione di transazioni
@@ -308,5 +311,4 @@ Gli argomenti che seguono descrivono i servizi di Azure specifici per il riprist
 | Database SQL | [Ripristinare un database SQL di Azure o eseguire il failover in un database secondario](/azure/sql-database/sql-database-disaster-recovery) |
 | Macchine virtuali | [Cosa fare in caso di un'interruzione di servizio di Azure che influisce sulle macchine virtuali di Azure](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |
 | Reti virtuali | [Rete virtuale - Continuità aziendale](/azure/virtual-network/virtual-network-disaster-recovery-guidance) |
-
 
