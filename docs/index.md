@@ -3,12 +3,12 @@ title: Centro architetture Azure
 description: Il centro architetture Azure è il centro ufficiale per materiale sussidiario, progetti, modelli e procedure consigliate per la creazione di soluzioni con Microsoft Azure. È curato dal team Microsoft modelli e procedure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: ea3784a23c73c7f0eb103a0cb19e2c6b70ea9d7c
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 6c3c14dbf1ce74ba927558f1407feb847e74e98e
+ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584647"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47167371"
 ---
 # <a name="azure-architecture-center"></a>Centro architetture Azure
 
@@ -267,3 +267,96 @@ ms.locfileid: "45584647"
         </a>
     </li>
 </ul>
+
+---
+
+## <a name="build-your-skills-with-microsoft-learn"></a>Sviluppare le proprie competenze con Microsoft Learn
+
+<ul class="panelContent cardsFTitle">
+    <li>
+        <a href="/learn/modules/pillars-of-a-great-azure-architecture/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="/learn/achievements/pillars-of-a-great-azure-architecture.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3> Concetti fondamentali per un'architettura di Azure efficiente</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li><li>
+        <a href="/learn/modules/design-for-security-in-azure/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="/learn/achievements/design-for-security-in-azure.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3> Progettare per la sicurezza in Azure</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li><li>
+        <a href="/learn/modules/design-for-performance-and-scalability-in-azure/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="/learn/achievements/design-for-performance-and-scalability-in-azure.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Progettare per prestazioni e scalabilità in Azure</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li><li>
+        <a href="/learn/modules/design-for-efficiency-and-operations-in-azure/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="/learn/achievements/design-for-efficiency-and-operations-in-azure.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Progettare per efficienza e operazioni in Azure</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li><li>
+        <a href="/learn/modules/design-for-availability-and-recoverability-in-azure/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="/learn/achievements/design-for-availability-and-recoverability-in-azure.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Progettare per disponibilità e recuperabilità in Azure</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+</ul>   
