@@ -8,28 +8,25 @@ items:
     topicHref: /azure/architecture
     items:
     - name: Procedure consigliate
-      tocHref: /azure/architecture/best-practices
+      tocHref: /azure/architecture/best-practices/
       topicHref: /azure/architecture/best-practices
     - name: Azure per i professionisti AWS
-      tocHref: /azure/architecture/aws-professional
+      tocHref: /azure/architecture/aws-professional/
       topicHref: /azure/architecture/aws-professional
     - name: Progettare per la resilienza
-      tocHref: /azure/architecture/resiliency
+      tocHref: /azure/architecture/resiliency/
       topicHref: /azure/architecture/resiliency
     - name: Elenco di controllo per l'analisi della progettazione
-      tocHref: /azure/architecture/checklist
+      tocHref: /azure/architecture/checklist/
       topicHref: /azure/architecture/checklist
     - name: Gestire le identità nelle applicazioni multi-tenant
       tocHref: /azure/architecture/multitenant-identity
     - name: Architetture di riferimento
-      tocHref: /azure/architecture/reference-architectures
+      tocHref: /azure/architecture/reference-architectures/
       topicHref: /azure/architecture/reference-architectures
     - name: Modelli di progettazione cloud
-      tocHref: /azure/architecture/patterns
+      tocHref: /azure/architecture/patterns/
       topicHref: /azure/architecture/patterns
-    - name: Risorse
-      tocHref: /azure/architecture/resources
-      topicHref: /azure/architecture/resources
     - name: Adozione del cloud nell'organizzazione
       tocHref: /azure/architecture/cloud-adoption/
       topicHref: /azure/architecture/cloud-adoption
@@ -49,21 +46,24 @@ items:
       - name: Appendice
         tocHref: /azure/architecture/cloud-adoption/appendix/
         topicHref: /azure/architecture/cloud-adoption/appendix
-    - name: Guida
-      tocHref: /azure/architecture/guide
+    - name: Scenari di esempio
+      tocHref: /azure/architecture/example-scenario/
+      topicHref: /azure/architecture/example-scenario
+    - name: Guida all'architettura delle applicazioni
+      tocHref: /azure/architecture/guide/
       topicHref: /azure/architecture/guide
     - name: Guida all'architettura dei dati
-      tocHref: /azure/architecture/data-guide
+      tocHref: /azure/architecture/data-guide/
       topicHref: /azure/architecture/data-guide
     - name: Microservizi di progettazione
-      tocHref: /azure/architecture/microservices
+      tocHref: /azure/architecture/microservices/
       topicHref: /azure/architecture/microservices
     - name: Antipattern delle prestazioni
-      tocHref: /azure/architecture/antipatterns
-      topicHref: /azure/architecture/
-ms.openlocfilehash: d7dc8f62b4b3325c30c1cbb5cf4ec5676b78fac8
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+      tocHref: /azure/architecture/antipatterns/
+      topicHref: /azure/architecture/antipatterns
+ms.openlocfilehash: 52d99c7c5945ed3653b17172b6cb7691fc0a02d9
+ms.sourcegitcommit: 36398937420b9a6a2c45759b90847a1819df4451
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46533899"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47175591"
