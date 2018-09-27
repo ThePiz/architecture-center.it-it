@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: ef89cdd3e2a175f82929b613159a99557560cc7a
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: d0966791642ee174d020c960c9fc6e72d8768539
+ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325389"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47167439"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Connettere una rete locale ad Azure tramite un gateway VPN
 
@@ -51,7 +51,7 @@ Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Segu
 
 Creare una rete virtuale di Azure con uno spazio indirizzi sufficientemente grande per tutte le risorse necessarie. Verificare che lo spazio indirizzi di rete virtuale disponga di spazio sufficiente per la crescita se le macchine virtuali aggiuntive sono necessarie in futuro. Lo spazio indirizzi della rete virtuale non deve sovrapporsi con la rete locale. Il diagramma precedente usa ad esempio lo spazio indirizzi 10.20.0.0/16 per la rete virtuale.
 
-Creare una subnet denominata *GatewaySubnet*, con un intervallo di indirizzi /27. Questa subnet è necessaria per il gateway di rete virtuale. Allocare 32 indirizzi a questa subnet contribuirà in futuro a evitare di raggiungere i limiti di dimensioni del gateway. Evitare inoltre di inserire questa subnet all'interno dello spazio indirizzi. Una procedura consigliata consiste nell'impostare lo spazio indirizzi per la subnet del gateway all'estremità superiore dello spazio indirizzi della rete virtuale. L'esempio illustrato nel diagramma usa 10.20.255.224/27.  Di seguito è riportata una procedura rapida per calcolare [CIDR]:
+Creare una subnet denominata *GatewaySubnet*, con un intervallo di indirizzi /27. Questa subnet è necessaria per il gateway di rete virtuale. Allocare 32 indirizzi a questa subnet contribuirà in futuro a evitare di raggiungere i limiti di dimensioni del gateway. Evitare inoltre di inserire questa subnet all'interno dello spazio indirizzi. Una procedura consigliata consiste nell'impostare lo spazio indirizzi per la subnet del gateway all'estremità superiore dello spazio indirizzi della rete virtuale. L'esempio illustrato nel diagramma usa 10.20.255.224/27.  Di seguito è riportata una procedura rapida per calcolare il [CIDR]:
 
 1. Impostare i bit variabili nello spazio indirizzi della rete virtuale su 1, fino ai bit usati dalla subnet del gateway, quindi impostare i bit rimanenti su 0.
 2. Convertire i bit risultanti in decimali ed esprimerli sotto forma di uno spazio indirizzi con la lunghezza del prefisso impostata sulle dimensioni della subnet del gateway.
@@ -486,7 +486,10 @@ Per distribuire la soluzione, seguire questa procedura.
 [vpn-appliances]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [vpn-appliance-ipsec]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices#ipsec-parameters
-<!--[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/Deploy-ReferenceArchitecture.ps1-->
-<!--[solution-script-bash]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/deploy-reference-architecture.sh-->
-<!--[virtualNetworkGateway-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/parameters/virtualNetworkGateway.parameters.json-->
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/ [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing [0]: ./images/vpn.png "Spanning della rete ibrida locale e infrastrutture di Azure" [2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Log di controllo nel portale di Azure" [3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "Contatori delle prestazioni per il monitoraggio del traffico di rete VPN" [4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "Esempio di grafico delle prestazioni di rete VPN""
+[virtualNetworkGateway-parameters]: https://github.com/mspnp/hybrid-networking/vpn/parameters/virtualNetworkGateway.parameters.json
+[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
+[0]: ./images/vpn.png "Rete ibrida che si estende in locale e nelle infrastrutture di Azure"
+[2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Log di controllo nel portale di Azure"
+[3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "Contatori delle prestazioni per il monitoraggio del traffico di rete VPN"
+[4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "Esempio di grafico delle prestazioni della rete VPN"

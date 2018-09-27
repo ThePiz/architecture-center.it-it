@@ -3,16 +3,16 @@ title: Rendering di video 3D in Azure
 description: Esecuzione di carichi di lavoro HPC nativi in Azure con il servizio Azure Batch
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 723d437671c52dc9f717bef9641663d0e7a8fbc4
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 1d51a9812c890a4877ec0edfdcbf344b27049812
+ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389350"
+ms.lasthandoff: 09/21/2018
+ms.locfileid: "46533933"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Rendering di video 3D in Azure
 
-Il rendering 3D è un processo di lunga durata il cui completamento richiede un'elevata quantità di tempo di CPU.  In un singolo computer, il processo di generazione di un file video da asset statici può richiedere ore o addirittura giorni, a seconda della lunghezza e della complessità del video che si intende produrre.  Per eseguire queste attività, molte aziende acquistano costosi computer desktop di fascia alta oppure investono in farm di rendering di grandi dimensioni a cui possono inviare i processi.  Sfruttando Azure Batch, tuttavia, la stessa potenza è disponibile quando necessario e si arresta in caso contrario, senza investimenti di capitale.
+Il rendering 3D è un processo di lunga durata il cui completamento richiede un'elevata quantità di tempo CPU.  In un singolo computer, il processo di generazione di un file video da asset statici può richiedere ore o addirittura giorni, a seconda della lunghezza e della complessità del video che si intende produrre.  Per eseguire queste attività, molte aziende acquistano costosi computer desktop di fascia alta oppure investono in farm di rendering di grandi dimensioni a cui possono inviare i processi.  Sfruttando Azure Batch, tuttavia, la stessa potenza è disponibile quando necessario e si arresta in caso contrario, senza investimenti di capitale.
 
 Batch offre un'esperienza di gestione e di pianificazione dei processi coerente indipendentemente dal fatto che si selezionino nodi di calcolo Windows Server o Linux. Con Batch, è possibile usare le applicazioni Windows o Linux esistenti, come AutoDesk Maya e Blender, per eseguire processi di rendering su larga scala in Azure.
 
