@@ -5,12 +5,12 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 04157b9a647779ae47ad0aff8132289a30544acf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329896"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429639"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -96,7 +96,7 @@ Azure consente di gestire le risorse in modi diversi:
 
 In ognuna di queste interfacce, il gruppo di risorse è fondamentale per la creazione, la distribuzione o la modifica delle risorse di Azure, e ha un ruolo simile a quello dello "stack" nel raggruppamento delle risorse di AWS durante le distribuzioni CloudFormation.
 
-La sintassi e la struttura di queste interfacce sono diverse dai rispettivi equivalenti AWS, ma forniscono funzionalità simili. Molti strumenti di gestione di terze parti usati in AWS, ad esempio [Terraform di Hashicorp](https://www.terraform.io/docs/providers/azurerm/) e [Netflix Spinnaker](http://www.spinnaker.io/) sono disponibili anche in Azure.
+La sintassi e la struttura di queste interfacce sono diverse dai rispettivi equivalenti AWS, ma forniscono funzionalità simili. Molti strumenti di gestione di terze parti usati in AWS, ad esempio [Terraform di Hashicorp](https://www.terraform.io/docs/providers/azurerm/) e [Netflix Spinnaker](https://www.spinnaker.io/) sono disponibili anche in Azure.
 
 ### <a name="see-also"></a>Vedere anche 
 
@@ -426,15 +426,11 @@ Gli hub di notifica non supportano l'invio di messaggi SMS o di posta elettronic
 
 ## <a name="next-steps"></a>Passaggi successivi
 
--   [Quadro generale interattivo della piattaforma Azure](http://azureplatform.azurewebsites.net/)
-
 -   [Inizia a usare Azure](https://azure.microsoft.com/get-started/)
 
 -   [Architetture delle soluzioni di Azure](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Architetture di riferimento di Azure](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [Corso online gratuito: Microsoft Azure per i professionisti AWS](http://aka.ms/azureforaws)
 
 
 <!-- links -->

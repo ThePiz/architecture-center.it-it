@@ -2,12 +2,12 @@
 title: Scegliere una soluzione per l'integrazione di Active Directory locale con Azure.
 description: Confronta le architetture di riferimento per l'integrazione di Active Directory locale con Azure.
 ms.date: 07/02/2018
-ms.openlocfilehash: 7e89998c59bccf4d37cebca5ddd4ea7ecba58cd5
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: ee71d27c08274a873b165bad2dc84f9079e5b9d3
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987530"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428687"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>Scegliere una soluzione per l'integrazione di Active Directory locale con Azure
 
@@ -127,4 +127,4 @@ Usi tipici di questa architettura:
 [adfs]: ./adfs.md
 
 [azure-active-directory]: /azure/active-directory-domain-services/active-directory-ds-overview
-[azure-ad-connect]: /azure/active-directory/active-directory-aadconnect
+[azure-ad-connect]: /azure/active-directory/hybrid/whatis-hybrid-identity

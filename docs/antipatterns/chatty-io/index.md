@@ -3,12 +3,12 @@ title: Antipattern I/O "frammentato"
 description: Un numero elevato di richieste di I/O può influire negativamente sulle prestazioni e la velocità di risposta.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: daa0c581d31c9389e2853f84075dc44d1e5ba78b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325877"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428568"
 ---
 # <a name="chatty-io-antipattern"></a>Antipattern I/O "frammentato"
 
@@ -217,7 +217,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - Durante la scrittura dei dati, evitare di bloccare risorse più a lungo del necessario, per ridurre le probabilità di contesa durante un'operazione di lunga durata. Se un'operazione di scrittura si estende su più archivi dati, file o i servizi, adottare un approccio finale coerente. Vedere il [materiale sussidiario sulla coerenza dei dati][data-consistency-guidance].
 
-- Se si memorizzano i dati in memoria prima della loro scrittura, i dati sono vulnerabili in caso di arresto anomalo del processo. Se la velocità dei dati è soggetta a picchi o è relativamente sparsa, potrebbe essere preferibile memorizzare nel buffer i dati utilizzando una coda durevole esterna, ad esempio [Hub eventi](http://azure.microsoft.com/services/event-hubs/).
+- Se si memorizzano i dati in memoria prima della loro scrittura, i dati sono vulnerabili in caso di arresto anomalo del processo. Se la velocità dei dati è soggetta a picchi o è relativamente sparsa, potrebbe essere preferibile memorizzare nel buffer i dati utilizzando una coda durevole esterna, ad esempio [Hub eventi](https://azure.microsoft.com/services/event-hubs/).
 
 - Si più prendere in considerazione di memorizzare nella cache i dati recuperati da un servizio o da un database. Ciò consente di ridurre il volume di I/O, evitando richieste ripetute per gli stessi dati. Per altre informazioni, vedere [Caching best practices][caching-guidance] (Procedure consigliate per la memorizzazione nella cache).
 
@@ -308,7 +308,7 @@ Monitorando l'istruzione SQL si vede che tutti i dati vengono recuperati in una 
 [api-design]: ../../best-practices/api-design.md
 [caching-guidance]: ../../best-practices/caching.md
 [code-sample]:  https://github.com/mspnp/performance-optimization/tree/master/ChattyIO
-[data-consistency-guidance]: http://https://msdn.microsoft.com/library/dn589800.aspx
+[data-consistency-guidance]: https://msdn.microsoft.com/library/dn589800.aspx
 [ef]: /ef/
 [extraneous-fetching]: ../extraneous-fetching/index.md
 [new-relic]: https://newrelic.com/application-monitoring

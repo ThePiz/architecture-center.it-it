@@ -3,12 +3,12 @@ title: Antipattern di persistenza monolitica
 description: L'inserimento di tutti i dati dell'applicazione in un unico archivio dati può influire negativamente sulle prestazioni.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 7f04b9f0805c281068b6b2edaf040683773e6f6e
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538682"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429112"
 ---
 # <a name="monolithic-persistence-antipattern"></a>Antipattern di persistenza monolitica
 
@@ -142,7 +142,7 @@ Analogamente, l'utilizzo massimo di DTU del database di log arriva solo a circa 
 - [Partizionamento dei dati][DataPartitioningGuidance]
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence
-[CosmosDB]: http://azure.microsoft.com/services/cosmos-db/
+[CosmosDB]: https://azure.microsoft.com/services/cosmos-db/
 [Azure-cache]: /azure/redis-cache/
 [Data-Access-Guide]: https://msdn.microsoft.com/library/dn271399.aspx
 [DataPartitioningGuidance]: ../../best-practices/data-partitioning.md

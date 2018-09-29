@@ -3,12 +3,12 @@ title: Antipattern del database occupato
 description: L'esecuzione del processo di offload in un server del database può causare problemi di prestazioni e scalabilità.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 9fdbde0731a1be570ef611894a9d23a1be87f4e7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538794"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428908"
 ---
 # <a name="busy-database-antipattern"></a>Antipattern del database occupato
 
@@ -266,7 +266,7 @@ L'utilizzo della CPU e della DTU mostra che il sistema ha impiegato più tempo p
 - [Antipattern di recupero estraneo][ExtraneousFetching]
 
 
-[dtu]: /sql-database/sql-database-what-is-a-dtu
+[dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/BusyDatabase
 
