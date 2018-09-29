@@ -5,20 +5,20 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: c363ac01e798b522fa95f39586e28fe3af5fae4a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541674"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429435"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>Gestire le identità nelle applicazioni multi-tenant
 
 Questa serie di articoli descrive le procedure consigliate per il multi-tenancy, quando si usa Azure AD per l'autenticazione e la gestione delle identità.
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
-Quando si crea un'applicazione multi-tenant, una delle attività principali è la gestione delle identità degli utenti, ognuno dei quali appartiene ora a un tenant. Ad esempio:
+Quando si crea un'applicazione multi-tenant, una delle attività principali è la gestione delle identità degli utenti, ognuno dei quali appartiene ora a un tenant. Ad esempio: 
 
 * Gli utenti accedono con le credenziali dell'organizzazione.
 * Gli utenti devono avere accesso ai dati dell'organizzazione ma non ai dati appartenenti ad altri tenant.
@@ -93,7 +93,7 @@ Queste informazioni aggiuntive non prendono in considerazione altri aspetti dell
 
 
 <!-- Links -->
-[ADConnect]: /azure/active-directory/active-directory-aadconnect
+[ADConnect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [AzureAD]: /azure/active-directory
 
 [federazione con un'istanza AD FS del cliente]: adfs.md
