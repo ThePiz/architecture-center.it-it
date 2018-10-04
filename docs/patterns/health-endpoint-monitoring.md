@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847850"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428976"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Modello di monitoraggio endpoint di integrità
 
@@ -89,7 +89,7 @@ Come configurare la sicurezza per gli endpoint di monitoraggio per la protezione
 
      >  Gli attacchi DoS hanno in genere un impatto inferiore su un endpoint separato che esegue test funzionali di base senza compromettere il funzionamento dell'applicazione. Evitare se possibile di usare un test che possa esporre informazioni riservate. Se è necessario restituire informazioni che potrebbero essere utili a un utente malintenzionato, valutare un modo per proteggere l'endpoint e i dati da un accesso non autorizzato. In questo caso, affidarsi all'oscuramento non è sufficiente. È opportuno valutare anche l'uso di una connessione HTTPS e la crittografia dei dati sensibili, sebbene aumenti il carico sul server.
 
-- Come accedere a un endpoint protetto mediante autenticazione. Non tutti gli strumenti e i framework possono essere configurati per includere credenziali con la richiesta di verifica dell'integrità. Ad esempio, le funzionalità di verifica dell'integrità predefinite di Microsoft Azure non forniscono credenziali di autenticazione. Sono disponibili alcune alternative di terze parti: [Pingdom](https://www.pingdom.com/), [Panopta](http://www.panopta.com/), [NewRelic](https://newrelic.com/) e [Statuscake](https://www.statuscake.com/).
+- Come accedere a un endpoint protetto mediante autenticazione. Non tutti gli strumenti e i framework possono essere configurati per includere credenziali con la richiesta di verifica dell'integrità. Ad esempio, le funzionalità di verifica dell'integrità predefinite di Microsoft Azure non forniscono credenziali di autenticazione. Sono disponibili alcune alternative di terze parti: [Pingdom](https://www.pingdom.com/), [Panopta](https://www.panopta.com/), [NewRelic](https://newrelic.com/) e [Statuscake](https://www.statuscake.com/).
 
 - Come garantire la corretta esecuzione dell'agente di monitoraggio. Un approccio consiste nell'esporre un endpoint che restituisce semplicemente un valore dalla configurazione dell'applicazione o un valore casuale che può essere usato per testare l'agente.
 

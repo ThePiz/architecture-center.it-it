@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
-ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
+ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37348270"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429197"
 ---
 # <a name="leader-election-pattern"></a>Modello Designazione leader
 
@@ -43,7 +43,7 @@ Il sistema deve fornire un meccanismo efficiente per la scelta del leader. Quest
 Sono disponibili diverse strategie per designare un leader tra un set di attività in un ambiente distribuito, tra cui:
 - Selezione dell'istanza dell'attività con l'ID di processo o di istanza con la classificazione più bassa.
 - Competizione per acquisire un mutex condiviso e distribuito. La prima istanza dell'attività che acquisisce il mutex è il leader. Tuttavia, il sistema deve garantire che, se il leader termina o viene disconnesso dal resto del sistema, il mutex viene rilasciato per consentire a un'altra istanza dell'attività di diventare leader.
-- Implementazione di uno degli algoritmi di designazione leader comuni, ad esempio l'[algoritmo Bully](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) o l'[algoritmo Ring](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Questi algoritmi presuppongono che ciascun candidato alla designazione abbia un ID univoco e sia in grado di comunicare con altri candidati in modo affidabile.
+- Implementazione di uno degli algoritmi di designazione leader comuni, ad esempio l'[algoritmo Bully](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) o l'[algoritmo Ring](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Questi algoritmi presuppongono che ciascun candidato alla designazione abbia un ID univoco e sia in grado di comunicare con altri candidati in modo affidabile.
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
@@ -198,7 +198,7 @@ Per l'implementazione di questo modello possono risultare utili le informazioni 
 - [Scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). È possibile avviare e arrestare le istanze degli host delle attività di pari passo con la variazione del carico sull'applicazione. La scalabilità automatica consente di mantenere la velocità effettiva e le prestazioni durante i periodi di massima richiesta di elaborazione.
 - [Indicazioni sul partizionamento del calcolo](https://msdn.microsoft.com/library/dn589773.aspx). Queste indicazioni descrivono come allocare attività agli host in un servizio cloud, in modo da ridurre al minimo i costi operativi mantenendo la scalabilità, le prestazioni, la disponibilità e la sicurezza del servizio.
 - [Modello asincrono basato su attività](https://msdn.microsoft.com/library/hh873175.aspx).
-- Esempio che illustra l'[algoritmo Bully](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html).
-- Esempio che illustra l'[algoritmo Ring](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html).
-- [Apache Curator](http://curator.apache.org/), una libreria client per Apache ZooKeeper.
+- Esempio che illustra l'[algoritmo Bully](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html).
+- Esempio che illustra l'[algoritmo Ring](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html).
+- [Apache Curator](https://curator.apache.org/), una libreria client per Apache ZooKeeper.
 - Articolo [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) (Lease Blob (API REST)) su MSDN.

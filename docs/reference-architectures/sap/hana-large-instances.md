@@ -3,12 +3,12 @@ title: Eseguire SAP HANA in istanze Large di Azure
 description: Procedure consolidate per l'esecuzione di SAP HANA in un ambiente a disponibilità elevata in istanze Large di Azure.
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: 746161ac51335af5c48a559830d6e0345dcfb7b1
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: d9d619dd7fb17c7cf0a66ce73c1e067ec97a2401
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864522"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429707"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Eseguire SAP HANA in istanze Large di Azure
 
@@ -21,7 +21,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 > [!NOTE]
 > La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti dell'infrastruttura seguenti.
 
@@ -45,7 +45,7 @@ L'architettura è costituita dai componenti dell'infrastruttura seguenti.
 
 - **Ripristino di emergenza**. Su richiesta, la replica di archiviazione è supportata e verrà configurata dal sito primario al [sito di ripristino di emergenza][DR-site] che si trova in un'altra area.  
  
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 I requisiti possono variare: usare queste indicazioni solo come punto di partenza.
 
 ### <a name="hana-large-instances-compute"></a>Calcolo istanze Large di HANA
@@ -129,8 +129,6 @@ In base alle esigenze aziendali, è possibile scegliere tra diverse opzioni disp
 | Backup dei log         | Necessario per il recupero temporizzato.                                                                   |                                                            |
 | Altri strumenti di backup | Percorso di backup ridondante.                                                                             | Costi di licenza aggiuntivi.                                |
 
-È inoltre disponibile un utile articolo in SapHanaTutorial.com, [Comparison between HANA Backup Options][sap-hana-tutorial] (Confronto tra le opzioni di backup HANA).
-
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 Per monitorare le risorse delle istanze Large di HANA, come CPU, memoria, larghezza di banda della rete e spazio di archiviazione, sono disponibili strumenti nativi di Linux quali SAP HANA Studio, SAP HANA Cockpit, SAP Solution Manager e altri. Le istanze Large di HANA non dispongono di strumenti di monitoraggio integrati. Microsoft offre risorse di supporto per il [monitoraggio e la risoluzione dei problemi][hli-troubleshoot] in base ai requisiti dell'organizzazione e il team del supporto tecnico Microsoft può facilitare la risoluzione dei problemi tecnici. 
 
@@ -183,7 +181,7 @@ Le community possono rispondere alle domande ed essere utili per configurare cor
 [running-SAP]: https://blogs.msdn.microsoft.com/saponsqlserver/2016/06/07/sap-on-sql-general-update-for-customers-partners-june-2016/
 [region]: https://azure.microsoft.com/global-infrastructure/services/
 [running-sap-blog]: https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/
-[quick-sizer]: http://service.sap.com/quicksizing
+[quick-sizer]: https://service.sap.com/quicksizing
 [sap-1793345]: https://launchpad.support.sap.com/#/notes/1793345
 [sap-1872170]: https://launchpad.support.sap.com/#/notes/1872170
 [sap-2121330]: https://launchpad.support.sap.com/#/notes/2121330
@@ -191,12 +189,11 @@ Le community possono rispondere alle domande ed essere utili per configurare cor
 [sap-1736976]: https://launchpad.support.sap.com/#/notes/1736976
 [sap-2296290]: https://launchpad.support.sap.com/#/notes/2296290
 [sap-community]: https://www.sap.com/community.html
-[sap-hana-tutorial]: http://saphanatutorial.com/comparison-between-hana-backup-options/
 [sap-security]: https://archive.sap.com/documents/docs/DOC-62943
 [scripts]: /azure/virtual-machines/workloads/sap/hana-overview-high-availability-disaster-recovery
 [sku]: /azure/expressroute/expressroute-about-virtual-network-gateways
 [sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
-[stack-overflow]: http://stackoverflow.com/tags/sap/info
+[stack-overflow]: https://stackoverflow.com/tags/sap/info
 [stonith]: /azure/virtual-machines/workloads/sap/ha-setup-with-stonith
 [subnet]: /azure/virtual-network/virtual-network-manage-subnet
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm

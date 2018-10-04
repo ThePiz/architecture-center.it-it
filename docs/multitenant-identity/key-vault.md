@@ -5,12 +5,12 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: d49129a38d0413f6006095f03b817885e1ce6c92
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: b6d2e431da85f7c304747df2f804f1714596bfc6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012519"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429180"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>Usare Azure Key Vault per proteggere i segreti dell'applicazione
 
@@ -76,7 +76,7 @@ Creare un utente amministratore nel tenant di Azure AD in cui è registrata l'ap
 3. Fare clic su **Altri servizi** > **Sicurezza e identità** > **Azure Active Directory** > **Utenti e gruppi** > **Tutti gli utenti**.
 4. Nella parte superiore del portale fare clic su **Nuovo utente**.
 5. Completare i campi e assegnare all'utente il ruolo della directory **Amministratore globale**.
-6. Fare clic su **Crea**.
+6. Fare clic su **Create**(Crea).
 
 ![Utente amministratore globale](./images/running-the-app/global-admin-user.png)
 
@@ -299,5 +299,5 @@ Sostituire le voci tra [parentesi quadre] e salvare il file secrets.json.
 [readme]: ./run-the-app.md
 [Setup-KeyVault]: https://github.com/mspnp/multitenant-saas-guidance/blob/master/scripts/Setup-KeyVault.ps1
 [Surveys]: tailspin.md
-[user-secrets]: http://go.microsoft.com/fwlink/?LinkID=532709
+[user-secrets]: /aspnet/core/security/app-secrets
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

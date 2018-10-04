@@ -3,12 +3,12 @@ title: Scelta di una tecnologia per l'analisi dei dati e la creazione di report
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 830c61bba64a6971c815330887e5cdcc4f2b5f56
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 05e33a3da0933036a604d2bc4cc5a20ae70fe772
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288913"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428315"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>Scelta di una tecnologia per l'analisi dei dati in Azure
 
@@ -79,22 +79,22 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Power BI | Notebook di Jupyter | Notebook di Zeppelin | Microsoft Azure Notebooks |
 | --- | --- | --- | --- | --- |
-| Connessione a un cluster di Big Data per l'elaborazione avanzata | Sì | Sì | Sì | No  |
-| Servizio gestito | Sì | Sì <sup>1</sup> | Sì <sup>1</sup> | Sì |
-| Connessione a centinaia di origini dati | Sì | No  | No  | No  |
+| Connessione a un cluster di Big Data per l'elaborazione avanzata | Yes | Yes | Yes | No  |
+| Servizi gestiti | Yes | Sì <sup>1</sup> | Sì <sup>1</sup> | Yes |
+| Connessione a centinaia di origini dati | Yes | No  | No  | No  |
 | Funzionalità offline | Sì <sup>2</sup> | No  | No  | No  |
-| Funzionalità di incorporamento | Sì | No  | No  | No  |
-| Aggiornamento automatico dei dati | Sì | No  | No  | No  |
+| Funzionalità di incorporamento | Yes | No  | No  | No  |
+| Aggiornamento automatico dei dati | Yes | No  | No  | No  |
 | Accesso a numerosi pacchetti open source | No  | Sì <sup>3</sup> | Sì <sup>3</sup> | Sì <sup>4</sup> |
 | Opzioni di trasformazione/pulizia dei dati | [Power Query](https://powerbi.microsoft.com/blog/getting-started-with-power-query-part-i/), R | 40 linguaggi, inclusi Python, R, Julia e Scala | Più di 20 interpreti, inclusi Python, JDBC e R | Python, F#, R |
 | Prezzi | Gratuito per Power BI Desktop (Autore), vedere [Prezzi](https://powerbi.microsoft.com/pricing/) per le opzioni di hosting | Gratuito | Gratuito | Gratuito |
-| Collaborazione multiutente | [Sì](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | Sì (tramite la condivisione o con un server multiutente come [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | Sì | Sì (tramite la condivisione) |
+| Collaborazione multiutente | [Sì](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | Sì (tramite la condivisione o con un server multiutente come [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | Yes | Sì (tramite la condivisione) |
 
 [1] Quando è usato come parte di un cluster HDInsight gestito.
 
 [2] Con l'uso di Power BI Desktop.
 
-[3] È possibile cercare i pacchetti creati con il contributo della community nel [repository Maven](http://search.maven.org/).
+[3] È possibile cercare i pacchetti creati con il contributo della community nel [repository Maven](https://search.maven.org/).
 
 [4] I pacchetti Python possono essere installati tramite pip o conda. I pacchetti R possono essere installati da CRAN o GitHub. I pacchetti F# possono essere installati tramite nuget.org usando l'[utilità di gestione dipendenze Paket](https://fsprojects.github.io/Paket/).
 

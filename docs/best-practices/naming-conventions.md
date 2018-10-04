@@ -4,12 +4,12 @@ description: Convenzioni di denominazione per le risorse di Azure. Come denomina
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329879"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429656"
 ---
 # <a name="naming-conventions"></a>Convenzioni di denominazione
 
@@ -176,7 +176,7 @@ Sono disponibili due casi d'uso principali per gli account di archiviazione, ovv
 
 È possibile configurare un nome di dominio personalizzato per l'accesso ai dati del BLOB nell'account di Archiviazione di Azure. L'endpoint predefinito per il servizio BLOB è https://\<nome\>.blob.core.windows.net.
 
-Se si esegue il mapping di un dominio personalizzato, ad esempio www.contoso.com, all'endpoint BLOB per l'account di archiviazione, sarà possibile accedere anche ai dati BLOB dell'account di archiviazione usando tale dominio. Ad esempio, con un nome di dominio personalizzato, è possibile accedere a `http://mystorage.blob.core.windows.net/mycontainer/myblob` come `http://www.contoso.com/mycontainer/myblob`.
+Se si esegue il mapping di un dominio personalizzato, ad esempio www.contoso.com, all'endpoint BLOB per l'account di archiviazione, sarà possibile accedere anche ai dati BLOB dell'account di archiviazione usando tale dominio. Ad esempio, con un nome di dominio personalizzato, è possibile accedere a `https://mystorage.blob.core.windows.net/mycontainer/myblob` come `https://www.contoso.com/mycontainer/myblob`.
 
 Per altre informazioni sulla configurazione di questa funzionalità, fare riferimento a [Configurare un nome di dominio personalizzato per l'endpoint di archiviazione BLOB](/azure/storage/storage-custom-domain-name/).
 

@@ -4,12 +4,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352645"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429095"
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -81,7 +81,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 ## <a name="security"></a>Sicurezza
 
-**Implementare la protezione a livello di applicazione contro gli attacchi denial of service distribuiti (DDoS).** I servizi di Azure sono protetti dagli attacchi DDoS a livello rete. Azure non può tuttavia proteggere contro gli attacchi a livello applicazione, perché è difficile distinguere tra le richieste di utente normali e le richieste di utenti malintenzionati. Per altre informazioni sulla protezione dagli attacchi DDoS a livello applicazione, vedere la sezione "Protecting against DDoS"(Protezione contro attacchi DDoS) del PDF scaricabile [Microsoft Azure Network Security](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (Sicurezza di rete di Microsoft Azure).
+**Implementare la protezione a livello di applicazione contro gli attacchi denial of service distribuiti (DDoS).** I servizi di Azure sono protetti dagli attacchi DDoS a livello rete. Azure non può tuttavia proteggere contro gli attacchi a livello applicazione, perché è difficile distinguere tra le richieste di utente normali e le richieste di utenti malintenzionati. Per altre informazioni sulla protezione dagli attacchi DDoS a livello applicazione, vedere la sezione "Protecting against DDoS"(Protezione contro attacchi DDoS) del PDF scaricabile [Microsoft Azure Network Security](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (Sicurezza di rete di Microsoft Azure).
 
 **Implementare il principio di privilegio minimo per l'accesso alle risorse dell'applicazione.** L'impostazione predefinita dell'accesso alle risorse dell'applicazione dovrebbe essere più restrittiva possibile. Le autorizzazioni di livello superiore devono essere concesse su approvazione. La concessione di un accesso eccessivamente permissivo alle risorse dell'applicazione può consentire a un utente di eliminare intenzionalmente o accidentalmente delle risorse. Azure offre il [controllo degli accessi in base al ruolo](/azure/active-directory/role-based-access-built-in-roles/) per la gestione dei privilegi degli utenti. È tuttavia importante verificare le autorizzazioni minime per altre risorse che dispongono di sistemi di autorizzazioni specifici, ad esempio SQL Server.
 
@@ -99,7 +99,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Automatizzare il processo di distribuzione dell'applicazione.** Quando si richiede al personale operativo di distribuire manualmente l'applicazione, possono verificarsi errori umani che compromettono la distribuzione. 
 
-**Progettare il processo di rilascio per ottimizzare la disponibilità dell'applicazione.** Se il processo di rilascio prevede che i servizi vengano disconnessi durante la distribuzione, l'applicazione non sarà disponibile fino a quando i servizi non verranno riportati online. Usare la tecnica di distribuzione del rilascio [Blue/Green](http://martinfowler.com/bliki/BlueGreenDeployment.html) o [canary](http://martinfowler.com/bliki/CanaryRelease.html) per distribuire l'applicazione alla produzione. Entrambe queste tecniche implicano la distribuzione del codice di rilascio insieme al codice di produzione in modo che gli utenti del codice di rilascio vengano reindirizzati al codice di produzione in caso di errore.
+**Progettare il processo di rilascio per ottimizzare la disponibilità dell'applicazione.** Se il processo di rilascio prevede che i servizi vengano disconnessi durante la distribuzione, l'applicazione non sarà disponibile fino a quando i servizi non verranno riportati online. Usare la tecnica di distribuzione del rilascio [Blue/Green](https://martinfowler.com/bliki/BlueGreenDeployment.html) o [canary](https://martinfowler.com/bliki/CanaryRelease.html) per distribuire l'applicazione alla produzione. Entrambe queste tecniche implicano la distribuzione del codice di rilascio insieme al codice di produzione in modo che gli utenti del codice di rilascio vengano reindirizzati al codice di produzione in caso di errore.
 
 **Accedere e controllare le distribuzioni dell'applicazione.** Se si usano le tecniche di pre-distribuzione, quali i rilasci Blue/Green o canary, nell'ambiente di produzione sarà presente più di una versione dell'applicazione. Se si verifica un problema, è fondamentale determinare quale versione dell'applicazione lo causa. Implementare una strategia di registrazione affidabile per acquisire quante più informazioni specifiche della versione possibili.
 

@@ -6,16 +6,16 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 61788d9759715b21ef1bdda59c5b54d923fd8f62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 46c43c9bfa4514f206b5e7eabd9223ad4c61628b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541914"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429373"
 ---
 # <a name="work-with-claims-based-identities"></a>Usare le identità basate sulle attestazioni
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 ## <a name="claims-in-azure-ad"></a>Attestazioni in Azure AD
 Quando un utente esegue l'accesso, Azure AD invia un token ID che contiene un set di attestazioni relative all'utente. Un'attestazione è semplicemente un'informazione espressa come coppia chiave/valore. Ad esempio, `email`=`bob@contoso.com`.  Le attestazioni hanno un'autorità di certificazione &mdash; in questo caso Azure AD &mdash; che è l'entità che autentica l'utente e crea le attestazioni. Le attestazioni vengono considerate attendibili perché si considera attendibile l'autorità di certificazione. (Al contrario, se non si considera attendibile l'autorità di certificazione, le attestazioni non vengono considerate attendibili.)
@@ -31,7 +31,7 @@ In OpenID Connect, il set di attestazioni che si ottiene è controllato dal [par
 
 Ecco alcune delle attestazioni di AAD di cui in genere si occupa un'app:
 
-| Tipo di attestazione nel token ID | Descrizione |
+| Tipo di attestazione nel token ID | DESCRIZIONE |
 | --- | --- |
 | aud |Utente per cui è stato emesso il token. Si tratta dell'ID client dell'applicazione. In genere, non è necessario occuparsi di questa attestazione in quanto il middleware ne esegue automaticamente la convalida. Esempio:  `"91464657-d17a-4327-91f3-2ed99386406f"` |
 | groups |Elenco di gruppi AAD di cui l'utente è membro. Esempio: `["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |
@@ -117,10 +117,10 @@ Per altre informazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse 
 
 <!-- Links -->
 
-[parametro di ambito]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
+[parametro di ambito]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [Token e tipi di attestazioni supportati]: /azure/active-directory/active-directory-token-and-claims/
-[Autorità di certificazione]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
-[eventi di autenticazione]: authenticate.md#authentication-events
+[Autorità di certificazione]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[Eventi di autenticazione]: authenticate.md#authentication-events
 [signup]: signup.md
 [Claims-Based Authorization]: /aspnet/core/security/authorization/claims
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

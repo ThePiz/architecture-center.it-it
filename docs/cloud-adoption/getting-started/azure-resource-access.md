@@ -3,12 +3,12 @@ title: "Adozione del cloud nell'organizzazione: gestione dell'accesso alle risor
 description: "Spiegazione dei costrutti di gestione dell'accesso alle risorse in Azure: Azure Resource Manager, sottoscrizioni, gruppi di risorse e risorse"
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 2e64d8828574ebe216da1e76b19ec3ce5aeda993
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389078"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428704"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>Adozione del cloud nell'organizzazione: gestione dell'accesso alle risorse in Azure
 
@@ -84,7 +84,7 @@ Il controllo successivo consiste nel verificare che l'utente abbia autorizzazion
 
 Un ruolo di controllo degli accessi in base al ruolo specifica un insieme di autorizzazioni che un utente può avere per una risorsa specifica. Quando il ruolo viene assegnato all'utente, tali autorizzazioni vengono applicate. Ad esempio, il ruolo di [**proprietario** predefinito](/azure/role-based-access-control/built-in-roles#owner) consente all'utente di eseguire qualsiasi azione su una risorsa.
 
-Il controllo successivo verifica che la richiesta sia consentita nelle impostazioni specificate per i [criteri delle risorse di Azure](/azure/azure-policy/). I criteri delle risorse di Azure specificano le operazioni consentite per una determinata risorsa. Ad esempio, un criterio delle risorse di Azure può specificare che agli utenti sia consentito distribuire solo un tipo specifico di macchina virtuale.
+Il controllo successivo verifica che la richiesta sia consentita nelle impostazioni specificate per i [criteri delle risorse di Azure](/azure/governance/policy/). I criteri delle risorse di Azure specificano le operazioni consentite per una determinata risorsa. Ad esempio, un criterio delle risorse di Azure può specificare che agli utenti sia consentito distribuire solo un tipo specifico di macchina virtuale.
 
 ![](../_images/governance-1-19.png)   
 *Figura 11. Criteri delle risorse di Azure.*

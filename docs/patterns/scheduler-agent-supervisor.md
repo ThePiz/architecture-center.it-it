@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - resiliency
-ms.openlocfilehash: 03bfe2fe96b3b81d547cfedb075bcf855846b668
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7914708413d68689e2326df28ced00e5fc3a5dd8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542426"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428670"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>Modello di supervisione agente di pianificazione
 
@@ -35,7 +35,7 @@ Il modello di supervisione agente di pianificazione definisce gli attori seguent
 
 - L'**utilità di pianificazione** predispone i passaggi che costituiscono l'attività da eseguire e ne orchestra il funzionamento. Questi passaggi possono essere combinati in una pipeline o un flusso di lavoro. L'utilità di pianificazione è responsabile dell'esecuzione dei passaggi descritti in questo flusso di lavoro nell'ordine corretto. All'esecuzione di ogni passaggio l'utilità di pianificazione registra lo stato del flusso di lavoro, indicando ad esempio che il passaggio non è stato ancora avviato, è in esecuzione o è stato completato. Le informazioni sullo stato devono includere anche un limite superiore di tempo consentito per il completamento del passaggio, detto appunto ora di completamento. Se un passaggio richiede l'accesso a una risorsa o un servizio remoto, l'utilità di pianificazione richiama l'agente appropriato, passando i dettagli del lavoro da eseguire. L'utilità di pianificazione comunica in genere con un agente usando la messaggistica asincrona di richiesta-risposta. Questa azione può essere implementata usando le code, sebbene sia possibile usare anche altre tecnologie di messaggistica distribuite.
 
-    > L'utilità di pianificazione esegue una funzione analoga al gestore processi nel [modello del gestore processi](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). Il flusso di lavoro effettivo è in genere definito e implementato da un motore del flusso di lavoro controllato dall'utilità di pianificazione. Questo approccio decuplica la logica di business nel flusso di lavoro dall'utilità di pianificazione.
+    > L'utilità di pianificazione esegue una funzione analoga al gestore processi nel [modello del gestore processi](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). Il flusso di lavoro effettivo è in genere definito e implementato da un motore del flusso di lavoro controllato dall'utilità di pianificazione. Questo approccio decuplica la logica di business nel flusso di lavoro dall'utilità di pianificazione.
 
 - L'**agente** contiene logica che incapsula una chiamata a un servizio remoto o l'accesso a una risorsa remota a cui si fa riferimento in un passaggio di un'attività. Ogni agente in genere esegue il wrapping delle chiamate in un singolo servizio o una risorsa, implementando la logica di gestione degli errori e ripetizione dei tentativi appropriata (soggetta a un vincolo di timeout, descritto più avanti). Se i passaggi nel flusso di lavoro eseguiti dall'utilità di pianificazione usano vari servizi e risorse in diversi passaggi, ognuno di questi può fare riferimento a un agente differente (dettaglio di implementazione del modello).
 
@@ -142,7 +142,7 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 - [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx). I componenti nel modello di supervisione agente di pianificazione vengono in genere eseguiti decuplicati tra loro e comunicano in modo asincrono. Descrive alcuni approcci che possono essere adottati per implementare la comunicazione asincrona in base alle code di messaggi.
 - [Modello di designazione leader](leader-election.md). Potrebbe essere necessario coordinare le azioni di più istanze di un supervisore per evitare che tentino di recuperare lo stesso processo non riuscito. Il modello di designazione leader descrive come ottenere questo risultato.
 - [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Architettura cloud: modello di supervisione agente di pianificazione) sul blog di Clemens Vasters
-- [Process Manager pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) (Modello del gestore processi)
+- [Process Manager pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) (Modello del gestore processi)
 - [Reference 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Riferimento 6: una saga su Sagas). Esempio che illustra in che modo il modello CQRS usa un gestore processi (nell'ambito delle indicazioni sul passaggio a CQRS).
 - [Utilità di pianificazione di Microsoft Azure](https://azure.microsoft.com/services/scheduler/)
 

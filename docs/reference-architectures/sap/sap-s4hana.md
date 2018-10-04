@@ -3,12 +3,12 @@ title: SAP S/4HANA per le macchine virtuali Linux in Azure
 description: Procedure consolidate per l'esecuzione di SAP S/4HANA in un ambiente Linux su Azure con disponibilità elevata.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: ab056a01f05bde9e9dc7a4439baed367ee663f93
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864505"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429588"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>SAP S/4HANA per le macchine virtuali Linux in Azure
 
@@ -21,7 +21,7 @@ Questa architettura di riferimento mostra un set di procedure consolidate per l'
 > [!NOTE] 
 > La distribuzione di questa architettura di riferimento richiede una licenza adeguata dei prodotti SAP e altre tecnologie non Microsoft.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
  
 Questa architettura di riferimento descrive un sistema di produzione di livello aziendale. Questa configurazione può essere ridotta a una singola macchina virtuale in base alle esigenze aziendali. Sono tuttavia necessari i componenti seguenti:
 
@@ -48,7 +48,7 @@ Questa architettura di riferimento descrive un sistema di produzione di livello 
 
 **Archiviazione di Azure**. Per fornire l'archiviazione permanente di un disco rigido virtuale di una macchina virtuale, è necessario usare [Archiviazione di Azure](/azure/storage/). 
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 Questa architettura descrive una distribuzione aziendale di piccole dimensioni a livello di produzione. La distribuzione varia in base ai requisiti aziendali. Usare queste indicazioni come punto di partenza.
 
@@ -151,7 +151,7 @@ Ogni livello usa una strategia diversa per fornire una protezione con ripristino
 
 - **Livello server applicazioni**. I server applicazioni SAP non contengono dati aziendali. In Azure, una semplice strategia di ripristino di emergenza consiste nel creare server applicazioni SAP nell'area secondaria e quindi arrestarli. In caso di modifiche di configurazione o aggiornamenti del kernel nel server applicazioni primario, le stesse modifiche devono essere applicate alle macchine virtuali nell'area secondaria. Ad esempio, copiare gli eseguibili del kernel SAP nelle macchine virtuali di ripristino di emergenza. Per la replica automatica dei server applicazioni in un'area secondaria, la soluzione consigliata è [Azure Site Recovery](/azure/site-recovery/site-recovery-overview). Attualmente ASR non supporta ancora la replica dell'impostazione di configurazione della rete accelerata nelle macchine virtuali di Azure.
 
-- **Central Services**. Anche questo componente dello stack di applicazioni SAP non salva in modo permanente i dati aziendali. È possibile compilare una macchina virtuale nell'area secondaria per eseguire il ruolo Central Services. L'unico contenuto dal nodo Central Services primario per la sincronizzazione è il contenuto della condivisione /sapmnt. Inoltre, se le modifiche di configurazione o gli aggiornamenti del kernel avvengono nei server Central Services primari, devono essere ripetuti nella macchina virtuale nell'area secondaria che esegue Central Services. Per sincronizzare i due server, è possibile usare Azure Site Recovery per replicare i nodi del cluster oppure è sufficiente usare un processo di copia pianificato regolarmente per copiare /sapmnt nell'area di ripristino di emergenza. Per informazioni dettagliate sul processo di failover di compilazione, copia e test, scaricare [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Compilazione di una soluzione di ripristino di emergenza basata su Hyper-V e Microsoft Azure) e fare riferimento alla sezione 4.3, "SAP SPOF layer (ASCS)" (Livello di SPOF SAP (ASCS)). Questo documento si applica a NetWeaver in esecuzione su Windows, ma è possibile creare la configurazione equivalente per Linux. Per Central Services usare [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) per replicare i nodi del cluster e l'archiviazione. Per Linux creare un geo-cluster a tre nodi con un'estensione a disponibilità elevata. 
+- **Central Services**. Anche questo componente dello stack di applicazioni SAP non salva in modo permanente i dati aziendali. È possibile compilare una macchina virtuale nell'area secondaria per eseguire il ruolo Central Services. L'unico contenuto dal nodo Central Services primario per la sincronizzazione è il contenuto della condivisione /sapmnt. Inoltre, se le modifiche di configurazione o gli aggiornamenti del kernel avvengono nei server Central Services primari, devono essere ripetuti nella macchina virtuale nell'area secondaria che esegue Central Services. Per sincronizzare i due server, è possibile usare Azure Site Recovery per replicare i nodi del cluster oppure è sufficiente usare un processo di copia pianificato regolarmente per copiare /sapmnt nell'area di ripristino di emergenza. Per informazioni dettagliate sul processo di failover di compilazione, copia e test, scaricare [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Compilazione di una soluzione di ripristino di emergenza basata su Hyper-V e Microsoft Azure) e fare riferimento alla sezione 4.3, "SAP SPOF layer (ASCS)" (Livello di SPOF SAP (ASCS)). Questo documento si applica a NetWeaver in esecuzione su Windows, ma è possibile creare la configurazione equivalente per Linux. Per Central Services usare [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) per replicare i nodi del cluster e l'archiviazione. Per Linux creare un geo-cluster a tre nodi con un'estensione a disponibilità elevata. 
 
 - **Livello database SAP**. Usare HSR per la replica supportata da HANA. In aggiunta a una configurazione a disponibilità elevata locale a due nodi, HSR supporta la replica multilivello, in cui un terzo nodo in un'area di Azure separata agisce come entità esterna, non appartenente al cluster, e si registra nella replica secondaria della coppia HSR in cluster come destinazione di replica. In questo modo si forma un collegamento a margherita di repliche. Il failover al nodo di ripristino di emergenza è un processo manuale.
 

@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252925"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428840"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Modello di consolidamento delle risorse di calcolo
 
@@ -85,7 +85,7 @@ Questo modello potrebbe non essere adatto per le attività che eseguono operazio
 
 Quando si compila un servizio cloud in Azure, è possibile consolidare l'elaborazione eseguita da più attività in un unico ruolo. In genere si tratta di un ruolo di lavoro che esegue attività di elaborazione asincrona o in background.
 
-> In alcuni casi è possibile includere attività di elaborazione asincrona o in background nel ruolo Web. Questa tecnica consente di ridurre i costi e semplificare la distribuzione, anche se può ridurre la scalabilità e la velocità di risposta dell'interfaccia pubblica disponibile per il ruolo Web. L'articolo [Combining Multiple Azure Worker Roles into an Azure Web Role](http://www.31a2ba2a-b718-11dc-8314-0800200c9a66.com/2012/02/combining-multiple-azure-worker-roles.html) (Combinazione di più ruoli di lavoro di Azure in un ruolo Web di Azure) contiene una descrizione dettagliata delle attività di elaborazione asincrona o in background in un ruolo Web.
+> In alcuni casi è possibile includere attività di elaborazione asincrona o in background nel ruolo Web. Questa tecnica consente di ridurre i costi e semplificare la distribuzione, anche se può ridurre la scalabilità e la velocità di risposta dell'interfaccia pubblica disponibile per il ruolo Web. 
 
 Il ruolo è responsabile di avviare e arrestare le attività. Quando il controller di infrastruttura di Azure carica un ruolo, viene generato l'evento `Start` per il ruolo. È possibile eseguire l'override del metodo `OnStart` della classe `WebRole` o `WorkerRole` per gestire questo evento, ad esempio per inizializzare i dati e altre risorse da cui dipendono le attività di questo metodo.
 

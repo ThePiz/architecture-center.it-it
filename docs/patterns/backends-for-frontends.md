@@ -3,12 +3,12 @@ title: Modello back-end per front-end
 description: Creare servizi back-end separati che vengono utilizzati da interfacce o applicazioni front-end specifiche.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270020"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428789"
 ---
 # <a name="backends-for-frontends-pattern"></a>Modello back-end per front-end
 
@@ -34,7 +34,7 @@ Creare un solo back-end per ogni interfaccia utente. Ottimizzare il comportament
 
 Dal momento che ogni back-end è specifico di una sola interfaccia, può essere ottimizzato per tale interfaccia. Di conseguenza, sarà più piccolo, meno complesso e probabilmente più veloce rispetto a un back-end generico che prova a soddisfare i requisiti di tutte le interfacce. Ogni team di sviluppo dell'interfaccia può controllare autonomamente il proprio back-end e non si basa su un team centralizzato di sviluppo del back-end. Il team di sviluppo dell'interfaccia utente può quindi scegliere in modo flessibile il linguaggio, la frequenza di rilascio, l'assegnazione delle priorità del carico di lavoro e l'integrazione delle funzionalità nel back-end.
 
-Per altre informazioni, vedere [Pattern: Backends For Frontends](http://samnewman.io/patterns/architectural/bff/) (Modello: back-end per front-end).
+Per altre informazioni, vedere [Pattern: Backends For Frontends](https://samnewman.io/patterns/architectural/bff/) (Modello: back-end per front-end).
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 

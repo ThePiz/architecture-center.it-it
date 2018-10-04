@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - performance-scalability
-ms.openlocfilehash: ecfbb38304bb95587e9ca15523ad9594898d9b32
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543146"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428500"
 ---
 # <a name="priority-queue-pattern"></a>Modello di coda con priorità
 
@@ -50,7 +50,7 @@ L'uso di un meccanismo di accodamento basato sulla priorità può offrire i vant
 
 - L'approccio basato su più code di messaggi può contribuire a ottimizzare le prestazioni e la scalabilità dell'applicazione eseguendo il partizionamento dei messaggi in base ai requisiti di elaborazione. Ad esempio, alle attività di importanza vitale può essere assegnata la priorità massima in modo che vengano gestite dai ricevitori che vengono eseguiti immediatamente, mentre le attività in background meno importanti possono essere gestite dai ricevitori programmati per l'esecuzione in periodi con meno traffico.
 
-## <a name="issues-and-considerations"></a>Problemi e considerazioni
+## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
 Prima di decidere come implementare questo modello, considerare quanto segue:
 
@@ -176,5 +176,5 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 
 - [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Potrebbe essere possibile aumentare o ridurre le dimensioni del pool di processi consumer che gestiscono una coda in base alla lunghezza della coda. Questa strategia può migliorare le prestazioni, specialmente per i pool che gestiscono messaggi con priorità alta.
 
-- [Modelli di integrazione aziendale con il bus di servizio](http://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) sul blog di Abhishek Lal.
+- [Modelli di integrazione aziendale con il bus di servizio](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) sul blog di Abhishek Lal.
 

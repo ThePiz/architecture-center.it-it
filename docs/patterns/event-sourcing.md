@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/17/2018
-ms.locfileid: "29963211"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429333"
 ---
 # <a name="event-sourcing-pattern"></a>Modello di origine eventi
 
@@ -82,7 +82,7 @@ L'archivio eventi è un'origine permanente di informazioni e i dati dell'evento,
 
 Non esiste un approccio standard o un meccanismo esistente, ad esempio query SQL, per leggere gli eventi in modo da ottenere informazioni. Un flusso di eventi è l'unico tipo di dati che è possibile estrarre usando un identificatore di eventi come criterio. L'ID evento è generalmente associato a entità individuali. Lo stato corrente di un'entità può essere determinato solo riproducendo tutti gli eventi associati all'entità sullo stato originale dell'entità.
 
-La lunghezza di ogni flusso di eventi influisce sulle modalità di gestione e di aggiornamento del sistema. Se i flussi sono di grandi dimensioni, valutare l'opportunità di creare snapshot a intervalli specifici, ad esempio dopo un determinato numero di eventi. È possibile ottenere lo stato corrente dell'entità mediante lo snapshot e la riproduzione di tutti gli eventi che si sono verificati a partire da quel punto nel tempo. Per altre informazioni sulla creazione di snapshot di dati, vedere la sezione [Snapshot del sito Web di Martin Fowler sull'architettura delle applicazioni aziendali](http://martinfowler.com/eaaDev/Snapshot.html) e l'articolo sulla [replica snapshot master-subordinato](https://msdn.microsoft.com/library/ff650012.aspx).
+La lunghezza di ogni flusso di eventi influisce sulle modalità di gestione e di aggiornamento del sistema. Se i flussi sono di grandi dimensioni, valutare l'opportunità di creare snapshot a intervalli specifici, ad esempio dopo un determinato numero di eventi. È possibile ottenere lo stato corrente dell'entità mediante lo snapshot e la riproduzione di tutti gli eventi che si sono verificati a partire da quel punto nel tempo. Per altre informazioni sulla creazione di snapshot di dati, vedere la sezione [Snapshot del sito Web di Martin Fowler sull'architettura delle applicazioni aziendali](https://martinfowler.com/eaaDev/Snapshot.html) e l'articolo sulla [replica snapshot master-subordinato](https://msdn.microsoft.com/library/ff650012.aspx).
 
 Anche se l'origine eventi riduce al minimo il rischio di conflitti tra gli aggiornamenti ai dati, l'applicazione deve comunque essere in grado di gestire eventuali incoerenze derivanti dalla coerenza finale e dalla mancanza di transazioni. Un evento che indica una riduzione delle scorte, ad esempio, può giungere nell'archivio dati mentre viene emesso un ordine per l'elemento mancante, determinando quindi la necessità di riconciliare le due operazioni, ovvero informando il cliente o creando un ordine arretrato.
 
@@ -162,5 +162,3 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 - [Nozioni di base sulla coerenza dei dati](https://msdn.microsoft.com/library/dn589800.aspx). Quando si usa il modello di origine eventi con un archivio di letture o viste materializzate diverse, i dati letti non saranno subito coerenti ma avranno una coerenza finale. Questo modello riepiloga i problemi da affrontare per mantenere la coerenza dei dati distribuiti.
 
 - [Linee guida di partizionamento di dati](https://msdn.microsoft.com/library/dn589795.aspx). Quando si usa il modello di origine eventi, si ricorre spesso al partizionamento dei dati per migliorare la scalabilità, ridurre i conflitti e ottimizzare le prestazioni. Questo modello descrive come suddividere i dati in partizioni distinte e illustra i problemi che possono derivarne.
-
-- Post di Greg Young sui [vantaggi offerti dal modello di origine eventi](http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/).

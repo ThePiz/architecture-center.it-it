@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
-ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542410"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428378"
 ---
 # <a name="competing-consumers-pattern"></a>Modello di consumer concorrenti
 
@@ -48,7 +48,7 @@ Questa soluzione offre i vantaggi seguenti:
 
 Prima di decidere come implementare questo modello, considerare quanto segue:
 
-- **Ordinamento dei messaggi**. L'ordine in cui le istanze del servizio consumer ricevono i messaggi non è garantito e non riflette necessariamente l'ordine in cui i messaggi sono stati creati. Progettare il sistema in modo da assicurarsi che l'elaborazione dei messaggi sia idempotente, perché ciò è utile per eliminare qualsiasi dipendenza rispetto all'ordine in cui vengono gestiti i messaggi. Per altre informazioni, vedere [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.
+- **Ordinamento dei messaggi**. L'ordine in cui le istanze del servizio consumer ricevono i messaggi non è garantito e non riflette necessariamente l'ordine in cui i messaggi sono stati creati. Progettare il sistema in modo da assicurarsi che l'elaborazione dei messaggi sia idempotente, perché ciò è utile per eliminare qualsiasi dipendenza rispetto all'ordine in cui vengono gestiti i messaggi. Per altre informazioni, vedere [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.
 
     > Le code del bus di servizio di Microsoft Azure possono implementare l'ordinamento First In, First Out garantito dei messaggi mediante sessioni di messaggistica. Per altre informazioni, vedere [Modelli di messaggistica mediante sessioni](https://msdn.microsoft.com/magazine/jj863132.aspx).
 
@@ -182,7 +182,7 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 
 - [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx). Le code di messaggi sono un meccanismo di comunicazione asincrona. Se un servizio consumer deve inviare una risposta a un'applicazione, può essere necessario implementare una forma di messaggistica di risposta. L'articolo Introduzione alla messaggistica asincrona contiene informazioni sull'implementazione della messaggistica di richiesta/risposta tramite code di messaggi.
 
-- [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Può essere possibile avviare e arrestare le istanze di un servizio consumer in base alla variazione della lunghezza della coda a cui le applicazioni inviano messaggi. La scalabilità automatica consente di mantenere la velocità effettiva durante i periodi di massima richiesta di elaborazione.
+- [Scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Può essere possibile avviare e arrestare le istanze di un servizio consumer in base alla variazione della lunghezza della coda a cui le applicazioni inviano messaggi. La scalabilità automatica consente di mantenere la velocità effettiva durante i periodi di massima richiesta di elaborazione.
 
 - [Modello di consolidamento delle risorse di calcolo](compute-resource-consolidation.md). Può essere possibile consolidare più istanze di un servizio consumer in un singolo processo, per ridurre i costi e il sovraccarico di gestione. L'articolo Modello di consolidamento delle risorse di calcolo descrive i vantaggi e gli svantaggi di questo approccio.
 

@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: c2832aa806909c6f0aab8b6345ffb8162eb59903
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33811050"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429690"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)
 
@@ -248,8 +248,6 @@ Quando si implementa questo modello, possono essere utili i modelli e le linee g
 
 - [Modello di viste materializzate](materialized-view.md). Il modello di lettura di un'implementazione CQRS può contenere viste materializzate dei dati del modello di scrittura oppure può essere usato per generare viste materializzate.
 
-- Guida ai modelli e alle procedure consigliate [Percorso CQRS](http://aka.ms/cqrs). In particolare, [Introduzione al modello di separazione di responsabilità per query e comandi](https://msdn.microsoft.com/library/jj591573.aspx) esamina il modello e i momenti in cui risulta più utile, mentre [Epilogo - Lezioni apprese](https://msdn.microsoft.com/library/jj591568.aspx) consente di comprendere alcuni problemi da affrontare quando si usa questo modello.
+- Guida ai modelli e alle procedure consigliate [Percorso CQRS](https://aka.ms/cqrs). In particolare, [Introduzione al modello di separazione di responsabilità per query e comandi](https://msdn.microsoft.com/library/jj591573.aspx) esamina il modello e i momenti in cui risulta più utile, mentre [Epilogo - Lezioni apprese](https://msdn.microsoft.com/library/jj591568.aspx) consente di comprendere alcuni problemi da affrontare quando si usa questo modello.
 
-- Il post [CQRS di Martin Fowler](http://martinfowler.com/bliki/CQRS.html), che illustra le nozioni di base del modello e contiene collegamenti ad altre risorse utili.
-
-- [Post di Greg Young](http://codebetter.com/gregyoung/), che esaminano molti aspetti del modello CQRS.
+- Il post [CQRS di Martin Fowler](https://martinfowler.com/bliki/CQRS.html), che illustra le nozioni di base del modello e contiene collegamenti ad altre risorse utili.

@@ -6,12 +6,12 @@ ms.date: 11/28/2016
 pnp.series.title: Connect an on-premises network to Azure
 pnp.series.prev: expressroute
 cardTitle: Improving availability
-ms.openlocfilehash: 81298215c814cee805eff57fdc28f7c127148b5f
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 31ed1dbf59c4fa2b7fa86b9ceb2fed7b36e75c8c
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270439"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428823"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a>Connettere una rete locale ad Azure tramite ExpressRoute con failover VPN
 
@@ -23,7 +23,7 @@ Si noti che se il circuito ExpressRoute non è disponibile, la route VPN gestisc
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architettura 
 
 L'architettura è costituita dai componenti seguenti.
 
@@ -45,7 +45,7 @@ L'architettura è costituita dai componenti seguenti.
 
 * **Applicazione cloud**: Applicazione contenuta in Azure. Può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per altre informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] ed [Esecuzione di carichi di lavoro della macchina virtuale di Linux][linux-vm-ra].
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda.
 
@@ -103,7 +103,7 @@ Per considerazioni sulla sicurezza generale di Azure, vedere [Servizi cloud Micr
 
 Per distribuire la soluzione, seguire questa procedura.
 
-1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute-vpn-failover%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute-vpn-failover%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Attendere che il collegamento si apra nel portale di Azure e quindi eseguire questi passaggi:   
    * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-hybrid-vpn-er-rg` nella casella di testo.
    * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
@@ -111,7 +111,7 @@ Per distribuire la soluzione, seguire questa procedura.
    * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
    * Fare clic sul pulsante **Acquista**.
 3. Attendere il completamento della distribuzione.
-4. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute-vpn-failover%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+4. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute-vpn-failover%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 5. Attendere che il collegamento si apra nel Portale di Azure, successivamente premere Invio ed eseguire i passaggi seguenti:
    * Selezionare **Usa esistente** nella sezione **Gruppo di risorse** e immettere `ra-hybrid-vpn-er-rg` nella casella di testo.
    * Selezionare l'area dalla casella di riepilogo a discesa **Località**.

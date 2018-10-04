@@ -4,12 +4,12 @@ description: Procedure consigliate per il monitoraggio di applicazioni distribui
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8dd3979233b03db800bd9514263d9c6fedefa074
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4de9ce80a17a0ad429166ac2aa7f7f7f66c26db1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539018"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429673"
 ---
 # <a name="monitoring-and-diagnostics"></a>Monitoraggio e diagnostica
 [!INCLUDE [header](../_includes/header.md)]
@@ -449,7 +449,7 @@ Tutti i dati di monitoraggio devono riportare il timestamp nello stesso modo. Pe
 Quando si decide quali dati di strumentazione è necessario raccogliere, tenere presente quanto segue:
 
 * Assicurarsi che le informazioni acquisite dagli eventi di traccia siano leggibili per i computer e per gli utenti. Adottare schemi ben definiti per queste informazioni per facilitare l'elaborazione automatizzata tra sistemi diversi dei dati di log e garantire coerenza al personale operativo e tecnico che deve leggere i log. Includere informazioni ambientali, ad esempio l'ambiente di distribuzione, il computer in cui viene eseguito il processo, i dettagli del processo e lo stack di chiamate.  
-* Abilitare la profilatura solo se necessario, perché può sovraccaricare in modo significativo il sistema. La profilatura tramite strumentazione registra un evento, ad esempio la chiamata di un metodo, ogni volta che questo si verifica, mentre il campionamento registra solo eventi selezionati. La selezione potrebbe essere basata sul tempo, ovvero una volta ogni *n* secondi, o sulla frequenza, una volta ogni *n* richieste. Se gli eventi si verificano molto spesso, la profilatura tramite strumentazione potrebbe rappresentare un onere eccessivo e influire essa stessa sulle prestazioni globali. In questo caso è preferibile l'approccio tramite campionamento. Se la frequenza degli eventi è bassa, tuttavia, il campionamento potrebbe perderli. In questo caso, la strumentazione potrebbe essere l'approccio migliore.
+* Abilitare la profilatura solo se necessario, perché può sovraccaricare in modo significativo il sistema. La profilatura tramite strumentazione registra un evento, ad esempio la chiamata di un metodo, ogni volta che questo si verifica, mentre il campionamento registra solo eventi selezionati. La selezione potrebbe essere basata sul tempo (una volta ogni *n* secondi) o sulla frequenza (una volta ogni *n* richieste). Se gli eventi si verificano molto spesso, la profilatura tramite strumentazione potrebbe rappresentare un onere eccessivo e influire essa stessa sulle prestazioni globali. In questo caso è preferibile l'approccio tramite campionamento. Se la frequenza degli eventi è bassa, tuttavia, il campionamento potrebbe perderli. In questo caso, la strumentazione potrebbe essere l'approccio migliore.
 * Fornire un contesto sufficiente per consentire a uno sviluppatore o a un amministratore di determinare l'origine di ogni richiesta. Questo può includere una qualche forma di ID di attività che identifichi un'istanza specifica di una richiesta. Potrebbe includere anche informazioni utilizzabili per correlare l'attività con le operazioni di calcolo eseguite e le risorse usate. Si noti che queste operazioni possono svolgersi su più processi e in più computer. Per la misurazione, il contesto deve includere, direttamente o indirettamente tramite altre informazioni correlate, anche un riferimento al cliente che ha effettuato la richiesta. Questo contesto fornisce informazioni utili sullo stato dell'applicazione nel momento in cui sono stati acquisiti i dati di monitoraggio.
 * Registrare tutte le richieste e le posizioni o aree da cui queste richieste vengono effettuate. Queste informazioni rendono più semplice determinare l'eventuale presenza di aree sensibili specifiche di una posizione. Queste informazioni sono utili anche per stabilire se ripartizionare un'applicazione o i dati che questa usa.
 * Registrare e acquisire i dettagli delle eccezioni con attenzione. Informazioni di debug critiche vengono spesso perse a causa di una gestione inefficiente delle eccezioni. È necessario acquisire tutti i dettagli delle eccezioni generate dall'applicazione, inclusa qualsiasi eccezione interna e altre informazioni di contesto. Includere lo stack di chiamate, se possibile.
@@ -503,7 +503,7 @@ Per i servizi e le applicazioni di Azure, Diagnostica di Azure fornisce una poss
 * EventSource .NET
 * ETW basato su manifesto
 
-Per altre informazioni, vedere l'articolo [Azure: nozioni fondamentali di telemetria e risoluzione dei problemi](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx).
+Per altre informazioni, vedere l'articolo [Azure: nozioni fondamentali di telemetria e risoluzione dei problemi](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx).
 
 ### <a name="strategies-for-collecting-instrumentation-data"></a>Strategie per la raccolta dei dati di strumentazione
 Considerando la natura elastica del cloud e per evitare la necessità di recuperare manualmente i dati di telemetria da ogni nodo nel sistema, è consigliabile organizzare il trasferimento dei dati in una posizione centrale e il loro consolidamento. In un sistema che si estende su più centri dati, potrebbe essere utile prima raccogliere, consolidare e archiviare i dati area per area e quindi aggregare i dati di ogni area in un unico sistema centrale.
@@ -548,7 +548,7 @@ I dati di strumentazione recuperati dal servizio di raccolta dati da una singola
 ### <a name="storing-instrumentation-data"></a>Archiviazione dei dati di strumentazione
 Le discussioni precedenti hanno rappresentato una panoramica semplicistica del modo in cui vengono archiviati i dati di strumentazione. In realtà, è più sensato archiviare tipi diversi di informazioni tramite le tecnologie più adatte al modo in cui ogni tipo verrà utilizzato.
 
-Ad esempio, l'archiviazione BLOB e l'archiviazione tabelle di Azure presentano alcune somiglianze nella modalità di accesso, ma hanno alcune limitazioni per quanto riguarda le operazioni che è possibile eseguire attraverso di esse. Anche la granularità dei dati al loro interno è diversa. Se è necessario eseguire altre operazioni di analisi o servono funzionalità di ricerca full-text sui dati, è preferibile usare l'archiviazione dei dati che fornisce funzionalità ottimizzate per specifici tipi di query e accesso ai dati. Ad esempio:
+Ad esempio, l'archiviazione BLOB e l'archiviazione tabelle di Azure presentano alcune somiglianze nella modalità di accesso, ma hanno alcune limitazioni per quanto riguarda le operazioni che è possibile eseguire attraverso di esse. Anche la granularità dei dati al loro interno è diversa. Se è necessario eseguire altre operazioni di analisi o servono funzionalità di ricerca full-text sui dati, è preferibile usare l'archiviazione dei dati che fornisce funzionalità ottimizzate per specifici tipi di query e accesso ai dati. Ad esempio: 
 
 * I dati dei contatori delle prestazioni possono essere archiviati in un database SQL per abilitare l'analisi ad hoc.
 * I log di traccia possono essere archiviati in modo più efficiente in Azure Cosmos DB.
@@ -602,7 +602,7 @@ Alcuni tipi di monitoraggio generano più dati a lungo termine. Questa analisi p
 Un operatore può usare l'analisi a freddo anche per fornire i dati per l'analisi predittiva di integrità. L'operatore può raccogliere informazioni cronologiche per un periodo specifico e usarle in combinazione con i dati di integrità correnti, recuperati dal percorso critico, per individuare tendenze che potrebbero presto causare problemi di integrità. In questi casi, potrebbe essere necessario generare un avviso per consentire di intraprendere un'azione correttiva.
 
 ### <a name="correlating-data"></a>Correlazione dei dati
-I dati acquisiti dalla strumentazione possono offrire uno snapshot dello stato del sistema, ma lo scopo dell'analisi è rendere tali dati utilizzabili. Ad esempio:
+I dati acquisiti dalla strumentazione possono offrire uno snapshot dello stato del sistema, ma lo scopo dell'analisi è rendere tali dati utilizzabili. Ad esempio: 
 
 * Che cosa ha causato un carico I/O elevato a livello di sistema a un'ora specifica?
 * È il risultato di un numero elevato di operazioni di database?
@@ -688,7 +688,7 @@ In molti casi, i processi batch possono generare report in base a una pianificaz
 
 ## <a name="more-information"></a>Altre informazioni
 * [Monitoraggio, diagnosi e risoluzione dei problemi del servizio di archiviazione di Microsoft Azure](/azure/storage/storage-monitoring-diagnosing-troubleshooting)
-* [Azure: nozioni fondamentali di telemetria e risoluzione dei problemi](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
+* [Azure: nozioni fondamentali di telemetria e risoluzione dei problemi](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
 * [Abilitazione di Diagnostica in servizi cloud e macchine virtuali di Azure](/azure/cloud-services/cloud-services-dotnet-diagnostics)
 * [Cache Redis di Azure](https://azure.microsoft.com/services/cache/), [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) e [HDInsight](https://azure.microsoft.com/services/hdinsight/)
 * [Come usare le code del bus di servizio](/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues)

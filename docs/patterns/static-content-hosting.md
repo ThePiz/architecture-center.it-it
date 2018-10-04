@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: deb15001bea2598d56a2793be78bbc3e7473bdf3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541690"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428212"
 ---
 # <a name="static-content-hosting-pattern"></a>Modello di hosting del contenuto statico
 
@@ -74,7 +74,7 @@ Questo modello può non essere utile nelle situazioni seguenti:
 
 Il contenuto statico che si trova nell'archivio BLOB di Azure è accessibile direttamente da un Web browser. Azure offre un'interfaccia basata su HTTP per quanto riguarda l'archiviazione che può essere esposta pubblicamente ai client. Ad esempio, il contenuto in un contenitore di archivio BLOB di Azure verrà esposto tramite un URL nel formato seguente:
 
-`http://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
 
 
 Quando si carica il contenuto è necessario creare uno o più contenitori BLOB per i file e i documenti. Si noti che l'autorizzazione predefinita per un nuovo contenitore è Privata ed è necessario modificarla in Pubblica per consentire ai client di accedere al contenuto. Se è necessario proteggere il contenuto dall'accesso anonimo, è possibile implementare il [modello passepartout](valet-key.md) in modo che gli utenti debbano presentare un token valido per scaricare le risorse.
@@ -89,7 +89,7 @@ I collegamenti di ogni pagina specificheranno l'URL della risorsa e il client po
 I collegamenti nelle pagine inviate al client devono specificare l'URL completo del contenitore BLOB e la risorsa. Ad esempio, una pagina che contiene un collegamento a un'immagine in un contenitore pubblico può contenere il seguente codice HTML.
 
 ```html
-<img src="http://mystorageaccount.blob.core.windows.net/myresources/image1.png"
+<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
      alt="My image" />
 ```
 
@@ -169,5 +169,4 @@ Il file Index.cshtml nella cartella Visualizzazioni\Home contiene un elemento im
 
 - Un esempio che illustra questo modello è disponibile su [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting).
 - [Valet Key pattern](valet-key.md) (Modello di passepartout). Se si suppone che le risorse di destinazione non debbano essere disponibili agli utenti anonimi è necessario implementare la sicurezza dell'archivio che contiene il contenuto statico. Descrive come usare un token o una chiave che offra ai client l'accesso diretto limitato a una risorsa o a un servizio specifico quali un servizio di archiviazione ospitato su cloud.
-- [An efficient way of deploying a static web site on Azure](http://www.infosysblogs.com/microsoft/2010/06/an_efficient_way_of_deploying.html) (Un modo efficiente per distribuire un sito Web statico in Azure) sul blog di Infosys.
 - [Blob Service Concepts](https://msdn.microsoft.com/library/azure/dd179376.aspx) (Concetti relativi al servizio BLOB)

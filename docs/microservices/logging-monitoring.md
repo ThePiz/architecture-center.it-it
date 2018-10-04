@@ -3,12 +3,12 @@ title: Registrazione e monitoraggio in microservizi
 description: Registrazione e monitoraggio in microservizi
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 1da67047daa9ae87cda5dd7dd581d6081183c428
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26652995"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428772"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Progettazione dei microservizi: registrazione e monitoraggio
 
@@ -64,7 +64,7 @@ L'articolo [Monitoraggio e diagnostica](../best-practices/monitoring.md) illustr
 
 ## <a name="distributed-tracing"></a>Analisi distribuita
 
-Come accennato in precedenza, uno degli aspetti più complessi nei microservizi è comprendere il flusso degli eventi in tutti i servizi. Una singola operazione o transazione può comportare chiamate a più servizi. Per ricostruire l'intera sequenza di passaggi, ogni servizio deve propagare un *ID di correlazione* che funge da identificatore univoco per tale operazione. L'ID di correlazione abilita l'[analisi distribuita](http://microservices.io/patterns/observability/distributed-tracing.html) tra i servizi.
+Come accennato in precedenza, uno degli aspetti più complessi nei microservizi è comprendere il flusso degli eventi in tutti i servizi. Una singola operazione o transazione può comportare chiamate a più servizi. Per ricostruire l'intera sequenza di passaggi, ogni servizio deve propagare un *ID di correlazione* che funge da identificatore univoco per tale operazione. L'ID di correlazione abilita l'[analisi distribuita](https://microservices.io/patterns/observability/distributed-tracing.html) tra i servizi.
 
 Il primo servizio che riceve una richiesta client deve generare l'ID di correlazione. Se il servizio effettua una chiamata HTTP a un altro servizio, inserisce l'ID di correlazione in un'intestazione di richiesta. Analogamente, se il servizio invia un messaggio asincrono, inserisce l'ID di correlazione nel messaggio. I servizi downstream continuano a propagare l'ID di correlazione, in modo che attraversi l'intero sistema. L'ID di correlazione deve inoltre essere incluso in tutto il codice che scrive le metriche o gli eventi dei registri applicazioni.
 
@@ -114,7 +114,7 @@ Un'altra opzione consiste nell'inviare i log a Log Analytics di Operations Manag
 
 ## <a name="example-logging-with-correlation-ids"></a>Esempio: registrazione con gli ID di correlazione
 
-Per illustrare alcuni dei punti descritti in questo capitolo, ecco un esempio dettagliato dell'implementazione della registrazione con il servizio Package. Il servizio Package è stato scritto in TypeScript e usa il framework Web [Koa](http://koajs.com/) per Node.js. È possibile scegliere tra le diverse librerie di registrazione Node.js disponibili. Quella scelta in questo esempio è [Winston](https://github.com/winstonjs/winston), una comune libreria di registrazione che ha soddisfatto i requisiti di prestazioni durante il test.
+Per illustrare alcuni dei punti descritti in questo capitolo, ecco un esempio dettagliato dell'implementazione della registrazione con il servizio Package. Il servizio Package è stato scritto in TypeScript e usa il framework Web [Koa](https://koajs.com/) per Node.js. È possibile scegliere tra le diverse librerie di registrazione Node.js disponibili. Quella scelta in questo esempio è [Winston](https://github.com/winstonjs/winston), una comune libreria di registrazione che ha soddisfatto i requisiti di prestazioni durante il test.
 
 Per incapsulare i dettagli di implementazione, è stata definita un'interfaccia astratta `ILogger`:
 

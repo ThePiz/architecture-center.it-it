@@ -3,12 +3,12 @@ title: Progettazione API
 description: Progettazione delle API per i microservizi
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: d85407f3092ddb5f77aacfea8def2784c4741eb9
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: e3524fca177d8c15b280d0f8a706539369c1773a
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653199"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429129"
 ---
 # <a name="designing-microservices-api-design"></a>Progettazione di microservizi: progettazione delle API
 
@@ -124,10 +124,10 @@ Quando si progettano le API, considerare il modo in cui esprimono il modello di 
 | Concetto di progettazione basata su dominio | Equivalente REST | Esempio | 
 |-------------|-----------------|---------|
 | Aggregazione | Risorsa | `{ "1":1234, "status":"pending"... }` | 
-| Identità | URL | `http://delivery-service/deliveries/1` |
+| Identità | URL | `https://delivery-service/deliveries/1` |
 | Entità figlio | Collegamenti | `{ "href": "/deliveries/1/confirmation" }` |
-| Aggiornare oggetti valore | PUT o PATCH | `PUT http://delivery-service/deliveries/1/dropoff` |
-| Repository | Raccolta | `http://delivery-service/deliveries?status=pending` |
+| Aggiornare oggetti valore | PUT o PATCH | `PUT https://delivery-service/deliveries/1/dropoff` |
+| Repository | Raccolta | `https://delivery-service/deliveries?status=pending` |
 
 
 ## <a name="api-versioning"></a>Controllo delle versioni API

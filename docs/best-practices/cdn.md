@@ -4,12 +4,12 @@ description: Indicazioni sulla rete per la distribuzione di contenuti (CDN) per 
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42b73db08ecef858f5279ea292cf8c0df77b847c
-ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
+ms.openlocfilehash: 9805b1b6df8cedd7668eb9e85f741ee81c3dfa58
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/27/2018
-ms.locfileid: "29563558"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428891"
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>Procedure consigliate per l'uso di reti per la distribuzione di contenuti (CDN)
 
@@ -91,7 +91,7 @@ La rete CDN può distribuire il contenuto tramite HTTPS (SSL) usando il certific
 Se si distribuiscono gli asset statici, ad esempio file di caratteri tramite la rete CDN, potrebbero verificarsi problemi relativi ai criteri di origine uguale se si usa una chiamata *XMLHttpRequest* per richiedere le risorse da un dominio diverso. Molti browser impediscono la condivisione di risorse tra origini (CORS), a meno che il server Web non è configurato per impostare le intestazioni di risposta appropriate. È possibile configurare la rete CDN per il supporto CORS tramite uno dei metodi seguenti:
 
 * Configurare la rete CDN in modo che vengano aggiunte intestazioni CORS alle risposte. Per altre informazioni, vedere [Uso della rete CDN di Azure con CORS](/azure/cdn/cdn-cors). 
-* Se l'origine è l'archiviazione BLOB di Azure, aggiungere le regole CORS all'endpoint di archiviazione. Per altre informazioni, vedere [Supporto della condivisione delle risorse tra le origini (CORS) per i servizi di archiviazione Azure](http://msdn.microsoft.com/library/azure/dn535601.aspx).
+* Se l'origine è l'archiviazione BLOB di Azure, aggiungere le regole CORS all'endpoint di archiviazione. Per altre informazioni, vedere [Supporto della condivisione delle risorse tra le origini (CORS) per i servizi di archiviazione Azure](/rest/api/storageservices/Cross-Origin-Resource-Sharing--CORS--Support-for-the-Azure-Storage-Services).
 * Configurare l'applicazione in modo da impostare le intestazioni CORS. Vedere ad esempio [Abilitare le richieste tra le origini (CORS)](/aspnet/core/security/cors) nella documentazione di ASP.NET Core.
 
 ### <a name="cdn-fallback"></a>Fallback della rete CDN
