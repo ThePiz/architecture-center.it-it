@@ -4,12 +4,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429095"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819024"
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -39,7 +39,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Usare il bilanciamento del carico per distribuire le richieste.** Il bilanciamento del carico distribuisce le richieste dell'applicazione tra le istanze del servizio integre, eliminando dalla rotazione le istanze che non sono integre. Se il servizio usa Servizio app di Azure o Servizi cloud di Azure, il carico viene bilanciato automaticamente. Se l'applicazione usa invece le macchine virtuali di Azure, è necessario eseguire il provisioning di un servizio di bilanciamento del carico. Per altri dettagli, vedere [Panoramica di Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
-**Configurare i gateway applicazione di Azure per usare più istanze.** A seconda dei requisiti dell'applicazione, un [gateway applicazione di Azure](/azure/application-gateway/application-gateway-introduction/) potrebbe essere più adatto per distribuire le richieste ai servizi dell'applicazione. Le istanze singole del servizio gateway applicazione non sono tuttavia garantite da un contratto di servizio, pertanto è possibile che l'applicazione non funzioni se l'istanza del gateway applicazione ha esito negativo. Eseguire il provisioning di più di un'istanza di gateway applicazione di medie o grandi dimensioni per garantire la disponibilità del servizio ai sensi del [contratto di servizio](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/).
+**Configurare i gateway applicazione di Azure per usare più istanze.** A seconda dei requisiti dell'applicazione, un [gateway applicazione di Azure](/azure/application-gateway/application-gateway-introduction/) potrebbe essere più adatto per distribuire le richieste ai servizi dell'applicazione. Le istanze singole del servizio gateway applicazione non sono tuttavia garantite da un contratto di servizio, pertanto è possibile che l'applicazione non funzioni se l'istanza del gateway applicazione ha esito negativo. Eseguire il provisioning di più di un'istanza di gateway applicazione di medie o grandi dimensioni per garantire la disponibilità del servizio ai sensi del [contratto di servizio](https://azure.microsoft.com/support/legal/sla/application-gateway/).
 
 **Usare set di disponibilità per ogni livello applicazione.** L'inserimento delle istanze in un [set di disponibilità][availability-sets] permette di accedere a un livello di [contratto di servizio](https://azure.microsoft.com/support/legal/sla/virtual-machines/) più elevato. 
 
