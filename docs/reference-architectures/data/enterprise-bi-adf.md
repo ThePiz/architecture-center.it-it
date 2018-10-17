@@ -3,12 +3,12 @@ title: Business intelligence aziendale automatizzata con SQL Data Warehouse e Az
 description: Automatizzare un flusso di lavoro ELT in Azure con Azure Data Factory
 author: MikeWasson
 ms.date: 07/01/2018
-ms.openlocfilehash: ffd75ba8c57a9afbc6abad61f21f738c644c9bc8
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: f004c02da93335e74b07b9720236832ad7f744db
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142282"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876903"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory
 
@@ -23,7 +23,7 @@ Questa architettura si basa su quella illustrata in [Business intelligence azien
 -   Integrazione di più origini dati.
 -   Caricamento di dati binari quali dati geospaziali e immagini.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti seguenti.
 
@@ -194,7 +194,7 @@ Una distribuzione di questa architettura di riferimento è disponibile in [GitHu
   * Un'istanza di Azure Analysis Services.
   * Azure Data Factory e la pipeline di Data Factory per il processo ELT.
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -204,7 +204,7 @@ I passaggi seguenti includono alcune variabili definite dall'utente. Potrebbe es
 
 - `<data_factory_name>`. Nome dell'istanza di Data Factory.
 - `<analysis_server_name>`. Nome del server di Analysis Services.
-- `<active_directory_upn>`. Nome dell'entità utente di Azure Active Directory. Ad esempio, `user@contoso.com`.
+- `<active_directory_upn>`. Nome dell'entità utente di Azure Active Directory. Ad esempio: `user@contoso.com`.
 - `<data_warehouse_server_name>`. Nome del server di SQL Data Warehouse.
 - `<data_warehouse_password>`. Password dell'amministratore di SQL Data Warehouse.
 - `<resource_group_name>`. Nome del gruppo di risorse.

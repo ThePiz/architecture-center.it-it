@@ -3,12 +3,12 @@ title: Panoramica delle opzioni di calcolo di Azure
 description: Panoramica delle opzioni di calcolo di Azure
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: ceb70f8eeff42e6cadb8a63c2f36986f26322201
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: cb59c4472b183d9a14031497f0b6db673938c9a9
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206624"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818820"
 ---
 # <a name="overview-of-azure-compute-options"></a>Panoramica delle opzioni di calcolo di Azure
 

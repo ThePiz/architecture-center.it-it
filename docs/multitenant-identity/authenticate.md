@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359256"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428126"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Eseguire l'autenticazione con Azure AD e OpenID Connect
 
@@ -61,7 +61,7 @@ app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions {
 Notare che alcune delle impostazioni provengono dalle opzioni di configurazione del runtime. Ecco il significato delle opzioni del middleware:
 
 * **ClientId**. ID client dell'applicazione ottenuto quando è stata registrata l'applicazione in Azure AD.
-* **Authority**. Per un'applicazione multi-tenant impostarla su `https://login.microsoftonline.com/common/`. Si tratta dell'URL per l'endpoint comune di AD Azure, che consente agli utenti di qualsiasi tenant di Azure AD di accedere. Per ulteriori altre sull'endpoint comune, vedere [questo post di blog](http://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/).
+* **Authority**. Per un'applicazione multi-tenant impostarla su `https://login.microsoftonline.com/common/`. Si tratta dell'URL per l'endpoint comune di AD Azure, che consente agli utenti di qualsiasi tenant di Azure AD di accedere. Per altre informazioni sull'endpoint comune, vedere [questo post di blog](https://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/).
 * In **TokenValidationParameters** impostare **ValidateIssuer** su false. Significa che l'applicazione sarà responsabile per la convalida del valore dell'autorità emittente nel token ID. Il middleware continua a convalidare il token stesso. Per altre informazioni sulla convalida dell'autorità di certificazione, vedere [Issuer validation](claims.md#issuer-validation) (Convalida dell'autorità di certificazione).
 * **PostLogoutRedirectUri**. Specificare un URL per reindirizzare gli utenti dopo la disconnessione. Deve essere una pagina che consenta le richieste anonime, in genere la home page.
 * **SignInScheme**. Impostare questa opzione su `CookieAuthenticationDefaults.AuthenticationScheme`. Questa impostazione indica che dopo l'autenticazione dell'utente, le attestazioni utente vengono archiviate in un cookie in locale. Questo cookie indica in che modo l'utente resta connesso durante la sessione del browser.

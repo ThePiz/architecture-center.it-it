@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - resiliency
-ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359402"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428143"
 ---
 # <a name="compensating-transaction-pattern"></a>Modello di transazioni di compensazione
 
@@ -38,9 +38,9 @@ La soluzione consiste nell'implementare una transazione di compensazione. I pass
 
 Un approccio comune prevede l'uso di un flusso di lavoro per implementare un'operazione coerente che richiede la compensazione. Via via che l'operazione originale procede, il sistema registra informazioni su ogni passaggio e su come può essere annullato il lavoro da esso eseguito. Se l'operazione non riesce in qualsiasi punto, il flusso di lavoro torna indietro nei passaggi completati ed esegue il lavoro che inverte ogni passaggio. Si noti che una transazione di compensazione potrebbe non dover annullare il lavoro seguendo l'esatto ordine inverso dell'operazione originale e alcuni dei passaggi dell'annullamento potrebbero essere eseguiti in parallelo.
 
-> Questo approccio è simile alla strategia delle Saghe descritta nel [blog di Clemens Vasters](http://vasters.com/clemensv/2012/09/01/Sagas.aspx).
+> Questo approccio è simile alla strategia delle Saghe descritta nel [blog di Clemens Vasters](https://vasters.com/clemensv/2012/09/01/Sagas.aspx).
 
-Una transazione di compensazione è anche un'operazione coerente e potrebbe avere esito negativo. Il sistema deve essere in grado di riprendere la transazione di compensazione al momento dell'errore e continuare. Potrebbe essere necessario ripetere un passaggio non riuscito, pertanto i passaggi in una transazione di compensazione devono essere definiti come comandi idempotenti. Per altre informazioni, vedere [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.
+Una transazione di compensazione è anche un'operazione coerente e potrebbe avere esito negativo. Il sistema deve essere in grado di riprendere la transazione di compensazione al momento dell'errore e continuare. Potrebbe essere necessario ripetere un passaggio non riuscito, pertanto i passaggi in una transazione di compensazione devono essere definiti come comandi idempotenti. Per altre informazioni, vedere [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.
 
 In alcuni casi potrebbe non essere possibile riprendere la transazione da un passaggio non riuscito se non tramite un intervento manuale. In questi casi il sistema deve generare un avviso e fornire quante più informazioni possibili sul motivo dell'errore.
 

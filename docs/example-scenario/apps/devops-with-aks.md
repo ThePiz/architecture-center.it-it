@@ -1,14 +1,14 @@
 ---
 title: Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
-description: Scenario collaudato per creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.
+description: Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389384"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818736"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 
@@ -18,7 +18,7 @@ Gli scenari di applicazione di esempio includono l'implementazione di un ambient
 
 Con servizi di Azure come il servizio Kubernetes di Azure, Registro contenitori e Cosmos DB, le aziende possono usare le tecniche e gli strumenti di sviluppo di applicazioni più innovativi per semplificare il processo di implementazione della disponibilità elevata.
 
-## <a name="related-use-cases"></a>Casi d'uso correlati
+## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
 Prendere in considerazione questo scenario per i casi d'uso seguenti:
 
@@ -38,17 +38,17 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 4. Il processo di compilazione Jenkins usa un agente di compilazione dinamico nel servizio Kubernetes di Azure per eseguire un processo di compilazione di contenitori.
 5. Viene creata un'immagine del contenitore dal codice nel controllo del codice sorgente e ne viene quindi eseguito il push in un'istanza di Registro contenitori di Azure.
 6. Tramite funzionalità di distribuzione continua, Jenkins distribuisce questa immagine del contenitore aggiornata nel cluster Kubernetes.
-7. L'applicazione Web Node.js usa Azure Cosmos DB come back-end. Sia Cosmos DB che il servizio Kubernetes di Azure segnalano le metriche a Monitoraggio di Azure.
+7. L'applicazione Web Node.js usa Cosmos DB come back-end. Sia Cosmos DB che il servizio Kubernetes di Azure segnalano le metriche a Monitoraggio di Azure.
 8. Un'istanza di Grafana offre dashboard visivi delle prestazioni dell'applicazione in base ai dati provenienti da Monitoraggio di Azure.
 
 ### <a name="components"></a>Componenti
 
 * [Jenkins][jenkins] è un server di automazione open source che può integrarsi con i servizi di Azure per supportare l'integrazione continua e la distribuzione continua. In questo scenario, Jenkins orchestra la creazione di nuove immagini del contenitore in base ai commit nel controllo del codice sorgente, esegue il push di tali immagini in Registro contenitori di Azure e quindi aggiorna le istanze dell'applicazione nel servizio Kubernetes di Azure.
-* Le [macchine virtuali Linux di Azure][azurevm-docs] rappresentano la piattaforma IaaS usata per eseguire le istanze di Jenkins e Grafana.
-* [Registro contenitori di Azure][azureacr-docs] archivia e gestisce le immagini del contenitore usate dal cluster del servizio Kubernetes di Azure. Le immagini vengono archiviate in modo sicuro e possono essere replicate dalla piattaforma Azure in altre aree per ridurre i tempi di distribuzione.
-* Il [servizio Kubernetes di Azure][azureaks-docs] è una piattaforma Kubernetes gestita che consente di distribuire e gestire applicazioni in contenitori senza competenze nell'orchestrazione di contenitori. Come servizio Kubernetes ospitato, Azure gestisce attività critiche quali il monitoraggio dell'integrità e la manutenzione per l'utente.
-* [Azure Cosmos DB][azurecosmosdb-docs] è un database multimodello distribuito a livello globale che consente di scegliere tra vari modelli di database e di coerenza in base alle esigenze. Con Cosmos DB è possibile eseguire la replica dei dati a livello globale e non è necessario distribuire e configurare componenti di replica o gestione cluster.
-* [Monitoraggio di Azure][azuremonitor-docs] consente di tenere traccia delle prestazioni, gestire la sicurezza e identificare le tendenze. Le metriche ottenute da Monitoraggio possono essere usate da altri strumenti e risorse, come Grafana.
+* Le [macchine virtuali Linux di Azure][docs-virtual-machines] rappresentano la piattaforma IaaS usata per eseguire le istanze di Jenkins e Grafana.
+* [Registro contenitori di Azure][docs-acr] archivia e gestisce le immagini del contenitore usate dal cluster del servizio Kubernetes di Azure. Le immagini vengono archiviate in modo sicuro e possono essere replicate dalla piattaforma Azure in altre aree per ridurre i tempi di distribuzione.
+* Il [servizio Kubernetes di Azure][docs-aks] è una piattaforma Kubernetes gestita che consente di distribuire e gestire applicazioni in contenitori senza competenze nell'orchestrazione di contenitori. Come servizio Kubernetes ospitato, Azure gestisce attività critiche quali il monitoraggio dell'integrità e la manutenzione per l'utente.
+* [Azure Cosmos DB][docs-cosmos-db] è un database multimodello distribuito a livello globale che consente di scegliere tra vari modelli di database e di coerenza in base alle esigenze. Con Cosmos DB è possibile eseguire la replica dei dati a livello globale e non è necessario distribuire e configurare componenti di replica o gestione cluster.
+* [Monitoraggio di Azure][docs-azure-monitor] consente di tenere traccia delle prestazioni, gestire la sicurezza e identificare le tendenze. Le metriche ottenute da Monitoraggio possono essere usate da altri strumenti e risorse, come Grafana.
 * [Grafana][grafana] è una soluzione open source per l'esecuzione di query, la visualizzazione, la generazione di avvisi e la comprensione delle metriche. Un plug-in di origine dati per Monitoraggio di Azure consente a Grafana di creare dashboard visivi per monitorare le prestazioni delle applicazioni che vengono eseguite nel servizio Kubernetes di Azure e usano Cosmos DB.
 
 ### <a name="alternatives"></a>Alternative
@@ -129,18 +129,18 @@ Sono stati definiti tre profili di costo di esempio in base al numero di immagin
 
 ## <a name="related-resources"></a>Risorse correlate
 
-In questo scenario sono stati usati Registro contenitori di Azure e il servizio Kubernetes di Azure per archiviare ed eseguire applicazioni basate su contenitori. Per eseguire applicazioni basate su contenitori senza dover effettuare il provisioning di componenti di orchestrazione, è anche possibile usare Istanze di contenitore di Azure. Per altre informazioni, vedere la [panoramica di Istanze di contenitore di Azure][azureaci-docs].
+In questo scenario sono stati usati Registro contenitori di Azure e il servizio Kubernetes di Azure per archiviare ed eseguire un'applicazione basata su contenitori. Per eseguire applicazioni basate su contenitori senza dover effettuare il provisioning di componenti di orchestrazione, è anche possibile usare Istanze di contenitore di Azure. Per altre informazioni, vedere la [panoramica di Istanze di contenitore di Azure][docs-aci].
 
 <!-- links -->
-[architecture]: ./media/devops-with-aks/architecture-devops-with-aks.png
+[architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
 [availability]: ../../checklist/availability.md
-[azureaci-docs]: /azure/container-instances/container-instances-overview
-[azureacr-docs]: /azure/container-registry/container-registry-intro
-[azurecosmosdb-docs]: /azure/cosmos-db/introduction
-[azureaks-docs]: /azure/aks/intro-kubernetes
-[azuremonitor-docs]: /azure/monitoring-and-diagnostics/monitoring-overview
-[azurevm-docs]: /azure/virtual-machines/linux/overview
+[docs-aci]: /azure/container-instances/container-instances-overview
+[docs-acr]: /azure/container-registry/container-registry-intro
+[docs-aks]: /azure/aks/intro-kubernetes
+[docs-azure-monitor]: /azure/monitoring-and-diagnostics/monitoring-overview
+[docs-cosmos-db]: /azure/cosmos-db/introduction
+[docs-virtual-machines]: /azure/virtual-machines/linux/overview
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/

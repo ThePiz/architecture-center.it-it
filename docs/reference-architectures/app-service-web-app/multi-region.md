@@ -4,12 +4,12 @@ description: Architettura consigliata per un'applicazione Web a disponibilità e
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 2efcc591695e1c592053ea32832fe15e624df2e1
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016099"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876818"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Eseguire un'applicazione Web in più aree geografiche
 [!INCLUDE [header](../../_includes/header.md)]
@@ -96,7 +96,7 @@ Gestione traffico effettua automaticamente il failover se l'area primaria non è
 
 Per dettagli, vedere [Informazioni sul monitoraggio di Gestione traffico][tm-monitoring].
 
-Gestione traffico è un possibile punto di guasto nel sistema. In caso di interruzione del servizio, i client non riescono ad accedere all'applicazione durante il tempo di inattività. Rivedere il [contratto di servizio (SLA) di Gestione traffico][tm-sla] e determinare se l'uso di Gestione traffico da solo soddisfa i requisiti aziendali per la disponibilità elevata. In caso contrario, provare ad aggiungere un'altra soluzione di gestione del traffico come failback. In caso di errore del servizio Gestione traffico di Azure, modificare i record di nome canonico (CNAME) in DNS in modo da puntare all'altro servizio di gestione del traffico. Questo passaggio deve essere eseguito manualmente e l'applicazione non sarà disponibile finché non vengono propagate le modifiche al DNS.
+Gestione traffico è un possibile punto di guasto nel sistema. In caso di interruzione del servizio, i client non riescono ad accedere all'applicazione durante il tempo di inattività. Rivedere il [contratto di servizio (SLA) di Gestione traffico][tm-sla] e determinare se l'uso di Gestione traffico da solo soddisfa i requisiti aziendali per la disponibilità elevata. In caso contrario, provare ad aggiungere un'altra soluzione di gestione del traffico come fallback. In caso di errore del servizio Gestione traffico di Azure, modificare i record di nome canonico (CNAME) in DNS in modo da puntare all'altro servizio di gestione del traffico. Questo passaggio deve essere eseguito manualmente e l'applicazione non sarà disponibile finché non vengono propagate le modifiche al DNS.
 
 ### <a name="sql-database"></a>Database SQL
 L'obiettivo del punto di ripristino (RPO) e il tempo di recupero stimato (ERT) per il database SQL sono documentati in [Panoramica della continuità aziendale del database SQL di Azure][sql-rpo]. 
@@ -165,6 +165,6 @@ Se nel database primario si verifica un errore, effettuare un failover manuale a
 [tm-monitoring]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-ps]: /powershell/module/azurerm.trafficmanager
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
-[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
+[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[traffic-manager]: https://azure.microsoft.com/services/traffic-manager
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx

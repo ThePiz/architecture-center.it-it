@@ -4,12 +4,12 @@ description: Indicazioni specifiche del servizio per impostare il meccanismo di 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: c5a9bc99c4693f35c38dabcf07b3465add6a8cb1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43016062"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429551"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -149,7 +149,7 @@ La configurazione dei criteri varia a seconda del linguaggio. Per maggiori detta
 ## <a name="azure-redis-cache"></a>Cache Redis di Azure
 Cache Redis di Azure è un servizio cache a bassa latenza e di rapido accesso ai dati basato sulla nota Cache Redis open source. È un servizio protetto, gestito da Microsoft e accessibile da qualsiasi applicazione in Azure.
 
-Le indicazioni fornite in questa sezione presuppongono che si usi il client StackExchange.Redis per accedere alla cache. Nel [sito Web di Redis](http://redis.io/clients)è disponibile un elenco di altri client idonei, a cui possono essere associati vari meccanismi di ripetizione dei tentativi.
+Le indicazioni fornite in questa sezione presuppongono che si usi il client StackExchange.Redis per accedere alla cache. Nel [sito Web di Redis](https://redis.io/clients)è disponibile un elenco di altri client idonei, a cui possono essere associati vari meccanismi di ripetizione dei tentativi.
 
 Il client StackExchange.Redis usa il multiplexing tramite un'unica connessione. È consigliabile quindi creare un'istanza del client all'avvio dell'applicazione e usarla per tutte le operazioni eseguite sulla cache. In questo modo, la connessione alla cache viene eseguita una sola volta e tutte le indicazioni fornite in questa sezione fanno riferimento ai criteri di ripetizione dei tentativi definiti per la connessione iniziale e non per ogni operazione che accede alla cache.
 
@@ -202,7 +202,7 @@ La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizi
 | Opzioni di configurazione |ConnectRetry<br /><br />ConnectTimeout<br /><br />SyncTimeout<br /><br />ReconnectRetryPolicy |3<br /><br />Massimo 5000 ms più SyncTimeout<br />1000<br /><br />LinearRetry 5.000 ms |Numero di nuovi tentativi di connessione durante l'operazione di connessione iniziale.<br />Timeout (ms) per operazioni di connessione. Non un intervallo tra i tentativi.<br />Tempo (ms) concesso per consentire operazioni sincrone.<br /><br />Ripetizione dei tentativi ogni 5.000 ms.|
 
 > [!NOTE]
-> Per le operazioni sincrone, è possibile aggiungere `SyncTimeout` alla latenza end-to-end, ma impostare un valore troppo basso può causare timeout eccessivi. Vedere [Come risolvere i problemi di Cache Redis di Azure][redis-cache-troubleshoot]. In generale, evitare di usare operazioni sincrone, usare invece operazioni asincrone. Per altre informazioni, vedere [Pipeline e multiplexer](http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/PipelinesMultiplexers.md).
+> Per le operazioni sincrone, è possibile aggiungere `SyncTimeout` alla latenza end-to-end, ma impostare un valore troppo basso può causare timeout eccessivi. Vedere [Come risolvere i problemi di Cache Redis di Azure][redis-cache-troubleshoot]. In generale, evitare di usare operazioni sincrone, usare invece operazioni asincrone. Per altre informazioni, vedere [Pipeline e multiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/PipelinesMultiplexers.md).
 >
 >
 
@@ -323,10 +323,10 @@ namespace RetryCodeSamples
 }
 ```
 
-Per altri esempi, vedere la sezione relativa alla [configurazione](http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md#configuration) sul sito Web di progetto.
+Per altri esempi, vedere la sezione relativa alla [configurazione](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Configuration.md) sul sito Web di progetto.
 
 ### <a name="more-information"></a>Altre informazioni
-* [Sito Web di Redis](http://redis.io/)
+* [Sito Web di Redis](https://redis.io/)
 
 ## <a name="azure-search"></a>Ricerca di Azure
 Lo strumento Ricerca di Azure può essere usato per aggiungere sofisticate e avanzate funzionalità di ricerca in un sito Web o un'applicazione, ottimizzare i risultati di ricerca in modo semplice e rapido e creare avanzati modelli di classificazione.
@@ -341,10 +341,10 @@ Tracciare con ETW o registrando un provider di traccia personalizzato. Per altre
 Il bus di servizio è una piattaforma di messaggistica basata sul cloud che offre una funzione di scambio dei messaggi di tipo "loosely coupled" con alti livelli di scalabilità e resilienza per i componenti di un'applicazione (ospitata nel cloud o in locale).
 
 ### <a name="retry-mechanism"></a>Meccanismo di ripetizione dei tentativi
-Il bus di servizio implementa la ripetizione dei tentativi usando implementazioni della classe di base [RetryPolicy](http://msdn.microsoft.com/library/microsoft.servicebus.retrypolicy.aspx) . Tutti i client del bus di servizio espongono una proprietà **RetryPolicy** che può essere impostata in una delle implementazioni della classe di base **RetryPolicy**. Le implementazioni predefinite sono:
+Il bus di servizio implementa la ripetizione dei tentativi usando implementazioni della classe di base [RetryPolicy](/dotnet/api/microsoft.servicebus.retrypolicy) . Tutti i client del bus di servizio espongono una proprietà **RetryPolicy** che può essere impostata in una delle implementazioni della classe di base **RetryPolicy**. Le implementazioni predefinite sono:
 
-* La [classe RetryExponential](http://msdn.microsoft.com/library/microsoft.servicebus.retryexponential.aspx). Espone proprietà che controllano l'intervallo di backoff, il numero di tentativi e la proprietà **TerminationTimeBuffer** usata per limitare il tempo complessivo per il completamento dell'operazione.
-* La [classe NoRetry](http://msdn.microsoft.com/library/microsoft.servicebus.noretry.aspx). Viene usata quando non è necessario eseguire nuovi tentativi al livello dell'API del bus di servizio, ad esempio quando i nuovi tentativi vengono gestiti da un altro processo nell'ambito di un'operazione in batch o composta da più passaggi.
+* La [classe RetryExponential](/dotnet/api/microsoft.servicebus.retryexponential). Espone proprietà che controllano l'intervallo di backoff, il numero di tentativi e la proprietà **TerminationTimeBuffer** usata per limitare il tempo complessivo per il completamento dell'operazione.
+* La [classe NoRetry](/dotnet/api/microsoft.servicebus.noretry). Viene usata quando non è necessario eseguire nuovi tentativi al livello dell'API del bus di servizio, ad esempio quando i nuovi tentativi vengono gestiti da un altro processo nell'ambito di un'operazione in batch o composta da più passaggi.
 
 Le azioni del bus di servizio possono restituire una serie di eccezioni, elencate in [Eccezioni di messaggistica del bus di servizio](/azure/service-bus-messaging/service-bus-messaging-exceptions). L'elenco fornisce informazioni su quali delle eccezioni indicano che è opportuno ripetere l'operazione. **ServerBusyException** , ad esempio, indica che il client deve attendere un determinato intervallo di tempo, quindi ripetere l'operazione. Un'occorrenza di **ServerBusyException** induce inoltre il bus di servizio a passare a una modalità diversa, in cui viene aggiunto un ulteriore intervallo di 10 secondi all'intervallo tra i tentativi elaborato. Questa modalità viene reimpostata dopo un breve intervallo di tempo.
 
@@ -392,7 +392,7 @@ La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizi
 Quando si usa il bus di servizio, tenere presente le linee guida seguenti:
 
 * Se si sceglie l'implementazione **RetryExponential** incorporata, non implementare un'operazione di fallback poiché i criteri reagiscono alle eccezioni di tipo "server occupato" e viene automaticamente attivata una modalità di ripetizione dei tentativi appropriata al nuovo scenario.
-* Il bus di servizio supporta una funzionalità relativa agli spazi dei nomi associati che implementa il failover automatico su una coda di backup di uno spazio dei nomi diverso in caso di esito negativo della coda nello spazio dei nomi primario. I messaggi ricevuti dalla coda secondaria possono essere nuovamente inviati alla coda primaria nel momento in cui viene ripristinata. Questa funzionalità consente di risolvere eventuali problemi temporanei. Per altre informazioni, vedere [Modelli di messaggistica asincrona e disponibilità elevata](http://msdn.microsoft.com/library/azure/dn292562.aspx).
+* Il bus di servizio supporta una funzionalità relativa agli spazi dei nomi associati che implementa il failover automatico su una coda di backup di uno spazio dei nomi diverso in caso di esito negativo della coda nello spazio dei nomi primario. I messaggi ricevuti dalla coda secondaria possono essere nuovamente inviati alla coda primaria nel momento in cui viene ripristinata. Questa funzionalità consente di risolvere eventuali problemi temporanei. Per altre informazioni, vedere [Modelli di messaggistica asincrona e disponibilità elevata](/azure/service-bus-messaging/service-bus-async-messaging).
 
 È consigliabile iniziare le operazioni di ripetizione dei tentativi usando le impostazioni seguenti. Si tratta di impostazioni di uso generale ed è quindi necessario monitorare le operazioni e personalizzare i valori in base allo scenario.
 
@@ -510,7 +510,7 @@ namespace RetryCodeSamples
 ```
 
 ### <a name="more-information"></a>Altre informazioni
-* [Modelli di messaggistica asincrona e disponibilità elevata.](http://msdn.microsoft.com/library/azure/dn292562.aspx)
+* [Modelli di messaggistica asincrona e disponibilità elevata.](/azure/service-bus-messaging/service-bus-async-messaging)
 
 ## <a name="service-fabric"></a>Service Fabric
 
@@ -551,10 +551,10 @@ Il database SQL non offre il supporto incorporato per la ripetizione dei tentati
 Quando si accede al database SQL con ADO.NET, tenere presente le linee guida seguenti:
 
 * Scegliere il tipo di servizio appropriato (condiviso o premium). Un'istanza condivisa può subire limitazioni o ritardi di connessione maggiori rispetto alla media perché può essere usata da altri tenant del server condiviso. Se sono necessarie prestazioni più prevedibili o affidabili operazioni di bassa latenza, valutare la possibilità di scegliere il tipo servizio premium.
-* Assicurarsi di eseguire i nuovi tentativi al livello o nell'ambito appropriato per evitare operazioni non idempotenti che possono causare incoerenze nei dati. In teoria, tutte le operazioni dovrebbero essere idempotenti in modo da poter essere ripetute senza causare incoerenze. Se questo non avviene, i nuovi tentativi devono essere eseguiti a un livello o in un ambito che consenta l'annullamento di tutte le modifiche correlate in caso di esito negativo di un'operazione, ad esempio un ambito transazionale. Per altre informazioni, vedere l'articolo sul [livello di accesso ai dati di Cloud Service Fundamentals e la gestione degli errori temporanei](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx#Idempotent_Guarantee).
+* Assicurarsi di eseguire i nuovi tentativi al livello o nell'ambito appropriato per evitare operazioni non idempotenti che possono causare incoerenze nei dati. In teoria, tutte le operazioni dovrebbero essere idempotenti in modo da poter essere ripetute senza causare incoerenze. Se questo non avviene, i nuovi tentativi devono essere eseguiti a un livello o in un ambito che consenta l'annullamento di tutte le modifiche correlate in caso di esito negativo di un'operazione, ad esempio un ambito transazionale. Per altre informazioni, vedere l'articolo sul [livello di accesso ai dati di Cloud Service Fundamentals e la gestione degli errori temporanei](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx#Idempotent_Guarantee).
 * Non è consigliabile una strategia basata su intervalli fissi per il database SQL di Azure, se non negli scenari interattivi in cui vengono eseguiti solo alcuni tentativi a intervalli molto brevi. In alternativa, valutare la possibilità di usare una strategia di backoff esponenziale per la maggior parte degli scenari.
 * Quando si definiscono le connessioni, scegliere un valore appropriato per i timeout di connessione e dei comandi. Un timeout troppo breve può comportare errori di connessione prematuri quando il database è occupato, mentre un timeout troppo lungo può impedire che la logica di ripetizione dei tentativi funzioni correttamente, poiché l'intervallo di attesa prima che venga rilevata una connessione non riuscita è troppo lungo. Il valore di timeout è un componente della latenza end-to-end; per ogni nuovo tentativo, viene aggiunto all'intervallo tra i tentativi specificato nei criteri di ripetizione dei tentativi.
-* Chiudere la connessione dopo un certo numero di nuovi tentativi, anche se si usa una logica di ripetizione dei tentativi con backoff esponenziale, e ripetere l'operazione su una nuova connessione. Se si ripete più volte la stessa operazione su un'unica connessione, infatti, è possibile che si verifichino problemi di connessione. Per altre informazioni su questa tecnica, vedere l'articolo sul [livello di accesso ai dati di Cloud Service Fundamentals e la gestione degli errori temporanei](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx).
+* Chiudere la connessione dopo un certo numero di nuovi tentativi, anche se si usa una logica di ripetizione dei tentativi con backoff esponenziale, e ripetere l'operazione su una nuova connessione. Se si ripete più volte la stessa operazione su un'unica connessione, infatti, è possibile che si verifichino problemi di connessione. Per altre informazioni su questa tecnica, vedere l'articolo sul [livello di accesso ai dati di Cloud Service Fundamentals e la gestione degli errori temporanei](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx).
 * Se si usa il pool di connessioni (impostazione predefinita), è probabile che venga scelta la stessa connessione, anche dopo aver chiuso e riaperto una connessione. Se si verifica questo problema, è possibile risolverlo chiamando il metodo **ClearPool** della classe **SqlConnection** per contrassegnare la connessione come non riutilizzabile. Questo metodo, tuttavia, deve essere adottato solo dopo vari tentativi di connessione non riusciti e solo quando è presente la classe di errori temporanei, come i timeout SQL (codice di errore -2), specifica delle connessioni difettose.
 * Se il codice di accesso ai dati usa transazioni avviate come istanze **TransactionScope** , la logica di ripetizione dei tentativi deve riaprire la connessione e avviare un nuovo ambito della transazione. Per questo motivo, il blocco di codice non irreversibile deve interessare l'intero ambito della transazione.
 
@@ -614,15 +614,15 @@ using (var reader = await sqlCommand.ExecuteReaderWithRetryAsync())
 ```
 
 ### <a name="more-information"></a>Altre informazioni
-* [Livello di accesso ai dati di Cloud Service Fundamentals e gestione degli errori temporanei.](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)
+* [Livello di accesso ai dati di Cloud Service Fundamentals e gestione degli errori temporanei.](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)
 
-Per indicazioni generali su come ottenere il massimo dal database SQL, vedere la [guida all'elasticità e alle prestazioni del database SQL di Azure](http://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx).
+Per indicazioni generali su come ottenere il massimo dal database SQL, vedere la [guida all'elasticità e alle prestazioni del database SQL di Azure](https://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx).
 
 ## <a name="sql-database-using-entity-framework-6"></a>Database SQL con Entity Framework 6
 Il database SQL, in questo caso, è un database SQL ospitato, di varie dimensioni, disponibile come servizio standard (condiviso) o premium (non condiviso). Entity Framework, invece, è un mapper relazionale a oggetti che consente agli sviluppatori .NET di usare dati relazionali mediante oggetti specifici di dominio. Elimina la necessità di gran parte del codice di accesso ai dati che in genere gli sviluppatori devono scrivere.
 
 ### <a name="retry-mechanism"></a>Meccanismo di ripetizione dei tentativi
-Quando si accede al database SQL con Entity Framework 6.0 o versione superiore, il supporto per la ripetizione di tentativi viene fornito attraverso un meccanismo denominato [resilienza delle connessioni / logica di ripetizione dei tentativi](http://msdn.microsoft.com/data/dn456835.aspx). Di seguiti sono illustrate le caratteristiche principali del meccanismo di ripetizione dei tentativi:
+Quando si accede al database SQL con Entity Framework 6.0 o versione superiore, il supporto per la ripetizione di tentativi viene fornito attraverso un meccanismo denominato [resilienza delle connessioni / logica di ripetizione dei tentativi](/ef/ef6/fundamentals/connection-resiliency/retry-logic). Di seguiti sono illustrate le caratteristiche principali del meccanismo di ripetizione dei tentativi:
 
 * L'astrazione primaria è l'interfaccia **IDbExecutionStrategy** . Questa interfaccia:
   * Definisce i metodi **Execute*** sincroni e asincroni.
@@ -666,7 +666,7 @@ DbConfiguration.SetConfiguration(new BloggingContextConfiguration());
 public class BloggingContext : DbContext
 ```
 
-Se per determinate operazioni è necessario usare strategie di ripetizione dei tentativi diverse o si disabilita la ripetizione dei tentativi, è possibile creare una classe di configurazione che consente di sospendere o cambiare strategie impostando un flag in **CallContext**. Questo flag può essere usato dalla classe di configurazione per cambiare strategie o per disabilitare la strategia specificata e usare invece una strategia predefinita. Per altre informazioni, vedere la sezione sulla [sospensione della strategia di esecuzione](http://msdn.microsoft.com/dn307226#transactions_workarounds) nella pagina relativa alle limitazioni quando si ripetono strategie di esecuzione (Entity Framework 6 o versione successiva).
+Se per determinate operazioni è necessario usare strategie di ripetizione dei tentativi diverse o si disabilita la ripetizione dei tentativi, è possibile creare una classe di configurazione che consente di sospendere o cambiare strategie impostando un flag in **CallContext**. Questo flag può essere usato dalla classe di configurazione per cambiare strategie o per disabilitare la strategia specificata e usare invece una strategia predefinita. Per altre informazioni, vedere l'articolo sulla [strategia di esecuzione della sospensione](/ef/ef6/fundamentals/connection-resiliency/retry-logic#workaround-suspend-execution-strategy) (Entity Framework 6 e versioni successive).
 
 Un'altra tecnica per usare strategie di ripetizione specifiche per singole operazioni consiste nel creare un'istanza della classe di strategia necessaria, fornire le impostazioni desiderate attraverso dei parametri e quindi richiamare il metodo **ExecuteAsync**.
 
@@ -686,7 +686,7 @@ var blogs = await executionStrategy.ExecuteAsync(
 
 Il modo più semplice per usare una classe **DbConfiguration** consiste nell'individuarla nello stesso assembly della classe **DbContext**. Questo metodo, tuttavia, non è appropriato quando lo stesso contesto è richiesto in scenari diversi, ad esempio in varie strategie di ripetizione dei tentativi, interattiva o in background. Se i diversi contesti vengono eseguiti in AppDomain distinti, è possibile usare il supporto incorporato per specificare le classi di configurazione nel file di configurazione o impostarle in modo esplicito tramite codice. Se invece i diversi contesti devono essere eseguiti nello stesso AppDomain, sarà necessaria una soluzione personalizzata.
 
-Per altre informazioni, vedere l'articolo sulla [configurazione basata su codice (Entity Framework 6 o versione successiva)](http://msdn.microsoft.com/data/jj680699.aspx).
+Per altre informazioni, vedere l'articolo sulla [configurazione basata su codice](/ef/ef6/fundamentals/configuring/code-based) (Entity Framework 6 o versione successiva).
 
 La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizione dei tentativi incorporati quando si usa Entity Framework 6.
 
@@ -765,10 +765,10 @@ namespace RetryCodeSamples
 }
 ```
 
-Altri esempi sull'uso del meccanismo di ripetizione dei tentavi in Entity Framework sono disponibili in [resilienza delle connessioni / logica di ripetizione dei tentativi](http://msdn.microsoft.com/data/dn456835.aspx).
+Altri esempi sull'uso del meccanismo di ripetizione dei tentavi in Entity Framework sono disponibili in [resilienza delle connessioni / logica di ripetizione dei tentativi](/ef/ef6/fundamentals/connection-resiliency/retry-logic).
 
 ### <a name="more-information"></a>Altre informazioni
-* [Guida relativa all'elasticità e alle prestazioni del database SQL di Azure](http://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)
+* [Guida relativa all'elasticità e alle prestazioni del database SQL di Azure](https://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)
 
 ## <a name="sql-database-using-entity-framework-core"></a>Database SQL con Entity Framework Core
 [Entity Framework Core](/ef/core/) è un mapper relazionale a oggetti che consente agli sviluppatori .NET Core di usare dati mediante oggetti specifici di dominio. Elimina la necessità di gran parte del codice di accesso ai dati che in genere gli sviluppatori devono scrivere. Questa versione di Entity Framework è stata scritta da zero e non eredita automaticamente tutte le funzionalità di EF6.x.
@@ -803,10 +803,10 @@ using (var db = new BloggingContext())
     {
         using (var transaction = db.Database.BeginTransaction())
         {
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+            db.Blogs.Add(new Blog { Url = "https://blogs.msdn.com/dotnet" });
             db.SaveChanges();
 
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/visualstudio" });
+            db.Blogs.Add(new Blog { Url = "https://blogs.msdn.com/visualstudio" });
             db.SaveChanges();
 
             transaction.Commit();
@@ -819,13 +819,13 @@ using (var db = new BloggingContext())
 I servizi di archiviazione di Azure includono funzioni di archiviazione di BLOB e tabelle, file e code di archiviazione.
 
 ### <a name="retry-mechanism"></a>Meccanismo di ripetizione dei tentativi
-I nuovi tentativi si compiono a livello di singola operazione REST e sono parte integrante dell'implementazione dell'API client. L'SDK di archiviazione dei client usa classi che implementano l'interfaccia [IExtendedRetryPolicy Interface](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.aspx).
+I nuovi tentativi si compiono a livello di singola operazione REST e sono parte integrante dell'implementazione dell'API client. L'SDK di archiviazione dei client usa classi che implementano l'interfaccia [IExtendedRetryPolicy Interface](/dotnet/api/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy).
 
 Esistono diverse implementazioni di questa interfaccia. I client di archiviazione possono scegliere tra vari tipi di criteri, progettati per l'accesso a tabelle, BLOB o code. Ogni implementazione usa una strategia di ripetizione dei tentativi diversa, che essenzialmente definisce l'intervallo di tempo tra i tentativi e altri dettagli.
 
 Le classi incorporate forniscono il supporto per intervalli lineari (tempo d'intervallo costante) ed esponenziali con sequenza casuale. Esiste anche un criterio di tipo "nessun tentativo" se la gestione dei tentativi viene eseguita da un altro processo a un livello superiore. Se, tuttavia, sono presenti requisiti specifici non previsti dalle classi incorporate, è possibile implementare classi di ripetizione dei tentativi personalizzate.
 
-Se si usa l'archiviazione con ridondanza geografica e accesso in lettura (RA-GRS), è possibile, ad esempio, alternare i tentativi tra il percorso del servizio di archiviazione primario e quello del servizio secondario e il risultato della richiesta è un errore non irreversibile. Per altre informazioni, vedere [Opzioni di ridondanza dell'archiviazione di Azure](http://msdn.microsoft.com/library/azure/dn727290.aspx) .
+Se si usa l'archiviazione con ridondanza geografica e accesso in lettura (RA-GRS), è possibile, ad esempio, alternare i tentativi tra il percorso del servizio di archiviazione primario e quello del servizio secondario e il risultato della richiesta è un errore non irreversibile. Per altre informazioni, vedere [Opzioni di ridondanza dell'archiviazione di Azure](/azure/storage/common/storage-redundancy) .
 
 ### <a name="policy-configuration"></a>Configurazione dei criteri
 I criteri di ripetizione dei tentativi sono configurati a livello di codice. La procedura tipica consiste nel creare e popolare un'istanza **TableRequestOptions**, **BlobRequestOptions**, **FileRequestOptions** o **QueueRequestOptions**.
@@ -872,7 +872,7 @@ context.RequestCompleted += (sender, args) =>
 var stats = await client.GetServiceStatsAsync(null, context);
 ```
 
-Oltre a indicare se un errore può essere risolto eseguendo nuovi tentativi, i criteri estesi di ripetizione dei tentativi restituiscono un oggetto **RetryContext** , che indica il numero di tentativi, i risultati dell'ultima richiesta e se il tentativo successivo verrà eseguito nel percorso primario o secondario (vedere la tabella seguente per maggiori dettagli). Le proprietà dell'oggetto **RetryContext** possono essere inoltre usate per decidere se e quando eseguire un nuovo tentativo. Per altre informazioni, vedere [IExtendedRetryPolicy.Evaluate Method](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx).
+Oltre a indicare se un errore può essere risolto eseguendo nuovi tentativi, i criteri estesi di ripetizione dei tentativi restituiscono un oggetto **RetryContext** , che indica il numero di tentativi, i risultati dell'ultima richiesta e se il tentativo successivo verrà eseguito nel percorso primario o secondario (vedere la tabella seguente per maggiori dettagli). Le proprietà dell'oggetto **RetryContext** possono essere inoltre usate per decidere se e quando eseguire un nuovo tentativo. Per altre informazioni, vedere [IExtendedRetryPolicy.Evaluate Method](/dotnet/api/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate).
 
 Le tabelle seguenti mostrano le impostazioni predefinite per i criteri di ripetizione dei tentativi predefiniti.
 
@@ -918,9 +918,9 @@ Quando si accede ai servizi di archiviazione di Azure tramite l'API del client d
 | Background<br />o batch |30 secondi |Esponenziali |maxAttempt<br />deltaBackoff |5<br />4 secondi |Tentativo di 1 - intervallo di ~3 sec<br />Tentativo 2 - intervallo di ~7 sec<br />Tentativo 3 - intervallo di ~15 sec |
 
 ### <a name="telemetry"></a>Telemetria
-Il numero di tentativi viene registrato in un'origine **TraceSource**. È necessario configurare un oggetto **TraceListener** per acquisire gli eventi e scriverli in un log di destinazione appropriato. È possibile usare **TextWriterTraceListener** o **XmlWriterTraceListener** per scrivere i dati in un file di log, **EventLogTraceListener** per scriverli nel Registro eventi di Windows o **EventProviderTraceListener** per scrivere i dati di traccia nel sottosistema ETW. È inoltre possibile configurare lo svuotamento automatico del buffer e il livello di dettaglio degli eventi che verranno registrati nel log (specificando, ad esempio, i valori Error, Warning, Informational e Verbose). Per altre informazioni, vedere [Registrazione lato client con la libreria client di archiviazione .NET](http://msdn.microsoft.com/library/azure/dn782839.aspx).
+Il numero di tentativi viene registrato in un'origine **TraceSource**. È necessario configurare un oggetto **TraceListener** per acquisire gli eventi e scriverli in un log di destinazione appropriato. È possibile usare **TextWriterTraceListener** o **XmlWriterTraceListener** per scrivere i dati in un file di log, **EventLogTraceListener** per scriverli nel Registro eventi di Windows o **EventProviderTraceListener** per scrivere i dati di traccia nel sottosistema ETW. È inoltre possibile configurare lo svuotamento automatico del buffer e il livello di dettaglio degli eventi che verranno registrati nel log (specificando, ad esempio, i valori Error, Warning, Informational e Verbose). Per altre informazioni, vedere [Registrazione lato client con la libreria client di archiviazione .NET](/rest/api/storageservices/Client-side-Logging-with-the-.NET-Storage-Client-Library).
 
-Le operazioni possono ricevere un'istanza **OperationContext**, che espone un evento **Retrying** di cui è possibile usufruire per associare una logica personalizzata per i dati telemetrici. Per altre informazioni, vedere [Evento OperationContext.Retrying](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.operationcontext.retrying.aspx).
+Le operazioni possono ricevere un'istanza **OperationContext**, che espone un evento **Retrying** di cui è possibile usufruire per associare una logica personalizzata per i dati telemetrici. Per altre informazioni, vedere [Evento OperationContext.Retrying](/dotnet/api/microsoft.windowsazure.storage.operationcontext.retrying).
 
 ### <a name="examples"></a>Esempi
 L'esempio di codice seguente mostra come creare due istanze **TableRequestOptions** con due diverse impostazioni di ripetizione dei tentativi: una per le richieste interattive e una per le richieste in background. L'esempio imposta quindi questi due criteri di ripetizione dei tentativi in modo che vengano applicati a tutte le richieste. Imposta inoltre la strategia interattiva su una richiesta specifica in modo che ignori le impostazioni predefinite applicate al client.
@@ -1000,7 +1000,7 @@ namespace RetryCodeSamples
 
 ### <a name="more-information"></a>Altre informazioni
 * [Suggerimenti per i criteri di ripetizione dei tentativi nella libreria client dell'archiviazione di Azure](https://azure.microsoft.com/blog/2014/05/22/azure-storage-client-library-retry-policy-recommendations/)
-* [Libreria client di archiviazione 2.0 - Implementazione dei criteri di ripetizione dei tentativi](http://gauravmantri.com/2012/12/30/storage-client-library-2-0-implementing-retry-policies/)
+* [Libreria client di archiviazione 2.0 - Implementazione dei criteri di ripetizione dei tentativi](https://gauravmantri.com/2012/12/30/storage-client-library-2-0-implementing-retry-policies/)
 
 ## <a name="general-rest-and-retry-guidelines"></a>Linee guida generali su REST e sulla ripetizione di tentativi
 Quando si accede a servizi di Azure o di terze parti, tenere presente quanto segue:

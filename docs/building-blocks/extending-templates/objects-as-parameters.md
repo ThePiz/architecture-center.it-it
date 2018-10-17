@@ -3,12 +3,12 @@ title: Usare un oggetto come parametro in un modello di Azure Resource Manager
 description: Viene descritto come estendere la funzionalità dei modelli di Azure Resource Manager per usare oggetti come parametri
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 27bc4be02f202ae5d6a3c28553a8c8afe435f743
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429316"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876758"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Usare un oggetto come parametro in un modello di Azure Resource Manager
 
@@ -27,7 +27,7 @@ Di seguito è riportato un esempio che distribuisce una risorsa di rete virtuale
 Successivamente inserire i valori per l'oggetto `VNetSettings`:
 
 > [!NOTE]
-> Per informazioni su come specificare i valori dei parametri durante la distribuzione, vedere la sezione **parameters** di [Comprendere la struttura e la sintassi dei modelli di Azure Resource Manager][azure-resource-manager-authoring-templates]. 
+> Per informazioni su come specificare i valori dei parametri durante la distribuzione, vedere la sezione **Parametri** di [Comprendere la struttura e la sintassi dei modelli di Azure Resource Manager][azure-resource-manager-authoring-templates]. 
 
 ```json
 "parameters":{

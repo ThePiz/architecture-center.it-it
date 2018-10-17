@@ -4,12 +4,12 @@ description: Elenco di controllo contenente indicazioni per la resilienza per va
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584766"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819194"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Elenco di controllo per la resilienza per servizi di Azure specifici
 
@@ -39,11 +39,11 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Creare un account di archiviazione separato per i log.** Non usare lo stesso account di archiviazione per i log e i dati dell'applicazione. In questo modo si impedisce che la registrazione riduca le prestazioni dell'applicazione.
 
-**Monitorare le prestazioni.** Usare un servizio di monitoraggio delle prestazioni, ad esempio [New Relic](http://newrelic.com/) o [Application Insights](/azure/application-insights/app-insights-overview/) per monitorare le prestazioni dell'applicazione e il comportamento sotto carico.  Il monitoraggio delle prestazioni offre informazioni approfondite in tempo reale sull'applicazione. Consente di diagnosticare i problemi e di eseguire l'analisi della causa radice degli errori.
+**Monitorare le prestazioni.** Usare un servizio di monitoraggio delle prestazioni, ad esempio [New Relic](https://newrelic.com/) o [Application Insights](/azure/application-insights/app-insights-overview/) per monitorare le prestazioni dell'applicazione e il comportamento sotto carico.  Il monitoraggio delle prestazioni offre informazioni approfondite in tempo reale sull'applicazione. Consente di diagnosticare i problemi e di eseguire l'analisi della causa radice degli errori.
 
 ## <a name="application-gateway"></a>Gateway applicazione
 
-**Eseguire il provisioning di almeno due istanze.** Distribuire il gateway applicazione con almeno due istanze. Un'istanza singola è un singolo punto di errore. Usare due o più istanze per la ridondanza e la scalabilità. Per essere idonei al [contratto di servizio](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/), è necessario eseguire il provisioning di due o più istanze di medie o grandi dimensioni.
+**Eseguire il provisioning di almeno due istanze.** Distribuire il gateway applicazione con almeno due istanze. Un'istanza singola è un singolo punto di errore. Usare due o più istanze per la ridondanza e la scalabilità. Per essere idonei al [contratto di servizio](https://azure.microsoft.com/support/legal/sla/application-gateway), è necessario eseguire il provisioning di due o più istanze di medie o grandi dimensioni.
 
 ## <a name="cosmos-db"></a>Cosmos DB
 
@@ -77,6 +77,21 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
   * Se l'origine dati viene replicata geograficamente, occorre puntare ogni indicizzatore di ogni servizio di Ricerca di Azure regionale sulla replica dell'origine dati locale. Tale approccio non è tuttavia consigliato per i set di dati di grandi dimensioni archiviati nel database di SQL Azure. Il motivo è che Ricerca di Azure non può eseguire l'indicizzazione incrementale da repliche di database SQL secondarie, ma solo da repliche primarie. Puntare quindi tutti gli indicizzatori sulla replica primaria. Dopo un failover, puntare gli indicizzatori di Ricerca di Azure sulla nuova replica primaria.  
   * Se l'origine dati non è replicata geograficamente, puntare più indicizzatori sulla stessa origine dati, in modo che i servizi di Ricerca di Azure in più aree eseguano l'indicizzazione dall'origine dati in modo continuativo e indipendente. Per altre informazioni, vedere [Considerazioni sulle prestazioni e sull'ottimizzazione di Ricerca di Azure][search-optimization].
+
+## <a name="service-bus"></a>Bus di servizio
+
+**Usare il livello Premium per i carichi di lavoro di produzione**. La [messaggistica Premium del bus di servizio](/azure/service-bus-messaging/service-bus-premium-messaging) offre risorse di elaborazione dedicate e riservate, oltre alla capacità di memoria per supportare velocità effettiva e prestazioni prevedibili. Il livello di messaggistica Premium consente anche di accedere alle nuove funzionalità disponibili in un primo momento solo per i clienti Premium. È possibile decidere il numero di unità di messaggistica in base ai carichi di lavoro previsti.
+
+**Gestire i messaggi duplicati**. Se in un server di pubblicazione si verifica un errore subito dopo l'invio di un messaggio o se si riscontrano problemi di rete o di sistema, potrebbe erroneamente non venire registrato che il messaggio è stato recapitato e lo stesso messaggio potrebbe essere inviato due volte al sistema. Il bus di servizio può gestire questo problema abilitando il rilevamento dei messaggi duplicati. Per altre informazioni, vedere [Rilevamento duplicati](/azure/service-bus-messaging/duplicate-detection).
+
+**Gestire le eccezioni**. Le API di messaggistica generano eccezioni quando si verifica un errore dell'utente, un errore di configurazione o un errore di altro tipo. Il codice client (mittenti e ricevitori) dovrebbe gestire queste eccezioni nel codice. Questo aspetto è particolarmente importante nell'elaborazione batch, in cui la gestione delle eccezioni può essere usata per evitare di perdere un intero batch di messaggi. Per altre informazioni, vedere [Eccezioni di messaggistica del bus di servizio](/azure/service-bus-messaging/service-bus-messaging-exceptions).
+
+**Criteri di ripetizione**. Il bus di servizio consente di selezionare i criteri di ripetizione più appropriati per le applicazioni. Il criterio predefinito consente un massimo di 9 tentativi di ripetizione e un'attesa di 30 secondi, ma può essere modificato ulteriormente. Per altre informazioni, vedere [Criteri di ripetizione - Bus di servizio](/azure/architecture/best-practices/retry-service-specific#service-bus).
+
+**Usare una coda di messaggi non recapitabili**. Se un messaggio non può essere elaborato o recapitato ad alcun destinatario dopo più tentativi, viene spostato in una coda di messaggi non recapitabili. Implementare un processo per leggere i messaggi dalla coda di messaggi non recapitabili, controllarli e risolvere il problema. A seconda dello scenario, è possibile riprovare a inviare il messaggio così com'è, apportare le modifiche e riprovare oppure eliminare il messaggio. Per altre informazioni, vedere [Panoramica delle code dei messaggi non recapitabili del bus di servizio](/azure/service-bus-messaging/service-bus-dead-letter-queues).
+
+**Usare il ripristino di emergenza geografico**. Il ripristino di emergenza geografico assicura che l'elaborazione dei dati continui a funzionare in un'area o un data center diverso se un'intera area o data center di Azure diventa non disponibile a causa di una situazione di emergenza. Per altre informazioni, vedere [Ripristino di emergenza geografico per il bus di servizio di Azure](/azure/service-bus-messaging/service-bus-geo-dr).
+
 
 ## <a name="storage"></a>Archiviazione
 

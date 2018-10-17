@@ -3,12 +3,12 @@ title: Effettuare il refactoring di un'applicazione di Azure Service Fabric migr
 description: Informazioni su come effettuare il refactoring di un'applicazione di Azure Service Fabric esistente migrata da Servizi cloud di Azure
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 7b5c115acdbfca0c105e2b861af9a8049b890dca
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782547"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819075"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Effettuare il refactoring di un'applicazione di Azure Service Fabric migrata da Servizi cloud di Azure
 
@@ -44,7 +44,7 @@ Il servizio **Tailspin.Web.Survey.Public** viene trasferito dal ruolo Web *Tails
 Il servizio **Tailspin.AnswerAnalysisService** viene trasferito dal ruolo di lavoro *Tailspin.Workers.Survey* originale.
 
 > [!NOTE] 
-> Anche se sono state apportate modifiche minime a ogni ruolo Web e di lavoro, **Tailspin.Web** e **Tailspin.Web.Survey.Public** sono stati modificati per l'hosting automatico di un server Web [Kestrel]. L'applicazione Surveys precedente è un'applicazione ASP.Net ospitata tramite Interet Information Services (IIS), ma non è possibile eseguire IIS come servizio in Service Fabric. Qualsiasi server Web deve essere quindi in grado di eseguire l'hosting automatico, ad esempio [Kestrel]. È possibile eseguire IIS in un contenitore in Service Fabric in alcune situazioni. Per altre informazioni, vedere gli [scenari per l'uso dei contenitori][container-scenarios].  
+> Anche se sono state apportate modifiche minime a ogni ruolo Web e di lavoro, **Tailspin.Web** e **Tailspin.Web.Survey.Public** sono stati modificati per l'hosting automatico di un server Web [Kestrel]. L'applicazione Surveys precedente è un'applicazione ASP.NET ospitata tramite Internet Information Services (IIS), ma non è possibile eseguire IIS come servizio in Service Fabric. Qualsiasi server Web deve essere quindi in grado di eseguire l'hosting automatico, ad esempio [Kestrel]. È possibile eseguire IIS in un contenitore in Service Fabric in alcune situazioni. Per altre informazioni, vedere gli [scenari per l'uso dei contenitori][container-scenarios].  
 
 Tailspin effettua ora il refactoring dell'applicazione Surveys in un'architettura più granulare. La motivazione di Tailspin per il refactoring consiste nel semplificare lo sviluppo, la compilazione e la distribuzione dell'applicazione Surveys. Tramite la scomposizione dei ruoli Web e di lavoro esistenti in un'architettura più granulare, Tailspin vuole rimuovere le comunicazioni strettamente associate esistenti e le dipendenze dei dati tra questi ruoli.
 

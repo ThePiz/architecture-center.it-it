@@ -4,12 +4,12 @@ description: Indicazioni sulle attività in background eseguite in modo indipend
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 781d616dfcf24775525e2489e7e463174ec9bfa3
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: fa5c6352da289591d92b9427c44b8ba9f01245aa
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091088"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429622"
 ---
 # <a name="background-jobs"></a>Processi in background
 [!INCLUDE [header](../_includes/header.md)]
@@ -27,7 +27,7 @@ I processi in background includono in genere uno o più dei processi seguenti:
 * Processi con uso intensivo dell'I/O, come l'esecuzione di una serie di transazioni di archiviazione o l'indicizzazione di file.
 * Processi batch, come gli aggiornamenti dei dati nelle ore notturne o l'elaborazione pianificata.
 * Flussi di lavoro a esecuzione prolungata, come l'evasione di ordini o il provisioning di servizi e sistemi.
-* Elaborazione di dati sensibili dove l'attività viene trasferita in una posizione più sicura per l'elaborazione. Ad esempio, elaborare dati sensibili in un’app Web potrebbe non essere opportuno e si potrebbe preferire l'uso di un modello come [Gatekeeper](http://msdn.microsoft.com/library/dn589793.aspx) per trasferire i dati a un processo in background isolato con accesso a una risorsa di archiviazione protetta.
+* Elaborazione di dati sensibili dove l'attività viene trasferita in una posizione più sicura per l'elaborazione. Ad esempio, elaborare dati sensibili in un’app Web potrebbe non essere opportuno e si potrebbe preferire l'uso di un modello come [Gatekeeper](https://msdn.microsoft.com/library/dn589793.aspx) per trasferire i dati a un processo in background isolato con accesso a una risorsa di archiviazione protetta.
 
 ## <a name="triggers"></a>Trigger
 I processi in background possono essere avviati in diversi modi. I trigger sono classificabili nelle seguenti categorie:
@@ -64,7 +64,7 @@ I processi in background vengono eseguiti in modo asincrono in un processo separ
 Se occorre che un'attività in background comunichi con l'attività chiamante per indicare lo stato di avanzamento o il completamento, è necessario implementare un meccanismo apposito. Di seguito sono riportati alcuni esempi:
 
 * Scrivere un valore di stato nella risorsa di archiviazione che sia accessibile all'attività dell'interfaccia utente o del chiamante in modo che questa possa monitorare o controllare tale valore quando richiesto. Altri dati che l'attività in background deve restituire al chiamante possono essere collocati nella stessa risorsa di archiviazione.
-* Stabilire una coda di risposta in cui l'interfaccia utente o il chiamante restano in ascolto. L'attività in background può inviare messaggi alla coda indicanti lo stato e il completamento. I dati che l'attività in background deve restituire al chiamante possono essere inseriti nei messaggi. Se si usa il bus di servizio di Azure, è possibile usare le proprietà **ReplyTo** e **CorrelationId** per implementare questa funzionalità. Per ulteriori informazioni, vedere [Correlazione nella messaggistica negoziata di Bus di servizio](http://www.cloudcasts.net/devguide/Default.aspx?id=13029).
+* Stabilire una coda di risposta in cui l'interfaccia utente o il chiamante restano in ascolto. L'attività in background può inviare messaggi alla coda indicanti lo stato e il completamento. I dati che l'attività in background deve restituire al chiamante possono essere inseriti nei messaggi. Se si usa il bus di servizio di Azure, è possibile usare le proprietà **ReplyTo** e **CorrelationId** per implementare questa funzionalità.
 * Esporre un'API o un endpoint dell'attività in background a cui l'interfaccia utente o il chiamante possa accedere per ottenere informazioni sullo stato. I dati che l'attività in background deve restituire al chiamante possono essere inclusi nella risposta.
 * Fare in modo che l'attività in background richiami l'interfaccia utente o il chiamante tramite un'API per indicare lo stato in determinati punti o al completamento. A tal fine si possono usare eventi generati in locale oppure un meccanismo di pubblicazione e sottoscrizione. I dati che l'attività in background deve restituire al chiamante possono essere inclusi nella richiesta o nel payload dell'evento.
 
@@ -95,7 +95,7 @@ I processi Web di Azure presentano le caratteristiche seguenti:
 
 * **Sicurezza**: i processi Web sono protetti dalle credenziali di distribuzione dell'app Web.
 * **Tipi di file supportati**: è possibile definire i processi Web usando script di comandi (cmd), file batch (bat), script di PowerShell (ps1), script della shell bash (sh), script PHP (php), script Python (py), codice JavaScript (js) e programmi eseguibili (exe, jar e così via).
-* **Distribuzione**: è possibile distribuire gli script e i file eseguibili tramite il [portale di Azure](/azure/app-service-web/web-sites-create-web-jobs), con [Visual Studio](/azure/app-service-web/websites-dotnet-deploy-webjobs), [SDK di Processi Web di Azure](/azure/azure-webjobs-sdk) o copiandoli direttamente nei percorsi seguenti:
+* **Distribuzione**: è possibile distribuire gli script e i file eseguibili tramite il [portale di Azure](/azure/app-service-web/web-sites-create-web-jobs), con [Visual Studio](/azure/app-service-web/websites-dotnet-deploy-webjobs), [SDK di Processi Web di Azure](/azure/app-service/webjobs-sdk-get-started) o copiandoli direttamente nei percorsi seguenti:
   * Per l'esecuzione con trigger: site/wwwroot/app_data/jobs/triggered/{nome processo}
   * Per l'esecuzione continua: site/wwwroot/app_data/jobs/continuous/{nome processo}
 * **Registrazione**: Console.Out viene trattato (contrassegnato) come INFO. Console.Error viene trattato come errore. È possibile accedere alle informazioni di monitoraggio e diagnostica dal Portale di Azure. I file di log possono essere scaricati direttamente dal sito. Tali file vengono salvati nei percorsi seguenti:
@@ -116,7 +116,7 @@ I processi Web di Azure presentano le caratteristiche seguenti:
 ### <a name="azure-virtual-machines"></a>Macchine virtuali di Azure
 Le attività in background possono essere implementate in modo da impedirne la distribuzione in App Web o Servizi cloud di Azure. Esempi tipici sono i servizi Windows nonché le utilità e i programmi eseguibili di terze parti. O ancora i programmi scritti per un ambiente di esecuzione diverso da quello che ospita l'applicazione: potrebbe trattarsi ad esempio di un programma Unix o Linux che deve essere eseguito da un'applicazione Windows o .NET. È possibile scegliere tra una gamma di sistemi operativi per una macchina virtuale di Azure ed eseguire il servizio o l'eseguibile su tale macchina virtuale.
 
-Per scegliere se usare le macchine virtuali, vedere [Confronto tra Servizio app, Servizi cloud e Macchine virtuali di Azure](/azure/app-service-web/choose-web-site-cloud-service-vm/). Per informazioni sulle opzioni per le macchine virtuali, vedere [Dimensioni dei servizi cloud](http://msdn.microsoft.com/library/azure/dn197896.aspx). Per altre informazioni sui sistemi operativi e le immagini predefinite disponibili per le macchine virtuali, vedere [Marketplace per Macchine virtuali](https://azure.microsoft.com/gallery/virtual-machines/).
+Per scegliere se usare le macchine virtuali, vedere [Confronto tra Servizio app, Servizi cloud e Macchine virtuali di Azure](/azure/app-service-web/choose-web-site-cloud-service-vm/). Per informazioni sulle opzioni per le macchine virtuali, vedere [Dimensioni per le macchine virtuali Windows in Azure](/azure/virtual-machines/windows/sizes). Per altre informazioni sui sistemi operativi e le immagini predefinite disponibili per le macchine virtuali, vedere [Marketplace per Macchine virtuali](https://azure.microsoft.com/gallery/virtual-machines/).
 
 Per avviare l'attività in background in una macchina virtuale separata, sono disponibili diverse opzioni:
 
@@ -131,7 +131,7 @@ Per decidere se distribuire le attività in background in una macchina virtuale 
 
 * L'hosting di attività in background in una macchina virtuale di Azure separata offre flessibilità e consente un controllo preciso su avvio, esecuzione, pianificazione e allocazione delle risorse,  ma determina un aumento dei costi di runtime se è necessario distribuire una macchina virtuale solo per eseguire attività in background.
 * Non sono disponibili funzionalità di monitoraggio delle attività nel portale di Azure o di riavvio automatico di operazioni non riuscite, anche se è possibile monitorare lo stato di base della macchina virtuale e gestirla usando i [cmdlet di Azure Resource Manager](https://msdn.microsoft.com/library/mt125356.aspx). Non sono tuttavia disponibili funzioni di controllo dei processi e dei thread nei nodi di calcolo. In genere, l'uso di una macchina virtuale richiederà un impegno aggiuntivo per implementare un meccanismo che raccoglie i dati dalla strumentazione nell'attività e dal sistema operativo nella macchina virtuale. Una soluzione appropriata potrebbe essere l'uso di [System Center Management Pack per Azure](https://www.microsoft.com/download/details.aspx?id=50013).
-* È possibile considerare la creazione di probe di monitoraggio esposti tramite endpoint HTTP. Il codice per questi probe potrebbe eseguire controlli di integrità, raccogliere informazioni operative e statistiche o raggruppare informazioni sugli errori e restituirle a un'applicazione di gestione. Per altre informazioni, vedere [Modello di monitoraggio integrità Endpoint](http://msdn.microsoft.com/library/dn589789.aspx).
+* È possibile considerare la creazione di probe di monitoraggio esposti tramite endpoint HTTP. Il codice per questi probe potrebbe eseguire controlli di integrità, raccogliere informazioni operative e statistiche o raggruppare informazioni sugli errori e restituirle a un'applicazione di gestione. Per altre informazioni, vedere [Modello di monitoraggio integrità Endpoint](../patterns/health-endpoint-monitoring.md).
 
 #### <a name="more-information"></a>Altre informazioni
 * [Macchine virtuali](https://azure.microsoft.com/services/virtual-machines/) in Azure
@@ -177,7 +177,7 @@ I contenitori possono essere utili per l'esecuzione di processi in background. A
 * [Introduzione ai registri per contenitori Docker privati](/azure/container-registry/container-registry-intro) 
 
 ### <a name="azure-cloud-services"></a>Servizi cloud di Azure 
-È possibile eseguire attività in background all'interno di un ruolo Web o in un ruolo di lavoro distinto. Per decidere se usare un ruolo di lavoro è necessario considerare i requisiti di scalabilità ed elasticità, la durata dell'attività, la cadenza di rilascio, la sicurezza, la tolleranza di errore, la contesa, la complessità e l'architettura logica. Per altre informazioni, vedere [Modello di consolidamento delle risorse di calcolo](http://msdn.microsoft.com/library/dn589778.aspx).
+È possibile eseguire attività in background all'interno di un ruolo Web o in un ruolo di lavoro distinto. Per decidere se usare un ruolo di lavoro è necessario considerare i requisiti di scalabilità ed elasticità, la durata dell'attività, la cadenza di rilascio, la sicurezza, la tolleranza di errore, la contesa, la complessità e l'architettura logica. Per altre informazioni, vedere [Modello di consolidamento delle risorse di calcolo](../patterns/compute-resource-consolidation.md).
 
 Esistono diversi modi per implementare le attività di background in un ruolo Servizi cloud:
 
@@ -193,7 +193,7 @@ L'esecuzione di attività in background in un ruolo di lavoro presenta diversi v
 * Consente di gestire il ridimensionamento separatamente per ogni tipo di ruolo. Ad esempio, potrebbero essere necessarie più istanze di un ruolo Web per supportare il carico corrente, ma un minor numero di istanze del ruolo di lavoro che esegue le attività in background. Il dimensionamento delle istanze di calcolo dell'attività in background separatamente dai ruoli dell'interfaccia utente consente di ridurre i costi di hosting mantenendo prestazioni accettabili.
 * Scarica il sovraccarico dell'elaborazione per le attività in background del ruolo Web. Il ruolo Web che fornisce l'interfaccia utente può rimanere attivo per cui è necessario un minor numero di istanze per supportare un determinato volume di richieste dagli utenti.
 * Consente di implementare la separazione delle problematiche. Ogni tipo di ruolo può implementare un set specifico di attività ben definite e correlate. La progettazione e la gestione del codice si semplificano grazie alla minore interdipendenza di codice e funzionalità tra ogni ruolo.
-* Può essere utile per isolare dati e processi sensibili. Ad esempio, i ruoli Web che implementano l'interfaccia utente non richiedono l'accesso ai dati gestiti e controllati da un ruolo di lavoro. Ciò può essere utile per rafforzare la sicurezza, soprattutto quando si usa un modello come [Gatekeeper Pattern](http://msdn.microsoft.com/library/dn589793.aspx)(Modello Gatekeeper).  
+* Può essere utile per isolare dati e processi sensibili. Ad esempio, i ruoli Web che implementano l'interfaccia utente non richiedono l'accesso ai dati gestiti e controllati da un ruolo di lavoro. Ciò può essere utile per rafforzare la sicurezza, soprattutto quando si usa un modello come [Gatekeeper Pattern](../patterns/gatekeeper.md)(Modello Gatekeeper).  
 
 #### <a name="considerations"></a>Considerazioni
 Nella scelta del modo e della posizione per la distribuzione delle attività in background quando si usano i ruoli di lavoro e Web di Servizi Cloud, tenere presenti le considerazioni seguenti:
@@ -218,7 +218,7 @@ I ruoli Web e di lavoro attraversano una serie di fasi distinte quando vengono a
 * Al termine dell'esecuzione del metodo Run, Azure chiama prima **Application_End()** nel file Global dell'applicazione, se presente, quindi **RoleEntryPoint.OnStop()**. Si esegue l'override del metodo **OnStop** per interrompere le attività in background, pulire le risorse, eliminare gli oggetti e chiudere le connessioni che possono essere state usate dalle attività.
 * Il ruolo di lavoro di Azure viene arrestato. A questo punto, il ruolo sarà riciclato e verrà riavviato.
 
-Per altre informazioni e un esempio di utilizzo dei metodi della classe **RoleEntryPoint** , vedere [Modello di consolidamento delle risorse di calcolo](http://msdn.microsoft.com/library/dn589778.aspx).
+Per altre informazioni e un esempio di utilizzo dei metodi della classe **RoleEntryPoint** , vedere [Modello di consolidamento delle risorse di calcolo](../patterns/compute-resource-consolidation.md).
 
 #### <a name="implementation-considerations"></a>Considerazioni sull'implementazione
 
@@ -248,7 +248,7 @@ Se si desidera implementare le attività in background in un ruolo Web o di lavo
   * Aggiungere la definizione dell'impostazione **Freeze** come valore booleano nei file ServiceDefinition.csdef e ServiceConfiguration.\*.cscfg per il ruolo e impostarla su **false**. Se il ruolo passa alla modalità di riavvio ripetuto, è possibile modificare l'impostazione in **true** per bloccare l'esecuzione del ruolo e consentire lo scambio con una versione precedente.
 
 #### <a name="more-information"></a>Altre informazioni
-* [Modello di consolidamento delle risorse di calcolo](http://msdn.microsoft.com/library/dn589778.aspx)
+* [Modello di consolidamento delle risorse di calcolo](../patterns/compute-resource-consolidation.md)
 * [Introduzione ad Azure WebJobs SDK](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started/)
 
 
@@ -263,7 +263,7 @@ Se si decide di includere le attività in background all'interno di un'istanza d
 * **Gestibilità**: le attività in background possono avere un ritmo di sviluppo e distribuzione diverso dal codice dell'applicazione principale o dall'interfaccia utente. La distribuzione in un'istanza di calcolo separata consente di semplificare gli aggiornamenti e il controllo delle versioni.
 * **Costo**: l'aggiunta di istanze di calcolo per eseguire attività in background aumenta i costi di hosting. È necessario valutare attentamente un compromesso tra capacità aggiuntiva e questi costi aggiuntivi.
 
-Per altre informazioni, vedere gli articoli [Leader Election Pattern](http://msdn.microsoft.com/library/dn568104.aspx) (Modello di designazione leader) e [Competing Consumers Pattern](http://msdn.microsoft.com/library/dn568101.aspx) (Modello di consumer concorrenti).
+Per altre informazioni, vedere gli articoli [Leader Election Pattern](../patterns/leader-election.md) (Modello di designazione leader) e [Competing Consumers Pattern](../patterns/competing-consumers.md) (Modello di consumer concorrenti).
 
 ## <a name="conflicts"></a>Conflitti
 Se sono presenti più istanze di un processo in background, è possibile che esse competano per l'accesso alle risorse e ai servizi, come i database e le risorse di archiviazione. L'accesso simultaneo può causare la contesa di risorse con conseguenti conflitti di disponibilità dei servizi e integrità dei dati nella risorsa di archiviazione. È possibile risolvere la contesa usando un approccio basato sul blocco pessimistico. In questo modo si impedisce che le istanze in competizione di un'attività accedano contemporaneamente a un servizio o danneggino i dati.
@@ -277,22 +277,22 @@ Le attività in background possono essere complesse e potrebbe essere necessaria
 
 Il coordinamento di più attività e passaggi può essere difficile, ma sono disponibili tre modelli comuni utilizzabili come guida per l'implementazione di una soluzione:
 
-* **Scomposizione di un'attività in più passaggi riutilizzabili**. Un'applicazione potrebbe dover eseguire una serie di attività di varia complessità sulle informazioni che elabora. Un approccio semplice ma rigido per implementare tale applicazione potrebbe essere quello di eseguire l'elaborazione come modulo monolitico. Tuttavia, questo approccio probabilmente ridurrà le opportunità di refactoring, ottimizzazione o riutilizzo del codice se parti della stessa elaborazione sono necessarie in un altro punto dell'applicazione. Per altre informazioni, vedere [Modelli di pipe e filtri](http://msdn.microsoft.com/library/dn568100.aspx).
-* **Gestione dell'esecuzione dei passaggi per un'attività**. Un'applicazione potrebbe eseguire attività che comprendono diversi passaggi, alcuni dei quali potrebbero richiamare servizi remoti o accedere a risorse remote. I singoli passaggi potrebbero essere indipendenti tra loro, ma sono coordinati dalla logica dell'applicazione che implementa l'attività. Per altre informazioni, vedere [Modello di supervisione agente di pianificazione](http://msdn.microsoft.com/library/dn589780.aspx).
-* **Gestione del ripristino per i passaggi non riusciti di un'attività**. Un'applicazione potrebbe dover annullare il lavoro eseguito da una serie di passaggi (che insieme definiscono un'operazione finale coerente) in caso di esito negativo di uno o più di tali passaggi. Per altre informazioni, vedere [Modello di transazioni di compensazione](http://msdn.microsoft.com/library/dn589804.aspx).
+* **Scomposizione di un'attività in più passaggi riutilizzabili**. Un'applicazione potrebbe dover eseguire una serie di attività di varia complessità sulle informazioni che elabora. Un approccio semplice ma rigido per implementare tale applicazione potrebbe essere quello di eseguire l'elaborazione come modulo monolitico. Tuttavia, questo approccio probabilmente ridurrà le opportunità di refactoring, ottimizzazione o riutilizzo del codice se parti della stessa elaborazione sono necessarie in un altro punto dell'applicazione. Per altre informazioni, vedere [Modelli di pipe e filtri](../patterns/pipes-and-filters.md).
+* **Gestione dell'esecuzione dei passaggi per un'attività**. Un'applicazione potrebbe eseguire attività che comprendono diversi passaggi, alcuni dei quali potrebbero richiamare servizi remoti o accedere a risorse remote. I singoli passaggi potrebbero essere indipendenti tra loro, ma sono coordinati dalla logica dell'applicazione che implementa l'attività. Per altre informazioni, vedere [Modello di supervisione agente di pianificazione](../patterns/scheduler-agent-supervisor.md).
+* **Gestione del ripristino per i passaggi non riusciti di un'attività**. Un'applicazione potrebbe dover annullare il lavoro eseguito da una serie di passaggi (che insieme definiscono un'operazione finale coerente) in caso di esito negativo di uno o più di tali passaggi. Per altre informazioni, vedere [Modello di transazioni di compensazione](../patterns/compensating-transaction.md).
 
 
 ## <a name="resiliency-considerations"></a>Considerazioni sulla resilienza
 Le attività in background devono essere resilienti per fornire servizi affidabili all'applicazione. Durante la pianificazione e progettazione di attività in background, tenere presente quanto segue:
 
-* Le attività in background devono poter gestire correttamente i riavvii del ruolo o servizio senza danneggiare i dati o introdurre incoerenze nell'applicazione. Per le attività a esecuzione prolungata o a più passaggi, è consigliabile usare un *checkpoint* salvando lo stato dei processi in un archivio permanente o come messaggi in una coda, se appropriato. Ad esempio, è possibile rendere permanenti le informazioni di stato in un messaggio in una coda e aggiornare in modo incrementale le informazioni sullo stato con l'avanzamento dell'attività, affinché questa possa essere elaborata a partire dall'ultimo checkpoint valido conosciuto anziché ricominciare dall'inizio. Quando si usano le code del bus di servizio di Azure, è possibile usare le sessioni dei messaggi per abilitare lo stesso scenario. Le sessioni consentono di salvare e recuperare lo stato di elaborazione dell'applicazione usando i metodi [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) e [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0). Per altre informazioni sulla progettazione di processi e flussi di lavoro a più passaggi affidabili, vedere l'articolo relativo al [Scheduler Agent Supervisor Pattern](http://msdn.microsoft.com/library/dn589780.aspx)(Modello di supervisione agente di pianificazione).
+* Le attività in background devono poter gestire correttamente i riavvii del ruolo o servizio senza danneggiare i dati o introdurre incoerenze nell'applicazione. Per le attività a esecuzione prolungata o a più passaggi, è consigliabile usare un *checkpoint* salvando lo stato dei processi in un archivio permanente o come messaggi in una coda, se appropriato. Ad esempio, è possibile rendere permanenti le informazioni di stato in un messaggio in una coda e aggiornare in modo incrementale le informazioni sullo stato con l'avanzamento dell'attività, affinché questa possa essere elaborata a partire dall'ultimo checkpoint valido conosciuto anziché ricominciare dall'inizio. Quando si usano le code del bus di servizio di Azure, è possibile usare le sessioni dei messaggi per abilitare lo stesso scenario. Le sessioni consentono di salvare e recuperare lo stato di elaborazione dell'applicazione usando i metodi [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) e [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0). Per altre informazioni sulla progettazione di processi e flussi di lavoro a più passaggi affidabili, vedere l'articolo relativo al [Scheduler Agent Supervisor Pattern](../patterns/scheduler-agent-supervisor.md)(Modello di supervisione agente di pianificazione).
 * Quando si usano i ruoli di lavoro o Web per ospitare più attività in background, progettare l'override del metodo **Run** in modo da monitorare le attività bloccate o non riuscite e riavviarle. Se questo metodo non è pratico e si usa un ruolo di lavoro, forzare il riavvio del ruolo di lavoro uscendo dal metodo **Run** .
-* Se si usano code per comunicare con le attività in background, le code possono fungere da buffer in cui archiviare le richieste inviate alle attività quando l'applicazione ha un carico maggiore del solito. In questo modo le attività possono tornare al passo con l'interfaccia utente durante i periodi di minore attività. Il riavvio del ruolo, inoltre, non bloccherà l'interfaccia utente. Per altre informazioni, vedere [Modello di livellamento del carico basato sulle code](http://msdn.microsoft.com/library/dn589783.aspx). Se alcune attività sono più importanti di altre, valutare l'implementazione del [modello di coda di priorità](http://msdn.microsoft.com/library/dn589794.aspx) per garantire che tali attività vengano eseguite prima di quelle meno importanti.
+* Se si usano code per comunicare con le attività in background, le code possono fungere da buffer in cui archiviare le richieste inviate alle attività quando l'applicazione ha un carico maggiore del solito. In questo modo le attività possono tornare al passo con l'interfaccia utente durante i periodi di minore attività. Il riavvio del ruolo, inoltre, non bloccherà l'interfaccia utente. Per altre informazioni, vedere [Modello di livellamento del carico basato sulle code](../patterns/queue-based-load-leveling.md). Se alcune attività sono più importanti di altre, valutare l'implementazione del [modello di coda di priorità](../patterns/priority-queue.md) per garantire che tali attività vengano eseguite prima di quelle meno importanti.
 * Le attività in background avviate da messaggi o da messaggi del processo devono essere progettate in modo da gestire le incoerenze, ad esempio i messaggi che arrivano in un ordine errato, i messaggi che causano ripetutamente un errore (detti anche messaggi *non elaborabili*) e i messaggi recapitati più volte. Valutare gli aspetti seguenti:
   * I messaggi che devono essere elaborati in un ordine specifico, ad esempio quelli che modificano i dati in base al valore esistente (come l'aggiunta di un valore a un valore esistente), potrebbero non arrivare nell'ordine in cui sono stati originariamente inviati. Oppure potrebbero essere gestiti da istanze diverse di un'attività in background in un ordine differente a causa di carichi variabili in ogni istanza. I messaggi che devono essere elaborati in un ordine specifico devono includere un numero di sequenza, una chiave o un altro indicatore utilizzabile dalle attività in background per garantire l'elaborazione nell'ordine corretto. Se si usa il bus di servizio di Azure, è possibile usare le sessioni di messaggistica per garantire l'ordine di recapito. In genere, tuttavia, la soluzione più efficace è progettare il processo in modo che l'ordine dei messaggi non sia importante.
   * Un'attività in background normalmente visualizza i messaggi della coda, nascondendoli temporaneamente agli altri consumer di messaggi. Quindi elimina i messaggi dopo che sono stati elaborati e l'elaborazione è riuscita. Se un'attività in background non riesce a portare a termine l'elaborazione di un messaggio, il messaggio ricompare nella coda dopo la scadenza del periodo di tempo di visualizzazione. Sarà elaborato da un'altra istanza dell'attività o durante il successivo ciclo di elaborazione di questa istanza. Se il messaggio provoca regolarmente un errore nel consumer, blocca l'attività, la coda e infine l'applicazione stessa quando la coda diventa piena. È essenziale quindi rilevare e rimuovere i messaggi non elaborabili dalla coda. Se si usa il bus di servizio di Azure, i messaggi che causano un errore possono essere spostati automaticamente o manualmente in una coda dei messaggi non recapitabili associata.
   * Per le code è garantito un meccanismo che prevede il recapito *almeno una volta* , ma possono recapitare lo stesso messaggio più volte. Inoltre, se un'attività in background ha esito negativo dopo l'elaborazione di un messaggio ma prima che questo venga eliminato dalla coda, il messaggio diventerà di nuovo disponibile per l'elaborazione. Le attività in background dovranno essere idempotenti, ossia l'elaborazione multipla dello stesso messaggio non deve causare un errore o un'incoerenza nei dati dell'applicazione. Alcune operazioni sono naturalmente idempotenti, ad esempio l'impostazione di un valore archiviato su un nuovo valore specifico. Tuttavia operazioni quali l'aggiunta di un valore a un valore archiviato esistente, senza verificare che il valore archiviato non sia cambiato da quando è stato originariamente inviato il messaggio, causeranno incoerenze. Le code del bus di servizio di Azure possono essere configurate per rimuovere automaticamente i messaggi duplicati.
-  * Alcuni sistemi di messaggistica, quali le code di archiviazione di Azure e le code del bus di servizio di Azure, supportano una proprietà di conteggio di rimozioni dalla coda che indica il numero di volte in cui un messaggio è stato letto dalla coda. Tale indicazione può essere utile per la gestione dei messaggi non elaborabili e ripetuti. Per altre informazioni, vedere [Introduzione alla messaggistica asincrona](http://msdn.microsoft.com/library/dn589781.aspx) e [Modelli di idempotenza](http://blog.jonathanoliver.com/idempotency-patterns/).
+  * Alcuni sistemi di messaggistica, quali le code di archiviazione di Azure e le code del bus di servizio di Azure, supportano una proprietà di conteggio di rimozioni dalla coda che indica il numero di volte in cui un messaggio è stato letto dalla coda. Tale indicazione può essere utile per la gestione dei messaggi non elaborabili e ripetuti. Per altre informazioni, vedere [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx) e [Modelli di idempotenza](https://blog.jonathanoliver.com/idempotency-patterns/).
 
 ## <a name="scaling-and-performance-considerations"></a>Considerazioni su ridimensionamento e prestazioni
 Le attività in background devono offrire prestazioni sufficienti a garantire che l'applicazione non si blocchi o causi incoerenze dovute all'operazione ritardata quando il sistema è sotto carico. In genere, le prestazioni risultano migliorate ridimensionando le istanze di calcolo che ospitano le attività in background. Durante la pianificazione e la progettazione di attività in background, tenere presenti i seguenti aspetti relativi al dimensionamento e alle prestazioni:
@@ -304,24 +304,22 @@ Le attività in background devono offrire prestazioni sufficienti a garantire ch
 * Per impostazione predefinita, i processi Web vengono ridimensionati con la relativa istanza di App Web di Azure associata. Tuttavia, quando un processo Web deve essere eseguito solo come singola istanza, è possibile creare un file Settings.job contenente i dati JSON **{"is_singleton": true}**. In questo modo si costringe Azure a eseguire solo un'istanza del processo Web, anche se ci sono più istanze dell'app Web associata. Questa tecnica può essere utile per i processi pianificati che devono essere eseguiti solo come singola istanza.
 
 ## <a name="related-patterns"></a>Modelli correlati
-* [Introduzione alla messaggistica asincrona](http://msdn.microsoft.com/library/dn589781.aspx)
-* [Indicazioni sulla scalabilità automatica](http://msdn.microsoft.com/library/dn589774.aspx)
-* [Modello di transazioni di compensazione](http://msdn.microsoft.com/library/dn589804.aspx)
-* [Modello di consumer concorrenti](http://msdn.microsoft.com/library/dn568101.aspx)
-* [Indicazioni sul partizionamento del calcolo](http://msdn.microsoft.com/library/dn589773.aspx)
-* [Modello di consolidamento delle risorse di calcolo](http://msdn.microsoft.com/library/dn589778.aspx)
-* [Modello gatekeeper](http://msdn.microsoft.com/library/dn589793.aspx)
-* [Modello di designazione leader](http://msdn.microsoft.com/library/dn568104.aspx)
-* [Modelli di pipe e filtri](http://msdn.microsoft.com/library/dn568100.aspx)
-* [Modello di coda di priorità](http://msdn.microsoft.com/library/dn589794.aspx)
-* [Modello di livellamento del carico basato sulle code](http://msdn.microsoft.com/library/dn589783.aspx)
-* [Modello di supervisione agente di pianificazione](http://msdn.microsoft.com/library/dn589780.aspx)
+* [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx)
+* [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx)
+* [Modello di transazioni di compensazione](../patterns/compensating-transaction.md)
+* [Modello di consumer concorrenti](../patterns/competing-consumers.md)
+* [Indicazioni sul partizionamento del calcolo](https://msdn.microsoft.com/library/dn589773.aspx)
+* [Modello di consolidamento delle risorse di calcolo](https://msdn.microsoft.com/library/dn589778.aspx)
+* [Modello gatekeeper](../patterns/gatekeeper.md)
+* [Modello di designazione leader](../patterns/leader-election.md)
+* [Modelli di pipe e filtri](../patterns/pipes-and-filters.md)
+* [Modello di coda di priorità](../patterns/priority-queue.md)
+* [Modello di livellamento del carico basato sulle code](../patterns/queue-based-load-leveling.md)
+* [Modello di supervisione agente di pianificazione](../patterns/scheduler-agent-supervisor.md)
 
 ## <a name="more-information"></a>Altre informazioni
-* [Scalabilità delle applicazioni Azure con ruoli di lavoro](http://msdn.microsoft.com/library/hh534484.aspx#sec8)
-* [Esecuzione di attività in background](http://msdn.microsoft.com/library/ff803365.aspx)
-* [Ciclo di vita di avvio del ruolo di Azure](http://blog.syntaxc4.net/post/2011/04/13/windows-azure-role-startup-life-cycle.aspx) (post di blog)
-* [Ciclo di vita del ruolo di Servizi cloud di Azure](http://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (video)
+* [Esecuzione di attività in background](https://msdn.microsoft.com/library/ff803365.aspx)
+* [Ciclo di vita del ruolo di Servizi cloud di Azure](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (video)
 * [Che cos'è Azure WebJobs SDK](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
 * [Eseguire attività in background con Processi Web](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
 * [Analogie e differenze tra le code di Azure e le code del bus di servizio](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)

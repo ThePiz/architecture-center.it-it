@@ -5,14 +5,14 @@ author: tracsman
 manager: rossort
 tags: azure-resource-manager
 ms.service: virtual-network
-ms.date: 04/3/2018
+ms.date: 09/24/2018
 ms.author: jonor
-ms.openlocfilehash: 2dbbad3dd8d1a45b94bb4e265d306815d1f5242c
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 61b8e8347fb54e95dcf1bff959e01ef00ecee189
+ms.sourcegitcommit: 5d1ee2acb5beb2afea19bcc0cef34655dc70e372
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329913"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48812526"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Data center virtuale di Azure: una prospettiva di rete
 
@@ -44,7 +44,7 @@ Il data center virtuale consente alle aziende di spostare carichi di lavoro e ap
 -   Implementazione di requisiti di sicurezza e accesso condivisi o centralizzati nei carichi di lavoro
 -   Combinazione di DevOps e IT centralizzato in modo appropriato per un'organizzazione di grandi dimensioni
 
-La chiave per usufruire dei vantaggi del data center virtuale è una topologia centralizzata (hub-spoke) con una combinazione di funzionalità di Azure: [rete virtuale di Azure][VNet], [gruppi di sicurezza di rete][NSG], [peering reti virtuali][VNetPeering], [route definite dall'utente][UDR] e gestione delle identità di Azure con [controllo degli accessi in base al ruolo][RBAC].
+La chiave per usufruire dei vantaggi del data center virtuale è una topologia centralizzata (hub-spoke) con una combinazione di funzionalità di Azure: [rete virtuale di Azure][VNet], [gruppi di sicurezza di rete][NSG], [Peering reti virtuali][VNetPeering], [route definite dall'utente][UDR] e gestione delle identità di Azure con [controllo degli accessi in base al ruolo][RBAC] ed eventualmente [Firewall di Azure][AzFW], [DNS di Azure][DNS], [servizio Frontdoor di Azure][AFD] e [rete WAN virtuale di Azure][vWAN].
 
 ## <a name="who-needs-a-virtual-data-center"></a>A chi serve un data center virtuale?
 I clienti di Azure che hanno la necessità di spostare un certo numero di carichi di lavoro in Azure possono trarre vantaggio dall'uso di risorse comuni. A seconda della grandezza, anche le singole applicazioni possono trarre vantaggio dall'uso dei modelli e dei componenti usati per creare un data center virtuale.
@@ -66,11 +66,11 @@ L'identità e i servizi directory sono aspetti chiave di tutti i data center, si
 
 Le organizzazioni di grandi dimensioni hanno la necessità di definire un processo di gestione delle identità che descriva la gestione delle singole identità, l'autenticazione, l'autorizzazione, i ruoli e i privilegi all'interno o attraverso il data center virtuale. Gli obiettivi di questo processo saranno da un lato l'aumento della sicurezza e della produttività e dall'altro la riduzione dei costi, dei tempi di inattività e delle attività manuali ripetitive.
 
-Le aziende/organizzazioni possono richiedere una combinazione complessa di servizi per le diverse line-of-business (LOB) e i dipendenti spesso hanno ruoli diversi a seconda del progetto in cui sono coinvolti. Un data center virtuale richiede una buona cooperazione tra i diversi team, ognuno con definizioni dei ruoli specifiche, in modo che i sistemi vengano eseguiti con una governance efficiente. L'insieme di responsabilità, accesso e diritti può essere notevolmente complesso. La gestione delle identità nel data center virtuale viene implementata tramite [*Azure Active Directory* (AAD)][AAD] e il controllo degli accessi in base al ruolo.
+Le aziende/organizzazioni possono richiedere una combinazione complessa di servizi per le diverse line-of-business (LOB) e i dipendenti spesso hanno ruoli diversi a seconda del progetto in cui sono coinvolti. Un data center virtuale richiede una buona cooperazione tra i diversi team, ognuno con definizioni dei ruoli specifiche, in modo che i sistemi vengano eseguiti con una governance efficiente. L'insieme di responsabilità, accesso e diritti può essere notevolmente complesso. La gestione delle identità nel data center virtuale viene implementata tramite [*Azure Active Directory* (Azure AD)][AAD] e il controllo degli accessi in base al ruolo.
 
 Un servizio directory è un'infrastruttura di informazioni condivisa per individuare, gestire, amministrare e organizzare quotidianamente elementi e risorse di rete. Queste risorse possono includere volumi, cartelle, file, stampanti, utenti, gruppi, dispositivi e altri oggetti. Ogni risorsa presente nella rete è considerata un oggetto dal server di directory. Le informazioni su una risorsa vengono archiviate come raccolta di attributi associati a tale risorsa o oggetto.
 
-Tutti i servizi aziendali online di Microsoft si basano su Azure Active Directory (AAD) per le esigenze di gestione delle identità e degli accessi. Azure Active Directory è una soluzione cloud completa di gestione di identità e accessi ad alta disponibilità che riunisce servizi di directory di base, governance delle identità avanzata e gestione dell'accesso alle applicazioni. AAD può essere integrato con Active Directory locale per abilitare Single Sign-On per tutte le applicazioni basate sul cloud e ospitate in locale. Gli attributi utente di Active Directory locale possono essere automaticamente sincronizzati con AAD.
+Tutti i servizi aziendali online di Microsoft si basano su Azure Active Directory (Azure AD) per le esigenze di gestione delle identità e degli accessi. Azure Active Directory è una soluzione cloud completa di gestione di identità e accessi ad alta disponibilità che riunisce servizi di directory di base, governance delle identità avanzata e gestione dell'accesso alle applicazioni. Azure AD può essere integrato con Active Directory locale per abilitare Single Sign-On per tutte le applicazioni basate sul cloud e ospitate in locale. Gli attributi utente di Active Directory locale possono essere automaticamente sincronizzati con Azure AD.
 
 Non è necessario un singolo amministratore globale per assegnare tutte le autorizzazioni in un data center virtuale. Ogni specifico reparto (o gruppo di utenti o servizi nel servizio directory) può invece avere le autorizzazioni necessarie per gestire le proprie risorse nel data center virtuale. La struttura delle autorizzazioni deve essere ben bilanciata. Troppe autorizzazioni possono ostacolare le prestazioni, mentre autorizzazioni non sufficienti o approssimative possono aumentare i rischi per la sicurezza. Il controllo degli accessi in base al ruolo di Azure aiuta a risolvere questo problema offrendo la gestione specifica degli accessi per le risorse del data center virtuale.
 
@@ -82,15 +82,17 @@ L'infrastruttura di Azure alloca le risorse di infrastruttura ai carichi di lavo
 #### <a name="connectivity-to-the-cloud"></a>Connettività al cloud
 Il data center virtuale richiede connettività con le reti esterne per offrire i servizi a clienti, partner e/o utenti interni, quindi in genere è necessaria la connettività non solo a Internet, ma anche alle reti e ai data center locali.
 
-I clienti possono creare criteri di sicurezza, per controllare quali specifici servizi ospitati del data center virtuale, e in che modo, siano accessibili a/da Internet, usando le appliance virtuali di rete (con filtri e ispezione del traffico), i criteri di routing personalizzati e i filtri di rete (routing definito dall'utente e gruppi di sicurezza di rete).
+I clienti possono creare criteri di sicurezza per controllare quali specifici servizi ospitati del data center virtuale siano accessibili a/da Internet e in che modo, usando [Firewall di Azure][AzFW] o le appliance virtuali di rete, i criteri di routing personalizzati e i filtri di rete ([routing definito dall'utente][UDR] e [gruppi di sicurezza di rete][NSG]). È consigliabile che tutte le risorse con connessione Internet siano protette anche tramite la [**protezione DDOS di Azure Standard**][DDOS].
 
 Le organizzazioni spesso hanno la necessità di connettere i data center virtuali a data center o altre risorse locali. La connettività tra Azure e le reti locali è quindi un aspetto fondamentale della progettazione di un'architettura efficace. Le organizzazioni possono creare un'interconnessione tra il data center virtuale e le risorse locali in Azure in due modi diversi: transito sulla rete Internet e/o connessioni dirette private.
 
 Una [**VPN da sito a sito di Azure**][VPN] è un servizio di interconnessione tramite Internet tra le reti locali e il data center virtuale, stabilito tramite connessioni crittografate sicure (tunnel IPsec/IKE). La connessione da sito a sito di Azure è flessibile, veloce da creare e non richiede ulteriore approvvigionamento, perché tutte le connessioni vengono stabilite tramite Internet.
 
-[**ExpressRoute**][ExR] è un servizio di connettività di Azure che consente di creare connessioni private tra il data center virtuale e le reti locali. Le connessioni ExpressRoute non sfruttano la rete Internet pubblica e offrono un livello di sicurezza superiore, maggiore affidabilità e velocità più elevate (fino a 10 Gbps), oltre a una latenza coerente. ExpressRoute è molto utile per i data center virtuali perché i clienti di ExpressRoute possono sfruttare i vantaggi offerti dalle regole di conformità associate alle connessioni private.
+Per un numero elevato di connessioni VPN, la [**rete WAN virtuale di Azure**][vWAN] è un servizio di rete che offre connettività tra succursali ottimizzata e automatizzata tramite Azure. La rete WAN virtuale consente di connettere e configurare i dispositivi delle succursali per la comunicazione con Azure. Questa operazione può essere eseguita manualmente oppure usando i dispositivi di provider preferiti tramite un partner di rete WAN virtuale. L'uso di dispositivi di provider preferiti consente la facilità d'uso, semplifica le operazioni di connettività e agevola la gestione della configurazione. Il dashboard predefinito della rete WAN di Azure offre informazioni dettagliate immediate per la risoluzione dei problemi, che consentono di risparmiare tempo e permette di visualizzare con facilità la connettività da sito a sito su larga scala.
 
-Per distribuire le connessioni ExpressRoute, è necessario un provider di servizi ExpressRoute. I clienti che devono iniziare subito di solito usano prima una VPN da sito a sito per stabilire la connettività tra il data center virtuale e le risorse locali e quindi eseguono la migrazione alla connessione ExpressRoute.
+[**ExpressRoute**][ExR] è un servizio di connettività di Azure che consente di creare connessioni private tra il data center virtuale e le reti locali. Le connessioni ExpressRoute non sfruttano la rete Internet pubblica e offrono un livello di sicurezza superiore, maggiore affidabilità e velocità più elevate (fino a 10 Gbps), oltre a una latenza coerente. ExpressRoute è molto utile per i data center virtuali perché i clienti di ExpressRoute possono sfruttare i vantaggi offerti dalle regole di conformità associate alle connessioni private. Con [ExpressRoute Direct][ExRD] è possibile connettersi direttamente ai router Microsoft a 100 Gbps per i clienti con maggiori esigenze di larghezza di banda.
+
+Per distribuire le connessioni ExpressRoute, in genere è necessario un provider di servizi ExpressRoute. I clienti che devono iniziare subito di solito usano prima una VPN da sito a sito per stabilire la connettività tra il data center virtuale e le risorse locali e quindi eseguono la migrazione alla connessione ExpressRoute quando l'interconnessione fisica con il provider di servizi è completa.
 
 #### <a name="connectivity-within-the-cloud"></a>*Connettività all'interno del cloud*
 Le [reti virtuali][VNet] e il [peering reti virtuali][VNetPeering] sono i servizi di connettività di rete di base in un data center virtuale. Una rete virtuale garantisce un limite naturale di isolamento per le risorse del data center virtuale e il peering reti virtuali consente la comunicazione tra reti virtuali diverse nella stessa area di Azure o anche in diverse aree. Il controllo del traffico in una rete virtuale e tra reti virtuali deve rispettare un set di regole di sicurezza specificate tramite elenchi di controllo di accesso ([gruppo di sicurezza di rete][NSG]), [appliance virtuale di rete][NVA] e tabelle di routing personalizzate ([routing definito dall'utente][UDR]).
@@ -107,7 +109,7 @@ L'hub è la zona centrale che controlla e ispeziona il traffico in ingresso e/o 
 L'hub contiene i componenti dei servizi comuni utilizzati dagli spoke. Ecco alcuni esempi tipici di servizi centrali comuni:
 
 -   Infrastruttura di Windows Active Directory (con il servizio AD FS correlato) necessaria per l'autenticazione utente delle terze parti che accedono da reti non attendibili prima di ottenere l'accesso ai carichi di lavoro nello spoke
--   Servizio DNS per risolvere la denominazione per il carico di lavoro negli spoke, per accedere alle risorse in locale e in Internet
+-   Servizio DNS per risolvere la denominazione per il carico di lavoro negli spoke, per accedere alle risorse in locale e in Internet se non viene usato [DNS di Azure][DNS]
 -   Infrastruttura PKI, per implementare Single Sign-On nei carichi di lavoro
 -   Controllo dei flussi (TCP/UDP) tra gli spoke e Internet
 -   Controllo dei flusso tra lo spoke e la zona locale
@@ -120,7 +122,7 @@ Il ruolo di ogni spoke può essere quello di ospitare tipi diversi di carichi di
 #### <a name="subscription-limits-and-multiple-hubs"></a>Limiti della sottoscrizione e hub multipli
 In Azure ogni componente, indipendentemente dal tipo, viene distribuito in una sottoscrizione di Azure. L'isolamento dei componenti di Azure in diverse sottoscrizioni di Azure può soddisfare i requisiti di diverse line-of-business, come la configurazione di livelli differenziati di accesso e autorizzazione.
 
-Un singolo data center virtuale è ridimensionabile fino a un numero elevato di spoke, anche se, con ogni sistema IT, esistono limiti per le piattaforme. La distribuzione dell'hub è associata a una specifica sottoscrizione di Azure, che ha restrizioni e limiti, ad esempio un numero massimo di peering reti virtuali. Per informazioni dettagliate, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi][Limits]. Nei casi in cui i limiti possono costituire un problema, è possibile aumentare ulteriormente le prestazioni per l'architettura estendendo il modello da un singolo hub-spoke a un cluster di hub e spoke. Più hub in una o più aree di Azure possono essere interconnessi usando Peering reti virtuali, Express Route o una VPN da sito a sito.
+Un singolo data center virtuale è ridimensionabile fino a un numero elevato di spoke, anche se, con ogni sistema IT, esistono limiti per le piattaforme. La distribuzione dell'hub è associata a una specifica sottoscrizione di Azure, che ha restrizioni e limiti, ad esempio un numero massimo di peering reti virtuali. Per informazioni dettagliate, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi][Limits]. Nei casi in cui i limiti possono costituire un problema, è possibile aumentare ulteriormente le prestazioni per l'architettura estendendo il modello da un singolo hub-spoke a un cluster di hub e spoke. Più hub in una o più aree di Azure possono essere interconnessi usando Peering reti virtuali, ExpressRoute, la rete WAN virtuale o una VPN da sito a sito.
 
 [![2]][2]
 
@@ -187,7 +189,7 @@ I componenti dell'infrastruttura contengono le funzionalità seguenti:
 -   [**Rete virtuale**][VPN]. Le reti virtuali sono uno dei componenti principali di un data center virtuale e consentono di creare un limite di isolamento del traffico nella piattaforma Azure. Una rete virtuale è costituita da uno o più segmenti di rete virtuale, ognuno con un prefisso di rete IP specifico (una subnet). La rete virtuale definisce un'area perimetrale interna in cui le macchine virtuali IaaS e i servizi PaaS possono stabilire comunicazioni private. Le VM (e i servizi PaaS) in una rete virtuale non possono comunicare direttamente con le VM (e i servizi PaaS) in una rete virtuale diversa, anche se entrambe le reti virtuali vengono create dallo stesso cliente e nella stessa sottoscrizione. L'isolamento è una proprietà essenziale che assicura che le macchine virtuali e le comunicazioni dei clienti rimangano private entro una rete virtuale.
 -   [**Routing definito dall'utente**][UDR]. Per impostazione predefinita, il traffico in una rete virtuale viene instradato in base alla tabella di routing di sistema. Una route definita dall'utente è una tabella di routing personalizzata che gli amministratori di rete possono associare a una o più subnet per sovrascrivere il comportamento della tabella di routing di sistema e definire un percorso di comunicazione in una rete virtuale. La presenza di route definite dall'utente garantisce che il traffico in uscita dallo spoke transiti da VM personalizzate e/o appliance virtuali di rete e dai servizi di bilanciamento del carico presenti nell'hub e negli spoke.
 -   [**Gruppo di sicurezza di rete**][NSG]. Un gruppo di sicurezza di rete è un elenco di regole di sicurezza che funge da filtro del traffico in origini IP, destinazione IP, protocolli, porte di origine IP e porte di destinazione IP. Il gruppo di sicurezza di rete può essere applicato a una subnet, a una scheda di interfaccia di rete virtuale associata una VM di Azure o a entrambe. I gruppi di sicurezza di rete sono essenziali per implementare un controllo di flusso corretto nell'hub e negli spoke. Il livello di sicurezza offerto dal gruppo di sicurezza di rete dipende da quali porte si aprono e per quale scopo. I clienti devono applicare filtri aggiuntivi per ogni VM con firewall basati su host, ad esempio IPtables o Windows Firewall.
--   [**DNS**][DNS]. La risoluzione dei nomi delle risorse nelle reti virtuali di un data center virtuale viene fornita tramite DNS. Azure offre servizi DNS per la risoluzione dei nomi [DNS] sia [pubblica] che [privata] [PrivateDNS]. Le zone private consentono la risoluzione dei nomi sia all'interno di una rete virtuale che tra diverse reti virtuali. È possibile avere zone private che si estendono non solo su più reti virtuali nella stessa area, ma anche in diverse aree e sottoscrizioni. Per la risoluzione pubblica, DNS di Azure offre un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
+-   [**DNS**][DNS]. La risoluzione dei nomi delle risorse nelle reti virtuali di un data center virtuale viene fornita tramite DNS. Azure offre servizi DNS per la risoluzione dei nomi sia [pubblica][DNS] che [privata][PrivateDNS]. Le zone private consentono la risoluzione dei nomi sia all'interno di una rete virtuale che tra diverse reti virtuali. È possibile avere zone private che si estendono non solo su più reti virtuali nella stessa area, ma anche in diverse aree e sottoscrizioni. Per la risoluzione pubblica, DNS di Azure offre un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 -   [**Sottoscrizione**][SubMgmt] e [**gestione dei gruppi di risorse**][RGMgmt]. Una sottoscrizione definisce un limite naturale per creare più gruppi di risorse in Azure. Le risorse in una sottoscrizione vengono assemblate in contenitori logici denominati gruppi di risorse. Il gruppo di risorse rappresenta un gruppo logico per organizzare le risorse di un data center virtuale.
 -   [**Controllo degli accessi in base al ruolo**][RBAC]. Tramite il controllo degli accessi in base al ruolo, è possibile eseguire il mapping dei ruoli aziendali ai diritti di accesso a risorse di Azure specifiche e consentire agli utenti solo un determinato subset di azioni. Con il controllo degli accessi in base al ruolo, è possibile concedere l'accesso assegnando i ruoli appropriati a utenti, gruppi e applicazioni nell'ambito pertinente. L'ambito di un'assegnazione di ruolo può essere una sottoscrizione di Azure, un gruppo di risorse o una singola risorsa. Il controllo degli accessi in base al ruolo consente l'ereditarietà delle autorizzazioni. Un ruolo assegnato a un ambito padre concede anche l'accesso agli elementi figlio contenuti al suo interno. Usando il controllo degli accessi in base al ruolo, è possibile separare i compiti e concedere agli utenti solo la quantità di accesso di cui hanno bisogno per svolgere il proprio lavoro. Ad esempio, usare il controllo degli accessi in base al ruolo per consentire a un dipendente di gestire le macchine virtuali in una sottoscrizione, mentre un altro utente può gestire i database SQL della stessa sottoscrizione.
 -   [**Peering reti virtuali**][VNetPeering]. La funzionalità fondamentale usata per creare l'infrastruttura di un data center virtuale è il peering reti virtuali, un meccanismo che connette due reti virtuali nella stessa area tramite la rete di data center di Azure o usando il backbone di Azure a livello mondiale tra diverse aree.
@@ -204,36 +206,42 @@ I componenti di tipo rete perimetrale offrono le funzionalità seguenti:
 -   [Bilanciamento del carico][ALB]
 -   [Gateway applicazione][AppGW] / [WAF][WAF]
 -   [IP pubblici][PIP]
+-   [Frontdoor di Azure][AFD]
+-   [Firewall di Azure][AzFW]
 
 I team dedicati all'IT centrale e alla sicurezza hanno in genere la responsabilità della definizione dei requisiti e delle operazioni delle reti perimetrali.
 
 [![7]][7]
 
-Il diagramma precedente illustra l'imposizione di due perimetri con accesso a Internet e alla rete locale, entrambi residenti nell'hub. In un hub singolo la rete perimetrale verso Internet può aumentare le prestazioni per supportare un numero elevato di line-of-business, usando più farm di Web application firewall (WAF) e/o di firewall.
+Il diagramma precedente illustra l'imposizione di due perimetri con accesso a Internet e alla rete locale, entrambi residenti negli hub della rete perimetrale e della rete WAN virtuale. Nell'hub della rete perimetrale la rete perimetrale verso Internet può aumentare le prestazioni per supportare un numero elevato di applicazioni line-of-business, usando più farm di web application firewall (WAF) e/o di Firewall di Azure. Nell'hub della rete WAN virtuale si ottiene una connettività altamente scalabile da ramo a ramo e da ramo ad Azure tramite la VPN o ExpressRoute a seconda delle esigenze.
 
 [**Reti virtuali**][VNet] L'hub si basa in genere su una rete virtuale con più subnet per ospitare i diversi tipi di servizi che filtrano ed esaminano il traffico verso o da Internet tramite appliance virtuali di rete, WAF e gateway applicazione di Azure.
 
 [**Routing definito dall'utente**][UDR] Usando il routing definito dall'utente, i clienti possono distribuire firewall, IDS/IPS e altre appliance virtuali e instradare il traffico di rete attraverso queste appliance di sicurezza per l'applicazione dei criteri relativi ai limiti di sicurezza, il controllo e l'ispezione. Le route definite dall'utente possono essere create sia nell'hub che negli spoke per garantire che il traffico transiti da specifiche VM personalizzate, appliance virtuali di rete e servizi di bilanciamento del carico usati dal data center virtuale. Per garantire che il traffico generato dalle VM residenti nello spoke passi alle appliance virtuali corrette, una route definita dall'utente deve essere configurata nelle subnet dello spoke impostando l'indirizzo IP front-end del servizio di bilanciamento del carico interno come hop successivo. Il servizio di bilanciamento del carico interno distribuisce il traffico interno alle appliance virtuali (pool back-end di bilanciamento del carico).
 
-[![8]][8]
+[**Firewall di Azure**][AzFW] è un servizio di sicurezza di rete gestito basato sul cloud che consente di proteggere le risorse della rete virtuale di Azure. È un firewall con stato completo come servizio con disponibilità elevata incorporata e scalabilità del cloud senza restrizioni. È possibile creare, applicare e registrare criteri di connettività di applicazione e di rete in modo centralizzato tra le sottoscrizioni e le reti virtuali. Firewall di Azure usa un indirizzo IP pubblico statico per le risorse della rete virtuale consentendo ai firewall esterni di identificare il traffico proveniente dalla rete virtuale. Il servizio è completamente integrato con Monitoraggio di Azure per la registrazione e l'analisi.
 
-[**Appliance virtuali di rete**][NVA] Nell'hub la rete perimetrale con accesso a Internet in genere viene gestita tramite una farm di firewall e/o di Web application firewall (WAF).
+[**Appliance virtuali di rete**][NVA] Nell'hub la rete perimetrale con accesso a Internet in genere viene gestita tramite Firewall di Azure o una farm di firewall e/o di web application firewall (WAF).
 
 Line-of-business diverse usano in genere numerose applicazioni Web che tendono a essere soggette a svariate vulnerabilità e potenziali exploit. I Web application firewall sono uno speciale tipo di prodotto usato per rilevare gli attacchi contro le applicazioni Web (HTTP/HTTPS) in modo più approfondito di quanto farebbe un firewall generico. Rispetto alla tradizionale tecnologia firewall, i Web application firewall hanno un set di funzionalità specifiche per proteggere i server Web interni dalle minacce.
 
-Una farm di firewall è un gruppo di firewall che operano in tandem sotto una comune amministrazione, con un set di regole di sicurezza per proteggere i carichi di lavoro ospitati negli spoke e controllare l'accesso alle reti locali. Una farm di firewall ha un software meno specializzato rispetto a un WAF, ma ha un ampio ambito dell'applicazione per filtrare ed esaminare ogni tipo di traffico in uscita o in ingresso. Le farm di firewall in genere vengono implementate in Azure tramite appliance virtuali di rete, disponibili in Azure Marketplace.
+Firewall di Azure o una farm di firewall delle appliance virtuali di rete usano un piano di amministrazione comune, con un set di regole di sicurezza per proteggere i carichi di lavoro ospitati negli spoke e controllare l'accesso alle reti locali. Firewall di Azure ha incorporata la scalabilità, mentre i firewall delle appliance virtuali di rete possono essere ridimensionati manualmente dietro un servizio di bilanciamento del carico. In genere, una farm di firewall ha un software meno specializzato rispetto a un WAF, ma ha un ambito dell'applicazione più ampio per filtrare ed esaminare ogni tipo di traffico in uscita o in ingresso. Se viene usato un approccio basato sulle appliance virtuali di rete, queste ultime sono disponibili e possono essere distribuite da Azure Marketplace.
 
-È consigliabile usare un set di appliance virtuali di rete per il traffico che ha origine in Internet e un altro per il traffico che ha origine in locale. L'uso di un solo set di appliance virtuali di rete per entrambi i tipi di traffico è un rischio per la sicurezza, perché non viene creato un perimetro di sicurezza tra i due set di traffico. L'uso di appliance virtuali di rete separate riduce la complessità del controllo delle regole di sicurezza e indica chiaramente la corrispondenza tra le regole e le richieste di rete in ingresso.
+È consigliabile usare un set di firewall di Azure (o di appliance virtuali di rete) per il traffico che ha origine in Internet e un altro per il traffico che ha origine in locale. L'uso di un solo set di firewall per entrambi i tipi di traffico è un rischio per la sicurezza, perché non viene creato un perimetro di sicurezza tra i due set di traffico. L'uso di livelli di firewall separati riduce la complessità del controllo delle regole di sicurezza e indica chiaramente la corrispondenza tra le regole e le richieste di rete in ingresso.
 
-La maggior parte delle grandi imprese gestisce più domini. Il servizio DNS di Azure può essere usato per ospitare i record DNS per un particolare dominio. Ad esempio, l'indirizzo IP virtuale (indirizzo VIP) del servizio di bilanciamento del carico esterno di Azure (o dei Web application firewall) può essere registrato nel record A di un record DNS di Azure.
+La maggior parte delle grandi imprese gestisce più domini. Il servizio [**DNS di Azure**][DNS] può essere usato per ospitare i record DNS per un particolare dominio. Ad esempio, l'indirizzo IP virtuale (indirizzo VIP) del servizio di bilanciamento del carico esterno di Azure (o dei Web application firewall) può essere registrato nel record A di un record DNS di Azure. [**DNS privato**][PrivateDNS] è disponibile anche per la gestione di spazi di indirizzi privati all'interno delle reti virtuali.
 
 [**Azure Load Balancer**][ALB] Azure Load Balancer offre un servizio a disponibilità elevata di livello 4 (TCP, UDP), che consente di distribuire il traffico in ingresso tra le istanze del servizio definite in set con carico bilanciato. Il traffico inviato al servizio di bilanciamento del carico dagli endpoint front-end (endpoint IP pubblici o endpoint IP privati) può essere ridistribuito con o senza conversione degli indirizzi in un set di pool di indirizzi IP back-end (ad esempio, appliance virtuali di rete o VM).
 
 Azure Load Balancer può anche esaminare l'integrità delle varie istanze del server e, quando un probe non riesce a rispondere al servizio di bilanciamento del carico, arresta l'invio del traffico all'istanza non integra. In un data center virtuale è presente un servizio di bilanciamento del carico esterno nell'hub (ad esempio, per bilanciare il traffico alle appliance virtuali di rete) e negli spoke (per eseguire attività come il bilanciamento del traffico tra le diverse VM di un'applicazione multilivello).
 
+Il [**servizio Frontdoor di Azure**][AFD] (AFD) è un servizio Microsoft a scalabilità e disponibilità elevata di piattaforma di accelerazione dell'applicazione Web, bilanciamento del carico HTTP globale, protezione dell'applicazione e rete per la distribuzione di contenuti. In esecuzione in oltre 100 posizioni sul perimetro della rete globale Microsoft, il servizio Frontdoor di Azure consente di compilare, gestire e scalare orizzontalmente l'applicazione Web dinamica e il contenuto statico. Il servizio Frontdoor di Azure assicura all'applicazione prestazioni per l'utente finale di livello superiore, automazione della manutenzione regionale unificata, automazione della continuità aziendale e ripristino di emergenza, informazioni client/utente unificate, memorizzazione nella cache e informazioni dettagliate sul servizio. La piattaforma garantisce prestazioni, affidabilità e contratti di servizio di supporto tecnico, oltre a certificazioni di conformità e procedure di sicurezza controllabili sviluppate, gestite e supportate in modo nativo da Azure.
+
 [**Gateway applicazione**][AppGW] Il gateway applicazione di Microsoft Azure è un'appliance virtuale dedicata che offre un servizio di controller per la distribuzione di applicazioni con varie funzionalità di bilanciamento del carico di livello 7 per l'applicazione. Consente di ottimizzare la produttività delle Web farm eseguendo l'offload al gateway applicazione della terminazione SSL con utilizzo elevato di CPU. Offre anche altre funzionalità di routing di livello 7, tra cui la distribuzione round robin del traffico in ingresso, l'affinità di sessione basata su cookie, il routing basato su percorso URL e la possibilità di ospitare più siti Web dietro un unico gateway applicazione. Nello SKU WAF del gateway applicazione è incluso anche un Web application firewall (WAF). Questo SKU offre alle applicazioni Web la protezione da exploit e vulnerabilità Web comuni. Il gateway applicazione può essere configurato come gateway con connessione Internet, come gateway solo interno o come una combinazione di queste due opzioni. 
 
 [**IP pubblici**][PIP] Alcune funzionalità di Azure consentono di associare gli endpoint di servizio a un indirizzo IP pubblico che consente alla risorsa di essere accessibile da Internet. Questo endpoint usa il processo NAT (Network Address Translation) per instradare il traffico fino all'indirizzo e alla porta interni nella rete virtuale di Azure. È questa la modalità primaria che consente al traffico esterno di passare attraverso la rete virtuale. Gli indirizzi IP pubblici possono essere configurati per determinare il traffico autorizzato a passare e come/dove viene convertito nella rete virtuale.
+
+[**Protezione DDoS di Azure Standard**][DDOS] offre funzionalità aggiuntive di mitigazione tramite il [servizio Basic][DDOS] ottimizzate in modo specifico per le risorse di Rete virtuale di Microsoft Azure. Protezione DDoS Standard è semplice da abilitare e non richiede alcuna modifica alle applicazioni. I criteri di protezione sono ottimizzati tramite il monitoraggio del traffico dedicato e algoritmi di apprendimento automatico. I criteri vengono applicati agli indirizzi IP pubblici associati alle risorse distribuite nelle reti virtuali, ad esempio le istanze di Azure Load Balancer, del gateway applicazione di Azure e di Azure Service Fabric. La telemetria in tempo reale è disponibile tramite le viste di Monitoraggio di Azure durante un attacco e come informazione cronologica. È possibile aggiungere protezione al livello dell'applicazione tramite il web application firewall del gateway applicazione di Azure. La protezione viene fornita per gli indirizzi IP pubblici di Azure IPv4.
 
 #### <a name="component-type-monitoring"></a>Tipo di componente: monitoraggio
 I componenti di monitoraggio forniscono visibilità e avvisi da tutti gli altri tipi di componenti. Tutti i team devono avere accesso al monitoraggio per i componenti e i servizi a cui hanno accesso. Se è presente un help desk centralizzato o team operativi, questi dovranno avere accesso integrato ai dati forniti da tali componenti.
@@ -260,6 +268,20 @@ Tutti i log possono essere archiviati negli account di archiviazione di Azure a 
 Le grandi imprese devono avere già acquisito un framework standard per il monitoraggio dei sistemi locali e possono estendere tale framework per integrare i log generati dalle distribuzioni cloud. Per le organizzazioni che vogliono tenere tutte le registrazioni nel cloud, [Log Analytics][../log-analytics/log-analytics-overview .md] è la scelta ideale. Poiché Log Analytics viene implementato come servizio basato sul cloud, è possibile renderlo operativo rapidamente con un investimento minimo nei servizi di infrastruttura. Log Analytics può anche essere integrato con i componenti di System Center, come System Center Operations Manager, per estendere al cloud gli investimenti per la gestione già esistenti.
 
 Log Analytics è un servizio di Azure che consente di raccogliere, correlare, cercare e modificare i dati dei log e delle prestazioni generati da sistemi operativi, applicazioni e componenti cloud dell'infrastruttura. Fornisce ai clienti informazioni operative in tempo reale usando la ricerca integrata e i dashboard personalizzati per analizzare tutti i record in tutti i carichi di lavoro di un data center virtuale.
+
+[Azure Network Watcher][NetWatch] fornisce gli strumenti per il monitoraggio, la diagnostica, la visualizzazione delle metriche e l'abilitazione o la disabilitazione dei log per le risorse in una rete virtuale di Azure. È un servizio con più sfaccettature che consente le funzionalità seguenti e altro ancora:
+-    Monitorare la comunicazione tra una macchina virtuale e un endpoint
+-    Visualizzare le risorse in una rete virtuale e le relative relazioni
+-    Diagnosticare i problemi di filtro del traffico di rete da o verso una macchina virtuale
+-    Diagnosticare i problemi di routing di rete da una macchina virtuale
+-    Diagnosticare i problemi delle connessioni in uscita da una macchina virtuale
+-    Acquisire i pacchetti da e verso una macchina virtuale
+-    Diagnosticare i problemi relativi a un gateway di rete virtuale e alle connessioni di Azure
+-    Determinare le latenze relative tra aree di Azure e provider di servizi Internet
+-    Visualizzare le regole di sicurezza per un'interfaccia di rete
+-    Visualizzare le metriche di rete
+-    Analizzare il traffico da o verso un gruppo di sicurezza di rete
+-    Visualizzare i log di diagnostica per le risorse di rete
 
 La soluzione [Monitoraggio prestazioni rete][NPM] all'interno di OMS può fornire dettagliate informazioni end-to-end sulla rete, tra cui una singola visualizzazione delle reti di Azure e delle reti locali, con monitoraggi specifici per ExpressRoute e servizi pubblici.
 
@@ -328,17 +350,15 @@ In questo documento sono state illustrate le funzionalità seguenti. Per altre i
 | | | |
 |-|-|-|
 |Funzionalità di rete|Bilanciamento del carico.|Connettività|
-|[Reti virtuali di Azure][VNet]</br>[Gruppi di sicurezza di rete][NSG]</br>[Log per i gruppi di sicurezza di rete][NSGLog]</br>[Routing definito dall'utente][UDR]</br>[Network Virtual Appliances][NVA] (Appliance virtuali di rete)</br>[Indirizzi IP pubblici][PIP]</br>[DNS]|[Azure Load Balancer (L3) ][ALB]</br>[Gateway applicazione (L7) ][AppGW]</br>[Web application firewall][WAF]</br>[Gestione traffico di Azure][TM] |[Peering reti virtuali][VNetPeering]</br>[Rete privata virtuale][VPN]</br>[ExpressRoute][ExR]
+|[Reti virtuali di Azure][VNet]</br>[Gruppi di sicurezza di rete][NSG]</br>[Log per i gruppi di sicurezza di rete][NSGLog]</br>[Routing definito dall'utente][UDR]</br>[Network Virtual Appliances][NVA] (Appliance virtuali di rete)</br>[Indirizzi IP pubblici][PIP]</br>[Azure DDOS][DDOS]</br>[Firewall di Azure][AzFW]</br>[DNS di Azure][DNS]|[Frontdoor di Azure][AFD]</br>[Azure Load Balancer (L3) ][ALB]</br>[Gateway applicazione (L7) ][AppGW]</br>[Web application firewall][WAF]</br>[Gestione traffico di Azure][TM]</br></br></br></br></br> |[Peering reti virtuali][VNetPeering]</br>[Rete privata virtuale][VPN]</br>[Rete WAN virtuale][vWAN]</br>[ExpressRoute][ExR]</br>[ExpressRoute Direct][ExRD]</br></br></br></br></br>
 |Identità</br>|Monitoraggio</br>|Procedure consigliate</br>|
-|[Azure Active Directory][AAD]</br>[Multi-Factor Authentication][MFA]</br>[Controlli degli accessi in base ai ruoli][RBAC]</br>[Ruoli predefiniti AAD][Roles] |[Monitoraggio di Azure][Monitor]</br>[Log attività][ActLog]</br>[Log di diagnostica][DiagLog]</br>[Microsoft Operations Management Suite][OMS]</br>[Monitoraggio prestazioni rete][NPM]|[Procedure consigliate per le reti perimetrali][DMZ]</br>[Gestione sottoscrizioni][SubMgmt]</br>[Gestione di gruppi di risorse][RGMgmt]</br>[Limiti delle sottoscrizioni di Azure][Limits] |
+|[Azure Active Directory][AAD]</br>[Multi-Factor Authentication][MFA]</br>[Controlli degli accessi in base ai ruoli][RBAC]</br>[Ruoli predefiniti di Azure AD][Roles]</br></br></br> |[Network Watcher][NetWatch]</br>[Monitoraggio di Azure][Monitor]</br>[Log attività][ActLog]</br>[Log di diagnostica][DiagLog]</br>[Microsoft Operations Management Suite][OMS]</br>[Monitoraggio prestazioni rete][NPM]|[Procedure consigliate per le reti perimetrali][DMZ]</br>[Gestione sottoscrizioni][SubMgmt]</br>[Gestione di gruppi di risorse][RGMgmt]</br>[Limiti delle sottoscrizioni di Azure][Limits] </br></br></br>|
 |Altri servizi di Azure|
 |[App Web di Azure][WebApps]</br>[HDInsights (Hadoop) ][HDI]</br>[Hub eventi][EventHubs]</br>[Bus di servizio][ServiceBus]|
 
-
-
 ## <a name="next-steps"></a>Passaggi successivi
  - Esplorare il [peering reti virtuali][VNetPeering], la tecnologia fondamentale per le progettazioni di hub e spoke di un data center virtuale
- - Implementare [AAD][AAD] per iniziare l'esplorazione del [controllo degli accessi in base al ruolo][RBAC]
+ - Implementare [Azure AD][AAD] per iniziare l'esplorazione del [controllo degli accessi in base al ruolo][RBAC]
  - Sviluppare un modello di gestione della sottoscrizione e delle risorse per rispettare la struttura, i requisiti e i criteri dell'organizzazione. L'attività più importante è la pianificazione. Da un punto di vista pratico, è consigliabile pianificare riorganizzazioni, fusioni, nuove linee di prodotti e così via.
 
 <!--Image References-->
@@ -367,13 +387,18 @@ In questo documento sono state illustrate le funzionalità seguenti. Per altre i
 [MFA]: /azure/multi-factor-authentication/multi-factor-authentication
 [AAD]: /azure/active-directory/active-directory-whatis
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
-[ExR]: /azure/expressroute/expressroute-introduction 
+[ExR]: /azure/expressroute/expressroute-introduction
+[ExRD]: https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about
+[vWAN]: /azure/virtual-wan/virtual-wan-about
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
+[AzFW]: /azure/firewall/overview
 [SubMgmt]: /azure/architecture/cloud-adoption/appendix/azure-scaffold 
 [RGMgmt]: /azure/azure-resource-manager/resource-group-overview
 [DMZ]: /azure/best-practices-network-security
 [ALB]: /azure/load-balancer/load-balancer-overview
+[DDOS]: /azure/virtual-network/ddos-protection-overview
 [PIP]: /azure/virtual-network/resource-groups-networking#public-ip-address
+[AFD]: https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview
 [AppGW]: /azure/application-gateway/application-gateway-introduction
 [WAF]: /azure/application-gateway/application-gateway-web-application-firewall-overview
 [Monitor]: /azure/monitoring-and-diagnostics/
@@ -382,8 +407,10 @@ In questo documento sono state illustrate le funzionalità seguenti. Per altre i
 [NSGLog]: /azure/virtual-network/virtual-network-nsg-manage-log
 [OMS]: /azure/operations-management-suite/operations-management-suite-overview
 [NPM]: /azure/log-analytics/log-analytics-network-performance-monitor
+[NetWatch]: /azure/network-watcher/network-watcher-monitoring-overview
 [WebApps]: /azure/app-service/
 [HDI]: /azure/hdinsight/hdinsight-hadoop-introduction
 [EventHubs]: /azure/event-hubs/event-hubs-what-is-event-hubs 
 [ServiceBus]: /azure/service-bus-messaging/service-bus-messaging-overview
 [TM]: /azure/traffic-manager/traffic-manager-overview
+

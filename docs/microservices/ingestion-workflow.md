@@ -3,12 +3,12 @@ title: Inserimento e flusso di lavoro nei microservizi
 description: Inserimento e flusso di lavoro nei microservizi
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 6477c3f2b0cc6d37dcd4637dc0dde4f7a6e3cc74
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 1851d979ed23b35046474f299128064d1abb375e
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2017
-ms.locfileid: "26678731"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429486"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Progettazione di microservizi: inserimento e flusso di lavoro
 
@@ -36,7 +36,7 @@ Questa è la parte centrale dell'intera applicazione, quindi il processo end-to-
 
 Verrà prima di tutto esaminato l'aspetto dell'inserimento, ovvero in che modo il sistema può inserire le richieste utente in ingresso a una velocità effettiva elevata. Verrà quindi analizzato il modo in cui l'applicazione di recapito tramite drone può implementare un flusso di lavoro affidabile. Ciò che emerge è che la progettazione del sottosistema di inserimento influisce sul back-end del flusso di lavoro. 
 
-## <a name="ingestion"></a>Inserimento
+## <a name="ingestion"></a>Ingestion
 
 In base ai requisiti aziendali, il team di sviluppo ha identificato i seguenti requisiti non funzionali per l'inserimento:
 
@@ -83,7 +83,7 @@ Nell'applicazione del drone, un batch di messaggi può essere elaborato in paral
 
 ### <a name="iothub-react"></a>IotHub React 
 
-[IotHub React](https://github.com/Azure/toketi-iothubreact) è una libreria Akka Streams per la lettura degli eventi dall'hub eventi. Akka Streams è un framework di programmazione basato su flussi che implementa la specifica [Reactive Streams](http://www.reactive-streams.org/). Consente di creare pipeline di streaming efficienti, in cui tutte le operazioni di streaming vengono eseguite in modo asincrono e la pipeline gestisce normalmente la congestione. La congestione si verifica quando un'origine evento produce eventi a una frequenza maggiore rispetto a quanto i consumer downstream possono ricevere, che è esattamente la situazione che si verifica quando il sistema di recapito tramite drone ha un picco di traffico. Se i servizi back-end rallentano, IoTHub React rallenta. Se la capacità aumenta, IoTHub React esegue il push di più messaggi nella pipeline.
+[IotHub React](https://github.com/Azure/toketi-iothubreact) è una libreria Akka Streams per la lettura degli eventi dall'hub eventi. Akka Streams è un framework di programmazione basato su flussi che implementa la specifica [Reactive Streams](https://www.reactive-streams.org/). Consente di creare pipeline di streaming efficienti, in cui tutte le operazioni di streaming vengono eseguite in modo asincrono e la pipeline gestisce normalmente la congestione. La congestione si verifica quando un'origine evento produce eventi a una frequenza maggiore rispetto a quanto i consumer downstream possono ricevere, che è esattamente la situazione che si verifica quando il sistema di recapito tramite drone ha un picco di traffico. Se i servizi back-end rallentano, IoTHub React rallenta. Se la capacità aumenta, IoTHub React esegue il push di più messaggi nella pipeline.
 
 Akka Streams è anche un modello di programmazione molto naturale per lo streaming di eventi da Hub eventi. Invece di eseguire cicli in un batch di eventi, si definisce un set di operazioni che verranno applicate a ogni evento e si lascia gestire lo streaming da Akka Streams. Akka Streams definisce una pipeline di streaming in termini di *origini*, *flussi* e *sink*. Un'origine genera un flusso di output, un flusso elabora un flusso di input e produce un flusso di output e un sink utilizza un flusso senza produrre alcun output.
 
