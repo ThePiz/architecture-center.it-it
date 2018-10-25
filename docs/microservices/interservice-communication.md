@@ -2,13 +2,13 @@
 title: Comunicazione tra i servizi nei microservizi
 description: Comunicazione tra i servizi nei microservizi
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: aff2fb7b2be25ca32d6224cee15363880cfb1488
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 19a54ffc362a1fc88c3255c9346bd697a319b143
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549128"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962960"
 ---
 # <a name="designing-microservices-interservice-communication"></a>Progettazione di microservizi: comunicazione tra i servizi
 
@@ -99,7 +99,7 @@ Una *rete mesh di servizi* è un livello di software che gestisce la comunicazio
 > [!NOTE]
 > La rete mesh di servizi è un esempio del [modello ad ambasciata](../patterns/ambassador.md), un servizio helper che invia le richiesta di rete per conto dell'applicazione. 
 
-Le opzioni principali per una rete mesh di servizi in Kubernetes sono attualmente [linkerd](https://linkerd.io/) e [Istio](https://istio.io/). Entrambe queste tecnologie sono in rapida evoluzione. Al momento della stesura di questa guida, la versione più recente di Istio è la 0.2, quindi è veramente nuovo. Alcune funzionalità comuni a linkerd e Istio tuttavia includono: 
+Le opzioni principali per una rete mesh di servizi in Kubernetes sono attualmente [linkerd](https://linkerd.io/) e [Istio](https://istio.io/). Entrambe queste tecnologie sono in rapida evoluzione. Alcune funzionalità comuni a linkerd e Istio tuttavia includono: 
 
 - Bilanciamento del carico a livello di sessione, in base alle latenze osservate o al numero di richieste arretrate, che può migliorare le prestazioni oltre quelle del bilanciamento del carico di livello 4 offerte da Kubernetes. 
 

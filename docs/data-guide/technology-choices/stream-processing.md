@@ -3,12 +3,12 @@ title: Scelta di una tecnologia per l'elaborazione di flussi
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: b78ebe253e927eece38930ba7f6186f485a956f7
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091064"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962916"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Scelta di una tecnologia per l'elaborazione di flussi in Azure
 
@@ -60,13 +60,12 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Analisi di flusso di Azure | HDInsight con Spark Streaming | Apache Spark in Azure Databricks | HDInsight con Storm | Funzioni di Azure | Processi Web del servizio app di Azure |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Supporto predefinito per elaborazione temporale/windowing | Sì | Sì | Sì | Sì | No  | No  |
+| Supporto predefinito per elaborazione temporale/windowing | Yes | Yes | Yes | Yes | No  | No  |
 | Formati dei dati di input | Avro, JSON o CSV, con codifica UTF-8 | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato |
 | Scalabilità | [Partizioni per query](/azure/stream-analytics/stream-analytics-parallelization) | Limitata in base alle dimensioni del cluster | Limitata in base alla configurazione di scalabilità del cluster Databricks | Limitata in base alle dimensioni del cluster | Elaborazione parallela di un massimo di 200 istanze di app per le funzioni | Limitata dalla capacità del piano di servizio app | 
-| Supporto per la gestione di eventi di arrivo in ritardo e con ordine non corretto | Sì | Sì | Sì | Sì | No  | No  |
+| Supporto per la gestione di eventi di arrivo in ritardo e con ordine non corretto | Yes | Yes | Yes | Yes | No  | No  |
 
 Vedere anche la pagina relativa alla
 
 - [Scelta di una tecnologia di inserimento di messaggi in tempo reale](./real-time-ingestion.md)
-- [Confronto tra Apache Storm e Analisi di flusso di Azure](/azure/stream-analytics/stream-analytics-comparison-storm)
 - [Elaborazione in tempo reale](../big-data/real-time-processing.md)

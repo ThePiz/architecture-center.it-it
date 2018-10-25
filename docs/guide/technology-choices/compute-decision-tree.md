@@ -2,13 +2,13 @@
 title: Albero delle decisioni per i servizi di calcolo di Azure
 description: Diagramma di flusso per la selezione di un servizio di calcolo
 author: MikeWasson
-ms.date: 06/13/2018
-ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
-ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
+ms.date: 10/23/2018
+ms.openlocfilehash: 35002b4840b80bcc35b5baf36ec8e414ed8f20be
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2018
-ms.locfileid: "36338184"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001899"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Albero delle decisioni per i servizi di calcolo di Azure
 
@@ -33,10 +33,6 @@ Per altre informazioni sulle opzioni per l'hosting di contenitori in Azure, vede
 ![](../images/compute-decision-tree.svg)
 
 ## <a name="definitions"></a>Definizioni
-
-- Il termine **greenfield** descrive un progetto software completamente nuovo e creato da zero. Non include codice legacy. 
-
-- Il termine **brownfield** indica un progetto software basato su un'applicazione esistente. Può ereditare codice legacy o framework.
 
 - La **modalità lift-and-shift** è una strategia per la migrazione di un carico di lavoro sul cloud senza necessità di riprogettare l'applicazione o apportare modifiche al codice. Viene definita anche *rehosting*. Per altre informazioni, vedere il [Centro migrazione di Azure](https://azure.microsoft.com/migration/).
 
