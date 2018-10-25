@@ -2,13 +2,13 @@
 title: Progettazione, creazione e gestione di microservizi in Azure con Kubernetes
 description: Progettazione, creazione e gestione di microservizi in Azure
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
-ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
+ms.date: 10/23/2018
+ms.openlocfilehash: cac16c9212432c72aeaecac1a578828a00838431
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2018
-ms.locfileid: "27701103"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962773"
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>Progettazione, creazione e gestione di microservizi in Azure
 
@@ -85,7 +85,7 @@ Questo scenario prevede un dominio piuttosto complesso. Alcuni dei problemi azie
 > [!NOTE]
 > Per un aiuto nella scelta tra un'architettura di microservizi e altri stili di architettura, vedere [Guida all'architettura delle applicazioni in Azure](../guide/index.md).
 
-L'implementazione di riferimento usa Kubernetes con il [servizio contenitore di Azure (ACS)](/azure/container-service/kubernetes/). Molte delle scelte e delle sfide generali relative all'architettura si applicano tuttavia a qualsiasi agente di orchestrazione di contenitori, tra cui [Azure Service Fabric](/azure/service-fabric/). 
+L'implementazione di riferimento usa Kubernetes con il [servizio Kubernetes di Azure](/azure/aks/) (AKS). Molte delle scelte e delle sfide generali relative all'architettura si applicano tuttavia a qualsiasi agente di orchestrazione di contenitori, tra cui [Azure Service Fabric](/azure/service-fabric/). 
 
 > [!div class="nextstepaction"]
 > [Analisi del dominio](./domain-analysis.md)

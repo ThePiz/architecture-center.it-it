@@ -351,6 +351,10 @@ items:
       href: reference-architectures/data/enterprise-bi-adf.md
     - name: Elaborazione di flussi con Analisi di flusso di Azure
       href: reference-architectures/data/stream-processing-stream-analytics.md
+  - name: Integrazione aziendale
+    items:
+    - name: Integrazione aziendale semplice
+      href: reference-architectures/enterprise-integration/simple-enterprise-integration.md
   - name: Reti ibride
     items:
     - name: Panoramica
@@ -537,9 +541,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementazione di scaffold enterprise di Azure
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: a79c29c0673de7eb14371d60377dd589cdf78720
-ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
+ms.openlocfilehash: bb4f5188f3f85561a08331a15c797a15c375157f
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49313200"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001916"
