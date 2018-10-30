@@ -60,7 +60,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Analisi di flusso di Azure | HDInsight con Spark Streaming | Apache Spark in Azure Databricks | HDInsight con Storm | Funzioni di Azure | Processi Web del servizio app di Azure |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Supporto predefinito per elaborazione temporale/windowing | Yes | Yes | Yes | Yes | No  | No  |
+| Supporto predefinito per elaborazione temporale/windowing | Sì | Sì | Sì | Sì | No  | No  |
 | Formati dei dati di input | Avro, JSON o CSV, con codifica UTF-8 | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato |
 | Scalabilità | [Partizioni per query](/azure/stream-analytics/stream-analytics-parallelization) | Limitata in base alle dimensioni del cluster | Limitata in base alla configurazione di scalabilità del cluster Databricks | Limitata in base alle dimensioni del cluster | Elaborazione parallela di un massimo di 200 istanze di app per le funzioni | Limitata dalla capacità del piano di servizio app | 
 | Supporto per la gestione di eventi di arrivo in ritardo e con ordine non corretto | Yes | Yes | Yes | Yes | No  | No  |
