@@ -2,13 +2,13 @@
 title: Identificazione dei limiti dei microservizi
 description: Identificazione dei limiti dei microservizi
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: d35b92ffd97c4fda5d6599340925ce3dfea7f15b
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 10/23/2018
+ms.openlocfilehash: 679696818d50b70a5116916bd9198a390abfd7fe
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673403"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962790"
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>Progettazione di microservizi: identificazione dei limiti dei microservizi
 
@@ -83,13 +83,18 @@ Anche se queste non sono le uniche opzioni disponibili, si tratta di approcci co
 
 ### <a name="service-orchestrators"></a>Agenti di orchestrazione dei servizi
 
-Un agente di orchestrazione gestisce attività correlate alla distribuzione e alla gestione di un set di servizi. Queste attività includono il posizionamento dei servizi nei nodi, il monitoraggio dell'integrità dei servizi, il riavvio dei servizi non integri, il bilanciamento del carico del traffico di rete tra istanze dei servizi, l'individuazione dei servizi, il ridimensionamento del numero di istanze di un servizio e l'applicazione degli aggiornamenti della configurazione. Gli agenti di orchestrazione più diffusi includono Kubernetes, DC/OS, Docker Swarm e Service Fabric. 
+Un agente di orchestrazione gestisce attività correlate alla distribuzione e alla gestione di un set di servizi. Queste attività includono il posizionamento dei servizi nei nodi, il monitoraggio dell'integrità dei servizi, il riavvio dei servizi non integri, il bilanciamento del carico del traffico di rete tra istanze dei servizi, l'individuazione dei servizi, il ridimensionamento del numero di istanze di un servizio e l'applicazione degli aggiornamenti della configurazione. Gli agenti di orchestrazione più diffusi includono Kubernetes, Service Fabric, DC/OS, e Docker Swarm.
 
-- Il [servizio contenitore di Azure](/azure/container-service/) è un servizio di Azure che consente di distribuire un cluster Docker Swarm, DC/OS o Kubernetes pronto per la produzione.
+Nella piattaforma Azure prendere in considerazione le opzioni seguenti:
 
-- [Il servizio contenitore di Azure](/azure/aks/) è un servizio Kubernetes gestito. Il servizio contenitore di Azure effettua il provisioning di Kubernetes ed espone gli endpoint delle API Kubernetes, ma ospita e gestisce il pannello di controllo di Kubernetes, eseguendo aggiornamenti automatici, applicazione di patch automatica, ridimensionamento automatico e altre attività di gestione. Il servizio contenitore di Azure può essere considerato "API Kubernetes come servizio". Il servizio contenitore di Azure è ancora disponibile in anteprima al momento della scrittura di questo articolo. Si prevede tuttavia che diventerà AKS diventerà la modalità preferita per eseguire Kubernetes in Azure. 
+- Il [servizio Kubernetes di Azure](/azure/aks/) (AKS) è un ambiente Kubernetes gestito. Il servizio contenitore di Azure effettua il provisioning di Kubernetes ed espone gli endpoint delle API Kubernetes, ma ospita e gestisce il pannello di controllo di Kubernetes, eseguendo aggiornamenti automatici, applicazione di patch automatica, ridimensionamento automatico e altre attività di gestione. Il servizio contenitore di Azure può essere considerato "API Kubernetes come servizio". 
 
 - [Service Fabric](/azure/service-fabric/) è una piattaforma di sistemi distribuiti per la creazione di pacchetti, la distribuzione e la gestione di microservizi. I microservizi possono essere distribuiti in Service Fabric come contenitori, file binari eseguibili oppure come [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction). Con il modello di programmazione di Reliable Services, i servizi possono usare direttamente le API di programmazione di Service Fabric per eseguire query sul sistema, creare report di integrità, ricevere notifiche relative a modifiche di configurazione e codice e individuare altri servizi. Un fattore essenziale per la differenziazione di Service Fabric è la creazione di servizi con stato tramite [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
+
+- Il [servizio contenitore di Azure](/azure/container-service/) è un servizio di Azure che consente di distribuire un cluster DC/OS, Docker Swarm o Kubernetes pronto per la produzione. 
+
+  > [!NOTE]
+  > Anche se Kubernetes è supportato dal servizio contenitore di Azure, è consigliabile usare AKS per l'esecuzione di Kubernetes in Azure. AKS offre funzionalità di gestione avanzate e maggiori vantaggi in termini di costi.
 
 ### <a name="containers"></a>Contenitori
 
@@ -103,7 +108,7 @@ Talvolta si parla di contenitori e microservizi come se fossero sinonimi. Anche 
 
 ### <a name="serverless-functions-as-a-service"></a>Senza server (funzioni come servizio)
 
-Con un'architettura senza server non si gestiscono le VM o l'infrastruttura della rete virtuale, ma si distribuisce il codice e il servizio di hosting gestisce l'inserimento di tale codice in una VM e la relativa esecuzione. Questo approccio tende a preferire piccole funzioni granulari coordinate tramite trigger basati su eventi. Ad esempio, un messaggio inserito in una coda può attivare una funzione che legge la coda ed elabora il messaggio.
+Con un'architettura [serverless](https://azure.microsoft.com/solutions/serverless/) non si gestiscono le macchine virtuali o l'infrastruttura di rete virtuale, ma si distribuisce il codice e il servizio di hosting gestisce l'inserimento di tale codice in una VM e la relativa esecuzione. Questo approccio tende a preferire piccole funzioni granulari coordinate tramite trigger basati su eventi. Ad esempio, un messaggio inserito in una coda può attivare una funzione che legge la coda ed elabora il messaggio.
 
 [Funzioni di Azure][functions] è un servizio di calcolo senza server che supporta diversi trigger di funzione, incluse le richieste HTTP, le code del bus di servizio e gli eventi di Hub eventi. Per un elenco completo, vedere [Concetti relativi a trigger e associazioni in Funzioni di Azure][functions-triggers]. Prendere in considerazione anche [Griglia di eventi di Azure][event-grid], che è un servizio di routing di eventi gestito in Azure.
 

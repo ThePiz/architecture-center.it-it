@@ -2,13 +2,13 @@
 title: Registrazione e monitoraggio in microservizi
 description: Registrazione e monitoraggio in microservizi
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: c2a935f51c57936977fb4402de2113938351069c
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428772"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962875"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Progettazione dei microservizi: registrazione e monitoraggio
 
@@ -18,19 +18,19 @@ In qualsiasi applicazione complessa è inevitabile che a un certo punto si verif
 
 In un'architettura di microservizi può risultare particolarmente difficile individuare la causa esatta di errori o colli di bottiglia delle prestazioni. Una singola operazione utente potrebbe infatti interessare più servizi. I servizi potrebbero raggiungere i limiti di I/O della rete all'interno del cluster. Una catena di chiamate tra servizi potrebbe causare una contropressione nel sistema, generando errori a cascata o una latenza elevata. Senza contare che, in genere, non si conosce il nodo in cui verrà eseguito un determinato contenitore. I contenitori presenti nello stesso nodo potrebbero contendersi la CPU o la memoria limitata. 
 
-Per comprendere quello che succede, l'applicazione deve generare eventi di telemetria. È possibile classificare questi eventi in metriche e log basati su testo. 
+Per comprendere quello che succede, è necessario raccogliere i dati di telemetria dell'applicazione.  I dati di telemetria possono essere divisi in *log* e *metriche*. [Monitoraggio di Azure](/azure/monitoring-and-diagnostics/monitoring-overview) raccoglie sia log che metriche nella piattaforma Azure.
 
-Per *metriche* si intendono valori numerici che è possibile analizzare. È possibile usare le metriche per osservare il sistema in tempo reale o quasi in tempo reale oppure per analizzare le tendenze delle prestazioni nel tempo. Le metriche includono:
+I **log** sono record di eventi basati su testo che si verificano durante l'esecuzione dell'applicazione. Includono elementi quali i registri applicazioni (istruzioni di analisi) o i log del server Web. Sono utili principalmente per la scienza forense e l'analisi delle cause radice. 
 
-- Metriche di sistema a livello di nodo, che includono utilizzo della CPU, della memoria, della rete, dei dischi e del file system. Le metriche di sistema consentono di comprendere l'allocazione delle risorse per ogni nodo del cluster e di risolvere i problemi relativi agli outlier.
- 
-- Metriche di Kubernetes. Dal momento che i servizi vengono eseguiti in contenitori, è necessario raccogliere le metriche a livello di contenitore, non solo a livello di macchina virtuale. In Kubernetes l'agente che raccoglie le statistiche su CPU, memoria, file system e risorse di rete usate da ogni contenitore è cAdvisor (Container Advisor). Il daemon kubelet raccoglie le statistiche relative alle risorse da cAdvisor e le espone tramite un'API REST.
-   
-- Metriche dell'applicazione. Includono tutte le metriche utili per comprendere il comportamento di un servizio, ad esempio il numero di richieste HTTP in ingresso in coda, la latenza delle richieste, la lunghezza della coda di messaggi o il numero di transazioni elaborate al secondo.
+Per **metriche** si intendono valori numerici che è possibile analizzare. È possibile usare le metriche per osservare il sistema in tempo reale o quasi in tempo reale oppure per analizzare le tendenze delle prestazioni nel tempo. Le metriche possono essere ulteriormente suddivise in categorie come descritto di seguito:
 
-- Metriche dei servizi dipendenti. I servizi all'interno del cluster possono chiamare servizi esterni non presenti nel cluster, ad esempio i servizi PaaS gestiti. Per eseguire il monitoraggio dei servizi di Azure, è possibile usare [Monitoraggio di Azure](/azure/monitoring-and-diagnostics/monitoring-overview). I servizi di terze parti possono o meno fornire metriche. Se non forniscono metriche, è necessario basarsi sulle metriche dell'applicazione per tenere traccia delle statistiche relative alla latenza e alla frequenza degli errori.
+- Metriche **a livello di nodo**, che includono utilizzo della CPU, della memoria, della rete, dei dischi e del file system. Le metriche di sistema consentono di comprendere l'allocazione delle risorse per ogni nodo del cluster e di risolvere i problemi relativi agli outlier.
 
-I *log* sono registrazioni di eventi che si verificano durante l'esecuzione dell'applicazione. Includono elementi quali i registri applicazioni (istruzioni di analisi) o i log del server Web. Sono utili principalmente per la scienza forense e l'analisi delle cause radice. 
+- Metriche del **contenitore**. Se i servizi vengono eseguiti all'interno dei contenitori, è necessario raccogliere le metriche a livello di contenitore, non solo a livello di macchina virtuale. È possibile configurare Monitoraggio di Azure in modo da monitorare i carichi di lavoro dei contenitori nel servizio Kubernetes di Azure (AKS). Per altre informazioni, vedere [Panoramica di Monitoraggio di Azure per contenitori](/azure/monitoring/monitoring-container-insights-overview). Per altri agenti di orchestrazione, usare [Soluzione Monitoraggio contenitori in Log Analytics](/azure/log-analytics/log-analytics-containers).
+
+- Metriche dell'**applicazione**. Includono tutte le metriche utili per comprendere il comportamento di un servizio, ad esempio il numero di richieste HTTP in ingresso in coda, la latenza delle richieste, la lunghezza della coda di messaggi. Le applicazioni possono creare anche metriche personalizzate specifiche per il dominio, come il numero di transazioni aziendali elaborate al minuto. Usare [Application Insights](/azure/application-insights/app-insights-overview) per abilitare le metriche dell'applicazione. 
+
+- Metriche dei **servizi dipendenti**. I servizi possono chiamare servizi esterni o endpoint, ad esempio servizi SaaS o PaaS gestiti. I servizi di terze parti possono o meno fornire metriche. Se non forniscono metriche, è necessario basarsi sulle metriche dell'applicazione per tenere traccia delle statistiche relative alla latenza e alla frequenza degli errori.
 
 ## <a name="considerations"></a>Considerazioni
 

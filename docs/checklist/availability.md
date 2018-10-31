@@ -4,12 +4,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per i pro
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: cea5baf8c37bf793c5de60f6c2be809629df072b
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: a09a8f77865bf127ae0a73e0da7e1d3fb8508826
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352628"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962892"
 ---
 # <a name="availability-checklist"></a>Elenco di controllo della disponibilità
 
@@ -41,7 +41,7 @@ La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed
 
 **Usare le funzionalità di staging e di produzione della piattaforma.**. Il servizio app di Azure, ad esempio, supporta [slot di distribuzione](/azure/app-service/web-sites-staged-publishing) che possono essere usati per lo staging di una distribuzione prima dell'implementazione nell'ambiente di produzione. Azure Service Fabric supporta [aggiornamenti in sequenza](/azure/service-fabric/service-fabric-application-upgrade) dei servizi dell'applicazione.
 
-**Inserire le macchine virtuali (VM) in un set di disponibilità.** Per ottimizzare la disponibilità, creare più istanze di ogni ruolo VM e inserire tali istanze nello stesso set di disponibilità. Se sono presenti più VM per ruoli diversi, ad esempio diversi livelli dell'applicazione, creare un set di disponibilità per ogni ruolo VM. Ad esempio, creare un set di disponibilità per il livello Web e un altro per il livello dati.
+**Inserire le macchine virtuali (VM) in un set di disponibilità.** Per ottimizzare la disponibilità, creare più istanze di ogni ruolo VM e inserire tali istanze nello stesso set di disponibilità. Se sono presenti più macchine virtuali per ruoli differenti, ad esempio diversi livelli dell'applicazione, creare un set di disponibilità per ogni ruolo macchina virtuale. Ad esempio, creare un set di disponibilità per il livello Web e un altro per il livello dati.
 
 ## <a name="data-management"></a>Gestione dei dati
 
