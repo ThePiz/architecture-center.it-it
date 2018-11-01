@@ -4,12 +4,12 @@ description: Indicazioni sulle attività in background eseguite in modo indipend
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: fa5c6352da289591d92b9427c44b8ba9f01245aa
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 57fd7a6cc400b53e51e08fb5a1377dce4ae61327
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429622"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251924"
 ---
 # <a name="background-jobs"></a>Processi in background
 [!INCLUDE [header](../_includes/header.md)]
@@ -238,10 +238,10 @@ Se si desidera implementare le attività in background in un ruolo Web o di lavo
     var freeze = CloudConfigurationManager.GetSetting("Freeze");
     if (freeze != null)
     {
-     if (Boolean.Parse(freeze))
-       {
-         Thread.Sleep(System.Threading.Timeout.Infinite);
-     }
+      if (Boolean.Parse(freeze))
+      {
+        Thread.Sleep(System.Threading.Timeout.Infinite);
+      }
     }
     ```
     

@@ -4,12 +4,12 @@ description: Indicazioni per la memorizzazione nella cache per migliorare le pre
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 4db85df7331c805af6acbe0673dbcb993a895e03
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: e1c47c735bd618fc46fef3f1ee234f83d3b15bdf
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429469"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251992"
 ---
 # <a name="caching"></a>Memorizzazione nella cache
 
@@ -288,7 +288,7 @@ Per altre informazioni vedere [Provider di stato della sessione ASP.NET per Cach
 Analogamente, il provider della cache di output per Cache Redis di Azure consente di salvare le risposte HTTP generate da un'applicazione Web ASP.NET. L'uso del provider della cache di output con Cache Redis di Azure può migliorare i tempi di risposta delle applicazioni che eseguono il rendering di output HTML complesso. Le istanze dell'applicazione che generano risposte simili possono usare frammenti di output condivisi nella cache anziché generare il modello di output HTML da zero. Per altre informazioni vedere [Provider di cache di output ASP.NET per la Cache Redis di Azure](/azure/redis-cache/cache-aspnet-output-cache-provider/).
 
 ## <a name="building-a-custom-redis-cache"></a>Creazione di una Cache Redis personalizzata
-Cache Redis di Azure funge da interfaccia ai server Redis sottostanti. Attualmente supporta un set fisso di configurazioni ma non è disponibile per il clustering di Redis. Se è necessaria una configurazione avanzata non fornita da Cache Redis di Azure, ad esempio una cache di dimensioni superiori a 53 GB, è possibile creare e ospitare i propri server Redis tramite macchine virtuali di Azure.
+Cache Redis di Azure funge da interfaccia ai server Redis sottostanti. Se è necessaria una configurazione avanzata non fornita da Cache Redis di Azure, ad esempio una cache di dimensioni superiori a 53 GB, è possibile creare e ospitare i propri server Redis tramite macchine virtuali di Azure.
 
 Si tratta di un processo potenzialmente complesso, poiché, se si desidera implementare la replica, potrebbe essere necessario creare più VM (Virtual Machine, macchina virtuale) con la funzione di nodi master e subordinati. Inoltre, se si desidera creare un cluster, sono necessari più server master e subordinati. Una topologia di replica in cluster minima che fornisce un elevato livello di disponibilità e scalabilità è costituita da almeno sei VM organizzate come tre coppie di server master/subordinato (un cluster deve contenere almeno tre nodi master).
 

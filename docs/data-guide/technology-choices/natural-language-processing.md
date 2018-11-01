@@ -3,12 +3,12 @@ title: Scelta di una tecnologia di elaborazione del linguaggio naturale
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: dacf7bf9cf3e9efed212f34da93c1470954965cf
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: bac0318a587a944c104360eb31223cc8755c1860
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288853"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251771"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Scelta di una tecnologia di elaborazione del linguaggio naturale in Azure
 
@@ -19,7 +19,8 @@ L'elaborazione di testo in formato libero viene eseguita su documenti che conten
 In Azure, i servizi seguenti forniscono funzionalità di elaborazione del linguaggio naturale:
 
 - [Azure HDInsight con Spark e Spark MLlib](/azure/hdinsight/spark/apache-spark-overview)
-- [Servizi cognitivi Microsoft](/azure/#pivot=products&panel=cognitive)
+- [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks)
+- [Servizi cognitivi Microsoft](/azure/cognitive-services/welcome)
 
 ## <a name="key-selection-criteria"></a>Criteri di scelta principali
 
@@ -39,37 +40,37 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="general-capabilities"></a>Funzionalità generali
 
-| | Azure HDInsight | Servizi cognitivi Microsoft |
+| | HDInsight di Azure | Servizi cognitivi Microsoft |
 | --- | --- | --- |
-| Fornisce modelli sottoposti a training come servizio | No | Sì |
-| API REST | Sì | Sì |
+| Fornisce modelli sottoposti a training come servizio | No  | Yes |
+| API REST | Yes | Yes |
 | Programmabilità | Python, Scala, Java | C#, Java, Node.js, Python, PHP, Ruby |
-| Supporta l'elaborazione di set di Big Data e documenti di grandi dimensioni | Sì | No |
+| Supporta l'elaborazione di set di Big Data e documenti di grandi dimensioni | Yes | No  |
 
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funzionalità di elaborazione del linguaggio naturale di base
 
-| | Azure HDInsight | Servizi cognitivi Microsoft |  
+| | HDInsight di Azure | Servizi cognitivi Microsoft |  
 | --- | --- | --- | 
 | Tokenizer | Sì (Spark NLP) | Sì (API Analisi linguistica) |
-| Stemmer | Sì (Spark NLP) | No |
-| Lemmatizer | Sì (Spark NLP) | No |
+| Stemmer | Sì (Spark NLP) | No  |
+| Lemmatizer | Sì (Spark NLP) | No  |
 | Tag delle parti del discorso | Sì (Spark NLP) | Sì (API Analisi linguistica) |
 | Frequenza del termine/Frequenza inversa del documento (TF/IDF) | Sì (Spark MLlib) | No  |
-| Somiglianza tra stringhe&mdash;calcolo della distanza di modifiche | Sì (Spark MLlib) | No |
-| Calcolo di n-grammi | Sì (Spark MLlib) | No |
-| Eliminazione parole vuote | Sì (Spark MLlib) | No |
+| Somiglianza tra stringhe&mdash;calcolo della distanza di modifiche | Sì (Spark MLlib) | No  |
+| Calcolo di n-grammi | Sì (Spark MLlib) | No  |
+| Eliminazione parole vuote | Sì (Spark MLlib) | No  |
 
 ### <a name="high-level-natural-language-processing-capabilities"></a>Funzionalità di elaborazione del linguaggio naturale avanzate
 
-| | Azure HDInsight | Servizi cognitivi Microsoft |
+| | HDInsight di Azure | Servizi cognitivi Microsoft |
 | --- | --- | --- | 
-| Estrazione e identificazione di entità/finalità | No | Sì (API LUIS, Language Understanding Intelligent Service) |    
+| Estrazione e identificazione di entità/finalità | No  | Sì (API LUIS, Language Understanding Intelligent Service) |    
 | Rilevamento di argomenti | Sì (Spark NLP) | Sì (API Analisi del testo) |
 | Controllo ortografico | Sì (Spark NLP) | Sì (API Controllo ortografico Bing) |
 | Analisi del sentiment | Sì (Spark NLP) | Sì (API Analisi del testo) |
-| Rilevamento della lingua | No | Sì (API Analisi del testo) |
-| Supporto di più lingue oltre all'inglese | No | Sì (varia in base all'API) |
+| Rilevamento della lingua | No  | Sì (API Analisi del testo) |
+| Supporto di più lingue oltre all'inglese | No  | Sì (varia in base all'API) |
 
-## <a name="see-also"></a>Vedere anche
+## <a name="see-also"></a>Vedere anche 
 
 [Elaborazione del linguaggio naturale](../scenarios/natural-language-processing.md)
