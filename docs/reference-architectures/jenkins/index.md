@@ -2,13 +2,13 @@
 title: Eseguire un server Jenkins in Azure
 description: Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
 author: njray
-ms.date: 01/21/18
-ms.openlocfilehash: 5f9c54e71a8750e88de1ae633ccc1316f8375d3a
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.date: 04/30/2018
+ms.openlocfilehash: 89839b0f1c9624176a7b51dca53713070c88b154
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/03/2018
-ms.locfileid: "32323925"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916381"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
@@ -22,7 +22,7 @@ Questa architettura supporta il ripristino di emergenza con i servizi di Azure, 
 
 Questo documento è incentrato sulle operazioni di base in Azure necessarie per supportare Jenkins, come l'uso di Archiviazione di Azure per gestire gli elementi di compilazione, gli elementi di sicurezza necessari per l'accesso SSO, gli altri servizi che possono essere integrati e la scalabilità per la pipeline. L'architettura è progettata per essere usata con un repository di controllo del codice sorgente esistente. Uno scenario comune, ad esempio, consiste nell'avviare i processi Jenkins in base a commit GitHub.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 Questa architettura è costituita dai componenti seguenti:
 
@@ -51,7 +51,7 @@ Questa architettura è costituita dai componenti seguenti:
 
 - **Servizi di monitoraggio di Azure**. Il servizio [monitora][monitor] la macchina virtuale di Azure che ospita Jenkins. Questa distribuzione monitora l'utilizzo della CPU e lo stato della macchina virtuale e invia avvisi.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda.
 
@@ -168,7 +168,7 @@ Per altre procedure consigliate della community Jenkins, vedere [Jenkins Best Pr
 
 Per distribuire questa architettura, seguire questa procedura per installare il [modello di soluzione per Jenkins in Azure][azure-market] e quindi installare gli script di configurazione del monitoraggio e del ripristino di emergenza nei passaggi successivi.
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 - Questa architettura di riferimento richiede una sottoscrizione di Azure. 
 - Per creare un'entità servizio di Azure, è necessario avere diritti di amministratore per il tenant di Azure AD associato al server Jenkins distribuito.
