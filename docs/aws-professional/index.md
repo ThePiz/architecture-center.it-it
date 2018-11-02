@@ -3,14 +3,14 @@ title: Azure per i professionisti AWS
 description: Nozioni fondamentali sgli account, sulla piattaforma e sui servizi di Microsoft Azure. Informazioni sulle principali analogie e differenze tra le piattaforme AWS e Azure. Mettere a frutto l'esperienza con AWS in Azure.
 keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze tra azure e aws, azure e aws
 author: lbrader
-ms.date: 03/24/2017
+ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 04157b9a647779ae47ad0aff8132289a30544acf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429639"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916686"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -215,7 +215,7 @@ Azure offre numerosi servizi di calcolo che non hanno equivalenti diretti in AWS
 
 #### <a name="see-also"></a>Vedere anche 
 
--   [Creare una VM Linux in Azure usando il portale](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-quick-create-portal/)
+-   [Creare una VM Linux in Azure usando il portale.](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-quick-create-portal/)
 
 -   [Architettura di riferimento per Azure - Esecuzione di una VM Linux su Azure](https://azure.microsoft.com/documentation/articles/guidance-compute-single-vm-linux/)
 
