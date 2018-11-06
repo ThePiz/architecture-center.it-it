@@ -243,6 +243,8 @@ items:
       href: best-practices/cdn.md
     - name: Partizionamento dei dati
       href: best-practices/data-partitioning.md
+    - name: Strategie di partizionamento dei dati (per servizio)
+      href: best-practices/data-partitioning-strategies.md
     - name: Monitoraggio e diagnostica
       href: best-practices/monitoring.md
     - name: Convenzioni di denominazione
@@ -541,9 +543,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementazione di scaffold enterprise di Azure
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: bb4f5188f3f85561a08331a15c797a15c375157f
-ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
+ms.openlocfilehash: 628f11c5b6e1cf91faaa35a3808529037f18764e
+ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50001916"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "50983414"
