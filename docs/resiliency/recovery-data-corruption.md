@@ -2,13 +2,13 @@
 title: Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati
 description: Articolo incentrato sul ripristino dal danneggiamento dei dati o dall'eliminazione accidentale di dati e sulla progettazione di applicazioni resilienti, a disponibilità elevata e con tolleranza di errore, oltre che sulla pianificazione del ripristino di emergenza.
 author: MikeWasson
-ms.date: 01/10/2018
-ms.openlocfilehash: b0716de39fe69d607b9a63e51356d28bbcdbfeae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.date: 11/11/2018
+ms.openlocfilehash: 1f3dd448ac6172727481c437fb8a113f25d83464
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012427"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916270"
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a>Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati 
 

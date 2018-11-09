@@ -2,17 +2,17 @@
 title: Implementazione di una rete perimetrale tra Azure e Internet
 description: Come implementare un'architettura di rete ibrida sicura con accesso a Internet in Azure.
 author: telmosampaio
-ms.date: 07/02/2018
+ms.date: 10/22/2018
 pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 7a062d2394ae8b3bd1b17c19cbdf512327f9a766
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: d12c76a08f028d54784de330c62311f294802cb9
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403148"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916330"
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Rete perimetrale tra Azure e Internet
 
@@ -29,7 +29,7 @@ Gli usi tipici di questa architettura includono:
 * Applicazioni ibride in cui i carichi di lavoro vengono eseguiti in parte localmente e in parte in Azure.
 * Infrastruttura di Azure che instrada il traffico in ingresso proveniente da reti locali e da Internet.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti seguenti.
 
@@ -39,7 +39,7 @@ L'architettura è costituita dai componenti seguenti.
 * **Subnet in ingresso della rete perimetrale pubblica**. Questa subnet accetta le richieste provenienti da Azure Load Balancer. Le richieste in ingresso vengono passate a una delle NVA nella rete perimetrale pubblica.
 * **Subnet in uscita della rete perimetrale pubblica**. Le richieste approvate dalla NVA passano attraverso questa subnet verso il bilanciamento del carico interno per il livello Web.
 
-## <a name="recommendations"></a>Raccomandazioni
+## <a name="recommendations"></a>Consigli
 
 Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda. 
 
@@ -84,7 +84,7 @@ Questa architettura di riferimento implementa più livelli di sicurezza:
 
 È disponibile una distribuzione per un'architettura di riferimento che implementa queste raccomandazioni su [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>prerequisiti
+### <a name="prerequisites"></a>Prerequisiti
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

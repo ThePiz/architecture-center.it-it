@@ -2,13 +2,13 @@
 title: Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Azure Service Fabric
 description: Come eseguire la migrazione di un'applicazione da Servizi cloud di Azure ad Azure Service Fabric.
 author: MikeWasson
-ms.date: 04/27/2017
-ms.openlocfilehash: b9ecbc88ae74da99a0ff3bb8814a9cb3422f79d5
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.date: 04/11/2018
+ms.openlocfilehash: a1b4e005b2dab67d8107f4002468e1d7622ae342
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012689"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916448"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Azure Service Fabric 
 

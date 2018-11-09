@@ -3,12 +3,12 @@ title: Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in A
 description: Procedure consolidate per la configurazione di una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 author: njray
 ms.date: 07/26/2018
-ms.openlocfilehash: 1e44c2817a02cda919bfa94e0b8f07b73b35531f
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 5db146956134f9b297b520d666d8dabbc8793caf
+ms.sourcegitcommit: 77d62f966d910cd5a3d11ade7ae5a73234e093f2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916499"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51293265"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 
@@ -214,7 +214,7 @@ I file dei parametri comprendono una password hardcoded in diverse posizioni. Mo
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
     ```
 
-A questo punto, assicurarsi che sia possibile stabilire una connessione TCP dal front-end Web al servizio di bilanciamento del carico per il gruppo di disponibilità AlwaysOn di SQL Server. A questo scopo, seguire questa procedura:
+A questo punto, verificare che sia possibile stabilire una connessione TCP dal front-end Web al servizio di bilanciamento del carico per il gruppo di disponibilità AlwaysOn di SQL Server. A questo scopo, seguire questa procedura:
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `ra-sp-jb-vm1` nel gruppo di risorse `ra-sp2016-network-rg`. Questa è la VM del jumpbox.
 

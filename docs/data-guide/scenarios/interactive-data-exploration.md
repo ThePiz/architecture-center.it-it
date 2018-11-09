@@ -3,12 +3,12 @@ title: Esplorazione interattiva dei dati
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 2e3d61fa5e1903c7fee6ebc84db3fa7c28d515cb
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: be27df79d445cf9949318e4483ce0f95c26b6e09
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325118"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251873"
 ---
 # <a name="interactive-data-exploration"></a>Esplorazione interattiva dei dati
 
@@ -82,7 +82,7 @@ Per altre informazioni, vedere [Analytical data stores](../technology-choices/an
 ### <a name="analytics-and-reporting"></a>Analisi e report
 
 - **Jupyter**. I notebook di Jupyter offrono un'interfaccia basata su browser per l'esecuzione di codice nei linguaggi R, Python e Scala. Se si usa R Server o Spark per l'elaborazione in batch dei dati o se si usa SQL Spark per definire uno schema delle tabelle per l'esecuzione di query, Jupyter può essere una scelta ottimale per l'esecuzione di query nei dati. Se invece si usa Spark, è possibile usare l'API del dataframe Spark standard, l'API di Spark SQL o istruzioni SQL incorporate per eseguire query sui dati e generare visualizzazioni.
-- **Drill**. Se si desidera eseguire l'esplorazione dei dati ad hoc, [Apache Drill](https://drill.apache.org/) è un motore di query SQL senza schema. Poiché non è necessario uno schema, è possibile eseguire query sui dati da un'ampia gamma di origini dati: il motore comprende automaticamente la struttura dei dati.
+- **Drill**. Se si desidera eseguire l'esplorazione dei dati ad hoc, [Apache Drill](https://drill.apache.org/) è un motore di query SQL senza schema. Poiché non è necessario uno schema, è possibile eseguire query sui dati da un'ampia gamma di origini dati: il motore comprende automaticamente la struttura dei dati.  Il [plug-in per Archiviazione BLOB di Azure](https://drill.apache.org/docs/azure-blob-storage-plugin/) consente di usare Drill con l'archivio BLOB di Azure. È così possibile eseguire query sui dati nell'archivio BLOB senza dover spostare i dati. 
 - **Client Interactive Hive**. Se si usa un cluster Interactive Hive per eseguire query sui dati, è possibile usare la visualizzazione Hive nel dashboard del cluster Ambari, lo strumento da riga di comando Beeline o qualsiasi strumento basato su ODBC (tramite Hive ODBC Driver), ad esempio Microsoft Excel o Power BI.
 
 Per altre informazioni, vedere [Data analytics and reporting technology](../technology-choices/analysis-visualizations-reporting.md) (Tecnologia per l'analisi dei dati e la creazione di report).

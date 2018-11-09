@@ -2,13 +2,13 @@
 title: Implementare un trasformatore e un agente di raccolta della proprietà in un modello di Azure Resource Manager
 description: Descrive come implementare un trasformatore e un agente di raccolta della proprietà in un modello di Azure Resource Manager
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: 2c2fd93c977b82bed05ebe0ae68233a700df0f4f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/30/2018
+ms.openlocfilehash: ad5b3a71f516ec12fee311e25c43f434f9f306ed
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428585"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251788"
 ---
 # <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a>Implementare un trasformatore e un agente di raccolta della proprietà in un modello di Azure Resource Manager
 
@@ -99,7 +99,7 @@ I parametri sono simili ai seguenti:
   },
 ```
 
-Il modello definisce anche una variabile denominata `instance`. Esegue la trasformazione effettiva dell'oggetto `source` nello schema JSON richiesto:
+Il modello definisce anche una variabile denominata `instance`. Esegue la trasformazione effettiva dell'oggetto `source` nello schema JSON necessario:
 
 ```json
   "variables": {
@@ -126,7 +126,8 @@ Il modello definisce anche una variabile denominata `instance`. Esegue la trasfo
 Infine, `output` di questo modello consente di concatenare le trasformazioni raccolte del parametro `state` con la trasformazione corrente eseguita dalla variabile `instance`:
 
 ```json
-  "outputs": {
+    "resources": [],
+    "outputs": {
     "collection": {
       "type": "array",
       "value": "[concat(parameters('state'), variables('instance'))]"
@@ -264,7 +265,7 @@ Come previsto, si tratta dell'URI per il **modello dell'agente di raccolta** che
     "properties": {
         "mode": "Incremental",
         "templateLink": {
-            "uri": "[variables('linkedTemplateUri')]",
+            "uri": "[variables('collectorTemplateUri')]",
             "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -288,25 +289,36 @@ Infine, la risorsa `Microsoft.Network/networkSecurityGroups` assegna direttament
       "name": "networkSecurityGroup1",
       "location": "[resourceGroup().location]",
       "properties": {
-        "securityRules": "[reference('firstResource').outputs.result.value]"
+        "securityRules": "[reference('collector').outputs.result.value]"
       }
     }
   ],
   "outputs": {
       "instance":{
           "type": "array",
-          "value": "[reference('firstResource').outputs.result.value]"
+          "value": "[reference('collector').outputs.result.value]"
       }
 
   }
 ```
 
-## <a name="next-steps"></a>Passaggi successivi
+## <a name="try-the-template"></a>Provare il modello
 
-* Queste tecniche sono implementate nel [progetto dei blocchi predefiniti del modello](https://github.com/mspnp/template-building-blocks) e nelle [architetture di riferimento di Azure](/azure/architecture/reference-architectures/). È possibile usarle per creare la propria architettura o distribuire un'architettura di riferimento.
+Un modello di esempio è disponibile in [GitHub][github]. Per distribuire il modello, clonare il repository ed eseguire questi comandi dell'[interfaccia della riga di comando di Azure][cli]:
+
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example4-collector
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example4-collector/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 <!-- links -->
 [objects-as-parameters]: ./objects-as-parameters.md
 [resource-manager-linked-template]: /azure/azure-resource-manager/resource-group-linked-templates
 [resource-manager-variables]: /azure/azure-resource-manager/resource-group-template-functions-deployment
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

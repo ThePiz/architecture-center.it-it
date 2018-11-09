@@ -2,13 +2,13 @@
 title: Usare un oggetto come parametro in un modello di Azure Resource Manager
 description: Viene descritto come estendere la funzionalità dei modelli di Azure Resource Manager per usare oggetti come parametri
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.date: 10/30/2018
+ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876758"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251890"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Usare un oggetto come parametro in un modello di Azure Resource Manager
 
@@ -301,25 +301,21 @@ Osservare ora il modello. La prima risorsa denominata `NSG1` distribuisce il gru
 
 ## <a name="try-the-template"></a>Provare il modello
 
-Se si vuole sperimentare con questo modello, seguire questi passaggi: 
+Un modello di esempio è disponibile in [GitHub][github]. Per distribuire il modello, clonare il repository ed eseguire questi comandi dell'[interfaccia della riga di comando di Azure][cli]:
 
-1.  Accedere al portale di Azure, selezionare l'icona **+**, cercare il tipo di risorsa **distribuzione modelli** e selezionarla.
-2.  Passare alla pagina **distribuzione modelli** e selezionare il pulsante **crea**. Questo pulsante apre il pannello **distribuzione personalizzata**.
-3.  Selezionare il pulsante **Modifica modello**.
-4.  Eliminare il modello vuoto. 
-5.  Copiare e incollare il modello di esempio nel riquadro destro.
-6.  Fare clic sul pulsante **Salva**.
-7.  Quando si torna al riquadro **distribuzione personalizzata**, selezionare il pulsante **modifica parametri**.
-8.  Nel pannello **modifica parametri** eliminare il modello esistente.
-9.  Copiare e incollare il modello di parametro dall'esempio precedente.
-10. Selezionare il pulsante **salva**, che rimanda al pannello **distribuzione personalizzata**.
-11. Nel pannello **distribuzione personalizzata** selezionare la propria sottoscrizione, creare un nuovo gruppo di risorse o usarne uno esistente e selezionare una posizione. Esaminare i termini e le condizioni e selezionare la casella di controllo **I agree** (Accetto).
-12. Fare clic sul pulsante **Acquista**.
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example3-object-param
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example3-object-param/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* È possibile espandere queste tecniche per implementare un [trasformatore e un agente di raccolta dell'oggetto proprietà](./collector.md). Le tecniche del trasformatore e dell'agente di raccolta sono più generali e possono essere collegate dai modelli.
-* Queste tecniche sono implementate anche nel [progetto dei blocchi predefiniti del modello](https://github.com/mspnp/template-building-blocks) e nelle [architetture di riferimento di Azure](/azure/architecture/reference-architectures/). È possibile esaminare i modelli per vedere come è stata implementata questa tecnica.
+- Informazioni su come creare un modello che scorre una matrice di oggetti e la trasforma in uno schema JSON. Vedere [Implementare un trasformatore e un agente di raccolta di proprietà in un modello di Azure Resource Manager](./collector.md)
+
 
 <!-- links -->
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
@@ -327,3 +323,5 @@ Se si vuole sperimentare con questo modello, seguire questi passaggi:
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple
 [azure-resource-manager-functions]: /azure/azure-resource-manager/resource-group-template-functions-resource
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

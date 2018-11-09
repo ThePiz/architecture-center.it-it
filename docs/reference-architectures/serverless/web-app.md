@@ -3,12 +3,12 @@ title: Applicazione Web senza server
 description: Architettura di riferimento che illustra un'applicazione Web senza server e un'API web
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: c2b46a60a57381ac3fd3f77cffe53b2dab2dacd6
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
+ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349956"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "50983397"
 ---
 # <a name="serverless-web-application"></a>Applicazione Web senza server 
 
@@ -113,7 +113,7 @@ Tramite le associazioni, non è necessario scrivere il codice che comunica diret
 
 **Funzioni**. Per il piano a consumo, il trigger HTTP viene ridimensionato in base al traffico. È previsto un limite al numero di istanze di funzione simultanee, ma ogni istanza può elaborare più di una richiesta alla volta. Per un piano di servizio app, il trigger HTTP viene ridimensionato in base al numero di istanze della macchina virtuale, che può essere un valore fisso oppure può essere ridimensionato in modo automatico in base a un set di regole di scalabilità automatica. Per informazioni vedere [Ridimensionamento e hosting di Funzioni di Azure][functions-scale]. 
 
-**Cosmos DB**. La capacità di elaborazione per Cosmos DB viene misurata in [unità richieste][ru], ovvero UR. Una velocità effettiva di 1 UR corrisponde alla velocità effettiva necessaria per l'operazione GET su un documento da 1 kB. Per ridimensionare un contenitore Cosmos DB fino a un valore superiore a 10.000 UR, è necessario specificare una [chiave di partizione][partition-key] quando si crea il contenitore e includere la chiave di partizione in ogni documento creato dall'utente. Per altre informazioni sulle chiavi di partizione, vedere [Partizionamento e ridimensionamento in Azure Cosmos DB][cosmosdb-scale].
+**Cosmos DB**. La capacità di elaborazione per Cosmos DB viene misurata in [unità richiesta][ru] (UR). Una velocità effettiva di 1 UR corrisponde alla velocità effettiva necessaria per l'operazione GET su un documento da 1 kB. Per ridimensionare un contenitore Cosmos DB fino a un valore superiore a 10.000 UR, è necessario specificare una [chiave di partizione][partition-key] quando si crea il contenitore e includere la chiave di partizione in ogni documento creato dall'utente. Per altre informazioni sulle chiavi di partizione, vedere [Partizionamento e ridimensionamento in Azure Cosmos DB][cosmosdb-scale].
 
 **Gestione API**. Gestione API consente di aumentare e supportare il ridimensionamento automatico basato su regole. Si noti che il processo di ridimensionamento richiede almeno 20 minuti. Se ci sono picchi di traffico, è necessario eseguire il provisioning per il picco di traffico massimo previsto. Tuttavia, la scalabilità automatica è utile per la gestione delle variazioni orarie o giornaliere del traffico. Per altre informazioni, vedere [Ridimensionare automaticamente un'istanza di Gestione API di Azure][apim-scale].
 
@@ -148,20 +148,13 @@ Per configurare l'autenticazione:
 
 - Abilitare l'autenticazione di Azure AD nell'app per le funzioni. Per altre informazioni, vedere [Autenticazione e autorizzazione nel servizio app di Azure][app-service-auth].
 
-- Aggiungere un criterio a Gestione API per autorizzare in anticipo la richiesta convalidando il token di accesso:
-
-    ```xml
-    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
-        <openid-config url="https://login.microsoftonline.com/[Azure AD tenant ID]/.well-known/openid-configuration" />
-        <required-claims>
-            <claim name="aud">
-                <value>[Application ID]</value>
-            </claim>
-        </required-claims>
-    </validate-jwt>
-    ```
+- Aggiungere il [criterio validate-jwt][apim-validate-jwt] a Gestione API per preautorizzare la richiesta convalidando il token di accesso.
 
 Per altri dettagli, vedere il [file leggimi di GitHub][readme].
+
+È consigliabile creare registrazioni di app separate in Azure AD per l'applicazione client e l'API back-end. Concedere all'applicazione client l'autorizzazione per chiamare l'API. Questo approccio garantisce la possibilità di definire più API e client e controllare le autorizzazioni per ognuno. 
+
+All'interno di un'API, usare gli [ambiti][scopes] per assicurare alle applicazioni un controllo specifico sulle autorizzazioni che richiedono da un utente. Ad esempio, un'API potrebbe avere gli ambiti `Read` e `Write` e una determinata app client potrebbe chiedere all'utente di autorizzare solo le autorizzazioni `Read`.
 
 ### <a name="authorization"></a>Authorization
 
@@ -275,11 +268,21 @@ In alternativa, è possibile archiviare i segreti dell'applicazione in Key Vault
 
 ## <a name="devops-considerations"></a>Considerazioni su DevOps
 
+### <a name="deployment"></a>Distribuzione
+
+Per distribuire l'app per le funzioni è consigliabile usare [file di pacchetto][functions-run-from-package], ossia l'esecuzione dal pacchetto. Con questo approccio, si carica un file ZIP in un contenitore di archiviazione BLOB e il runtime di Funzioni monta il file ZIP come file system di sola lettura. Questa operazione atomica riduce le probabilità che una distribuzione non riuscita lasci l'applicazione in uno stato non coerente. Può anche migliorare i tempi di avvio a freddo, soprattutto per le app Node.js, perché viene effettuato lo swapping di tutti i file contemporaneamente.
+
 ### <a name="api-versioning"></a>Controllo delle versioni API
 
-Un'API è un contratto tra un servizio e i client o consumer del servizio. Prevedere il supporto del controllo delle versioni nel contratto API. Se si apporta una modifica di rilievo all'API, introdurre una nuova versione dell'API. Distribuire la nuova versione side-by-side con la versione originale, in un'app per le funzioni separata. Ciò consente di eseguire la migrazione dei client esistenti alla nuova API senza interrompere le applicazioni client. Infine è possibile deprecare la versione precedente. Per altre informazioni sul controllo delle versioni delle API, vedere [Controllo delle versioni di un'API Web RESTful][api-versioning].
+Un'API è un contratto tra un servizio e i client. In questa architettura, il contratto API è definito al livello di Gestione API. Gestione API supporta due [concetti di controllo delle versioni][apim-versioning] distinti ma complementari.
 
-Per gli aggiornamenti che non interrompono le modifiche dell'API, distribuire la nuova versione in uno slot di staging nella stessa app per le funzioni. Verificare che la distribuzione abbia avuto esito positivo, quindi invertire la versione con gestione temporanea e la versione di produzione.
+- *Versioni*: consentono ai consumer di API di scegliere una versione dell'API in base alle esigenze, ad esempio v1 o v2. 
+
+- *Revisioni*: consentono agli amministratori di API di apportare modifiche che non causano interruzioni e distribuirle insieme a un log delle modifiche per informare i consumer di API.
+
+Se si apporta una modifica che causa un'interruzione in un'API, pubblicare una nuova versione in Gestione API. Distribuire la nuova versione side-by-side con la versione originale, in un'app per le funzioni separata. Ciò consente di eseguire la migrazione dei client esistenti alla nuova API senza interrompere le applicazioni client. Infine è possibile deprecare la versione precedente. Gestione API supporta diversi [schemi di controllo delle versioni][apim-versioning-schemes]: percorso URL, intestazione HTTP e stringa di query. Per altre informazioni sul controllo delle versioni delle API in generale, vedere [Controllo delle versioni di un'API Web RESTful][api-versioning].
+
+Per gli aggiornamenti che non interrompono le modifiche dell'API, distribuire la nuova versione in uno slot di staging nella stessa app per le funzioni. Verificare che la distribuzione abbia avuto esito positivo, quindi invertire la versione con gestione temporanea e la versione di produzione. Pubblicare una revisione in Gestione API.
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
@@ -292,6 +295,9 @@ Per distribuire questa architettura di riferimento, consultare il [file leggimi 
 [apim-ip]: /azure/api-management/api-management-faq#is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules
 [api-geo]: /azure/api-management/api-management-howto-deploy-multi-region
 [apim-scale]: /azure/api-management/api-management-howto-autoscale
+[apim-validate-jwt]: /azure/api-management/api-management-access-restriction-policies#ValidateJWT
+[apim-versioning]: /azure/api-management/api-management-get-started-publish-versions
+[apim-versioning-schemes]: /azure/api-management/api-management-get-started-publish-versions#choose-a-versioning-scheme
 [app-service-auth]: /azure/app-service/app-service-authentication-overview
 [app-service-ip-restrictions]: /azure/app-service/app-service-ip-restrictions
 [app-service-security]: /azure/app-service/app-service-security
@@ -310,9 +316,11 @@ Per distribuire questa architettura di riferimento, consultare il [file leggimi 
 [functions-bindings]: /azure/azure-functions/functions-triggers-bindings
 [functions-cold-start]: https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/
 [functions-https]: /azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https
-[functions-proxy]: /azure-functions/functions-proxies
+[functions-proxy]: /azure/azure-functions/functions-proxies
+[functions-run-from-package]: /azure/azure-functions/run-functions-from-deployment-package
 [functions-scale]: /azure/azure-functions/functions-scale
 [functions-timeout]: /azure/azure-functions/functions-scale#consumption-plan
+[functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
 [microservices-domain-analysis]: ../../microservices/domain-analysis.md
@@ -321,6 +329,7 @@ Per distribuire questa architettura di riferimento, consultare il [file leggimi 
 [partition-key]: /azure/cosmos-db/partition-data
 [pipelines]: /azure/devops/pipelines/index
 [ru]: /azure/cosmos-db/request-units
+[scopes]: /azure/active-directory/develop/v2-permissions-and-consent
 [static-hosting]: /azure/storage/blobs/storage-blob-static-website
 [static-hosting-preview]: https://azure.microsoft.com/blog/azure-storage-static-web-hosting-public-preview/
 [storage-https]: /azure/storage/common/storage-require-secure-transfer
