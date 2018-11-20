@@ -3,12 +3,12 @@ title: Data warehousing e analitica per vendite e marketing
 description: Consolidare i dati da più origini e ottimizzare le analisi dei dati.
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: f9ca9785b65f18098a91aedc1f3157f49456a6e1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: e4c0a37f61f3edfb1f29d26df546f02d31fd40f7
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818650"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610703"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>Data warehousing e analitica per vendite e marketing
 
@@ -24,7 +24,7 @@ La società vuole adottare un approccio moderno ai dati di analisi, in modo che 
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-È anche possibile usare questo approccio per eseguire le operazioni seguenti:
+Questo approccio può essere usato anche per:
 
 * Definire un data warehouse come singola origine di dati reali.
 * Integrare le origini dati relazionali con altri set di dati non strutturati.
@@ -46,7 +46,7 @@ Il flusso dei dati attraverso la soluzione avviene come segue:
 La società ha origini dati in diverse piattaforme:
 * SQL Server in locale
 * Oracle in locale
-* database SQL di Azure
+* Database SQL di Azure
 * Archiviazione tabelle di Azure
 * Cosmos DB
 

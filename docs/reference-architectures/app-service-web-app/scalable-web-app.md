@@ -2,19 +2,15 @@
 title: Applicazione Web scalabile
 description: Miglioramento della scalabilità in un'applicazione Web eseguita in Microsoft Azure.
 author: MikeWasson
-pnp.series.title: Azure App Service
-pnp.series.prev: basic-web-app
-pnp.series.next: multi-region-web-app
 ms.date: 10/25/2018
-cardTitle: Improve scalability
-ms.openlocfilehash: 208413a49fe4a3f9ca308fa1a939ba426e7fa636
-ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
+ms.openlocfilehash: dd1fa30b6ac8d978ad0151c8753951d848d60664
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50136693"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527610"
 ---
-# <a name="improve-scalability-in-a-web-application"></a>Migliorare la scalabilità in un'applicazione Web
+# <a name="improve-scalability-in-an-azure-web-application"></a>Migliorare la scalabilità in un'applicazione Web di Azure
 
 Questa architettura di riferimento è basata su procedure consolidate volte al miglioramento della scalabilità e delle prestazioni di un'applicazione Web Servizio app di Azure.
 
@@ -79,7 +75,7 @@ Le applicazioni moderne spesso elaborano grandi quantità di dati. Per assicurar
 | Coppie chiave/valore |Dati del profilo utente cercati in base all'ID utente |Archiviazione tabelle di Azure |
 | Brevi messaggi aventi lo scopo di attivare un'ulteriore elaborazione |Richieste di ordini |Coda di archiviazione, coda del bus di servizio o argomento del bus di servizio di Azure |
 | Dati non relazionali con uno schema flessibile che richiedono l'esecuzione di query di base |Catalogo prodotti |Database di documenti, come Azure Cosmos DB, MongoDB o Apache CouchDB |
-| Dati relazionali che richiedono il supporto di query più avanzate, uno schema rigido e/o coerenza assoluta |Inventario prodotti |database SQL di Azure |
+| Dati relazionali che richiedono il supporto di query più avanzate, uno schema rigido e/o coerenza assoluta |Inventario prodotti |Database SQL di Azure |
 
  Vedere [Choose the right data store][datastore] (Scegliere il giusto archivio dati).
 
