@@ -3,12 +3,12 @@ title: Front-end per e-commerce in Azure
 description: Ospitare un sito di e-commerce in Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819092"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610822"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Front-end per e-commerce in Azure
 
@@ -18,7 +18,7 @@ Questo documento illustra i diversi componenti di Azure PaaS e le considerazioni
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Compilazione di un'applicazione che necessita di scalabilità elastica per gestire i picchi di utenti in momenti diversi.
 * Compilazione di un'applicazione progettata per funzionare a disponibilità elevata in diverse aree di Azure in tutto il mondo.
@@ -45,7 +45,7 @@ Questo scenario descrive l'acquisto di biglietti da un sito di e-commerce. Il fl
 
 * La [rete CDN di Azure][docs-cdn] fornisce contenuti statici memorizzati nella cache da posizioni vicine agli utenti per ridurre la latenza.
 * [Gestione traffico di Azure][docs-traffic-manager] consente di controllare la distribuzione del traffico degli utenti per gli endpoint del servizio in diverse aree di Azure.
-* [Servizi app - App Web][docs-webapps] ospita applicazioni Web che offrono scalabilità automatica e disponibilità elevata senza dover gestire l'infrastruttura.
+* Le [app Web del servizio app][docs-webapps] ospitano applicazioni Web con scalabilità automatica e disponibilità elevata senza che sia necessario gestire l'infrastruttura.
 * [Azure Active Directory - B2C][docs-b2c] è un servizio di gestione delle identità che consente di personalizzare e controllare il modo in cui i clienti si iscrivono, accedono e gestiscono i profili in un'applicazione.
 * Le [code di archiviazione][docs-storage-queues] archiviano un numero elevato di messaggi in coda ai quali è possibile accedere tramite un'applicazione.
 * Le [funzioni][docs-functions] sono opzioni di calcolo senza server che consentono l'esecuzione di applicazioni su richiesta senza dover gestire l'infrastruttura.

@@ -3,12 +3,12 @@ title: Classificazione delle immagini per richieste di indennizzo assicurativo i
 description: Integrare l'elaborazione di immagini nelle applicazioni Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 31d328f8e5e27ea255024b7f461f2bfaeffc3ca7
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818536"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610533"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Classificazione delle immagini per richieste di indennizzo assicurativo in Azure
 
@@ -20,10 +20,10 @@ Con servizi di Azure come l'API Visione artificiale e Funzioni di Azure, le azie
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
-* Classificare le immagini in un sito Web di abbigliamento.
-* Classificare i dati di telemetria provenienti da screenshot di giochi.
+* Classificazione delle immagini in un sito Web di abbigliamento.
+* Classificazione dei dati di telemetria provenienti da screenshot di giochi.
 
 ## <a name="architecture"></a>Architettura
 
@@ -58,7 +58,7 @@ La maggior parte dei componenti di questo scenario è costituita da servizi gest
 
 Cosmos DB non offre scalabilità automatica in termini di unità richiesta (UR) sottoposte a provisioning. Per indicazioni su come stimare i propri requisiti, vedere l'articolo relativo alle [unità richiesta](/azure/cosmos-db/request-units) nella documentazione. Per sfruttare appieno la scalabilità in Cosmos DB, esaminare il funzionamento delle [chiavi di partizione](/azure/cosmos-db/partition-data) in Cosmos DB.
 
-I database NoSQL spesso privilegiano la disponibilità, la scalabilità e la partizione rispetto alla coerenza (nel senso del teorema CAP). In questo scenario di esempio viene usato un modello di dati chiave-valore e la coerenza delle transazione è raramente necessaria perché le operazioni sono per la maggior parte atomiche per definizione. Materiale sussidiario per [scegliere l'archivio dati corretto](../../guide/technology-choices/data-store-overview.md) sono disponibili in Centro architetture di Azure.  Se l'implementazione richiede una coerenza elevata, è possibile [scegliere il livello di coerenza](/azure/cosmos-db/consistency-levels) in Cosmos DB.
+I database NoSQL spesso privilegiano la disponibilità, la scalabilità e la partizione rispetto alla coerenza (nel senso del teorema CAP). In questo scenario di esempio viene usato un modello di dati chiave-valore e la coerenza delle transazione è raramente necessaria perché le operazioni sono per la maggior parte atomiche per definizione. Materiale sussidiario per [scegliere l'archivio dati corretto](../../guide/technology-choices/data-store-overview.md) sono disponibili in Centro architetture di Azure. Se l'implementazione richiede una coerenza elevata, è possibile [scegliere il livello di coerenza](/azure/cosmos-db/consistency-levels) in Cosmos DB.
 
 Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
@@ -86,9 +86,9 @@ Sono stati definiti tre profili di costo di esempio in base alla quantità di tr
 
 ## <a name="related-resources"></a>Risorse correlate
 
-Per un percorso di apprendimento guidato per questo scenario, vedere [Build a serverless web app in Azure][serverless] (Creare un'app Web senza server in Azure).
+Per un percorso di apprendimento guidato, vedere [Creare un'app Web serverless in Azure][serverless].
 
-Prima di implementare questo scenario di esempio in un ambiente di produzione, esaminare le [procedure consigliate][functions-best-practices] per Funzioni di Azure.
+Prima di distribuire questo scenario di esempio in un ambiente di produzione, esaminare le procedure consigliate per l'[ottimizzazione delle prestazioni e dell'affidabilità di Funzioni di Azure][functions-best-practices].
 
 <!-- links -->
 [architecture]: ./media/architecture-intelligent-apps-image-processing.png

@@ -3,12 +3,12 @@ title: Relazione di trust decentralizzata tra le banche in Azure
 description: Creare un ambiente attendibile per la comunicazione e la condivisione di informazioni senza dover ricorrere a un database centralizzato.
 author: vitoc
 ms.date: 09/09/2018
-ms.openlocfilehash: fe27f885635ce5ae4ce368992affa1a85d7af416
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: bc472bc5bafc3eb20e583f41d71ed783725a039e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876759"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610567"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Relazione di trust decentralizzata tra le banche in Azure
 
@@ -18,17 +18,17 @@ In genere, le banche che fanno parte di un sistema finanziario si affidano a fon
 
 Con le tecnologie basate sul libro mastro distribuito (DLT, Distributed Ledger Technology), un consorzio di banche può creare un sistema decentralizzato che potrà essere più efficiente, meno soggetto ad attacchi ed essere usato come nuova piattaforma in cui implementate strutture innovative per risolvere le classiche problematiche relative a privacy, velocità e costi.
 
-Questo esempio illustra come sia possibile effettuare rapidamente il provisioning dei servizi di Azure, ad esempio set di scalabilità di macchine virtuali, Rete virtuale, Key Vault, Archiviazione, Load Balancer e Monitoraggio, per la distribuzione di un efficiente blockchain Ethereum PoA privato in cui le banche membro possono stabilire i propri nodi.
+Questo esempio illustra come è possibile effettuare rapidamente il provisioning di servizi di Azure come i set di scalabilità di macchine virtuali, Rete virtuale, Key Vault, Archiviazione, Load Balancer e Monitoraggio per la distribuzione di una blockchain Ethereum PoA privata efficiente in cui le banche membro potranno stabilire i propri nodi.
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Questi altri casi d'uso hanno schemi progettuali simili:
+Gli altri casi d'uso pertinenti includono:
 
 * Spostamento dei budget allocati tra diverse unità aziendali di una società multinazionale
 * Pagamenti internazionali
 * Scenari di trade finance
 * Sistemi di fedelizzazione che coinvolgono diverse società
-* Ecosistemi di catene di approvvigionamento e molto altro ancora
+* Ecosistemi di supply chain
 
 ## <a name="architecture"></a>Architettura
 
@@ -44,7 +44,7 @@ Questo scenario illustra i componenti back-end necessari per creare una scalabil
 
 ### <a name="components"></a>Componenti
 
-* Le macchine virtuali nei set di scalabilità di macchine virtuali forniscono la struttura di calcolo on demand per ospitare i processi dei validator per la blockchain
+* Le macchine virtuali nei set di scalabilità di macchine virtuali offrono la struttura di calcolo su richiesta per l'hosting dei processi dei validator per la blockchain
 * Key Vault viene usato come struttura di archiviazione sicura per le chiavi private di ogni validator
 * Load Balancer distribuisce le richieste di applicazioni decentralizzate per governance, peering e RPC
 * Archiviazione ospita le informazioni di rete persistenti e coordinare il leasing
@@ -70,9 +70,9 @@ Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo 
 
 ### <a name="scalability"></a>Scalabilità
 
-Un problema comune per la blockchain è il numero di transazioni che può includere in un periodo di tempo prestabilito. Questo scenario usa Proof-of-Authority in cui tale scalabilità può essere gestita meglio che in Proof-of-Work. Nelle reti basate su Proof-of-Authority i partecipanti al consenso sono noti e gestiti ed è quindi più adatto a una blockchain privata per un consorzio di organizzazioni che si conoscono tra loro. I parametri come il tempo medio di blocco, le transazioni al minuto e il consumo delle risorse di calcolo possono essere monitorati con facilità tramite il dashboard personalizzato. Le risorse possono quindi essere modificate di conseguenza in base ai requisiti di scalabilità.
+Un problema comune per la blockchain è il numero di transazioni che può includere in un periodo di tempo prestabilito. Questo scenario usa Proof-of-Authority in cui tale scalabilità può essere gestita meglio che in Proof-of-Work. Nelle reti basate su Proof-of-Authority, i partecipanti al consenso sono noti e gestiti, quindi sono più adatte a una blockchain privata per un consorzio di organizzazioni che si conoscono tra loro. I parametri come il tempo medio di blocco, le transazioni al minuto e il consumo delle risorse di calcolo possono essere monitorati con facilità tramite il dashboard personalizzato. Le risorse possono quindi essere modificate di conseguenza in base ai requisiti di scalabilità.
 
-Per indicazioni generali sulla progettazione di uno scenario scalabile, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
+Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
 ### <a name="security"></a>Sicurezza
 
@@ -100,7 +100,7 @@ I prezzi indicati in precedenza sono per un membro del consorzio che deve avviar
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per un esempio di questo scenario, distribuire l'[applicazione demo di blockchain Ethereum PoA][deploy] in Azure, quindi esaminare il [file leggimi del codice sorgente dello scenario][source].
+Per un esempio di questo scenario, distribuire l'[applicazione demo per blockchain Ethereum PoA][deploy] in Azure. Esaminare quindi il [file README del codice sorgente dello scenario][source].
 
 ## <a name="related-resources"></a>Risorse correlate
 

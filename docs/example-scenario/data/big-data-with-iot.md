@@ -3,12 +3,12 @@ title: IoT e analisi dei dati nell'industria edilizia
 description: Usare dispositivi IoT e analisi dei dati per offrire una gestione e un funzionamento completo dei progetti edilizi.
 author: alexbuckgit
 ms.date: 08/29/2018
-ms.openlocfilehash: 7ab0de50b0eba1ab420e450f3408fe5dc45f04ac
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 74868191687e63a54a69fdacb7276983d98faf74
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818497"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610924"
 ---
 # <a name="iot-and-data-analytics-in-the-construction-industry"></a>IoT e analisi dei dati nell'industria edilizia
 
@@ -29,7 +29,7 @@ L'uso dei servizi di Azure gestiti, ad esempio l'hub IoT e HDInsight, permetter�
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questa soluzione per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Scenari relativi a edilizia, attività mineraria o produzione di macchinari
 * Raccolta su larga scala dei dati dei dispositivi per l'archiviazione e l'analisi
@@ -47,7 +47,7 @@ Il flusso dei dati attraverso la soluzione avviene come segue:
 4. I dati non elaborati raccolti vengono inviati direttamente dall'hub IoT all'archivio BLOB di Azure e sono immediatamente disponibili per la visualizzazione e l'analisi.
 5. I dati raccolti tramite l'hub IoT vengono elaborati quasi in tempo reale da un processo di Analisi di flusso di Azure e archiviati in un database SQL di Azure.
 6. L'applicazione Web Smart Construction Cloud consente ad analisti e utenti finali di visualizzare e analizzare i dati dei sensori e le immagini. 
-7. I processi batch vengono avviati su richiesta degli utenti dell'applicazione Web. Il processo batch viene eseguito in Apache Spark su HDInsight e analizza i nuovi dati archiviati nel cluster Cassandra. 
+7. I processi batch vengono avviati su richiesta degli utenti dell'applicazione Web. Il processo batch viene eseguito in Apache Spark su HDInsight e analizza i nuovi dati archiviati nel cluster Cassandra. 
 
 ### <a name="components"></a>Componenti
 

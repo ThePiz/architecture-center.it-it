@@ -3,12 +3,12 @@ title: Scelta di una tecnologia di apprendimento automatico
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 995349c795066ec3067b20ad2615e40b0fb152db
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 50167bafa49f8e6016f6ec12680db016830e2b81
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288933"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577158"
 ---
 # <a name="choosing-a-machine-learning-technology-in-azure"></a>Scelta di una tecnologia di apprendimento automatico in Azure
 
@@ -72,7 +72,7 @@ Vantaggi principali:
 Considerazioni:
 * Richiede una certa conoscenza del modello di gestione dei modelli e dell'ambiente dello strumento Workbench.
 
-### <a name="azure-batch-ai"></a>Intelligenza artificiale per Azure Batch
+### <a name="azure-batch-ai"></a>Azure Batch per intelligenza artificiale
 
 Azure Batch per intelligenza artificiale consente di eseguire esperimenti di apprendimento automatico in parallelo e di eseguire il training dei modelli su larga scala in un cluster di macchine virtuali con GPU. Batch per intelligenza artificiale consente anche di aumentare le prestazioni dei processi di apprendimento avanzato in GPU in cluster tramite framework come Cognitive Toolkit, Caffe, Chainer, e TensorFlow. 
 
@@ -109,6 +109,10 @@ Vantaggi principali:
 Considerazioni:
 
 * Spark viene eseguito in un cluster HDinsght che comporta addebiti per tutto il tempo in cui è in esecuzione. Se il servizio di apprendimento automatico viene usato solo in modo occasionale, può quindi determinare costi non necessari.
+
+### <a name="azure-databricks"></a>Azure Databricks
+
+[Azure Databricks](/azure/azure-databricks/) è una piattaforma di analisi basata su Apache Spark. Questa opzione può essere considerata una sorta di "Spark distribuito come servizio". È il modo più semplice per usare Spark nella piattaforma Azure. Per l'apprendimento automatico, è possibile usare [MLFlow](https://www.mlflow.org/), [Databricks Runtime ML](https://docs.azuredatabricks.net/user-guide/clusters/mlruntime.html), Apache Spark MLlib e altri strumenti. Per altre informazioni, vedere la documentazione sull'[apprendimento automatico in Azure Databricks](https://docs.azuredatabricks.net/spark/latest/mllib/index.html). 
 
 ### <a name="web-service-in-a-container"></a>Servizio Web in un contenitore
 

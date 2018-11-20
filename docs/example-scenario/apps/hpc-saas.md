@@ -3,12 +3,12 @@ title: Un servizio CAE (Computer-Aided Engineering) in Azure
 description: Fornire una piattaforma software come un servizio (SaaS) per CAE (Computer-Aided Engineering) in Azure.
 author: alexbuckgit
 ms.date: 08/22/2018
-ms.openlocfilehash: d17ac218052c5b98e8790f1386be035618a2d957
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 8bdf7198223f7194d0cd717949699bb3a508674e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818684"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610550"
 ---
 # <a name="a-computer-aided-engineering-service-on-azure"></a>Un servizio CAE (Computer-Aided Engineering) in Azure
 
@@ -26,7 +26,7 @@ Gli obiettivi dell'azienda includono:
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Altri scenari di utilizzo di questa architettura possono includere:
+Gli altri casi d'uso pertinenti includono:
 
 * Ricerca nel campo della genomica
 * Simulazioni meteo
@@ -37,7 +37,7 @@ Altri scenari di utilizzo di questa architettura possono includere:
 ![Architettura di una soluzione SaaS con funzionalità HPC][architecture]
 
 * Gli utenti possono accedere a macchine virtuali della serie NV tramite un Web browser con connessione RDP basata su HTML5 usando il [servizio Apache Guacamole](https://guacamole.apache.org/). Queste istanze di macchine virtuali forniscono GPU potenti per le attività di rendering e di collaborazione. Gli utenti possono modificare i progetti e visualizzare i risultati senza bisogno di portatili o dispositivi di elaborazione di fascia alta. L'utilità di pianificazione attiva altre macchine virtuali in base all'euristica definita dall'utente.
-* Da una sessione CAD desktop, gli utenti possono inviare i carichi di lavoro per l'esecuzione nei nodi disponibili del cluster HPC. Questi carichi di lavoro eseguono attività come analisi delle sollecitazioni o calcoli di fluidodinamica computazionale, eliminando la necessità di cluster di calcolo locali dedicati. Questi nodi del cluster possono essere configurati per la scalabilità automatica in base al carico o alla profondità della coda secondo la domanda di risorse di calcolo dell'utente attivo.
+* Da una sessione CAD desktop, gli utenti possono inviare i carichi di lavoro per l'esecuzione nei nodi disponibili del cluster HPC. Questi carichi di lavoro eseguono attività come analisi delle sollecitazioni o calcoli di fluidodinamica computazionale, eliminando la necessità di cluster di calcolo locali dedicati. Questi nodi del cluster possono essere configurati per la scalabilità automatica in base al carico o alla profondità della coda a seconda della domanda di risorse di calcolo degli utenti attivi.
 * Per ospitare le risorse Web disponibili per gli utenti finali viene usato il servizio Kubernetes di Azure (AKS).
 
 ### <a name="components"></a>Componenti

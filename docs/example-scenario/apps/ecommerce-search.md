@@ -3,30 +3,30 @@ title: Motore di ricerca di prodotti intelligente per l'e-commerce
 description: Fornire un'esperienza di ricerca di qualità elevata in un'applicazione di e-commerce.
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: f18e9fd3705c24da71da747c46ab42f263fd06af
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818754"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610669"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Motore di ricerca di prodotti intelligente per l'e-commerce
 
 Questo scenario di esempio illustra in che modo l'uso di un servizio di ricerca dedicato può aumentare drasticamente la pertinenza dei risultati della ricerca per i clienti dei siti di e-commerce.
 
-La ricerca è il meccanismo principale attraverso cui i clienti trovano e infine acquistano prodotti. Per questo motivo, è essenziale che i risultati della ricerca siano pertinenti alla _finalità_ della query di ricerca e che l'esperienza di ricerca end-to-end equivalga a quella fornita dai giganti della ricerca, fornendo risultati quasi istantanei, analisi linguistica, corrispondenza in base alla posizione geografica, filtri, facet, completamento automatico, evidenziazione dei risultati e così via.
+La ricerca è il meccanismo principale attraverso cui i clienti trovano e infine acquistano i prodotti. È quindi essenziale che i risultati della ricerca siano pertinenti alla _finalità_ della query di ricerca e che l'esperienza di ricerca end-to-end corrisponda a quella offerta dai giganti della ricerca, fornendo risultati quasi immediati, analisi linguistica, corrispondenza in base alla posizione geografica, filtri, facet, completamento automatico, evidenziazione dei risultati e così via.
 
 Si immagini un'applicazione Web di e-commerce tipica con i dati dei prodotti archiviati in un database relazionale, ad esempio SQL Server o il database SQL di Azure. Le query di ricerca vengono spesso gestite all'interno del database usando query `LIKE` oppure funzionalità di [ricerca full-text][docs-sql-fts]. Usando [Ricerca di Azure][docs-search] è possibile liberare il database operativo dall'elaborazione delle query, iniziando facilmente a sfruttare i vantaggi di quelle funzionalità difficili da implementare che però forniscono ai clienti l'esperienza di ricerca migliore possibile. Inoltre, poiché Ricerca di Azure è una piattaforma distribuita come servizio (PaaS), non è necessario preoccuparsi della gestione dell'infrastruttura né diventare esperti nella ricerca.
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Questi altri casi d'uso hanno schemi progettuali simili:
+Gli altri casi d'uso pertinenti includono:
 
 * Trovare annunci immobiliari o negozi vicino alla posizione fisica dell'utente.
 * Cercare articoli in un sito di notizie o cercare risultati sportivi, con preferenza per le informazioni più _recenti_.
 * Eseguire ricerche in archivi di grandi dimensioni di organizzazioni _incentrate sui documenti_, ad esempio studi notarili e responsabili delle politiche.
 
-In ultima analisi, _qualsiasi_ applicazione con funzionalità di ricerca può trarre vantaggio dall'uso di un servizio di ricerca dedicato.
+In ultima analisi, _qualsiasi_ applicazione con funzionalità di ricerca può trarre vantaggio da un servizio di ricerca dedicato.
 
 ## <a name="architecture"></a>Architettura
 
@@ -42,7 +42,7 @@ Questo scenario illustra una soluzione di e-commerce in cui i clienti possono es
 
 ### <a name="components"></a>Componenti
 
-* [Servizi app - App Web][docs-webapps] ospita applicazioni Web che offrono scalabilità automatica e disponibilità elevata senza dover gestire l'infrastruttura.
+* Le [app Web del servizio app][docs-webapps] ospitano applicazioni Web con scalabilità automatica e disponibilità elevata senza che sia necessario gestire l'infrastruttura.
 * Il [database SQL][docs-sql-database] è un servizio gestito di database relazionale per uso generico in Microsoft Azure che supporta strutture come dati relazionali, JSON, dati spaziali e XML.
 * [Ricerca di Azure][docs-search] è una soluzione cloud di ricerca distribuita come servizio che offre un'esperienza di ricerca avanzata su contenuti eterogenei e privati nelle applicazioni Web, per dispositivi mobili e aziendali.
 * Il [servizio Bot][docs-botservice] offre gli strumenti per creare, testare, distribuire e gestire bot intelligenti.

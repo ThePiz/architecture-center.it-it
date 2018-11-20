@@ -3,12 +3,12 @@ title: Rilevamento delle frodi in tempo reale in Azure
 description: Rilevare le attività fraudolente in tempo reale con Hub eventi e Analisi di flusso di Azure.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: 4de988731aa1c5b0e4c0ba06fa5aed59e2bb7d81
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818667"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610618"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Rilevamento delle frodi in tempo reale in Azure
 
@@ -22,7 +22,7 @@ Questo esempio rappresenta una parte di un'architettura e una strategia di elabo
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Rilevamento di chiamate da telefono cellulare fraudolente in scenari di telecomunicazioni.
 * Identificazione di transazioni con carta di credito fraudolente per istituti bancari.
@@ -63,7 +63,7 @@ Per altre considerazioni sulla disponibilità, vedere l'[elenco di controllo per
 
 I componenti di questo scenario sono progettati per l'inserimento con iperscalabilità e l'analisi parallela elevata in tempo reale. Hub eventi di Azure è una piattaforma altamente scalabile in grado di ricevere ed elaborare milioni di eventi al secondo con bassa latenza. Hub eventi può [aumentare automaticamente](/azure/event-hubs/event-hubs-auto-inflate) il numero di unità elaborate per soddisfare le esigenze di utilizzo. Analisi di flusso di Azure può analizzare volumi elevati di dati in streaming da molte origini. È possibile aumentare le prestazioni di Analisi di flusso aumentando il numero di [unità di streaming](/azure/stream-analytics/stream-analytics-streaming-unit-consumption) allocate per l'esecuzione del processo di streaming.
 
-Per indicazioni generali sulla progettazione di uno scenario scalabile, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
+Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
 ### <a name="security"></a>Sicurezza
 

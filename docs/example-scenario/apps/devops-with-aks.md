@@ -3,12 +3,12 @@ title: Pipeline di integrazione continua/distribuzione continua per carichi di l
 description: Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: db8de674ee2789c5b41cebebee5745ecc8544122
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818736"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610839"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 
@@ -20,7 +20,7 @@ Con servizi di Azure come il servizio Kubernetes di Azure, Registro contenitori 
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Modernizzazione delle procedure di sviluppo di applicazioni con un approccio basato su contenitori e microservizi.
 * Velocizzazione dei cicli di vita di sviluppo e di distribuzione delle applicazioni.

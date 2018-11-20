@@ -3,12 +3,12 @@ title: Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure
 description: Eseguire simulazioni di fluidodinamica computazionale (CFD) in Azure.
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: 5734e6fe707e3beb5e23f2ad2b4344ba289803bb
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818577"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610635"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure
 
@@ -20,7 +20,7 @@ Per semplificare la creazione, la gestione e l'ottimizzazione di cluster HPC, è
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Considerare questo scenario per i settori in cui si potrebbero usare applicazioni CFD:
+Gli altri settori pertinenti per le applicazioni CFD includono:
 
 * Aeronautica
 * Automobilistico

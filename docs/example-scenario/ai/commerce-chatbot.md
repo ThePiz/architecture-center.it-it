@@ -3,12 +3,12 @@ title: Chatbot di conversazione per prenotazioni di hotel in Azure
 description: Creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 826aa36da5f30a871abd90fd8ab2b202ffdf93f0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819658"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610771"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Chatbot di conversazione per prenotazioni di hotel in Azure
 
@@ -20,11 +20,11 @@ Con servizi di Azure come il servizio Bot e Language Understanding o Speech API,
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
-* Visualizzare il menu da asporto di un ristorante e ordinare cibo
-* Controllare la disponibilità in hotel e prenotare una camera
-* Cercare le foto disponibili e ordinare stampe
+* Visualizzazione del menu da asporto di un ristorante e ordinazione di cibo
+* Controllo della disponibilità in hotel e prenotazione di una camera
+* Ricerca nelle foto disponibili e ordinazione di stampe
 
 ## <a name="architecture"></a>Architettura
 
@@ -96,7 +96,7 @@ Questo scenario è suddiviso in tre componenti per consentire l'esplorazione del
 
 ### <a name="deploy-infrastructure-components"></a>Distribuire i componenti dell'infrastruttura
 
-Per distribuire i componenti dell'infrastruttura con un modello di Azure Resource Manager, seguire questa procedura.
+Per distribuire i componenti dell'infrastruttura con un modello di Resource Manager, seguire questa procedura.
 
 1. Fare clic sul pulsante **Distribuisci in Azure**:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Attendere l'apertura della distribuzione del modello nel portale di Azure e quindi completare la procedura seguente:
@@ -149,7 +149,8 @@ Sono stati definiti tre profili di costo di esempio in base al numero di messagg
 
 ## <a name="related-resources"></a>Risorse correlate
 
-Per un set di esercitazioni guidate sull'uso del servizio Azure Bot, vedere il [nodo delle esercitazioni][botservice-docs] nella relativa documentazione.
+Per un set di esercitazioni guidate sul servizio Azure Bot, vedere la [sezione delle esercitazioni][botservice-docs] nella relativa documentazione.
+
 
 <!-- links -->
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview

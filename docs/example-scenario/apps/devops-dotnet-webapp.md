@@ -3,12 +3,12 @@ title: Pipeline di integrazione continua/distribuzione continua con Azure DevOps
 description: Compilare e rilasciare un'app .NET per App Web di Azure usando Azure DevOps.
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: 80890784d4c97aac418cef4e49f9075dbef10b8a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 97f16b2d3d9c15bc6f5db6fad4c9d8097243ad3d
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818939"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610788"
 ---
 # <a name="cicd-pipeline-with-azure-devops"></a>Pipeline di integrazione continua/distribuzione continua con Azure DevOps
 
@@ -109,7 +109,7 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 ### <a name="resiliency"></a>Resilienza
 
-Esaminare i [modelli di progettazione tipici per la resilienza][design-patterns-resiliency] e valutare la possibilità di implementarli, quando opportuno.
+Valutare la possibilità di implementare i [modelli di progettazione tipici per la resilienza][design-patterns-resiliency], quando opportuno.
 
 In Centro architetture di Azure sono disponibili diverse [procedure consigliate per il servizio app][resiliency-app-service].
 

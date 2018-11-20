@@ -3,12 +3,12 @@ title: Esecuzione di carichi di lavoro di produzione SAP con un database Oracle 
 description: Eseguire una distribuzione di produzione SAP in Azure con un database Oracle.
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 4c0e054a9024cd50581acd5b472a09d6e98d2bed
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818571"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610907"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure
 
@@ -20,7 +20,7 @@ Questo scenario di esempio illustra una distribuzione SAP in macchine virtuali W
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Esaminare questo esempio per gli scenari seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Carichi di lavoro cruciali in esecuzione in SAP.
 * Carichi di lavoro SAP non critici.

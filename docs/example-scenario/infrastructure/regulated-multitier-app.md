@@ -3,12 +3,12 @@ title: Applicazione Web Windows sicura per i settori regolamentati
 description: Creare un'applicazione Web multilivello sicura con Windows Server in Azure con set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 584b5891f9b3d8e174c3eb29835a525ae4a4f156
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819007"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610720"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Applicazione Web Windows sicura per i settori regolamentati
 
@@ -18,7 +18,7 @@ Esempi di scenari di applicazioni includono esecuzione di applicazioni per la sa
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Modernizzazione delle distribuzioni di applicazioni in un ambiente cloud sicuro.
 * Minore gestione di applicazioni e servizi legacy locali.

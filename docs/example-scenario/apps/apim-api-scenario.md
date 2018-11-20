@@ -3,12 +3,12 @@ title: Migrazione di un'applicazione Web legacy in un'architettura basata su API
 description: Usare Gestione API di Azure per modernizzare un'applicazione Web legacy.
 author: begim
 ms.date: 09/13/2018
-ms.openlocfilehash: 1aa7ea6dc895146e13677dd9867fb2530f0a8f04
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: f468b3c6dc1c58e03555613b152882316ae2a017
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876790"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610584"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>Migrazione di un'applicazione Web legacy in un'architettura basata su API in Azure
 
@@ -17,10 +17,10 @@ Una società di e-commerce del settore dei viaggi sta modernizzando lo stack sof
 Gli obiettivi per il progetto includono la gestione del debito tecnico, il miglioramento della manutenzione periodica e l'accelerazione dello sviluppo di funzionalità con meno bug di regressione. Il progetto userà un processo iterativo per evitare rischi, con alcuni passaggi eseguiti in parallelo:
 
 * Il team di sviluppo modernizzerà il back-end dell'applicazione, costituito da database relazionali ospitati in macchine virtuali.
-* Il team di sviluppo interno scriverà una nuova funzionalità di business, che verrà esposta tramite nuove API HTTP.
+* Il team di sviluppo interno scriverà nuove funzionalità di business che verranno esposte tramite nuove API HTTP.
 * Un team di sviluppo di contratti compilerà una nuova interfaccia utente basata su browser, che sarà ospitata in Azure.
 
-Le nuove funzionalità dell'applicazione verranno distribuite in più fasi. *Sostituiranno gradualmente* la funzionalità esistente dell'interfaccia utente di tipo client-server basata su browser (ospitata in locale), attualmente alla base dell'attività di e-commerce.
+Le nuove funzionalità dell'applicazione verranno distribuite in più fasi. Queste funzionalità sostituiranno gradualmente le funzionalità esistenti dell'interfaccia utente di tipo client-server basata su browser (ospitata in locale) che è attualmente alla base dell'attività di e-commerce.
 
 Il team di gestione non vuole modernizzare inutilmente l'applicazione. Vuole anche mantenere il controllo dell'ambito e dei costi. A tale scopo, ha deciso di mantenere i servizi SOAP HTTP esistenti. Intende anche ridurre al minimo le modifiche all'interfaccia utente esistente. [Gestione API di Azure][apim] può essere utilizzato per soddisfare molti dei requisiti e dei vincoli del progetto.
 
@@ -81,11 +81,12 @@ I clienti possono sfruttare la scalabilità di Gestione API aggiungendo o rimuov
 > [!NOTE]
 > Il livello Developer è utilizzabile per la valutazione delle funzionalità di Gestione API. Il livello Developer non deve essere usato per la produzione.
 
-Per visualizzare i costi previsti e personalizzare in base alle esigenze di distribuzione, è possibile modificare il numero di unità di scala e di istanze del servizio app nel [calcolatore prezzi di Azure][pricing-calculator].
+Per visualizzare i costi previsti ed eseguire la personalizzazione in base alle specifiche esigenze di distribuzione, è possibile modificare il numero di unità di scala e di istanze del servizio app nel [calcolatore dei prezzi di Azure][pricing-calculator].
 
 ## <a name="related-resources"></a>Risorse correlate
 
-Vedere la [documentazione completa e gli articoli di riferimento][apim] su Gestione API di Azure.
+Vedere le estese informazioni disponibili [nella documentazione e negli articoli di riferimento][apim] su Gestione API di Azure.
+
 
 <!-- links -->
 [architecture]: ./media/architecture-apim-api-scenario.png

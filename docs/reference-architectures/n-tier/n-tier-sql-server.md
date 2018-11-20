@@ -2,15 +2,15 @@
 title: Applicazione a più livelli con SQL Server
 description: Come implementare un'architettura a più livelli in Azure per la disponibilità, la sicurezza, la scalabilità e la gestibilità.
 author: MikeWasson
-ms.date: 09/13/2018
-ms.openlocfilehash: 6ddad853240b9a51ac904c06783a5c0b56dedec5
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.date: 11/12/2018
+ms.openlocfilehash: 857b666ef8af8fec21d7a8a9756508344aa07acc
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916516"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577124"
 ---
-# <a name="n-tier-application-with-sql-server"></a>Applicazione a più livelli con SQL Server
+# <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Applicazione a più livelli Windows in Azure con SQL Server
 
 Questa architettura di riferimento illustra come distribuire macchine virtuali e una rete virtuale configurata per un'applicazione a più livelli tramite SQL Server in Windows per il livello dati. [**Distribuire questa soluzione**.](#deploy-the-solution) 
 
@@ -24,17 +24,17 @@ L'architettura include i componenti seguenti:
 
 * **Gruppo di risorse.** I [gruppi di risorse][resource-manager-overview] vengono usati per raggruppare le risorse in modo che possano essere gestite in base alla durata, al proprietario o ad altri criteri.
 
-* **Rete virtuale e subnet.** Ogni macchina virtuale di Azure viene distribuita in una rete virtuale che può essere suddivisa in più subnet. Creare una subnet separata per ogni livello. 
+* **Rete virtuale e subnet.** Ogni VM di Azure viene distribuita in una rete virtuale che può essere segmentata in subnet. Creare una subnet separata per ogni livello. 
 
 * **Gateway applicazione**. Il [gateway applicazione di Azure](/azure/application-gateway/) è un servizio di bilanciamento del carico di livello 7. In questa architettura, instrada le richieste HTTP al front-end Web. Il gateway applicazione fornisce anche un [Web application firewall](/azure/application-gateway/waf-overview) (WAF) che protegge l'applicazione da exploit e vulnerabilità comuni. 
 
-* **Gruppi di sicurezza di rete.** Usare i [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete nella rete virtuale. Ad esempio, nell'architettura a 3 livelli illustrata qui il livello database non accetta traffico dal front-end Web, solo dal livello business e dalla subnet di gestione.
+* **Gruppi di sicurezza di rete.** Usare i [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete nella rete virtuale. Nell'architettura a tre livelli qui illustrata, ad esempio, il livello database non accetta traffico dal front-end Web, ma solo dal livello business e dalla subnet di gestione.
+
+* **Protezione DDoS**. Nonostante la piattaforma Azure offra protezione di base dagli attacchi Distributed Denial of Service (DDoS), è consigliabile usare [Protezione DDoS Standard][ddos], che include funzionalità di mitigazione DDoS avanzate. Vedere [Considerazioni relative alla sicurezza](#security-considerations).
 
 * **Macchine virtuali**. Per indicazioni su come configurare le macchine virtuali, vedere [Eseguire una VM Windows in Azure](./windows-vm.md) ed [Eseguire una VM Linux in Azure](./linux-vm.md).
 
-* **Set di disponibilità.** Creare un [set di disponibilità][azure-availability-sets] per ogni livello ed eseguire il provisioning di almeno due macchine virtuali in ogni livello. In questo modo le macchine virtuali sono idonee per un [contratto di servizio][vm-sla] di livello superiore. 
-
-* **Set di scalabilità di macchine virtuali** (non illustrato). Un [set di scalabilità di macchine virtuali][vmss] rappresenta un'alternativa all'uso di un set di disponibilità. Un set di scalabilità rende più facile aumentare il numero di istanze delle VM in un livello, manualmente o automaticamente in base a regole predefinite.
+* **Set di disponibilità.** Per ogni livello creare un [set di disponibilità][azure-availability-sets] ed effettuare il provisioning di almeno due VM, rendendo così le VM idonee per un [contratto di servizio][vm-sla] superiore.
 
 * **Servizi di bilanciamento del carico.** Usare [Azure Load Balancer][load-balancer] per distribuire il traffico di rete dal livello Web al livello aziendale e dal livello aziendale a SQL Server.
 
@@ -48,7 +48,7 @@ L'architettura include i componenti seguenti:
 
 * **Cloud di controllo**. Un cluster di failover richiede che più della metà dei nodi sia in esecuzione (quorum). Se il cluster ha solo due nodi, una partizione di rete potrebbe indurre ogni nodo a ritenere di essere il nodo master. In tal caso, è necessario un *controllo* per stabilire la prevalenza e ottenere il quorum. Un controllo è una risorsa, ad esempio un disco condiviso, che può stabilire la prevalenza per ottenere il quorum. Il cloud di controllo è un tipo di controllo che usa Archiviazione BLOB di Azure. Per altre informazioni sul concetto di quorum, vedere [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Informazioni su cluster e quorum del pool). Per altre informazioni sul controllo cloud, vedere [Distribuire un cloud di controllo per un cluster di failover](/windows-server/failover-clustering/deploy-cloud-witness). 
 
-* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS, che fornisce la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
+* **DNS di Azure**. [DNS di Azure][azure-dns] è un servizio di hosting per i domini DNS che esegue la risoluzione dei nomi usando l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le stesse credenziali, API, strumenti e fatturazione come per gli altri servizi Azure.
 
 ## <a name="recommendations"></a>Consigli
 
@@ -64,13 +64,13 @@ Progettare le subnet tenendo presenti i requisiti di funzionamento e sicurezza. 
 
 ### <a name="load-balancers"></a>Servizi di bilanciamento del carico
 
-Non esporre le macchine virtuali direttamente su Internet, ma assegnare un indirizzo IP privato a ogni macchina virtuale. I client si connettono usando l'indirizzo IP pubblico associato al gateway applicazione.
+Non esporre le VM direttamente in Internet, ma assegnare invece a ogni VM un indirizzo IP privato. I client si connettono usando l'indirizzo IP pubblico associato al gateway applicazione.
 
-Definire regole di bilanciamento del carico per indirizzare il traffico di rete alle macchine virtuali. Ad esempio, per consentire il traffico HTTP, creare una regola che esegua il mapping della porta 80 dalla configurazione front-end alla porta 80 sul pool di indirizzi back-end. Quando un client invia una richiesta HTTP alla porta 80, il servizio di bilanciamento del carico consente di selezionare un indirizzo IP back-end usando un [algoritmo di hash][load-balancer-hashing] che include l'indirizzo IP di origine. In tal modo, le richieste client vengono distribuite tra tutte le macchine virtuali.
+Definire regole di bilanciamento del carico per indirizzare il traffico di rete alle macchine virtuali. Per consentire il traffico HTTP, ad esempio, eseguire il mapping della porta 80 della configurazione front-end alla porta 80 nel pool di indirizzi back-end. Quando un client invia una richiesta HTTP alla porta 80, il servizio di bilanciamento del carico consente di selezionare un indirizzo IP back-end usando un [algoritmo di hash][load-balancer-hashing] che include l'indirizzo IP di origine. Le richieste client vengono distribuite tra tutte le VM nel pool di indirizzi back-end.
 
 ### <a name="network-security-groups"></a>Gruppi di sicurezza di rete
 
-Usare le regole NSG per limitare il traffico fra livelli. Ad esempio, nell'architettura a 3 livelli illustrata sopra il livello Web non comunica direttamente con il livello database. Per applicare questo comportamento, il livello database deve bloccare il traffico in entrata dalla subnet del livello Web.  
+Usare le regole NSG per limitare il traffico fra livelli. Nell'architettura a tre livelli illustrata sopra, il livello Web non comunica direttamente con il livello database. Per applicare questo comportamento, il livello database deve bloccare il traffico in entrata dalla subnet del livello Web.  
 
 1. Rifiutare tutto il traffico in ingresso dalla rete virtuale. (usare il tag `VIRTUAL_NETWORK` nella regola). 
 2. Consentire il traffico in ingresso dalla subnet del livello business.  
@@ -98,7 +98,7 @@ Configurare il gruppo di disponibilità AlwaysOn di SQL Server nel modo seguente
    > 
    > 
 
-Quando un client SQL cerca di connettersi, il servizio di bilanciamento del carico indirizza la richiesta di connessione alla replica primaria. In caso di failover a un'altra replica, il servizio di bilanciamento del carico indirizza automaticamente le richieste successive a una nuova replica primaria. Per altre informazioni, vedere [Configure an ILB listener for SQL Server Always On Availability Groups][sql-alwayson-ilb] (Configurare un listener ILB per i gruppi di disponibilità AlwaysOn di SQL Server).
+Quando un client SQL cerca di connettersi, il servizio di bilanciamento del carico indirizza la richiesta di connessione alla replica primaria. In caso di failover a un'altra replica, il servizio di bilanciamento del carico indirizza automaticamente le nuove richieste a una nuova replica primaria. Per altre informazioni, vedere [Configure an ILB listener for SQL Server Always On Availability Groups][sql-alwayson-ilb] (Configurare un listener ILB per i gruppi di disponibilità AlwaysOn di SQL Server).
 
 Durante un failover, le connessioni client esistenti vengono chiuse. Dopo il completamento del failover, le nuove connessioni verranno indirizzate alla nuova replica primaria.
 
@@ -108,7 +108,7 @@ Testare la distribuzione [forzando un failover manuale][sql-alwayson-force-failo
 
 ### <a name="jumpbox"></a>Jumpbox
 
-Non consentire l'accesso RDP dalla rete Internet pubblica alle macchine virtuali che eseguono il carico di lavoro dell'applicazione. L'accesso RDP a queste macchine virtuali deve sempre passare attraverso il jumpbox. Un amministratore accede al jumpbox, quindi accede alle altre macchine virtuali dal jumpbox. Il jumpbox consente il traffico RDP da Internet, ma solo da indirizzi IP conosciuti e attendibili.
+Non consentire l'accesso RDP dalla rete Internet pubblica alle VM che eseguono il carico di lavoro dell'applicazione. L'accesso RDP a queste macchine virtuali deve sempre passare attraverso il jumpbox. Un amministratore accede al jumpbox, quindi accede alle altre macchine virtuali dal jumpbox. Il jumpbox consente il traffico RDP da Internet, ma solo da indirizzi IP conosciuti e attendibili.
 
 Il jumpbox ha requisiti di prestazioni minimi, quindi selezionare una macchina virtuale di piccole dimensioni. Creare un [indirizzo IP pubblico] per il jumpbox. Collocare il jumpbox nella stessa rete virtuale delle altre macchine virtuali, ma in una subnet di gestione separata.
 
@@ -116,15 +116,15 @@ Per proteggere il jumpbox aggiungere una regola del gruppo di sicurezza di rete 
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
-I [set di scalabilità di macchine virtuali][vmss] consentono di distribuire e gestire un set di macchine virtuali identiche. I set di scalabilità supportano il ridimensionamento automatico in base alle metriche delle prestazioni. Di pari passo con l'aumento del carico sulle macchine virtuali, vengono aggiunte automaticamente altre macchine virtuali al servizio di bilanciamento del carico. Prendere in considerazione i set di scalabilità se è necessario aumentare rapidamente le istanze delle macchine virtuali o se si necessita del ridimensionamento automatico.
+Per i livelli Web e business, valutare la possibilità di usare [set di scalabilità di macchine virtuali][vmss], invece di distribuire VM separate in un set di disponibilità. Un set di scalabilità facilita la distribuzione e la gestione di un set di VM identiche e il ridimensionamento automatico delle VM in base alle metriche delle prestazioni. Di pari passo con l'aumento del carico sulle macchine virtuali, vengono aggiunte automaticamente altre macchine virtuali al servizio di bilanciamento del carico. Prendere in considerazione i set di scalabilità se è necessario aumentare rapidamente le istanze delle macchine virtuali o se si necessita del ridimensionamento automatico.
 
 Esistono due modi per configurare le macchine virtuali distribuite in un set di scalabilità:
 
-- Usare le estensioni per configurare la macchina virtuale dopo il provisioning. Con questo approccio, le nuove istanze delle macchine virtuali possono richiedere più tempo per l'avvio di una macchina virtuale senza estensioni.
+- Usare le estensioni per configurare la VM dopo la distribuzione. Con questo approccio, le nuove istanze delle macchine virtuali possono richiedere più tempo per l'avvio di una macchina virtuale senza estensioni.
 
-- Distribuire un [disco gestito](/azure/storage/storage-managed-disks-overview) con un'immagine del disco personalizzata. Questa opzione può risultare più veloce da distribuire. Tuttavia, richiede che l'immagine sia mantenuta aggiornata.
+- Distribuire un [disco gestito](/azure/storage/storage-managed-disks-overview) con un'immagine del disco personalizzata. Questa opzione può risultare più veloce da distribuire. Richiede, tuttavia, che l'immagine venga mantenuta aggiornata.
 
-Per altre considerazioni, vedere [Considerazioni sulla progettazione per i set di scalabilità][vmss-design].
+Per altre informazioni, vedere [Considerazioni sulla progettazione per i set di scalabilità][vmss-design].
 
 > [!TIP]
 > Quando si usa una soluzione di ridimensionamento automatico, occorre testarla in anticipo con carichi di lavoro a livello di produzione.
@@ -133,32 +133,32 @@ Ogni sottoscrizione di Azure ha limiti predefiniti, tra cui il numero massimo di
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
-Se non si usano i set di scalabilità di macchine virtuali, inserire le macchine virtuali dello stesso livello in un set di disponibilità. Creare almeno due macchine virtuali nel set di disponibilità in modo da supportare il [contratto di servizio relativo alla disponibilità per le macchine virtuali di Azure][vm-sla]. Per altre informazioni, vedere [Gestire la disponibilità delle macchine virtuali][availability-set]. 
+Se non si usano set di scalabilità di macchine virtuali, inserire le VM per lo stesso livello in un set di disponibilità. Creare almeno due macchine virtuali nel set di disponibilità in modo da supportare il [contratto di servizio relativo alla disponibilità per le macchine virtuali di Azure][vm-sla]. Per altre informazioni, vedere [Gestire la disponibilità delle macchine virtuali][availability-set]. I set di scalabilità usano automaticamente *gruppi di posizionamento*, che fungono da set di disponibilità impliciti.
 
-Il servizio di bilanciamento del carico usa i [probe di integrità][health-probes] per monitorare la disponibilità delle istanze delle macchine virtuali. Se un probe non riesce a raggiungere un'istanza entro il periodo di timeout, il bilanciamento del carico interrompe l'invio di traffico a quella macchina virtuale. Tuttavia, il servizio di bilanciamento del carico continuerà a eseguire la verifica e, se la macchina virtuale diventa nuovamente disponibile, il servizio di bilanciamento del carico riprenderà a inviare il traffico a quella macchina virtuale.
+Il servizio di bilanciamento del carico usa i [probe di integrità][health-probes] per monitorare la disponibilità delle istanze delle macchine virtuali. Se un probe non riesce a raggiungere un'istanza entro il periodo di timeout, il servizio di bilanciamento del carico interrompe l'invio di traffico alla VM. Tuttavia, il servizio di bilanciamento del carico continuerà a eseguire la verifica e, se la macchina virtuale diventa nuovamente disponibile, il servizio di bilanciamento del carico riprenderà a inviare il traffico a quella macchina virtuale.
 
 Ecco alcune raccomandazioni per i probe di integrità del servizio di bilanciamento del carico:
 
 * I probe possono testare protocolli HTTP o TCP. Se le macchine virtuali eseguono un server HTTP, creare un probe HTTP. In caso contrario, creare un probe TCP.
-* Per un probe HTTP, specificare il percorso di un endpoint HTTP. Il probe controlla una risposta HTTP 200 da questo percorso. Può trattarsi del percorso radice ("/") o di un endpoint di monitoraggio dell'integrità che implementa una logica personalizzata per controllare l'integrità dell'applicazione. L'endpoint deve consentire richieste HTTP anonime.
-* Il probe viene inviato da un [indirizzo IP noto][health-probe-ip], 168.63.129.16. Verificare di non bloccare il traffico da o verso questo indirizzo IP in eventuali criteri del firewall o regole del gruppo di sicurezza di rete.
-* Usare i [log dei probe di integrità][health-probe-log] per visualizzare lo stato dei probe di integrità. Abilitare la registrazione nel portale di Azure per ogni servizio di bilanciamento del carico. I log vengono scritti in Archiviazione BLOB di Azure. Il log mostra il numero di macchine virtuali sul back-end che non ricevono traffico di rete a causa di risposte del probe non riuscite.
+* Per un probe HTTP, specificare il percorso di un endpoint HTTP. Il probe controlla una risposta HTTP 200 da questo percorso. Può trattarsi del percorso radice ("/") o di un endpoint di monitoraggio dell'integrità che implementa logica personalizzata per controllare l'integrità dell'applicazione. L'endpoint deve consentire richieste HTTP anonime.
+* Il probe viene inviato da un [indirizzo IP noto][health-probe-ip], 168.63.129.16. Nessun criterio del firewall o nessuna regola del gruppo di sicurezza di rete deve bloccare il traffico da o verso questo indirizzo IP.
+* Usare i [log dei probe di integrità][health-probe-log] per visualizzare lo stato dei probe di integrità. Abilitare la registrazione nel portale di Azure per ogni servizio di bilanciamento del carico. I log vengono scritti in Archiviazione BLOB di Azure. I log mostrano quante VM non ricevono traffico di rete a causa di risposte di probe con esito negativo.
 
 Se occorre una disponibilità più elevata di quella fornita dal [contratto di servizio di Azure per le macchine virtuali][vm-sla], è consigliabile eseguire la replica dell'applicazione in due aree e usare Gestione traffico di Azure per il failover. Per altre informazioni, vedere [Applicazione a più livelli per più aree per la disponibilità elevata][multi-dc].  
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
 
-Le reti virtuali sono un limite di isolamento del traffico in Azure. Le macchine virtuali in una rete virtuale possono comunicare direttamente con quelle in una rete virtuale diversa. Le macchine virtuali all'interno della stessa rete virtuale possono comunicare, a meno che non si creino [gruppi di sicurezza di rete][nsg] per limitare il traffico. Per altre informazioni, vedere [Servizi cloud Microsoft e sicurezza di rete][network-security].
+Le reti virtuali sono un limite di isolamento del traffico in Azure. Le VM in una rete virtuale non possono comunicare direttamente con quelle in un'altra rete virtuale. Le macchine virtuali all'interno della stessa rete virtuale possono comunicare, a meno che non si creino [gruppi di sicurezza di rete][nsg] per limitare il traffico. Per altre informazioni, vedere [Servizi cloud Microsoft e sicurezza di rete][network-security].
 
-Valutare l'aggiunta di un'appliance virtuale di rete per creare una rete perimetrale tra la rete Internet e la rete virtuale di Azure. Un'appliance virtuale di rete esegue attività correlate alla rete, ad esempio impostazione di un firewall, ispezione di pacchetti, controllo e routing personalizzato. Per altre informazioni, vedere [Implementazione di una rete perimetrale tra Azure e Internet][dmz].
+**Rete perimetrale**. Valutare l'aggiunta di un'appliance virtuale di rete per creare una rete perimetrale tra la rete Internet e la rete virtuale di Azure. Un'appliance virtuale di rete esegue attività correlate alla rete, ad esempio impostazione di un firewall, ispezione di pacchetti, controllo e routing personalizzato. Per altre informazioni, vedere [Implementazione di una rete perimetrale tra Azure e Internet][dmz].
 
-Crittografare i dati sensibili inattivi e usare[Azure Key Vault][azure-key-vault] per gestire le chiavi di crittografia del database. Key Vault consente di archiviare le chiavi di crittografia in moduli di protezione hardware. Per altre informazioni, vedere [Configurare l'integrazione di Azure Key Vault per SQL Server in macchine virtuali di Azure][sql-keyvault]. È anche consigliabile archiviare in Key Vault i segreti dell'applicazione, ad esempio le stringhe di connessione di database.
+**Crittografia**. Crittografare i dati sensibili inattivi e usare[Azure Key Vault][azure-key-vault] per gestire le chiavi di crittografia del database. Key Vault consente di archiviare le chiavi di crittografia in moduli di protezione hardware. Per altre informazioni, vedere [Configurare l'integrazione di Azure Key Vault per SQL Server in macchine virtuali di Azure][sql-keyvault]. È anche consigliabile archiviare in Key Vault i segreti dell'applicazione, ad esempio le stringhe di connessione di database.
 
-Si consiglia di abilitare [Protezione DDoS standard](/azure/virtual-network/ddos-protection-overview), che offre una mitigazione DDoS aggiuntiva per le risorse in una rete virtuale. Anche se la protezione DDoS di base è abilitata automaticamente come parte della piattaforma Azure, Protezione DDoS standard offre funzionalità di mitigazione ottimizzate in modo specifico per le risorse di rete virtuale di Azure.  
+**Protezione DDoS**. La piattaforma Azure offre protezione DDoS di base per impostazione predefinita. Tale protezione di base mira a proteggere l'infrastruttura complessiva di Azure. Nonostante la protezione DDoS di base sia automaticamente abilitata, è consigliabile usare [Protezione DDoS Standard][ddos]. Per rilevare le minacce, la protezione Standard usa l'ottimizzazione adattiva in base ai modelli di traffico di rete dell'applicazione. Ciò consente di applicare procedure di mitigazione per attacchi DDoS che potrebbero non essere rilevati dai criteri DDoS a livello di infrastruttura. La protezione Standard offre anche funzionalità di avviso, telemetria e analisi tramite Monitoraggio di Azure. Per altre informazioni, vedere [Procedure consigliate per Protezione DDoS di Azure e architetture di riferimento][ddos-best-practices].
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. Si noti che l'intera distribuzione può richiedere fino a due ore, inclusa l'esecuzione di script per configurare Active Directory Domain Services, il cluster di failover di Windows Server e il gruppo di disponibilità di SQL Server.
+Una distribuzione di questa architettura di riferimento è disponibile in [GitHub][github-folder]. L'intera distribuzione può richiedere fino a due ore, includendo l'esecuzione degli script per configurare Active Directory Domain Services, il cluster di failover di Windows Server e il gruppo di disponibilità di SQL Server.
 
 ### <a name="prerequisites"></a>Prerequisiti
 
@@ -240,22 +240,19 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-dc]: multi-region-sql-server.md
 [n-tier]: n-tier.md
-[azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-windows-manage-availability#configure-each-application-tier-into-separate-availability-sets
-[azure-cli]: /azure/virtual-machines-command-line-tools
 [azure-dns]: /azure/dns/dns-overview
 [azure-key-vault]: https://azure.microsoft.com/services/key-vault
 [bastion host]: https://en.wikipedia.org/wiki/Bastion_host
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
-[chef]: https://www.chef.io/solutions/azure/
+[ddos]: /azure/virtual-network/ddos-protection-overview
+[ddos-best-practices]: /azure/security/azure-ddos-best-practices
 [git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-windows
 [nsg]: /azure/virtual-network/virtual-networks-nsg
-[operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [indirizzo IP pubblico]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
-[puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
 [sql-alwayson]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-alwayson-force-failover]: https://msdn.microsoft.com/library/ff877957.aspx
 [sql-alwayson-getting-started]: https://msdn.microsoft.com/library/gg509118.aspx
@@ -266,9 +263,6 @@ Per altre informazioni sulla distribuzione di questa architettura di riferimento
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [wsfc-whats-new]: https://technet.microsoft.com/windows-server-docs/failover-clustering/whats-new-in-failover-clustering
-[Nagios]: https://www.nagios.org/
-[Zabbix]: https://www.zabbix.com/
-[Icinga]: https://www.icinga.org/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [0]: ./images/n-tier-sql-server.png "Architettura a più livelli con Microsoft Azure"
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 

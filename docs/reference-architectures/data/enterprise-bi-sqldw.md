@@ -3,14 +3,14 @@ title: Business intelligence aziendale con SQL Data Warehouse
 description: Usare Azure per ottenere informazioni aziendali dettagliate da dati relazionali archiviati in locale
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263814"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527712"
 ---
-# <a name="enterprise-bi-with-sql-data-warehouse"></a>Business intelligence aziendale con SQL Data Warehouse
+# <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Business intelligence aziendale in Azure con SQL Data Warehouse
 
 Questa architettura di riferimento implementa una pipeline [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (extract-load-transform) che sposta i dati da un database di SQL Server locale in SQL Data Warehouse e trasforma i dati per l'analisi. 
 
@@ -199,7 +199,7 @@ Per distribuire ed eseguire l'implementazione di riferimento, seguire la procedu
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Usare Azure Data Factory per automatizzare la pipeline ELT. Vedere [Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory][adf=ra].
+- Usare Azure Data Factory per automatizzare la pipeline ELT. Vedere [Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory][adf-ra].
 
 <!-- links -->
 

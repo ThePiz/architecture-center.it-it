@@ -3,12 +3,12 @@ title: Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure
 description: Creare un ambiente di sviluppo/test per i carichi di lavoro SAP.
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: b47e4cb527d3e4ecd74bee7bcf08f2794da56d6c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876800"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610805"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure
 
@@ -22,7 +22,7 @@ Per casi d'uso di produzione, esaminare le architetture di riferimento SAP dispo
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti:
+Gli altri casi d'uso pertinenti includono:
 
 * Carichi di lavoro SAP non di produzione e non critici (sandbox, sviluppo, test, controllo di qualità)
 * Carichi di lavoro SAP Business non critici

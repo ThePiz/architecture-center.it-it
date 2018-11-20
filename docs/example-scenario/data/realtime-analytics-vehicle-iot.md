@@ -1,14 +1,14 @@
 ---
 title: Inserimento ed elaborazione in tempo reale dei dati IoT per il settore automobilistico
 description: Inserire ed elaborare in tempo reale i dati dei veicoli con l'IoT.
-author: meeral
+author: msdpalam
 ms.date: 09/12/2018
-ms.openlocfilehash: 663332185f64987215384a1d4af4b7ed9b50847c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 6562e3277e6b6eb38993132284ad43542ef4c0d3
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876886"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610737"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>Inserimento ed elaborazione in tempo reale dei dati IoT per il settore automobilistico
 
@@ -23,7 +23,7 @@ Per questa dimostrazione di esempio, si supponga che un'azienda produttrice di a
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
-Prendere in considerazione questo scenario per i casi d'uso seguenti insieme agli obiettivi riportati in precedenza quando si crea un sistema di inserimento ed elaborazione dei dati telematici:
+Gli altri casi d'uso pertinenti includono:
 
 * Promemoria e avvisi per la manutenzione del veicolo.
 * Servizi basati sulla posizione per i passeggeri del veicolo (SOS).
@@ -65,7 +65,7 @@ Le tecnologie disponibili in questa architettura sono state scelte in base alla 
 * L'istanza gestita di [HDInsight Kafka](/azure/hdinsight/kafka/apache-kafka-introduction) assicura un contratto di servizio del 99,9% ed è integrata con Azure Managed Disks.
 * [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) è ottimizzato per le prestazioni e la convenienza economica nel cloud. Databricks Runtime aggiunge diverse funzionalità chiave per i carichi di lavoro di Apache Spark che possono migliorare le prestazioni e ridurre i costi da 10 a 100 volte durante l'esecuzione in Azure, ad esempio:
 * Azure Databricks si integra perfettamente con archivi e database di Azure: [Azure SQL Data Warehouse](/azure/sql-data-warehouse), [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db), [Azure Data Lake Storage](https://azure.microsoft.com/services/storage/data-lake-storage) e [Archiviazione BLOB di Azure](https://azure.microsoft.com/services/storage/blobs).
-    * Scalabilità e arresto automatici per i cluster Spark per ridurre automaticamente i costi al minimo.
+    * Ridimensionamento e terminazione automatici dei cluster Spark per ridurre automaticamente al minimo i costi.
     * Ottimizzazioni delle prestazioni tra cui memorizzazione nella cache, indicizzazione e ottimizzazione query avanzata, in grado di migliorare le prestazioni da 10 a 100 volte rispetto alle distribuzioni tradizionali di Apache Spark in ambienti cloud o locali.
     * L'integrazione con Azure Active Directory consente di eseguire soluzioni complete basate su Azure tramite Azure Databricks.
     * Con l'accesso basato sui ruoli in Azure Databricks è possibile definire autorizzazioni utente specifiche per notebook, cluster, processi e dati.

@@ -3,12 +3,12 @@ title: Apprendimento automatico su larga scala
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4e584da18893ac7405fa00863fe034e45b2e3903
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/11/2018
-ms.locfileid: "34062817"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577141"
 ---
 # <a name="machine-learning-at-scale"></a>Apprendimento automatico su larga scala
 
@@ -59,7 +59,7 @@ Prima di decidere quali servizi di apprendimento automatico usare per il trainin
 - Usare i modelli di rete neurale già sottoposti a training forniti da Cognitive Toolkit.
 - Incorporare i modelli serializzati forniti da Core ML per app iOS. 
 
-Se un modello predefinito non si adatta ai dati o allo scenario a disposizione, le opzioni in Azure includono Azure Machine Learning, HDInsight con Spark MLlib e MMLSpark, Cognitive Toolkit e i servizi di SQL Machine Learning. Se si decide di usare un modello personalizzato, è necessario progettare una pipeline che includa il training del modello e l'operazionalizzazione. 
+Se un modello predefinito non è adatto ai dati o allo scenario, le opzioni in Azure includono Azure Machine Learning, HDInsight con Spark MLlib e MMLSpark, Azure Databricks, Cognitive Toolkit e SQL Machine Learning Services. Se si decide di usare un modello personalizzato, è necessario progettare una pipeline che includa il training del modello e l'operazionalizzazione. 
 
 ![Opzioni di modelli in Azure](./images/machine-learning-model-training-and-deployment.png)
 
