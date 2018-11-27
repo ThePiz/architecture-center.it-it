@@ -3,12 +3,12 @@ title: Nessun antipattern della memorizzazione nella cache
 description: Il recupero ripetuto degli stessi dati può ridurre le prestazioni e la scalabilità.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428948"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295583"
 ---
 # <a name="no-caching-antipattern"></a>Nessun antipattern della memorizzazione nella cache
 
@@ -59,7 +59,7 @@ La strategia di memorizzazione nella cache più diffusa è quella *su richiesta*
 - Nel percorso di lettura, l'applicazione tenta di leggere i dati dalla cache. Se i dati non sono nella cache, l'applicazione li recupera dall'origine dati e li aggiunge alla cache.
 - Nel percorso di scrittura, l'applicazione scrive la modifica direttamente all'origine dati e rimuove il valore precedente dalla cache. Verrà recuperato e aggiunto alla cache la volta successiva in cui è richiesto.
 
-Questo approccio è adatto per i dati vengono modificati frequentemente. Di seguito è riportato l'esempio precedente aggiornato per usare il modello [Cache-Aside][cache-aside].  
+Questo approccio è adatto per i dati vengono modificati frequentemente. Di seguito è riportato l'esempio precedente aggiornato per usare il modello [cache-aside][cache-aside-pattern].  
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository

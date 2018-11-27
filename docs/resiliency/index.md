@@ -4,12 +4,12 @@ description: Come creare applicazioni resilienti in Azure per disponibilità ele
 author: MikeWasson
 ms.date: 07/29/2018
 ms.custom: resiliency
-ms.openlocfilehash: b925748e1d3d4a8d490bbd5d7cb76f3961ffcfb2
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 73600650dc96fe85ad59e286079a3523ef25d055
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916601"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305962"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -174,7 +174,9 @@ In Azure sono disponibili numerose funzionalità per rendere ridondante un'appli
 
 **Set di disponibilità**. Per proteggersi da errori hardware localizzati, ad esempio un disco o un commutatore di rete non funzionante, distribuire due o più macchine virtuali in un set di disponibilità. Un set di disponibilità è costituito da due o più *domini di errore* che condividono una fonte di alimentazione e uno switch di rete comuni. Le macchine virtuali in un set di disponibilità vengono distribuite tra i domini di errore, in modo che, se un dominio di errore è interessato da un errore hardware, il traffico di rete possa comunque essere indirizzato alle macchine virtuali negli altri domini di errore. Per altre informazioni sui set di disponibilità, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure](/azure/virtual-machines/windows/manage-availability).
 
-**Zone di disponibilità**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. 
+**Zone di disponibilità**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center.
+
+**Azure Site Recovery**.  Replicare le macchine virtuali di Azure in un'altra area di Azure per esigenze di continuità aziendale e ripristino di emergenza. È possibile condurre esercitazioni periodiche sul ripristino di emergenza per assicurarsi di soddisfare le esigenze di conformità. La VM verrà replicata con le impostazioni specificate nell'area selezionata in modo da consentire il ripristino delle applicazioni in caso di interruzioni nell'area di origine. Per altre informazioni, vedere l'articolo su come [replicare le VM di Azure con Azure Site Recovery][site-recovery].
 
 **Aree associate**. Per proteggere un'applicazione da un'interruzione dell'alimentazione a livello di area, è possibile distribuire l'applicazione in più aree, tramite Gestione traffico di Microsoft Azure in modo da distribuire il traffico Internet in aree diverse. Ogni area di Azure è associata a un'altra area e la combinazione di queste aree costituisce una [coppia di aree](/azure/best-practices-availability-paired-regions). Ad eccezione del Brasile meridionale, le coppie di aree hanno la stessa collocazione geografica in modo da soddisfare i requisiti di residenza dei dati ai fini della giurisdizione per le imposizioni fiscali e normative.
 
@@ -202,9 +204,11 @@ Ogni nuovo tentativo si aggiunge alla latenza totale e, in aggiunta, un numero e
 * Scalare orizzontalmente un'applicazione del servizio app di Azure a più istanze: il servizio app bilancia automaticamente il carico tra le istanze. Vedere [Basic web application][ra-basic-web] (Applicazione Web di base).
 * Usare [Gestione traffico][tm] per distribuire il traffico in un set di endpoint.
 
-**Replicare i dati**. La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione forniscono funzioni di replica predefinite, tra cui Database SQL di Azure, Cosmos DB e Apache Cassandra. È importante considerare i percorsi sia di lettura che di scrittura: in base alla tecnologia di archiviazione, potrebbero essere fornite più repliche scrivibili, o una singola replica scrivibile e più repliche di sola lettura. 
+**Replicare i dati**. La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione forniscono funzioni di replica predefinite, tra cui Database SQL di Azure, Cosmos DB e Apache Cassandra. È importante considerare i percorsi sia di lettura che di scrittura: in base alla tecnologia di archiviazione, potrebbero essere fornite più repliche scrivibili, o una singola replica scrivibile e più repliche di sola lettura.
 
-Per ottimizzare la disponibilità, è possibile posizionare le repliche in più aree. Tuttavia, ciò aumenta la latenza quando si replicano i dati. In genere, la replica tra aree viene eseguita in modo asincrono e ciò implica un modello di coerenza finale e la potenziale perdita di dati se una replica ha esito negativo. 
+Per ottimizzare la disponibilità, è possibile posizionare le repliche in più aree. Tuttavia, ciò aumenta la latenza quando si replicano i dati. In genere, la replica tra aree viene eseguita in modo asincrono e ciò implica un modello di coerenza finale e la potenziale perdita di dati se una replica ha esito negativo.
+
+È possibile usare [Azure Site Recovery][site-recovery] per replicare le macchine virtuali di Azure da un'area a un'altra. Site Recovery replica i dati in modo continuo nell'area di destinazione. In caso di interruzione nel sito primario, viene effettuato il failover nella località secondaria.
 
 **Ridurre le prestazioni in modo graduale**. Se un servizio ha esito negativo e non è presente un percorso di failover, l'applicazione potrebbe essere in grado di ridurre le prestazioni gradualmente pur fornendo un'esperienza utente accettabile. Ad esempio: 
 
@@ -355,3 +359,4 @@ Di seguito sono riportati alcuni punti chiave illustrati nell'articolo:
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[site-recovery]:/azure/site-recovery/azure-to-azure-quickstart/
