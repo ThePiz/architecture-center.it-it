@@ -5,12 +5,12 @@ author: david-stanford
 ms:date: 11/01/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 01b2db150c66eaa7f8911361dd39786f53c39c07
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 5fcfc1566256a54d9907c66dbb550616f0155a3f
+ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610499"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52550513"
 ---
 # <a name="azure-example-scenarios"></a>Scenari di esempio di Azure
 
@@ -27,9 +27,9 @@ Passare a: [Scenari di intelligenza artificiale](#ai-scenarios) | [Scenari appli
                 <div class="card">
                     <div class="cardText">
                         <h3>Nuovi scenari</h3>
-                        <a class="barLink" href="/azure/architecture/example-scenario/apps/decentralized-trust" data-linktype="absolute-path">Relazione di trust decentralizzata tra le banche in Azure</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/wordpress" data-linktype="absolute-path">Sito Web Wordpress altamente scalabile e sicuro</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/data/data-warehouse" data-linktype="absolute-path">Data warehousing e analisi per vendite e marketing</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery" data-linktype="absolute-path">Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/data/hybrid-etl-with-adf" data-linktype="absolute-path">Processi ETL ibridi con SSIS in locale e Data Factory</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/apps/decentralized-trust" data-linktype="absolute-path">Relazione di trust decentralizzata tra banche in Azure</a>
                     </div>
                 </div>
             </div>
@@ -41,9 +41,9 @@ Passare a: [Scenari di intelligenza artificiale](#ai-scenarios) | [Scenari appli
                 <div class="card">
                     <div class="cardText">
                         <h3>Scenari principali</h3>
-                        <a class="barLink" href="/azure/architecture/example-scenario/ai/intelligent-apps-image-processing" data-linktype="absolute-path">Classificazione delle immagini per richieste di indennizzo</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/apps/commerce-chatbot" data-linktype="absolute-path">Chatbot di conversazione per prenotazioni di hotel</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/regulated-multitier-app" data-linktype="absolute-path">Applicazione Web Windows sicura per i settori regolamentati</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/regulated-multitier-app" data-linktype="absolute-path">Applicazione Web Windows sicura per settori regolamentati</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/apps/devops-dotnet-webapp" data-linktype="absolute-path">Pipeline CI/CD con Azure DevOps</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/data/fraud-detection" data-linktype="absolute-path">Rilevamento delle frodi in tempo reale in Azure</a>
                     </div>
                 </div>
             </div>
@@ -80,4 +80,4 @@ Passare a: [Scenari di intelligenza artificiale](#ai-scenarios) | [Scenari appli
     </li>
 </ul>
 
-[!INCLUDE [notes](./articles.md)]
+[!INCLUDE [articles](../../includes/scenario_articles.md)]
