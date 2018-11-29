@@ -7,12 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 5bb0fb990418a28170a8baeffd22e480fb664fda
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: c265870b9a664afbde561d324ae42fd3a2d9a87e
+ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818956"
+ms.lasthandoff: 11/27/2018
+ms.locfileid: "52332358"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integrare i domini Active Directory locali con Azure Active Directory
 
@@ -218,7 +218,7 @@ Per altre informazioni, vedere l'articolo relativo all'[accesso condizionale di 
 
 È disponibile una distribuzione per un'architettura di riferimento che implementa queste raccomandazioni e considerazioni su GitHub. Questa architettura di riferimento distribuisce in Azure una rete locale simulata che è possibile usare per eseguire test ed esperimenti. L'architettura di riferimento può essere distribuita con macchine virtuali sia Windows sia Linux seguendo le istruzioni riportate di seguito: 
 
-1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fidentity%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fidentity-reference-architectures%2Fmaster%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Dopo avere aperto il collegamento nel portale di Azure, è necessario immettere i valori per alcune impostazioni: 
    * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-aad-onpremise-rg` nella casella di testo.
    * Selezionare l'area dalla casella di riepilogo a discesa **Località**.

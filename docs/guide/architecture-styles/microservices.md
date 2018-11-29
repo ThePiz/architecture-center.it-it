@@ -2,17 +2,17 @@
 title: Stile di architettura di microservizi
 description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture di microservizi in Azure
 author: MikeWasson
-ms.date: 08/30/2018
-ms.openlocfilehash: fb23ac3e408f3a202d925a1bf684bc30d423f218
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 11/13/2018
+ms.openlocfilehash: 4e5d50f829323829c953977257e690354566ebf6
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325444"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295532"
 ---
 # <a name="microservices-architecture-style"></a>Stile di architettura di microservizi
 
-Un'architettura di microservizi è costituita da un insieme di servizi ridotti autonomi. Ogni servizio è indipendente e deve implementare una singola funzionalità di business. Per indicazioni dettagliate per la creazione di un'architettura di microservizi in Azure, vedere [Progettazione, creazione e gestione di microservizi in Azure](../../microservices/index.md).
+Un'architettura di microservizi è costituita da un insieme di servizi ridotti autonomi. Ogni servizio è indipendente e deve implementare una singola funzionalità di business. 
 
 ![](./images/microservices-logical.svg)
  
@@ -111,39 +111,9 @@ Prendere in considerazione questo stile di architettura per:
 
 - Isolare gli errori. Usare strategie di resilienza per impedire che gli errori all'interno di un servizio si propaghino. Vedere [Resiliency patterns][resiliency-patterns] (Modelli di resilienza) e [Progettazione di applicazioni resilienti][resiliency-overview].
 
-## <a name="microservices-using-azure-container-service"></a>Microservizi basati sull'uso del servizio contenitore di Azure 
+## <a name="next-steps"></a>Passaggi successivi
 
-È possibile usare il [servizio contenitore di Azure](/azure/container-service/) per configurare un cluster Docker ed effettuarne il provisioning. Il servizio contenitore di Azure supporta diversi agenti di orchestrazione ampiamente diffusi, tra cui Kubernetes, DC/OS e Docker Swarm.
-
-![](./images/microservices-acs.png)
- 
-**Nodi pubblici**. Questi nodi sono raggiungibili tramite un servizio di bilanciamento del carico pubblico. Il gateway API è ospitato in questi nodi.
-
-**Nodi di back-end**. Questi nodi eseguono servizi che i client raggiungono tramite il gateway API e non ricevono direttamente il traffico Internet. I nodi di back-end potrebbero includere più pool di macchine virtuali, ognuno con un profilo hardware diverso. Ad esempio, è possibile creare pool distinti per carichi di lavoro di calcolo generale, carichi di lavoro di uso elevato della CPU e carichi di lavoro di memoria alta. 
-
-**Macchine virtuali di gestione**. Queste macchine virtuali eseguono i nodi master per l'agente di orchestrazione del contenitore. 
-
-**Rete**. I nodi pubblici, i nodi di back-end e le macchine virtuali di gestione vengono inseriti in subnet distinte nella stessa rete virtuale. 
-
-**Servizi di bilanciamento del carico**.  Un servizio di bilanciamento del carico pubblico esterno è posizionato davanti ai nodi pubblici e distribuisce le richieste Internet ai nodi pubblici. Un altro servizio di bilanciamento del carico è posizionato davanti alle macchine virtuali di gestione, per consentire il traffico Secure Shell (SSH) per le macchine virtuali di gestione, usando le regole NAT.
-
-Per l'affidabilità e la scalabilità, ogni servizio viene replicato tra più macchine virtuali. Tuttavia, poiché i servizi sono anche relativamente leggeri (rispetto a un'applicazione monolitica), in genere più servizi vengono compressi in un'unica macchina virtuale. Una maggiore densità consente un uso ottimale delle risorse. Se un determinato servizio non usa molte risorse, non occorre dedicare un'intera macchina virtuale all'esecuzione di tale servizio.
-
-Il diagramma seguente mostra tre nodi che eseguono quattro diversi servizi (indicati da forme diverse). Si noti che ogni servizio dispone di almeno due istanze. 
- 
-![](./images/microservices-node-density.png)
-
-## <a name="microservices-using-azure-service-fabric"></a>Microservizi basati sull'uso di Azure Service Fabric
-
-Il diagramma seguente mostra un'architettura di microservizi con [Azure Service Fabric](/azure/service-fabric/).
-
-![](./images/service-fabric.png)
-
-Il cluster di Service Fabric viene distribuito in uno o più set di scalabilità di macchine virtuali. È possibile disporre di più set di scalabilità delle macchine virtuali nel cluster, in modo da avere una combinazione di tipi di macchine virtuali. Un gateway API è posizionato davanti al cluster di Service Fabric, con un servizio di bilanciamento del carico esterno per ricevere le richieste client.
-
-Il runtime di Service Fabric esegue la gestione del cluster, inclusi il posizionamento dei servizi, il failover dei nodi e il monitoraggio dello stato. Il runtime viene distribuito nei nodi del cluster stessi. Non è disponibile un set distinto di macchine virtuali per la gestione del cluster.
-
-I servizi comunicano tra loro mediante il proxy inverso integrato in Service Fabric. Service Fabric fornisce un servizio di individuazione in grado di risolvere l'endpoint per un servizio denominato.
+Per indicazioni dettagliate per la creazione di un'architettura di microservizi in Azure, vedere [Progettazione, creazione e gestione di microservizi in Azure](../../microservices/index.md).
 
 
 <!-- links -->
