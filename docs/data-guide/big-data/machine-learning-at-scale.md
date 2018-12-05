@@ -3,12 +3,12 @@ title: Apprendimento automatico su larga scala
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: f2d35f7344a1e760fc6d3ce2292f33b8d3dd7df7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577141"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295491"
 ---
 # <a name="machine-learning-at-scale"></a>Apprendimento automatico su larga scala
 
@@ -68,3 +68,10 @@ Per un elenco di scelte di tecnologia per l'apprendimento automatico in Azure, v
 - [Scelta di una tecnologia di servizi cognitivi](../technology-choices/cognitive-services.md)
 - [Scelta di una tecnologia di apprendimento automatico](../technology-choices/data-science-and-machine-learning.md)
 - [Scelta di una tecnologia di elaborazione del linguaggio naturale](../technology-choices/natural-language-processing.md)
+
+## <a name="next-steps"></a>Passaggi successivi
+
+Le architetture di riferimento seguenti illustrano scenari di apprendimento automatico in Azure:
+
+- [Punteggio batch in Azure per modelli di apprendimento avanzato](../../reference-architectures/ai/batch-scoring-deep-learning.md)
+- [Assegnazione di punteggi in tempo reale per modelli Python scikit-learn e di Deep Learning in Azure](../../reference-architectures/ai/realtime-scoring-python.md)

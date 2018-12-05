@@ -3,12 +3,12 @@ title: Elaborazione batch
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
+ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298659"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52550479"
 ---
 # <a name="batch-processing"></a>Elaborazione batch
 
@@ -30,7 +30,7 @@ Un esempio di elaborazione batch è la trasformazione di un ampio set di file fl
 
 - **Orchestrazione degli intervalli di tempo.** Spesso i dati di origine sono inseriti in una gerarchia di cartelle che riflette gli intervalli di elaborazione, organizzati per anno, mese, giorno, ora e così via. In alcuni casi, i dati possono arrivare in ritardo. Ad esempio, si supponga che in un server Web si verifichi un errore e che i log relativi al 7 marzo arrivino nella cartella di elaborazione solo il 9 marzo. Sarà necessario stabilire se devono essere semplicemente ignorati a causa del ritardo o se la logica di elaborazione downstream sarà in grado di gestire i record non disponibili.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 Un'architettura per l'elaborazione batch include i componenti logici seguenti, illustrati nel diagramma precedente.
 
@@ -75,7 +75,7 @@ Per altre informazioni, vedere [Archivi dati analitici](../technology-choices/an
 
 ### <a name="analytics-and-reporting"></a>Analisi e report
 
-- **Azure Analysis Services**. Molte soluzioni per Big Data emulano le architetture di business intelligence aziendale tradizionali introducendo un modello di dati OLAP centralizzato (noto anche come cubo) in base al quale è possibile creare report, dashboard e analisi interattive approfondite. Azure Analysis Services supporta la creazione di modelli multidimensionali e tabulari per soddisfare questa esigenza.
+- **Azure Analysis Services**. Molte soluzioni per Big Data emulano le architetture di business intelligence aziendale tradizionali introducendo un modello di dati OLAP centralizzato (noto anche come cubo) in base al quale è possibile creare report, dashboard e analisi interattive approfondite. Azure Analysis Services supporta la creazione di modelli tabulari per soddisfare questa esigenza.
 - **Power BI**. Power BI consente agli analisti di dati di creare visualizzazioni dati interattive basate sui modelli di dati di un modello OLAP o direttamente da un archivio dati analitici.
 - **Microsoft Excel**. Microsoft Excel è una delle applicazioni software più diffuso al mondo e offre una vasta gamma di funzionalità di visualizzazione e analisi dei dati. Gli analisti di dati possono usare Excel per creare modelli di dati documento dagli archivi dati analitici o per recuperare dati da modelli di dati OLAP e trasferirli in tabelle pivot e grafici interattivi.
 

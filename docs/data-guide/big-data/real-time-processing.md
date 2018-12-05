@@ -3,12 +3,12 @@ title: Elaborazione in tempo reale
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: 1499fecc20dcbf51472b92bb588b91db0fb58a7f
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37090986"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295600"
 ---
 # <a name="real-time-processing"></a>Elaborazione in tempo reale
 
@@ -24,7 +24,7 @@ I dati elaborati vengono spesso scritti in un archivio dati analitici, ottimizza
 
 Uno dei problemi maggiori delle soluzioni di elaborazione in tempo reale è l'inserimento, l'elaborazione e l'archiviazione dei messaggi in tempo reale, soprattutto in volumi elevati. L'elaborazione deve essere eseguita in modo che non blocchi la pipeline di inserimento. L'archivio dati deve supportare operazioni di scrittura con volumi elevati. Un altro problema è riuscire ad agire rapidamente sui dati, ad esempio generando avvisi in tempo reale o presentando i dati in un dashboard in tempo reale o quasi in tempo reale.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 Un'architettura per l'elaborazione in tempo reale include i componenti logici seguenti.
 
@@ -76,3 +76,8 @@ Per altre informazioni, vedere [Analisi e report](../technology-choices/analysis
 
 In una soluzione esclusivamente in tempo reale la maggior parte dell'orchestrazione di elaborazione viene gestita dai componenti per l'inserimento dei messaggi e l'elaborazione dei flussi. In un'architettura lambda che combina l'elaborazione batch e l'elaborazione in tempo reale può tuttavia essere necessario usare un framework di orchestrazione come Azure Data Factory o Apache Oozie e Sqoop per gestire i flussi di lavoro batch per i dati acquisiti in tempo reale.
 
+## <a name="next-steps"></a>Passaggi successivi
+
+L'architettura di riferimento seguente illustra una pipeline di elaborazione di flussi end-to-end:
+
+- [Elaborazione di flussi con Analisi di flusso di Azure](../../reference-architectures/data/stream-processing-stream-analytics.md)

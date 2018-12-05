@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: 6e705c40663eff421e79067f916a1ebad6e72822
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: a494ff952dd6c8be3b38c2ca7f6740a44b5b30e1
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916550"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295668"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Connettere una rete locale ad Azure tramite un gateway VPN
 
@@ -413,7 +413,7 @@ Le raccomandazioni seguenti sono utili per determinare se per la macchina virtua
 
     ![[3]][3]
 
-    È necessario confrontare i risultati con la larghezza di banda disponibile per il gateway VPN (100 Mbps per gli SKU standard e di base e 200 Mbps per lo SKU a prestazioni elevate):
+    È necessario confrontare i risultati con la larghezza di banda disponibile per il gateway VPN (da 100 Mbps per lo SKU Basic e 1.25 Gbps per lo SKU VpnGw3):
 
     ![[4]][4]
 

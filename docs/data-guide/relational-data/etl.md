@@ -3,12 +3,12 @@ title: ETL (Extract, Transform, and Load)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: b10b0cb3cbc98ff9fadda6915b01b6f6564c4d00
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298639"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295549"
 ---
 # <a name="extract-transform-and-load-etl"></a>ETL (Extract, Transform, and Load)
 
@@ -79,3 +79,10 @@ Altri strumenti:
 - [Scelta di un archivio dati OLAP in Azure](./online-analytical-processing.md#olap-in-azure)
 - [Data warehouse](./data-warehousing.md)
 - [Orchestrazione di pipeline](../technology-choices/pipeline-orchestration-data-movement.md)
+
+## <a name="next-steps"></a>Passaggi successivi
+
+L'architettura di riferimento seguente illustra le pipeline ELT end-to-end in Azure:
+
+- [Business intelligence aziendale in Azure con SQL Data Warehouse](../../reference-architectures/data/enterprise-bi-sqldw.md)
+- [Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory](../../reference-architectures/data/enterprise-bi-adf.md)

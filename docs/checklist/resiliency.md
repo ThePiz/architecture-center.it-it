@@ -4,12 +4,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819024"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305945"
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -43,6 +43,8 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Usare set di disponibilità per ogni livello applicazione.** L'inserimento delle istanze in un [set di disponibilità][availability-sets] permette di accedere a un livello di [contratto di servizio](https://azure.microsoft.com/support/legal/sla/virtual-machines/) più elevato. 
 
+**Replicare le macchine virtuali con Azure Site Recovery.** Quando si esegue la replica di macchine virtuali di Azure usando [Site Recovery][site-recovery], tutti i dischi delle macchine virtuali vengono replicati nell'area di destinazione in modo continuativo e asincrono. I punti di ripristino vengono creati a intervalli di pochi minuti. In tal modo, si ottiene un Obiettivo del punto di ripristino (RPO) nell'ordine di minuti.
+
 **Considerare di distribuire l'applicazione tra più aree.** Se l'applicazione è distribuita in un'unica area, nel raro caso in cui l'intera area diventi non disponibile, anche l'applicazione diventa non disponibile. Questa circostanza potrebbe essere inaccettabile in base alle condizioni del contratto di servizio dell'applicazione. In questo caso, occorre considerare la possibilità di distribuire l'applicazione e i relativi servizi tra più aree. Una distribuzione in più aree può usare un modello attivo-attivo (distribuzione delle richieste tra più istanze attive) o un modello attivo-passivo (con un'istanza pronta di riserva, in caso di errore dell'istanza primaria). È consigliabile distribuire più istanze dei servizi dell'applicazione tra coppie di aree. Per altre informazioni, vedere [Continuità aziendale e ripristino di emergenza nelle aree geografiche abbinate di Azure](/azure/best-practices-availability-paired-regions).
 
 **Usare Gestione traffico di Microsoft Azure per eseguire il routing del traffico dell'applicazione in aree diverse.**  [Gestione traffico di Microsoft Azure][traffic-manager] esegue il bilanciamento del carico a livello di DNS e indirizza il traffico ad aree diverse in base alla modalità di [routing][traffic-manager-routing] che si specifica e all'integrità degli endpoint dell'applicazione. Senza Gestione traffico, la distribuzione è limitata a una singola area, con conseguente limitazione della scalabilità, aumento della latenza per alcuni utenti e tempi di inattività dell'applicazione nel caso in cui si verifichi un'interruzione dei servizi a livello di area.
@@ -64,7 +66,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 ## <a name="data-management"></a>Gestione dei dati
 
-**Comprendere i metodi di replica per le origini dati dell'applicazione.** I dati dell'applicazione vengono archiviati in origini dati diverse e hanno requisiti di disponibilità diversi. Valutare i metodi di replica per ogni tipo di archiviazione dei dati in Azure, tra cui [Replica di Archiviazione di Azure](/azure/storage/storage-redundancy/) e [Replica geografica attiva di database SQL](/azure/sql-database/sql-database-geo-replication-overview/), per assicurarsi che i requisiti dei dati dell'applicazione vengano soddisfatti.
+**Comprendere i metodi di replica per le origini dati dell'applicazione.** I dati dell'applicazione vengono archiviati in origini dati diverse e hanno requisiti di disponibilità diversi. Valutare i metodi di replica per ogni tipo di archiviazione dei dati in Azure, tra cui [Replica di Archiviazione di Azure](/azure/storage/storage-redundancy/) e [Replica geografica attiva di database SQL](/azure/sql-database/sql-database-geo-replication-overview/), per assicurarsi che i requisiti dei dati dell'applicazione vengano soddisfatti. Se si esegue la replica di macchine virtuali di Azure usando [Site Recovery][site-recovery], tutti i dischi delle macchine virtuali vengono replicati nell'area di destinazione in modo continuativo e asincrono. I punti di ripristino vengono creati a intervalli di pochi minuti. 
 
 **Assicurarsi che nessun account utente singolo disponga dell'accesso sia ai dati di produzione che a quelli di backup.** Se un singolo account utente dispone dell'autorizzazione di scrittura sia nelle origini dati di backup che nelle origini dati di produzione, i backup dei dati risultano compromessi. Un utente malintenzionato potrebbe eliminare intenzionalmente tutti i dati, mentre un utente normale potrebbe eliminarli accidentalmente. Progettare l'applicazione in modo da limitare le autorizzazioni di ogni account utente affinché solo gli utenti che necessitano dell'accesso in scrittura dispongano di questo privilegio e solo sui dati di produzione o di backup, ma non su entrambi.
 
@@ -87,7 +89,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 ## <a name="testing"></a>Test
 
-**Eseguire i test di failover e di failback per l'applicazione.** Senza un test completo del failover e del failback, non si può essere certi che il backup dei servizi dipendenti nell'applicazione avvenga in modo sincronizzato durante un ripristino di emergenza. Assicurarsi che il failover e il failback dei servizi dipendenti dell'applicazione vengano eseguiti nell'ordine corretto.
+**Eseguire i test di failover e di failback per l'applicazione.** Senza un test completo del failover e del failback, non si può essere certi che il backup dei servizi dipendenti nell'applicazione avvenga in modo sincronizzato durante un ripristino di emergenza. Assicurarsi che il failover e il failback dei servizi dipendenti dell'applicazione vengano eseguiti nell'ordine corretto. Se si usa [Azure Site Recovery] [ site-recovery] per replicare le macchine virtuali, eseguire periodicamente esercitazioni sul ripristino di emergenza con un failover di test. Per altre informazioni, vedere [Eseguire un'esercitazione sul ripristino di emergenza in Azure][site-recovery-test].
 
 **Eseguire il test di fault injection per l'applicazione.** L'applicazione può non riuscire per molti motivi diversi, ad esempio per scadenza del certificato, esaurimento delle risorse di sistema in una VM o errori di archiviazione. Testare l'applicazione in un ambiente più vicino possibile a quello di produzione, simulando o generando errori reali, ad esempio eliminando i certificati, consumando artificialmente le risorse di sistema o eliminando un'origine di archiviazione. Verificare la capacità dell'applicazione di recuperare da tutti i tipi di errori, da sola e in combinazione. Controllare che gli errori non si propaghino o si ripercuotano a cascata sul sistema.
 
@@ -176,6 +178,8 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
 [retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [traffic-manager]: /azure/traffic-manager/traffic-manager-overview/
 [traffic-manager-routing]: /azure/traffic-manager/traffic-manager-routing-methods/
 [vmss-autoscale]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview/
