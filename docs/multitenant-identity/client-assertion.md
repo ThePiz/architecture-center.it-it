@@ -2,20 +2,20 @@
 title: Usare l'asserzione client per ottenere token di accesso da Azure AD
 description: Come usare le asserzioni client per ottenere token di accesso da Azure AD.
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 9fe1ee2ec5a540edc41c3a310476507f8d862f0c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540282"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902270"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>Usare l'asserzione client per ottenere token di accesso da Azure AD
 
-[![Codice di esempio](../_images/github.png) GitHub][sample application]
+[![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 ## <a name="background"></a>Background
 Quando si usa il flusso del codice di autorizzazione o il flusso ibrido in OpenID Connect, il client scambia un codice di autorizzazione con un token di accesso. Durante questo passaggio, il client deve autenticarsi al server.
@@ -41,7 +41,7 @@ Il segreto è una stringa, è quindi necessario assicurarsi di non perdere il va
 
 Chiunque abbia accesso alla sottoscrizione di Azure, tuttavia, può visualizzare le impostazioni dell'app. È inoltre sempre possibile verificare i segreti nel controllo del codice sorgente, ad esempio negli script di distribuzione, condividerli tramite posta elettronica e così via.
 
-Per una maggiore sicurezza, è possibile usare l'[asserzione client] anziché un segreto client. Con l'asserzione client, il client usa un certificato X.509 per dimostrare che la richiesta del token proviene dal client. Il certificato client è installato nel server Web. In genere, risulta più semplice limitare l'accesso al certificato, che assicurarsi che nessuno riveli inavvertitamente un segreto client. Per altre informazioni sulla configurazione di certificati in un'app Web, vedere [Using Certificates in Azure Websites Applications][using-certs-in-websites] (Uso di certificati in applicazioni di siti Web di Azure)
+Per una maggiore sicurezza, è possibile usare l' [asserzione client] anziché un segreto client. Con l'asserzione client, il client usa un certificato X.509 per dimostrare che la richiesta del token proviene dal client. Il certificato client è installato nel server Web. In genere, risulta più semplice limitare l'accesso al certificato, che assicurarsi che nessuno riveli inavvertitamente un segreto client. Per altre informazioni sulla configurazione di certificati in un'app Web, vedere [Using Certificates in Azure Websites Applications][using-certs-in-websites] (Uso di certificati in applicazioni di siti Web di Azure)
 
 Ecco una richiesta di token mediante un'asserzione client:
 

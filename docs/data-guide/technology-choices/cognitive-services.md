@@ -2,13 +2,13 @@
 title: Scelta di una tecnologia di servizi cognitivi
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 055769188fbd6742b94094ee18766293812849fa
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847782"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902550"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Scelta di una tecnologia di servizi cognitivi Microsoft
 
@@ -82,14 +82,14 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 |                 Content Moderator                 |        Testo, immagini o video        |                                                               Sfruttare funzionalità di moderazione automatizzata di immagini, testo e video.                                                                |
 |                    API Emozioni                    | Immagini (foto con persone) |                                                              Identificare le emozioni delle persone.                                                               |
 |                     API Viso                      | Immagini (foto con persone) |                                                       Rilevare, identificare, analizzare, organizzare e contrassegnare con tag i visi nelle foto.                                                       |
-|                   Indicizzatore video                   |                Video                |                        Approfondimenti video, ad esempio sentiment, trascrizione vocale, convertitore vocale, riconoscimento di volti ed emozioni ed estrazione di parole chiave.                         |
+|                   Video Indexer                   |                Video                |                        Approfondimenti video, ad esempio sentiment, trascrizione vocale, convertitore vocale, riconoscimento di volti ed emozioni ed estrazione di parole chiave.                         |
 
 ### <a name="trained-with-custom-data-you-provide"></a>Training con dati personalizzati forniti dall'utente
 
 | | Tipo di input | Vantaggi principali |
 | --- | --- | --- |
-| Servizio visione personalizzata | Immagini (o fotogrammi da video) | Personalizzare i modelli di visione artificiale. |
+| Servizio visione artificiale personalizzato | Immagini (o fotogrammi da video) | Personalizzare i modelli di visione artificiale. |
 | Servizio di riconoscimento vocale personalizzato | Sintesi vocale | Superare gli ostacoli al riconoscimento vocale, come modo di parlare, rumore di fondo e vocabolario. | 
-| Servizio di decisione personalizzato | Contenuto Web (ad esempio, feed RSS) | Usare l'apprendimento automatico per selezionare automaticamente il contenuto appropriato per la home page. |
+| Servizio decisionale personalizzato | Contenuto Web (ad esempio, feed RSS) | Usare l'apprendimento automatico per selezionare automaticamente il contenuto appropriato per la home page. |
 | API Ricerca personalizzata Bing | Testo (query di ricerca Web) | Strumento di ricerca di livello commerciale. |
 

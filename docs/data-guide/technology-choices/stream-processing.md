@@ -2,13 +2,13 @@
 title: Scelta di una tecnologia per l'elaborazione di flussi
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: b78ebe253e927eece38930ba7f6186f485a956f7
-ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
+ms.date: 02/12/2018
+ms.openlocfilehash: 2e0d142bc5cd462703ef1ca4530a2104efdf3be3
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49962916"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902628"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Scelta di una tecnologia per l'elaborazione di flussi in Azure
 
@@ -60,7 +60,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Analisi di flusso di Azure | HDInsight con Spark Streaming | Apache Spark in Azure Databricks | HDInsight con Storm | Funzioni di Azure | Processi Web del servizio app di Azure |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Supporto predefinito per elaborazione temporale/windowing | Sì | Sì | Sì | Sì | No  | No  |
+| Supporto predefinito per elaborazione temporale/windowing | Yes | Sì | Sì | Sì | No  | No  |
 | Formati dei dati di input | Avro, JSON o CSV, con codifica UTF-8 | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato | Qualsiasi formato con codice personalizzato |
 | Scalabilità | [Partizioni per query](/azure/stream-analytics/stream-analytics-parallelization) | Limitata in base alle dimensioni del cluster | Limitata in base alla configurazione di scalabilità del cluster Databricks | Limitata in base alle dimensioni del cluster | Elaborazione parallela di un massimo di 200 istanze di app per le funzioni | Limitata dalla capacità del piano di servizio app | 
 | Supporto per la gestione di eventi di arrivo in ritardo e con ordine non corretto | Sì | Sì | Sì | Sì | No  | No  |

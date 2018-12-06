@@ -2,16 +2,16 @@
 title: Autorizzazioni nelle applicazioni multi-tenant
 description: Come eseguire le autorizzazioni in un'applicazione multi-tenant
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: bbf702fe6651625a1aeceff7e4e321dd08c38544
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327654"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902494"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Autorizzazione basata sui ruoli e sulle risorse
 
@@ -22,7 +22,7 @@ L' [implementazione di riferimento] è un'applicazione ASP.NET Core. In questo a
 * **Role-based authorization**. Autorizzazione di un'azione in base ai ruoli assegnati a un utente. Per alcune azioni, ad esempio, è richiesto un ruolo di amministratore.
 * **Autorizzazione basata sulle risorse**. Autorizzazione di un'azione in base a una determinata risorsa. Ogni risorsa è, ad esempio, assegnata a un proprietario e solo il proprietario può eliminare la risorsa.
 
-In genere, un'app può impiegare una combinazione di entrambi gli approcci. Per eliminare una risorsa, ad esempio, l'utente deve essere proprietario *o* amministratore della risorsa.
+In genere, un'app può impiegare una combinazione di entrambi gli approcci. Ad esempio, per eliminare una risorsa l'utente deve essere proprietario *o* amministratore della risorsa.
 
 ## <a name="role-based-authorization"></a>Autorizzazione basata sui ruoli
 L'applicazione [Tailspin Surveys][Tailspin] definisce i ruoli seguenti:
@@ -33,7 +33,7 @@ L'applicazione [Tailspin Surveys][Tailspin] definisce i ruoli seguenti:
 
 I ruoli si applicano agli *utenti* dell'applicazione. Nell'applicazione Surveys, un utente può essere amministratore, autore o lettore.
 
-Per una discussione su come definire e gestire i ruoli, vedere l'articolo relativo ai [Ruoli applicazione].
+Per una discussione su come definire e gestire i ruoli, vedere l'articolo relativo ai [ruoli dell'applicazione].
 
 Il codice di autorizzazione risulterà invariato indipendentemente dalla modalità di gestione dei ruoli. ASP.NET Core 1.0 include un'astrazione denominata [Criteri di autorizzazione][policies]. Questa funzionalità consente di definire i criteri di autorizzazione nel codice e quindi applicare i criteri alle azioni del controller. I criteri vengono separati dal controller.
 
@@ -112,7 +112,7 @@ Questa opzione è ancora supportata in ASP.NET Core, ma presenta alcuni svantagg
 * I criteri consentono di abilitare decisioni di autorizzazione più complesse, ad esempio età >= 21, che non possono essere espresse dalla semplice appartenenza al ruolo.
 
 ## <a name="resource-based-authorization"></a>Autorizzazione basata sulle risorse
-L'*autorizzazione basata sulle risorse* viene eseguita ogni volta che l'autorizzazione dipende da una risorsa specifica che verrà influenzata da un'operazione. Nell'applicazione Tailspin Surveys ogni sondaggio ha un proprietario e collaboratori zero-a-molti.
+*Autorizzazione basata sulle risorse* si verifica ogni volta che l'autorizzazione dipende da una risorsa specifica che verrà influenzata da un'operazione. Nell'applicazione Tailspin Surveys ogni sondaggio ha un proprietario e collaboratori zero-a-molti.
 
 * Il proprietario può leggere, aggiornare, eliminare, pubblicare e annullare la pubblicazione del sondaggio.
 * Il proprietario può assegnare collaboratori al sondaggio.
@@ -250,7 +250,7 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 <!-- Links -->
 [Tailspin]: tailspin.md
 
-[Ruoli applicazione]: app-roles.md
+[ruoli dell'applicazione]: app-roles.md
 [policies]: /aspnet/core/security/authorization/policies
 [implementazione di riferimento]: tailspin.md
 [Configurazione del middleware di autenticazione]: authenticate.md#configure-the-auth-middleware

@@ -2,16 +2,16 @@
 title: Memorizzazione nella cache dei token di accesso in un'applicazione multi-tenant
 description: Memorizzazione nella cache dei token di accesso usati per richiamare un'API Web back-end
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: cffc15686ef9d77fafb40982efdbcd4a79f5aaf2
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359240"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901712"
 ---
 # <a name="cache-access-tokens"></a>Memorizzare nella cache i token di accesso
 
@@ -19,7 +19,7 @@ ms.locfileid: "26359240"
 
 Ottenere un token di accesso OAuth è un'attività relativamente complessa, in quanto è necessaria una richiesta HTTP all'endpoint del token. È consigliabile quindi memorizzare nella cache i token, laddove possibile. La [Azure AD Authentication Library][ADAL] (ADAL) (Raccolta di autenticazione di Azure AD) salva automaticamente nella cache i token ottenuti da Azure AD, compresi i token di aggiornamento.
 
-ADAL fornisce un'implementazione predefinita della cache del token. Tuttavia, questa cache dei token è progettata per le app client native e **non** è adatta alle app Web:
+ADAL fornisce un'implementazione predefinita della cache del token. Tuttavia, questa cache è progettata per le app client native e **non** è adatta alle app Web:
 
 * Si tratta di un'istanza statica e non thread-safe.
 * Non supporta la scalabilità a un numero elevato di utenti, in quanto i token di tutti gli utenti vengono collocati nello stesso dizionario.

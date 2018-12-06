@@ -2,13 +2,13 @@
 title: Scelta di un archivio dati di ricerca
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9576bbba9609a04ccc7851d55dd28853ffc6b701
-ms.sourcegitcommit: f6be2825bf2d37dfe25cfab92b9e3973a6b51e16
+ms.date: 02/12/2018
+ms.openlocfilehash: b5943cd1410777b974a8cefcd77c7c2f1f2bfe67
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/08/2018
-ms.locfileid: "48858181"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902330"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>Scelta di un archivio dati di ricerca in Azure
 
@@ -47,7 +47,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
 | --- | --- | --- | --- | --- | 
 | Servizio gestito | Yes | No  | Yes | Yes |  
-| API REST | Yes | Yes | Yes | No  |
+| API REST | Yes | Sì | Sì | No  |
 | Programmabilità | .NET | Java | Java | T-SQL | 
 | Indicizzatori di documenti per tipi di file comuni (PDF, DOCX, TXT e così via) | Yes | No  | Yes | No  |
 
@@ -55,16 +55,16 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
 | --- | --- | --- | --- | --- |
-| Schema aggiornabile | No  | Yes | Yes | Yes |
-| Supporto per la scalabilità orizzontale  | Yes | Yes | Yes | No  |
+| Schema aggiornabile | No  | Yes | Sì | Yes |
+| Supporto per la scalabilità orizzontale  | Yes | Sì | Sì | No  |
 
 ### <a name="analytic-workload-capabilities"></a>Funzionalità per carichi di lavoro di analisi
 
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
 | --- | --- | --- | --- | --- | 
-| Supporto per funzionalità di analisi oltre alla ricerca full-text | No  | Yes | Yes | Yes |
+| Supporto per funzionalità di analisi oltre alla ricerca full-text | No  | Yes | Sì | Yes |
 | Parte di uno stack per l'analisi di log | No  | Sì (ELK) |  No  | No  |
-| Supporto per la ricerca semantica | Sì (trova solo documenti simili) | Yes | Yes | Yes | 
+| Supporto per la ricerca semantica | Sì (trova solo documenti simili) | Yes | Sì | Yes | 
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
 
@@ -72,8 +72,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | --- | --- | --- | --- | --- | 
 | Sicurezza a livello di riga | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Yes | Yes | 
 | Transparent Data Encryption | No  | No  | No  | Yes |  
-| Limitazione dell'accesso a specifici indirizzi IP | No  | Yes | Yes | Yes |   
-| Limitazione dell'accesso alla rete virtuale | No  | Yes | Yes | Yes |  
+| Limitazione dell'accesso a specifici indirizzi IP | No  | Yes | Sì | Yes |   
+| Limitazione dell'accesso alla rete virtuale | No  | Yes | Sì | Yes |  
 | Autenticazione di Active Directory (integrata) | No  | No  | No  | Yes | 
 
 ## <a name="see-also"></a>Vedere anche 

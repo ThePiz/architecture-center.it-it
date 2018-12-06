@@ -2,13 +2,13 @@
 title: Elaborazione di testo in formato libero per la ricerca
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: e53730bd2e179c82399e0f92b6c5ce7f451a2f46
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 2e61713dccb6064968bfb906fb17b0bd62ae013d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288813"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902035"
 ---
 # <a name="processing-free-form-text-for-search"></a>Elaborazione di testo in formato libero per la ricerca
 

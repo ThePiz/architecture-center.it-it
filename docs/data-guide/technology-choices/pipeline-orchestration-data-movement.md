@@ -2,13 +2,13 @@
 title: Scelta di una tecnologia di orchestrazione di una pipeline di dati
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 17aeb871bc815793295ed610795e5e83de72c637
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 7d1fddf54216b756a5dc2c183a43449a2f45a122
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288803"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902383"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>Scelta di una tecnologia di orchestrazione di una pipeline di dati in Azure
 
@@ -18,7 +18,7 @@ La maggior parte delle soluzioni di Big Data sono costituite da operazioni ripet
 
 In Azure, i servizi e gli strumenti seguenti soddisfano i requisiti di base per l'orchestrazione di una pipeline, il flusso di controllo e lo spostamento di dati:
 
-- [Azure Data Factory](/azure/data-factory/)
+- [Data factory di Azure](/azure/data-factory/)
 - [Oozie in HDInsight](/azure/hdinsight/hdinsight-use-oozie-linux-mac)
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
@@ -42,34 +42,34 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="general-capabilities"></a>Funzionalità generali
 
-| | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
+| | Data factory di Azure | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Gestito | Sì | No | Sì |
-| Basato su cloud | Sì | No (locale) | Sì |
+| Gestito | Yes | No  | Yes |
+| Basato su cloud | Yes | No (locale) | Yes |
 | Prerequisito | Sottoscrizione di Azure | SQL Server  | Sottoscrizione di Azure, cluster HDInsight |
 | Strumenti di gestione | Portale di Azure, PowerShell, interfaccia della riga di comando, .NET SDK | SSMS, PowerShell | Shell Bash, API REST di Oozie, interfaccia utente Web di Oozie |
 | Prezzi | Pagamento in base all'utilizzo | Assegnazione di licenze/pagamento in base alle funzionalità | Nessun costo aggiuntivo per l'esecuzione del cluster HDInsight |
 
 ### <a name="pipeline-capabilities"></a>Funzionalità della pipeline
 
-| | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
+| | Data factory di Azure | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Copia di dati | Sì | Sì | Sì |
-| Trasformazioni personalizzate | Sì | Sì | Sì (processi MapReduce, Pig e Hive) |
-| Assegnazione dei punteggi di Azure Machine Learning | Sì | Sì (con script) | No  |
-| HDInsight su richiesta | Sì | No | No |
-| Azure Batch | Sì | No | No  |
-| Pig, Hive, MapReduce | Sì | No  | Sì |
-| Spark | Sì | No | No |
-| Esecuzione del pacchetto SSIS | Sì | Sì | No |
-| Flusso di controllo | Sì | Sì | Sì |
-| Accedere ai dati locali | Sì | Sì | No |
+| Copiare i dati | Yes | Sì | Yes |
+| Trasformazioni personalizzate | Yes | Yes | Sì (processi MapReduce, Pig e Hive) |
+| Assegnazione dei punteggi di Azure Machine Learning | Yes | Sì (con script) | No  |
+| HDInsight su richiesta | Yes | No  | No  |
+| Azure Batch | Yes | No  | No  |
+| Pig, Hive, MapReduce | Yes | No  | Yes |
+| Spark | Yes | No  | No  |
+| Esecuzione del pacchetto SSIS | Yes | Sì | No  |
+| Flusso di controllo | Yes | Sì | Yes |
+| Accedere ai dati locali | Yes | Sì | No  |
 
 ### <a name="scalability-capabilities"></a>Funzionalità di scalabilità
 
-| | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
+| | Data factory di Azure | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Aumento delle prestazioni | Sì | No | No  |
-| Scalabilità orizzontale | Sì | No | Sì (mediante aggiunta di nodi di lavoro al cluster) |
-| Ottimizzazione per Big Data | Sì | No | Sì |
+| Aumentare le prestazioni | Yes | No  | No  |
+| Scalabilità orizzontale | Yes | No  | Sì (mediante aggiunta di nodi di lavoro al cluster) |
+| Ottimizzazione per Big Data | Yes | No  | Yes |
 

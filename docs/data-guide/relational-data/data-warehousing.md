@@ -2,13 +2,13 @@
 title: Data warehousing e data mart
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: 92f8ab8d828dd4b30c43a07e15959e5670852195
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252806"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902783"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Data warehousing e data mart
 
@@ -118,15 +118,15 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="general-capabilities"></a>Funzionalità generali
 
-| | database SQL di Azure | SQL Server (macchina virtuale) | SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
+| | Database SQL di Azure | SQL Server (macchina virtuale) | SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Servizio gestito | Sì | No  | Sì | Sì <sup>1</sup> | Sì <sup>1</sup> |
-| Orchestrazione dei dati necessaria (contiene una copia dei dati/dato cronologici) | No  | No  | Sì | Sì | Sì |
-| Facilità di integrazione di più origini dati | No  | No  | Sì | Sì | Sì |
-| Sospensione del calcolo supportata | No  | No  | Sì | No <sup>2</sup> | No <sup>2</sup> |
-| Archivio dati relazionale | Sì | Sì |  Sì | No  | No  |
-| Creazione di report in tempo reale | Sì | Sì | No  | No  | Sì |
-| Punti di ripristino di backup flessibili | Sì | Sì | No <sup>3</sup> | Sì <sup>4</sup> | Sì <sup>4</sup> |
+| Servizio gestito | Yes | No  | Yes | Sì <sup>1</sup> | Sì <sup>1</sup> |
+| Orchestrazione dei dati necessaria (contiene una copia dei dati/dato cronologici) | No  | No  | Yes | Sì | Yes |
+| Facilità di integrazione di più origini dati | No  | No  | Yes | Sì | Yes |
+| Sospensione del calcolo supportata | No  | No  | Yes | No <sup>2</sup> | No <sup>2</sup> |
+| Archivio dati relazionale | Yes | Sì |  Sì | No  | No  |
+| Creazione di report in tempo reale | Yes | Sì | No  | No  | Yes |
+| Punti di ripristino di backup flessibili | Yes | Yes | No <sup>3</sup> | Sì <sup>4</sup> | Sì <sup>4</sup> |
 | SMP/MPP | SMP | SMP | MPP | MPP | MPP |
 
 [1] Configurazione e scalabilità manuali.
@@ -139,26 +139,26 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="scalability-capabilities"></a>Funzionalità di scalabilità
 
-| | database SQL di Azure | SQL Server (macchina virtuale) |  SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
+| | Database SQL di Azure | SQL Server (macchina virtuale) |  SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Server regionali ridondanti per disponibilità elevata  | Sì | Sì | Sì | No  | No  |
-| Supporto per la scalabilità orizzontale delle query (query distribuite)  | No  | No  | Sì | Sì | Sì |
-| Scalabilità dinamica | Sì | No  | Sì <sup>1</sup> | No  | No  |
-| Supporto per la memorizzazione nella cache dei dati in memoria | Sì |  Sì | No  | Sì | Sì |
+| Server regionali ridondanti per disponibilità elevata  | Yes | Sì | Sì | No  | No  |
+| Supporto per la scalabilità orizzontale delle query (query distribuite)  | No  | No  | Yes | Sì | Yes |
+| Scalabilità dinamica | Yes | No  | Sì <sup>1</sup> | No  | No  |
+| Supporto per la memorizzazione nella cache dei dati in memoria | Yes |  Sì | No  | Yes | Yes |
 
 [1] SQL Data Warehouse consente di aumentare o ridurre le prestazioni modificando il numero di unità Data Warehouse (DWU). Vedere [Gestire la potenza di calcolo in Azure SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
 
-|                         |           database SQL di Azure            |  SQL Server in una macchina virtuale  | SQL Data Warehouse |   Apache Hive in HDInsight    |    Hive LLAP in HDInsight     |
+|                         |           Database SQL di Azure            |  SQL Server in una macchina virtuale  | SQL Data Warehouse |   Apache Hive in HDInsight    |    Hive LLAP in HDInsight     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
 |     Authentication      | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory |   SQL/Azure AD   | locale/Azure AD <sup>1</sup> | locale/Azure AD <sup>1</sup> |
-|      Authorization      |                   Sì                   |                Sì                |        Sì         |              Sì              |       Sì <sup>1</sup>        |
-|        Controllo         |                   Sì                   |                Sì                |        Sì         |              Sì              |       Sì <sup>1</sup>        |
+|      Authorization      |                   Yes                   |                Sì                |        Sì         |              Yes              |       Sì <sup>1</sup>        |
+|        Controllo         |                   Yes                   |                Sì                |        Sì         |              Yes              |       Sì <sup>1</sup>        |
 | Crittografia di dati inattivi |            Sì <sup>2</sup>             |         Sì <sup>2</sup>          |  Sì <sup>2</sup>  |       Sì <sup>2</sup>        |       Sì <sup>1</sup>        |
-|   Sicurezza a livello di riga    |                   Sì                   |                Sì                |        Sì         |              No                |       Sì <sup>1</sup>        |
-|   Supporto dei firewall    |                   Sì                   |                Sì                |        Sì         |              Sì              |       Sì <sup>3</sup>        |
-|  Maschera dati dinamica   |                   Sì                   |                Sì                |        Sì         |              No                |       Sì <sup>1</sup>        |
+|   Sicurezza a livello di riga    |                   Yes                   |                Sì                |        Sì         |              No                |       Sì <sup>1</sup>        |
+|   Supporto dei firewall    |                   Yes                   |                Sì                |        Sì         |              Yes              |       Sì <sup>3</sup>        |
+|  Maschera dati dinamica   |                   Yes                   |                Sì                |        Sì         |              No                |       Sì <sup>1</sup>        |
 
 [1] Richiede l'uso di un [cluster HDInsight aggiunto al dominio](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 

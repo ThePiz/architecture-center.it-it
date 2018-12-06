@@ -2,13 +2,13 @@
 title: Elaborazione del linguaggio naturale
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 0afd8ac9a8a2e56f79ade0b2e10328630866c03c
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: 32f2a5e3a0baddc765fb36ccc42fe2626faa5eba
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30297972"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901440"
 ---
 # <a name="natural-language-processing"></a>Elaborazione del linguaggio naturale
 
@@ -33,7 +33,7 @@ Quando si usa l'elaborazione del linguaggio naturale per estrarre informazioni e
 - L'elaborazione di una raccolta di documenti di testo in formato libero è in genere un'operazione impegnativa a livello di calcolo che richiede lunghi tempi di elaborazione.
 - Senza un formato standardizzato per i documenti, può essere molto difficile ottenere risultati precisi e coerenti usando l'elaborazione di testo in formato libero per estrarre dati specifici da un documento. Se si considera ad esempio una rappresentazione testuale di una fattura, può essere difficile creare un processo che consenta di estrarre correttamente il numero e la data delle fatture di più fornitori.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architettura
 
 In una soluzione di elaborazione del linguaggio naturale, l'elaborazione di testo in formato libero viene eseguita su documenti che contengono paragrafi di testo. L'architettura globale può essere basata su una pipeline di [elaborazione batch](../big-data/batch-processing.md) o di [elaborazione del flusso in tempo reale](../big-data/real-time-processing.md).
 

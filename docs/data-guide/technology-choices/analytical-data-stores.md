@@ -2,13 +2,13 @@
 title: Scelta di un archivio dati analitici
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 3cf7dc533cc6ae3e6d7e2326852b585da8613e18
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 02/12/2018
+ms.openlocfilehash: 166361c73a3a9c812e07445f6b039e843e5e32f8
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428874"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902341"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>Scelta di un archivio dati analitici in Azure
 
@@ -58,7 +58,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Servizio gestito | Yes | Yes | Sì <sup>1</sup> | Sì <sup>1</sup> | Yes | Yes |
 | Modello di database primario | Relazionale (formato a colonne quando si usano indici columnstore) | Tabelle relazionali con archiviazione a colonne | Archivio a colonne esteso | Hive/In memoria | Modelli semantici tabulari/MOLAP | Archivio a documenti, a grafo, a chiave-valore, a colonne esteso |
 | Supporto per il linguaggio SQL | Yes | Yes | Sì (con driver JDBC [Phoenix](https://phoenix.apache.org/)) | Yes | No  | Yes |
-| Ottimizzato per un livello di elaborazione rapida | Sì <sup>2</sup> | No  | Yes | Yes | No  | Yes |
+| Ottimizzato per un livello di elaborazione rapida | Sì <sup>2</sup> | No  | Yes | Sì | No  | Yes |
 
 [1] Con configurazione e scalabilità manuali.
 
@@ -68,10 +68,10 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 |                                                  | Database SQL | SQL Data Warehouse | HBase/Phoenix in HDInsight | Hive LLAP in HDInsight | Azure Analysis Services | Cosmos DB |
 |--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
-| Server regionali ridondanti per disponibilità elevata |     Yes      |        Yes         |            Yes             |           No            |           No             |    Yes    |
-|             Supporto per la scalabilità orizzontale delle query             |      No       |        Yes         |            Yes             |          Yes           |           Yes           |    Yes    |
-|          Scalabilità dinamica (aumento delle prestazioni)          |     Yes      |        Yes         |             No              |           No            |           Yes           |    Yes    |
-|        Supporto per la memorizzazione nella cache dei dati in memoria        |     Yes      |        Yes         |             No              |          Yes           |           Yes           |    No      |
+| Server regionali ridondanti per disponibilità elevata |     Yes      |        Sì         |            Sì             |           No            |           No             |    Yes    |
+|             Supporto per la scalabilità orizzontale delle query             |      No       |        Yes         |            Sì             |          Sì           |           Sì           |    Yes    |
+|          Scalabilità dinamica (aumento delle prestazioni)          |     Yes      |        Sì         |             No              |           No            |           Yes           |    Yes    |
+|        Supporto per la memorizzazione nella cache dei dati in memoria        |     Yes      |        Sì         |             No              |          Yes           |           Sì           |    No      |
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
 

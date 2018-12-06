@@ -2,13 +2,13 @@
 title: OLAP (Online Analytical Processing)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 92b71934f2081e95c3c9b0d4dc9edeb3885b12e8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846808"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902599"
 ---
 # <a name="online-analytical-processing-olap"></a>OLAP (Online Analytical Processing)
 
@@ -127,13 +127,13 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server con indici columnstore | Database SQL di Azure con indici columnstore |
 | --- | --- | --- | --- | --- |
-| Servizio gestito | Sì | No  | No  | Sì |
-| Supporto per i cubi multidimensionali | No  | Sì | No  | No  |
-| Supporto per i modelli semantici tabulari | Sì | Sì | No  | No  |
-| Facilità di integrazione di più origini dati | Sì | Sì | No <sup>1</sup> | No <sup>1</sup> |
-| Supporto per l'analisi in tempo reale | No  | No  | Sì | Sì |
-| Necessità di un processo per copiare i dati da una o più origini | Sì | Sì | No  | No  |
-| Integrazione di Azure AD | Sì | No  | No <sup>2</sup> | Sì |
+| Servizio gestito | Yes | No  | No  | Yes |
+| Supporto per i cubi multidimensionali | No  | Yes | No  | No  |
+| Supporto per i modelli semantici tabulari | Yes | Sì | No  | No  |
+| Facilità di integrazione di più origini dati | Yes | Yes | No <sup>1</sup> | No <sup>1</sup> |
+| Supporto per l'analisi in tempo reale | No  | No  | Yes | Yes |
+| Necessità di un processo per copiare i dati da una o più origini | Yes | Sì | No  | No  |
+| Integrazione di Azure AD | Yes | No  | No <sup>2</sup> | Yes |
 
 [1] Anche se SQL Server e il database SQL di Azure non possono essere usati per eseguire query da più origini dati esterne e integrare tali origini, è possibile creare una pipeline che esegua automaticamente questa operazione usando [SSIS](/sql/integration-services/sql-server-integration-services) o [Azure Data Factory](/azure/data-factory/). Con SQL Server ospitato in una macchina virtuale di Azure, è possibile sfruttare opzioni aggiuntive, ad esempio i server collegati e [PolyBase](/sql/relational-databases/polybase/polybase-guide). Per altre informazioni, vedere [Scelta di una tecnologia di orchestrazione di una pipeline di dati in Azure](../technology-choices/pipeline-orchestration-data-movement.md).
 
@@ -143,7 +143,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 |                                                  | Azure Analysis Services | SQL Server Analysis Services | SQL Server con indici columnstore | Database SQL di Azure con indici columnstore |
 |--------------------------------------------------|-------------------------|------------------------------|-------------------------------------|---------------------------------------------|
-| Server regionali ridondanti per disponibilità elevata |           Sì           |              No               |                 Sì                 |                     Sì                     |
-|             Supporto per la scalabilità orizzontale delle query             |           Sì           |              No               |                 Sì                 |                     No                       |
-|          Scalabilità dinamica (aumento delle prestazioni)          |           Sì           |              No               |                 Sì                 |                     No                       |
+| Server regionali ridondanti per disponibilità elevata |           Yes           |              No               |                 Yes                 |                     Yes                     |
+|             Supporto per la scalabilità orizzontale delle query             |           Yes           |              No               |                 Yes                 |                     No                       |
+|          Scalabilità dinamica (aumento delle prestazioni)          |           Yes           |              No               |                 Yes                 |                     No                       |
 

@@ -2,13 +2,13 @@
 title: Scelta di una tecnologia per l'analisi dei dati e la creazione di report
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 05e33a3da0933036a604d2bc4cc5a20ae70fe772
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 02/12/2018
+ms.openlocfilehash: a5e793c9caf50daca4ef7e40c49e54f25f04e856
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428315"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902417"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>Scelta di una tecnologia per l'analisi dei dati in Azure
 
@@ -79,7 +79,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Power BI | Notebook di Jupyter | Notebook di Zeppelin | Microsoft Azure Notebooks |
 | --- | --- | --- | --- | --- |
-| Connessione a un cluster di Big Data per l'elaborazione avanzata | Yes | Yes | Yes | No  |
+| Connessione a un cluster di Big Data per l'elaborazione avanzata | Yes | Sì | Sì | No  |
 | Servizi gestiti | Yes | Sì <sup>1</sup> | Sì <sup>1</sup> | Yes |
 | Connessione a centinaia di origini dati | Yes | No  | No  | No  |
 | Funzionalità offline | Sì <sup>2</sup> | No  | No  | No  |

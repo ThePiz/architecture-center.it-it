@@ -2,13 +2,13 @@
 title: Dati non relazionali e NoSQL
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 2c284099bd7e8bbb85f1252a24d699d9fca09eae
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: f5655f7245b7150941969b1bc7917d540ab84343
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298669"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902757"
 ---
 # <a name="non-relational-data-and-nosql"></a>Dati non relazionali e NoSQL
 
@@ -72,7 +72,7 @@ Un singolo archivio chiave/valore può essere estremamente scalabile in quanto l
 Servizi di Azure pertinenti:  
 - [API Tabelle di Azure Cosmos DB](/azure/cosmos-db/table-introduction)  
 - [Cache Redis di Azure](https://azure.microsoft.com/services/cache/)  
-- [Archiviazione tabelle di Azure](https://azure.microsoft.com/services/storage/tables/)
+- [Archivio tabelle di Azure](https://azure.microsoft.com/services/storage/tables/)
 
 ## <a name="graph-data-stores"></a>Archivi dati a grafo
 Un archivio dati a grafo archivia due tipi di informazioni: nodi e bordi. I nodi rappresentano le entità e i bordi specificano le relazioni tra queste entità. I nodi e bordi possono avere proprietà che forniscono informazioni su tale nodo o bordo, analogamente alle colonne in una tabella. I bordi possono avere anche una direzione che indica la natura della relazione.  
@@ -110,8 +110,8 @@ La condivisione di file di rete costituisce un caso speciale di archivi dati a o
 
 Servizio di Azure pertinente:   
 
-- [Archivio BLOB di Azure](https://azure.microsoft.com/services/storage/blobs/)  
-- [Archivio Data Lake di Azure](https://azure.microsoft.com/services/data-lake-store/)  
+- [Archiviazione BLOB di Azure](https://azure.microsoft.com/services/storage/blobs/)  
+- [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)  
 - [Archiviazione file di Azure](https://azure.microsoft.com/services/storage/files/)  
 
 
@@ -147,8 +147,8 @@ Di seguito vengono confrontati i requisiti per ogni tipo di archivi dati non rel
 | Modello di accesso | Accesso casuale | Aggregati di dati in pila/non in pila | Accesso casuale | Accesso casuale |
 | Indicizzazione | Indici primari e secondari | Indici primari e secondari | Solo indice primario | Indici primari e secondari | 
 | Forma dei dati | Documento | Tabulare con famiglie di colonne contenenti colonne | Chiave e valore | Grafo contenente bordi e i vertici | 
-| Sparse | Sì | Sì | Sì | No  | 
-| In pila (elevato numero di colonne/attributi) | Sì | Sì | No  | No  |  
+| Sparse | Yes | Sì | Sì | No  | 
+| In pila (elevato numero di colonne/attributi) | Yes | Sì | No  | No  |  
 | Dimensioni dati | Da piccole (KB) a medie (pochi MB) | Da medie (MB) a grandi (pochi GB) | Piccole (KB) | Piccole (KB) | 
 | Scalabilità complessiva (max) | Molto grande (PB) | Molto grande (PB) | Molto grande (PB) | Grande (TB) | 
 
@@ -163,7 +163,7 @@ Di seguito vengono confrontati i requisiti per ogni tipo di archivi dati non rel
 | Indicizzazione | Indici primari e secondari | Solo indice primario | N/D |
 | Forma dei dati | Tabulare | BLOB e metadati | Documento |
 | Sparse | No  | N/D | No  | 
-| In pila (elevato numero di colonne/attributi) |  No  | Sì | Sì |  
+| In pila (elevato numero di colonne/attributi) |  No  | Yes | Yes |  
 | Dimensioni dati | Piccole (KB) | Da grandi (GB) a molto grandi (TB) | Piccole (KB) |
 | Scalabilità complessiva (max) | Grande (pochi TB)  | Molto grande (PB) | Grande (pochi TB) | 
 

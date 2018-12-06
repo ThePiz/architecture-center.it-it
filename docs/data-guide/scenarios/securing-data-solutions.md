@@ -2,13 +2,13 @@
 title: Sicurezza delle soluzioni dati
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 57897c31a8abdcd801874bf92d60360f7a80d1fa
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 453897d1dde205ec8eb094df06ec66da43f7de7b
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288923"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901644"
 ---
 # <a name="securing-data-solutions"></a>Sicurezza delle soluzioni dati
 
@@ -31,7 +31,7 @@ Dopo aver identificato i dati da proteggere, è necessario individuare soluzioni
 
 Per altre informazioni sulla protezione dei dati inattivi o in transito, vedere [Procedure consigliate per la sicurezza dei dati e la crittografia in Azure](/azure/security/azure-security-data-encryption-best-practices).
 
-## <a name="access-control"></a>Controllo di accesso
+## <a name="access-control"></a>Controllo dell’accesso
 
 Per la protezione dei dati nel cloud, è importante adottare una combinazione di soluzioni di gestione delle identità e controllo di accesso. Data la varietà e il tipo di servizi cloud, nonché la diffusione del [cloud ibrido](../scenarios/hybrid-on-premises-and-cloud.md), esistono diverse procedure fondamentali da seguire nell'ambito del controllo di accesso e delle identità:
 
@@ -42,7 +42,7 @@ Per la protezione dei dati nel cloud, è importante adottare una combinazione di
 * Usare il controllo degli accessi in base al ruolo.
 * Configurare criteri di accesso condizionale per il miglioramento della concezione classica di identità utente con proprietà aggiuntive relative a posizione dell'utente, tipo di dispositivo, livello di patch e così via.
 * Controllare i percorsi di creazione delle risorse con Resource Manager.
-* Monitorare attivamente le attività sospette.
+* Monitorare attivamente le attività sospette
 
 Per altre informazioni, vedere [Procedure consigliate per la sicurezza con il controllo di accesso e la gestione delle identità di Azure](/azure/security/azure-security-identity-management-best-practices).
 

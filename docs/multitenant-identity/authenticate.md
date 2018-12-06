@@ -2,16 +2,16 @@
 title: Autorizzazioni nelle applicazioni multi-tenant
 description: Come un'applicazione multi-tenant può eseguire l'autenticazione degli utenti da Azure AD
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 58ccf75cd34f8efec17898c85295587da282cf45
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428126"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902715"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Eseguire l'autenticazione con Azure AD e OpenID Connect
 
@@ -142,7 +142,7 @@ Durante il processo di autenticazione il middleware OpenID Connect genera una se
 * **RedirectToIdentityProvider**. Chiamato appena prima che il middleware esegua il reindirizzamento all'endpoint di autenticazione. È possibile usare questo evento per modificare l'URL di reindirizzamento, ad esempio per aggiungere parametri della richiesta. Per un esempio, vedere [Adding the admin consent prompt](signup.md#adding-the-admin-consent-prompt) (Aggiunta della richiesta di consenso dell'amministratore).
 * **AuthorizationCodeReceived**. Chiamato con il codice di autorizzazione.
 * **TokenResponseReceived**. Chiamato dopo che il middleware ottiene un token di accesso dal provider di identità, ma prima della convalida. Si applica solo al flusso del codice di autorizzazione.
-* **TokenValidated**. Chiamato dopo che il middleware ha convalidato il token ID. A questo punto, l'applicazione ha un set di attestazioni convalidate relative all'utente. È possibile usare questo evento per eseguire una convalida aggiuntiva alle attestazioni o per trasformare le attestazioni. Vedere [Working with claims](claims.md) (Uso di attestazioni).
+* **TokenValidated**. Chiamato dopo che il middleware ha convalidato il token ID. A questo punto, l'applicazione ha un set di attestazioni convalidate relative all'utente. È possibile usare questo evento per eseguire una convalida aggiuntiva alle attestazioni o per trasformare le attestazioni. Vedere l'articolo relativo all' [utilizzo delle attestazioni](claims.md).
 * **UserInformationReceived**. Chiamato se il middleware ottiene il profilo utente dall'endpoint di informazioni sull'utente. Si applica solo al flusso del codice di autorizzazione e solo quando nelle opzioni del middleware è impostata `GetClaimsFromUserInfoEndpoint = true` .
 * **TicketReceived**. Chiamato quando viene completata l'autenticazione. Questo è l'ultimo evento, presupponendo che l'autenticazione riesca. Dopo la gestione di questo evento, l'utente viene connesso all'app.
 * **AuthenticationFailed**. Chiamato se l'autenticazione non riesce. Usare questo evento per gestire gli errori di autenticazione, ad esempio tramite il reindirizzamento a una pagina di errore.
@@ -162,7 +162,7 @@ Per impostazione predefinita, il middleware OIDC riconosce la modalità di recup
 Per impostazione predefinita, il middleware OIDC usa un flusso ibrido con una modalità di risposta che prevede un Post per i form.
 
 * *Flusso ibrido* significa che il client può ottenere un token ID e un codice di autorizzazione nello stesso round trip al server di autorizzazione.
-* *Modalità di risposta con Post per i form* significa che il server di autorizzazione usa una richiesta HTTP POST per inviare il token ID e il codice di autorizzazione all'app. I valori sono nel formato form-urlencoded (tipo di contenuto = "application/x-www-form-urlencoded").
+* *Modalità di risposta con Post per i form* significa che il server di autorizzazione usa una richiesta HTTP POST per inviare il token ID e il codice di autorizzazione all'applicazione. I valori sono nel formato form-urlencoded (tipo di contenuto = "application/x-www-form-urlencoded").
 
 Quando il middleware OIDC reindirizza all'endpoint di autorizzazione, l'URL di reindirizzamento include tutti i parametri della stringa di query necessari per OIDC. Per il flusso ibrido:
 
