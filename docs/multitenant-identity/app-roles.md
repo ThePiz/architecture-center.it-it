@@ -2,16 +2,16 @@
 title: Ruoli applicazione
 description: Come implementare l'autorizzazione con i ruoli dell'applicazione
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: ec563936e5f00aba79d65844762feeed97ad547d
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 4a694eb65de717e6b5a7c65a2d6fb28f192dcdc5
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34422967"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902511"
 ---
 # <a name="application-roles"></a>Ruoli applicazione
 
@@ -167,6 +167,6 @@ Svantaggi:
 [Tailspin]: tailspin.md
 
 [autorizzazione]: authorize.md
-[Protezione di un'API Web back-end]: web-api.md (Protezione di un'API Web di back-end)
-[manifesto dell'applicazione]: /azure/active-directory/active-directory-application-manifest/
+[Protezione di un'API Web back-end]: web-api.md
+[Manifesto dell'applicazione]: /azure/active-directory/active-directory-application-manifest/
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

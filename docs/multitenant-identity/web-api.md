@@ -2,16 +2,16 @@
 title: Protezione di un'API Web back-end in un'applicazione multi-tenant
 description: Come proteggere un'API Web back-end
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: 2d02ff7be04c6ebec888039453fe1ac7e957b301
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: e738eb94b5978efa4e7a4bebcc72daa7968ac904
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843675"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901593"
 ---
 # <a name="secure-a-backend-web-api"></a>Proteggere un'API Web back-end
 
@@ -79,7 +79,7 @@ Per consentire ad Azure AD di emettere un token di connessione per l'API Web, è
 
 1. Registrare l'API Web in Azure AD.
 
-2. Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` . Vedere l'articolo su come [Aggiornare i manifesti dell'applicazione].
+2. Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` . Vedere l'articolo su come [aggiornare i manifesti delle applicazioni].
 
 3. Autorizzare l'applicazione Web a chiamare l'API Web. Nel portale di gestione di Microsoft Azure è possibile impostare due tipi di autorizzazioni: "Autorizzazioni applicazione" per l'identità dell'applicazione (flusso di credenziali client) o "Autorizzazioni delegate" per l'identità utente delegato.
    
@@ -272,7 +272,7 @@ public void ConfigureServices(IServiceCollection services)
 
 [Tailspin Surveys]: tailspin.md
 [IdentityServer4]: https://github.com/IdentityServer/IdentityServer4
-[Aggiornare i manifesti dell'applicazione]: ./run-the-app.md#update-the-application-manifests
+[aggiornare i manifesti delle applicazioni]: ./run-the-app.md#update-the-application-manifests
 [Memorizzazione nella cache dei token]: token-cache.md
 [Iscrizione del tenant]: signup.md
 [claims-transformation]: claims.md#claims-transformations

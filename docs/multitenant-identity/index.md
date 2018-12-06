@@ -2,15 +2,15 @@
 title: Gestione delle identità per le applicazioni multi-tenant
 description: Procedure consigliate per l'autenticazione, l'autorizzazione e la gestione delle identità in applicazioni multi-tenant.
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 24e09720d3257cbfae350995fa5238663da1d26e
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429435"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902052"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>Gestire le identità nelle applicazioni multi-tenant
 
@@ -46,7 +46,7 @@ Esempio: Tailspin vende le sottoscrizioni per la propria applicazione SaaS. Cont
 Questo materiale sussidiario illustra come gestire le entità utente in un'applicazione multi-tenant usando [Azure Active Directory][AzureAD] (Azure AD) per gestire l'accesso e l'autenticazione.
 
 ## <a name="what-is-multitenancy"></a>Che cosa si intende per multi-tenancy?
-Un *tenant* è un gruppo di utenti. In un'applicazione SaaS, il tenant è un sottoscrittore o un cliente dell'applicazione. Per *multi-tenancy* si intende un'architettura in cui più tenant condividono la stessa istanza fisica dell'app. Anche se i tenant condividono le risorse fisiche, ad esempio VM o risorse di archiviazione, ogni tenant ottiene la propria istanza logica dell'app.
+Un *tenant* è un gruppo di utenti. In un'applicazione SaaS, il tenant è un sottoscrittore o un cliente dell'applicazione. *multi-tenancy* si intende un'architettura in cui più tenant condividono la stessa istanza fisica dell'app. Anche se i tenant condividono le risorse fisiche, ad esempio VM o risorse di archiviazione, ogni tenant ottiene la propria istanza logica dell'app.
 
 In genere, i dati dell'applicazione vengono condivisi tra gli utenti all'interno di un tenant, ma non con altri tenant.
 
