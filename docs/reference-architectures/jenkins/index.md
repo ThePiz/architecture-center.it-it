@@ -1,18 +1,20 @@
 ---
 title: Eseguire un server Jenkins in Azure
-description: Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
+titleSuffix: Azure Reference Architectures
+description: Architettura consigliata che illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
 author: njray
 ms.date: 04/30/2018
-ms.openlocfilehash: 89839b0f1c9624176a7b51dca53713070c88b154
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 9dc4eb27f6c2bc8896770a2d0cd01b738c18c593
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916381"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120272"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
-Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO). L'architettura usa anche Monitoraggio di Azure per monitorare lo stato del server Jenkins. [**Distribuire questa soluzione**.](#deploy-the-solution)
+Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO). L'architettura usa anche Monitoraggio di Azure per monitorare lo stato del server Jenkins. [**Distribuire questa soluzione**](#deploy-the-solution).
 
 ![Server Jenkins eseguito in Azure][0]
 
@@ -26,26 +28,25 @@ Questo documento è incentrato sulle operazioni di base in Azure necessarie per 
 
 Questa architettura è costituita dai componenti seguenti:
 
-- **Gruppo di risorse.** Un [gruppo di risorse][rg] viene usato per raggruppare gli asset di Azure in modo che possano essere gestiti in base alla durata, al proprietario e ad altri criteri. Usare gruppi di risorse per distribuire e monitorare gli asset di Azure come gruppo e tenere traccia dei costi per la fatturazione in base al gruppo di risorse. È inoltre possibile eliminare un intero set di risorse, operazione molto utile nelle distribuzioni di test.
+- **Gruppo di risorse**. Un [gruppo di risorse][rg] viene usato per raggruppare gli asset di Azure in modo che possano essere gestiti in base alla durata, al proprietario e ad altri criteri. Usare gruppi di risorse per distribuire e monitorare gli asset di Azure come gruppo e tenere traccia dei costi per la fatturazione in base al gruppo di risorse. È inoltre possibile eliminare un intero set di risorse, operazione molto utile nelle distribuzioni di test.
 
 - **Server Jenkins**. Viene distribuita una macchina virtuale che eseguirà [Jenkins][azure-market] come server di automazione e fungerà da master Jenkins. Questa architettura di riferimento usa il [modello di soluzione per Jenkins in Azure][solution], installato in una macchina virtuale Linux (Ubuntu 16.04 LTS) in Azure. In Azure Marketplace sono disponibili altre offerte Jenkins.
 
   > [!NOTE]
   > Nginx viene installato nella VM per fungere da proxy inverso per Jenkins. È possibile configurare Nginx per abilitare SSL per il server Jenkins.
-  > 
-  > 
+  >
 
 - **Rete virtuale**. Una [rete virtuale][vnet] connette tra loro le risorse di Azure e offre l'isolamento logico. In questa architettura, il server Jenkins viene eseguito in una rete virtuale.
 
 - **Subnet**. Il server Jenkins viene isolato in una [subnet][subnet] per facilitare la gestione e la separazione del traffico di rete senza alcun impatto sulle prestazioni.
 
-- <strong>Gruppi di sicurezza di rete</strong>. Usare [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete da Internet alla subnet di una rete virtuale.
+- **Gruppi di sicurezza di rete**. Usare [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete da Internet alla subnet di una rete virtuale.
 
 - **Dischi gestiti**. Un [disco gestito][managed-disk] è un disco rigido virtuale permanente usato per l'archiviazione delle applicazioni nonché per mantenere lo stato del server Jenkins e offrire il ripristino di emergenza. I dischi dati vengono archiviati in Archiviazione di Azure. Per prestazioni elevate, è consigliabile usare [Archiviazione Premium][premium].
 
 - **Archivio BLOB di Azure**. Il [plug-in Windows Azure Storage][configure-storage] usa l'archivio BLOB di Azure per archiviare gli elementi di compilazione che vengono creati e condivisi con altre compilazioni Jenkins.
 
-- <strong>Azure Active Directory (Azure AD)</strong>. [Azure AD][azure-ad] supporta l'autenticazione degli utenti, consentendo di configurare l'accesso SSO. Le [entità servizio][service-principal] di Azure AD definiscono i criteri e le autorizzazioni per ogni autorizzazione di ruolo nel flusso di lavoro tramite il [controllo degli accessi in base al ruolo][rbac]. Ogni entità servizio è associata a un processo Jenkins.
+- **Azure Active Directory (Azure AD)**. [Azure AD][azure-ad] supporta l'autenticazione degli utenti, consentendo di configurare l'accesso SSO. Le [entità servizio][service-principal] di Azure AD definiscono i criteri e le autorizzazioni per ogni autorizzazione di ruolo nel flusso di lavoro tramite il [controllo degli accessi in base al ruolo][rbac]. Ogni entità servizio è associata a un processo Jenkins.
 
 - **Azure Key Vault**. Per gestire i segreti e le chiavi crittografiche usati, quando necessari, per il provisioning delle risorse di Azure, questa architettura usa [Key Vault][key-vault]. Per un maggiore supporto per l'archiviazione dei segreti associati all'applicazione nella pipeline, vedere anche il plug-in [Azure Credentials][configure-credential] per Jenkins.
 
@@ -73,25 +74,25 @@ Usare il [plug-in Windows Azure Storage][storage-plugin] per Jenkins, installato
 
 Il modello di soluzione per Jenkins in Azure installa diversi plug-in Azure. Il team Azure DevOps crea e gestisce il modello di soluzione e i plug-in seguenti, che possono essere usati con le altre offerte Jenkins in Azure Marketplace nonché con qualsiasi master Jenkins configurato in locale:
 
--   Il [plug-in Azure AD][configure-azure-ad] consente al server Jenkins di supportare l'accesso SSO degli utenti in base ad Azure AD.
+- Il [plug-in Azure AD][configure-azure-ad] consente al server Jenkins di supportare l'accesso SSO degli utenti in base ad Azure AD.
 
--   Il plug-in [Azure VM Agents][configure-agent] usa un modello di Azure Resource Manager per creare agenti di Jenkins nelle macchine virtuali di Azure.
+- Il plug-in [Azure VM Agents][configure-agent] usa un modello di Azure Resource Manager per creare agenti di Jenkins nelle macchine virtuali di Azure.
 
--   Il plug-in [Azure Credentials][configure-credential] consente di archiviare le credenziali delle entità servizio di Azure in Jenkins.
+- Il plug-in [Azure Credentials][configure-credential] consente di archiviare le credenziali delle entità servizio di Azure in Jenkins.
 
--   Il [plug-in Windows Azure Storage][configure-storage] carica gli elementi di compilazione nell'[archivio BLOB di Azure][blob] oppure scarica le dipendenze di compilazione da tale archivio.
+- Il [plug-in Windows Azure Storage][configure-storage] carica gli elementi di compilazione nell'[archivio BLOB di Azure][blob] oppure scarica le dipendenze di compilazione da tale archivio.
 
 È consigliabile esaminare il crescente elenco di tutti i plug-in Azure disponibili che possono essere usati con le risorse di Azure. Per visualizzare l'elenco completo più recente, passare all'[indice dei plug-in per Jenkins][index] e cercare Azure. Per la distribuzione, ad esempio, sono disponibili i plug-in seguenti:
 
--   [Azure Container Agents][container-agents] consente di eseguire un contenitore come agente in Jenkins.
+- [Azure Container Agents][container-agents] consente di eseguire un contenitore come agente in Jenkins.
 
--   [Kubernetes Continuous Deploy](https://aka.ms/azjenkinsk8s) distribuisce le configurazioni delle risorse in un cluster Kubernetes.
+- [Kubernetes Continuous Deploy](https://aka.ms/azjenkinsk8s) distribuisce le configurazioni delle risorse in un cluster Kubernetes.
 
--   [Azure Container Service][acs] distribuisce le configurazioni nel servizio contenitore di Azure con Kubernetes, DC/OS con Marathon o Docker Swarm.
+- [Azure Container Service][acs] distribuisce le configurazioni nel servizio contenitore di Azure con Kubernetes, DC/OS con Marathon o Docker Swarm.
 
--   [Azure Function][functions] distribuisce il progetto in Funzioni di Azure.
+- [Azure Function][functions] distribuisce il progetto in Funzioni di Azure.
 
--   [Azure App Service][app-service] esegue la distribuzione nel servizio app di Azure.
+- [Azure App Service][app-service] esegue la distribuzione nel servizio app di Azure.
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
@@ -105,20 +106,19 @@ Il ridimensionamento di macchine virtuali presenta in genere un costo superiore 
 
 Usare inoltre Archiviazione di Azure per condividere gli elementi di compilazione che potrebbero essere usati nella fase successiva della pipeline da altri agenti di compilazione.
 
-### <a name="scaling-the-jenkins-server"></a>Ridimensionamento del server Jenkins 
+### <a name="scaling-the-jenkins-server"></a>Ridimensionamento del server Jenkins
 
-È possibile aumentare o ridurre le prestazioni della macchina virtuale del server Jenkins modificando la dimensione di VM. Per impostazione predefinita, il [modello di soluzione per Jenkins in Azure][azure-market] specifica la dimensione DS2 v2, con due CPU e 7 GB, che gestisce il carico di lavoro di un team medio-piccolo. Modificare la dimensione di VM scegliendo una diversa opzione durante la creazione del server. 
+È possibile aumentare o ridurre le prestazioni della macchina virtuale del server Jenkins modificando la dimensione di VM. Per impostazione predefinita, il [modello di soluzione per Jenkins in Azure][azure-market] specifica la dimensione DS2 v2, con due CPU e 7 GB, che gestisce il carico di lavoro di un team medio-piccolo. Modificare la dimensione di VM scegliendo una diversa opzione durante la creazione del server.
 
 La selezione della dimensione corretta del server dipende dalle dimensioni del carico di lavoro previsto. La community Jenkins gestisce una [guida alla selezione][selection-guide] che consente di identificare la configurazione più appropriata per i requisiti specifici. Azure offre molte [dimensioni per le VM Linux][sizes-linux], per soddisfare tutti i requisiti. Per altre informazioni sul ridimensionamento del master Jenkins, vedere i dettagli in proposito inclusi nelle [procedure consigliate][best-practices] della community Jenkins.
-
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
 Nel contesto di un server Jenkins, disponibilità significa poter ripristinare tutte le informazioni relative allo stato associate al flusso di lavoro, come i risultati dei test, le librerie create o altri elementi. Per ripristinare il flusso di lavoro in caso di arresto del server Jenkins è necessario mantenere gli elementi o lo stato del flusso di lavoro di importanza critica. Per valutare i requisiti di disponibilità, considerare due metriche comuni:
 
--   L'obiettivo del tempo di ripristino (RTO) specifica per quanto tempo è possibile non usare Jenkins.
+- L'obiettivo del tempo di ripristino (RTO) specifica per quanto tempo è possibile non usare Jenkins.
 
--   L'obiettivo del punto di ripristino (RPO) indica quanti dati è possibile permettersi di perdere se un'interruzione del servizio influisce su Jenkins.
+- L'obiettivo del punto di ripristino (RPO) indica quanti dati è possibile permettersi di perdere se un'interruzione del servizio influisce su Jenkins.
 
 In pratica, RTO e RPO implicano ridondanza e backup. La disponibilità non riguarda il ripristino dell'hardware, che fa parte di Azure, ma piuttosto il mantenimento dello stato del server Jenkins. Microsoft offre un [contratto di servizio][sla] per le singole istanze di VM. Se questo contratto di servizio non soddisfa gli specifici requisiti in termini di tempo di attività, assicurarsi di avere un piano per il ripristino di emergenza oppure valutare la possibilità di usare una distribuzione di [server Jenkins multimaster][multi-master] (non illustrata in questo documento).
 
@@ -128,19 +128,19 @@ Valutare la possibilità di usare gli [script][disaster] per il ripristino di em
 
 Usare gli approcci seguenti per bloccare la sicurezza in un server Jenkins di base, perché nello stato di base non è sicuro.
 
--   Configurare un modo sicuro per accedere al server Jenkins. Questa architettura usa HTTP e ha un indirizzo IP pubblico, ma HTTP non è sicuro per impostazione predefinita. Per un accesso sicuro, valutare la possibilità di configurare [HTTPS nel server Nginx][nginx] in uso.
+- Configurare un modo sicuro per accedere al server Jenkins. Questa architettura usa HTTP e ha un indirizzo IP pubblico, ma HTTP non è sicuro per impostazione predefinita. Per un accesso sicuro, valutare la possibilità di configurare [HTTPS nel server Nginx][nginx] in uso.
 
     > [!NOTE]
     > Quando si aggiunge SSL al server, creare una regola NSG per la subnet Jenkins per aprire la porta 443. Per altre informazioni, vedere [Come aprire le porte per una macchina virtuale con il portale di Azure][port443].
-    > 
+    >
 
--   Verificare che la configurazione di Jenkins impedisca richieste intersito false, selezionando Manage Jenkins (Gestisci Jenkins) \> Configure Global Security (Configura sicurezza globale). Questa è l'impostazione predefinita per il server Microsoft Jenkins.
+- Verificare che la configurazione di Jenkins impedisca richieste intersito false, selezionando Manage Jenkins (Gestisci Jenkins) \> Configure Global Security (Configura sicurezza globale). Questa è l'impostazione predefinita per il server Microsoft Jenkins.
 
--   Configurare l'accesso di sola lettura al dashboard di Jenkins usando il [plug-in Matrix Authorization Strategy][matrix].
+- Configurare l'accesso di sola lettura al dashboard di Jenkins usando il [plug-in Matrix Authorization Strategy][matrix].
 
--   Installare il plug-in [Azure Credentials][configure-credential] per usare Key Vault per gestire i segreti degli asset di Azure, gli agenti nella pipeline e i componenti di terze parti.
+- Installare il plug-in [Azure Credentials][configure-credential] per usare Key Vault per gestire i segreti degli asset di Azure, gli agenti nella pipeline e i componenti di terze parti.
 
--   Usare il controllo degli accessi in base al ruolo per limitare l'accesso dell'entità servizio al minimo necessario per eseguire i processi. Ciò consente di limitare eventuali danni dovuti a processi non autorizzati.
+- Usare il controllo degli accessi in base al ruolo per limitare l'accesso dell'entità servizio al minimo necessario per eseguire i processi. Ciò consente di limitare eventuali danni dovuti a processi non autorizzati.
 
 I processi Jenkins spesso richiedono segreti per accedere ai servizi di Azure per cui è necessaria l'autorizzazione, come il servizio contenitore di Azure. Per gestire in modo sicuro questi segreti, usare [Key Vault][key-vault] insieme al [plug-in Azure Credentials][configure-credential]. Usare Key Vault per archiviare le credenziali delle entità servizio, le password, i token e altri segreti.
 
@@ -158,9 +158,9 @@ Azure offre diverse funzionalità per [il monitoraggio e la diagnostica][monitor
 
 Le community possono rispondere alle domande ed essere utili per configurare correttamente la distribuzione. Valutare gli aspetti seguenti:
 
--   [Blog della community Jenkins](https://jenkins.io/node/)
--   [Forum di Azure](https://azure.microsoft.com/support/forums/)
--   [Jenkins in Stack Overflow](https://stackoverflow.com/tags/jenkins/info)
+- [Blog della community Jenkins](https://jenkins.io/node/)
+- [Forum di Azure](https://azure.microsoft.com/support/forums/)
+- [Jenkins in Stack Overflow](https://stackoverflow.com/tags/jenkins/info)
 
 Per altre procedure consigliate della community Jenkins, vedere [Jenkins Best Practices][jenkins-best] (Procedure consigliate per Jenkins).
 
@@ -170,15 +170,15 @@ Per distribuire questa architettura, seguire questa procedura per installare il 
 
 ### <a name="prerequisites"></a>Prerequisiti
 
-- Questa architettura di riferimento richiede una sottoscrizione di Azure. 
+- Questa architettura di riferimento richiede una sottoscrizione di Azure.
 - Per creare un'entità servizio di Azure, è necessario avere diritti di amministratore per il tenant di Azure AD associato al server Jenkins distribuito.
 - Queste istruzioni presuppongono che l'amministratore di Jenkins sia anche un utente di Azure con almeno i privilegi di collaboratore.
 
 ### <a name="step-1-deploy-the-jenkins-server"></a>Passaggio 1: Distribuire il server Jenkins
 
-1.  Aprire l'[immagine di Azure Marketplace per Jenkins][azure-market] nel Web browser e selezionare **SCARICA ADESSO** sul lato sinistro della pagina.
+1. Aprire l'[immagine di Azure Marketplace per Jenkins][azure-market] nel Web browser e selezionare **SCARICA ADESSO** sul lato sinistro della pagina.
 
-2.  Esaminare i dettagli relativi ai prezzi e selezionare **Continua** e quindi **Crea** per configurare il server Jenkins nel portale di Azure.
+2. Esaminare i dettagli relativi ai prezzi e selezionare **Continua** e quindi **Crea** per configurare il server Jenkins nel portale di Azure.
 
 Per istruzioni dettagliate, vedere [Creare un server Jenkins in una VM Linux di Azure dal portale di Azure][create-jenkins]. Per questa architettura di riferimento, è sufficiente rendere operativo il server con l'account di accesso amministratore. È quindi possibile effettuarne il provisioning per usare vari altri servizi.
 
@@ -261,4 +261,4 @@ Scaricare ed eseguire gli script per il ripristino di emergenza da[GitHub][disas
 [subnet]: /azure/virtual-network/virtual-network-manage-subnet
 [vm-agent]: https://wiki.jenkins.io/display/JENKINS/Azure+VM+Agents+plugin
 [vnet]: /azure/virtual-network/virtual-networks-overview
-[0]: ./images/jenkins-server.png 
+[0]: ./images/jenkins-server.png
