@@ -2,13 +2,13 @@
 title: Modelli di progettazione cloud
 description: Schemi progettuali del cloud per Microsoft Azure
 keywords: Azure
-ms.date: 06/23/2017
-ms.openlocfilehash: 308e9bc784fc791d04adcecaae64bf258edeb20b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 12/10/2018
+ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
+ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326198"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53234051"
 ---
 # <a name="cloud-design-patterns"></a>Modelli di progettazione cloud
 
@@ -104,6 +104,7 @@ Ogni schema descrive il problema che risolve, le considerazioni per l'applicazio
 |              [Vista materializzata](./materialized-view.md)              |                                        Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie.                                        |
 |              [Pipe e filtri](./pipes-and-filters.md)              |                                                        Scomporre un'attività che esegue un'elaborazione complessa in una serie di elementi distinti riutilizzabili.                                                        |
 |                 [Coda di priorità](./priority-queue.md)                 |                                 Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa.                                  |
+| [Autore/Sottoscrittore](./publisher-subscriber.md) | Abilitare un'applicazione all'annuncio di eventi a più consumer interessati in modalità asincrona, senza accoppiamento di mittenti e destinatari. |
 |      [Livellamento del carico basato sulle code](./queue-based-load-leveling.md)      |                                               Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti.                                               |
 |                          [Nuovo tentativo](./retry.md)                          |               È possibile abilitare un'applicazione per gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza.                |
 |     [Supervisione agente di pianificazione](./scheduler-agent-supervisor.md)     |                                                              Coordinare un set di azioni in un set distribuito di servizi e di altre risorse remote.                                                               |
