@@ -1,46 +1,45 @@
 ---
 title: Estendere Active Directory Domain Services in Azure
+titleSuffix: Azure Reference Architectures
 description: Estendere il dominio Active Directory locale ad Azure
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: azure-ad
-pnp.series.next: adds-forest
-ms.openlocfilehash: ff3ef7565b692ad63b7ff779497df0f85d3bca3a
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: 69ce95fcf74579f6446cf99dad9ed53ced31fde7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332307"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120408"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
-Questa architettura di riferimento mostra come estendere l'ambiente Active Directory in Azure per fornire servizi di autenticazione distribuiti usando Active Directory Domain Services. [**Distribuire questa soluzione**.](#deploy-the-solution)
+Questa architettura di riferimento mostra come estendere l'ambiente Active Directory in Azure per fornire servizi di autenticazione distribuiti usando Active Directory Domain Services. [**Distribuire questa soluzione**](#deploy-the-solution).
 
-[![0]][0] 
+![Architettura di rete ibrida protetta con Active Directory Domain Services](./images/adds-extend-domain.png)
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-Active Directory Domain Services viene usato per autenticare utenti, computer, applicazioni o altre identità incluse in un dominio di sicurezza. Può essere ospitato in locale, ma se l'applicazione è ospitata in parte in locale e in parte in Azure, potrebbe essere più efficiente replicare questa funzionalità in Azure. Questo consente di ridurre la latenza dovuta all'invio di richieste di autenticazione e di autorizzazione locali dal cloud di nuovo all'istanza di Active Directory Domain Services in esecuzione in locale. 
+Active Directory Domain Services viene usato per autenticare utenti, computer, applicazioni o altre identità incluse in un dominio di sicurezza. Può essere ospitato in locale, ma se l'applicazione è ospitata in parte in locale e in parte in Azure, potrebbe essere più efficiente replicare questa funzionalità in Azure. Questo consente di ridurre la latenza dovuta all'invio di richieste di autenticazione e di autorizzazione locali dal cloud di nuovo all'istanza di Active Directory Domain Services in esecuzione in locale.
 
 Questa architettura viene comunemente usata quando la rete locale e la rete virtuale di Azure sono connesse tramite una connessione VPN o ExpressRoute. L'architettura supporta anche la replica bidirezionale. Ciò vuol dire che è possibile apportare modifiche sia in locale che nel cloud ed entrambe le origini verranno mantenute coerenti. Gli usi tipici di questa architettura includono applicazioni ibride in cui la funzionalità viene distribuita tra origini locali e Azure, oltre che applicazioni e servizi che eseguono l'autenticazione tramite Active Directory.
 
-Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
+Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations].
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architettura
 
 Questa architettura estende l'architettura illustrata in [Rete perimetrale tra Azure e Internet][implementing-a-secure-hybrid-network-architecture-with-internet-access]. Include i componenti seguenti.
 
-* **Rete locale**. La rete locale include i server Active Directory locali che possono gestire l'autenticazione e l'autorizzazione per i componenti situati in locale.
-* **Server Active Directory**. Sono i controller di dominio che implementano i servizi directory (Active Directory Domain Services) in esecuzione come macchine virtuali nel cloud. Questi server possono fornire l'autenticazione dei componenti in esecuzione nella rete virtuale di Azure.
-* **Subnet di Active Directory**. I server di Active Directory Domain Services sono ospitati in una subnet separata. Le regole del gruppo di sicurezza di rete (NSG) proteggono i server di Active Directory Domain Services e fungono da firewall per il traffico da origini non previste.
-* **Gateway di Azure e sincronizzazione di Active Directory**. Il gateway di Azure fornisce una connessione tra la rete virtuale di Azure e la rete locale. Può trattarsi di una [connessione VPN][azure-vpn-gateway] o [Azure ExpressRoute][azure-expressroute]. Tutte le richieste di sincronizzazione tra i server Active Directory nel cloud e locali passano attraverso il gateway. Le route definite dall'utente gestiscono il routing per il traffico locale che passa in Azure. Il traffico da e verso i server Active Directory non passa attraverso le appliance virtuali di rete (NVA) usate in questo scenario.
+- **Rete locale**. La rete locale include i server Active Directory locali che possono gestire l'autenticazione e l'autorizzazione per i componenti situati in locale.
+- **Server Active Directory**. Sono i controller di dominio che implementano i servizi directory (Active Directory Domain Services) in esecuzione come macchine virtuali nel cloud. Questi server possono fornire l'autenticazione dei componenti in esecuzione nella rete virtuale di Azure.
+- **Subnet di Active Directory**. I server di Active Directory Domain Services sono ospitati in una subnet separata. Le regole del gruppo di sicurezza di rete (NSG) proteggono i server di Active Directory Domain Services e fungono da firewall per il traffico da origini non previste.
+- **Gateway di Azure e sincronizzazione di Active Directory**. Il gateway di Azure fornisce una connessione tra la rete virtuale di Azure e la rete locale. Può trattarsi di una [connessione VPN][azure-vpn-gateway] o [Azure ExpressRoute][azure-expressroute]. Tutte le richieste di sincronizzazione tra i server Active Directory nel cloud e locali passano attraverso il gateway. Le route definite dall'utente gestiscono il routing per il traffico locale che passa in Azure. Il traffico da e verso i server Active Directory non passa attraverso le appliance virtuali di rete (NVA) usate in questo scenario.
 
-Per altre informazioni sulla configurazione delle route definite dall'utente e delle appliance virtuali di rete, vedere [Implementazione di un'architettura di rete ibrida sicura in Azure][implementing-a-secure-hybrid-network-architecture]. 
+Per altre informazioni sulla configurazione delle route definite dall'utente e delle appliance virtuali di rete, vedere [Implementazione di un'architettura di rete ibrida sicura in Azure][implementing-a-secure-hybrid-network-architecture].
 
 ## <a name="recommendations"></a>Consigli
 
-Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda. 
+Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda.
 
 ### <a name="vm-recommendations"></a>Indicazioni per le VM
 
@@ -56,10 +55,9 @@ Configurare l'interfaccia di rete della macchina virtuale (NIC) per ogni server 
 
 > [!NOTE]
 > Non configurare la scheda di interfaccia di rete per Active Directory Domain Services con un indirizzo IP pubblico. Vedere le [considerazioni relative alla sicurezza][security-considerations] per altri dettagli.
-> 
-> 
+>
 
-Il gruppo di sicurezza di rete della subnet di Active Directory richiede regole per consentire il traffico in ingresso da origini locali. Per informazioni dettagliate sulle porte usate da Active Directory Domain Services, vedere [Active Directory and Active Directory Domain Services Port Requirements][ad-ds-ports] (Requisiti delle porte per Active Directory e Active Directory Domain Services). Verificare inoltre che le tabelle di route definite dall'utente non indirizzino il traffico di Active Directory Domain Services attraverso le appliance virtuali di rete usate in questa architettura. 
+Il gruppo di sicurezza di rete della subnet di Active Directory richiede regole per consentire il traffico in ingresso da origini locali. Per informazioni dettagliate sulle porte usate da Active Directory Domain Services, vedere [Active Directory and Active Directory Domain Services Port Requirements][ad-ds-ports] (Requisiti delle porte per Active Directory e Active Directory Domain Services). Verificare inoltre che le tabelle di route definite dall'utente non indirizzino il traffico di Active Directory Domain Services attraverso le appliance virtuali di rete usate in questa architettura.
 
 ### <a name="active-directory-site"></a>Sito Active Directory
 
@@ -75,7 +73,7 @@ In Active Directory Domain Services, un sito rappresenta un percorso fisico, una
 
 ### <a name="monitoring"></a>Monitoraggio
 
-Monitorare le risorse delle macchine virtuali controller di dominio, nonché i servizi di Active Directory Domain Services e creare un piano per risolvere rapidamente eventuali problemi. Per altre informazioni, vedere [Monitoring Active Directory][monitoring_ad] (Monitoraggio di Active Directory). È anche possibile installare strumenti come [Microsoft Systems Center][microsoft_systems_center] nel server di monitoraggio (vedere il diagramma dell'architettura) per agevolare l'esecuzione di queste attività.  
+Monitorare le risorse delle macchine virtuali controller di dominio, nonché i servizi di Active Directory Domain Services e creare un piano per risolvere rapidamente eventuali problemi. Per altre informazioni, vedere [Monitoring Active Directory][monitoring_ad] (Monitoraggio di Active Directory). È anche possibile installare strumenti come [Microsoft Systems Center][microsoft_systems_center] nel server di monitoraggio (vedere il diagramma dell'architettura) per agevolare l'esecuzione di queste attività.
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
@@ -121,11 +119,11 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="deploy-the-azure-vnet"></a>Distribuire la rete virtuale di Azure
 
-1. Aprire il file `azure.json` .  Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password. 
+1. Aprire il file `azure.json` .  Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password.
 
-2. Nello stesso file cercare le istanze di `sharedKey` e immettere le chiavi condivise per la connessione VPN. 
+2. Nello stesso file cercare le istanze di `sharedKey` e immettere le chiavi condivise per la connessione VPN.
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -149,16 +147,16 @@ Dopo aver completato la distribuzione, è possibile testare la connettività dal
 
 4. All'interno della sessione di desktop remoto, aprire un'altra sessione di desktop remoto per 10.0.4.4, ovvero l'indirizzo IP della macchina virtuale denominata `adds-vm1`. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `azure.json`.
 
-5. Dalla sessione di desktop remoto per `adds-vm1`, passare a **Server Manager** e fare clic su **Add other servers to manage** (Aggiungi altri server da gestire). 
+5. Dalla sessione di desktop remoto per `adds-vm1`, passare a **Server Manager** e fare clic su **Aggiungi altri server da gestire**.
 
 6. Nella scheda **Active Directory**, fare clic su **Find now** (Trova ora). Verrà visualizzato un elenco di Active Directory, Active Directory Domain Services e macchine virtuali Web.
 
-   ![](./images/add-servers-dialog.png)
+   ![Screenshot della finestra di dialogo Aggiungi server](./images/add-servers-dialog.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Procedure consigliate per [creare una foresta di risorse di Active Directory Domain Services][adds-resource-forest] in Azure.
-* Procedure consigliate per [creare un'infrastruttura Active Directory Federation Services][adfs] in Azure.
+- Procedure consigliate per [creare una foresta di risorse di Active Directory Domain Services][adds-resource-forest] in Azure.
+- Procedure consigliate per [creare un'infrastruttura Active Directory Federation Services][adfs] in Azure.
 
 <!-- links -->
 
@@ -178,7 +176,7 @@ Dopo aver completato la distribuzione, è possibile testare la connettività dal
 [capacity-planning-for-adds]: https://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
 [considerations]: ./considerations.md
 [GitHub]: https://github.com/mspnp/identity-reference-architectures/tree/master/adds-extend-domain
-[microsoft_systems_center]: https://www.microsoft.com/server-cloud/products/system-center-2016/
+[microsoft_systems_center]: https://www.microsoft.com/download/details.aspx?id=50013
 [monitoring_ad]: https://msdn.microsoft.com/library/bb727046.aspx
 [security-considerations]: #security-considerations
 [set-a-static-ip-address]: /azure/virtual-network/virtual-networks-static-private-ip-arm-pportal
@@ -186,4 +184,4 @@ Dopo aver completato la distribuzione, è possibile testare la connettività dal
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [vm-windows-sizes]: /azure/virtual-machines/virtual-machines-windows-sizes
 
-[0]: ./images/adds-extend-domain.png "Architettura di rete ibrida sicura con Active Directory"
+[0]: ./images/adds-extend-domain.png "Architettura di rete ibrida protetta con Active Directory Domain Services"

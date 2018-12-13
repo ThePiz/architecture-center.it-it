@@ -1,27 +1,29 @@
 ---
 title: Funzioni di Azure per l'elaborazione degli eventi senza server
+titleSuffix: Azure Reference Architectures
 description: Architettura di riferimento che mostra l'elaborazione e l'inserimento di eventi senza server
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295651"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119898"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>Funzioni di Azure per l'elaborazione degli eventi senza server
 
 Questa architettura di riferimento illustra un'architettura [senza server](https://azure.microsoft.com/solutions/serverless/) e basata su eventi, che inserisce un flusso di dati, li elabora e scrive i risultati in un database back-end. Un'implementazione di riferimento per questa architettura è disponibile in [GitHub][github].
 
-![](./_images/serverless-event-processing.png)
+![Architettura di riferimento per l'elaborazione di eventi serverless con Funzioni di Azure](./_images/serverless-event-processing.png)
 
 ## <a name="architecture"></a>Architettura
 
 **Hub eventi** inserisce il flusso di dati. [Hub eventi][eh] è progettato per scenari di flusso di dati con velocità effettiva elevata.
 
 > [!NOTE]
-> Per gli scenari IoT, è consigliabile usare l'hub IoT. L'hub IoT ha un endpoint predefinito che è compatibile con l'API di Hub eventi di Azure, pertanto è possibile usare uno dei due servizi nell'architettura senza apportare modifiche rilevanti nell'elaborazione back-end. Per informazioni, vedere [Connessione di dispositivi IoT ad Azure: hub IoT e hub eventi][iot].
+> Per gli scenari IoT, è consigliabile usare l'hub IoT. L'hub IoT ha un endpoint predefinito che è compatibile con l'API di Hub eventi di Azure, pertanto è possibile usare uno dei due servizi nell'architettura senza apportare modifiche rilevanti nell'elaborazione back-end. Per informazioni, consultare [Connessione di dispositivi IoT ad Azure: hub IoT e hub eventi][iot].
 
 **App per le funzioni**. [Funzioni di Azure][functions] è un'opzione di calcolo senza server. Usa un modello basato su eventi, in cui un frammento di codice, vale a dire una "funzione", viene richiamato da un trigger. In questa architettura, quando gli eventi arrivano a Hub eventi, attivano una funzione che elabora gli eventi e scrive i risultati nell'archiviazione.
 
@@ -49,16 +51,16 @@ La capacità di elaborazione per Cosmos DB viene misurata in [unità richiesta][
 
 Ecco alcune caratteristiche di una chiave di partizione efficace:
 
-- Lo spazio dei valori della chiave è grande. 
+- Lo spazio dei valori della chiave è grande.
 - Si verificherà una distribuzione uniforme delle operazioni di lettura/scrittura per ogni valore della chiave, evitando le chiavi usate di frequente.
-- Il numero massimo di dati archiviati per ogni singolo valore della chiave non supererà le dimensioni massime di una partizione fisica (10 GB). 
-- La chiave di partizione per un documento non cambierà. Non è possibile aggiornare la chiave di partizione su un documento esistente. 
+- Il numero massimo di dati archiviati per ogni singolo valore della chiave non supererà le dimensioni massime di una partizione fisica (10 GB).
+- La chiave di partizione per un documento non cambierà. Non è possibile aggiornare la chiave di partizione su un documento esistente.
 
 Nello scenario per questa architettura di riferimento la funzione archivia esattamente un documento per ogni dispositivo che invia dati. La funzione aggiorna continuamente i documenti con lo stato del dispositivo più recente, mediante un'operazione upsert. L'ID dispositivo rappresenta una chiave di partizione efficace per questo scenario, perché le scritture verranno distribuite in modo uniforme tra le chiavi e le dimensioni di ogni partizione verranno rigorosamente limitate, essendo presente un solo documento per ogni valore di chiave. Per altre informazioni sulle chiavi di partizione, vedere [Partizionamento e ridimensionamento in Azure Cosmos DB][cosmosdb-scale].
 
 ## <a name="resiliency-considerations"></a>Considerazioni sulla resilienza
 
-Quando si usa il trigger di Hub eventi con Funzioni, intercettare le eccezioni all'interno del ciclo di elaborazione. Se si verifica un'eccezione non gestita, il runtime di Funzioni non ripete i messaggi. Se non è possibile elaborare un messaggio, inserire il messaggio in una coda di messaggi non recapitabili. Usare un processo fuori banda per esaminare i messaggi e determinare l'azione correttiva. 
+Quando si usa il trigger di Hub eventi con Funzioni, intercettare le eccezioni all'interno del ciclo di elaborazione. Se si verifica un'eccezione non gestita, il runtime di Funzioni non ripete i messaggi. Se non è possibile elaborare un messaggio, inserire il messaggio in una coda di messaggi non recapitabili. Usare un processo fuori banda per esaminare i messaggi e determinare l'azione correttiva.
 
 Il codice seguente illustra in che modo la funzione di inserimento intercetta le eccezioni e inserisce i messaggi non elaborati in una coda di messaggi non recapitabili.
 
@@ -99,9 +101,9 @@ public static async Task RunAsync(
 
 Si noti che la funzione usa l'[associazione di output di archiviazione code][queue-binding] per inserire elementi nella coda.
 
-Il codice illustrato sopra registra anche le eccezioni per Application Insights. È possibile usare il numero di sequenza e la chiave di partizione per correlare i messaggi non recapitabili con le eccezioni nei log. 
+Il codice illustrato sopra registra anche le eccezioni per Application Insights. È possibile usare il numero di sequenza e la chiave di partizione per correlare i messaggi non recapitabili con le eccezioni nei log.
 
-I messaggi nella coda di messaggi non recapitabili avranno sufficienti informazioni in modo da poter comprendere il contesto dell'errore. In questo esempio, la classe `DeadLetterMessage` contiene il messaggio di eccezione, i dati dell'evento originale e il messaggio di evento deserializzato, se disponibile. 
+I messaggi nella coda di messaggi non recapitabili avranno sufficienti informazioni in modo da poter comprendere il contesto dell'errore. In questo esempio, la classe `DeadLetterMessage` contiene il messaggio di eccezione, i dati dell'evento originale e il messaggio di evento deserializzato, se disponibile.
 
 ```csharp
 public class DeadLetterMessage
@@ -128,7 +130,7 @@ La distribuzione illustrata di seguito si trova in una sola area di Azure. Per u
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-Per distribuire questa architettura di riferimento, consultare il [file leggimi di GitHub][readme]. 
+Per distribuire questa architettura di riferimento, consultare il [file leggimi di GitHub][readme].
 
 <!-- links -->
 

@@ -1,58 +1,59 @@
 ---
-title: Implementazione una topologia di rete hub-spoke in Azure
-description: Come implementare una topologia di rete hub-spoke in Azure.
+title: Implementare una topologia di rete hub-spoke in Azure
+titleSuffix: Azure Reference Architectures
+description: Implementare una topologia di rete hub-spoke in Azure.
 author: telmosampaio
 ms.date: 10/08/2018
+ms.custom: seodec18
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e14abb5526b6ecd8637fb89c4ef7154d3b26f7a4
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 23821353fe943d3e389ed89ca26b946ff6afeed3
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916346"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120303"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementare una topologia di rete hub-spoke in Azure
 
-Questa architettura di riferimento illustra come implementare una topologia hub-spoke in Azure. L'*hub* è una rete virtuale in Azure che funge da punto di connettività centrale alla rete locale. Gli *spoke* sono le reti virtuali che eseguono il peering con l'hub e possono essere usate per isolare i carichi di lavoro. Flussi di traffico tra il data center locale e l'hub attraverso una connessione di gateway VPN o ExpressRoute.  [**Distribuire questa soluzione**](#deploy-the-solution).
+Questa architettura di riferimento illustra come implementare una topologia hub-spoke in Azure. L'*hub* è una rete virtuale in Azure che funge da punto di connettività centrale alla rete locale. Gli *spoke* sono le reti virtuali che eseguono il peering con l'hub e possono essere usate per isolare i carichi di lavoro. Flussi di traffico tra il data center locale e l'hub attraverso una connessione di gateway VPN o ExpressRoute. [**Distribuire questa soluzione**](#deploy-the-solution).
 
 ![[0]][0]
 
 *Scaricare un [file di Visio][visio-download] di questa architettura*
 
-
 I vantaggi di questa topologia includono:
 
-* **Risparmio sui costi**, centralizzando in un'unica posizione i servizi che possono essere condivisi da più carichi di lavoro, ad esempio appliance virtuali di rete e server DNS.
-* **Superamento dei limiti delle sottoscrizioni** eseguendo il peering delle reti virtuali da sottoscrizioni diverse all'hub centrale.
-* **Separazione dei compiti** tra IT centrale (SecOPs, InfraOps) e carichi di lavoro (DevOps).
+- **Risparmio sui costi**, centralizzando in un'unica posizione i servizi che possono essere condivisi da più carichi di lavoro, ad esempio appliance virtuali di rete e server DNS.
+- **Superamento dei limiti delle sottoscrizioni** eseguendo il peering delle reti virtuali da sottoscrizioni diverse all'hub centrale.
+- **Separazione dei compiti** tra IT centrale (SecOPs, InfraOps) e carichi di lavoro (DevOps).
 
 Tra gli usi tipici di questa architettura vi sono:
 
-* Carichi di lavoro distribuiti in ambienti diversi, ad esempio sviluppo, test e produzione, che richiedono servizi condivisi, ad esempio DNS, IDS, NTP o Active Directory Domain Services. I servizi condivisi vengono inseriti nella rete virtuale dell'hub, mentre ogni ambiente viene distribuito in uno spoke per mantenere l'isolamento.
-* Carichi di lavoro che non richiedono connettività uno con l'altro, ma richiedono l'accesso ai servizi condivisi.
-* Aziende che richiedono il controllo centrale sugli aspetti di sicurezza, ad esempio un firewall nell'hub come rete perimetrale, e gestione separata per i carichi di lavoro in ogni spoke.
+- Carichi di lavoro distribuiti in ambienti diversi, ad esempio sviluppo, test e produzione, che richiedono servizi condivisi, ad esempio DNS, IDS, NTP o Active Directory Domain Services. I servizi condivisi vengono inseriti nella rete virtuale dell'hub, mentre ogni ambiente viene distribuito in uno spoke per mantenere l'isolamento.
+- Carichi di lavoro che non richiedono connettività uno con l'altro, ma richiedono l'accesso ai servizi condivisi.
+- Aziende che richiedono il controllo centrale sugli aspetti di sicurezza, ad esempio un firewall nell'hub come rete perimetrale, e gestione separata per i carichi di lavoro in ogni spoke.
 
 ## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti seguenti.
 
-* **Rete locale**. Una rete LAN privata in esecuzione all'interno di un'organizzazione.
+- **Rete locale**. Una rete LAN privata in esecuzione all'interno di un'organizzazione.
 
-* **Dispositivo VPN**. Un dispositivo o un servizio che offre connettività esterna alla rete locale. Il dispositivo VPN può essere un dispositivo hardware o una soluzione software, ad esempio il Servizio Routing e Accesso remoto (RRAS) in Windows Server 2012. Per un elenco delle appliance VPN supportate e per informazioni sulla configurazione di appliance VPN selezionate per connettersi ad Azure, vedere [Informazioni sui dispositivi VPN per le connessioni di gateway VPN da sito a sito][vpn-appliance].
+- **Dispositivo VPN**. Un dispositivo o un servizio che offre connettività esterna alla rete locale. Il dispositivo VPN può essere un dispositivo hardware o una soluzione software, ad esempio il Servizio Routing e Accesso remoto (RRAS) in Windows Server 2012. Per un elenco delle appliance VPN supportate e per informazioni sulla configurazione di appliance VPN selezionate per connettersi ad Azure, vedere [Informazioni sui dispositivi VPN per le connessioni di gateway VPN da sito a sito][vpn-appliance].
 
-* **Gateway di rete virtuale VPN o gateway ExpressRoute**. Il gateway di rete virtuale consente di connettere la rete virtuale al dispositivo VPN o al circuito ExpressRoute usato per la connettività con la propria rete locale. Per altre informazioni, vedere [Connettere una rete locale a una rete virtuale di Microsoft Azure][connect-to-an-Azure-vnet].
+- **Gateway di rete virtuale VPN o gateway ExpressRoute**. Il gateway di rete virtuale consente di connettere la rete virtuale al dispositivo VPN o al circuito ExpressRoute usato per la connettività con la propria rete locale. Per altre informazioni, vedere [Connettere una rete locale a una rete virtuale di Microsoft Azure][connect-to-an-Azure-vnet].
 
 > [!NOTE]
 > Gli script di distribuzione per questa architettura di riferimento usano un gateway VPN per la connettività e una rete virtuale in Azure per simulare la rete locale.
 
-* **Rete virtuale dell'hub**. Rete virtuale di Azure usata come hub nella topologia hub-spoke. L'hub è il punto di connettività centrale alla rete locale e offre una posizione in cui ospitare servizi che possono essere utilizzati da carichi di lavoro diversi ospitati nelle reti virtuali spoke.
+- **Rete virtuale dell'hub**. Rete virtuale di Azure usata come hub nella topologia hub-spoke. L'hub è il punto di connettività centrale alla rete locale e offre una posizione in cui ospitare servizi che possono essere utilizzati da carichi di lavoro diversi ospitati nelle reti virtuali spoke.
 
-* **Subnet del gateway**. i gateway di rete virtuale vengono mantenuti nella stessa subnet.
+- **Subnet del gateway**. i gateway di rete virtuale vengono mantenuti nella stessa subnet.
 
-* **Reti virtuali spoke**. Una o più reti virtuali di Azure usate come spoke nella topologia hub-spoke. Gli spoke possono essere usati per isolare i carichi di lavoro nelle reti virtuali corrispondenti, gestite separatamente rispetto agli altri spoke. Ogni carico di lavoro può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per ulteriori informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] e [Esecuzione di carichi di lavoro della macchina virtuale Linux][linux-vm-ra].
+- **Reti virtuali spoke**. Una o più reti virtuali di Azure usate come spoke nella topologia hub-spoke. Gli spoke possono essere usati per isolare i carichi di lavoro nelle reti virtuali corrispondenti, gestite separatamente rispetto agli altri spoke. Ogni carico di lavoro può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per ulteriori informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] e [Esecuzione di carichi di lavoro della macchina virtuale Linux][linux-vm-ra].
 
-* **Peering reti virtuali**. È possibile connettere due reti virtuali tramite una [connessione peering][vnet-peering]. Le connessioni peering sono connessioni non transitive a bassa latenza tra reti virtuali. Dopo il peering, le reti virtuali si scambiano traffico tramite il backbone di Azure, senza bisogno di un router. In una topologia hub-spoke di rete si usa il peering reti virtuali per connettere l'hub a ogni spoke. È possibile eseguire il peering di reti virtuali nella stessa area o in aree differenti. Per altre informazioni, vedere [Requisiti e vincoli][vnet-peering-requirements].
+- **Peering reti virtuali**. È possibile connettere due reti virtuali tramite una [connessione peering][vnet-peering]. Le connessioni peering sono connessioni non transitive a bassa latenza tra reti virtuali. Dopo il peering, le reti virtuali si scambiano traffico tramite il backbone di Azure, senza bisogno di un router. In una topologia hub-spoke di rete si usa il peering reti virtuali per connettere l'hub a ogni spoke. È possibile eseguire il peering di reti virtuali nella stessa area o in aree differenti. Per altre informazioni, vedere [Requisiti e vincoli][vnet-peering-requirements].
 
 > [!NOTE]
 > Questo articolo illustra solo le distribuzioni [Resource Manager](/azure/azure-resource-manager/resource-group-overview), ma è anche possibile connettere una rete virtuale classica a una rete virtuale di Resource Manager nella stessa sottoscrizione. In questo modo, gli spoke possono ospitare distribuzioni classiche e trarre comunque vantaggio dai servizi condivisi nell'hub.
@@ -63,7 +64,7 @@ Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Segu
 
 ### <a name="resource-groups"></a>Gruppi di risorse
 
-È possibile implementare la rete virtuale dell'hub e ogni rete virtuale spoke in gruppi di risorse diversi e persino in sottoscrizioni diverse. Quando il peering delle reti virtuali viene eseguito in sottoscrizioni diverse, entrambe le sottoscrizioni possono essere associate allo stesso tenant di Azure Active Directory o a uno diverso. Questo consente di decentralizzare la gestione di ogni carico di lavoro e allo stesso tempo condividere i servizi gestiti nella rete virtuale dell'hub. 
+È possibile implementare la rete virtuale dell'hub e ogni rete virtuale spoke in gruppi di risorse diversi e persino in sottoscrizioni diverse. Quando il peering delle reti virtuali viene eseguito in sottoscrizioni diverse, entrambe le sottoscrizioni possono essere associate allo stesso tenant di Azure Active Directory o a uno diverso. Questo consente di decentralizzare la gestione di ogni carico di lavoro e allo stesso tempo condividere i servizi gestiti nella rete virtuale dell'hub.
 
 ### <a name="vnet-and-gatewaysubnet"></a>Reti virtuali e GatewaySubnet
 
@@ -76,7 +77,7 @@ Per altre informazioni sulla configurazione del gateway, vedere le architetture 
 
 Per una disponibilità più elevata, è possibile usare ExpressRoute più una rete VPN per il failover. Vedere [Connettere una rete locale ad Azure tramite ExpressRoute con failover VPN][hybrid-ha].
 
-Una topologia hub-spoke può essere usata anche senza gateway, se non è necessaria la connettività con la rete locale. 
+Una topologia hub-spoke può essere usata anche senza gateway, se non è necessaria la connettività con la rete locale.
 
 ### <a name="vnet-peering"></a>Peering reti virtuali
 
@@ -86,9 +87,9 @@ Tuttavia, se si dispone di più spoke che devono connettersi tra loro, le possib
 
 È anche possibile configurare gli spoke in modo da usare il gateway della rete virtuale dell'hub per comunicare con reti remote. Per consentire il flusso del traffico gateway dallo spoke all'hub e connettersi a reti remote, è necessario:
 
-  - Configurare la connessione peering reti virtuali nell'hub in modo da **consentire il transito gateway**.
-  - Configurare la connessione peering reti virtuali in ogni spoke in modo da **usare gateway remoti**.
-  - Configurare tutte le connessioni peering reti virtuali in modo da **consentire il traffico inoltrato**.
+- Configurare la connessione peering reti virtuali nell'hub in modo da **consentire il transito gateway**.
+- Configurare la connessione peering reti virtuali in ogni spoke in modo da **usare gateway remoti**.
+- Configurare tutte le connessioni peering reti virtuali in modo da **consentire il traffico inoltrato**.
 
 ## <a name="considerations"></a>Considerazioni
 
@@ -135,7 +136,7 @@ Per distribuire il data center locale simulato come rete virtuale di Azure, segu
 
 2. Aprire il file `onprem.json` . Sostituire i valori per `adminUsername` e `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -156,7 +157,7 @@ Per distribuire la rete virtuale dell'hub, seguire questa procedura.
 
 1. Aprire il file `hub-vnet.json` . Sostituire i valori per `adminUsername` e `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -165,7 +166,7 @@ Per distribuire la rete virtuale dell'hub, seguire questa procedura.
 
 3. Trovare entrambe le istanze di `sharedKey` e immettere una chiave condivisa per la connessione VPN. I valori devono corrispondere.
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -192,6 +193,7 @@ Testare la connettività dall'ambiente locale simulato alla rete virtuale hub de
    ```powershell
    Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
    ```
+
 L'output dovrebbe essere simile al seguente:
 
 ```powershell
@@ -216,7 +218,7 @@ TcpTestSucceeded : True
 
 4. Usare il comando `ping` per testare la connettività alla macchina virtuale jumpbox nella rete virtuale dell'hub:
 
-   ```bash
+   ```shell
    ping 10.0.0.68
    ```
 
@@ -226,7 +228,7 @@ Per distribuire le reti virtuali spoke, seguire questa procedura.
 
 1. Aprire il file `spoke1.json` . Sostituire i valori per `adminUsername` e `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -238,7 +240,7 @@ Per distribuire le reti virtuali spoke, seguire questa procedura.
    ```bash
    azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
-  
+
 4. Ripetere i passaggi 1 e 2 per il file `spoke2.json`.
 
 5. Eseguire il comando seguente:
@@ -276,11 +278,11 @@ Per testare la connettività dall'ambiente locale simulato alle reti virtuali sp
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
 
-2. Fare clic su `Connect` e copiare il comando `ssh` visualizzato nel portale. 
+2. Fare clic su `Connect` e copiare il comando `ssh` visualizzato nel portale.
 
 3. Da un prompt di Linux, eseguire `ssh` per connettersi all'ambiente locale simulato. Usare la password specificata nel file parametro `onprem.json`.
 
-5. Usare il comando `ping` per testare la connettività alle macchine virtuali jumpbox in ogni spoke:
+4. Usare il comando `ping` per testare la connettività alle macchine virtuali jumpbox in ogni spoke:
 
    ```bash
    ping 10.1.0.68
@@ -293,7 +295,7 @@ Questo passaggio è facoltativo. Se si vuole consentire la connessione tra gli s
 
 1. Aprire il file `hub-nva.json` . Sostituire i valori per `adminUsername` e `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -322,9 +324,9 @@ Questo passaggio è facoltativo. Se si vuole consentire la connessione tra gli s
 [vnet-peering-requirements]: /azure/virtual-network/virtual-network-manage-peering#requirements-and-constraints
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
-
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
+
 [0]: ./images/hub-spoke.png "Topologia hub-spoke in Azure"
 [1]: ./images/hub-spoke-gateway-routing.svg "Topologia hub-spoke in Azure con routing transitivo"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Topologia hub-spoke in Azure con routing transitivo usando un'appliance virtuale di rete"

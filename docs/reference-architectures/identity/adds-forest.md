@@ -1,33 +1,31 @@
 ---
 title: Creare una foresta di risorse di Active Directory Domain Services in Azure
+titleSuffix: Azure Reference Architectures
 description: >-
   Come creare un dominio trusted di Active Directory in Azure.
 
   linee guida, gateway vpn, expressroute, bilanciamento del carico, rete virtuale, active directory
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: adds-extend-domain
-pnp.series.next: adfs
-cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: 0bbf8aff91aaec8718e44f4450711ff96cfc1878
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: e8ad2efd24286f23698bb8e294b15d88232c1166
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332324"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120374"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creare una foresta di risorse di Active Directory Domain Services in Azure
 
-Questa architettura di riferimento illustra come creare un dominio di Active Directory separato in Azure considerato attendibile dai domini nella foresta di Active Directory locale. [**Distribuire questa soluzione**.](#deploy-the-solution)
+Questa architettura di riferimento illustra come creare un dominio di Active Directory separato in Azure considerato attendibile dai domini nella foresta di Active Directory locale. [**Distribuire questa soluzione**](#deploy-the-solution).
 
-[![0]][0] 
+![Architettura di rete ibrida sicura con domini di Active Directory separati](./images/adds-forest.png)
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-Active Directory Domain Services archivia le informazioni di identità in una struttura gerarchica. Il nodo principale nella struttura gerarchica è noto come foresta. Una foresta contiene domini e i domini contengono altri tipi di oggetti. Questa architettura di riferimento crea una foresta di Active Directory Domain Services in Azure con una relazione di trust unidirezionale in uscita con un dominio locale. La foresta in Azure contiene un dominio che non esiste in locale. A causa della relazione di trust, gli accessi effettuati nei domini locali possono essere considerati attendibili per accedere alle risorse nel dominio di Azure separato. 
+Active Directory Domain Services archivia le informazioni di identità in una struttura gerarchica. Il nodo principale nella struttura gerarchica è noto come foresta. Una foresta contiene domini e i domini contengono altri tipi di oggetti. Questa architettura di riferimento crea una foresta di Active Directory Domain Services in Azure con una relazione di trust unidirezionale in uscita con un dominio locale. La foresta in Azure contiene un dominio che non esiste in locale. A causa della relazione di trust, gli accessi effettuati nei domini locali possono essere considerati attendibili per accedere alle risorse nel dominio di Azure separato.
 
-Gli usi tipici di questa architettura includono mantenere la separazione della sicurezza per le identità e gli oggetti contenuti nel cloud ed eseguire la migrazione di singoli domini da un ambiente locale al cloud. 
+Gli usi tipici di questa architettura includono mantenere la separazione della sicurezza per le identità e gli oggetti contenuti nel cloud ed eseguire la migrazione di singoli domini da un ambiente locale al cloud.
 
 Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per l'integrazione di Active Directory locale con Azure][considerations]. 
 
@@ -35,17 +33,17 @@ Per altre considerazioni, vedere l'articolo su come [scegliere una soluzione per
 
 L'architettura include i componenti indicati di seguito.
 
-* **Rete locale**. La rete locale contiene la propria foresta di Active Directory con i relativi domini.
-* **Server Active Directory**. Sono i controller di dominio che implementano i servizi di dominio in esecuzione come macchine virtuali nel cloud. Questi server ospitano una foresta che contiene uno o più domini, separati da quelli locali.
-* **Relazione di trust unidirezionale**. L'esempio nel diagramma mostra una relazione di trust unidirezionale dal dominio in Azure al dominio locale. Questa relazione consente agli utenti locali di accedere alle risorse nel dominio in Azure, ma non viceversa. È possibile creare un trust bidirezionale se gli utenti cloud richiedono l'accesso anche alle risorse locali.
-* **Subnet di Active Directory**. I server di Active Directory Domain Services sono ospitati in una subnet separata. Le regole del gruppo di sicurezza di rete (NSG) proteggono i server di Active Directory Domain Services e fungono da firewall per il traffico da origini non previste.
-* **Gateway di Azure**. Il gateway di Azure fornisce una connessione tra la rete virtuale di Azure e la rete locale. Può trattarsi di una [connessione VPN][azure-vpn-gateway] o [Azure ExpressRoute][azure-expressroute]. Per altre informazioni, vedere [Implementazione di un'architettura di rete ibrida sicura in Azure][implementing-a-secure-hybrid-network-architecture].
+- **Rete locale**. La rete locale contiene la propria foresta di Active Directory con i relativi domini.
+- **Server Active Directory**. Sono i controller di dominio che implementano i servizi di dominio in esecuzione come macchine virtuali nel cloud. Questi server ospitano una foresta che contiene uno o più domini, separati da quelli locali.
+- **Relazione di trust unidirezionale**. L'esempio nel diagramma mostra una relazione di trust unidirezionale dal dominio in Azure al dominio locale. Questa relazione consente agli utenti locali di accedere alle risorse nel dominio in Azure, ma non viceversa. È possibile creare un trust bidirezionale se gli utenti cloud richiedono l'accesso anche alle risorse locali.
+- **Subnet di Active Directory**. I server di Active Directory Domain Services sono ospitati in una subnet separata. Le regole del gruppo di sicurezza di rete (NSG) proteggono i server di Active Directory Domain Services e fungono da firewall per il traffico da origini non previste.
+- **Gateway di Azure**. Il gateway di Azure fornisce una connessione tra la rete virtuale di Azure e la rete locale. Può trattarsi di una [connessione VPN][azure-vpn-gateway] o [Azure ExpressRoute][azure-expressroute]. Per altre informazioni, vedere [Implementazione di un'architettura di rete ibrida sicura in Azure][implementing-a-secure-hybrid-network-architecture].
 
 ## <a name="recommendations"></a>Consigli
 
 Per consigli specifici sull'implementazione di Active Directory in Azure, vedere gli articoli seguenti:
 
-- [Estensione di Active Directory Domain Services in Azure][adds-extend-domain]. 
+- [Estensione di Active Directory Domain Services in Azure][adds-extend-domain].
 - [Linee guida per la distribuzione di Active Directory di Windows Server in macchine virtuali di Azure][ad-azure-guidelines].
 
 ### <a name="trust"></a>Trust
@@ -56,8 +54,8 @@ I domini locali sono contenuti in una foresta diversa rispetto ai domini nel clo
 
 I trust possono essere unidirezionali o bidirezionali:
 
-* Un trust unidirezionale consente agli utenti in un dominio o foresta (noti come dominio o foresta *in ingresso*) per accedere alle risorse contenute in un altro dominio o foresta (il dominio o foresta *in uscita*).
-* Un trust bidirezionale consente agli utenti nel dominio o nella foresta di accedere alle risorse contenute nell'altro dominio o foresta.
+- Un trust unidirezionale consente agli utenti in un dominio o foresta (noti come dominio o foresta *in ingresso*) per accedere alle risorse contenute in un altro dominio o foresta (il dominio o foresta *in uscita*).
+- Un trust bidirezionale consente agli utenti nel dominio o nella foresta di accedere alle risorse contenute nell'altro dominio o foresta.
 
 La tabella seguente presenta un riepilogo delle configurazioni di trust per alcuni semplici scenari:
 
@@ -79,8 +77,8 @@ Inoltre, è opportuno designare uno o più server in ogni dominio come [master o
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 
-Per considerazioni sulla gestione e il monitoraggio, vedere [Estensione di Active Directory Domain Services in Azure][adds-extend-domain]. 
- 
+Per considerazioni sulla gestione e il monitoraggio, vedere [Estensione di Active Directory Domain Services in Azure][adds-extend-domain].
+
 Per altre informazioni, vedere [Monitoring Active Directory][monitoring_ad] (Monitoraggio di Active Directory). È possibile installare strumenti come [Microsoft Systems Center][microsoft_systems_center] in un server di monitoraggio della subnet di gestione per agevolare l'esecuzione di queste attività.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
@@ -113,9 +111,9 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 1. Aprire il file `azure.json` . Cercare istanze di `adminPassword` e `Password` e aggiungere i valori per le password.
 
-2. Nello stesso file cercare le istanze di `sharedKey` e immettere le chiavi condivise per la connessione VPN. 
+2. Nello stesso file cercare le istanze di `sharedKey` e immettere le chiavi condivise per la connessione VPN.
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -127,30 +125,28 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
    Eseguire la distribuzione nello stesso gruppo di risorse della rete virtuale locale.
 
-
 ### <a name="test-the-ad-trust-relation"></a>Testare la relazione di trust di Active Directory
 
 1. Usare il portale di Azure per passare al gruppo di risorse creato.
 
 2. Usare il portale di Azure per trovare la macchina virtuale di Azure denominata `ra-adt-mgmt-vm1`.
 
-2. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `onprem.json`.
+3. Fare clic su `Connect` per aprire una sessione di desktop remoto per la macchina virtuale. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `onprem.json`.
 
-3. All'interno della sessione Desktop remoto, aprire un'altra sessione Desktop remoto per 192.168.0.4, ovvero l'indirizzo IP della macchina virtuale denominata `ra-adtrust-onpremise-ad-vm1`. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `azure.json`.
+4. All'interno della sessione Desktop remoto, aprire un'altra sessione Desktop remoto per 192.168.0.4, ovvero l'indirizzo IP della macchina virtuale denominata `ra-adtrust-onpremise-ad-vm1`. Il nome utente è `contoso\testuser` e la password è quella specificata nel file parametro `azure.json`.
 
-4. Dall'interno della sessione Desktop remoto per `ra-adtrust-onpremise-ad-vm1`, passare a **Server Manager** e fare clic su **Strumenti** > **Domini e trust di Active Directory**. 
+5. Dall'interno della sessione Desktop remoto per `ra-adtrust-onpremise-ad-vm1`, passare a **Server Manager** e fare clic su **Strumenti** > **Domini e trust di Active Directory**.
 
-5. Nel riquadro sinistro fare clic su contoso.com e selezionare **Proprietà**.
+6. Nel riquadro sinistro fare clic su contoso.com e selezionare **Proprietà**.
 
-6. Scegliere la scheda **Trust**. Sarà visibile treyresearch.net elencato come trust in ingresso.
+7. Scegliere la scheda **Trust**. Sarà visibile treyresearch.net elencato come trust in ingresso.
 
-![](./images/ad-forest-trust.png)
-
+![Screenshot della finestra di dialogo del trust della foresta di Active Directory Domain Services](./images/ad-forest-trust.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Procedure consigliate per [estendere il dominio di Active Directory Domain Services in Azure][adds-extend-domain]
-* Procedure consigliate per [creare un'infrastruttura Active Directory Federation Services][adfs] in Azure.
+- Procedure consigliate per [estendere il dominio di Active Directory Domain Services in Azure][adds-extend-domain]
+- Procedure consigliate per [creare un'infrastruttura Active Directory Federation Services][adfs] in Azure.
 
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
@@ -179,4 +175,3 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/identity-reference-architectures/master/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
-[0]: ./images/adds-forest.png "Architettura di rete ibrida sicura con domini di Active Directory separati"

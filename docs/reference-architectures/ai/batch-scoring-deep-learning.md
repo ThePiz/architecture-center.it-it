@@ -1,25 +1,26 @@
 ---
-title: Punteggio batch in Azure per modelli di apprendimento avanzato
-description: Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Batch per intelligenza artificiale
+title: Punteggio batch per i modelli di apprendimento avanzato
+titleSuffix: Azure Reference Architectures
+description: Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Batch per intelligenza artificiale.
 author: jiata
 ms.date: 10/02/2018
-ms.author: jiata
-ms.openlocfilehash: 1f3f3d3882b2b30eb29acd26c9eab9ff128028e2
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.custom: azcat-ai
+ms.openlocfilehash: 0396903a39d00a4131df65872a63f4b3fde8dce7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243729"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119881"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Punteggio batch in Azure per modelli di apprendimento avanzato
 
 Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Batch per intelligenza artificiale. Lo *style transfer* è una tecnica di apprendimento avanzato che ridefinisce un'immagine esistente usando lo stile di un'altra immagine. Questa architettura può essere generalizzata per qualsiasi scenario che usa l'assegnazione del punteggio batch con l'apprendimento avanzato. [**Distribuire questa soluzione**](#deploy-the-solution).
- 
-![](./_images/batch-ai-deep-learning.png)
 
-**Scenario**: un'organizzazione di supporti dispone di un video di cui desidera modificare l'aspetto, rendendolo simile a un dipinto specifico. L'organizzazione vuole applicare questo stile a tutti i frame del video in modo tempestivo e automatico. Per altre informazioni sugli algoritmi di neural style transfer, vedere il PDF [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] (Style transfer di immagini tramite reti neurali convoluzionali).
+![Diagramma dell'architettura per modelli di deep learning con Azure Batch per intelligenza artificiale](./_images/batch-ai-deep-learning.png)
 
-| Immagine stile: | Video di input/contenuto: | Video di output: | 
+**Scenario**: Un'organizzazione di supporti dispone di un video di cui desidera modificare l'aspetto, rendendolo simile a un dipinto specifico. L'organizzazione vuole applicare questo stile a tutti i frame del video in modo tempestivo e automatico. Per altre informazioni sugli algoritmi di neural style transfer, vedere il PDF [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] (Style transfer di immagini tramite reti neurali convoluzionali).
+
+| Immagine stile: | Video di input/contenuto: | Video di output: |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "Video di input") *fare clic per visualizzare il video* | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "Video di output") *fare clic per visualizzare il video* |
 
@@ -35,6 +36,7 @@ Questa architettura di riferimento è progettata per carichi di lavoro che vengo
 1. Scaricare i frame generati e unire nuovamente le immagini in un video.
 
 ## <a name="architecture"></a>Architettura
+
 L'architettura è costituita dai componenti seguenti.
 
 ### <a name="compute"></a>Calcolo
@@ -62,7 +64,7 @@ Questa architettura di riferimento usa un filmato di repertorio di un orangutan 
 3. Usare FFmpeg per suddividere il video in singoli frame. I frame verranno elaborati in modo indipendente, in parallelo.
 4. Usare AzCopy per copiare i singoli frame nel contenitore BLOB.
 
-In questa fase, il video è in un formato utilizzabile per il neural style transfer. 
+In questa fase, il video è in un formato utilizzabile per il neural style transfer.
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
 
@@ -74,7 +76,7 @@ Le GPU non sono abilitate per impostazione predefinita in tutte le aree. Assicur
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>Esecuzione in parallelo tra macchine virtuali e core a confronto
 
-Quando si esegue un processo di style transfer come processo batch, i processi che vengono eseguiti principalmente nelle GPU dovranno essere eseguiti in parallelo tra le macchine virtuali. Sono possibili due approcci: è possibile creare un cluster di dimensioni maggiori tramite macchine virtuali con una GPU singola o creare un cluster più piccolo tramite macchine virtuali con più GPU. 
+Quando si esegue un processo di style transfer come processo batch, i processi che vengono eseguiti principalmente nelle GPU dovranno essere eseguiti in parallelo tra le macchine virtuali. Sono possibili due approcci: è possibile creare un cluster di dimensioni maggiori tramite macchine virtuali con una GPU singola o creare un cluster più piccolo tramite macchine virtuali con più GPU.
 
 Per questo carico di lavoro, queste due opzioni garantiranno prestazioni analoghe. L'utilizzo di un minor numero di macchine virtuali con più GPU per ognuna può contribuire a ridurre lo spostamento dati. Tuttavia, il volume di dati per processo per questo carico di lavoro non è molto grande, per cui non si osserverà una limitazione eccessiva da parte dell'archiviazione BLOB.
 
@@ -96,7 +98,7 @@ Per gli scenari con più dati sensibili, assicurarsi che tutte le chiavi di arch
 
 ### <a name="data-encryption-and-data-movement"></a>Crittografia e spostamento dei dati
 
-Questa architettura di riferimento usa lo style transfer come esempio di processo di punteggio batch. Per altri scenari basati su dati sensibili, i dati contenuti nella risorsa di archiviazione dovranno essere crittografati a riposo. Ogni volta che i dati vengono spostati da una posizione a quella successiva, usare SSL per proteggere il trasferimento dei dati. Per altre informazioni, vedere la [Guida alla sicurezza di Archiviazione di Azure][storage-security]. 
+Questa architettura di riferimento usa lo style transfer come esempio di processo di punteggio batch. Per altri scenari basati su dati sensibili, i dati contenuti nella risorsa di archiviazione dovranno essere crittografati a riposo. Ogni volta che i dati vengono spostati da una posizione a quella successiva, usare SSL per proteggere il trasferimento dei dati. Per altre informazioni, vedere la [Guida alla sicurezza di Archiviazione di Azure][storage-security].
 
 ### <a name="securing-data-in-a-virtual-network"></a>Protezione dei dati in una rete virtuale
 
@@ -108,26 +110,25 @@ Negli scenari in cui sono presenti più utenti, assicurarsi che i dati sensibili
 
 - Usare RBAC per limitare l'accesso degli utenti alle sole risorse di cui necessitano.
 - Fornire due account di archiviazione separati. Archiviare i dati di input e output nel primo account. Gli utenti esterni potranno avere accesso a questo account. Archiviare script eseguibili e file di log di output nell'altro account. Gli utenti esterni non dovranno avere accesso a questo account. In questo modo gli utenti esterni non potranno modificare alcun file eseguibile (per inserire codici dannosi), né avranno accesso ai file di log, che potrebbero contenere informazioni riservate.
-- Gli utenti malintenzionati possono perpetrare attacchi DDoS alla coda processi o inserire in essa messaggi non elaborabili in formato non valido, causando il blocco del sistema o errori di rimozione dalla coda. 
+- Gli utenti malintenzionati possono perpetrare attacchi DDoS alla coda processi o inserire in essa messaggi non elaborabili in formato non valido, causando il blocco del sistema o errori di rimozione dalla coda.
 
 ## <a name="monitoring-and-logging"></a>Monitoraggio e registrazione
 
 ### <a name="monitoring-batch-ai-jobs"></a>Monitoraggio dei processi Batch per intelligenza artificiale
 
-Quando si esegue un processo, è importante monitorare lo stato di avanzamento e assicurarsi che tutto funzioni come previsto. Tuttavia, il monitoraggio in un cluster di nodi attivi può rivelarsi un problema. 
+Quando si esegue un processo, è importante monitorare lo stato di avanzamento e assicurarsi che tutto funzioni come previsto. Tuttavia, il monitoraggio in un cluster di nodi attivi può rivelarsi un problema.
 
-Per ottenere un'idea dello stato complessivo del cluster, passare al pannello Batch per intelligenza artificiale del portale di Azure per controllare lo stato dei nodi del cluster. Se un nodo è inattivo oppure un processo ha avuto esito negativo, i log degli errori vengono salvati nell'archiviazione BLOB e sono accessibili anche dal pannello Processi nel portale di Azure. 
+Per ottenere un'idea dello stato complessivo del cluster, passare al pannello Batch per intelligenza artificiale del portale di Azure per controllare lo stato dei nodi del cluster. Se un nodo è inattivo oppure un processo ha avuto esito negativo, i log degli errori vengono salvati nell'archiviazione BLOB e sono accessibili anche dal pannello Processi nel portale di Azure.
 
 È possibile arricchire ulteriormente il monitoraggio connettendo i log ad Application Insights o eseguendo processi separati per il polling dello stato del cluster Batch per intelligenza artificiale e relativi processi.
 
 ### <a name="logging-in-batch-ai"></a>Registrazione in Batch per intelligenza artificiale
 
-Batch per intelligenza artificiale registra automaticamente tutti i percorsi StdOut/StdEr per l'account di archiviazione BLOB associato. L'uso di uno strumento di esplorazione dell'archiviazione, come ad esempio Storage Explorer, offre un'esperienza molto più semplice per scorrere i file di log. 
+Batch per intelligenza artificiale registra automaticamente tutti i percorsi StdOut/StdEr per l'account di archiviazione BLOB associato. L'uso di uno strumento di esplorazione dell'archiviazione, come ad esempio Storage Explorer, offre un'esperienza molto più semplice per scorrere i file di log.
 
-La procedura di distribuzione per questa architettura di riferimento mostra anche come configurare un sistema di registrazione più semplice, in modo che tutti i log tra i diversi processi siano salvati nella stessa directory nel contenitore BLOB, come illustrato di seguito.
-Usare questi log per monitorare il tempo necessario per l'elaborazione di ogni processo e immagine. In questo modo si avrà un'idea più precisa su come ottimizzare ulteriormente il processo.
+La procedura di distribuzione per questa architettura di riferimento mostra anche come configurare un sistema di registrazione più semplice, in modo che tutti i log tra i diversi processi siano salvati nella stessa directory nel contenitore BLOB, come illustrato di seguito. Usare questi log per monitorare il tempo necessario per l'elaborazione di ogni processo e immagine. In questo modo si avrà un'idea più precisa su come ottimizzare ulteriormente il processo.
 
-![](./_images/batch-ai-logging.png)
+![Screenshot del log di Azure Batch per intelligenza artificiale](./_images/batch-ai-logging.png)
 
 ## <a name="cost-considerations"></a>Considerazioni sul costo
 
@@ -142,6 +143,8 @@ La scalabilità automatica potrebbe non essere appropriata per i processi batch 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
 Per distribuire questa architettura di riferimento, seguire la procedura descritta nel [repository GitHub][deployment].
+
+<!-- links -->
 
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/

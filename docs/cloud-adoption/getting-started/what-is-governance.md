@@ -1,16 +1,16 @@
 ---
-title: "Adozione del cloud nell'organizzazione: definizione di governance delle risorse cloud"
+title: "Adozione del cloud nell'organizzazione: Informazioni sulla governance delle risorse cloud"
 description: Spiegazione del concetto di governance dell'accesso alle risorse in Azure
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 14c26cbccdbea524a7c7220b3bb98ed2a118c30d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: fb01b2e2823c16e32f8ded696de0b6faf1d2e610
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389214"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179281"
 ---
-# <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>Adozione del cloud nell'organizzazione: definizione di governance delle risorse cloud
+# <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>Adozione del cloud nell'organizzazione: Informazioni sulla governance delle risorse cloud
 
 Nell'articolo [Funzionamento di Azure](what-is-azure.md) si è appreso che Azure è un insieme di server e componenti hardware di rete che eseguono software e hardware virtualizzati per conto degli utenti. Azure consente ai reparti che si occupano di IT e sviluppo dell'organizzazione di lavorare in modo flessibile, creando, leggendo, aggiornando ed eliminando facilmente le risorse in base alle esigenze.
 

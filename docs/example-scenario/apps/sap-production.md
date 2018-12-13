@@ -3,12 +3,13 @@ title: Esecuzione di carichi di lavoro di produzione SAP con un database Oracle 
 description: Eseguire una distribuzione di produzione SAP in Azure con un database Oracle.
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e345760c69c4d3cc26fe6d4d7cb8a93d183a5818
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610907"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004960"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure
 
@@ -48,7 +49,7 @@ Questo esempio include una configurazione a disponibilità elevata per un databa
 
 ### <a name="alternatives"></a>Alternative
 
-SAP offre opzioni flessibili per diverse combinazioni di sistema operativo, sistema di gestione di database e tipi di macchine virtuali in un ambiente Azure. Per altre informazioni, vedere la [nota SAP 1928533](https://launchpad.support.sap.com/#/notes/1928533) "SAP Applications on Azure: Supported Products and Azure VM Types" (Applicazioni SAP in Azure: prodotti e tipi di macchine virtuali di Azure supportati).
+SAP offre opzioni flessibili per diverse combinazioni di sistema operativo, sistema di gestione di database e tipi di macchine virtuali in un ambiente Azure. Per altre informazioni, consultare la [nota SAP 1928533](https://launchpad.support.sap.com/#/notes/1928533) "Applicazioni SAP in Azure: prodotti e tipi di macchine virtuali di Azure supportati".
 
 ## <a name="considerations"></a>Considerazioni
 
