@@ -110,11 +110,11 @@
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./apps/media/architecture-devops-dotnet-webapp.png" height="140px" />
+                            <img src="./apps/media/architecture-devops-dotnet-webapp.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Pipeline di integrazione continua/distribuzione continua con Azure DevOps</h3>
+                        <h3>Progettazione di una pipeline CI/CD con Azure DevOps</h3>
                         <p>Compilare e rilasciare un'app .NET per App Web di Azure usando Azure DevOps.</p>
                     </div>
                 </div>
@@ -330,7 +330,7 @@
                     </div>
                     <div class="cardText">
                         <h3>Processi ETL ibridi con distribuzioni SSIS locali esistenti e Azure Data Factory</h3>
-                        <p>Processi ETL ibridi con distribuzioni SQL Server Integration Services (SSIS) locali esistenti e Azure Data Factory.</p>
+                        <p>Processi ETL ibridi con distribuzioni SQL Server Integration Services (SSIS) locali esistenti e Azure Data Factory</p>
                     </div>
                 </div>
             </div>
@@ -412,7 +412,7 @@
                     </div>
                     <div class="cardText">
                         <h3>Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure</h3>
-                        <p>Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure.</p>
+                        <p>Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure</p>
                     </div>
                 </div>
             </div>
@@ -430,7 +430,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Applicazione Web Windows sicura per i settori regolamentati</h3>
+                        <h3>Creazione di app Web sicure con macchine virtuali Windows in Azure</h3>
                         <p>Creare un'applicazione Web multilivello sicura con Windows Server in Azure con set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.</p>
                     </div>
                 </div>
