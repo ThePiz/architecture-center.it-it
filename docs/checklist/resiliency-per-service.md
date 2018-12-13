@@ -1,15 +1,16 @@
 ---
 title: Elenco di controllo per la resilienza per i servizi di Azure
+titleSuffix: Azure Design Review Framework
 description: Elenco di controllo contenente indicazioni per la resilienza per vari servizi di Azure.
 author: petertaylor9999
-ms.date: 03/02/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305928"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307181"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Elenco di controllo per la resilienza per servizi di Azure specifici
 
@@ -19,15 +20,15 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Usare il livello Standard o Premium.** Questi livelli supportano gli slot di staging e i backup automatici. Per altre informazioni, vedere [Panoramica approfondita dei piani per Servizio app di Azure](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/)
 
-**Evitare il ridimensionamento.** Selezionare invece un livello e una dimensione di istanza che soddisfino i requisiti di prestazioni in condizioni di carico tipico e quindi [scalare orizzontalmente](/azure/app-service-web/web-sites-scale/) le istanze per gestire le modifiche nel volume del traffico. Il ridimensionamento può determinare il riavvio dell'applicazione.  
+**Evitare il ridimensionamento.** Selezionare invece un livello e una dimensione di istanza che soddisfino i requisiti di prestazioni in condizioni di carico tipico e quindi [scalare orizzontalmente](/azure/app-service-web/web-sites-scale/) le istanze per gestire le modifiche nel volume del traffico. Il ridimensionamento può determinare il riavvio dell'applicazione.
 
 **Archiviare la configurazione come impostazioni dell'app.** Usare le impostazioni dell'app per conservare le impostazioni di configurazione come impostazioni dell'app. Definire le impostazioni nei modelli di Resource Manager oppure tramite PowerShell, in modo da poterle applicare come parte di un processo di distribuzione/aggiornamento automatizzato, che è più affidabile. Per altre informazioni, vedere [Configurazione delle app Web in Servizio app di Azure](/azure/app-service-web/web-sites-configure/).
 
-**Creare piani di servizio app separati per la produzione e per il test.** Non usare gli slot nella distribuzione di produzione per il test.  Tutte le app contenute nello stesso piano di servizio app condividono le stesse istanze di VM. L'inserimento delle distribuzioni di produzione e di test nello stesso piano può influire negativamente sulla distribuzione di produzione. I test di carico, ad esempio, possono ridurre le prestazioni del sito di produzione attivo. Se si inseriscono le distribuzioni di test in un piano separato, le si isola dalla versione di produzione.  
+**Creare piani di servizio app separati per la produzione e per il test.** Non usare gli slot nella distribuzione di produzione per il test.  Tutte le app contenute nello stesso piano di servizio app condividono le stesse istanze di VM. L'inserimento delle distribuzioni di produzione e di test nello stesso piano può influire negativamente sulla distribuzione di produzione. I test di carico, ad esempio, possono ridurre le prestazioni del sito di produzione attivo. Se si inseriscono le distribuzioni di test in un piano separato, le si isola dalla versione di produzione.
 
 **Separare le app Web dalle API Web.** Se la soluzione contiene sia un front-end Web che un'API Web, si può considerare di scomporli in app del Servizio app separate. Questa progettazione rende più semplice scomporre la soluzione in base al carico di lavoro. Si possono eseguire l'app Web e l'API Web in piani di servizio app separati in modo che le si possa scalare in maniera indipendente. Se inizialmente questo livello di scalabilità non è necessario, è possibile distribuire le app nello stesso piano e spostarle successivamente in piani separati, se necessario.
 
-**Evitare di usare la funzionalità di backup del Servizio app per eseguire il backup dei database SQL di Azure.** Usare invece i [backup automatici del database SQL][sql-backup]. Il backup del Servizio app di Azure esporta il database in un file SQL con estensione bacpac, che ha un costo in DTU.  
+**Evitare di usare la funzionalità di backup del Servizio app per eseguire il backup dei database SQL di Azure.** Usare invece i [backup automatici del database SQL][sql-backup]. Il backup del Servizio app di Azure esporta il database in un file SQL con estensione bacpac, che ha un costo in DTU.
 
 **Distribuire in uno slot di staging.** Creare uno slot di distribuzione per lo staging. Distribuire gli aggiornamenti dell'applicazione nello slot di staging e verificare la distribuzione prima di scambiarla nell'ambiente di produzione. In questo modo, diminuiscono le probabilità che si esegua un aggiornamento non corretto nell'ambiente di produzione. Assicura inoltre che tutte le istanze siano pronte per essere scambiate nell'ambiente di produzione. Molte applicazioni presentano tempi di riscaldamento e di avvio a freddo piuttosto lunghi. Per altre informazioni, vedere [Configurare ambienti di staging per le app Web nel Servizio app di Azure](/azure/app-service-web/web-sites-staged-publishing/).
 
@@ -57,7 +58,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Gestire le eccezioni.** Un consumer eventi in genere elabora un batch di messaggi in un ciclo. È consigliabile gestire le eccezioni all'interno di questo ciclo di elaborazione per evitare di perdere un intero batch di messaggi se un singolo messaggio causa un'eccezione.
 
-**Usare una coda di messaggi non recapitabili.** Se l'elaborazione di un messaggio determina un errore non temporaneo, inserire il messaggio in una coda di messaggi non recapitabili per poterne monitorare lo stato. A seconda dello scenario, è possibile eseguire un nuovo tentativo in un secondo momento, applicare una transazione di compensazione o effettuare altre azioni. Si noti che Hub eventi non ha funzionalità predefinite per l'inserimento in una coda di messaggi non recapitabili. È possibile usare l'archivio code o il bus di servizio di Azure per implementare una coda di messaggi non recapitabili oppure usare Funzioni di Azure o altri meccanismi di gestione eventi.  
+**Usare una coda di messaggi non recapitabili.** Se l'elaborazione di un messaggio determina un errore non temporaneo, inserire il messaggio in una coda di messaggi non recapitabili per poterne monitorare lo stato. A seconda dello scenario, è possibile eseguire un nuovo tentativo in un secondo momento, applicare una transazione di compensazione o effettuare altre azioni. Si noti che Hub eventi non ha funzionalità predefinite per l'inserimento in una coda di messaggi non recapitabili. È possibile usare l'archivio code o il bus di servizio di Azure per implementare una coda di messaggi non recapitabili oppure usare Funzioni di Azure o altri meccanismi di gestione eventi.
 
 **Implementare il ripristino di emergenza effettuando il failover in uno spazio dei nomi di Hub eventi secondario.** Per altre informazioni, vedere [Ripristino di emergenza geografico nel servizio Hub eventi di Azure](/azure/event-hubs/event-hubs-geo-dr).
 
@@ -67,7 +68,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 
 **Configurare la persistenza dei dati.** La persistenza di Redis consente di rendere persistenti i dati archiviati in Redis. È inoltre possibile creare snapshot ed eseguire il backup dei dati, per consentirne il caricamento in caso di errore hardware. Per altre informazioni, vedere [Come configurare la persistenza dei dati per una Cache Redis di Azure Premium](/azure/redis-cache/cache-how-to-premium-persistence).
 
-Se si usa Redis Cache come cache di dati temporanea e non come archivio persistente, questi consigli potrebbero non essere applicabili. 
+Se si usa Redis Cache come cache di dati temporanea e non come archivio persistente, questi consigli potrebbero non essere applicabili.
 
 ## <a name="search"></a>Ricerca
 
@@ -75,8 +76,9 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
 **Configurare gli indicizzatori per le distribuzioni in più aree.** Con una distribuzione in più aree, si possono considerare le opzioni per la continuità nell'indicizzazione.
 
-  * Se l'origine dati viene replicata geograficamente, occorre puntare ogni indicizzatore di ogni servizio di Ricerca di Azure regionale sulla replica dell'origine dati locale. Tale approccio non è tuttavia consigliato per i set di dati di grandi dimensioni archiviati nel database di SQL Azure. Il motivo è che Ricerca di Azure non può eseguire l'indicizzazione incrementale da repliche di database SQL secondarie, ma solo da repliche primarie. Puntare quindi tutti gli indicizzatori sulla replica primaria. Dopo un failover, puntare gli indicizzatori di Ricerca di Azure sulla nuova replica primaria.  
-  * Se l'origine dati non è replicata geograficamente, puntare più indicizzatori sulla stessa origine dati, in modo che i servizi di Ricerca di Azure in più aree eseguano l'indicizzazione dall'origine dati in modo continuativo e indipendente. Per altre informazioni, vedere [Considerazioni sulle prestazioni e sull'ottimizzazione di Ricerca di Azure][search-optimization].
+- Se l'origine dati viene replicata geograficamente, occorre puntare ogni indicizzatore di ogni servizio di Ricerca di Azure regionale sulla replica dell'origine dati locale. Tale approccio non è tuttavia consigliato per i set di dati di grandi dimensioni archiviati nel database di SQL Azure. Il motivo è che Ricerca di Azure non può eseguire l'indicizzazione incrementale da repliche di database SQL secondarie, ma solo da repliche primarie. Puntare quindi tutti gli indicizzatori sulla replica primaria. Dopo un failover, puntare gli indicizzatori di Ricerca di Azure sulla nuova replica primaria.
+
+- Se l'origine dati non è replicata geograficamente, puntare più indicizzatori sulla stessa origine dati, in modo che i servizi di Ricerca di Azure in più aree eseguano l'indicizzazione dall'origine dati in modo continuativo e indipendente. Per altre informazioni, vedere [Considerazioni sulle prestazioni e sull'ottimizzazione di Ricerca di Azure][search-optimization].
 
 ## <a name="service-bus"></a>Bus di servizio
 
@@ -92,14 +94,13 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
 **Usare il ripristino di emergenza geografico**. Il ripristino di emergenza geografico assicura che l'elaborazione dei dati continui a funzionare in un'area o un data center diverso se un'intera area o data center di Azure diventa non disponibile a causa di una situazione di emergenza. Per altre informazioni, vedere [Ripristino di emergenza geografico per il bus di servizio di Azure](/azure/service-bus-messaging/service-bus-geo-dr).
 
-
 ## <a name="storage"></a>Archiviazione
 
 **Per i dati dell'applicazione, usare l'Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).** L'archiviazione RA-GRS replica i dati in un'area secondaria e fornisce l'accesso in sola lettura dall'area secondaria. Se si verifica un'interruzione dell'archiviazione nell'area primaria, l'applicazione può leggere i dati dall'area secondaria. Per altre informazioni, vedere [Replica di Archiviazione di Azure](/azure/storage/storage-redundancy/).
 
 **Per i dischi di VM, usare Managed Disks.** Il servizio [Managed Disks][managed-disks] offre una maggiore affidabilità per le VM in un set di disponibilità, perché fa in modo che i dischi siano sufficientemente isolati gli uni dagli altri per evitare singoli punti di errore. I dischi gestiti, inoltre, non sono soggetti ai limiti delle operazioni di I/O al secondo dei dischi rigidi virtuali creati in un account di archiviazione. Per altre informazioni, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure][vm-manage-availability].
 
-**Per l'archiviazione code, creare una coda di backup in un'altra area.** Per l'archiviazione code, una replica di sola lettura ha un uso limitato, perché non è possibile accodare o rimuovere oggetti dalla coda. Creare invece una coda di backup in un account di archiviazione in un'altra area. Se si verifica un'interruzione nell'archiviazione, l'applicazione può usare la coda di backup finché l'area primaria non torna nuovamente disponibile. In questo modo, l'applicazione può comunque elaborare nuove richieste.  
+**Per l'archiviazione code, creare una coda di backup in un'altra area.** Per l'archiviazione code, una replica di sola lettura ha un uso limitato, perché non è possibile accodare o rimuovere oggetti dalla coda. Creare invece una coda di backup in un account di archiviazione in un'altra area. Se si verifica un'interruzione nell'archiviazione, l'applicazione può usare la coda di backup finché l'area primaria non torna nuovamente disponibile. In questo modo, l'applicazione può comunque elaborare nuove richieste.
 
 ## <a name="sql-database"></a>Database SQL
 
@@ -155,7 +156,7 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
 ## <a name="virtual-network"></a>Rete virtuale
 
-**Per inserire nell'elenco degli elementi consentiti o bloccare gli indirizzi IP pubblici, aggiungere un gruppo di sicurezza di rete (NSG) alla subnet.** Bloccare l'accesso di utenti malintenzionati o consentire l'accesso solo agli utenti che dispongono delle autorizzazioni per accedere all'applicazione.  
+**Per inserire nell'elenco degli elementi consentiti o bloccare gli indirizzi IP pubblici, aggiungere un gruppo di sicurezza di rete (NSG) alla subnet.** Bloccare l'accesso di utenti malintenzionati o consentire l'accesso solo agli utenti che dispongono delle autorizzazioni per accedere all'applicazione.
 
 **Creare un probe di integrità personalizzato.** I probe di integrità di Load Balancer possono testare i protocolli HTTP o TCP. Se una macchina virtuale viene eseguita in un server HTTP, il migliore indicatore dello stato di integrità è un probe HTTP rispetto a un probe TCP. Per un probe HTTP, usare un endpoint personalizzato che segnali l'integrità complessiva dell'applicazione, incluse tutte le dipendenze critiche. Per altre informazioni, vedere [Panoramica di Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
