@@ -66,25 +66,6 @@
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
-    <a href="./apps/app-monitoring.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./apps/media/architecture-app-monitoring.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Monitoraggio delle applicazioni Web in Azure</h3>
-                        <p>Monitorare un'applicazione Web ospitata in Servizio app di Azure.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
     <a href="./apps/decentralized-trust.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
@@ -114,7 +95,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Progettazione di una pipeline CI/CD con Azure DevOps</h3>
+                        <h3>Progettare una pipeline CI/CD con Azure DevOps</h3>
                         <p>Compilare e rilasciare un'app .NET per App Web di Azure usando Azure DevOps.</p>
                     </div>
                 </div>
