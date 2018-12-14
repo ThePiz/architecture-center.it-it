@@ -1,23 +1,24 @@
 ---
-title: Integrazione aziendale con code ed eventi di messaggi - Servizi di integrazione di Azure
-description: Questa guida di riferimento sull'architettura descrive come implementare un modello di integrazione aziendale usando App per la logica di Azure, Gestione API di Azure, bus di servizio di Azure e Griglia di eventi di Azure
+title: Integrazione aziendale con code ed eventi di messaggi
+titleSuffix: Azure Reference Architectures
+description: Architettura consigliata per l'implementazione di un modello di integrazione aziendale usando App per la logica di Azure, Gestione API di Azure, bus di servizio di Azure e Griglia di eventi di Azure.
 author: mattfarm
-ms.author: mattfarm
 ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
 ms.date: 12/03/2018
-ms.openlocfilehash: 6a4d7ce81dfae48f760693a4fc875d5ad59abe3a
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: integration-services
+ms.openlocfilehash: 6357cb5015c8f10c0f4a8aa1b310ddbb38367004
+ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52919094"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53233864"
 ---
 # <a name="enterprise-integration-on-azure-using-message-queues-and-events"></a>Integrazione aziendale in Azure con code ed eventi di messaggi
 
-Questa architettura integra i sistemi back-end aziendali mediante code ed eventi di messaggi per disaccoppiare i servizi per una maggiore scalabilità e affidabilità. I sistemi back-end possono includere sistemi software come un servizio (SaaS), servizi di Azure e servizi Web esistenti nell'organizzazione.
+Questa architettura di riferimento integra i sistemi back-end aziendali mediante code ed eventi di messaggi per disaccoppiare i servizi per una maggiore scalabilità e affidabilità. I sistemi back-end possono includere sistemi software come un servizio (SaaS), servizi di Azure e servizi Web esistenti nell'organizzazione.
 
-![Diagramma dell'architettura: integrazione aziendale con code ed eventi](./_images/enterprise-integration-queues-events.png)
+![Architettura di riferimento per l'integrazione aziendale tramite code ed eventi](./_images/enterprise-integration-queues-events.png)
 
 ## <a name="architecture"></a>Architettura
 
@@ -25,9 +26,9 @@ L'architettura illustrata in questo articolo si basa su un'architettura più sem
 
 Questa versione dell'architettura aggiunge due componenti che contribuiscono a rendere il sistema più affidabile e scalabile:
 
-- **[Bus di servizio di Azure][service-bus]**. Il bus di servizio è un broker di messaggi sicuro e affidabile.  
+- **[Bus di servizio di Azure][service-bus]**. Il bus di servizio è un broker di messaggi sicuro e affidabile.
 
-- **[Griglia di eventi di Azure][event-grid]**. Griglia di eventi è un servizio di routing di eventi. Usa un modello di gestione degli eventi di pubblicazione/sottoscrizione (pub/sub).
+- **[Griglia di eventi di Azure][event-grid]**. Griglia di eventi è un servizio di routing di eventi. Usa un modello di gestione degli eventi di [pubblicazione/sottoscrizione](../../patterns/publisher-subscriber.md) (pub/sub).
 
 La comunicazione asincrona tramite un broker di messaggi offre una serie di vantaggi rispetto alle chiamate sincrone dirette ai servizi back-end:
 
@@ -39,21 +40,21 @@ La comunicazione asincrona tramite un broker di messaggi offre una serie di vant
 
 Griglia di eventi consente ai vari componenti del sistema di reagire agli eventi man mano che si verificano, anziché basarsi su attività pianificate o di polling. Come per una coda di messaggi, consente di disaccoppiare applicazioni e servizi. Un'applicazione o un servizio può pubblicare eventi e i sottoscrittori interessati riceveranno una notifica. È possibile aggiungere nuovi sottoscrittori senza aggiornare il mittente.
 
-Molti servizi di Azure seguenti supportano l'invio degli eventi a Griglia di eventi. Ad esempio, un'app per la logica può essere in ascolto di un evento quando nuovi file vengono aggiunti a un archivio BLOB. Questo modello consente flussi di lavoro reattivi, in cui il caricamento di un file o l'inserimento di un messaggio in coda dà il via a una serie di processi. I processi possono essere eseguiti in parallelo o in una sequenza specifica. 
+Molti servizi di Azure seguenti supportano l'invio degli eventi a Griglia di eventi. Ad esempio, un'app per la logica può essere in ascolto di un evento quando nuovi file vengono aggiunti a un archivio BLOB. Questo modello consente flussi di lavoro reattivi, in cui il caricamento di un file o l'inserimento di un messaggio in coda dà il via a una serie di processi. I processi possono essere eseguiti in parallelo o in una sequenza specifica.
 
 ## <a name="recommendations"></a>Consigli
 
 A questa architettura si applicano i consigli descritti in [Integrazione aziendale di base][basic-enterprise-integration]. Si applicano anche i consigli seguenti:
 
-### <a name="service-bus"></a>Bus di servizio 
+### <a name="service-bus"></a>Bus di servizio
 
-Il bus di servizio supporta due modalità di recapito: *pull* o *push*. Nel modello pull il ricevitore esegue continuamente il polling di nuovi messaggi. Il polling può risultare inefficiente, soprattutto se si hanno molte code ognuna delle quali riceve pochi messaggi o se intercorre molto tempo tra un messaggio e l'altro. Nel modello push il bus di servizio invia un evento tramite Griglia di eventi quando sono presenti nuovi messaggi. Il ricevitore sottoscrive l'evento. Quando viene attivato l'evento, il ricevitore eseguire il pull del successivo batch di messaggi dal bus di servizio. 
+Il bus di servizio supporta due modalità di recapito: *pull* o *push*. Nel modello pull il ricevitore esegue continuamente il polling di nuovi messaggi. Il polling può risultare inefficiente, soprattutto se si hanno molte code ognuna delle quali riceve pochi messaggi o se intercorre molto tempo tra un messaggio e l'altro. Nel modello push il bus di servizio invia un evento tramite Griglia di eventi quando sono presenti nuovi messaggi. Il ricevitore sottoscrive l'evento. Quando viene attivato l'evento, il ricevitore eseguire il pull del successivo batch di messaggi dal bus di servizio.
 
 Quando si crea un'app per la logica per utilizzare i messaggi del bus di servizio, è consigliabile usare il modello push con l'integrazione di Griglia di eventi. Spesso è più efficiente in termini di costi, perché l'app per la logica non deve eseguire il polling del bus di servizio. Per altre informazioni, vedere [Panoramica dell'integrazione del bus di servizio di Azure in Griglia di eventi](/azure/service-bus-messaging/service-bus-to-event-grid-integration-concept). Attualmente, è necessario il [livello Premium](https://azure.microsoft.com/pricing/details/service-bus/) del bus di servizio per le notifiche di Griglia di eventi.
 
 Usare [PeekLock](/azure/service-bus-messaging/service-bus-messaging-overview#queues) per accedere a un gruppo di messaggi. Con PeekLock, l'app per la logica può eseguire i passaggi per convalidare ogni messaggio prima di completarlo o abbandonarlo. Questo approccio protegge dalla perdita accidentale dei messaggi.
 
-### <a name="event-grid"></a>Griglia di eventi 
+### <a name="event-grid"></a>Griglia di eventi
 
 Quando viene attivato un trigger di Griglia di eventi, significa che si è verificato *almeno* un evento. Ad esempio, quando un'app per la logica riceve un trigger di Griglia di eventi per un messaggio del bus di servizio, dovrebbe presumere che diversi messaggi potrebbero essere disponibili per l'elaborazione.
 
@@ -81,7 +82,6 @@ Per proteggere il bus di servizio, usare una firma di accesso condiviso (SAS). �
 Se è necessario esporre una coda del bus di servizio come endpoint HTTP, ad esempio per la pubblicazione nuovi messaggi, utilizzare Gestione API per proteggere la coda mettendo al sicuro l'endpoint. L'endpoint può quindi essere protetto tramite certificati o autenticazione OAuth, a seconda delle esigenze. Il modo più semplice per proteggere un endpoint è quello di usare un'app per la logica con un trigger di richiesta/risposta HTTP come intermediario.
 
 Il servizio Griglia di eventi consente di proteggere il recapito dell'evento tramite un codice di convalida. Se si usa App per la logica per gestire l'evento, la convalida viene eseguita automaticamente. Per altre informazioni, vedere [Event Grid security and authentication](/azure/event-grid/security-authentication) (Sicurezza e autenticazione di Griglia di eventi).
-
 
 [apim]: /azure/api-management
 [apim-sla]: https://azure.microsoft.com/support/legal/sla/api-management/

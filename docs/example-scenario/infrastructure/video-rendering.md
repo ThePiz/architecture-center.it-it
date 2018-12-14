@@ -3,12 +3,13 @@ title: Rendering di video 3D in Azure
 description: Eseguire carichi di lavoro HPC nativi in Azure con il servizio Azure Batch.
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 7dacefd5179c426912dd97af9af7b5a39505392d
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610686"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004819"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Rendering di video 3D in Azure
 
@@ -124,15 +125,15 @@ Il costo correlato all'uso di Azure Batch dipenderà dalle dimensioni delle macc
 
 Di seguito sono riportati esempi dei costi che potrebbero essere addebitati per un processo completato in 8 ore con un diverso numero di server.
 
-* 100 macchine virtuali con CPU ad alte prestazioni: [stima dei costi][hpc-est-high]
+* 100 macchine virtuali con CPU ad alte prestazioni: [Stima dei costi][hpc-est-high]
 
   100 x H16m (16 core, 225 GB di RAM, 512 GB di archiviazione Premium), 2 TB di archiviazione BLOB, 1 TB in uscita
 
-* 50 macchine virtuali con CPU ad alte prestazioni: [stima dei costi][hpc-est-med]
+* 50 macchine virtuali con CPU ad alte prestazioni: [Stima dei costi][hpc-est-med]
 
   50 x H16m (16 core, 225 GB di RAM, 512 GB di archiviazione Premium), 2 TB di archiviazione BLOB, 1 TB in uscita
 
-* 10 macchine virtuali con CPU ad alte prestazioni: [stima dei costi][hpc-est-low]
+* 10 macchine virtuali con CPU ad alte prestazioni: [Stima dei costi][hpc-est-low]
 
   10 x H16m (16 core, 225 GB di RAM, 512 GB di archiviazione Premium), 2 TB di archiviazione BLOB, 1 TB in uscita
 

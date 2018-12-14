@@ -1,19 +1,20 @@
 ---
 title: Elenco di controllo della disponibilità
+titleSuffix: Azure Design Review Framework
 description: Elenco di controllo in cui vengono fornite le linee guida per i problemi di disponibilità durante la progettazione.
 author: dragon119
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: checklist
-ms.openlocfilehash: 5a819c5612fba9623c239bcc43f9004cd97dfb76
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 37e61b35d73007b9bac1ebaecfbf42792ae3903b
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305894"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307232"
 ---
 # <a name="availability-checklist"></a>Elenco di controllo della disponibilità
 
-La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). Usare questo elenco di controllo per esaminare l'architettura delle applicazioni in relazione alla disponibilità. 
+La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). Usare questo elenco di controllo per esaminare l'architettura delle applicazioni in relazione alla disponibilità.
 
 ## <a name="application-design"></a>Progettazione di applicazioni
 
@@ -29,7 +30,7 @@ La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed
 
 **Progettare le applicazioni in modo che le prestazioni si riducano in modo non drastico.** Il carico su un'applicazione può superare la capacità di una o più parti e causare così una riduzione della disponibilità ed errori di connessione. Il ridimensionamento consente di ovviare a questo problema, ma può raggiungere un limite imposto da altri fattori quali la disponibilità delle risorse o costi. Quando un'applicazione raggiunge il limite di una risorsa, deve eseguire le operazioni necessarie per ridurre al minimo l'impatto per l'utente. In un sistema di e-commerce, ad esempio, se il sottosistema di elaborazione degli ordini è sotto pressione o in errore, è possibile disabilitare temporaneamente tale sottosistema supportando al tempo stesso altre funzionalità, come l'esplorazione del catalogo prodotti. Potrebbe essere opportuno posticipare le richieste a un sottosistema in errore, ad esempio consentendo comunque agli utenti di inviare ordini ma salvandoli per l'elaborazione successiva quando il sottosistema di ordini è nuovamente disponibile.
 
-**Gestire correttamente gli eventi burst rapidi.** La maggior parte delle applicazioni deve gestire carichi di lavoro variabili nel tempo. La scalabilità automatica consente di gestire il carico, ma potrebbe richiedere tempo per portare online istanze aggiuntive e gestire le richieste. Evitare che picchi di attività improvvisi e inattesi causino il sovraccarico dell'applicazione progettando quest'ultima in modo che accodi le richieste ai servizi che usa e riduca le prestazioni in modo non drastico quando le code sono vicine alla capacità completa. Assicurarsi che le prestazioni e la capacità disponibili siano sufficienti in condizioni di non burst a svuotare le code e gestire le richieste in sospeso. Per ulteriori informazioni, vedere il [modello di livellamento dei carichi basato sulle code](https://msdn.microsoft.com/library/dn589783.aspx).
+**Gestire correttamente gli eventi burst rapidi.** La maggior parte delle applicazioni deve gestire carichi di lavoro variabili nel tempo. La scalabilità automatica consente di gestire il carico, ma potrebbe richiedere tempo per portare online istanze aggiuntive e gestire le richieste. Evitare che picchi di attività improvvisi e inattesi causino il sovraccarico dell'applicazione progettando quest'ultima in modo che accodi le richieste ai servizi che usa e riduca le prestazioni in modo non drastico quando le code sono vicine alla capacità completa. Assicurarsi che le prestazioni e la capacità disponibili siano sufficienti in condizioni di non burst a svuotare le code e gestire le richieste in sospeso. Per ulteriori informazioni, vedere il [modello di livellamento dei carichi basato sulle code](../patterns/queue-based-load-leveling.md).
 
 ## <a name="deployment-and-maintenance"></a>Distribuzione e manutenzione
 
@@ -55,7 +56,7 @@ La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed
 
 **Usare il backup periodico e il ripristino temporizzato**. Eseguire il backup automatico regolare dei dati non viene mantenuti in un'altra posizione e verificare che sia possibile ripristinare i dati e l'applicazione stessa in modo affidabile nel caso in cui si verifichi un errore. Verificare che i backup soddisfino l'obiettivo del punto di ripristino (RPO). La replica dei dati non è una funzionalità di backup, perché operazioni dannose o errori umani possono danneggiare i dati in tutte le repliche. Il processo di backup deve essere sicuro, per proteggere i dati in transito e nel servizio di archiviazione. I database o le parti di un archivio dati possono essere generalmente recuperati a un punto precedente nel tempo utilizzando i log delle transazioni. Per altre informazioni, vedere [Ripristino dal danneggiamento o dall'eliminazione accidentale dei dati](../resiliency/recovery-data-corruption.md).
 
-**Replicare i dischi della macchina virtuale con Azure Site Recovery.** Quando si esegue la replica di macchine virtuali di Azure usando [Site Recovery][site-recovery], tutti i dischi delle macchine virtuali vengono replicati nell'area di destinazione in modo continuativo e asincrono. I punti di ripristino vengono creati a intervalli di pochi minuti. In tal modo, si ottiene un RPO nell'ordine di minuti. 
+**Replicare i dischi della macchina virtuale con Azure Site Recovery.** Quando si esegue la replica di macchine virtuali di Azure usando [Site Recovery][site-recovery], tutti i dischi delle macchine virtuali vengono replicati nell'area di destinazione in modo continuativo e asincrono. I punti di ripristino vengono creati a intervalli di pochi minuti. In tal modo, si ottiene un RPO nell'ordine di minuti.
 
 ## <a name="errors-and-failures"></a>Errori e operazioni non riuscite
 
@@ -63,7 +64,7 @@ La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed
 
 **Riprovare a eseguire operazioni non riuscite causate da errori temporanei.**  Progettare una strategia di tentativi per l'accesso a tutti i servizi e risorse se non supportano i tentativi di connessione automatica. Usare una strategia che includa l'aumento del ritardo tra i tentativi in proporzione all'aumento del numero di errori per impedire il sovraccarico della risorsa e consentire il ripristino e la gestione normali delle richieste in coda. Tentativi continui con ritardi molto brevi possono aggravare il problema. Per altre informazioni, vedere [Retry guidance for specific services](../best-practices/retry-service-specific.md) (Linee guida per la ripetizione dei tentativi per servizi specifici).
 
-**Implementare l'interruzione del circuito per evitare errori a catena.** In alcune situazioni, errori temporanei o altri errori, dalla perdita parziale di connettività al guasto completo di un servizio, richiedono tempi più lunghi del previsto per tornare alla normalità. Se un servizio è molto occupato, un errore in una parte del sistema può causare errori a catena e far sì che molte operazioni restino bloccate pur continuando a usare risorse di sistema critiche come memoria, thread e connessioni di database. Anziché riprovare continuamente a eseguire un'operazione che è improbabile venga eseguita correttamente, l'applicazione deve accettare rapidamente che l'operazione non riesce e gestire correttamente l'errore. Usare il modello a interruttore per rifiutare le richieste per operazioni specifiche per periodi definiti. Per altre informazioni, vedere [Circuit Breaker Pattern](../patterns/circuit-breaker.md) (Modello a interruttore).
+**Implementare l'interruzione del circuito per evitare errori a catena.** In alcune situazioni, errori temporanei o altri errori, dalla perdita parziale di connettività al guasto completo di un servizio, richiedono tempi più lunghi del previsto per tornare alla normalità. Se un servizio è molto occupato, un errore in una parte del sistema può causare errori a catena e far sì che molte operazioni restino bloccate pur continuando a usare risorse di sistema critiche come memoria, thread e connessioni di database. Anziché riprovare continuamente a eseguire un'operazione che è improbabile venga eseguita correttamente, l'applicazione deve accettare rapidamente che l'operazione non riesce e gestire correttamente l'errore. Usare il modello a interruttore per rifiutare le richieste per operazioni specifiche per periodi definiti. Per altre informazioni, vedere il [modello a interruttore](../patterns/circuit-breaker.md).
 
 **Comporre più componenti o eseguire il fallback.** Progettare le applicazioni in modo da usare più istanze senza impatto sul funzionamento e sulle connessioni esistenti, se possibile. Per ottimizzare la disponibilità, usare più istanze e distribuire le richieste tra di esse, rilevare ed evitare l'invio di richieste a istanze non riuscite.
 
@@ -87,4 +88,3 @@ La disponibilità è la percentuale di tempo in cui un sistema è funzionante ed
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
-
