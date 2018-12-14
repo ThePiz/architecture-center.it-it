@@ -1,5 +1,5 @@
 
-## <a name="ai-scenarios"></a><span data-ttu-id="6a686-101">Scenari di intelligenza artificiale</span><span class="sxs-lookup"><span data-stu-id="6a686-101">AI Scenarios</span></span>
+## <a name="ai-scenarios"></a><span data-ttu-id="9e44c-101">Scenari di intelligenza artificiale</span><span class="sxs-lookup"><span data-stu-id="9e44c-101">AI Scenarios</span></span>
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-102">Chatbot di conversazione per prenotazioni di hotel in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-102">Conversational chatbot for hotel reservations on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-103">Creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot.</span><span class="sxs-lookup"><span data-stu-id="6a686-103">Build a conversational chatbot for commerce applications with Azure Bot Service.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-102">Chatbot di conversazione per prenotazioni di hotel in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-102">Conversational chatbot for hotel reservations on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-103">Creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot.</span><span class="sxs-lookup"><span data-stu-id="9e44c-103">Build a conversational chatbot for commerce applications with Azure Bot Service.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-104">Classificazione delle immagini per richieste di indennizzo assicurativo in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-104">Image classification for insurance claims on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-105">Integrare l'elaborazione di immagini nelle applicazioni Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-105">Build image processing into your Azure applications.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-104">Classificazione delle immagini per richieste di indennizzo assicurativo in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-104">Image classification for insurance claims on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-105">Integrare l'elaborazione di immagini nelle applicazioni Azure.</span><span class="sxs-lookup"><span data-stu-id="9e44c-105">Build image processing into your Azure applications.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
 </ul>
 
 
-## <a name="application-scenarios"></a><span data-ttu-id="6a686-106">Scenari applicativi</span><span class="sxs-lookup"><span data-stu-id="6a686-106">Application Scenarios</span></span>
+## <a name="application-scenarios"></a><span data-ttu-id="9e44c-106">Scenari applicativi</span><span class="sxs-lookup"><span data-stu-id="9e44c-106">Application Scenarios</span></span>
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
@@ -57,27 +57,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-107">Migrazione di un'applicazione Web legacy in un'architettura basata su API in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-107">Migrating a legacy web application to an API-based architecture on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-108">Usare Gestione API di Azure per modernizzare un'applicazione Web legacy.</span><span class="sxs-lookup"><span data-stu-id="6a686-108">Use Azure API Management to modernize a legacy web application.</span></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./apps/app-monitoring.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./apps/media/architecture-app-monitoring.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3><span data-ttu-id="6a686-109">Monitoraggio delle applicazioni Web in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-109">Web application monitoring on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-110">Monitorare un'applicazione Web ospitata in Servizio app di Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-110">Monitor a web application hosted in Azure App Service.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-107">Migrazione di un'applicazione Web legacy in un'architettura basata su API in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-107">Migrating a legacy web application to an API-based architecture on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-108">Usare Gestione API di Azure per modernizzare un'applicazione Web legacy.</span><span class="sxs-lookup"><span data-stu-id="9e44c-108">Use Azure API Management to modernize a legacy web application.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -95,8 +76,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-111">Relazione di trust decentralizzata tra le banche in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-111">Decentralized trust between banks on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-112">Creare un ambiente attendibile per la comunicazione e la condivisione di informazioni senza dover ricorrere a un database centralizzato.</span><span class="sxs-lookup"><span data-stu-id="6a686-112">Establish a trusted environment for communication and information sharing without resorting to a centralized database.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-109">Relazione di trust decentralizzata tra le banche in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-109">Decentralized trust between banks on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-110">Creare un ambiente attendibile per la comunicazione e la condivisione di informazioni senza dover ricorrere a un database centralizzato.</span><span class="sxs-lookup"><span data-stu-id="9e44c-110">Establish a trusted environment for communication and information sharing without resorting to a centralized database.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -114,8 +95,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-113">Progettazione di una pipeline CI/CD con Azure DevOps</span><span class="sxs-lookup"><span data-stu-id="6a686-113">Designing a CI/CD pipeline using Azure DevOps</span></span></h3>
-                        <p><span data-ttu-id="6a686-114">Compilare e rilasciare un'app .NET per App Web di Azure usando Azure DevOps.</span><span class="sxs-lookup"><span data-stu-id="6a686-114">Build and release a .NET app to Azure Web Apps using Azure DevOps.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-111">Progettare una pipeline CI/CD con Azure DevOps</span><span class="sxs-lookup"><span data-stu-id="9e44c-111">Design a CI/CD pipeline using Azure DevOps</span></span></h3>
+                        <p><span data-ttu-id="9e44c-112">Compilare e rilasciare un'app .NET per App Web di Azure usando Azure DevOps.</span><span class="sxs-lookup"><span data-stu-id="9e44c-112">Build and release a .NET app to Azure Web Apps using Azure DevOps.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -133,8 +114,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-115">Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori</span><span class="sxs-lookup"><span data-stu-id="6a686-115">CI/CD pipeline for container-based workloads</span></span></h3>
-                        <p><span data-ttu-id="6a686-116">Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.</span><span class="sxs-lookup"><span data-stu-id="6a686-116">Build a DevOps pipeline for a Node.js web app with Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB, and Grafana.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-113">Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori</span><span class="sxs-lookup"><span data-stu-id="9e44c-113">CI/CD pipeline for container-based workloads</span></span></h3>
+                        <p><span data-ttu-id="9e44c-114">Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.</span><span class="sxs-lookup"><span data-stu-id="9e44c-114">Build a DevOps pipeline for a Node.js web app with Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB, and Grafana.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -152,8 +133,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-117">Front-end per e-commerce in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-117">E-commerce front end on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-118">Ospitare un sito di e-commerce in Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-118">Host an e-commerce site on Azure.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-115">Front-end per e-commerce in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-115">E-commerce front end on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-116">Ospitare un sito di e-commerce in Azure.</span><span class="sxs-lookup"><span data-stu-id="9e44c-116">Host an e-commerce site on Azure.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -171,8 +152,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-119">Motore di ricerca di prodotti intelligente per l'e-commerce</span><span class="sxs-lookup"><span data-stu-id="6a686-119">Intelligent product search engine for e-commerce</span></span></h3>
-                        <p><span data-ttu-id="6a686-120">Fornire un'esperienza di ricerca di qualità elevata in un'applicazione di e-commerce.</span><span class="sxs-lookup"><span data-stu-id="6a686-120">Provide a world-class search experience in an e-commerce application.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-117">Motore di ricerca di prodotti intelligente per l'e-commerce</span><span class="sxs-lookup"><span data-stu-id="9e44c-117">Intelligent product search engine for e-commerce</span></span></h3>
+                        <p><span data-ttu-id="9e44c-118">Fornire un'esperienza di ricerca di qualità elevata in un'applicazione di e-commerce.</span><span class="sxs-lookup"><span data-stu-id="9e44c-118">Provide a world-class search experience in an e-commerce application.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -190,8 +171,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-121">Un servizio CAE (Computer-Aided Engineering) in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-121">A computer-aided engineering service on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-122">Fornire una piattaforma software come un servizio (SaaS) per CAE (Computer-Aided Engineering) in Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-122">Provide a software-as-a-service (SaaS) platform for computer-aided engineering (CAE) on Azure.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-119">Un servizio CAE (Computer-Aided Engineering) in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-119">A computer-aided engineering service on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-120">Fornire una piattaforma software come un servizio (SaaS) per CAE (Computer-Aided Engineering) in Azure.</span><span class="sxs-lookup"><span data-stu-id="9e44c-120">Provide a software-as-a-service (SaaS) platform for computer-aided engineering (CAE) on Azure.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -209,8 +190,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-123">Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-123">Dev/test environments for SAP workloads on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-124">Creare un ambiente di sviluppo/test per i carichi di lavoro SAP.</span><span class="sxs-lookup"><span data-stu-id="6a686-124">Build a dev/test environment for SAP workloads.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-121">Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-121">Dev/test environments for SAP workloads on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-122">Creare un ambiente di sviluppo/test per i carichi di lavoro SAP.</span><span class="sxs-lookup"><span data-stu-id="9e44c-122">Build a dev/test environment for SAP workloads.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -228,8 +209,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-125">Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-125">Running SAP production workloads using an Oracle database on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-126">Eseguire una distribuzione di produzione SAP in Azure con un database Oracle.</span><span class="sxs-lookup"><span data-stu-id="6a686-126">Run an SAP production deployment in Azure using an Oracle database.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-123">Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-123">Running SAP production workloads using an Oracle database on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-124">Eseguire una distribuzione di produzione SAP in Azure con un database Oracle.</span><span class="sxs-lookup"><span data-stu-id="9e44c-124">Run an SAP production deployment in Azure using an Oracle database.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -239,7 +220,7 @@
 </ul>
 
 
-## <a name="data-scenarios"></a><span data-ttu-id="6a686-127">Scenari di dati</span><span class="sxs-lookup"><span data-stu-id="6a686-127">Data Scenarios</span></span>
+## <a name="data-scenarios"></a><span data-ttu-id="9e44c-125">Scenari di dati</span><span class="sxs-lookup"><span data-stu-id="9e44c-125">Data Scenarios</span></span>
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
@@ -253,8 +234,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-128">IoT e analisi dei dati nell'industria edilizia</span><span class="sxs-lookup"><span data-stu-id="6a686-128">IoT and data analytics in the construction industry</span></span></h3>
-                        <p><span data-ttu-id="6a686-129">Usare dispositivi IoT e analisi dei dati per offrire una gestione e un funzionamento completo dei progetti edilizi.</span><span class="sxs-lookup"><span data-stu-id="6a686-129">Use IoT devices and data analytics to provide comprehensive management and operation of construction projects.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-126">IoT e analisi dei dati nell'industria edilizia</span><span class="sxs-lookup"><span data-stu-id="9e44c-126">IoT and data analytics in the construction industry</span></span></h3>
+                        <p><span data-ttu-id="9e44c-127">Usare dispositivi IoT e analisi dei dati per offrire una gestione e un funzionamento completo dei progetti edilizi.</span><span class="sxs-lookup"><span data-stu-id="9e44c-127">Use IoT devices and data analytics to provide comprehensive management and operation of construction projects.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -272,8 +253,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-130">Data warehousing e analitica per vendite e marketing</span><span class="sxs-lookup"><span data-stu-id="6a686-130">Data warehousing and analytics for sales and marketing</span></span></h3>
-                        <p><span data-ttu-id="6a686-131">Consolidare i dati da più origini e ottimizzare le analisi dei dati.</span><span class="sxs-lookup"><span data-stu-id="6a686-131">Consolidate data from multiple sources and optimize data analytics.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-128">Data warehousing e analitica per vendite e marketing</span><span class="sxs-lookup"><span data-stu-id="9e44c-128">Data warehousing and analytics for sales and marketing</span></span></h3>
+                        <p><span data-ttu-id="9e44c-129">Consolidare i dati da più origini e ottimizzare le analisi dei dati.</span><span class="sxs-lookup"><span data-stu-id="9e44c-129">Consolidate data from multiple sources and optimize data analytics.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -291,8 +272,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-132">Elaborazione degli ordini scalabile in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-132">Scalable order processing on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-133">Creare una pipeline di elaborazione degli ordini altamente scalabile con Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="6a686-133">Build a highly scalable order processing pipeline using Azure Cosmos DB.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-130">Elaborazione degli ordini scalabile in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-130">Scalable order processing on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-131">Creare una pipeline di elaborazione degli ordini altamente scalabile con Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="9e44c-131">Build a highly scalable order processing pipeline using Azure Cosmos DB.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -310,8 +291,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-134">Rilevamento delle frodi in tempo reale in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-134">Real-time fraud detection on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-135">Rilevare le attività fraudolente in tempo reale con Hub eventi e Analisi di flusso di Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-135">Detect fraudulent activity in real-time using Azure Event Hubs and Stream Analytics.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-132">Rilevamento delle frodi in tempo reale in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-132">Real-time fraud detection on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-133">Rilevare le attività fraudolente in tempo reale con Hub eventi e Analisi di flusso di Azure.</span><span class="sxs-lookup"><span data-stu-id="9e44c-133">Detect fraudulent activity in real-time using Azure Event Hubs and Stream Analytics.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -329,8 +310,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-136">Processi ETL ibridi con distribuzioni SSIS locali esistenti e Azure Data Factory</span><span class="sxs-lookup"><span data-stu-id="6a686-136">Hybrid ETL with existing on-premises SSIS and Azure Data Factory</span></span></h3>
-                        <p><span data-ttu-id="6a686-137">Processi ETL ibridi con distribuzioni SQL Server Integration Services (SSIS) locali esistenti e Azure Data Factory</span><span class="sxs-lookup"><span data-stu-id="6a686-137">Hybrid ETL with existing on-premises SQL Server Integration Services (SSIS) deployments and Azure Data Factory</span></span></p>
+                        <h3><span data-ttu-id="9e44c-134">Processi ETL ibridi con distribuzioni SSIS locali esistenti e Azure Data Factory</span><span class="sxs-lookup"><span data-stu-id="9e44c-134">Hybrid ETL with existing on-premises SSIS and Azure Data Factory</span></span></h3>
+                        <p><span data-ttu-id="9e44c-135">Processi ETL ibridi con distribuzioni SQL Server Integration Services (SSIS) locali esistenti e Azure Data Factory</span><span class="sxs-lookup"><span data-stu-id="9e44c-135">Hybrid ETL with existing on-premises SQL Server Integration Services (SSIS) deployments and Azure Data Factory</span></span></p>
                     </div>
                 </div>
             </div>
@@ -348,8 +329,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-138">Inserimento ed elaborazione in tempo reale dei dati IoT per il settore automobilistico</span><span class="sxs-lookup"><span data-stu-id="6a686-138">Ingestion and processing of real-time automotive IoT data</span></span></h3>
-                        <p><span data-ttu-id="6a686-139">Inserire ed elaborare in tempo reale i dati dei veicoli con l'IoT.</span><span class="sxs-lookup"><span data-stu-id="6a686-139">Ingest and process real-time vehicle data using IoT.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-136">Inserimento ed elaborazione in tempo reale dei dati IoT per il settore automobilistico</span><span class="sxs-lookup"><span data-stu-id="9e44c-136">Ingestion and processing of real-time automotive IoT data</span></span></h3>
+                        <p><span data-ttu-id="9e44c-137">Inserire ed elaborare in tempo reale i dati dei veicoli con l'IoT.</span><span class="sxs-lookup"><span data-stu-id="9e44c-137">Ingest and process real-time vehicle data using IoT.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -359,7 +340,7 @@
 </ul>
 
 
-## <a name="infrastructure-scenarios"></a><span data-ttu-id="6a686-140">Scenari di infrastrutture</span><span class="sxs-lookup"><span data-stu-id="6a686-140">Infrastructure Scenarios</span></span>
+## <a name="infrastructure-scenarios"></a><span data-ttu-id="9e44c-138">Scenari di infrastrutture</span><span class="sxs-lookup"><span data-stu-id="9e44c-138">Infrastructure Scenarios</span></span>
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
@@ -373,8 +354,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-141">Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-141">Running computational fluid dynamics (CFD) simulations on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-142">Eseguire simulazioni di fluidodinamica computazionale (CFD) in Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-142">Execute computational fluid dynamics (CFD) simulations on Azure.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-139">Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-139">Running computational fluid dynamics (CFD) simulations on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-140">Eseguire simulazioni di fluidodinamica computazionale (CFD) in Azure.</span><span class="sxs-lookup"><span data-stu-id="9e44c-140">Execute computational fluid dynamics (CFD) simulations on Azure.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -392,8 +373,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-143">Desktop virtuali Linux con Citrix</span><span class="sxs-lookup"><span data-stu-id="6a686-143">Linux virtual desktops with Citrix</span></span></h3>
-                        <p><span data-ttu-id="6a686-144">Creare un ambiente VDI per i desktop Linux con Citrix in Azure.</span><span class="sxs-lookup"><span data-stu-id="6a686-144">Build a VDI environment for Linux Desktops using Citrix on Azure.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-141">Desktop virtuali Linux con Citrix</span><span class="sxs-lookup"><span data-stu-id="9e44c-141">Linux virtual desktops with Citrix</span></span></h3>
+                        <p><span data-ttu-id="9e44c-142">Creare un ambiente VDI per i desktop Linux con Citrix in Azure.</span><span class="sxs-lookup"><span data-stu-id="9e44c-142">Build a VDI environment for Linux Desktops using Citrix on Azure.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -411,8 +392,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-145">Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-145">Multi-tier web application built for high availability and disaster recovery on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-146">Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-146">Create a multitier web application built for high availability and disaster recovery on Azure using Azure virtual machines, availability sets, availability zones, Azure Site Recovery, and Azure Traffic Manager</span></span></p>
+                        <h3><span data-ttu-id="9e44c-143">Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-143">Multi-tier web application built for high availability and disaster recovery on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-144">Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-144">Create a multitier web application built for high availability and disaster recovery on Azure using Azure virtual machines, availability sets, availability zones, Azure Site Recovery, and Azure Traffic Manager</span></span></p>
                     </div>
                 </div>
             </div>
@@ -430,8 +411,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-147">Creazione di app Web sicure con macchine virtuali Windows in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-147">Building secure web apps with Windows virtual machines on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-148">Creare un'applicazione Web multilivello sicura con Windows Server in Azure con set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.</span><span class="sxs-lookup"><span data-stu-id="6a686-148">Build a secure, multi-tier web application with Windows Server on Azure using scale sets, Application Gateway, and load balancers.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-145">Creazione di app Web sicure con macchine virtuali Windows in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-145">Building secure web apps with Windows virtual machines on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-146">Creare un'applicazione Web multilivello sicura con Windows Server in Azure con set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.</span><span class="sxs-lookup"><span data-stu-id="9e44c-146">Build a secure, multi-tier web application with Windows Server on Azure using scale sets, Application Gateway, and load balancers.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -449,8 +430,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-149">Uso di Service Fabric per scomporre applicazioni monolitiche</span><span class="sxs-lookup"><span data-stu-id="6a686-149">Using Service Fabric to decompose monolithic applications</span></span></h3>
-                        <p><span data-ttu-id="6a686-150">Scomporre un'applicazione monolitica di grandi dimensioni in microservizi.</span><span class="sxs-lookup"><span data-stu-id="6a686-150">Decompose a large monolithic application into microservices.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-147">Uso di Service Fabric per scomporre applicazioni monolitiche</span><span class="sxs-lookup"><span data-stu-id="9e44c-147">Using Service Fabric to decompose monolithic applications</span></span></h3>
+                        <p><span data-ttu-id="9e44c-148">Scomporre un'applicazione monolitica di grandi dimensioni in microservizi.</span><span class="sxs-lookup"><span data-stu-id="9e44c-148">Decompose a large monolithic application into microservices.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -468,8 +449,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-151">Rendering di video 3D in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-151">3D video rendering on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-152">Eseguire carichi di lavoro HPC nativi in Azure con il servizio Azure Batch.</span><span class="sxs-lookup"><span data-stu-id="6a686-152">Run native HPC workloads in Azure using the Azure Batch service.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-149">Rendering di video 3D in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-149">3D video rendering on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-150">Eseguire carichi di lavoro HPC nativi in Azure con il servizio Azure Batch.</span><span class="sxs-lookup"><span data-stu-id="9e44c-150">Run native HPC workloads in Azure using the Azure Batch service.</span></span></p>
                     </div>
                 </div>
             </div>
@@ -487,8 +468,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3><span data-ttu-id="6a686-153">Siti Web Wordpress altamente scalabili e sicuri in Azure</span><span class="sxs-lookup"><span data-stu-id="6a686-153">Highly scalable and secure WordPress websites on Azure</span></span></h3>
-                        <p><span data-ttu-id="6a686-154">Creare un sito Web WordPress altamente scalabile e sicuro per gli eventi multimediali.</span><span class="sxs-lookup"><span data-stu-id="6a686-154">Build a highly scalable and secure WordPress website for media events.</span></span></p>
+                        <h3><span data-ttu-id="9e44c-151">Siti Web Wordpress altamente scalabili e sicuri in Azure</span><span class="sxs-lookup"><span data-stu-id="9e44c-151">Highly scalable and secure WordPress websites on Azure</span></span></h3>
+                        <p><span data-ttu-id="9e44c-152">Creare un sito Web WordPress altamente scalabile e sicuro per gli eventi multimediali.</span><span class="sxs-lookup"><span data-stu-id="9e44c-152">Build a highly scalable and secure WordPress website for media events.</span></span></p>
                     </div>
                 </div>
             </div>
