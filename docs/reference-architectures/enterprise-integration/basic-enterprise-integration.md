@@ -1,24 +1,25 @@
 ---
-title: Integrazione aziendale con i servizi di integrazione di Azure
-description: Questa guida di riferimento sull'architettura descrive come implementare un modello di integrazione aziendale semplice usando App per la logica di Azure e Gestione API di Azure
+title: Integrazione aziendale di base con Azure
+titleSuffix: Azure Reference Architectures
+description: Architettura consigliata per implementare un modello di integrazione aziendale semplice con App per la logica di Azure e Gestione API di Azure.
 services: logic-apps
 author: mattfarm
-ms.author: mattfarm
 ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
 ms.date: 12/03/2018
-ms.openlocfilehash: c8aa3f8b736fabd1a6701778f22a7eec9bf46ee7
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: integration-services
+ms.openlocfilehash: 36419706714b8516a309cf634649a4b44a9bc136
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52919102"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120204"
 ---
 # <a name="basic-enterprise-integration-on-azure"></a>Integrazione aziendale di base in Azure
 
 Questa architettura di riferimento usa i [servizi di integrazione di Azure Services][integration-services] per orchestrare le chiamate ai sistemi back-end aziendali. I sistemi back-end possono includere sistemi software come un servizio (SaaS), servizi di Azure e servizi Web esistenti nell'organizzazione.
 
-I servizi di integrazione di Azure includono servizi per integrare applicazioni e dati. Questa architettura usa due di questi servizi: [App per la logica][logic-apps], per orchestrare i flussi di lavoro, e [Gestione API][apim], per creare cataloghi di API. Questa architettura è sufficiente per scenari di integrazione di base in cui il flusso di lavoro viene attivato da chiamate sincrone a servizi back-end. Un'architettura più sofisticata che usa [code ed eventi](./queues-events.md) si basa su questa architettura di base. 
+I servizi di integrazione di Azure includono servizi per integrare applicazioni e dati. Questa architettura usa due di questi servizi: [App per la logica][logic-apps] per orchestrare i flussi di lavoro e [Gestione API][apim] per creare cataloghi di API. Questa architettura è sufficiente per scenari di integrazione di base in cui il flusso di lavoro viene attivato da chiamate sincrone a servizi back-end. Un'architettura più sofisticata che usa [code ed eventi](./queues-events.md) si basa su questa architettura di base.
 
 ![Diagramma dell'architettura: integrazione aziendale semplice](./_images/simple-enterprise-integration.png)
 
@@ -32,13 +33,13 @@ L'architettura include i componenti seguenti:
 
 - **Gestione API di Azure**. [Gestione API][apim] è un servizio gestito per pubblicare cataloghi di API HTTP in modo da promuovere il riuso e l'individuazione. Gestione API consiste di due componenti correlati:
 
-    - **Gateway API**. Il gateway API accetta le chiamate HTTP e le instrada al back-end. 
+  - **Gateway API**. Il gateway API accetta le chiamate HTTP e le instrada al back-end.
 
-    - **Portale per sviluppatori**. Ogni istanza di Gestione API di Azure offre accesso a un [portale per sviluppatori][apim-dev-portal]. Il portale offre agli sviluppatori l'accesso alla documentazione e agli esempi di codice per chiamare le API. Nel portale per sviluppatori è possibile anche testare le API.
+  - **Portale per sviluppatori**. Ogni istanza di Gestione API di Azure offre accesso a un [portale per sviluppatori][apim-dev-portal]. Il portale offre agli sviluppatori l'accesso alla documentazione e agli esempi di codice per chiamare le API. Nel portale per sviluppatori è possibile anche testare le API.
 
-    In questa architettura le API composite vengono costruite [importando app per la logica][apim-logic-app] come API. È anche possibile importare i servizi Web esistenti [importando le specifiche di OpenAPI][apim-openapi] (Swagger) o [importando le API SOAP][apim-soap] dalle specifiche di WSDL. 
+  In questa architettura le API composite vengono costruite [importando app per la logica][apim-logic-app] come API. È anche possibile importare i servizi Web esistenti [importando le specifiche di OpenAPI][apim-openapi] (Swagger) o [importando le API SOAP][apim-soap] dalle specifiche di WSDL.
 
-    Il gateway API consente di disaccoppiare i client front-end da quelli back-end. È possibile, ad esempio, riscrivere gli URL o trasformare le richieste prima che raggiungano il back-end. Gestisce anche molte problematiche trasversali come autenticazione, supporto della condivisione di risorse tra le origini (CORS) e memorizzazione nella cache della risposta.
+  Il gateway API consente di disaccoppiare i client front-end da quelli back-end. È possibile, ad esempio, riscrivere gli URL o trasformare le richieste prima che raggiungano il back-end. Gestisce anche molte problematiche trasversali come autenticazione, supporto della condivisione di risorse tra le origini (CORS) e memorizzazione nella cache della risposta.
 
 - **DNS di Azure**. [DNS di Azure][dns] è un servizio di hosting per i domini DNS che fornisce la risoluzione dei nomi tramite l'infrastruttura di Microsoft Azure. Ospitando i domini in Azure, è possibile gestire i record DNS usando le credenziali, le API, gli strumenti e il sistema di fatturazione degli altri servizi di Azure. Per usare un nome di dominio personalizzato, ad esempio contoso.com, creare record DNS che eseguono il mapping del nome di dominio personalizzato all'indirizzo IP. Per altre informazioni, vedere [Configurare un nome di dominio personalizzato in Gestione API][apim-domain].
 
@@ -54,7 +55,7 @@ Usare i livelli di Gestione API Basic, Standard o Premium perché offrono un con
 
 Ogni istanza di Gestione API di Azure ha un nome di dominio predefinito, ovvero un sottodominio di `azure-api.net`, ad esempio `contoso.azure-api.net`. Si consiglia di configurare un [dominio personalizzato][apim-domain] per l'organizzazione.
 
-### <a name="logic-apps"></a>App per la logica 
+### <a name="logic-apps"></a>App per la logica
 
 App per la logica funziona in modo ottimale in scenari che non richiedono una bassa latenza per una risposta, ad esempio le chiamate API asincrone o a esecuzione quasi prolungata. Se è richiesta una latenza bassa, ad esempio nel caso di chiamate che bloccano un'interfaccia utente, usare una tecnologia diversa, ad esempio Funzioni di Azure o un'API Web distribuita nel Servizio app di Azure. Usare Gestione API a fronte dell'API per i consumer di API.
 
@@ -82,7 +83,6 @@ Elementi consigliati per la scalabilità di un servizio Gestione API:
 
 Con il livello Premium, è possibile scalare un'istanza di Gestione API in più aree di Azure. In questo modo Gestione API è idoneo a un contratto di servizio superiore e consente di eseguire il provisioning dei servizi in prossimità degli utenti in più aree.
 
-
 Il modello serverless di App per la logica di Azure prevede che gli amministratori non debbano pianificare la scalabilità dei servizi. Il servizio offre scalabilità automatica per soddisfare la richiesta.
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
@@ -98,9 +98,9 @@ Se Gestione API è distribuito in due o più aree con il livello Premium, è ido
 
 [Eseguire regolarmente il backup][apim-backup] della configurazione di Gestione API. Archiviare i file di backup in una posizione o un'area di Azure diversa rispetto a quella in cui è distribuito il servizio. Scegliere una strategia di ripristino di emergenza in base all'[RTO][rto]:
 
-* In caso di ripristino di emergenza effettuare il provisioning di una nuova istanza di Gestione API, ripristinare il backup nella nuova istanza ed eseguire un nuovo puntamento dei record DNS.
+- In caso di ripristino di emergenza effettuare il provisioning di una nuova istanza di Gestione API, ripristinare il backup nella nuova istanza ed eseguire un nuovo puntamento dei record DNS.
 
-* Mantenere un'istanza passiva del servizio Gestione API in un'altra area di Azure. Ripristinare regolarmente i backup nell'istanza, in modo da mantenerla sincronizzata con il servizio attivo. Per ripristinare il servizio durante un evento di ripristino di emergenza, occorre solo eseguire un nuovo puntamento dei record DNS. Questo approccio comporta un costo aggiuntivo perché l'istanza passiva è a pagamento, tuttavia riduce i tempi di recupero. 
+- Mantenere un'istanza passiva del servizio Gestione API in un'altra area di Azure. Ripristinare regolarmente i backup nell'istanza, in modo da mantenerla sincronizzata con il servizio attivo. Per ripristinare il servizio durante un evento di ripristino di emergenza, occorre solo eseguire un nuovo puntamento dei record DNS. Questo approccio comporta un costo aggiuntivo perché l'istanza passiva è a pagamento, tuttavia riduce i tempi di recupero.
 
 Per le app per la logica, è consigliabile un approccio di configurazione come codice per il backup e ripristino. Poiché le app per la logica sono serverless, è possibile ricrearle rapidamente da modelli di Azure Resource Manager. Salvare i modelli nel controllo del codice sorgente e integrare i modelli con il processo di integrazione continua/distribuzione continua (CI/CD). In un evento di ripristino di emergenza, distribuire il modello in una nuova area.
 
@@ -112,13 +112,13 @@ Creare gruppi di risorse separati per gli ambienti di produzione, sviluppo e tes
 
 Quando si assegnano risorse a gruppi di risorse, considerare i fattori seguenti:
 
-* **Ciclo di vita**. In generale, includere le risorse con un ciclo di vita identico nello stesso gruppo.
+- **Ciclo di vita**. In generale, includere le risorse con un ciclo di vita identico nello stesso gruppo.
 
-* **Accesso**. Per applicare i criteri di accesso alle risorse in un gruppo, è possibile usare il [controllo degli accessi in base al ruolo][rbac].
+- **Accesso**. Per applicare i criteri di accesso alle risorse in un gruppo, è possibile usare il [controllo degli accessi in base al ruolo][rbac].
 
-* **Fatturazione**. È possibile visualizzare il riepilogo dei costi per il gruppo di risorse.
+- **Fatturazione**. È possibile visualizzare il riepilogo dei costi per il gruppo di risorse.
 
-* **Piano tariffario per Gestione API**. Per gli ambienti di sviluppo e test è opportuno usare un livello Developer. Per ridurre al minimo i costi durante la pre-produzione, distribuire una replica dell'ambiente di produzione, eseguire i test e quindi arrestare il sistema.
+- **Piano tariffario per Gestione API**. Per gli ambienti di sviluppo e test è opportuno usare un livello Developer. Per ridurre al minimo i costi durante la pre-produzione, distribuire una replica dell'ambiente di produzione, eseguire i test e quindi arrestare il sistema.
 
 ### <a name="deployment"></a>Distribuzione
 
@@ -132,9 +132,9 @@ Ogni volta che si modifica la configurazione di un'app per la logica o si distri
 
 Gestione API include due concetti di controllo delle versioni distinti ma complementari:
 
-* *Versioni*: consentono ai consumer di API di scegliere una versione dell'API in base alle esigenze, ad esempio v1, v2, beta o di produzione.
+- *Versioni*: consentono ai consumer di API di scegliere una versione dell'API in base alle esigenze, ad esempio v1, v2, beta o di produzione.
 
-* *Revisioni*: consentono agli amministratori di API di apportare modifiche che non causano interruzioni e distribuirle insieme a un log delle modifiche per informare i consumer di API.
+- *Revisioni*: consentono agli amministratori di API di apportare modifiche che non causano interruzioni e distribuirle insieme a un log delle modifiche per informare i consumer di API.
 
 È possibile effettuare una revisione in un ambiente di sviluppo e distribuire la modifica in altri ambienti usando i modelli di Resource Manager. Per altre informazioni, vedere [Pubblicare più versioni dell'API][apim-versions]
 
@@ -149,29 +149,29 @@ Usare [Monitoraggio di Azure][monitor] per il monitoraggio operativo sia in Gest
 
 Ogni servizio dispone inoltre di queste opzioni:
 
-* Per un'analisi approfondita e la creazione di dashboard, inviare i registri di App per la logica ad [Azure Log Analytics][logic-apps-log-analytics].
+- Per un'analisi approfondita e la creazione di dashboard, inviare i registri di App per la logica ad [Azure Log Analytics][logic-apps-log-analytics].
 
-* Per il monitoraggio DevOps, configurare Azure Application Insights per Gestione API.
+- Per il monitoraggio DevOps, configurare Azure Application Insights per Gestione API.
 
-* Gestione API supporta il [modello di soluzione Power BI per l'analisi personalizzata delle API][apim-pbi]. È possibile usare questo modello di soluzione per creare una soluzione di analisi personalizzata. Per gli utenti aziendali sono disponibili report in Power BI.
+- Gestione API supporta il [modello di soluzione Power BI per l'analisi personalizzata delle API][apim-pbi]. È possibile usare questo modello di soluzione per creare una soluzione di analisi personalizzata. Per gli utenti aziendali sono disponibili report in Power BI.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
 
 Sebbene questo elenco non descriva completamente tutte le procedure consigliate per la sicurezza, ecco alcune considerazioni sulla sicurezza che si applicano nello specifico a questa architettura:
 
-* Il servizio Gestione API di Azure ha un indirizzo IP pubblico fisso. Limitare l'accesso per chiamare gli endpoint di App per la logica esclusivamente all'indirizzo IP di Gestione API. Per altre informazioni, vedere [Limitare gli indirizzi IP in ingresso][logic-apps-restrict-ip].
+- Il servizio Gestione API di Azure ha un indirizzo IP pubblico fisso. Limitare l'accesso per chiamare gli endpoint di App per la logica esclusivamente all'indirizzo IP di Gestione API. Per altre informazioni, vedere [Limitare gli indirizzi IP in ingresso][logic-apps-restrict-ip].
 
-* Per assicurarsi che gli utenti dispongano dei livelli di accesso appropriati, usare il controllo degli accessi in base al ruolo.
+- Per assicurarsi che gli utenti dispongano dei livelli di accesso appropriati, usare il controllo degli accessi in base al ruolo.
 
-* Proteggere gli endpoint dell'API pubblici in Gestione API tramite OAuth o OpenID Connect. Per proteggere gli endpoint dell'API pubblici, configurare un provider di identità e aggiungere criteri di convalida JSON Web Token (JWT). Per maggiori informazioni, vedere [Proteggere un'API usando OAuth 2.0 con Azure Active Directory e Gestione API][apim-oauth].
+- Proteggere gli endpoint dell'API pubblici in Gestione API tramite OAuth o OpenID Connect. Per proteggere gli endpoint dell'API pubblici, configurare un provider di identità e aggiungere criteri di convalida JSON Web Token (JWT). Per maggiori informazioni, vedere [Proteggere un'API usando OAuth 2.0 con Azure Active Directory e Gestione API][apim-oauth].
 
-* Connettersi ai servizi back-end da Gestione API usando certificati basati sull'autenticazione reciproca.
+- Connettersi ai servizi back-end da Gestione API usando certificati basati sull'autenticazione reciproca.
 
-* Imporre HTTPS nelle API di Gestione API.
+- Imporre HTTPS nelle API di Gestione API.
 
 ### <a name="storing-secrets"></a>Archiviazione dei segreti
 
-Non archiviare mai le password, le chiavi di accesso o le stringhe di connessione nel controllo del codice sorgente, Se questi valori sono necessari, usare le tecniche appropriate per distribuire e proteggere questi valori. 
+Non archiviare mai le password, le chiavi di accesso o le stringhe di connessione nel controllo del codice sorgente, Se questi valori sono necessari, usare le tecniche appropriate per distribuire e proteggere questi valori.
 
 Se un'app per la logica richiede qualsiasi valore sensibile che non è possibile creare all'interno di un connettore, archiviare questo valore in Azure Key Vault e farvi riferimento da un modello di Resource Manager. Usare i parametri del modello di distribuzione e i file di parametri per ogni ambiente. Per altre informazioni consultare [Proteggere i parametri e gli input all'interno di un flusso di lavoro][logic-apps-secure].
 
@@ -185,7 +185,7 @@ App per la logica funziona come modello [senza server](/azure/logic-apps/logic-a
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per una maggiore affidabilità e scalabilità, usare code ed eventi di messaggi per disaccoppiare i sistemi back-end. Questo modello viene illustrato nell'architettura di riferimento successiva di questa serie: [Integrazione aziendale con code ed eventi di messaggi](./queues-events.md).
+Per una maggiore affidabilità e scalabilità, usare code ed eventi di messaggi per disaccoppiare i sistemi back-end. Questo modello viene visualizzato nell'architettura di riferimento successiva di questa serie: [Integrazione aziendale con code ed eventi di messaggi](./queues-events.md).
 
 <!-- links -->
 
@@ -202,7 +202,7 @@ Per una maggiore affidabilità e scalabilità, usare code ed eventi di messaggi 
 [apim-monitor]: /azure/api-management/api-management-howto-use-azure-monitor
 [apim-oauth]: /azure/api-management/api-management-howto-protect-backend-with-aad
 [apim-openapi]: /azure/api-management/import-api-from-oas
-[apim-pbi]: http://aka.ms/apimpbi
+[apim-pbi]: https://aka.ms/apimpbi
 [apim-pricing]: https://azure.microsoft.com/pricing/details/api-management/
 [apim-properties]: /azure/api-management/api-management-howto-properties
 [apim-sla]: https://azure.microsoft.com/support/legal/sla/api-management/

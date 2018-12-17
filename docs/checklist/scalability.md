@@ -1,19 +1,20 @@
 ---
 title: Elenco di controllo per la scalabilità
+titleSuffix: Azure Design Review Framework
 description: Indicazioni sull'elenco di controllo per la scalabilità per le problematiche di progettazione relative alla scalabilità automatica di Azure.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: c3eaf41a038dbdd963f54d6c7cff8a8a772f8c48
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: 8bb31e8176238fb32bdf4424aa733b812b5eeb68
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2018
-ms.locfileid: "27766106"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307147"
 ---
 # <a name="scalability-checklist"></a>Elenco di controllo per la scalabilità
 
-La scalabilità è la capacità di un sistema di gestire un incremento del carico ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). Usare questo elenco di controllo per esaminare l'architettura delle applicazioni in relazione alla scalabilità. 
+La scalabilità è la capacità di un sistema di gestire un incremento del carico ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). Usare questo elenco di controllo per esaminare l'architettura delle applicazioni in relazione alla scalabilità.
 
 ## <a name="application-design"></a>Progettazione di applicazioni
 
@@ -29,7 +30,7 @@ La scalabilità è la capacità di un sistema di gestire un incremento del caric
 
 **Eseguire l'offload delle attività a elevato utilizzo di CPU/IO come attività in background**. Se si prevede che una richiesta a un servizio comporti una lunga esecuzione o assorba una quantità considerevole di risorse, eseguire l'offload dell'elaborazione relativa alla richiesta a un'attività separata. Usare ruoli di lavoro o processi in background (a seconda della piattaforma di hosting) per eseguire queste attività. Tale strategia consente al servizio di continuare a ricevere altre richieste restando reattivo.  Per altre informazioni, vedere le [indicazioni sui processi in background](../best-practices/background-jobs.md).
 
-**Distribuire il carico di lavoro per le attività in background**. Se sono presenti numerose attività in background o se le attività richiedono una notevole quantità di tempo o risorse, suddividere il lavoro tra più unità di calcolo, ad esempio ruoli di lavoro o processi in background. Per una possibile soluzione, vedere l'articolo relativo al [modello di consumer concorrenti](https://msdn.microsoft.com/library/dn568101.aspx).
+**Distribuire il carico di lavoro per le attività in background**. Se sono presenti numerose attività in background o se le attività richiedono una notevole quantità di tempo o risorse, suddividere il lavoro tra più unità di calcolo, ad esempio ruoli di lavoro o processi in background. Per una possibile soluzione, vedere l’articolo relativo al [modello di consumer concorrenti](../patterns/competing-consumers.md).
 
 **Considerare la possibilità di passare a un'architettura *senza condivisione*.** Un'architettura "shared-nothing" usa nodi indipendenti e autosufficienti privi di punti di contesa, ad esempio risorse di archiviazione o servizi condivisi. In teoria un sistema di questo tipo può essere scalato quasi all'infinito. Anche se un approccio totalmente di tipo "shared-nothing" non è in genere pratico per la maggior parte delle applicazioni, può offrire opportunità per progettare una migliore scalabilità. Ad esempio, evitare l'uso dello stato della sessione sul lato server, l'affinità client e il partizionamento dei dati rappresentano buoni esempi di transizione verso un'architettura "shared-nothing".
 
@@ -41,7 +42,7 @@ La scalabilità è la capacità di un sistema di gestire un incremento del caric
 
 **Ridurre le interazioni "frammentate" tra componenti e servizi**. Evitare di progettare interazioni in cui un'applicazione deve effettuare più chiamate a un servizio, ognuna delle quali restituisce una piccola quantità di dati, invece di una singola chiamata che può restituire tutti i dati. Quando possibile, combinare diverse operazioni correlate in un'unica richiesta se la chiamata è relativa a un servizio o componente che presenta una latenza notevole. Questo rende più semplice il monitoraggio delle prestazioni e l'ottimizzazione delle operazioni complesse. Ad esempio, usare stored procedure nei database per incapsulare la logica complessa e ridurre il numero di round trip e il blocco delle risorse.
 
-**Usare le code per livellare il carico per le operazioni di scrittura dati ad alta velocità**. I picchi nella domanda di un servizio possono sovraccaricare tale servizio e causare una propagazione dei problemi. Per evitare tali situazioni, considerare la possibilità di implementare il [modello di livellamento del carico basato sulle code](https://msdn.microsoft.com/library/dn589783.aspx). Usare una coda che funge da buffer tra un'attività e un servizio richiamato. Questo può alleggerire i sovraccarichi a intermittenza che diversamente potrebbero causare un errore del servizio o il timeout dell'attività.
+**Usare le code per livellare il carico per le operazioni di scrittura dati ad alta velocità**. I picchi nella domanda di un servizio possono sovraccaricare tale servizio e causare una propagazione dei problemi. Per evitare tali situazioni, considerare la possibilità di implementare il [modello di livellamento del carico basato sulle code](../patterns/queue-based-load-leveling.md). Usare una coda che funge da buffer tra un'attività e un servizio richiamato. Questo può alleggerire i sovraccarichi a intermittenza che diversamente potrebbero causare un errore del servizio o il timeout dell'attività.
 
 **Ridurre al minimo il carico dell'archivio dati**. L'archivio dati in genere costituisce un collo di bottiglia per l'elaborazione, è una risorsa costosa e la scalabilità orizzontale può risultare difficoltosa. Dove possibile, rimuovere la logica, ad esempio l'elaborazione di documenti XML oppure oggetti JSON, dall'archivio dati ed eseguire l'elaborazione all'interno dell'applicazione. Ad esempio, anziché passare l'XML al database, in un formato diverso da una stringa opaca per l'archiviazione, è possibile serializzare o deserializzare l'XML all'interno del livello dell'applicazione e passarlo in un formato nativo all'archivio dati. In genere è molto più semplice aumentare le istanze dell'applicazione invece dell'archivio dati, quindi è consigliabile provare a eseguire la maggior parte possibile dell'elaborazione a elevato utilizzo di risorse di calcolo all'interno dell'applicazione.
 
@@ -67,7 +68,7 @@ La scalabilità è la capacità di un sistema di gestire un incremento del caric
 
 **Esaminare gli anti-modelli delle prestazioni**. Per informazioni sulle procedure comuni che sono probabilmente la causa di problemi di scalabilità quando un'applicazione è sotto pressione, vedere [Anti-modelli delle prestazioni per le applicazioni cloud](../antipatterns/index.md).
 
-**Usare chiamate asincrone**. Quando possibile, usare codice asincrono per accedere a risorse o servizi che possono essere limitati da larghezza di banda di rete o I/O oppure che hanno una latenza considerevole per evitare di bloccare il thread chiamante. 
+**Usare chiamate asincrone**. Quando possibile, usare codice asincrono per accedere a risorse o servizi che possono essere limitati da larghezza di banda di rete o I/O oppure che hanno una latenza considerevole per evitare di bloccare il thread chiamante.
 
 **Evitare di bloccare le risorse e usare invece un approccio ottimistico**. Non bloccare mai l'accesso alle risorse, ad esempio di archiviazione o altri servizi che presentino una latenza notevole, perché è una delle cause principali della riduzione delle prestazioni. Usare sempre approcci ottimistici per la gestione delle operazioni simultanee, ad esempio la scrittura in un archivio. Usare le funzionalità del livello di archiviazione per gestire i conflitti. Nelle applicazioni distribuite i dati possono essere coerenti solo alla fine.
 
@@ -79,8 +80,6 @@ La scalabilità è la capacità di un sistema di gestire un incremento del caric
   
 > [!NOTE]
 > Le API per alcuni servizi riusano automaticamente le connessioni, a condizione che vengano seguite le linee guida specifiche del servizio. È importante comprendere le condizioni che consentono di riutilizzare la connessione per ogni servizio usato dall'applicazione.
-> 
-> 
 
 **Inviare le richieste in batch per ottimizzare l'uso della rete**. Ad esempio, inviare e leggere i messaggi in batch quando si accede a una coda ed eseguire più operazioni di lettura o scrittura come batch durante l'accesso all'archiviazione o a una cache. Questo consente di massimizzare l'efficienza dei servizi e degli archivi dati riducendo il numero di chiamate sulla rete.
 
@@ -90,12 +89,11 @@ La scalabilità è la capacità di un sistema di gestire un incremento del caric
 
 **Creare dipendenze delle risorse durante la distribuzione o all'avvio dell'applicazione**. Evitare chiamate ripetute ai metodi che verificano l'esistenza di una risorsa e quindi creano la risorsa se non esiste. I metodi come *CloudTable.CreateIfNotExists* e *CloudQueue.CreateIfNotExists* nella libreria client di archiviazione di Azure seguono questo modello. Tali metodi possono generare un notevole sovraccarico se vengono richiamati prima di ogni accesso a una tabella o coda di archiviazione. In alternativa:
 
-* Creare le risorse necessarie quando l'applicazione viene distribuita o viene avviata per la prima volta. È accettabile avere una singola chiamata a *CreateIfNotExists* per ogni risorsa nel codice di avvio per un ruolo Web o di lavoro. Assicurarsi tuttavia di gestire le eccezioni che possono venire generate se il codice prova ad accedere a una risorsa inesistente. In queste situazioni è consigliabile registrare l'eccezione e avvisare l'operatore della mancanza di una risorsa.
-* In alcune circostanze, può essere opportuno creare la risorsa mancante come parte del codice di gestione delle eccezioni. Tuttavia, è consigliabile adottare questo approccio con cautela, perché l'assenza della risorsa potrebbe essere indicativa di un errore di programmazione, ad esempio, un nome di risorsa con errori di ortografia, o di un altro problema a livello di infrastruttura.
+- Creare le risorse necessarie quando l'applicazione viene distribuita o viene avviata per la prima volta. È accettabile avere una singola chiamata a *CreateIfNotExists* per ogni risorsa nel codice di avvio per un ruolo Web o di lavoro. Assicurarsi tuttavia di gestire le eccezioni che possono venire generate se il codice prova ad accedere a una risorsa inesistente. In queste situazioni è consigliabile registrare l'eccezione e avvisare l'operatore della mancanza di una risorsa.
+- In alcune circostanze, può essere opportuno creare la risorsa mancante come parte del codice di gestione delle eccezioni. Tuttavia, è consigliabile adottare questo approccio con cautela, perché l'assenza della risorsa potrebbe essere indicativa di un errore di programmazione, ad esempio, un nome di risorsa con errori di ortografia, o di un altro problema a livello di infrastruttura.
 
 **Usare framework semplificati**. Scegliere con attenzione le API e i framework da usare per ridurre al minimo l'utilizzo delle risorse, il tempo di esecuzione e il carico complessivo dell'applicazione. Ad esempio, l'uso dell'API Web per gestire le richieste di servizio consente di ridurre il footprint dell'applicazione e aumentare la velocità di esecuzione, ma potrebbe non essere adatta per scenari avanzati in cui sono necessarie le funzionalità aggiuntive di Windows Communication Foundation.
 
 **Considerare la possibilità di ridurre al minimo il numero degli account del servizio**. Ad esempio, usare un account specifico per accedere alle risorse o ai servizi che impongono un limite per le connessioni o che vengono eseguiti in modo più efficiente dove vengono mantenute meno connessioni. Questo approccio è comune per i servizi, come ad esempio i database, ma può compromettere la possibilità di controllare accuratamente le operazioni a causa della rappresentazione dell'utente originale.
 
 **Effettuare la profilatura delle prestazioni e il testing del carico** durante lo sviluppo come parte delle routine di test e prima del rilascio della versione finale per assicurarsi che l'applicazione venga eseguita e scalata come richiesto. Questo testing deve essere eseguito sullo stesso tipo di hardware disponibile nella piattaforma di produzione e con gli stessi tipi e quantità di dati e carico utente che si riscontreranno in produzione. Per altre informazioni, vedere [Test delle prestazioni di un servizio cloud](/azure/vs-azure-tools-performance-profiling-cloud-services/).
-
