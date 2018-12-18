@@ -3,12 +3,13 @@ title: Motore di ricerca di prodotti intelligente per l'e-commerce
 description: Fornire un'esperienza di ricerca di qualità elevata in un'applicazione di e-commerce.
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 5eabdb94b9345e73b21526681e0dbd6ae859d7be
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610669"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004899"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Motore di ricerca di prodotti intelligente per l'e-commerce
 

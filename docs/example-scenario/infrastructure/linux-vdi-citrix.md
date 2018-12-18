@@ -3,12 +3,13 @@ title: Desktop virtuali Linux con Citrix
 description: Creare un ambiente VDI per i desktop Linux con Citrix in Azure.
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.openlocfilehash: 383642b05926c5a09abf0b2f95fef10539d95aec
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: d48163638da05fa075814d3a255ca783610741f8
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610652"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004772"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>Desktop virtuali Linux con Citrix
 
@@ -46,10 +47,10 @@ Per questo scenario vengono usate le SKU seguenti:
 
 - Citrix ADC (NetScaler): 2 x D4s v3 con [immagine con pagamento in base al consumo di NetScaler 12.0 VPX Standard Edition 200 Mbps](https://azuremarketplace.microsoft.com/pt-br/marketplace/apps/citrix.netscalervpx-120?tab=PlansAndPrice)
 - Server licenze Citrix: 1 x D2s v3
-- VDA Citrix: 4 x D8s v3
-- Citrix StoreFront: 2 x D2s v3
+- Citrix VDA: 4 x D8s v3
+- Citrix Storefront: 2 x D2s v3
 - Controller della distribuzione Citrix: 2 x D2s v3
-- Controller di dominio: 2 x D2s v3
+- Controller di dominio: 2 x D2sv3
 - File server di Azure: 2 x D2sv3
 
 > [!NOTE]
