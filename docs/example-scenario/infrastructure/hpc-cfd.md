@@ -3,12 +3,13 @@ title: Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure
 description: Eseguire simulazioni di fluidodinamica computazionale (CFD) in Azure.
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610635"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004665"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure
 
@@ -91,9 +92,9 @@ Questo scenario illustra come è possibile eseguire applicazioni CFD in Azure. L
 
 * Area: Europa settentrionale
 * Server Azure CycleCloud: 1 x D3 Standard (4 x CPU, 14 GB di memoria, HDD Standard da 32 GB)
-* Server master Azure CycleCloud: 1 x D12 v Standard (4 x CPU, 28 GB di memoria, HDD Standard da 32 GB)
-* Matrice di nodi di Azure CycleCloud: 10 x H16r Standard (16 x CPU, 112 GB di memoria)
-* Cluster Avere vFXT in Azure: 3 x D16s v3 (sistema operativo 200 GB, disco dati SSD Premium da 1 TB)
+* Server master CycleCloud Azure: 1 x D12 Standard (4 x CPU, 28 GB di memoria, HDD Standard da 32 GB)
+* Matrice nodo Azure CycleCloud: 10 x H16r Standard (16 x CPU, 112 GB di memoria)
+* Avere vFXT in Cluster di Azure: 3 x D16s v3 (200 GB sistema operativo, disco dati da 1 TB SSD Premium)
 * Dati in uscita: 1 TB
 
 Vedere questa [stima dei prezzi][pricing] per l'hardware elencato in precedenza.

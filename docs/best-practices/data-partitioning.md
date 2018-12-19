@@ -1,16 +1,18 @@
 ---
 title: Linee guida di partizionamento di dati
+titleSuffix: Best practices for cloud applications
 description: Indicazioni su come suddividere le partizioni per la gestione e l'accesso separati.
 author: dragon119
 ms.date: 11/04/2018
-ms.openlocfilehash: e86f98bc753035ce4216096a6e9bace58f0e614d
-ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
+ms.custom: seodec18
+ms.openlocfilehash: 9441c4404af991b327cd027c145604921f0223fb
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "50983448"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307096"
 ---
-# <a name="data-partitioning"></a>Partizionamento dei dati
+# <a name="horizontal-vertical-and-functional-data-partitioning"></a>Partizionamento orizzontale, verticale e funzionale dei dati
 
 In molte soluzioni su larga scala, i dati vengono divisi in *partizioni* gestibili e accessibili separatamente. Il partizionamento può migliorare la scalabilità, ridurre la contesa e ottimizzare le prestazioni, nonché offrire un meccanismo per dividere i dati in base al modello di utilizzo. È ad esempio possibile archiviare i dati meno recenti in un archivio dati più economico.
 
@@ -19,38 +21,43 @@ In molte soluzioni su larga scala, i dati vengono divisi in *partizioni* gestibi
 > [!NOTE]
 > In questo articolo il termine *partizionamento* si riferisce al processo di suddivisione fisica dei dati in archivi dati separati. Non si tratta del partizionamento delle tabelle SQL Server.
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="why-partition-data"></a>Perché la partizione di dati?
 
-* **Migliorare la scalabilità**. L'aumento delle dimensioni del sistema del singolo database potrebbe causare il raggiungimento di un limite hardware fisico. Dividendo i dati in più partizioni, ognuna ospitata in un server separato, è possibile aumentare il numero di istanze del sistema quasi all'infinito.
+<!-- markdownlint-enable MD026 -->
 
-* **Migliorare le prestazioni** Le operazioni di accesso ai dati in ogni partizione vengono eseguite su un volume di dati più piccolo. Se eseguito correttamente, il partizionamento può rendere il sistema più efficiente. Le operazioni che interessano più di una partizione possono essere eseguite in parallelo.
+- **Migliorare la scalabilità**. L'aumento delle dimensioni del sistema del singolo database potrebbe causare il raggiungimento di un limite hardware fisico. Dividendo i dati in più partizioni, ognuna ospitata in un server separato, è possibile aumentare il numero di istanze del sistema quasi all'infinito.
 
-* **Migliorare la sicurezza**. In alcuni casi, è possibile separare i dati sensibili e quelli non sensibili in partizioni diverse e applicare controlli di sicurezza diversi ai dati sensibili.
+- **Migliorare le prestazioni** Le operazioni di accesso ai dati in ogni partizione vengono eseguite su un volume di dati più piccolo. Se eseguito correttamente, il partizionamento può rendere il sistema più efficiente. Le operazioni che interessano più di una partizione possono essere eseguite in parallelo.
 
-* **Fornire flessibilità operativa**. Il partizionamento offre molte opportunità per operazioni di ottimizzazione, ottimizzazione dell'efficienza amministrativa e riduzione dei costi. È possibile ad esempio definire diverse strategie per la gestione, il monitoraggio, il backup e il ripristino e altre attività amministrative in base all'importanza dei dati in ogni partizione.
+- **Migliorare la sicurezza**. In alcuni casi, è possibile separare i dati sensibili e quelli non sensibili in partizioni diverse e applicare controlli di sicurezza diversi ai dati sensibili.
 
-* **Combinare l'archivio dati al modello di utilizzo**. Il partizionamento consente a ogni partizione di essere distribuita in un diverso tipo di archivio dati, basato sul costo e le funzionalità incorporate offerte dall’archivio dati. È ad esempio possibile archiviare i dati binari di grandi dimensioni in un archivio BLOB e i dati più strutturati in un database di documenti. Vedere [Scegliere l'archivio dati corretto](../guide/technology-choices/data-store-overview.md).
+- **Fornire flessibilità operativa**. Il partizionamento offre molte opportunità per operazioni di ottimizzazione, ottimizzazione dell'efficienza amministrativa e riduzione dei costi. È possibile ad esempio definire diverse strategie per la gestione, il monitoraggio, il backup e il ripristino e altre attività amministrative in base all'importanza dei dati in ogni partizione.
 
-* **Migliorare la disponibilità**. La separazione dei dati tra più server consente di evitare singoli punti di errore. In caso di problemi in un'istanza, risultano non disponibili solo i dati in tale partizione. Le operazioni su altre partizioni possono continuare. Per gli archivi dati PaaS gestiti, questa considerazione è meno significativa perché tali servizi sono progettati con ridondanza predefinita. 
+- **Combinare l'archivio dati al modello di utilizzo**. Il partizionamento consente a ogni partizione di essere distribuita in un diverso tipo di archivio dati, basato sul costo e le funzionalità incorporate offerte dall’archivio dati. È ad esempio possibile archiviare i dati binari di grandi dimensioni in un archivio BLOB e i dati più strutturati in un database di documenti. Vedere [Scegliere l'archivio dati corretto](../guide/technology-choices/data-store-overview.md).
+
+- **Migliorare la disponibilità**. La separazione dei dati tra più server consente di evitare singoli punti di errore. In caso di problemi in un'istanza, risultano non disponibili solo i dati in tale partizione. Le operazioni su altre partizioni possono continuare. Per gli archivi dati PaaS gestiti, questa considerazione è meno significativa perché tali servizi sono progettati con ridondanza predefinita.
 
 ## <a name="designing-partitions"></a>Progettazione di partizioni
 
 Per il partizionamento dei dati esistono tre strategie tipiche:
 
-* **Il partizionamento orizzontale** (spesso chiamato *sharding*). In questa strategia, ogni partizione è un archivio dati separato, ma tutte le partizioni hanno lo stesso schema. Ogni *partizione* contiene uno specifico subset di dati, ad esempio tutti gli ordini per un set specifico di clienti.
-* **Il partizionamento verticale**. In questa strategia ogni partizione contiene un sottoinsieme dei campi per gli elementi nell'archivio dati. I campi sono suddivisi in base ai loro modello di utilizzo. I campi usati di frequente ad esempio possono essere collocati in una partizione verticale, mentre i campi usati raramente possono essere collocati in un'altra partizione.
-* **Partizionamento funzionale**. In questa strategia i dati vengono aggregati in base alla loro modalità di utilizzo da parte di ogni contesto limitato nel sistema. Un sistema di e-commerce, ad esempio, potrebbe archiviare i dati delle fatture in una partizione e quelli relativi all'inventario dei prodotti in un'altra.
+- **Il partizionamento orizzontale** (spesso chiamato *sharding*). In questa strategia, ogni partizione è un archivio dati separato, ma tutte le partizioni hanno lo stesso schema. Ogni *partizione* contiene uno specifico subset di dati, ad esempio tutti gli ordini per un set specifico di clienti.
 
-Queste strategie possono essere combinate ed è consigliabile prenderle tutte in considerazione quando si progetta uno schema di partizionamento. Ad esempio, si potrebbe dividere i dati in partizioni e quindi utilizzare il partizionamento verticale per suddividere ulteriormente i dati in ogni partizione. 
+- **Il partizionamento verticale**. In questa strategia ogni partizione contiene un sottoinsieme dei campi per gli elementi nell'archivio dati. I campi sono suddivisi in base ai loro modello di utilizzo. I campi usati di frequente ad esempio possono essere collocati in una partizione verticale, mentre i campi usati raramente possono essere collocati in un'altra partizione.
+
+- **Partizionamento funzionale**. In questa strategia i dati vengono aggregati in base alla loro modalità di utilizzo da parte di ogni contesto limitato nel sistema. Un sistema di e-commerce, ad esempio, potrebbe archiviare i dati delle fatture in una partizione e quelli relativi all'inventario dei prodotti in un'altra.
+
+Queste strategie possono essere combinate ed è consigliabile prenderle tutte in considerazione quando si progetta uno schema di partizionamento. Ad esempio, si potrebbe dividere i dati in partizioni e quindi utilizzare il partizionamento verticale per suddividere ulteriormente i dati in ogni partizione.
 
 ### <a name="horizontal-partitioning-sharding"></a>Partizionamento orizzontale (sharding)
 
-La figura 1 illustra il partizionamento orizzontale. In questo esempio, i dati di inventario del prodotto sono divisi in partizioni in base alla chiave di prodotto. Ogni partizione contiene i dati per un intervallo contiguo di chiavi di partizione (A-G e H-Z), organizzati in ordine alfabetico.
-Il partizionamento orizzontale distribuisce il carico in più computer, riducendo la contesa e migliorando le prestazioni. 
+La figura 1 illustra il partizionamento orizzontale. In questo esempio, i dati di inventario del prodotto sono divisi in partizioni in base alla chiave di prodotto. Ogni partizione contiene i dati per un intervallo contiguo di chiavi di partizione (A-G e H-Z), organizzati in ordine alfabetico. Il partizionamento orizzontale distribuisce il carico in più computer, riducendo la contesa e migliorando le prestazioni.
 
 ![Partizionamento orizzontale (sharding) dei dati in base a una chiave di partizione](./images/data-partitioning/DataPartitioning01.png)
 
-*Figura 1. Partizionamento orizzontale (sharding) dei dati in base a una chiave di partizione*
+*Figura 1. Partizionamento orizzontale (sharding) dei dati in base a una chiave di partizione.*
 
 Il fattore più importante è la scelta di una chiave di partizionamento. Può essere difficile modificare la chiave quando il sistema è in esecuzione. La chiave deve garantire che i dati siano partizionati in modo che la distribuzione del carico di lavoro tra le partizioni sia il più uniforme possibile.
 
@@ -70,7 +77,7 @@ Il partizionamento verticale viene prevalentemente usato per ridurre i costi di 
 
 ![Partizionamento verticale dei dati in base al modello di utilizzo](./images/data-partitioning/DataPartitioning02.png)
 
-*Figura 2. Partizionamento verticale dei dati in base al modello di utilizzo*
+*Figura 2. Partizionamento verticale dei dati in base al modello di utilizzo.*
 
 Nell'esempio, l'applicazione ricerca regolarmente il nome del prodotto, la descrizione e il prezzo quando visualizza i dettagli dei prodotti ai clienti. Il conteggio delle scorte e la data dell'ultimo ordine vengono mantenuti in una partizione separata perché questi due elementi vengono in genere usati insieme.
 
@@ -84,14 +91,13 @@ Altri vantaggi del partizionamento verticale:
 
 Il partizionamento verticale opera a livello di entità all'interno di un archivio dati, normalizzando parzialmente un'entità per suddividerla da un elemento *di grandi dimensioni* a una raccolta di elementi *di dimensioni ridotte*. È particolarmente adatto per gli archivi di dati orientati alla colonna, ad esempio HBase e Cassandra. Se è improbabile modificare i dati in una raccolta di colonne, è possibile utilizzare archivi di colonne in SQL Server.
 
-
 ### <a name="functional-partitioning"></a>Partizionamento funzionale
 
 Quando è possibile identificare un contesto delimitato per ogni distinta area di attività in un'applicazione, il partizionamento funzionale consente di migliorare l'isolamento e le prestazioni di accesso ai dati. Un altro uso comune del partizionamento funzionale è la separazione dei dati di lettura/scrittura dai dati di sola lettura. La figura 3 mostra una panoramica del partizionamento funzionale in cui i dati di inventario sono separati dai dati del cliente.
 
 ![Partizionamento funzionale dei dati in base al contesto limitato o al sottodominio](./images/data-partitioning/DataPartitioning03.png)
 
-*Figura 3. Partizionamento funzionale dei dati in base al contesto limitato o al sottodominio*
+*Figura 3. Partizionamento funzionale dei dati in base al contesto limitato o al sottodominio.*
 
 Questa strategia di partizionamento può contribuire a ridurre i conflitti di accesso ai dati in diverse parti del sistema.
 
@@ -108,7 +114,7 @@ Quando si progettano le partizioni per la scalabilità, attenersi alla seguente 
 
 Alcuni ambienti cloud allocano le risorse in termini di limiti di infrastruttura. Assicurarsi che tali limiti forniscano spazio sufficiente per una crescita anticipata del volume di dati, in termini di archiviazione dei dati, potenza di elaborazione e larghezza di banda.
 
-Se si usa l'archivio tabelle di Azure, ad esempio, esiste un limite al volume di richieste che può essere gestito da una singola partizione in un determinato periodo di tempo. Vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure]. Una partizione occupata potrebbe richiedere una quantità di risorse superiore a quella che può essere gestita da una singola partizione. In tal caso, potrebbe essere necessario un ripartizionamento per distribuire il carico. Se le dimensioni totali o la velocità effettiva delle tabelle supera la capacità di un account di archiviazione, potrebbe essere necessario creare altri account di archiviazione e suddividere le tabelle tra questi. 
+Se si usa l'archivio tabelle di Azure, ad esempio, esiste un limite al volume di richieste che può essere gestito da una singola partizione in un determinato periodo di tempo. Vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure]. Una partizione occupata potrebbe richiedere una quantità di risorse superiore a quella che può essere gestita da una singola partizione. In tal caso, potrebbe essere necessario un ripartizionamento per distribuire il carico. Se le dimensioni totali o la velocità effettiva delle tabelle supera la capacità di un account di archiviazione, potrebbe essere necessario creare altri account di archiviazione e suddividere le tabelle tra questi.
 
 ## <a name="designing-partitions-for-query-performance"></a>Progettazione di partizioni per le prestazioni delle query
 
@@ -117,34 +123,39 @@ Le prestazioni delle query possono spesso essere aumentate usando set di dati pi
 Quando si progettano le partizioni per le prestazioni delle query, attenersi alla seguente procedura:
 
 1. Esaminare i requisiti dell'applicazione e delle prestazioni:
-   * Usare i requisiti aziendali per determinare le query critiche che devono sempre essere eseguite rapidamente.
-   * Monitoraggio del sistema per identificare qualsiasi query eseguita lentamente.
-   * Individuare le query eseguite con maggiore frequenza. Anche se una singola query ha un costo minimo, l'utilizzo complessivo delle risorse potrebbe essere significativo. 
+
+   - Usare i requisiti aziendali per determinare le query critiche che devono sempre essere eseguite rapidamente.
+   - Monitoraggio del sistema per identificare qualsiasi query eseguita lentamente.
+   - Individuare le query eseguite con maggiore frequenza. Anche se una singola query ha un costo minimo, l'utilizzo complessivo delle risorse potrebbe essere significativo.
 
 2. Partizionare i dati che causano un rallentamento delle prestazioni:
-   * Limitare le dimensioni di ogni partizione in modo che il tempo di risposta della query sia compreso nel target.
-   * Se si usa il partizionamento orizzontale, progettare la chiave di partizione in modo che l'applicazione possa selezionare facilmente la partizione corretta. In questo modo la query non deve analizzare ogni partizione.
-   * Considerare la posizione di una partizione. Se possibile, provare a mantenere i dati nelle partizioni geograficamente vicine alle applicazioni e gli utenti che vi accedono.
+   - Limitare le dimensioni di ogni partizione in modo che il tempo di risposta della query sia compreso nel target.
+   - Se si usa il partizionamento orizzontale, progettare la chiave di partizione in modo che l'applicazione possa selezionare facilmente la partizione corretta. In questo modo la query non deve analizzare ogni partizione.
+   - Considerare la posizione di una partizione. Se possibile, provare a mantenere i dati nelle partizioni geograficamente vicine alle applicazioni e gli utenti che vi accedono.
 
 3. Se un'entità dispone di requisiti relativi alle prestazioni di velocità effettiva e della query, utilizzare il partizionamento funzionale in base a tale entità. Se tale entità non soddisfa i requisiti, è necessario applicare anche il partizionamento orizzontale. Nella maggior parte dei casi è sufficiente una singola strategia di partizionamento, ma in alcuni casi è preferibile combinare entrambe le strategie.
 
 4. Valutare la possibilità di eseguire le query in parallelo nelle partizioni per migliorare le prestazioni.
 
 ## <a name="designing-partitions-for-availability"></a>Progettazione di partizioni per la disponibilità
-Il partizionamento dei dati può migliorare la disponibilità delle applicazioni garantendo che l'intero set di dati non costituisca un singolo punto di errore e che i singoli sottoinsiemi del set di dati possano essere gestiti in modo indipendente. 
+
+Il partizionamento dei dati può migliorare la disponibilità delle applicazioni garantendo che l'intero set di dati non costituisca un singolo punto di errore e che i singoli sottoinsiemi del set di dati possano essere gestiti in modo indipendente.
 
 Considerare i fattori seguenti, che influiscono sulla disponibilità:
 
 **Criticità dei dati nelle operazioni aziendali**. Identificare i dati che sono informazioni aziendali critiche, come le transazioni, e i dati operativi meno critici, come i file di log.
 
-* Valutare la possibilità di archiviare i dati critici in partizioni a disponibilità elevata con un piano di backup appropriato.
-* Stabilire procedure di gestione e monitoraggio separate per i diversi set di dati. 
-* Il posizionamento di dati che hanno lo stesso livello di criticità nella stessa partizione in modo da poter eseguire il backup con una frequenza appropriata. Le partizioni contenenti i dati delle transazioni, ad esempio, potrebbero richiedere backup più frequenti rispetto alle partizioni che contengono informazioni di traccia o di log.
+- Valutare la possibilità di archiviare i dati critici in partizioni a disponibilità elevata con un piano di backup appropriato.
+
+- Stabilire procedure di gestione e monitoraggio separate per i diversi set di dati.
+
+- Il posizionamento di dati che hanno lo stesso livello di criticità nella stessa partizione in modo da poter eseguire il backup con una frequenza appropriata. Le partizioni contenenti i dati delle transazioni, ad esempio, potrebbero richiedere backup più frequenti rispetto alle partizioni che contengono informazioni di traccia o di log.
 
 **Gestione delle singole partizioni**. La progettazione di partizioni per supportare la manutenzione e la gestione indipendenti offre diversi vantaggi. Ad esempio: 
 
-* In caso di problemi in una partizione, questa può essere ripristinata in modo indipendente senza le applicazioni che accedono ai dati in altre partizioni.
-* Il partizionamento dei dati per aree geografiche può consentire attività di manutenzione pianificate che vengono eseguite in determinate fasce orarie per ogni posizione. Assicurarsi che le partizioni non siano troppo grandi per evitare che le operazioni di manutenzione pianificata non siano completate durante questo periodo.
+- In caso di problemi in una partizione, questa può essere ripristinata in modo indipendente senza le applicazioni che accedono ai dati in altre partizioni.
+
+- Il partizionamento dei dati per aree geografiche può consentire attività di manutenzione pianificate che vengono eseguite in determinate fasce orarie per ogni posizione. Assicurarsi che le partizioni non siano troppo grandi per evitare che le operazioni di manutenzione pianificata non siano completate durante questo periodo.
 
 **Replica dei dati critici tra le partizioni**. Questa strategia può migliorare la disponibilità e le prestazioni, ma anche introdurre problemi di coerenza. La sincronizzazione delle modifiche con ogni replica richiede tempo. Durante questo periodo, le diverse partizioni conterranno valori di dati diversi.
 
@@ -152,11 +163,11 @@ Considerare i fattori seguenti, che influiscono sulla disponibilità:
 
 Il partizionamento aumenta la complessità di progettazione e sviluppo del sistema. Considerare il partizionamento come parte fondamentale della progettazione del sistema anche se inizialmente il sistema contiene una singola partizione. Se eseguito a posteriori, il partizionamento è più complicato perché è già presente un sistema attivo da gestire:
 
-- La logica di accesso ai dati dovrà essere modificata. 
+- La logica di accesso ai dati dovrà essere modificata.
 - Potrebbe essere necessario eseguire la migrazione di grandi quantità di dati esistenti per distribuire i dati tra le partizioni.
 - Gli utenti si aspettano di poter continuare a usare il sistema durante la migrazione.
 
-In alcuni casi, il partizionamento non è considerato importante perché il set di dati iniziale è ridotto e può essere facilmente gestito da un singolo server. Questo può essere vero per alcuni carichi di lavoro, ma molti sistemi commerciali devono espandersi con l'aumento del numero di utenti. 
+In alcuni casi, il partizionamento non è considerato importante perché il set di dati iniziale è ridotto e può essere facilmente gestito da un singolo server. Questo può essere vero per alcuni carichi di lavoro, ma molti sistemi commerciali devono espandersi con l'aumento del numero di utenti.
 
 Il partizionamento, inoltre, è vantaggioso non solo per archivi dati di grandi dimensioni. Ad esempio, un archivio dati di piccole dimensioni potrebbe essere utilizzato molto frequentemente da centinaia di client simultanei. Il partizionamento dei dati in questa situazione può aiutare a ridurre i conflitti e a migliorare la velocità effettiva.
 
@@ -168,11 +179,11 @@ Quando si progetta un schema di partizionamento dei dati, tenere presente quanto
 
 **Ridurre al minimo i join tra partizioni.** Quando possibile, ridurre al minimo i requisiti di integrità referenziale tra le partizioni verticali e funzionali. In questi schemi, l'applicazione è responsabile del mantenimento dell'integrità referenziale tra le partizioni. Le query che uniscono in join i dati in più partizioni sono inefficienti perché l'applicazione in genere deve eseguire query consecutive in base a una chiave e quindi a una chiave esterna. Si consiglia di replicare o de-normalizzare i dati rilevanti. Se sono necessari join tra partizioni, eseguire query parallele sulle partizioni e unire i dati all'interno dell'applicazione.
 
-**Implementare la coerenza finale**. Valutare se la coerenza assoluta è effettivamente un requisito. Nei sistemi distribuiti, un approccio comune consiste nell'implementare la coerenza finale. I dati in ogni partizione vengono aggiornati separatamente e la logica dell'applicazione garantisce che tutti gli aggiornamenti vengano completati correttamente. La logica gestisce inoltre le incoerenze che possono essere generate da query sui dati durante l'esecuzione di un'operazione coerente. 
+**Implementare la coerenza finale**.  Valutare se la coerenza assoluta è effettivamente un requisito. Nei sistemi distribuiti, un approccio comune consiste nell'implementare la coerenza finale. I dati in ogni partizione vengono aggiornati separatamente e la logica dell'applicazione garantisce che tutti gli aggiornamenti vengano completati correttamente. La logica gestisce inoltre le incoerenze che possono essere generate da query sui dati durante l'esecuzione di un'operazione coerente.
 
 **È necessario considerare come le query individuano la partizione corretta**. Se una query deve analizzare tutte le partizioni per individuare i dati richiesti, ci sarà un impatto significativo sulle prestazioni, anche se sono in esecuzione più query parallele. Con il partizionamento verticale e funzionale, le query possono naturalmente specificare le partizioni. Con il partizionamento orizzontale, invece, può essere difficile individuare un elemento perché ogni partizione ha lo stesso schema. Una soluzione tipica consiste nel mantenere una mappa che verrà usata per cercare elementi specifici nel percorso delle partizioni. Questa mappa può essere implementata nella logica di partizionamento orizzontale dell'applicazione o gestita dall'archivio dati se supporta il partizionamento orizzontale trasparente.
 
-**Valutare la possibilità di ribilanciare periodicamente le partizioni**. Con il partizionamento orizzontale, il ribilanciamento delle partizioni consente di distribuire uniformemente i dati in base alle dimensioni e al carico di lavoro per ridurre al minimo le aree ad accesso frequente, ottimizzare le prestazioni delle query e aggirare le limitazioni fisiche dello spazio di archiviazione. Tuttavia, si tratta di un'attività complessa che spesso richiede l'utilizzo di uno strumento personalizzato o di un processo. 
+**Valutare la possibilità di ribilanciare periodicamente le partizioni**. Con il partizionamento orizzontale, il ribilanciamento delle partizioni consente di distribuire uniformemente i dati in base alle dimensioni e al carico di lavoro per ridurre al minimo le aree ad accesso frequente, ottimizzare le prestazioni delle query e aggirare le limitazioni fisiche dello spazio di archiviazione. Tuttavia, si tratta di un'attività complessa che spesso richiede l'utilizzo di uno strumento personalizzato o di un processo.
 
 **Replicare le partizioni.** La replica di ogni partizione offre protezione aggiuntiva dagli errori. Se una singola replica ha esito negativo, le query possono essere indirizzate verso una copia di lavoro.
 
@@ -184,20 +195,23 @@ Tutti gli archivi dati richiedono una gestione operativa e il monitoraggio dell'
 
 Considerare i seguenti fattori che influiscono sulla gestione operativa:
 
-* **Come implementare attività di gestione e operative appropriate quando i dati sono partizionati**. Queste attività possono includere il backup e il ripristino, l'archiviazione dei dati, il monitoraggio del sistema e altre attività amministrative. Mantenere la coerenza logica durante le operazioni di backup e ripristino, ad esempio, può essere una sfida.
-* **Come caricare i dati in più partizioni e aggiungere nuovi dati provenienti da altre origini**. Alcuni strumenti e utilità potrebbero non supportare le operazioni di dati partizionati, quale il caricamento dei dati nella partizione corretta. 
-* **Come archiviare ed eliminare i dati a intervalli regolari**. Per impedire una crescita eccessiva delle partizioni, è necessario archiviare ed eliminare i dati a intervalli regolari, ad esempio ogni mese. Può essere necessario trasformare i dati in base a uno schema di archiviazione differente.
-* **Come individuare i problemi di integrità dei dati**. Valutare la possibilità di eseguire periodicamente un processo per individuare eventuali problemi di integrità dei dati, ad esempio dati in una partizione che fanno riferimento a informazioni mancanti in un'altra. Il processo potrà tentare di correggere automaticamente i problemi oppure generare semplicemente un report per la verifica manuale. 
+- **Come implementare attività di gestione e operative appropriate quando i dati sono partizionati**. Queste attività possono includere il backup e il ripristino, l'archiviazione dei dati, il monitoraggio del sistema e altre attività amministrative. Mantenere la coerenza logica durante le operazioni di backup e ripristino, ad esempio, può essere una sfida.
+
+- **Come caricare i dati in più partizioni e aggiungere nuovi dati provenienti da altre origini**. Alcuni strumenti e utilità potrebbero non supportare le operazioni di dati partizionati, quale il caricamento dei dati nella partizione corretta.
+
+- **Come archiviare ed eliminare i dati a intervalli regolari**. Per impedire una crescita eccessiva delle partizioni, è necessario archiviare ed eliminare i dati a intervalli regolari, ad esempio ogni mese. Può essere necessario trasformare i dati in base a uno schema di archiviazione differente.
+
+- **Come individuare i problemi di integrità dei dati**. Valutare la possibilità di eseguire periodicamente un processo per individuare eventuali problemi di integrità dei dati, ad esempio dati in una partizione che fanno riferimento a informazioni mancanti in un'altra. Il processo potrà tentare di correggere automaticamente i problemi oppure generare semplicemente un report per la verifica manuale.
 
 ## <a name="rebalancing-partitions"></a>Ribilanciamento delle partizioni
 
-Con l'evoluzione del sistema potrebbe essere necessario modificare lo schema di partizionamento. È ad esempio possibile che singole partizioni inizino a ricevere un volume di traffico sproporzionato e diventino ad accesso frequente, causando una contesa eccessiva, oppure che il volume dei dati in alcune partizioni sia stato sottostimato e che di conseguenza alcune partizioni stiano per raggiungere i limiti di capacità. 
+Con l'evoluzione del sistema potrebbe essere necessario modificare lo schema di partizionamento. È ad esempio possibile che singole partizioni inizino a ricevere un volume di traffico sproporzionato e diventino ad accesso frequente, causando una contesa eccessiva, oppure che il volume dei dati in alcune partizioni sia stato sottostimato e che di conseguenza alcune partizioni stiano per raggiungere i limiti di capacità.
 
 Alcuni archivi dati, come Cosmos DB, possono ribilanciare automaticamente le partizioni. In altri casi, il ribilanciamento è un'attività amministrativa in due fasi:
 
-1. Determinare una nuova strategia di partizionamento. 
+1. Determinare una nuova strategia di partizionamento.
 
-    - Quali partizioni è necessario dividere o eventualmente combinare? 
+    - Quali partizioni è necessario dividere o eventualmente combinare?
     - Qual è la nuova chiave di partizione?
 
 2. Eseguire la migrazione dei dati dallo schema di partizionamento precedente al nuovo set di partizioni.
@@ -220,19 +234,18 @@ Facoltativamente, è possibile contrassegnare una partizione come di sola lettur
 
 La migrazione online è più complessa ma comporta minori interruzioni. Il processo è simile alla migrazione offline, ad eccezione del fatto che la partizione originale non viene contrassegnata come offline. A seconda della granularità del processo di migrazione (ad esempio, elemento per elemento o partizione per partizione), il codice di accesso ai dati nelle applicazioni client potrebbe dover gestire la lettura e la scrittura di dati contenuti in due posizioni, ossia la partizione originale e quella nuova.
 
-## <a name="related-patterns"></a>Modelli correlati 
+## <a name="related-patterns"></a>Modelli correlati
 
 Per uno specifico scenario potrebbero essere rilevanti i modelli di progettazione seguenti:
 
-* Il [modello di partizionamento orizzontale] descrive alcune strategie comuni per il partizionamento orizzontale dei dati.
-* Il [Index Table Pattern] illustra come creare indici secondari sui dati. Un'applicazione consente di recuperare rapidamente i dati con questo approccio, usando le query che non fanno riferimento alla chiave primaria di una raccolta.
-* Il [Materialized View Pattern] descrive come generare viste prepopolate con un riepilogo dei dati per supportare operazioni di query rapide. Questo approccio può essere utile in un archivio dati partizionati se le partizioni che contengono dati riepilogati vengono distribuite tra più siti.
+- Il [modello di partizionamento orizzontale](../patterns/sharding.md) descrive alcune strategie comuni per il partizionamento orizzontale dei dati.
+
+- Il [modello di tabella degli indici](../patterns/index-table.md) illustra come creare indici secondari sui dati. Un'applicazione consente di recuperare rapidamente i dati con questo approccio, usando le query che non fanno riferimento alla chiave primaria di una raccolta.
+
+- Il [modello di vista materializzata](../patterns/materialized-view.md) descrive come generare viste prepopolate con un riepilogo dei dati per supportare operazioni di query rapide. Questo approccio può essere utile in un archivio dati partizionati se le partizioni che contengono dati riepilogati vengono distribuite tra più siti.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - Informazioni sulle strategie di partizionamento per servizi di Azure specifici. Vedere [Strategie di partizionamento dei dati](./data-partitioning-strategies.md)
 
 [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure]: /azure/storage/storage-scalability-targets
-[Index Table Pattern]: ../patterns/index-table.md
-[Materialized View Pattern]: ../patterns/materialized-view.md
-[Modello di partizionamento orizzontale]: ../patterns/sharding.md
