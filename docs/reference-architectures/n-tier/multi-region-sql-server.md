@@ -1,52 +1,54 @@
 ---
 title: Applicazione a più livelli per più aree per la disponibilità elevata
-description: Come distribuire le macchine virtuali in più aree in Azure per la disponibilità elevata e la resilienza.
+titleSuffix: Azure Reference Architectures
+description: Distribuire un'applicazione sulle macchine virtuali di Azure in più aree per la disponibilità elevata e resilienza.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: 3b1c419182322b2fa0b555230465f41562e8e6c1
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.custom: seodec18
+ms.openlocfilehash: 5036d8c74dbf92d9547ab866b15b1576df48e3eb
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527627"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120000"
 ---
-# <a name="n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Applicazione a più livelli in più aree di Azure per una disponibilità elevata
+# <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Eseguire un'applicazione a più livelli in più aree di Azure per una disponibilità elevata
 
-Questa architettura di riferimento mostra un set di procedure consolidate per l'esecuzione di un'applicazione a più livelli in più aree di Azure, per ottenere disponibilità e un'infrastruttura di ripristino di emergenza affidabile. 
+Questa architettura di riferimento mostra un set di procedure consolidate per l'esecuzione di un'applicazione a più livelli in più aree di Azure, per ottenere disponibilità e un'infrastruttura di ripristino di emergenza affidabile.
 
-[![0]][0] 
+![Architettura di rete a disponibilità elevata per applicazioni Azure a più livelli](./images/multi-region-sql-server.png)
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architettura
 
-Questa architettura si basa su quella illustrata in [Applicazione a più livelli con SQL Server](n-tier-sql-server.md). 
+Questa architettura si basa su quella illustrata in [Applicazione a più livelli con SQL Server](n-tier-sql-server.md).
 
-* **Aree primarie e secondarie**. Usare due aree per ottenere una maggiore disponibilità: una è l'area primaria, l'altra è per il failover.
+- **Aree primarie e secondarie**. Usare due aree per ottenere una maggiore disponibilità: una è l'area primaria, l'altra è per il failover.
 
-* **Gestione traffico di Azure**. [Gestione traffico][traffic-manager] indirizza le richieste in ingresso a una delle aree. Durante il normale funzionamento, le richieste vengono indirizzate all'area primaria. Se tale area non è più disponibile, Gestione traffico effettua il failover all'area secondaria. Per altre informazioni, vedere la sezione [Configurazione di Gestione traffico](#traffic-manager-configuration).
+- **Gestione traffico di Azure**. [Gestione traffico][traffic-manager] indirizza le richieste in ingresso a una delle aree. Durante il normale funzionamento, le richieste vengono indirizzate all'area primaria. Se tale area non è più disponibile, Gestione traffico effettua il failover all'area secondaria. Per altre informazioni, vedere la sezione [Configurazione di Gestione traffico](#traffic-manager-configuration).
 
-* **Gruppi di risorse**. Creare [gruppi di risorse][resource groups] distinti per l'area primaria, l'area secondaria e Gestione traffico. In questo modo si ottiene la flessibilità necessaria per gestire ogni area come un'unica raccolta di risorse. Ad esempio, è possibile ridistribuire un'area, senza rendere non disponibile l'altra. [Collegare i gruppi di risorse][resource-group-links], in modo che sia possibile eseguire una query per elencare tutte le risorse per l'applicazione.
+- **Gruppi di risorse**. Creare [gruppi di risorse][resource groups] distinti per l'area primaria, l'area secondaria e Gestione traffico. In questo modo si ottiene la flessibilità necessaria per gestire ogni area come un'unica raccolta di risorse. Ad esempio, è possibile ridistribuire un'area, senza rendere non disponibile l'altra. [Collegare i gruppi di risorse][resource-group-links], in modo che sia possibile eseguire una query per elencare tutte le risorse per l'applicazione.
 
-* **Reti virtuali**. Creare una rete virtuale distinta per ogni area. Assicurarsi che gli spazi degli indirizzi non si sovrappongano. 
+- **Reti virtuali**. Creare una rete virtuale distinta per ogni area. Assicurarsi che gli spazi degli indirizzi non si sovrappongano.
 
-* **Gruppo di disponibilità Always On di SQL Server**. Se si usa SQL Server, è consigliabile usare i [gruppi di disponibilità Always On di SQL Server][sql-always-on] per la disponibilità elevata. Creare un unico gruppo di disponibilità che includa le istanze di SQL Server in entrambe le aree. 
+- **Gruppo di disponibilità Always On di SQL Server**. Se si usa SQL Server, è consigliabile usare i [gruppi di disponibilità Always On di SQL Server][sql-always-on] per la disponibilità elevata. Creare un unico gruppo di disponibilità che includa le istanze di SQL Server in entrambe le aree.
 
     > [!NOTE]
-    > Prendere in considerazione anche l'uso del [database SQL di Azure][azure-sql-db], che fornisce un database relazionale come servizio cloud. Con il database SQL, non è necessario configurare un gruppo di disponibilità o gestire il failover.  
-    > 
+    > Prendere in considerazione anche l'uso del [database SQL di Azure][azure-sql-db], che fornisce un database relazionale come servizio cloud. Con il database SQL, non è necessario configurare un gruppo di disponibilità o gestire il failover.
+    >
 
-* **Gateway VPN**. Creare un [gateway VPN][vpn-gateway] in ogni rete virtuale e configurare una [connessione da rete virtuale a rete virtuale][vnet-to-vnet] per consentire il traffico di rete tra le due reti virtuali. Questa condizione è richiesta per il gruppo di disponibilità Always On di SQL Server.
+- **Gateway VPN**. Creare un [gateway VPN][vpn-gateway] in ogni rete virtuale e configurare una [connessione da rete virtuale a rete virtuale][vnet-to-vnet] per consentire il traffico di rete tra le due reti virtuali. Questa condizione è richiesta per il gruppo di disponibilità Always On di SQL Server.
 
 ## <a name="recommendations"></a>Consigli
 
 Un'architettura di tipo multi-area può fornire una maggiore disponibilità rispetto alla distribuzione in un'unica area. Se un'interruzione a livello di area interessa l'area primaria, è possibile usare [Gestione traffico][traffic-manager] per effettuare il failover all'area secondaria. Questa architettura è utile anche in caso di errore di un singolo sottosistema dell'applicazione.
 
-Sono disponibili diversi approcci generali per ottenere una disponibilità elevata tra le diverse aree geografiche: 
+Sono disponibili diversi approcci generali per ottenere una disponibilità elevata tra le diverse aree geografiche:
 
-* Attivo/passivo con hot standby. Il traffico viene indirizzato a un'area, mentre l'altra attende in modalità hot standby. Hot standby significa che le macchine virtuali nell'area secondaria sono allocate e in esecuzione in qualsiasi momento.
-* Attivo/passivo con cold standby. Il traffico viene indirizzato a un'area, mentre l'altra attende in modalità cold standby. Cold standby significa che le macchine virtuali nell'area secondaria non vengono allocate finché non diventa necessario per il failover. Questo approccio presenta costi inferiori in termini di esecuzione, ma in genere richiederà più tempo per portare online le risorse in caso di errore.
-* Attivo/attivo. Entrambe le aree sono attive e viene effettuato un bilanciamento del carico tra le richieste. Se un'area non è più disponibile, viene esclusa dalla rotazione. 
+- Attivo/passivo con hot standby. Il traffico viene indirizzato a un'area, mentre l'altra attende in modalità hot standby. Hot standby significa che le macchine virtuali nell'area secondaria sono allocate e in esecuzione in qualsiasi momento.
+- Attivo/passivo con cold standby. Il traffico viene indirizzato a un'area, mentre l'altra attende in modalità cold standby. Cold standby significa che le macchine virtuali nell'area secondaria non vengono allocate finché non diventa necessario per il failover. Questo approccio presenta costi inferiori in termini di esecuzione, ma in genere richiederà più tempo per portare online le risorse in caso di errore.
+- Attivo/attivo. Entrambe le aree sono attive e viene effettuato un bilanciamento del carico tra le richieste. Se un'area non è più disponibile, viene esclusa dalla rotazione.
 
 Questa architettura di riferimento è incentrata sulla modalità attivo/passivo con hot standby, usando Gestione traffico per il failover. Si noti che è possibile distribuire un numero ridotto di macchine virtuali per la modalità hot standby e quindi aumentare il numero di istanze in base alle esigenze.
 
@@ -54,23 +56,23 @@ Questa architettura di riferimento è incentrata sulla modalità attivo/passivo 
 
 Ogni area di Azure è abbinata a un'altra area con la stessa collocazione geografica. In generale, è consigliabile scegliere aree della stessa coppia di aree (ad esempio, Stati Uniti orientali 2 e Stati Uniti centrali). I vantaggi di questa operazione includono i seguenti:
 
-* In caso di interruzione su vasta scala, viene data priorità al ripristino di almeno un'area di ogni coppia.
-* Gli aggiornamenti di sistema di Azure pianificati vengono implementati in sequenza tra le aree abbinate, per ridurre al minimo l'eventuale tempo di inattività.
-* Le coppie si trovano nella stessa area geografica, per soddisfare i requisiti di residenza dei dati. 
+- In caso di interruzione su vasta scala, viene data priorità al ripristino di almeno un'area di ogni coppia.
+- Gli aggiornamenti di sistema di Azure pianificati vengono implementati in sequenza tra le aree abbinate, per ridurre al minimo l'eventuale tempo di inattività.
+- Le coppie si trovano nella stessa area geografica, per soddisfare i requisiti di residenza dei dati.
 
-Assicurarsi tuttavia che entrambe le aree supportino tutti i servizi di Azure necessari per l'applicazione (vedere i [servizi disponibili in base all'area][services-by-region]). Per altre informazioni sulle coppie di aree, vedere [Continuità aziendale e ripristino di emergenza nelle aree geografiche abbinate di Azure][regional-pairs].
+Assicurarsi tuttavia che entrambe le aree supportino tutti i servizi di Azure necessari per l'applicazione (vedere i [servizi disponibili in base all'area][services-by-region]). Per altre informazioni sulle coppie di aree, vedere [Continuità aziendale e ripristino di emergenza (BCDR): aree geografiche abbinate di Azure][regional-pairs].
 
 ### <a name="traffic-manager-configuration"></a>Configurazione di Gestione traffico
 
 Quando si configura Gestione traffico, tenere presente quanto segue:
 
-* **Routing**. Gestione traffico supporta diversi [algoritmi di routing][tm-routing]. Per lo scenario descritto in questo articolo, usare il routing *Priorità* (precedentemente denominato routing *Failover*). Con questa impostazione, Gestione traffico invia tutte le richieste all'area primaria, a meno che l'area primaria non diventi irraggiungibile. A questo punto, viene automaticamente effettuato il failover all'area secondaria. Vedere [Configurare il metodo di routing failover][tm-configure-failover].
-* **Probe di integrità**. Gestione traffico usa un [probe][tm-monitoring] HTTP (o HTTPS) per monitorare la disponibilità di ogni area. Il probe verifica una risposta HTTP 200 per un percorso URL specificato. Come procedura consigliata, creare un endpoint che segnali l'integrità complessiva dell'applicazione e usare questo endpoint per il probe di integrità. In caso contrario, il probe potrebbe segnalare un endpoint integro quando le parti più importanti dell'applicazione in realtà hanno esito negativo. Per altre informazioni, vedere [Health Endpoint Monitoring Pattern][health-endpoint-monitoring-pattern] (Modello di monitoraggio degli endpoint di integrità).   
+- **Routing**. Gestione traffico supporta diversi [algoritmi di routing][tm-routing]. Per lo scenario descritto in questo articolo, usare il routing *Priorità* (precedentemente denominato routing *Failover*). Con questa impostazione, Gestione traffico invia tutte le richieste all'area primaria, a meno che l'area primaria non diventi irraggiungibile. A questo punto, viene automaticamente effettuato il failover all'area secondaria. Vedere [Configurare il metodo di routing failover][tm-configure-failover].
+- **Probe di integrità**. Gestione traffico usa un [probe][tm-monitoring] HTTP (o HTTPS) per monitorare la disponibilità di ogni area. Il probe verifica una risposta HTTP 200 per un percorso URL specificato. Come procedura consigliata, creare un endpoint che segnali l'integrità complessiva dell'applicazione e usare questo endpoint per il probe di integrità. In caso contrario, il probe potrebbe segnalare un endpoint integro quando le parti più importanti dell'applicazione in realtà hanno esito negativo. Per altre informazioni, vedere [Health Endpoint Monitoring Pattern][health-endpoint-monitoring-pattern] (Modello di monitoraggio degli endpoint di integrità).
 
 Quando Gestione traffico effettua il failover, per un periodo di tempo i client non riescono a raggiungere l'applicazione. La durata di questo periodo è influenzata dai fattori seguenti:
 
-* Il probe di integrità deve rilevare che l'area primaria è diventata irraggiungibile.
-* I server DNS devono aggiornare i record DNS memorizzati nella cache per l'indirizzo IP, che dipende dalla durata (TTL) DNS. Il valore TTL predefinito è di 300 secondi (5 minuti), ma è possibile configurare questo valore durante la creazione del profilo di Gestione traffico.
+- Il probe di integrità deve rilevare che l'area primaria è diventata irraggiungibile.
+- I server DNS devono aggiornare i record DNS memorizzati nella cache per l'indirizzo IP, che dipende dalla durata (TTL) DNS. Il valore TTL predefinito è di 300 secondi (5 minuti), ma è possibile configurare questo valore durante la creazione del profilo di Gestione traffico.
 
 Per dettagli, vedere [Informazioni sul monitoraggio di Gestione traffico][tm-monitoring].
 
@@ -80,50 +82,48 @@ Si noti che Gestione traffico effettua automaticamente il failback per impostazi
 
 Il comando seguente dell'[interfaccia della riga di comando di Azure][azure-cli] aggiorna la priorità:
 
-```bat
+```azurecli
 az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
     --name <endpoint-name> --type azureEndpoints --priority 3
-```    
+```
 
 Un altro approccio consiste nel disabilitare temporaneamente l'endpoint finché non si è pronti per eseguire il failback:
 
-```bat
+```azurecli
 az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
     --name <endpoint-name> --type azureEndpoints --endpoint-status Disabled
 ```
 
 A seconda della causa di un failover, potrebbe essere necessario ridistribuire le risorse all'interno di un'area. Prima di eseguire nuovamente il failback, eseguire un test della conformità operativa, che avrà lo scopo di verificare gli elementi seguenti:
 
-* Le macchine virtuali sono configurate correttamente (tutto il software richiesto è installato, IIS è in esecuzione e così via).
-* I sottosistemi dell'applicazione sono integri. 
-* Test funzionale (ad esempio, il livello del database è raggiungibile dal livello Web).
+- Le macchine virtuali sono configurate correttamente (tutto il software richiesto è installato, IIS è in esecuzione e così via).
+- I sottosistemi dell'applicazione sono integri.
+- Test funzionale (ad esempio, il livello del database è raggiungibile dal livello Web).
 
 ### <a name="configure-sql-server-always-on-availability-groups"></a>Configurare i gruppi di disponibilità Always On di SQL Server
 
-Nelle versioni precedenti a Windows Server 2016 i gruppi di disponibilità Always On di SQL Server richiedono un controller di dominio e tutti i nodi del gruppo di disponibilità devono far parte dello stesso dominio Active Directory (AD). 
+Nelle versioni precedenti a Windows Server 2016 i gruppi di disponibilità Always On di SQL Server richiedono un controller di dominio e tutti i nodi del gruppo di disponibilità devono far parte dello stesso dominio Active Directory (AD).
 
 Per configurare il gruppo di disponibilità:
 
-* Collocare almeno due controller di dominio in ogni area.
-* Assegnare a ogni controller di dominio un indirizzo IP statico.
-* Creare una connessione da rete virtuale a rete virtuale per consentire la comunicazione tra le reti virtuali.
-* Per ogni rete virtuale, aggiungere gli indirizzi IP dei controller di dominio (da entrambe le aree) all'elenco dei server DNS. È possibile usare il comando dell'interfaccia della riga di comando seguente. Per altre informazioni, vedere [Modificare i server DNS][vnet-dns].
+- Collocare almeno due controller di dominio in ogni area.
+- Assegnare a ogni controller di dominio un indirizzo IP statico.
+- Creare una connessione da rete virtuale a rete virtuale per consentire la comunicazione tra le reti virtuali.
+- Per ogni rete virtuale, aggiungere gli indirizzi IP dei controller di dominio (da entrambe le aree) all'elenco dei server DNS. È possibile usare il comando dell'interfaccia della riga di comando seguente. Per altre informazioni, vedere [Modificare i server DNS][vnet-dns].
 
-    ```bat
+    ```azurecli
     az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
-* Creare un [Windows Server Failover Clustering][wsfc] (WSFC) che includa le istanze di SQL Server in entrambe le aree. 
-* Creare un gruppo di disponibilità Always On di SQL Server che includa le istanze di SQL Server in entrambe le aree primaria e secondaria. Per la procedura, vedere [Extending Always On Availability Group to Remote Azure Datacenter (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) (Estensione del gruppo di disponibilità Always On al data center di Azure remoto (PowerShell)).
+- Creare un [Windows Server Failover Clustering][wsfc] (WSFC) che includa le istanze di SQL Server in entrambe le aree.
+- Creare un gruppo di disponibilità Always On di SQL Server che includa le istanze di SQL Server in entrambe le aree primaria e secondaria. Per la procedura, vedere [Extending Always On Availability Group to Remote Azure Datacenter (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) (Estensione del gruppo di disponibilità Always On al data center di Azure remoto (PowerShell)).
 
-  * Inserire la replica primaria nell'area primaria.
-  * Inserire una o più repliche secondarie nell'area primaria. Configurarle per l'uso del commit sincrono con il failover automatico.
-  * Inserire una o più repliche secondarie nell'area secondaria. Configurarle per l'uso del commit *asincrono* per motivi di prestazioni (in caso contrario, tutte le transazioni T-SQL dovranno attendere l'esecuzione di un round trip in rete all'area secondaria).
+  - Inserire la replica primaria nell'area primaria.
+  - Inserire una o più repliche secondarie nell'area primaria. Configurarle per l'uso del commit sincrono con il failover automatico.
+  - Inserire una o più repliche secondarie nell'area secondaria. Configurarle per l'uso del commit *asincrono* per motivi di prestazioni (in caso contrario, tutte le transazioni T-SQL dovranno attendere l'esecuzione di un round trip in rete all'area secondaria).
 
     > [!NOTE]
     > Le repliche con commit asincrono non supportano il failover automatico.
-    >
-    >
 
 ## <a name="availability-considerations"></a>Considerazioni sulla disponibilità
 
@@ -137,8 +137,7 @@ Per il cluster di SQL Server, sono da considerare due scenari di failover:
 
    > [!WARNING]
    > Con il failover forzato, sussiste il rischio di perdita dei dati. Quando l'area primaria torna online, eseguire uno snapshot del database e usare [tablediff] per individuare le differenze.
-   >
-   >
+
 - Gestione traffico effettua il failover all'area secondaria, ma la replica primaria del database SQL Server è ancora disponibile. Ad esempio, nel livello front-end potrebbe verificarsi un errore che non si ripercuote sulle macchine virtuali di SQL Server. In tal caso, il traffico Internet viene indirizzato all'area secondaria e tale area può comunque connettersi alla replica primaria. Tuttavia, vi sarà un aumento della latenza, poiché le connessioni di SQL Server attraversano le aree geografiche. In questa situazione è necessario effettuare un failover manuale come indicato di seguito:
 
    1. Passare temporaneamente una replica del database SQL Server nell'area secondaria al commit *sincrono*, in modo da garantire che non si verifichino perdite di dati durante il failover.
@@ -151,19 +150,18 @@ Quando si aggiorna la distribuzione, aggiornare un'area alla volta per ridurre l
 
 Testare la resilienza del sistema agli errori. Di seguito sono riportati alcuni scenari di errore comuni da testare:
 
-* Arrestare le istanze di macchina virtuale.
-* Esercitare un uso elevato delle risorse come CPU e memoria.
-* Disconnettere/ritardare la rete.
-* Arrestare in modo anomalo i processi.
-* Far scadere i certificati.
-* Simulare errori hardware.
-* Arrestare il servizio DNS nei controller di dominio.
+- Arrestare le istanze di macchina virtuale.
+- Esercitare un uso elevato delle risorse come CPU e memoria.
+- Disconnettere/ritardare la rete.
+- Arrestare in modo anomalo i processi.
+- Far scadere i certificati.
+- Simulare errori hardware.
+- Arrestare il servizio DNS nei controller di dominio.
 
 Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali. Testare anche le combinazioni di modalità di errore.
 
+<!-- links -->
 
-
-<!-- Links -->
 [hybrid-vpn]: ../hybrid-networking/vpn.md
 [azure-dns]: /azure/dns/dns-overview
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
@@ -187,5 +185,3 @@ Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx
-
-[0]: ./images/multi-region-sql-server.png "Architettura di rete a disponibilità elevata per applicazioni Azure a più livelli"

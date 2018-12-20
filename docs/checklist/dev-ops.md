@@ -1,15 +1,16 @@
 ---
 title: Elenco di controllo DevOps
+titleSuffix: Azure Design Review Framework
 description: Elenco di controllo contenente linee guida relative a DevOps.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 2e338d2f2e61b404223001a61f44e06e89e7f563
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 218456c7cfbf1bdff4bf5f7404cfbd67aad5c193
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847060"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307215"
 ---
 # <a name="devops-checklist"></a>Elenco di controllo DevOps
 
@@ -21,7 +22,7 @@ DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazion
 
 **Verificare che il team intero comprenda il ciclo di vita del software.** Il team deve comprendere il ciclo di vita complessivo dell'applicazione e la parte del ciclo in cui si trova al momento. In questo modo tutti i membri del team sapranno quali attività svolgere e quali programmare e predisporre per il futuro.
 
-**Ridurre la durata del ciclo.** Puntare a ridurre al minimo il tempo richiesto per tradurre le idee in software sviluppato fruibile. Limitare le dimensioni e l'ambito delle singole versioni per mantenere ridotto il carico di test. Automatizzare i processi di compilazione, test, configurazione e distribuzione laddove possibile. Rimuovere eventuali ostacoli alle comunicazioni tra sviluppatori e tra gli sviluppatori e le operazioni. 
+**Ridurre la durata del ciclo.** Puntare a ridurre al minimo il tempo richiesto per tradurre le idee in software sviluppato fruibile. Limitare le dimensioni e l'ambito delle singole versioni per mantenere ridotto il carico di test. Automatizzare i processi di compilazione, test, configurazione e distribuzione laddove possibile. Rimuovere eventuali ostacoli alle comunicazioni tra sviluppatori e tra gli sviluppatori e le operazioni.
 
 **Esaminare e migliorare i processi.** I processi e le procedure, automatici e manuali, non sono mai finali. Programmare revisioni periodiche dei flussi di lavoro, delle procedure e della documentazione correnti, puntando a un miglioramento costante.
 
@@ -31,17 +32,17 @@ DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazion
 
 **Ottimizzare la velocità e raccogliere i dati.** Ogni miglioramento pianificato è ipotetico. Procedere sempre con incrementi ridotti il più possibile. Considerare le nuove idee come esperimenti. Instrumentare gli esperimenti in modo da poter raccogliere i dati di produzione per valutarne l'efficacia. Essere preparati a fallire e rispondere immediatamente agli errori se l'ipotesi non è corretta.
 
-**Consentire tempo per l'apprendimento.** Successi e fallimenti offrono entrambi ottime opportunità di apprendimento. Prima di passare a nuovi progetti, consentire tempo a sufficienza per acquisire le nozioni più importanti e assicurarsi che vengano apprese dal team. Concedere al team anche il tempo di acquisire competenze, sperimentare e conoscere nuovi strumenti e tecniche. 
+**Consentire tempo per l'apprendimento.** Successi e fallimenti offrono entrambi ottime opportunità di apprendimento. Prima di passare a nuovi progetti, consentire tempo a sufficienza per acquisire le nozioni più importanti e assicurarsi che vengano apprese dal team. Concedere al team anche il tempo di acquisire competenze, sperimentare e conoscere nuovi strumenti e tecniche.
 
-**Operazioni sui documenti.** Documentare tutti gli strumenti, i processi e le attività automatizzate con lo stesso livello di qualità del codice del prodotto. Documentare la struttura e l'architettura correnti di tutti i sistemi supportati, insieme ai processi di recupero e ad altre procedure di manutenzione. Concentrarsi sui passaggi effettivamente eseguiti, non su processi teoricamente ottimali. Rivedere e aggiornare periodicamente la documentazione. Per il codice, verificare che siano inclusi commenti significativi, in particolare nelle API pubbliche, e usare strumenti per generare automaticamente la documentazione del codice quando possibile. 
+**Operazioni sui documenti.** Documentare tutti gli strumenti, i processi e le attività automatizzate con lo stesso livello di qualità del codice del prodotto. Documentare la struttura e l'architettura correnti di tutti i sistemi supportati, insieme ai processi di recupero e ad altre procedure di manutenzione. Concentrarsi sui passaggi effettivamente eseguiti, non su processi teoricamente ottimali. Rivedere e aggiornare periodicamente la documentazione. Per il codice, verificare che siano inclusi commenti significativi, in particolare nelle API pubbliche, e usare strumenti per generare automaticamente la documentazione del codice quando possibile.
 
-**Condivisione delle conoscenze.** La documentazione è utile solo se altri ne sono a conoscenza e possono attingervi. Accertarsi che la documentazione sia organizzata e facilmente individuabile. La creatività è importante: pranzi durante presentazioni informali, video o newsletter sono strumenti ideali per condividere le conoscenze.
+**Condivisione delle conoscenze.** La documentazione è utile solo se altri ne sono a conoscenza e possono attingervi. Accertarsi che la documentazione sia organizzata e facilmente individuabile. La creatività è importante: presentazioni informali, video o newsletter sono strumenti ideali per condividere le conoscenze.
 
 ## <a name="development"></a>Sviluppo.
 
 **Fornire agli sviluppatori ambienti di simil-produzione.** Se gli ambienti di test e sviluppo non riflettono l'ambiente di produzione, è difficile testare e diagnosticare i problemi. Pertanto, mantenere gli ambienti di sviluppo e test il più vicino possibile all'ambiente di produzione. Verificare che i dati di test siano coerenti con i dati usati in produzione, anche se si tratta di dati di esempio e non reali (per motivi di privacy o conformità). Pianificare di generare e anonimizzare i dati di test di esempio.
 
-**Verificare che tutti i membri del team autorizzati possano eseguire il provisioning dell'infrastruttura e distribuire l'applicazione.** La configurazione di risorse di simil-produzione e la distribuzione dell'applicazione non devono implicare attività manuali complesse o una conoscenza tecnica dettagliata del sistema. Chiunque abbia le autorizzazioni appropriate deve essere in grado di creare o distribuire risorse di simil-produzione senza l'intervento del team addetto alle operazioni. 
+**Verificare che tutti i membri del team autorizzati possano eseguire il provisioning dell'infrastruttura e distribuire l'applicazione.** La configurazione di risorse di simil-produzione e la distribuzione dell'applicazione non devono implicare attività manuali complesse o una conoscenza tecnica dettagliata del sistema. Chiunque abbia le autorizzazioni appropriate deve essere in grado di creare o distribuire risorse di simil-produzione senza l'intervento del team addetto alle operazioni.
 
 > Questa indicazione non sottintende che chiunque possa eseguire il push di aggiornamenti in tempo reale alla distribuzione di produzione. Si tratta di ridurre l'attrito per i team di sviluppo e controllo qualità per creare ambienti di simil-produzione.
 
@@ -55,7 +56,7 @@ DevOps rappresenta l'integrazione di sviluppo, controllo di qualità e operazion
 
 **Automatizzare i test.** Il test manuale del software è un'attività tediosa e soggetta a errori. Automatizzare attività di test comuni e integrare i test nei processi di compilazione. I test automatizzati garantiscono coerenza a livello di copertura e riproducibilità. Anche i test integrati dell'interfaccia utente dovrebbero essere eseguiti da uno strumento automatico. Azure offre risorse di sviluppo e test che consentono di configurare ed eseguire i test. Per altre informazioni, vedere [Sviluppo e test][dev-test].
 
-**Test per l'individuazione degli errori.** Se un sistema non riesce a connettersi a un servizio, come risponde? Può eseguire il recupero dopo che il servizio sarà tornato disponibile? Rendere i test di fault injection parte integrante della revisione negli ambienti di test e gestione temporanea. Quando il processo e le procedure sono collaudati, prendere in considerazione l'eventualità di eseguire questi test in produzione. 
+**Test per l'individuazione degli errori.** Se un sistema non riesce a connettersi a un servizio, come risponde? Può eseguire il recupero dopo che il servizio sarà tornato disponibile? Rendere i test di fault injection parte integrante della revisione negli ambienti di test e gestione temporanea. Quando il processo e le procedure sono collaudati, prendere in considerazione l'eventualità di eseguire questi test in produzione.
 
 **Eseguire i test in produzione** Il processo di rilascio non termina con la distribuzione nell'ambiente di produzione. Predisporre una serie di test per garantire che il codice distribuito funzioni come previsto. Per le distribuzioni aggiornate di rado, pianificare test di produzione nell'ambito della manutenzione standard.
 
@@ -87,11 +88,11 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 **Implementare strategie di gestione dei rilasci per ridurre il rischio di distribuzione.** La distribuzione degli aggiornamenti di un'applicazione in produzione comporta sempre dei rischi. Per ridurre al minimo questi rischi, adottare strategie come ad esempio le [versioni canary][ canary-release] o le [distribuzioni di tipo blu-verde][blue-green] per distribuire gli aggiornamenti per un subset di utenti. Verificare che l'aggiornamento funzioni come previsto e distribuirlo nel resto del sistema.
 
-**Documentare tutte le modifiche.** Aggiornamenti e modifiche di configurazione di entità minore possono generare confusione e conflitti di versioni. Tenere sempre traccia di tutte le modifiche, indipendentemente dalla loro entità. Registrare qualsiasi modifica, incluse le patch applicate e le modifiche ai criteri e alle configurazioni. Non includere dati sensibili in questi registri. Ad esempio, registrare l'aggiornamento di credenziali e l'autore della modifica, ma non le credenziali aggiornate. Il record delle modifiche deve essere visibile all'intero team. 
+**Documentare tutte le modifiche.** Aggiornamenti e modifiche di configurazione di entità minore possono generare confusione e conflitti di versioni. Tenere sempre traccia di tutte le modifiche, indipendentemente dalla loro entità. Registrare qualsiasi modifica, incluse le patch applicate e le modifiche ai criteri e alle configurazioni. Non includere dati sensibili in questi registri. Ad esempio, registrare l'aggiornamento di credenziali e l'autore della modifica, ma non le credenziali aggiornate. Il record delle modifiche deve essere visibile all'intero team.
 
 **Automatizzare le distribuzioni.** Automatizzare tutte le distribuzioni e predisporre i sistemi in modo che possano rilevare eventuali problemi durante l'implementazione. Adottare un processo di mitigazione dei rischi per preservare il codice esistente e i dati nell'ambiente di produzione, prima che l'aggiornamento li sostituisca in tutte le istanze di produzione. Disporre di una procedura automatica per eseguire il roll forward delle correzioni o il rollback delle modifiche.
 
-**Valutare la possibilità di rendere l'infrastruttura non modificabile.** L'infrastruttura non modificabile è il principio secondo cui non si dovrebbe modificare l'infrastruttura dopo la distribuzione nell'ambiente di produzione, altrimenti ci si può trovare in uno stato in cui sono state applicate modifiche ad hoc, ed è difficile sapere esattamente cosa sia cambiato. Un'infrastruttura non modificabile opera attraverso la sostituzione di interi server nell'ambito di qualsiasi nuova distribuzione. In questo modo è possibile testare e distribuire in blocco il codice e l'ambiente di hosting. Dopo la distribuzione, i componenti dell'infrastruttura non verranno più modificati fino al ciclo successivo di compilazione e distribuzione. 
+**Valutare la possibilità di rendere l'infrastruttura non modificabile.** L'infrastruttura non modificabile è il principio secondo cui non si dovrebbe modificare l'infrastruttura dopo la distribuzione nell'ambiente di produzione, altrimenti ci si può trovare in uno stato in cui sono state applicate modifiche ad hoc, ed è difficile sapere esattamente cosa sia cambiato. Un'infrastruttura non modificabile opera attraverso la sostituzione di interi server nell'ambito di qualsiasi nuova distribuzione. In questo modo è possibile testare e distribuire in blocco il codice e l'ambiente di hosting. Dopo la distribuzione, i componenti dell'infrastruttura non verranno più modificati fino al ciclo successivo di compilazione e distribuzione.
 
 ## <a name="monitoring"></a>Monitoraggio
 
@@ -99,7 +100,7 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 **Aggregare e correlare i registri e le metriche**. Un sistema di telemetria correttamente instrumentato garantisce una grande quantità di dati delle prestazioni non elaborati e log eventi. Verificare che i dati di telemetria e log vengano elaborati e correlati in un breve periodo di tempo, in modo che il personale addetto alle operazioni abbia sempre un quadro aggiornato dell'integrità del sistema. Organizzare e visualizzare i dati in modi che offrano una visuale uniforme di eventuali problemi, in modo che, quando possibile, la correlazione tra gli eventi sia chiaramente deducibile.
 
-> Consultare i criteri di conservazione aziendali per conoscere i requisiti relativi alla modalità di elaborazione dei dati e alla durata di archiviazione. 
+> Consultare i criteri di conservazione aziendali per conoscere i requisiti relativi alla modalità di elaborazione dei dati e alla durata di archiviazione.
 
 **Implementare notifiche e avvisi automatizzati.** Configurare strumenti di monitoraggio come [Monitoraggio di Azure][azure-monitor] per rilevare modelli e condizioni che indichino problemi potenziali o esistenti e inviare avvisi ai membri del team in grado di risolvere questi problemi. Ottimizzare gli avvisi per evitare falsi positivi.
 
@@ -109,15 +110,15 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 **Automatizzare le attività operative.** La gestione manuale di processi operativi ripetitivi è soggetta a errori. Automatizzare queste attività laddove possibile per garantire coerenza nell'esecuzione e nella qualità. È consigliabile sottoporre al controllo delle versioni il codice che implementa l'automazione nel controllo del codice sorgente. Come per qualsiasi altro codice, è necessario testare anche gli strumenti di automazione.
 
-**Adottare un approccio di infrastruttura come codice al provisioning.** Ridurre al minimo la quantità di configurazione manuale necessaria per il provisioning delle risorse. In alternativa, usare script e modelli di [Azure Resource Manager][resource-manager]. Mantenere gli script e i modelli nel controllo del codice sorgente, come per qualsiasi altro codice gestito. 
+**Adottare un approccio di infrastruttura come codice al provisioning.** Ridurre al minimo la quantità di configurazione manuale necessaria per il provisioning delle risorse. In alternativa, usare script e modelli di [Azure Resource Manager][resource-manager]. Mantenere gli script e i modelli nel controllo del codice sorgente, come per qualsiasi altro codice gestito.
 
-**Valutare la possibilità di usare contenitori.** I contenitori presentano un'interfaccia standard basata su pacchetti per la distribuzione di applicazioni. Con i contenitori, un'applicazione viene distribuita usando pacchetti autonomi che includono eventuali software, dipendenze e file necessari per eseguire l'applicazione, semplificando notevolmente il processo di distribuzione. 
+**Valutare la possibilità di usare contenitori.** I contenitori presentano un'interfaccia standard basata su pacchetti per la distribuzione di applicazioni. Con i contenitori, un'applicazione viene distribuita usando pacchetti autonomi che includono eventuali software, dipendenze e file necessari per eseguire l'applicazione, semplificando notevolmente il processo di distribuzione.
 
-I contenitori creano anche un livello di astrazione tra l'applicazione e il sistema operativo sottostante, garantendo coerenza tra gli ambienti. Questa astrazione può anche isolare un contenitore da altri processi o applicazioni in esecuzione in un host. 
+I contenitori creano anche un livello di astrazione tra l'applicazione e il sistema operativo sottostante, garantendo coerenza tra gli ambienti. Questa astrazione può anche isolare un contenitore da altri processi o applicazioni in esecuzione in un host.
 
 **Implementare resilienza e riparazione automatica.** La resilienza è la capacità di recupero da errori di un'applicazione. Alcune strategie per la resilienza includono nuovi tentativi di risoluzione degli errori temporanei e il failover a un'istanza secondaria o addirittura un'altra regione. Per altre informazioni, vedere [Progettazione di applicazioni resilienti per Azure][resiliency]. Instrumentare le applicazioni in modo che i problemi vengano segnalati immediatamente per gestire interruzioni o altri errori di sistema.
 
-**Predisporre un manuale operativo.** Un manuale operativo o *runbook* documenta le procedure e le informazioni di gestione necessarie per la gestione di un sistema da parte del personale addetto alle operazioni. Documentare anche eventuali scenari operativi e piani di mitigazione dei rischi che potrebbero entrare in caso di errore o altre interruzioni del servizio. Creare questa documentazione durante il processo di sviluppo e mantenerla sempre aggiornata. Si tratta di un documento in evoluzione che deve essere periodicamente esaminato, testato e migliorato. 
+**Predisporre un manuale operativo.** Un manuale operativo o *runbook* documenta le procedure e le informazioni di gestione necessarie per la gestione di un sistema da parte del personale addetto alle operazioni. Documentare anche eventuali scenari operativi e piani di mitigazione dei rischi che potrebbero entrare in caso di errore o altre interruzioni del servizio. Creare questa documentazione durante il processo di sviluppo e mantenerla sempre aggiornata. Si tratta di un documento in evoluzione che deve essere periodicamente esaminato, testato e migliorato.
 
 È essenziale condividere la documentazione. Incoraggiare i membri del team a contribuire alle informazioni e condividerle. L'intero team deve poter accedere ai documenti. Semplificare per tutti i membri del team la capacità di aggiornare i documenti.
 
@@ -131,11 +132,11 @@ I contenitori creano anche un livello di astrazione tra l'applicazione e il sist
 
 **Seguire i principi dei privilegi minimi in fase di concessione dell'accesso alle risorse.** Gestire con cautela l'accesso alle risorse. L'accesso deve essere negato per impostazione predefinita, a meno che a un utente non venga concesso in modo esplicito di accedere a una risorsa. Concedere l'accesso utente solo in misura necessaria a completare le attività. Tenere traccia delle autorizzazioni utente ed eseguire controlli periodici di sicurezza.
 
-<strong>Usare il controllo degli accessi in base al ruolo.</strong> L'assegnazione di account utente e accessi alle risorse non deve essere un processo manuale. Usare il [controllo degli accessi in base al ruolo] [rbac] per concedere l'accesso in base a identità e gruppi di [Azure Active Directory][azure-ad]. 
+**Usare il controllo degli accessi in base al ruolo.** L'assegnazione di account utente e accessi alle risorse non deve essere un processo manuale. Usare il [controllo degli accessi in base al ruolo] [rbac] per concedere l'accesso in base a identità e gruppi di [Azure Active Directory][azure-ad].
 
-**Usare un sistema di rilevamento dei bug per tenere traccia dei problemi.** Senza una procedura efficace per tenere traccia dei problemi, è facile perdere elementi, duplicare il lavoro o introdurre altri problemi. Non basarsi sulle comunicazioni a voce tra gli utenti per tenere traccia dello stato dei bug. Usare un apposito strumento per registrare dettagli sui problemi, assegnare le risorse in grado di risolverli e fornire un audit trail sull'avanzamento e sullo stato. 
+**Usare un sistema di rilevamento dei bug per tenere traccia dei problemi.** Senza una procedura efficace per tenere traccia dei problemi, è facile perdere elementi, duplicare il lavoro o introdurre altri problemi. Non basarsi sulle comunicazioni a voce tra gli utenti per tenere traccia dello stato dei bug. Usare un apposito strumento per registrare dettagli sui problemi, assegnare le risorse in grado di risolverli e fornire un audit trail sull'avanzamento e sullo stato.
 
-**Gestire tutte le risorse in un sistema di gestione delle modifiche.** Tutti gli aspetti di un processo DevOps devono essere inclusi in un sistema di gestione e controllo delle versioni, in modo da semplificare il monitoraggio e il controllo delle modifiche. Gli aspetti includono codice, infrastruttura, configurazione, documentazione e script. Considerare tutti questi tipi di risorse come codice durante il processo di test/compilazione/revisione. 
+**Gestire tutte le risorse in un sistema di gestione delle modifiche.** Tutti gli aspetti di un processo DevOps devono essere inclusi in un sistema di gestione e controllo delle versioni, in modo da semplificare il monitoraggio e il controllo delle modifiche. Gli aspetti includono codice, infrastruttura, configurazione, documentazione e script. Considerare tutti questi tipi di risorse come codice durante il processo di test/compilazione/revisione.
 
 **Usare elenchi di controllo.** Creare elenchi di controllo delle operazioni per garantire l'aderenza ai processi. In un manuale di grandi dimensioni può capitare di perdere alcuni elementi: un elenco di controllo permette di concentrarsi su dettagli altrimenti trascurabili. Gestire gli elenchi di controllo e individuare sempre nuovi modi per automatizzare le attività e semplificare i processi.
 

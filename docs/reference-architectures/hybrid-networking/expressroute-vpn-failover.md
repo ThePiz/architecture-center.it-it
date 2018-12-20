@@ -1,49 +1,48 @@
 ---
-title: Implementazione di un'architettura di rete ibrida a disponibilità elevata
-description: Come implementare un'architettura di rete sicura da sito a sito, che si estende su una rete virtuale di Azure e su una rete locale connessa tramite ExpressRoute con failover del gateway VPN.
+title: Connettere una rete locale ad Azure
+titleSuffix: Azure Reference Architectures
+description: Implementare un'architettura di rete sicura da sito a sito e a disponibilità elevata, che si estende su una rete virtuale di Azure e su una rete locale connessa tramite ExpressRoute con failover del gateway VPN.
 author: telmosampaio
 ms.date: 10/22/2017
-pnp.series.title: Connect an on-premises network to Azure
-pnp.series.prev: expressroute
-cardTitle: Improving availability
-ms.openlocfilehash: 31bf471dbff3661face7d94fbec0973d81541ec7
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: d44c046f2351d6103a01108574e0295302f0ba11
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916414"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119949"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a>Connettere una rete locale ad Azure tramite ExpressRoute con failover VPN
 
-Questa architettura di riferimento illustra come connettere una rete locale a una rete virtuale di Azure (VNet) usando ExpressRoute, tramite una rete privata virtuale da sito a sito (VPN), che funge da connessione di failover. Flussi di traffico tra la rete locale e la rete virtuale di Azure tramite una connessione ExpressRoute. Se si verifica una perdita di connettività del circuito ExpressRoute, il traffico viene indirizzato attraverso un tunnel per VPN IPSec. [**Distribuire questa soluzione**.](#deploy-the-solution)
+Questa architettura di riferimento illustra come connettere una rete locale a una rete virtuale di Azure (VNet) usando ExpressRoute, tramite una rete privata virtuale da sito a sito (VPN), che funge da connessione di failover. Flussi di traffico tra la rete locale e la rete virtuale di Azure tramite una connessione ExpressRoute. Se si verifica una perdita di connettività del circuito ExpressRoute, il traffico viene indirizzato attraverso un tunnel per VPN IPSec. [**Distribuire questa soluzione**](#deploy-the-solution).
 
-Si noti che se il circuito ExpressRoute non è disponibile, la route VPN gestisce solo le connessioni di peering private. Le connessioni di peering pubblico e peering Microsoft passano attraverso Internet. 
+Si noti che se il circuito ExpressRoute non è disponibile, la route VPN gestisce solo le connessioni di peering private. Le connessioni di peering pubblico e peering Microsoft passano attraverso Internet.
 
-![[0]][0]
+![Architettura di riferimento di un'architettura di rete ibrida a disponibilità elevata con ExpressRoute e gateway VPN](./images/expressroute-vpn-failover.png)
 
 *Scaricare un [file Visio][visio-download] di questa architettura.*
 
-## <a name="architecture"></a>Architettura 
+## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti seguenti.
 
-* **Rete locale**. Una rete LAN privata in esecuzione all'interno di un'organizzazione.
+- **Rete locale**. Una rete LAN privata in esecuzione all'interno di un'organizzazione.
 
-* **Appliance VPN**. Un dispositivo o un servizio che offre connettività esterna alla rete locale. L'appliance VPN può essere un dispositivo hardware o una soluzione software come il Servizio Routing e Accesso remoto (RRAS) in Windows Server 2012. Per una lista delle appliance VPN supportate e per informazioni sulla configurazione di appliance VPN selezionate per connettersi ad Azure, vedere [Informazioni sui dispositivi VPN e sui parametri IPsec/IKE per connessioni del Gateway VPN da sito a sito][vpn-appliance].
+- **Appliance VPN**. Un dispositivo o un servizio che offre connettività esterna alla rete locale. L'appliance VPN può essere un dispositivo hardware o una soluzione software come il Servizio Routing e Accesso remoto (RRAS) in Windows Server 2012. Per una lista delle appliance VPN supportate e per informazioni sulla configurazione di appliance VPN selezionate per connettersi ad Azure, vedere [Informazioni sui dispositivi VPN e sui parametri IPsec/IKE per connessioni del Gateway VPN da sito a sito][vpn-appliance].
 
-* **Circuito ExpressRoute**: Un circuito di livello 2 o di livello 3 fornito dal provider di connettività che unisce la rete locale ad Azure attraverso i router perimetrali. Il circuito usa l'infrastruttura hardware gestita dal provider di connettività.
+- **Circuito ExpressRoute**: Un circuito di livello 2 o di livello 3 fornito dal provider di connettività che unisce la rete locale ad Azure attraverso i router perimetrali. Il circuito usa l'infrastruttura hardware gestita dal provider di connettività.
 
-* **Gateway di rete virtuale per ExpressRoute**: il gateway di rete virtuale per ExpressRoute consente di connettere la rete virtuale al circuito ExpressRoute, usato per la connettività, con la rete locale.
+- **Gateway di rete virtuale per ExpressRoute**: il gateway di rete virtuale per ExpressRoute consente di connettere la rete virtuale al circuito ExpressRoute, usato per la connettività, con la rete locale.
 
-* **Gateway di rete virtuale VPN**: il gateway di rete virtuale VPN consente di connettere la rete virtuale all'appliance VPN nella rete locale. Il gateway di rete virtuale VPN è configurato per accettare le richieste provenienti dalla rete locale solo tramite l'appliance VPN. Per maggiori informazioni, consultare [Connettere una rete locale a una rete virtuale di Microsoft Azure][connect-to-an-Azure-vnet].
+- **Gateway di rete virtuale VPN**: il gateway di rete virtuale VPN consente di connettere la rete virtuale all'appliance VPN nella rete locale. Il gateway di rete virtuale VPN è configurato per accettare le richieste provenienti dalla rete locale solo tramite l'appliance VPN. Per maggiori informazioni, consultare [Connettere una rete locale a una rete virtuale di Microsoft Azure][connect-to-an-Azure-vnet].
 
-* **Connessione VPN**: la connessione ha proprietà che specificano il tipo di connessione (IPSec) e la chiave condivisa con l'appliance VPN locale per crittografare il traffico.
+- **Connessione VPN**: la connessione ha proprietà che specificano il tipo di connessione (IPSec) e la chiave condivisa con l'appliance VPN locale per crittografare il traffico.
 
-* **Rete virtuale di Azure (VNet)**: ogni rete virtuale si trova in una singola area di Azure e può contenere più livelli applicazione. I livelli dell'applicazione possono essere segmentati usando subnet in ogni rete virtuale.
+- **Rete virtuale di Azure (VNet)**: ogni rete virtuale si trova in una singola area di Azure e può contenere più livelli applicazione. I livelli dell'applicazione possono essere segmentati usando subnet in ogni rete virtuale.
 
-* **Subnet del gateway**: i gateway di rete virtuale vengono mantenuti nella stessa subnet.
+- **Subnet del gateway**: i gateway di rete virtuale vengono mantenuti nella stessa subnet.
 
-* **Applicazione cloud**: Applicazione contenuta in Azure. Può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per altre informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] ed [Esecuzione di carichi di lavoro della macchina virtuale di Linux][linux-vm-ra].
+- **Applicazione cloud**: Applicazione contenuta in Azure. Può includere più livelli, con più subnet connesse tramite i servizi di bilanciamento del carico di Azure. Per altre informazioni sull'infrastruttura dell'applicazione, vedere [Esecuzione di carichi di lavoro della macchina virtuale Windows][windows-vm-ra] ed [Esecuzione di carichi di lavoro della macchina virtuale di Linux][linux-vm-ra].
 
 ## <a name="recommendations"></a>Consigli
 
@@ -53,7 +52,7 @@ Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Segu
 
 Creare il gateway di rete virtuale per ExpressRoute e il gateway di rete virtuale VPN nella stessa rete virtuale. Ciò significa che condividono la stessa subnet denominata *GatewaySubnet*.
 
-Se la rete virtuale include già una subnet denominata *GatewaySubnet*, verificare che abbia uno spazio di indirizzi /27 o maggiore. Se la subnet esistente è troppo piccola, usare il comando PowerShell seguente per rimuoverla: 
+Se la rete virtuale include già una subnet denominata *GatewaySubnet*, verificare che abbia uno spazio di indirizzi /27 o maggiore. Se la subnet esistente è troppo piccola, usare il comando PowerShell seguente per rimuoverla:
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetworkGateway -Name <yourvnetname> -ResourceGroupName <yourresourcegroup>
@@ -99,32 +98,38 @@ Per considerazioni sulla sicurezza generale di Azure, vedere [Servizi cloud Micr
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
-**Prerequisiti.** È necessario disporre di un'infrastruttura locale esistente già configurata con un'appliance di rete adatta.
+**Prerequisiti**. È necessario disporre di un'infrastruttura locale esistente già configurata con un'appliance di rete adatta.
 
 Per distribuire la soluzione, seguire questa procedura.
 
+<!-- markdownlint-disable MD033 -->
+
 1. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute-vpn-failover%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
-2. Attendere che il collegamento si apra nel portale di Azure e quindi eseguire questi passaggi:   
-   * Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-hybrid-vpn-er-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
+
+2. Attendere che il collegamento si apra nel portale di Azure e quindi eseguire questi passaggi:
+   - Poiché il nome del **gruppo di risorse** è già definito nel file dei parametri, selezionare **Crea nuovo** e immettere `ra-hybrid-vpn-er-rg` nella casella di testo.
+   - Selezionare l'area dalla casella di riepilogo a discesa **Località**.
+   - Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
+   - Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
+   - Fare clic sul pulsante **Acquista**.
+
 3. Attendere il completamento della distribuzione.
+
 4. Fare clic sul pulsante seguente:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute-vpn-failover%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+
 5. Attendere che il collegamento si apra nel Portale di Azure, successivamente premere Invio ed eseguire i passaggi seguenti:
-   * Selezionare **Usa esistente** nella sezione **Gruppo di risorse** e immettere `ra-hybrid-vpn-er-rg` nella casella di testo.
-   * Selezionare l'area dalla casella di riepilogo a discesa **Località**.
-   * Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
-   * Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
-   * Fare clic sul pulsante **Acquista**.
+   - Selezionare **Usa esistente** nella sezione **Gruppo di risorse** e immettere `ra-hybrid-vpn-er-rg` nella casella di testo.
+   - Selezionare l'area dalla casella di riepilogo a discesa **Località**.
+   - Non modificare le caselle di testo **Template Root Uri** (URI radice modello) né **Parameter Root Uri** (URI radice parametro).
+   - Leggere i termini e le condizioni, quindi fare clic sulla casella di controllo **Accetto le condizioni riportate sopra**.
+   - Fare clic sul pulsante **Acquista**.
+
+<!-- markdownlint-enable MD033 -->
 
 <!-- links -->
 
 [windows-vm-ra]: ../virtual-machines-windows/index.md
 [linux-vm-ra]: ../virtual-machines-linux/index.md
-
-
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [azure-vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
@@ -136,4 +141,3 @@ Per distribuire la soluzione, seguire questa procedura.
 [guidance-vpn]: ./vpn.md
 [best-practices-security]: /azure/best-practices-network-security
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
-[0]: ./images/expressroute-vpn-failover.png "Struttura di un'architettura di rete ibrida a disponibilità elevata con ExpressRoute e gateway VPN"
