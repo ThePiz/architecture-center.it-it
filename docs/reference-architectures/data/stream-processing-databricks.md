@@ -5,12 +5,12 @@ description: Creare una pipeline di elaborazione di flussi end-to-end in Azure u
 author: petertaylor9999
 ms.date: 11/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: ceea89b554e11619823b2065a7f03919527b21fa
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: f7364334f889388ad432efadd46362a9fa82fe8b
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329416"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644122"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-databricks"></a>Creare una pipeline di elaborazione di flussi con Azure Databricks
 
@@ -36,9 +36,13 @@ L'architettura è costituita dai componenti seguenti.
 
 ## <a name="data-ingestion"></a>Inserimento di dati
 
+<!-- markdownlint-disable MD033 -->
+
 Per simulare un'origine dati, questa architettura di riferimento usa il set di dati [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797) <sup>[[1]](#note1)</sup>. Questo set di dati contiene dati relativi alle corse dei taxi a New York City in un periodo di quattro anni (2010 &ndash; 2013). I tipi di record contenuti sono due: Dati relativi alle corse e dati relativi alle tariffe. I dati relativi alle corsa includono la durata della corsa, la distanza percorsa e le ubicazioni di salita e discesa del cliente. I dati relativi ai costi della corsa includono gli importi relativi a costo di base, imposte e mancia. I campi comuni in entrambi i tipi di record includono il numero di taxi, il numero di licenza e l'ID del fornitore. Questi tre campi identificano in modo univoco un taxi e un tassista. I dati vengono archiviati in formato CSV.
 
-> [1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). University of Illinois at Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
+> [1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). University of Illinois at Urbana-Champaign. <https://doi.org/10.13012/J8PN93H8>
+
+<!-- markdownlint-enable MD033 -->
 
 Il generatore di dati è un'applicazione .NET Core che legge i record e li invia a Hub eventi di Azure. Il generatore invia i dati relativi alle corse in formato JSON e i dati relativi ai costi in formato CSV.
 
@@ -313,4 +317,3 @@ SparkMetric_CL
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
 Per distribuire ed eseguire l'implementazione di riferimento, seguire la procedura illustrata nel file [README in GitHub](https://github.com/mspnp/azure-databricks-streaming-analytics).
-
