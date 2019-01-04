@@ -5,12 +5,12 @@ description: Architettura consigliata che illustra come distribuire e gestire un
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 3500e05631ad34af0abc8e0f7a3e2b4919157746
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644156"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011345"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
@@ -20,7 +20,7 @@ Questa architettura di riferimento illustra come distribuire e gestire un server
 
 *Scaricare un [file di Visio](https://archcenter.blob.core.windows.net/cdn/Jenkins-architecture.vsdx) contenente questo diagramma dell'architettura.*
 
-Questa architettura supporta il ripristino di emergenza con i servizi di Azure, ma non copre scenari di aumento del numero di istanze più avanzati che prevedono più master o disponibilità elevata senza tempi di inattività. Per informazioni generali sui vari componenti di Azure e un'esercitazione dettagliata per la creazione di una pipeline di integrazione continua/distribuzione continua in Azure, vedere [Jenkins in Azure][jenkins-on-azure].
+Questa architettura supporta il ripristino di emergenza con i servizi di Azure, ma non copre scenari di aumento del numero di istanze più avanzati che prevedono più master o disponibilità elevata senza tempi di inattività. Per informazioni generali sui vari componenti di Azure e un'esercitazione dettagliata per la creazione di una pipeline CI/CD in Azure, vedere [Jenkins in Azure][jenkins-on-azure].
 
 Questo documento è incentrato sulle operazioni di base in Azure necessarie per supportare Jenkins, come l'uso di Archiviazione di Azure per gestire gli elementi di compilazione, gli elementi di sicurezza necessari per l'accesso SSO, gli altri servizi che possono essere integrati e la scalabilità per la pipeline. L'architettura è progettata per essere usata con un repository di controllo del codice sorgente esistente. Uno scenario comune, ad esempio, consiste nell'avviare i processi Jenkins in base a commit GitHub.
 
@@ -44,7 +44,7 @@ Questa architettura è costituita dai componenti seguenti:
 
 - **Dischi gestiti**. Un [disco gestito][managed-disk] è un disco rigido virtuale permanente usato per l'archiviazione delle applicazioni nonché per mantenere lo stato del server Jenkins e offrire il ripristino di emergenza. I dischi dati vengono archiviati in Archiviazione di Azure. Per prestazioni elevate, è consigliabile usare [Archiviazione Premium][premium].
 
-- **Archivio BLOB di Azure**. Il [plug-in Windows Azure Storage][configure-storage] usa l'archivio BLOB di Azure per archiviare gli elementi di compilazione che vengono creati e condivisi con altre compilazioni Jenkins.
+- **Archiviazione BLOB di Azure**. Il [plug-in Windows Azure Storage][configure-storage] usa Archiviazione BLOB di Azure per archiviare gli elementi di compilazione che vengono creati e condivisi con altre compilazioni Jenkins.
 
 - **Azure Active Directory (Azure AD)**. [Azure AD][azure-ad] supporta l'autenticazione degli utenti, consentendo di configurare l'accesso SSO. Le [entità servizio][service-principal] di Azure AD definiscono i criteri e le autorizzazioni per ogni autorizzazione di ruolo nel flusso di lavoro tramite il [controllo degli accessi in base al ruolo][rbac]. Ogni entità servizio è associata a un processo Jenkins.
 
@@ -54,7 +54,7 @@ Questa architettura è costituita dai componenti seguenti:
 
 ## <a name="recommendations"></a>Consigli
 
-I consigli seguenti sono validi per la maggior parte degli scenari. Seguire questi consigli, a meno che non si disponga di un requisito specifico che li escluda.
+Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Seguire queste indicazioni, a meno che non si disponga di un requisito specifico che le escluda.
 
 ### <a name="azure-ad"></a>Azure AD
 
