@@ -1,14 +1,16 @@
 ---
 title: Antipattern Front End occupato
+titleSuffix: Performance antipatterns for cloud apps
 description: Le attività asincrone in un numero elevato di thread in background può privare delle risorse necessarie altre attività in primo piano.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 89a2d6c41af1e19ca1b9b6a0a5dceac615afd60a
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: f52cedde5a17f098fb9218c48479fae981a2c7df
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428296"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011498"
 ---
 # <a name="busy-front-end-antipattern"></a>Antipattern Front End occupato
 
@@ -62,11 +64,11 @@ Il problema principale è il fabbisogno di risorse del metodo `Post`. Anche se l
 
 ## <a name="how-to-fix-the-problem"></a>Come risolvere il problema
 
-Trasferire i processi con uso intensivo di risorse in un back-end separato. 
+Trasferire i processi con uso intensivo di risorse in un back-end separato.
 
 Con questo approccio, il front-end inserisce le attività a elevato utilizzo di risorse in una coda di messaggi. Il back-end preleva le attività per l'elaborazione asincrona. La coda funge anche da livellatore di carico, memorizzando nel buffer le richieste per il back-end. Se la coda diventa troppo lunga, è possibile configurare la scalabilità automatica in modo da scalare orizzontalmente il back-end.
 
-Di seguito è riportata una versione modificata del codice precedente. In questa versione il metodo `Post` inserisce un messaggio in una coda del bus di servizio. 
+Di seguito è riportata una versione modificata del codice precedente. In questa versione il metodo `Post` inserisce un messaggio in una coda del bus di servizio.
 
 ```csharp
 public class WorkInBackgroundController : ApiController
@@ -121,7 +123,7 @@ public async Task RunAsync(CancellationToken cancellationToken)
 - Questo approccio aggiunge un ulteriore livello di complessità all'applicazione. È necessario gestire in modo sicuro l'accodamento e la rimozione dalla coda per evitare la perdita di richieste in caso di errore.
 - L'applicazione stabilisce una dipendenza da un servizio aggiuntivo per la coda di messaggi.
 - L'ambiente di elaborazione deve essere sufficientemente scalabile per gestire il carico di lavoro previsto e soddisfare gli obiettivi di velocità effettiva necessari.
-- Sebbene questo approccio migliori la velocità di risposta complessiva, il completamento delle attività trasferite nel back-end può richiedere più tempo. 
+- Sebbene questo approccio migliori la velocità di risposta complessiva, il completamento delle attività trasferite nel back-end può richiedere più tempo.
 
 ## <a name="how-to-detect-the-problem"></a>Come rilevare il problema
 
@@ -130,12 +132,12 @@ Uno dei sintomi di un front-end occupato è la latenza elevata durante l'esecuzi
 Per provare a identificare questo problema è possibile eseguire la procedura seguente:
 
 1. Eseguire il monitoraggio del processo per il sistema di produzione per identificare i punti associati a tempi di risposta più lunghi.
-2. Esaminare i dati di telemetria acquisiti in questi punti per determinare la combinazione di operazioni eseguite e di risorse usate. 
+2. Esaminare i dati di telemetria acquisiti in questi punti per determinare la combinazione di operazioni eseguite e di risorse usate.
 3. Individuare eventuali correlazioni tra i tempi di risposta insoddisfacenti e i volumi e le combinazioni di operazioni eseguite in questi intervalli.
-4. Eseguire il test di carico di ogni operazione sospetta per identificare quali operazioni stanno usando le risorse rendendole non disponibili ad altre operazioni. 
+4. Eseguire il test di carico di ogni operazione sospetta per identificare quali operazioni stanno usando le risorse rendendole non disponibili ad altre operazioni.
 5. Esaminare il codice sorgente di queste operazioni per determinare la possibile causa dell'eccessivo consumo eccessivo di risorse.
 
-## <a name="example-diagnosis"></a>Diagnosi di esempio 
+## <a name="example-diagnosis"></a>Diagnosi di esempio
 
 Le sezioni seguenti applicano questa procedura all'applicazione di esempio descritta in precedenza.
 
@@ -155,18 +157,17 @@ L'immagine successiva illustra alcune metriche raccolte per monitorare l'utilizz
 
 A questo punto sembra che il metodo `Post` nel controller `WorkInFrontEnd` sia il candidato ideale per un esame più attento. Per confermare l'ipotesi, sono necessarie ulteriori attività in un ambiente controllato.
 
-### <a name="perform-load-testing"></a>Eseguire il test di carico 
+### <a name="perform-load-testing"></a>Eseguire il test di carico
 
 Il passaggio successivo è eseguire i test in un ambiente controllato. Ad esempio, eseguire una serie di test di carico includendo e quindi omettendo a turno ogni richiesta per verificare gli effetti.
 
-Il grafo seguente mostra i risultati dei test di carico eseguiti in una distribuzione identica del servizio cloud usata nei test precedenti. Nel test è stato usato un carico costante di 500 utenti che eseguono l'operazione `Get` nel controller `UserProfile`, oltre a un carico per passaggio di utenti che eseguono l'operazione `Post` nel controller `WorkInFrontEnd`. 
+Il grafo seguente mostra i risultati dei test di carico eseguiti in una distribuzione identica del servizio cloud usata nei test precedenti. Nel test è stato usato un carico costante di 500 utenti che eseguono l'operazione `Get` nel controller `UserProfile`, oltre a un carico per passaggio di utenti che eseguono l'operazione `Post` nel controller `WorkInFrontEnd`.
 
 ![Risultati del test di carico iniziale per il controller WorkInFrontEnd][Initial-Load-Test-Results-Front-End]
 
 Inizialmente il carico per passaggio è 0 e quindi solo gli utenti attivi stanno eseguendo le richieste `UserProfile`. Il sistema è in grado di rispondere a circa 500 richieste al secondo. Dopo 60 secondi un carico di 100 utenti aggiuntivi inizia a inviare richieste POST al controller `WorkInFrontEnd`. Quasi immediatamente, il carico di lavoro inviato al controller `UserProfile` diminuisce fino a circa 150 richieste al secondo. Ciò è dovuto alla modalità di funzionamento dello strumento di esecuzione dei test di carico. Attende una risposta prima di inviare la richiesta successiva; maggiore è il tempo impiegato per ricevere una risposta, minore sarà la frequenza di richieste.
 
 Quando il numero di utenti che invia richieste POST al controller `WorkInFrontEnd` aumenta, la velocità di risposta del controller `UserProfile` diminuisce. Si noti che il volume di richieste gestito dal controller `WorkInFrontEnd` rimane relativamente costante. La saturazione del sistema diventa evidente quando la velocità globale di entrambe le richieste tende verso un limite fisso ma basso.
-
 
 ### <a name="review-the-source-code"></a>Esaminare il codice sorgente
 
@@ -175,11 +176,11 @@ Il passaggio finale consiste nell'esaminare il codice sorgente. Il team di svilu
 Tuttavia, le attività eseguite da questo metodo usano ancora risorse di CPU, memoria e di altro tipo. L'abilitazione di questo processo per l'esecuzione asincrona potrebbe effettivamente compromettere le prestazioni, poiché gli utenti possono attivare contemporaneamente un numero elevato di operazioni di questo tipo in modo incontrollato. È previsto un limite al numero di thread che un server può eseguire. Superando questo limite è probabile che venga generata un'eccezione durante il tentativo di avviare un nuovo thread.
 
 > [!NOTE]
-> Questo non significa che è consigliabile evitare operazioni asincrone. L'esecuzione di un'operazione await asincrona in una chiamata di rete è una procedura consigliata. Vedere l'antipattern [I/O sincrono][sync-io]. In questo caso il problema è che un'operazione con utilizzo elevato di CPU è stata generata in un altro thread. 
+> Questo non significa che è consigliabile evitare operazioni asincrone. L'esecuzione di un'operazione await asincrona in una chiamata di rete è una procedura consigliata. Vedere l'antipattern [I/O sincrono][sync-io]. In questo caso il problema è che un'operazione con utilizzo elevato di CPU è stata generata in un altro thread.
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>Implementare la soluzione e verificare il risultato
 
-L'immagine seguente mostra il monitoraggio delle prestazioni dopo l'implementazione della soluzione. Il carico è simile a quello illustrato in precedenza, ma i tempi di risposta per il controller `UserProfile` sono ora molto più veloci. Il volume di richieste è aumentato nella stessa durata da 2.759 a 23.565. 
+L'immagine seguente mostra il monitoraggio delle prestazioni dopo l'implementazione della soluzione. Il carico è simile a quello illustrato in precedenza, ma i tempi di risposta per il controller `UserProfile` sono ora molto più veloci. Il volume di richieste è aumentato nella stessa durata da 2.759 a 23.565.
 
 ![Riquadro delle transazioni business di AppDynamics che mostra gli effetti dei tempi di risposta di tutte le richieste quando viene usato il controller WorkInBackground][AppDynamics-Transactions-Background-Requests]
 
@@ -218,5 +219,3 @@ Il grafo seguente mostra i risultati di un test di carico. Il volume complessivo
 [AppDynamics-Transactions-Background-Requests]: ./_images/AppDynamicsBackgroundPerformanceStats.jpg
 [AppDynamics-Metrics-Background-Requests]: ./_images/AppDynamicsBackgroundMetrics.jpg
 [Load-Test-Results-Background]: ./_images/LoadTestResultsBackground.jpg
-
-

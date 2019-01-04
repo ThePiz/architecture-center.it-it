@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: Confrontare le architetture di riferimento per l'integrazione di Active Directory locale con Azure.
 ms.date: 07/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: 905dedda6de1a107f55b2f7651441780a685aea7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 99a64f0a5fbe5624aa8ad05bd3565ab2aef618b3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119864"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011787"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>Scegliere una soluzione per l'integrazione di Active Directory locale con Azure
 
@@ -46,7 +46,7 @@ La directory di Azure AD non è un'estensione di una directory locale. Si tratta
 **Problematiche**
 
 - I servizi di gestione delle identità sono limitati a utenti e gruppi. Non è possibile eseguire l'autenticazione del servizio e degli account del computer.
-- È necessario configurare la connettività con il dominio locale per mantenere la sincronizzazione della directory di Azure AD. 
+- È necessario configurare la connettività con il dominio locale per mantenere la sincronizzazione della directory di Azure AD.
 - Per abilitare l'autenticazione tramite Azure AD è possibile che sia necessario riscrivere le applicazioni.
 
 **Architettura di riferimento**
@@ -55,9 +55,9 @@ La directory di Azure AD non è un'estensione di una directory locale. Si tratta
 
 ## <a name="ad-ds-in-azure-joined-to-an-on-premises-forest"></a>Active Directory Domain Services in Azure unito a una foresta locale
 
-Distribuire i server di Active Directory Domain Services in Azure. Creare un dominio in Azure e aggiungerlo alla foresta di Active Directory locale. 
+Distribuire i server di Active Directory Domain Services in Azure. Creare un dominio in Azure e aggiungerlo alla foresta di Active Directory locale.
 
-Prendere in considerazione questa opzione se si desidera usare le funzionalità di Active Directory Domain Services non implementate al momento da Azure AD. 
+Prendere in considerazione questa opzione se si desidera usare le funzionalità di Active Directory Domain Services non implementate al momento da Azure AD.
 
 **Vantaggi**
 
@@ -97,13 +97,13 @@ Gli usi tipici di questa architettura includono mantenere la separazione della s
 
 ## <a name="extend-ad-fs-to-azure"></a>Estendere AD FS in Azure
 
-Replicare una distribuzione di Active Directory Federation Services in Azure, per eseguire l'autenticazione federata e l'autorizzazione per i componenti in esecuzione in Azure. 
+Replicare una distribuzione di Active Directory Federation Services in Azure, per eseguire l'autenticazione federata e l'autorizzazione per i componenti in esecuzione in Azure.
 
 Usi tipici di questa architettura:
 
 - Le organizzazioni partner possono autenticare e autorizzare gli utenti.
 - Gli utenti possono eseguire l'autenticazione da Web browser in esecuzione all'esterno del firewall aziendale.
-- Gli utenti possono connettersi da dispositivi esterni autorizzati, ad esempio dispositivi mobili. 
+- Gli utenti possono connettersi da dispositivi esterni autorizzati, ad esempio dispositivi mobili.
 
 **Vantaggi**
 

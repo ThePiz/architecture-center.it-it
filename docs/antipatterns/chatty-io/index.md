@@ -1,14 +1,16 @@
 ---
 title: Antipattern I/O "frammentato"
+titleSuffix: Performance antipatterns for cloud apps
 description: Un numero elevato di richieste di I/O può influire negativamente sulle prestazioni e la velocità di risposta.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c018e365d0a6244f77d119ad59f601e9c7ea965c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428568"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011226"
 ---
 # <a name="chatty-io-antipattern"></a>Antipattern I/O "frammentato"
 
@@ -26,7 +28,7 @@ L'esempio seguente legge da un database di prodotti. Sono presenti tre tabelle, 
 2. Trovare tutti i prodotti in tale sottocategoria eseguendo una query sulla tabella `Product`.
 3. Per ogni prodotto eseguire una query sui dati dei prezzi della tabella `ProductPriceListHistory`.
 
-L'applicazione utilizza [Entity Framework][ef] per eseguire query sul database. L'esempio completo è disponibile [qui][code-sample]. 
+L'applicazione utilizza [Entity Framework][ef] per eseguire query sul database. L'esempio completo è disponibile [qui][code-sample].
 
 ```csharp
 public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcategoryId)
@@ -57,11 +59,11 @@ public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcatego
 }
 ```
 
-Questo esempio illustra il problema in modo esplicito, ma talvolta un O/RM può mascherare il problema, se recupera in modo implicito i record figlio uno alla volta. Questo è noto come "problema N+1". 
+Questo esempio illustra il problema in modo esplicito, ma talvolta un O/RM può mascherare il problema, se recupera in modo implicito i record figlio uno alla volta. Questo è noto come "problema N+1".
 
 ### <a name="implementing-a-single-logical-operation-as-a-series-of-http-requests"></a>Implementazione di una singola operazione logica come una serie di richieste HTTP
 
-Ciò accade spesso quando gli sviluppatori tentano di seguire un paradigma a oggetti e trattano gli oggetti remoti come se fossero oggetti locali in memoria. Questo può comportare troppi round trip di rete. Ad esempio, l'API Web seguente espone le singole proprietà degli oggetti `User` tramite i singoli metodi HTTP GET. 
+Ciò accade spesso quando gli sviluppatori tentano di seguire un paradigma a oggetti e trattano gli oggetti remoti come se fossero oggetti locali in memoria. Questo può comportare troppi round trip di rete. Ad esempio, l'API Web seguente espone le singole proprietà degli oggetti `User` tramite i singoli metodi HTTP GET.
 
 ```csharp
 public class UserController : ApiController
@@ -89,7 +91,7 @@ public class UserController : ApiController
 }
 ```
 
-Anche se non c'è niente di tecnicamente errato in questo approccio, la maggior parte dei client probabilmente dovrà ottenere molte proprietà per ogni `User`, di conseguenza il codice client sarà simile al seguente. 
+Anche se non c'è niente di tecnicamente errato in questo approccio, la maggior parte dei client probabilmente dovrà ottenere molte proprietà per ogni `User`, di conseguenza il codice client sarà simile al seguente.
 
 ```csharp
 HttpResponseMessage response = await client.GetAsync("users/1/username");
@@ -107,7 +109,7 @@ var dob = await response.Content.ReadAsStringAsync();
 
 ### <a name="reading-and-writing-to-a-file-on-disk"></a>Lettura e scrittura in un file su disco
 
-L'I/O su file comporta l'apertura di un file e lo spostamento nel punto appropriato prima di leggere o scrivere i dati. Una volta completata l'operazione, il file può essere chiuso per risparmiare risorse del sistema operativo. Un'applicazione che legge e scrive continuamente piccole quantità di informazioni in un file genererà un considerevole sovraccarico di I/O. Anche le richieste di scrittura di piccole dimensioni possono provocare la frammentazione dei file, rallentando ulteriormente le successive operazioni di I/O. 
+L'I/O su file comporta l'apertura di un file e lo spostamento nel punto appropriato prima di leggere o scrivere i dati. Una volta completata l'operazione, il file può essere chiuso per risparmiare risorse del sistema operativo. Un'applicazione che legge e scrive continuamente piccole quantità di informazioni in un file genererà un considerevole sovraccarico di I/O. Anche le richieste di scrittura di piccole dimensioni possono provocare la frammentazione dei file, rallentando ulteriormente le successive operazioni di I/O.
 
 Il seguente esempio usa un `FileStream` per scrivere un oggetto `Customer` in un file. Creando il `FileStream`, il file viene aperto, ed eliminandolo, il file viene chiuso (l'istruzione `using` elimina automaticamente l'oggetto `FileStream`). Se l'applicazione chiama questo metodo ripetutamente man mano che vengono aggiunti nuovi clienti, può accumularsi rapidamente molto sovraccarico di I/O.
 
@@ -211,7 +213,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - I primi due esempi generano *meno* chiamate di I/O, ma ognuno recupera *più* informazioni. È necessario considerare il compromesso tra questi due fattori. La risposta esatta varia in base agli schemi di utilizzo effettivi. Ad esempio, nell'esempio dell'API Web, potrebbe risultare che i client richiedono spesso solo il nome utente. In tal caso, può rivelarsi utile esporlo come una chiamata API distinta. Per altre informazioni, vedere l'antipattern di [recupero estraneo][extraneous-fetching].
 
-- Durante la lettura dei dati, non eseguire richieste di I/O troppo grandi. Un'applicazione deve recuperare solo le informazioni che è probabile che vengano utilizzate. 
+- Durante la lettura dei dati, non eseguire richieste di I/O troppo grandi. Un'applicazione deve recuperare solo le informazioni che è probabile che vengano utilizzate.
 
 - Talvolta è utile partizionare le informazioni per un oggetto in due blocchi, *dati con accesso frequente*, che sono responsabili della maggior parte delle richieste, e *dati ad accesso meno frequente*, utilizzati raramente. Spesso i dati utilizzati più di frequente sono una parte relativamente piccola dei dati totali per un oggetto, pertanto restituire solo questa parte permette di risparmiare un considerevole sovraccarico di I/O.
 
@@ -231,7 +233,7 @@ I sintomi dell'I/O "frammentato" includono una latenza elevata e una bassa veloc
 2. Eseguire test di carico di ogni operazione identificata nel passaggio precedente.
 3. Durante i test di carico, raccogliere dati di telemetria sulle richieste di accesso ai dati eseguite da ogni operazione.
 4. Raccogliere statistiche dettagliate per ogni richiesta inviata a un archivio dati.
-5. Profilare l'applicazione nell'ambiente di test per stabilire dove potrebbero verificarsi possibili colli di bottiglia di I/O. 
+5. Profilare l'applicazione nell'ambiente di test per stabilire dove potrebbero verificarsi possibili colli di bottiglia di I/O.
 
 Cercare uno qualsiasi dei seguenti sintomi:
 
@@ -246,16 +248,16 @@ Nelle sezioni seguenti si applicano questi passaggi all'esempio illustrato in pr
 
 ### <a name="load-test-the-application"></a>Testare il carico dell'applicazione
 
-Questo grafico mostra i risultati del test di carico. Il tempo di risposta mediano viene misurato in decimi di secondo per richiesta. Il grafico mostra una latenza molto elevata. Con un carico di 1000 utenti, un utente potrebbe dover attendere circa un minuto per visualizzare i risultati di una query. 
+Questo grafico mostra i risultati del test di carico. Il tempo di risposta mediano viene misurato in decimi di secondo per richiesta. Il grafico mostra una latenza molto elevata. Con un carico di 1000 utenti, un utente potrebbe dover attendere circa un minuto per visualizzare i risultati di una query.
 
 ![Indicatori chiave risultanti dai test di carico gli per l'applicazione di esempio sull'I/O "frammentato"][key-indicators-chatty-io]
 
 > [!NOTE]
-> L'applicazione è stata distribuita come un'app Web del Servizio App di Azure, utilizzando il database SQL di Azure. Il test di carico utilizzava un carico di lavoro simulato a passaggi fino a un massimo di 1000 utenti simultanei. Il database è stato configurato con un pool di connessioni che supporta un massimo di 1000 connessioni simultanee, per ridurre le probabilità che una contesa per le connessioni possa influire sui risultati. 
+> L'applicazione è stata distribuita come un'app Web del Servizio App di Azure, utilizzando il database SQL di Azure. Il test di carico utilizzava un carico di lavoro simulato a passaggi fino a un massimo di 1000 utenti simultanei. Il database è stato configurato con un pool di connessioni che supporta un massimo di 1000 connessioni simultanee, per ridurre le probabilità che una contesa per le connessioni possa influire sui risultati.
 
 ### <a name="monitor-the-application"></a>Monitorare l'applicazione
 
-È possibile usare una pacchetto di monitoraggio delle prestazioni di applicazione (APM) per acquisire e analizzare le metriche chiave che potrebbero identificare I/O "frammentato". Quali metriche sono importanti dipende dal carico di lavoro di I/O. Per questo esempio, le richieste di I/O interessanti erano le query di database. 
+È possibile usare una pacchetto di monitoraggio delle prestazioni di applicazione (APM) per acquisire e analizzare le metriche chiave che potrebbero identificare I/O "frammentato". Quali metriche sono importanti dipende dal carico di lavoro di I/O. Per questo esempio, le richieste di I/O interessanti erano le query di database.
 
 La figura seguente mostra i risultati generati utilizzando l'[APM New Relic][new-relic]. Il tempo di risposta medio del database ha avuto un picco a circa 5,6 secondi per ogni richiesta durante il carico di lavoro massimo. Il sistema è in grado di supportare una media di 410 richieste al minuto per tutto il test.
 
@@ -279,7 +281,7 @@ La figura seguente mostra le istruzioni SQL effettive che sono state eseguite. L
 
 ![Dettagli delle query per l'applicazione di esempio sottoposta a test][queries3]
 
-Se si utilizza un O/RM, ad esempio Entity Framework, il monitoraggio delle query SQL può consentire di comprendere la modalità in cui O/RM converte le chiamate a livello di codice in istruzioni SQL e indicare le aree in cui l'accesso ai dati può essere ottimizzato. 
+Se si utilizza un O/RM, ad esempio Entity Framework, il monitoraggio delle query SQL può consentire di comprendere la modalità in cui O/RM converte le chiamate a livello di codice in istruzioni SQL e indicare le aree in cui l'accesso ai dati può essere ottimizzato.
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>Implementare la soluzione e verificare il risultato
 
@@ -293,7 +295,7 @@ Questa volta il sistema ha supportato una media di 3.970 richieste al minuto, ri
 
 ![Panoramica delle transazioni per l'API a blocchi][databasetraffic2]
 
-Monitorando l'istruzione SQL si vede che tutti i dati vengono recuperati in una singola istruzione SELECT. Anche se questa query è notevolmente più complessa, viene eseguita una sola volta per ogni operazione. E mentre i join complessi possono diventare costosi, i sistemi di database relazionali sono ottimizzati per questo tipo di query.  
+Monitorando l'istruzione SQL si vede che tutti i dati vengono recuperati in una singola istruzione SELECT. Anche se questa query è notevolmente più complessa, viene eseguita una sola volta per ogni operazione. E mentre i join complessi possono diventare costosi, i sistemi di database relazionali sono ottimizzati per questo tipo di query.
 
 ![Dettagli delle query per l'API a blocchi][queries4]
 
@@ -322,4 +324,3 @@ Monitorando l'istruzione SQL si vede che tutti i dati vengono recuperati in una 
 [queries2]: _images/DatabaseQueries2.jpg
 [queries3]: _images/DatabaseQueries3.jpg
 [queries4]: _images/DatabaseQueries4.jpg
-

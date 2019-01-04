@@ -1,18 +1,20 @@
 ---
 title: Antipattern del database occupato
+titleSuffix: Performance antipatterns for cloud apps
 description: L'esecuzione del processo di offload in un server del database può causare problemi di prestazioni e scalabilità.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 11bce03aed2e988d0a814b3298818715ba42c1c5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428908"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011464"
 ---
 # <a name="busy-database-antipattern"></a>Antipattern del database occupato
 
-L'esecuzione del processo di offload in un server del database può causarne una perdita significativa di tempo nell'operazione di esecuzione del codice, invece che in quella di rispondere alle richieste per archiviare e recuperare i dati. 
+L'esecuzione del processo di offload in un server del database può causarne una perdita significativa di tempo nell'operazione di esecuzione del codice, invece che in quella di rispondere alle richieste per archiviare e recuperare i dati.
 
 ## <a name="problem-description"></a>Descrizione del problema
 
@@ -217,9 +219,9 @@ using (var command = new SqlCommand(...))
 
 ## <a name="how-to-detect-the-problem"></a>Come rilevare il problema
 
-I sintomi di un database occupato comprendono una diminuzione sproporzionata dei tempi di risposta e della velocità effettiva nelle operazioni che accedono al database. 
+I sintomi di un database occupato comprendono una diminuzione sproporzionata dei tempi di risposta e della velocità effettiva nelle operazioni che accedono al database.
 
-Per provare a identificare questo problema è possibile eseguire la procedura seguente: 
+Per provare a identificare questo problema è possibile eseguire la procedura seguente:
 
 1. Usare il monitoraggio delle prestazioni per identificare quanto tempo impiega il sistema di produzione per eseguire l'attività del database.
 
@@ -261,10 +263,9 @@ L'utilizzo della CPU e della DTU mostra che il sistema ha impiegato più tempo p
 
 ![Monitoraggio del Database SQL Azure, che mostra le prestazioni del database durante l'esecuzione dell'elaborazione nell'applicazione del client][ProcessingInClientApplicationMonitor]
 
-## <a name="related-resources"></a>Risorse correlate 
+## <a name="related-resources"></a>Risorse correlate
 
 - [Antipattern di recupero estraneo][ExtraneousFetching]
-
 
 [dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md
