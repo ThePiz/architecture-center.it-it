@@ -1,14 +1,17 @@
 ---
 title: Modelli di progettazione cloud
+titleSuffix: Azure Architecture Center
 description: Schemi progettuali cloud per la creazione di applicazioni affidabili, scalabili e sicure nel cloud
 keywords: Azure
+author: dragon119
 ms.date: 12/10/2018
-ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 003bef866b0cd873122cfb8d4730b95ba49d3d7f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450854"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011294"
 ---
 # <a name="cloud-design-patterns"></a>Modelli di progettazione cloud
 
@@ -18,6 +21,7 @@ Ogni schema descrive il problema che risolve, le considerazioni per l'applicazio
 
 ## <a name="challenges-in-cloud-development"></a>Sfide per lo sviluppo nel cloud
 
+<!-- markdownlint-disable MD033 -->
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/availability.md"><img src="_images/category/availability.svg" alt="Availability" /></a></td>
@@ -76,6 +80,7 @@ Ogni schema descrive il problema che risolve, le considerazioni per l'applicazio
     </td>
 </tr>
 </table>
+<!-- markdownlint-disable MD033 -->
 
 ## <a name="catalog-of-patterns"></a>Catalogo dei modelli
 
@@ -114,4 +119,3 @@ Ogni schema descrive il problema che risolve, le considerazioni per l'applicazio
 |                      [Sostituzione](./strangler.md)                      |                                            Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi.                                            |
 |                     [Limitazione](./throttling.md)                     |                                                 Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio.                                                 |
 |                      [Passepartout](./valet-key.md)                      |                                                        Usare un token o una chiave che fornisca ai client l'accesso diretto limitato a una specifica risorsa o a un servizio.                                                        |
-

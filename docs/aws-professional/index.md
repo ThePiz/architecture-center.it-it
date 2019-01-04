@@ -5,12 +5,12 @@ keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze
 author: lbrader
 ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: e6077349a285df56d234f3cc2a14dc0d0d33da55
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916686"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011668"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
@@ -174,7 +174,7 @@ Sebbene i tipi di istanze AWS e le dimensioni delle macchine virtuali di Azure a
 
 -   [Dimensioni delle macchine virtuali in Azure (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
-A differenza della fatturazione al secondo di AWS, le macchine virtuali su richiesta di Azure hanno una fatturazione al minuto.
+Analogamente alla fatturazione al secondo di AWS, le macchine virtuali su richiesta di Azure prevedono una fatturazione al minuto.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS e Archiviazione di Azure per i dischi della macchina virtuale
 
@@ -217,11 +217,11 @@ Azure offre numerosi servizi di calcolo che non hanno equivalenti diretti in AWS
 
 -   [Creare una VM Linux in Azure usando il portale.](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-quick-create-portal/)
 
--   [Architettura di riferimento per Azure - Esecuzione di una VM Linux su Azure](https://azure.microsoft.com/documentation/articles/guidance-compute-single-vm-linux/)
+-   [Architettura di riferimento di Azure: Eseguire una macchina virtuale Linux in Azure](https://azure.microsoft.com/documentation/articles/guidance-compute-single-vm-linux/)
 
 -   [Introduzione alle app Web Node.js nel servizio app di Azure](https://azure.microsoft.com/documentation/articles/app-service-web-nodejs-get-started/)
 
--   [Architettura di riferimento per Azure - Applicazione Web di base](https://azure.microsoft.com/documentation/articles/guidance-web-apps-basic/)
+-   [Architettura di riferimento di Azure: Esecuzione di un'applicazione Web di base in Azure](https://azure.microsoft.com/documentation/articles/guidance-web-apps-basic/)
 
 -   [Creare la prima funzione di Azure](https://azure.microsoft.com/documentation/articles/functions-create-first-azure-function/)
 
@@ -258,7 +258,7 @@ Per i dati a cui si accede raramente che devono essere immediatamente disponibil
 
 -   [Guida alla sicurezza di Archiviazione di Azure](https://azure.microsoft.com/documentation/articles/storage-security-guide/)
 
--   [Modelli e procedure - Indicazioni sulla rete per la distribuzione di contenuti (CDN)](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
+-   [Modelli e procedure: Reti per la distribuzione di contenuti (CDN)](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
 
 ### <a name="networking"></a>Rete
 
@@ -310,7 +310,7 @@ I costi di RDS di AWS sono determinati dalla quantità di risorse hardware consu
 
 -   [Configurare la replica geografica per il database SQL di Azure con il portale di Azure](https://azure.microsoft.com/documentation/articles/sql-database-geo-replication-portal/)
 
--   [Introduzione a Cosmos DB: un database NoSQL JSON](/azure/cosmos-db/sql-api-introduction)
+-   [Introduzione ad Azure Cosmos DB: un database NoSQL JSON](/azure/cosmos-db/sql-api-introduction)
 
 -   [Come usare l'archiviazione tabelle di Azure da Node.js](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/)
 

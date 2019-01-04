@@ -1,14 +1,16 @@
 ---
 title: Antipattern I/O sincrono
+titleSuffix: Performance antipatterns for cloud apps
 description: Bloccare il thread chiamante durante il completamento dell'I/O può ridurre le prestazioni e influire sulla scalabilità verticale.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 209295cfc911ae168bca2f1c64dc930a27a9a4ba
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429010"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009339"
 ---
 # <a name="synchronous-io-antipattern"></a>Antipattern I/O sincrono
 
@@ -27,9 +29,9 @@ Alcuni esempi comuni sono:
 
 In genere questo antipattern si verifica perché:
 
-- Sembra essere il modo più intuitivo per eseguire un'operazione. 
+- Sembra essere il modo più intuitivo per eseguire un'operazione.
 - L'applicazione richiede una risposta a una richiesta.
-- L'applicazione usa una libreria che fornisce solo metodi sincroni per l'I/O. 
+- L'applicazione usa una libreria che fornisce solo metodi sincroni per l'I/O.
 - Una libreria esterna esegue operazioni di I/O sincrone internamente. Una singola chiamata di I/O sincrona può bloccare un'intera sequenza di chiamate.
 
 Il codice seguente carica un file nell'archiviazione BLOB di Azure. Esistono due posizioni in cui il codice blocca l'attesa per l'I/O sincrono: il metodo `CreateIfNotExists` e il metodo `UploadFromStream`.
@@ -77,7 +79,7 @@ public class SyncController : ApiController
 
 ## <a name="how-to-fix-the-problem"></a>Come risolvere il problema
 
-Sostituire operazioni di I/O sincrone con operazioni asincrone. In questo modo il thread corrente si libera e può continuare a eseguire lavoro significativo anziché bloccarsi, inoltre può migliorare l'utilizzo delle risorse di calcolo. Eseguire l'I/O in modo asincrono è particolarmente efficace per la gestione di un carico imprevisto nelle richieste dalle applicazioni client. 
+Sostituire operazioni di I/O sincrone con operazioni asincrone. In questo modo il thread corrente si libera e può continuare a eseguire lavoro significativo anziché bloccarsi, inoltre può migliorare l'utilizzo delle risorse di calcolo. Eseguire l'I/O in modo asincrono è particolarmente efficace per la gestione di un carico imprevisto nelle richieste dalle applicazioni client.
 
 Molte librerie forniscono versioni sincrone e asincrone dei metodi. Se possibile, utilizzare le versioni asincrone. Di seguito è riportata la versione asincrona dell'esempio precedente che consente di caricare un file nell'archiviazione BLOB di Azure.
 
@@ -193,16 +195,10 @@ Il grafico successivo mostra i risultati dei test ti carico della versione asinc
 
 La velocità effettiva è molto superiore. Nella stessa durata del test precedente, il sistema gestisce correttamente una velocità effettiva quasi decuplicata, misurata in richieste al secondo. Inoltre, il tempo medio di risposta è relativamente costante e rimane circa 25 volte più piccolo rispetto al test precedente.
 
-
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
-
-
 [async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 
 [sync-performance]: _images/SyncPerformance.jpg
 [async-performance]: _images/AsyncPerformance.jpg
-
-
-

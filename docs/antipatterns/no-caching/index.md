@@ -1,18 +1,20 @@
 ---
 title: Nessun antipattern della memorizzazione nella cache
+titleSuffix: Performance antipatterns for cloud apps
 description: Il recupero ripetuto degli stessi dati può ridurre le prestazioni e la scalabilità.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: c2a5cdbb8863f87b8928558c8237e8659032ac32
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295583"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011600"
 ---
 # <a name="no-caching-antipattern"></a>Nessun antipattern della memorizzazione nella cache
 
-In un'applicazione cloud che gestisce molte richieste simultanee, il recupero ripetuto degli stessi dati può ridurre le prestazioni e la scalabilità. 
+In un'applicazione cloud che gestisce molte richieste simultanee, il recupero ripetuto degli stessi dati può ridurre le prestazioni e la scalabilità.
 
 ## <a name="problem-description"></a>Descrizione del problema
 
@@ -46,7 +48,7 @@ L'esempio completo è disponibile [qui][sample-app].
 
 In genere questo antipattern si verifica perché:
 
-- Il mancato utilizzo di una cache è più semplice da implementare e funziona correttamente con carichi bassi. La memorizzazione nella cache rende il codice più complesso. 
+- Il mancato utilizzo di una cache è più semplice da implementare e funziona correttamente con carichi bassi. La memorizzazione nella cache rende il codice più complesso.
 - I vantaggi e gli svantaggi dell'uso di una cache non sono ben compresi.
 - La preoccupazione riguarda il sovraccarico di gestione dell'accuratezza e dell'aggiornamento dei dati memorizzati nella cache.
 - È stata eseguita la migrazione di un'applicazione da un sistema locale, in cui la latenza di rete non rappresentava un problema, e il sistema ha lavorato su un hardware impegnativo ad alte prestazioni, pertanto la memorizzazione nella cache non è stata considerata nella progettazione originale.
@@ -59,7 +61,7 @@ La strategia di memorizzazione nella cache più diffusa è quella *su richiesta*
 - Nel percorso di lettura, l'applicazione tenta di leggere i dati dalla cache. Se i dati non sono nella cache, l'applicazione li recupera dall'origine dati e li aggiunge alla cache.
 - Nel percorso di scrittura, l'applicazione scrive la modifica direttamente all'origine dati e rimuove il valore precedente dalla cache. Verrà recuperato e aggiunto alla cache la volta successiva in cui è richiesto.
 
-Questo approccio è adatto per i dati vengono modificati frequentemente. Di seguito è riportato l'esempio precedente aggiornato per usare il modello [cache-aside][cache-aside-pattern].  
+Questo approccio è adatto per i dati vengono modificati frequentemente. Di seguito è riportato l'esempio precedente aggiornato per usare il modello [cache-aside][cache-aside-pattern].
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository
@@ -100,7 +102,7 @@ public class CacheService
 }
 ```
 
-Si noti che il metodo `GetAsync` ora chiama la classe `CacheService`, invece di chiamare direttamente il database. La classe `CacheService` tenta innanzitutto di ottenere l'elemento dalla Cache Redis di Azure. Se il valore non viene trovato nella Cache Redis, `CacheService` richiama una funzione lambda che gli è stata passata dal chiamante. La funzione lambda ha il compito di recuperare i dati dal database. Questa implementazione separa il repository dalla particolare soluzione di memorizzazione nella cache e separa `CacheService` dal database. 
+Si noti che il metodo `GetAsync` ora chiama la classe `CacheService`, invece di chiamare direttamente il database. La classe `CacheService` tenta innanzitutto di ottenere l'elemento dalla Cache Redis di Azure. Se il valore non viene trovato nella Cache Redis, `CacheService` richiama una funzione lambda che gli è stata passata dal chiamante. La funzione lambda ha il compito di recuperare i dati dal database. Questa implementazione separa il repository dalla particolare soluzione di memorizzazione nella cache e separa `CacheService` dal database.
 
 ## <a name="considerations"></a>Considerazioni
 
@@ -112,11 +114,11 @@ Si noti che il metodo `GetAsync` ora chiama la classe `CacheService`, invece di 
 
 - Non è necessario memorizzare nella cache intere entità. Se la maggior parte di un'entità è statico ma solo una piccola parte cambia frequentemente, memorizzare nella cache gli elementi statici e recuperare gli elementi dinamici dall'origine dati. Questo approccio aiuta a ridurre il volume di I/O eseguito sull'origine dati.
 
-- In alcuni casi, se i dati volatili sono di breve durata, può essere utile memorizzarli nella cache. Si consideri ad esempio un dispositivo che invia continuamente gli aggiornamenti di stato. Potrebbe essere opportuno memorizzare nella cache queste informazioni non appena arrivano e non scriverle affatto in un archivio permanente.  
+- In alcuni casi, se i dati volatili sono di breve durata, può essere utile memorizzarli nella cache. Si consideri ad esempio un dispositivo che invia continuamente gli aggiornamenti di stato. Potrebbe essere opportuno memorizzare nella cache queste informazioni non appena arrivano e non scriverle affatto in un archivio permanente.
 
 - Per impedire l'obsolescenza dei dati, molte soluzioni di memorizzazione nella cache supportano periodi di scadenza configurabili, in modo che i dati vengono automaticamente rimossi dalla cache dopo un intervallo specificato. Potrebbe essere necessario regolare l'ora di scadenza per il proprio scenario. I dati che sono molto statici possono rimanere nella cache per periodi di tempo più lunghi rispetto ai dati volatili che possono diventare rapidamente obsoleti.
 
-- Se la soluzione di memorizzazione nella cache non fornisce una scadenza incorporata, potrebbe essere necessario implementare un processo in background che occasionalmente organizza la cache per impedire l'aumento illimitato delle dimensioni. 
+- Se la soluzione di memorizzazione nella cache non fornisce una scadenza incorporata, potrebbe essere necessario implementare un processo in background che occasionalmente organizza la cache per impedire l'aumento illimitato delle dimensioni.
 
 - Oltre alla memorizzazione nella cache dei dati da un'origine dati esterna, è possibile usare la memorizzazione nella cache per salvare i risultati di calcoli complessi. Prima di eseguire questa operazione, tuttavia, instrumentare l'applicazione per determinare se l'applicazione è realmente associata alla CPU.
 
@@ -130,16 +132,15 @@ Si noti che il metodo `GetAsync` ora chiama la classe `CacheService`, invece di 
 
 È possibile eseguire la procedura seguente per identificare se la mancanza di memorizzazione nella cache sta provocando problemi alle prestazioni:
 
-1. Verificare la progettazione dell'applicazione. Eseguire un inventario di tutti gli archivi dati usati dall'applicazione. Per ciascuno, determinare se l'applicazione sta usando una cache. Se possibile, determinare la frequenza con cui i dati vengono modificati. Dei buoni candidati iniziali per la memorizzazione nella cache includono i dati che cambiano lentamente e i dati di riferimento statici che sono letti frequentemente. 
+1. Verificare la progettazione dell'applicazione. Eseguire un inventario di tutti gli archivi dati usati dall'applicazione. Per ciascuno, determinare se l'applicazione sta usando una cache. Se possibile, determinare la frequenza con cui i dati vengono modificati. Dei buoni candidati iniziali per la memorizzazione nella cache includono i dati che cambiano lentamente e i dati di riferimento statici che sono letti frequentemente.
 
 2. Instrumentare l'applicazione e monitorare il sistema in tempo reale per individuare la frequenza con cui l'applicazione recupera i dati o calcola le informazioni.
 
 3. Profilare l'applicazione in un ambiente di test per acquisire le metriche di basso livello relative al sovraccarico associato a operazioni di accesso ai dati o altri calcoli eseguiti di frequente.
 
-4. Eseguire test di carico in un ambiente di test per identificare come il sistema risponde con un carico di lavoro normale e un carico pesante. Il test di carico deve simulare il modello di accesso ai dati osservato nell'ambiente di produzione usando carichi realistici. 
+4. Eseguire test di carico in un ambiente di test per identificare come il sistema risponde con un carico di lavoro normale e un carico pesante. Il test di carico deve simulare il modello di accesso ai dati osservato nell'ambiente di produzione usando carichi realistici.
 
-5. Esaminare le statistiche di accesso ai dati per sottolineare l'archivio dati ed eseguire la revisione della frequenza con cui le stesse richieste di dati vengono ripetute. 
-
+5. Esaminare le statistiche di accesso ai dati per sottolineare l'archivio dati ed eseguire la revisione della frequenza con cui le stesse richieste di dati vengono ripetute.
 
 ## <a name="example-diagnosis"></a>Diagnosi di esempio
 
@@ -147,17 +148,17 @@ Le sezioni seguenti applicano questa procedura all'applicazione di esempio descr
 
 ### <a name="instrument-the-application-and-monitor-the-live-system"></a>Instrumentare l'applicazione e monitorare il sistema in tempo reale
 
-Instrumentare l'applicazione e monitorarla per ottenere informazioni sulle specifiche richieste che gli utenti fanno mentre l'applicazione è in fase di produzione. 
+Instrumentare l'applicazione e monitorarla per ottenere informazioni sulle specifiche richieste che gli utenti fanno mentre l'applicazione è in fase di produzione.
 
 L'immagine seguente mostra il monitoraggio dei dati acquisiti da [New Relic][NewRelic] durante un test di carico. In questo caso, l'unica operazione HTTP GET eseguita è `Person/GetAsync`. Ma in un ambiente di produzione in tempo reale, conoscere la frequenza relativa in cui viene eseguita ogni richiesta può fornire informazioni dettagliate su quali risorse devono essere memorizzate nella cache.
 
 ![New Relic che mostra le richieste del server per l'applicazione CachingDemo][NewRelic-server-requests]
 
-Se è necessaria un'analisi più approfondita, è possibile usare un profiler per acquisire i dati delle prestazioni di basso livello in un ambiente di test (non il sistema di produzione). Esaminare le metriche, come ad esempio la frequenza delle richieste, l'uso della memoria, e l'uso della CPU. Queste metriche potrebbero mostrare un numero elevato di richieste a un archivio dati o a un servizio o l'elaborazione ripetuta che esegue lo stesso calcolo. 
+Se è necessaria un'analisi più approfondita, è possibile usare un profiler per acquisire i dati delle prestazioni di basso livello in un ambiente di test (non il sistema di produzione). Esaminare le metriche, come ad esempio la frequenza delle richieste, l'uso della memoria, e l'uso della CPU. Queste metriche potrebbero mostrare un numero elevato di richieste a un archivio dati o a un servizio o l'elaborazione ripetuta che esegue lo stesso calcolo.
 
 ### <a name="load-test-the-application"></a>Testare il carico dell'applicazione
 
-Il grafico seguente mostra i risultati del test di carico dell'applicazione di esempio. Il test di carico simula un caricamento del passaggio di un massimo di 800 utenti che eseguono una serie tipica di operazioni. 
+Il grafico seguente mostra i risultati del test di carico dell'applicazione di esempio. Il test di carico simula un caricamento del passaggio di un massimo di 800 utenti che eseguono una serie tipica di operazioni.
 
 ![Risultati del test di carico delle prestazioni per lo scenario non memorizzato nella cache][Performance-Load-Test-Results-Uncached]
 
@@ -178,7 +179,7 @@ La colonna `UseCount` nei risultati indica la frequenza con cui viene eseguita o
 
 ![Risultati dell'esecuzione delle query sulle DMV nel Server di gestione di SQL Server][Dynamic-Management-Views]
 
-Di seguito è riportata la query SQL che sta causando così tante richieste di database: 
+Di seguito è riportata la query SQL che sta causando così tante richieste di database:
 
 ```SQL
 (@p__linq__0 int)SELECT TOP (2)
@@ -197,12 +198,12 @@ In seguito si incorpora una cache, si ripetono i test di carico e si confrontano
 
 ![Risultati del test di carico delle prestazioni per lo scenario memorizzato nella cache][Performance-Load-Test-Results-Cached]
 
-Il volume di test con esito positivo si stabilizza, ma a un carico maggiore dell'utente. La frequenza delle richieste su questo carico è notevolmente superiore rispetto alla precedente. Il tempo medio per il test aumenta ancora con il carico, ma il tempo massimo di risposta è di 0,05 ms, confrontato con 1 ms precedente a &mdash; un miglioramento 20&times;. 
+Il volume di test con esito positivo si stabilizza, ma a un carico maggiore dell'utente. La frequenza delle richieste su questo carico è notevolmente superiore rispetto alla precedente. Il tempo medio per il test aumenta ancora con il carico, ma il tempo massimo di risposta è di 0,05 ms, confrontato con 1 ms precedente a &mdash; un miglioramento 20&times;.
 
 ## <a name="related-resources"></a>Risorse correlate
 
 - [Procedure consigliate dell'implementazione API][api-implementation]
-- [Modello Cache-Aside][cache-aside-pattern]
+- [Modello cache-aside][cache-aside-pattern]
 - [Caching best practices][caching-guidance] (Procedure consigliate per la memorizzazione nella cache)
 - [Modello di interruttore][circuit-breaker]
 

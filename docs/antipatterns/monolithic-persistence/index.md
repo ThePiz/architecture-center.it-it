@@ -1,14 +1,16 @@
 ---
 title: Antipattern di persistenza monolitica
+titleSuffix: Performance antipatterns for cloud apps
 description: L'inserimento di tutti i dati dell'applicazione in un unico archivio dati può influire negativamente sulle prestazioni.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c54a99dd0754cb2cb6cf4ad85b23a518c14a978b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429112"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010257"
 ---
 # <a name="monolithic-persistence-antipattern"></a>Antipattern di persistenza monolitica
 
@@ -16,12 +18,12 @@ L'inserimento di tutti i dati di un'applicazione in un unico archivio dati può 
 
 ## <a name="problem-description"></a>Descrizione del problema
 
-In passato le applicazioni usavano spesso un unico archivio dati, indipendentemente dai diversi tipi di dati che l'applicazione doveva archiviare. In genere di faceva questo per semplificare la progettazione dell'applicazione, oppure per conformità con il set di competenze del team di sviluppo. 
+In passato le applicazioni usavano spesso un unico archivio dati, indipendentemente dai diversi tipi di dati che l'applicazione doveva archiviare. In genere di faceva questo per semplificare la progettazione dell'applicazione, oppure per conformità con il set di competenze del team di sviluppo.
 
 I moderni sistemi basati su cloud hanno spesso requisiti ulteriori funzionali e non funzionali e devono archiviare molti tipi di dati eterogenei, come documenti, immagini, dati memorizzati nella cache, messaggi in coda, log di applicazioni e dati di telemetria. Seguendo l'approccio tradizionale e inserendo tutte queste informazioni nello stesso archivio dati, si può influire negativamente sulle prestazioni, per due motivi:
 
 - Archiviare e recuperare grandi quantità di dati non correlati nello stesso archivio dati può causare contesa, che a sua volta rallenta i tempi di risposta e causa errori di connessione.
-- Qualsiasi archivio dati si scelga, potrebbe non essere la scelta migliore per tutti i diversi tipi di dati o non potrebbe non essere ottimizzato per le operazioni eseguite dall'applicazione. 
+- Qualsiasi archivio dati si scelga, potrebbe non essere la scelta migliore per tutti i diversi tipi di dati o non potrebbe non essere ottimizzato per le operazioni eseguite dall'applicazione.
 
 L'esempio seguente illustra un controller API Web ASP.NET che aggiunge un nuovo record a un database e registra anche il risultato in un log. Il log viene mantenuto attivo nello stesso database dei dati aziendali. L'esempio completo è disponibile [qui][sample-app].
 
@@ -43,7 +45,7 @@ La frequenza con cui vengono generati i record di log probabilmente influirà su
 
 ## <a name="how-to-fix-the-problem"></a>Come risolvere il problema
 
-Separare i dati in base al relativo utilizzo. Per ogni set di dati, selezionare un archivio dati che corrisponde alla modalità di utilizzo del set di dati. Nell'esempio precedente l'applicazione deve creare i log in un archivio separato dal database che contiene i dati aziendali: 
+Separare i dati in base al relativo utilizzo. Per ogni set di dati, selezionare un archivio dati che corrisponde alla modalità di utilizzo del set di dati. Nell'esempio precedente l'applicazione deve creare i log in un archivio separato dal database che contiene i dati aziendali:
 
 ```csharp
 public class PolyController : ApiController
@@ -76,10 +78,10 @@ Il sistema probabilmente rallenterà molto e alla fine si bloccherà quando esau
 È possibile eseguire la procedura seguente per identificare la causa.
 
 1. Instrumentare il sistema per registrare le statistiche di prestazioni chiave. Acquisire informazioni sui tempi per ogni operazione, nonché i punti in cui l'applicazione legge e scrive i dati.
-1. Se possibile, monitorare il sistema in esecuzione per alcuni giorni in un ambiente di produzione per ottenere una visualizzazione reale dell'utilizzo del sistema. Se questo non è possibile, eseguire test di carico tramite script con un volume realistico di utenti virtuali che eseguono una tipica serie di operazioni.
-2. Usare i dati di telemetria per identificare i periodi di riduzione delle prestazioni.
-3. Identificare gli archivi di dati che erano accessibili durante tali periodi.
-4. Identificare le risorse di archiviazione dati che potrebbero avere conflitti.
+2. Se possibile, monitorare il sistema in esecuzione per alcuni giorni in un ambiente di produzione per ottenere una visualizzazione reale dell'utilizzo del sistema. Se questo non è possibile, eseguire test di carico tramite script con un volume realistico di utenti virtuali che eseguono una tipica serie di operazioni.
+3. Usare i dati di telemetria per identificare i periodi di riduzione delle prestazioni.
+4. Identificare gli archivi di dati che erano accessibili durante tali periodi.
+5. Identificare le risorse di archiviazione dati che potrebbero avere conflitti.
 
 ## <a name="example-diagnosis"></a>Diagnosi di esempio
 
@@ -107,7 +109,7 @@ Il grafico successivo illustra l'uso delle unità di trasmissione dati (DTU) dur
 
 ### <a name="examine-the-telemetry-for-the-data-stores"></a>Esaminare la telemetria per gli archivi dati
 
-Instrumentare gli archivi dati per acquisire i dettagli di basso livello dell'attività. Nell'applicazione di esempio, le statistiche di accesso ai dati hanno mostrato un volume elevato di operazioni di inserimento eseguite sia sulla tabella `PurchaseOrderHeader` che sulla tabella `MonoLog`. 
+Instrumentare gli archivi dati per acquisire i dettagli di basso livello dell'attività. Nell'applicazione di esempio, le statistiche di accesso ai dati hanno mostrato un volume elevato di operazioni di inserimento eseguite sia sulla tabella `PurchaseOrderHeader` che sulla tabella `MonoLog`.
 
 ![Le statistiche di accesso ai dati per l'applicazione di esempio][MonolithicDataAccessStats]
 
@@ -132,7 +134,6 @@ Il modello di velocità effettiva è simile al grafico precedente, ma il punto i
 Analogamente, l'utilizzo massimo di DTU del database di log arriva solo a circa il 70%. I database non sono più il fattore limitante delle prestazioni del sistema.
 
 ![Il monitor del database nel portale di Azure classico che mostra l'utilizzo delle risorse del database di log nello scenario Polyglot][LogDatabaseUtilization]
-
 
 ## <a name="related-resources"></a>Risorse correlate
 
