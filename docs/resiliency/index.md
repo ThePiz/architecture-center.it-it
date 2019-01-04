@@ -2,24 +2,25 @@
 title: Progettazione di applicazioni resilienti per Azure
 description: Come creare applicazioni resilienti in Azure per disponibilità elevata e ripristino di emergenza.
 author: MikeWasson
-ms.date: 11/26/2018
+ms.date: 12/18/2018
 ms.custom: resiliency
-ms.openlocfilehash: a97a26928002b8248344a239159fe7defa99931c
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 1638bc84b436d3d826f8ad9497ddb5a1310c14da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53005051"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644258"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
 In un sistema distribuito si presentano errori. E gli hardware possono danneggiarsi. La rete, poi, può avere errori temporanei. Raramente un intero servizio o area può subire delle interruzioni, tuttavia è necessario pianificare anche questo tipo di problemi.
 
-La creazione di un'applicazione affidabile nel cloud è diversa rispetto alla creazione di un'applicazione affidabile in un contesto aziendale. Mentre in passato si potrebbe aver acquistato un hardware di fascia alta per aumentare le prestazioni, in un ambiente cloud è necessario scalare orizzontalmente anziché verticalmente. I costi degli ambienti cloud sono mantenuti bassi dall'uso di hardware appositi. Anziché focalizzarsi sulla prevenzione degli errori e sull'ottimizzazione del "tempo medio tra errori", in questo nuovo ambiente l'attenzione si sposta sul "tempo medio per il ripristino". L'obiettivo è ridurre l'effetto di un errore.
+La creazione di un'applicazione affidabile nel cloud è diversa rispetto alla creazione di un'applicazione affidabile in un contesto aziendale. Mentre in passato si potrebbe aver acquistato un hardware di fascia alta per aumentare le prestazioni, in un ambiente cloud è necessario scalare orizzontalmente anziché verticalmente. I costi degli ambienti cloud sono mantenuti bassi dall'uso di hardware appositi. Invece di provare a evitare completamente gli errori, l'obiettivo deve essere quello di ridurre al minimo gli effetti di un errore all'interno del sistema.
 
 Questo articolo fornisce una panoramica sulla creazione di applicazioni resilienti in Microsoft Azure e inizia con una definizione del termine *resilienza* e dei concetti correlati. Quindi, viene descritto un processo per ottenere la resilienza, adottando un approccio strutturato in base alla durata di un'applicazione, dalla progettazione e implementazione alla distribuzione, fino alle operazioni.
 
 ## <a name="what-is-resiliency"></a>Cos'è la resilienza?
+
 La **resilienza** è la capacità di un sistema di correggere gli errori e continuare a funzionare. Non significa *evitare*, ma *rispondere* agli errori in modo da evitare tempi di inattività o perdita di dati. L'obiettivo della resilienza consiste nel ripristinare uno stato completamente funzionale dell'applicazione dopo un errore.
 
 Due aspetti importanti della resilienza sono la disponibilità elevata e il ripristino di emergenza.
@@ -38,6 +39,7 @@ Il **backup dei dati** costituisce una parte essenziale del ripristino di emerge
 Il backup è un'operazione diversa rispetto alla **replica dei dati**. La replica dei dati implica la copia dei dati quasi in tempo reale, in modo che il sistema possa effettuare rapidamente il failover a una replica. Molti sistemi di database supportano la replica, ad esempio SQL Server supporta i gruppi di disponibilità Always On di SQL Server. La funzionalità di replica dei dati può ridurre il tempo necessario per il ripristino da un'interruzione, garantendo la disponibilità costante di una replica dei dati, ma non offre alcuna protezione in caso di errore umano. Se i dati risultano danneggiati a causa di un errore umano, vengono comunque copiati nelle repliche. È quindi necessario includere comunque il backup a lungo termine nella strategia di ripristino di emergenza.
 
 ## <a name="process-to-achieve-resiliency"></a>Processo per ottenere la resilienza
+
 La resilienza non è un componente aggiuntivo, ma deve essere progettata nel sistema e messa in pratica operativa. Di seguito è riportato un modello generale da seguire:
 
 1. **Definire** i requisiti di disponibilità in base alle esigenze aziendali.
@@ -51,34 +53,47 @@ La resilienza non è un componente aggiuntivo, ma deve essere progettata nel sis
 Nella parte restante di questo articolo verrà approfondito più nel dettaglio ognuno di questi passaggi.
 
 ## <a name="define-your-availability-requirements"></a>Definire i requisiti di disponibilità
+
 La pianificazione della resilienza inizia con i requisiti aziendali. Di seguito sono illustrati alcuni approcci per considerare la resilienza in questi termini.
 
 ### <a name="decompose-by-workload"></a>Scomporre in base al carico di lavoro
+
 Molte soluzioni cloud sono composte da carichi di lavoro di più applicazioni. Il termine "carico di lavoro" in questo contesto indica una capacità discreta, o attività di elaborazione, che può essere logicamente separata da altre attività, in termini di requisiti di logica di business e di archiviazione dei dati. Per esempio, un'applicazione di e-commerce potrebbe includere i carichi di lavoro seguenti:
 
 * Esplorare e cercare un catalogo di prodotti.
 * Creare e tenere traccia degli ordini.
-* Visualizzare le raccomandazioni.
+* Visualizzare i consigli.
 
-Questi carichi di lavoro potrebbero avere requisiti diversi di disponibilità, scalabilità, coerenza dei dati, ripristino di emergenza e così via. Ancora una volta, si tratta di decisioni aziendali.
+Questi carichi di lavoro potrebbero avere requisiti diversi di disponibilità, scalabilità, coerenza dei dati e ripristino di emergenza. Per prendere alcune decisioni aziendali, è necessario bilanciare costi e rischi.
 
-È necessario considerare anche i modelli di utilizzo: esistono determinati periodi critici in cui il sistema deve essere disponibile? Ad esempio, un servizio di dichiarazione dei redditi non può interrompersi proprio prima della scadenza, o ancora, un servizio di streaming video deve rimanere in piedi durante un grande evento sportivo e così via. Durante i periodi critici, potrebbero esserci distribuzioni ridondanti in più aree, perciò l'applicazione potrebbe effettuare il failover se si presentano errori in un'area. Tuttavia, una distribuzione in più aree è più costosa, perciò, nei periodi meno critici, si potrebbe eseguire l'applicazione in una sola area.
+È necessario considerare anche i modelli di utilizzo: esistono determinati periodi critici in cui il sistema deve essere disponibile? Ad esempio, un servizio di dichiarazione dei redditi non può interrompersi proprio prima della scadenza, o ancora, un servizio di streaming video deve rimanere in piedi durante un grande evento sportivo e così via. Durante i periodi critici, potrebbero esserci distribuzioni ridondanti in più aree, perciò l'applicazione potrebbe effettuare il failover se si presentano errori in un'area. Tuttavia, una distribuzione in più aree è potenzialmente più costosa, perciò, nei periodi meno critici, si potrebbe eseguire l'applicazione in una sola area. In alcuni casi, è possibile ridurre i costi aggiuntivi ricorrendo alle moderne tecniche serverless, che si basano sulla fatturazione in base al consumo, in modo da evitare addebiti per le risorse di calcolo sottoutilizzate.
 
 ### <a name="rto-and-rpo"></a>RTO e RPO
-Due metriche importanti da considerare sono l'obiettivo del tempo di ripristino e l'obiettivo del punto di ripristino.
 
-* L'**obiettivo del tempo di ripristino** (RTO) è il tempo massimo accettabile che un'applicazione non sia disponibile dopo un evento imprevisto. Se l'obiettivo RTO è di 90 minuti, è necessario essere in grado di ripristinare l'applicazione a uno stato di esecuzione entro 90 minuti dall'inizio di un'emergenza. Se si ha un obiettivo RTO basso, si potrebbe tenere una seconda distribuzione continuamente eseguita in standby, per prevenire un'interruzione di area.
+Due metriche importanti da considerare sono l'obiettivo del tempo di ripristino e l'obiettivo del punto di ripristino, dal momento che sono riconducibili al ripristino di emergenza.
 
-* **Obiettivo del punto di ripristino** (RPO) è la durata massima di perdita dei dati accettabile durante un'emergenza. Per esempio, se si archiviano i dati in un singolo database, senza replica in altri database, e si eseguono backup orari, si potrebbero perdere fino a un'ora di dati.
+* L'**obiettivo del tempo di ripristino** (RTO) è il tempo massimo accettabile che un'applicazione non sia disponibile dopo un evento imprevisto. Se l'obiettivo RTO è di 90 minuti, è necessario essere in grado di ripristinare l'applicazione a uno stato di esecuzione entro 90 minuti dall'inizio di un'emergenza. Se si ha un obiettivo RTO basso, si potrebbe mantenere una seconda distribuzione a livello di area che esegue continuamente una configurazione attiva/passiva in standby, per evitare un'interruzione a livello di area. In alcuni casi è possibile distribuire una configurazione attiva/attiva per raggiungere un obiettivo RTO persino inferiore.
 
-Gli obiettivi RTO e RPO sono requisiti aziendali. Condurre una valutazione dei rischi consente di definire gli obiettivi RTO e RPO dell'applicazione. Un'altra metrica comune è il **tempo medio per il ripristino** (MTTR), ovvero il tempo medio impiegato per ripristinare l'applicazione dopo un errore. Il tempo medio per il ripristino è un fatto empirico relativo a un sistema. Se questo tempo supera l'obiettivo RTO, di conseguenza un errore di sistema causerà un'interruzione delle attività inaccettabile, poiché non sarà possibile ripristinare il sistema entro l'obiettivo RTO definito.
+* L'**obiettivo del punto di ripristino** (RPO) è la durata massima di perdita dei dati accettabile durante un'emergenza. Ad esempio, se si archiviano i dati in un singolo database, senza replica in altri database, e si eseguono backup orari, si potrebbe perdere fino a un'ora di dati.
+
+Gli obiettivi RTO e RPO sono requisiti non funzionali di un sistema e dipendono dai requisiti aziendali. Per ottenere questi valori, è consigliabile condurre una valutazione dei rischi e comprendere chiaramente i costi correlati a tempo di inattività o perdita di dati.
+
+### <a name="mttr-and-mtbf"></a>MTTR e MTBF
+
+Due altre misure comuni della disponibilità sono il tempo medio di recupero (MTTR) e il tempo medio tra gli errori (MTBF). Queste misure vengono in genere usate internamente dal provider di servizi per determinare i punti in cui aggiungere ridondanza ai servizi cloud e quali contratti di servizio offrire ai clienti.
+
+Il **tempo medio di recupero**  (MTTR) corrisponde al tempo medio necessario per recuperare un componente dopo un errore. Il valore MTTR è un dato empirico relativo a un componente. In base al valore MTTR di ogni componente, è possibile stimare il valore MTTR di un'intera applicazione. Se si creano applicazioni da più componenti con valori MTTR bassi, si otterrà un'applicazione con un valore MTTR complessivo basso, che consente di recuperare rapidamente in caso di errore.
+
+Il **tempo medio tra gli errori** (MTBF) corrisponde al tempo di esecuzione previsto di un componente tra un'interruzione e l'altra. Questa metrica può essere utile per calcolare la frequenza con cui un servizio non sarà più disponibile. Un componente non affidabile presenta un valore MTBF basso e di conseguenza anche il numero del contratto di servizio per il componente sarà basso. È però possibile attenuare l'impatto di un valore MTBF basso distribuendo più istanze del componente e implementando il failover tra di esse.
+
+> [!NOTE]
+> Se uno qualsiasi dei valori MTTR dei componenti in una configurazione a disponibilità elevata supera l'obiettivo RTO del sistema, un errore di sistema causerà un'interruzione delle attività inaccettabile. Non sarà possibile ripristinare il sistema entro l'obiettivo RTO definito.
 
 ### <a name="slas"></a>Contratti di servizio
 In Azure i [Contratti di servizio][sla] descrivono gli impegni di Microsoft in merito a tempi di attività e connettività. Se il contratto per un determinato servizio è del 99,9%, significa che è necessario prevedere che il servizio sia disponibile per il 99,9% del tempo.
 
 > [!NOTE]
 > Il contratto di servizio di Azure include non solo indicazioni per ottenere un credito per il servizio qualora il contratto di servizio non venga soddisfatto, ma anche definizioni specifiche di "disponibilità" per ogni servizio. Questo aspetto del contratto di servizio funge da criterio di imposizione.
->
 >
 
 È necessario definire i propri contratti di servizio di destinazione per ogni carico di lavoro nella propria soluzione. Un contratto di servizio consente di valutare se l'architettura soddisfi i requisiti aziendali. Ad esempio, se un carico di lavoro richiede il 99,99% del tempo di attività, ma dipende da un servizio con un contratto del 99,9%, tale servizio non può essere un punto singolo di errore nel sistema. Un rimedio è avere un percorso di fallback nel caso in cui il servizio si interrompa, o intraprenda altre misure per il correggere un errore nel servizio.
@@ -100,6 +115,7 @@ Di seguito sono riportate alcune altre considerazioni che emergono quando si def
 * Per ottenere quattro 9 (99,99%), non ci si può probabilmente basare su un intervento manuale per correggere gli errori. L'applicazione, infatti, deve essere in grado di eseguire automaticamente la diagnosi e la riparazione.
 * Dopo il quarto 9, è difficile rilevare le interruzioni in modo sufficientemente rapido per soddisfare il contratto di servizio.
 * Si pensi all'intervallo di tempo rispetto al quale viene misurato il contratto di servizio: minore è la finestra, più ristretto sarà il livello di tolleranza. Probabilmente non ha senso definire il contratto di servizio in termini di tempo di attività oraria o giornaliera.
+* Prendere in considerazione le misurazioni MTBF e MTTR. Più basso è il livello del contratto di servizio, meno frequentemente il servizio può subire interruzioni e più rapidamente deve essere ripristinato.
 
 ### <a name="composite-slas"></a>Contratti di servizio compositi
 Si consideri un'app Web del servizio app che scrive nel database SQL di Azure. Al momento della redazione del presente documento, tali servizi Azure dispongono dei contratti di servizio seguenti:
@@ -111,7 +127,7 @@ Si consideri un'app Web del servizio app che scrive nel database SQL di Azure. A
 
 A quanto corrisponde il tempo di inattività massimo che ci si aspetta da questa applicazione? Se il servizio presenta errori, di conseguenza l'intera applicazione presenterà errori. In generale, la probabilità di interruzione di ogni servizio è indipendente, pertanto il contratto di servizio composito per l'applicazione è pari a 99,95% &times; 99,99% = 99,94%. Questa percentuale è inferiore ai singoli contratti di servizio e questo non è sorprendente, poiché un'applicazione che si basa su più servizi ha anche più punti di errore potenziali.
 
-D'altra parte, è possibile migliorare il contratto di servizio composito creando percorsi di fallback indipendenti. Ad esempio, se il database SQL non è disponibile, inserire le transazioni in una coda, in modo tale che vengano elaborate successivamente.
+D'altra parte, è possibile migliorare il contratto di servizio composito creando percorsi di fallback indipendenti. Ad esempio, se il database SQL non è disponibile, inserire le transazioni in una coda, in modo tale che vengano elaborate successivamente. 
 
 ![Contratto di servizio composito](./images/sla2.png)
 
@@ -125,17 +141,18 @@ Il contratto di servizio composito totale è:
 
 Ci sono, però, compromessi a questo approccio. La logica dell'applicazione è più complessa, si sta pagando per la coda e ci possono essere problemi di coerenza dei dati da considerare.
 
-**Contratto di servizio per distribuzioni in più aree**. Un'altra tecnica a disponibilità elevata consiste nel distribuire l'applicazione in più aree e usare Gestione traffico di Azure per effettuare il failover, se l'applicazione si interrompe in un'unica area. Per una distribuzione in due aree, il contratto di servizio è calcolato come segue.
+**Contratto di servizio per distribuzioni in più aree**. Un'altra tecnica a disponibilità elevata consiste nel distribuire l'applicazione in più aree e usare Gestione traffico di Azure per effettuare il failover, se l'applicazione si interrompe in un'unica area. Per una distribuzione in più aree, il contratto di servizio viene calcolato come segue.
 
-Si consideri *N* come il contratto di servizio composito per l'applicazione distribuita in un'area. La probabilità prevista che l'applicazione si interrompa allo stesso tempo in entrambe le aree equivale a (1 &minus; N) &times; (1 &minus; N). Di conseguenza:
+Si consideri *N* come il contratto di servizio composito per l'applicazione distribuita in un'area e *R* il numero di aree in cui viene distribuita l'applicazione. La probabilità prevista che l'applicazione si interrompa contemporaneamente in tutte le aree è data dalla formula ((1 &minus N) ^ R).
 
-* Contratto di servizio combinato per entrambe le aree = 1 &minus; (1 &minus; N)(1 &minus; N) = N + (1 &minus; N)N
+Ad esempio, se il contratto di servizio per area singola è pari al 99,95%:
 
-Infine, è necessario tenere in considerazione il [Contratto di Servizio per Gestione traffico][tm-sla]. Al momento della redazione del presente documento, il contratto di servizio per Gestione traffico è pari a 99,99%.
+* Contratto di servizio combinato per due aree = (1 &minus; (0,9995 ^ 2)) = 99,999975%
+* Contratto di servizio combinato per quattro aree = (1 &minus; (0,9995 ^ 4)) = 99,999999%
 
-* Contratto di servizio composito = 99,99% &times; (contratto di servizio combinato per entrambe le aree)
+È inoltre necessario tenere in considerazione il [Contratto di Servizio per Gestione traffico][tm-sla]. Al momento della redazione del presente documento, il contratto di servizio per Gestione traffico è pari a 99,99%.
 
-In aggiunta, l'esecuzione del failover non è istantanea e può causare periodi di inattività durante un failover. Vedere [Monitoraggio degli endpoint di Gestione traffico][tm-failover].
+Il failover non è inoltre istantaneo nelle configurazioni attiva-passiva e questa situazione può causare periodi di inattività durante un failover. Vedere [Monitoraggio degli endpoint di Gestione traffico][tm-failover].
 
 Il numero calcolato dei contratti di servizio è una baseline utile, ma non fornisce tutte le informazioni riguardanti la disponibilità. Spesso un'applicazione può ridurre le prestazioni in modo non drastico e graduale nel caso di errore di un percorso non critico. Si consideri un'applicazione in cui viene visualizzato un catalogo di libri. Nel caso in cui l'applicazione non possa recuperare l'immagine di anteprima di una copertina, si potrebbe visualizzare un'immagine segnaposto. In tal caso, l'errore nell'ottenimento dell'immagine non riduce i tempi di attività dell'applicazione, sebbene condizioni l'esperienza utente.  
 
@@ -147,10 +164,10 @@ Durante la fase di progettazione, è consigliabile eseguire un'analisi della mod
 * Come risponderà l'applicazione a questo tipo di errore?
 * Come si potrà registrare e monitorare questo tipo di errore?
 
-Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche per Azure, vedere [Azure resiliency guidance: Failure mode analysis][fma] (Guida alla resilienza di Azure: analisi della modalità di errore).
+Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche per Azure, vedere [Guida alla resilienza di Azure: Analisi della modalità di errore][fma].
 
 ### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>Esempio di identificazione di modalità di errore e di strategia di rilevamento
-**Punto di errore:** Chiamata a un servizio Web / API esterno
+**Punto di errore:** chiamata a un servizio Web / API esterno.
 
 | Modalità di errore | Strategia di rilevamento |
 | --- | --- |
@@ -158,7 +175,6 @@ Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche
 | Limitazione |HTTP 429 (Troppe richieste) |
 | Authentication |HTTP 401 (Non autorizzato) |
 | Risposta lenta |Timeout della richiesta |
-
 
 ### <a name="redundancy-and-designing-for-failure"></a>Ridondanza e progettazione per gli errori
 
@@ -168,19 +184,21 @@ Uno dei principali modi per rendere resiliente un'applicazione consiste nell'app
 
 In Azure sono disponibili numerose funzionalità per rendere ridondante un'applicazione a ogni livello di errore, a partire da una singola macchina virtuale fino a un'intera area.
 
-![](./images/redundancy.svg)
+![Funzionalità di resilienza di Azure](./images/redundancy.svg)
 
-**Singola macchina virtuale**. Azure offre un contratto di servizio relativo al tempo di attività per le singole macchine virtuali. Anche se è possibile ottenere un contratto di servizio di livello superiore eseguendo due o più macchine virtuali, è possibile che una singola macchina virtuale sia già abbastanza affidabile per alcuni carichi di lavoro. Per i carichi di lavoro di produzione è consigliabile usare due o più macchine virtuali per garantire la ridondanza.
+**Singola macchina virtuale**. Azure offre un [contratto di servizio relativo al tempo di attività](https://azure.microsoft.com/support/legal/sla/virtual-machines) per le singole macchine virtuali. La macchina virtuale deve usare l'archiviazione Premium per tutti i dischi di sistemi operativi e dischi dati. Anche se è possibile ottenere un contratto di servizio di livello superiore eseguendo due o più macchine virtuali, è possibile che una singola macchina virtuale sia già abbastanza affidabile per alcuni carichi di lavoro. Per i carichi di lavoro di produzione è tuttavia consigliabile usare due o più macchine virtuali per garantire la ridondanza.
 
 **Set di disponibilità**. Per proteggersi da errori hardware localizzati, ad esempio un disco o un commutatore di rete non funzionante, distribuire due o più macchine virtuali in un set di disponibilità. Un set di disponibilità è costituito da due o più *domini di errore* che condividono una fonte di alimentazione e uno switch di rete comuni. Le macchine virtuali in un set di disponibilità vengono distribuite tra i domini di errore, in modo che, se un dominio di errore è interessato da un errore hardware, il traffico di rete possa comunque essere indirizzato alle macchine virtuali negli altri domini di errore. Per altre informazioni sui set di disponibilità, vedere [Gestire la disponibilità delle macchine virtuali Windows in Azure](/azure/virtual-machines/windows/manage-availability).
 
-**Zone di disponibilità**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center.
+**Zone di disponibilità**.  Una zona di disponibilità è una zona fisicamente separata in un'area di Azure. Ogni zona di disponibilità può contare su risorse di alimentazione, rete e raffreddamento a sé. La distribuzione di macchine virtuali tra zone di disponibilità consente di proteggere un'applicazione in caso di errori a livello di data center. Le zone di disponibilità non sono supportate in tutte le aree. Per un elenco delle aree e dei servizi supportati, vedere [Informazioni sulle zone di disponibilità di Azure](/azure/availability-zones/az-overview).
 
-**Azure Site Recovery**.  Replicare le macchine virtuali di Azure in un'altra area di Azure per esigenze di continuità aziendale e ripristino di emergenza. È possibile condurre esercitazioni periodiche sul ripristino di emergenza per assicurarsi di soddisfare le esigenze di conformità. La VM verrà replicata con le impostazioni specificate nell'area selezionata in modo da consentire il ripristino delle applicazioni in caso di interruzioni nell'area di origine. Per altre informazioni, vedere l'articolo su come [replicare le VM di Azure con Azure Site Recovery][site-recovery].
+Se si prevede di usare le zone di disponibilità nella distribuzione, verificare prima che l'architettura dell'applicazione e la codebase possano supportare questa configurazione. Se si intende distribuire software per componenti COTS, rivolgersi al fornitore del software ed eseguire test adeguati prima della distribuzione nell'ambiente di produzione. Un'applicazione deve essere in grado di mantenere lo stato ed evitare la perdita di dati durante un'interruzione all'interno della zona configurata. L'applicazione deve supportare l'esecuzione in un'infrastruttura elastica e distribuita senza dover specificare componenti dell'infrastruttura hardcoded nella codebase. 
+
+**Azure Site Recovery**.  Replicare le macchine virtuali di Azure in un'altra area di Azure per esigenze di continuità aziendale e ripristino di emergenza. È possibile condurre esercitazioni periodiche sul ripristino di emergenza per assicurarsi di soddisfare le esigenze di conformità. La VM verrà replicata con le impostazioni specificate nell'area selezionata in modo da consentire il ripristino delle applicazioni in caso di interruzioni nell'area di origine. Per altre informazioni, vedere l'articolo su come [replicare le VM di Azure con Azure Site Recovery][site-recovery]. Prendere in considerazione i valori di RTO e RPO per la soluzione e assicurarsi che durante il test il tempo e il punto di recupero siano adeguati alle proprie esigenze.
 
 **Aree associate**. Per proteggere un'applicazione da un'interruzione dell'alimentazione a livello di area, è possibile distribuire l'applicazione in più aree, tramite Gestione traffico di Microsoft Azure in modo da distribuire il traffico Internet in aree diverse. Ogni area di Azure è associata a un'altra area e la combinazione di queste aree costituisce una [coppia di aree](/azure/best-practices-availability-paired-regions). Ad eccezione del Brasile meridionale, le coppie di aree hanno la stessa collocazione geografica in modo da soddisfare i requisiti di residenza dei dati ai fini della giurisdizione per le imposizioni fiscali e normative.
 
-Quando si progetta un'applicazione con più aree, tenere presente che la latenza di rete tra più aree è superiore rispetto a quella all'interno di una singola area. Se, ad esempio, se si sta eseguendo la replica di un database per abilitare il failover, usare la replica di dati sincrona all'interno di un'area e la replica dei dati asincrona tra aree diverse.
+Quando si progetta un'applicazione con più aree, tenere presente che la latenza di rete tra più aree è superiore rispetto a quella all'interno di una singola area. Se, ad esempio, se si sta eseguendo la replica di un database per abilitare il failover, usare la replica di dati sincrona all'interno di un'area e la replica dei dati asincrona tra aree diverse. 
 
 | &nbsp; | Set di disponibilità | Zona di disponibilità | Azure Site Recovery/Area associata |
 |--------|------------------|-------------------|---------------|
@@ -204,7 +222,7 @@ Ogni nuovo tentativo si aggiunge alla latenza totale e, in aggiunta, un numero e
 * Scalare orizzontalmente un'applicazione del servizio app di Azure a più istanze: il servizio app bilancia automaticamente il carico tra le istanze. Vedere [Basic web application][ra-basic-web] (Applicazione Web di base).
 * Usare [Gestione traffico][tm] per distribuire il traffico in un set di endpoint.
 
-**Replicare i dati**. La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione forniscono funzioni di replica predefinite, tra cui Database SQL di Azure, Cosmos DB e Apache Cassandra. È importante considerare i percorsi sia di lettura che di scrittura: in base alla tecnologia di archiviazione, potrebbero essere fornite più repliche scrivibili, o una singola replica scrivibile e più repliche di sola lettura.
+**Replicare i dati**. La replica dei dati è una strategia generale per la gestione degli errori non temporanei in un archivio dati. Molte tecnologie di archiviazione offrono funzioni di replica predefinite, tra cui Archiviazione di Azure, Database SQL di Azure, Cosmos DB e Apache Cassandra. È importante considerare i percorsi sia di lettura che di scrittura: in base alla tecnologia di archiviazione, potrebbero essere fornite più repliche scrivibili, o una singola replica scrivibile e più repliche di sola lettura.
 
 Per ottimizzare la disponibilità, è possibile posizionare le repliche in più aree. Tuttavia, ciò aumenta la latenza quando si replicano i dati. In genere, la replica tra aree viene eseguita in modo asincrono e ciò implica un modello di coerenza finale e la potenziale perdita di dati se una replica ha esito negativo.
 
