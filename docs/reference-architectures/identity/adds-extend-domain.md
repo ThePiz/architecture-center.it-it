@@ -5,12 +5,12 @@ description: Estendere il dominio Active Directory locale ad Azure
 author: telmosampaio
 ms.date: 05/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: 69ce95fcf74579f6446cf99dad9ed53ced31fde7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 166cd994f65fd812e38e50da1d74b9a99870ed5d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120408"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644139"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
@@ -103,7 +103,21 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 
 ### <a name="prerequisites"></a>Prerequisiti
 
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+1. Clonare, creare una copia tramite fork o scaricare il file ZIP per il [repository GitHub](https://github.com/mspnp/identity-reference-architectures).
+
+2. Installare l'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest).
+
+3. Installare il pacchetto npm dei [blocchi predefiniti di Azure](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks).
+
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
+
+4. Al prompt dei comandi, di Bash o di PowerShell accedere all'account Azure come illustrato di seguito:
+
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>Distribuire il data center locale simulato
 

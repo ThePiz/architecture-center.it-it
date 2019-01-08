@@ -1,14 +1,15 @@
 ---
-title: Siti Web Wordpress altamente scalabili e sicuri in Azure
+title: Siti Web WordPress altamente scalabili e sicuri
+titleSuffix: Azure Example Scenarios
 description: Creare un sito Web WordPress altamente scalabile e sicuro per gli eventi multimediali.
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: c0dad12e1da1f17b75d0661195123da4a8267152
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610608"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644044"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Sito Web WordPress altamente scalabile e sicuro
 
@@ -18,10 +19,10 @@ Questo scenario di esempio è applicabile alle aziende che necessitano di un'ins
 
 Gli altri casi d'uso pertinenti includono:
 
-* Eventi multimediali che causano picchi di traffico.
-* Blog che usano WordPress come sistema di gestione dei contenuti.
-* Siti Web aziendali o di e-commerce che usano WordPress.
-* Siti Web creati con altri sistemi di gestione dei contenuti.
+- Eventi multimediali che causano picchi di traffico.
+- Blog che usano WordPress come sistema di gestione dei contenuti.
+- Siti Web aziendali o di e-commerce che usano WordPress.
+- Siti Web creati con altri sistemi di gestione dei contenuti.
 
 ## <a name="architecture"></a>Architettura
 
@@ -47,19 +48,19 @@ Il secondo flusso di lavoro riguarda il modo in cui gli autori forniscono nuovi 
 
 ### <a name="components"></a>Componenti
 
-* La [Rete di distribuzione dei contenuti (CDN) di Azure](/azure/cdn/cdn-overview) è una rete di server distribuita che fornisce contenuti Web agli utenti in modo efficiente. Le reti CDN riducono al minimo la latenza archiviando il contenuto memorizzato nella cache in server perimetrali presenti in località Point of Presence vicine agli utenti finali.
-* Le [reti virtuali](/azure/virtual-network/virtual-networks-overview) consentono a risorse quali le macchine virtuali di comunicare in modo sicuro tra loro, con Internet e con le reti locali. Le reti virtuali forniscono isolamento e segmentazione, filtrano e instradano il traffico e consentono la connessione tra posizioni. Le due reti sono connesse tramite Peering reti virtuali.
-* I [gruppi di sicurezza di rete](/azure/virtual-network/security-overview) contengono un elenco di regole di sicurezza che consentono o impediscono il traffico di rete in ingresso o in uscita in base all'indirizzo IP di origine o di destinazione, alla porta e al protocollo. Le reti virtuali in questo scenario sono protette da regole dei gruppi di sicurezza di rete che limitano il flusso del traffico tra i componenti dell'applicazione.
-* I [servizi di bilanciamento del carico di Azure](/azure/load-balancer/load-balancer-overview) distribuiscono il traffico in ingresso in base a regole e probe di integrità. Un servizio di bilanciamento del carico offre bassa latenza e velocità effettiva elevata, oltre a una scalabilità fino a milioni di flussi per tutte le applicazioni TCP e UDP. Un servizio di bilanciamento del carico viene usato in questo scenario per distribuire il traffico dalla rete per la distribuzione di contenuti ai server Web front-end.
-* I [set di scalabilità di macchine virtuali][docs-vmss] consentono di creare e gestire un gruppo di macchine virtuali identiche con bilanciamento del carico. Il numero di istanze di macchine virtuali può aumentare o diminuire automaticamente in risposta alla domanda o a una pianificazione definita. In questo scenario vengono usati due set di scalabilità di macchine virtuali distinti: uno per i server Web front-end che rendono disponibili i contenuti e uno per i server Web front-end usati per creare nuovi contenuti.
-* [File di Azure](/azure/storage/files/storage-files-introduction) fornisce una condivisione file completamente gestita nel cloud che ospita tutto il contenuto di WordPress in questo scenario, in modo che tutte le macchine virtuali abbiano accesso ai dati.
-* [Azure Key Vault](/azure/key-vault/key-vault-overview) viene usato per archiviare e controllare rigorosamente l'accesso a password, certificati e chiavi.
-* [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) è un servizio di gestione di identità e directory multi-tenant basato sul cloud. In questo scenario Azure AD fornisce servizi di autenticazione per il sito Web e i tunnel VPN.
+- La [Rete di distribuzione dei contenuti (CDN) di Azure](/azure/cdn/cdn-overview) è una rete di server distribuita che fornisce contenuti Web agli utenti in modo efficiente. Le reti CDN riducono al minimo la latenza archiviando il contenuto memorizzato nella cache in server perimetrali presenti in località Point of Presence vicine agli utenti finali.
+- Le [reti virtuali](/azure/virtual-network/virtual-networks-overview) consentono a risorse quali le macchine virtuali di comunicare in modo sicuro tra loro, con Internet e con le reti locali. Le reti virtuali forniscono isolamento e segmentazione, filtrano e instradano il traffico e consentono la connessione tra posizioni. Le due reti sono connesse tramite Peering reti virtuali.
+- I [gruppi di sicurezza di rete](/azure/virtual-network/security-overview) contengono un elenco di regole di sicurezza che consentono o impediscono il traffico di rete in ingresso o in uscita in base all'indirizzo IP di origine o di destinazione, alla porta e al protocollo. Le reti virtuali in questo scenario sono protette da regole dei gruppi di sicurezza di rete che limitano il flusso del traffico tra i componenti dell'applicazione.
+- I [servizi di bilanciamento del carico di Azure](/azure/load-balancer/load-balancer-overview) distribuiscono il traffico in ingresso in base a regole e probe di integrità. Un servizio di bilanciamento del carico offre bassa latenza e velocità effettiva elevata, oltre a una scalabilità fino a milioni di flussi per tutte le applicazioni TCP e UDP. Un servizio di bilanciamento del carico viene usato in questo scenario per distribuire il traffico dalla rete per la distribuzione di contenuti ai server Web front-end.
+- I [set di scalabilità di macchine virtuali][docs-vmss] consentono di creare e gestire un gruppo di macchine virtuali identiche con bilanciamento del carico. Il numero di istanze di macchine virtuali può aumentare o diminuire automaticamente in risposta alla domanda o a una pianificazione definita. In questo scenario vengono usati due set di scalabilità di macchine virtuali distinti: uno per i server Web front-end che rendono disponibili i contenuti e uno per i server Web front-end usati per creare nuovi contenuti.
+- [File di Azure](/azure/storage/files/storage-files-introduction) fornisce una condivisione file completamente gestita nel cloud che ospita tutto il contenuto di WordPress in questo scenario, in modo che tutte le macchine virtuali abbiano accesso ai dati.
+- [Azure Key Vault](/azure/key-vault/key-vault-overview) viene usato per archiviare e controllare rigorosamente l'accesso a password, certificati e chiavi.
+- [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) è un servizio di gestione di identità e directory multi-tenant basato sul cloud. In questo scenario Azure AD fornisce servizi di autenticazione per il sito Web e i tunnel VPN.
 
 ### <a name="alternatives"></a>Alternative
 
-* [SQL Server per Linux](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) può sostituire l'archivio dati di MariaDB.
-* Il [database di Azure per MySQL](/azure/mysql/overview) può sostituire l'archivio dati di MariaDB se si preferisce una soluzione completamente gestita.
+- [SQL Server per Linux](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) può sostituire l'archivio dati di MariaDB.
+- Il [database di Azure per MySQL](/azure/mysql/overview) può sostituire l'archivio dati di MariaDB se si preferisce una soluzione completamente gestita.
 
 ## <a name="considerations"></a>Considerazioni
 
@@ -95,9 +96,9 @@ Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi s
 
 Microsoft ha fornito un [profilo dei costi][pricing] preconfigurato basato sul diagramma dell'architettura riportato in precedenza. Per configurare il calcolatore prezzi per il caso d'uso, ci sono alcuni aspetti principali da considerare:
 
-* Quanto traffico si prevede in termini di GB/mese? La quantità di traffico avrà l'impatto maggiore sui costi, dal momento che influirà sul numero di macchine virtuali richieste per rendere disponibili i dati nel set di scalabilità di macchine virtuali. Inoltre, sarà direttamente correlata alla quantità di dati che vengono presentati tramite la rete CDN.
-* Quanti nuovi dati verranno scritti nel sito Web? I nuovi dati scritti nel sito Web sono correlati alla quantità di dati di cui viene eseguito il mirroring tra le aree.
-* Quanto contenuto è dinamico? Quanto è statico? La varianza rispetto al contenuto statico e dinamico influisce sulla quantità di dati che deve essere recuperata dal livello database rispetto alla quantità di dati che verranno memorizzati nella cache nella rete CDN.
+- Quanto traffico si prevede in termini di GB/mese? La quantità di traffico avrà l'impatto maggiore sui costi, dal momento che influirà sul numero di macchine virtuali richieste per rendere disponibili i dati nel set di scalabilità di macchine virtuali. Inoltre, sarà direttamente correlata alla quantità di dati che vengono presentati tramite la rete CDN.
+- Quanti nuovi dati verranno scritti nel sito Web? I nuovi dati scritti nel sito Web sono correlati alla quantità di dati di cui viene eseguito il mirroring tra le aree.
+- Quanto contenuto è dinamico? Quanto è statico? La varianza rispetto al contenuto statico e dinamico influisce sulla quantità di dati che deve essere recuperata dal livello database rispetto alla quantità di dati che verranno memorizzati nella cache nella rete CDN.
 
 <!-- links -->
 [architecture]: ./media/architecture-secure-scalable-wordpress.png

@@ -5,12 +5,12 @@ description: Procedure consolidate per l'esecuzione di SAP HANA in un ambiente a
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: c21a5ac83d8d8ee9a9b9d7edad07288c85544994
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120157"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644088"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Eseguire SAP HANA in istanze Large di Azure
 
@@ -168,6 +168,15 @@ Le community possono rispondere alle domande ed essere utili per configurare cor
 - [Supporto della community di Azure][azure-forum]
 - [Community SAP][sap-community]
 - [SAP in Stack Overflow][stack-overflow]
+
+## <a name="related-resources"></a>Risorse correlate
+
+Può essere utile esaminare gli [scenari di esempio di Azure](/azure/architecture/example-scenario) seguenti, che illustrano soluzioni specifiche usando alcune delle stesse tecnologie:
+
+- [Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure](/azure/architecture/example-scenario/apps/sap-production)
+- [Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [azure-forum]: https://azure.microsoft.com/support/forums/
 [azure-large-instances]: /azure/virtual-machines/workloads/sap/hana-overview-architecture

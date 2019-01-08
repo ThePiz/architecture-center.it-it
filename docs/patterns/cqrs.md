@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429690"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450871"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)
 
@@ -39,8 +39,6 @@ L'approccio CRUD tradizionale presenta tuttavia alcuni svantaggi:
 - Si verificano conflitti di dati quando i record sono bloccati nell'archivio dati in un dominio di collaborazione, dove più attori operano in parallelo sullo stesso set di dati, oppure conflitti di aggiornamento provocati dagli aggiornamenti simultanei quando si usa il blocco ottimistico. Tali rischi aumentano in modo proporzionale all'incremento della complessità e della velocità effettiva del sistema. L'approccio tradizionale può avere anche un effetto negativo sulle prestazioni dovuto al carico sull'archivio dati e sul livello di accesso ai dati e alla complessità delle query necessarie per recuperare informazioni.
 
 - La gestione della sicurezza e delle autorizzazioni può diventare più complessa perché ogni entità è sottoposta a operazioni di lettura e scrittura, con possibile esposizione dei dati in un contesto non corretto.
-
-> Per informazioni più dettagliate sui limiti dell'approccio CRUD, vedere [CRUD, solo quando è accessibile](https://blogs.msdn.microsoft.com/maarten_mullender/2004/07/23/crud-only-when-you-can-afford-it-revisited/).
 
 ## <a name="solution"></a>Soluzione
 
@@ -248,6 +246,6 @@ Quando si implementa questo modello, possono essere utili i modelli e le linee g
 
 - [Modello di viste materializzate](materialized-view.md). Il modello di lettura di un'implementazione CQRS può contenere viste materializzate dei dati del modello di scrittura oppure può essere usato per generare viste materializzate.
 
-- Guida ai modelli e alle procedure consigliate [Percorso CQRS](https://aka.ms/cqrs). In particolare, [Introduzione al modello di separazione di responsabilità per query e comandi](https://msdn.microsoft.com/library/jj591573.aspx) esamina il modello e i momenti in cui risulta più utile, mentre [Epilogo - Lezioni apprese](https://msdn.microsoft.com/library/jj591568.aspx) consente di comprendere alcuni problemi da affrontare quando si usa questo modello.
+- Guida ai modelli e alle procedure consigliate [Percorso CQRS](https://aka.ms/cqrs). In particolare [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introduzione al modello CSRS) esamina il modello e illustra quando è utile ed [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilogo: Esperienze acquisite) consente di comprendere alcuni dei problemi da affrontare quando si usa questo modello.
 
 - Il post [CQRS di Martin Fowler](https://martinfowler.com/bliki/CQRS.html), che illustra le nozioni di base del modello e contiene collegamenti ad altre risorse utili.

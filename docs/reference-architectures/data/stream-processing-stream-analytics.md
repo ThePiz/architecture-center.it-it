@@ -5,12 +5,12 @@ description: Creare una pipeline di elaborazione di flussi end-to-end in Azure.
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 44eaf51f2180be250defbeb0d141ab24f7f17d4b
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119932"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643748"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>Creare una pipeline di elaborazione di flussi con Analisi di flusso di Azure
 
@@ -221,4 +221,14 @@ L'aumento automatico è stato abilitato in corrispondenza del contrassegno 06:35
 
 Per distribuire ed eseguire l'implementazione di riferimento, seguire la procedura illustrata nel file [README in GitHub][github].
 
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa
+## <a name="related-resources"></a>Risorse correlate
+
+Può essere utile esaminare gli [scenari di esempio di Azure](/azure/architecture/example-scenario) seguenti, che illustrano soluzioni specifiche usando alcune delle stesse tecnologie:
+
+- [IoT e analisi dei dati nel settore edilizio](/azure/architecture/example-scenario/data/big-data-with-iot)
+- [Rilevamento delle frodi in tempo reale](/azure/architecture/example-scenario/data/fraud-detection)
+
+<!-- links -->
+
+[github]: https://github.com/mspnp/azure-stream-analytics-data-pipeline
+

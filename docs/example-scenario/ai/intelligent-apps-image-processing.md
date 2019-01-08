@@ -1,14 +1,15 @@
 ---
-title: Classificazione delle immagini per richieste di indennizzo assicurativo in Azure
+title: Classificazione delle immagini per richieste di indennizzo assicurativo
+titleSuffix: Azure Example Scenarios
 description: Integrare l'elaborazione di immagini nelle applicazioni Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610533"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643446"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Classificazione delle immagini per richieste di indennizzo assicurativo in Azure
 
@@ -22,8 +23,8 @@ Con servizi di Azure come l'API Visione artificiale e Funzioni di Azure, le azie
 
 Gli altri casi d'uso pertinenti includono:
 
-* Classificazione delle immagini in un sito Web di abbigliamento.
-* Classificazione dei dati di telemetria provenienti da screenshot di giochi.
+- Classificazione delle immagini in un sito Web di abbigliamento.
+- Classificazione dei dati di telemetria provenienti da screenshot di giochi.
 
 ## <a name="architecture"></a>Architettura
 
@@ -39,22 +40,22 @@ Questo scenario include i componenti back-end di un'applicazione Web o per dispo
 
 ### <a name="components"></a>Componenti
 
-* L'[API Visione artificiale](/azure/cognitive-services/computer-vision/home), appartenente alla famiglia di prodotti Servizi cognitivi, viene usata per recuperare informazioni su ogni immagine.
-* [Funzioni di Azure](/azure/azure-functions/functions-overview) fornisce l'API back-end per l'applicazione Web, nonché l'elaborazione di eventi per le immagini caricate.
-* [Griglia di eventi](/azure/event-grid/overview) attiva un evento quando una nuova immagine viene caricata nell'archivio BLOB. L'immagine viene quindi elaborata con Funzioni di Azure.
-* Nell'[archivio BLOB](/azure/storage/blobs/storage-blobs-introduction) vengono archiviati tutti i file di immagine caricati nell'applicazione Web, nonché i file statici da essa utilizzati.
-* In [Cosmos DB](/azure/cosmos-db/introduction) vengono archiviati i metadati relativi a ogni immagine caricata, inclusi i risultati dell'elaborazione dell'API Visione artificiale.
+- L'[API Visione artificiale](/azure/cognitive-services/computer-vision/home), appartenente alla famiglia di prodotti Servizi cognitivi, viene usata per recuperare informazioni su ogni immagine.
+- [Funzioni di Azure](/azure/azure-functions/functions-overview) fornisce l'API back-end per l'applicazione Web, nonché l'elaborazione di eventi per le immagini caricate.
+- [Griglia di eventi](/azure/event-grid/overview) attiva un evento quando una nuova immagine viene caricata nell'archivio BLOB. L'immagine viene quindi elaborata con Funzioni di Azure.
+- Nell'[archivio BLOB](/azure/storage/blobs/storage-blobs-introduction) vengono archiviati tutti i file di immagine caricati nell'applicazione Web, nonché i file statici da essa utilizzati.
+- In [Cosmos DB](/azure/cosmos-db/introduction) vengono archiviati i metadati relativi a ogni immagine caricata, inclusi i risultati dell'elaborazione dell'API Visione artificiale.
 
 ## <a name="alternatives"></a>Alternative
 
-* [Servizio visione artificiale personalizzato](/azure/cognitive-services/custom-vision-service/home). L'API Visione artificiale restituisce un set di [categorie basate sulla tassonomia][cv-categories]. Se è necessario elaborare informazioni non restituite dall'API Visione artificiale, prendere in considerazione il Servizio visione artificiale personalizzato, che consente di creare classificatori di immagini personalizzati.
-* [Ricerca di Azure](/azure/search/search-what-is-azure-search). Se il caso d'uso include l'esecuzione di query sui metadati per trovare le immagini che soddisfano criteri specifici, valutare la possibilità di usare Ricerca di Azure. La funzionalità di [ricerca cognitiva](/azure/search/cognitive-search-concept-intro), attualmente in anteprima, integra perfettamente questo flusso di lavoro.
+- [Servizio visione artificiale personalizzato](/azure/cognitive-services/custom-vision-service/home). L'API Visione artificiale restituisce un set di [categorie basate sulla tassonomia][cv-categories]. Se è necessario elaborare informazioni non restituite dall'API Visione artificiale, prendere in considerazione il Servizio visione artificiale personalizzato, che consente di creare classificatori di immagini personalizzati.
+- [Ricerca di Azure](/azure/search/search-what-is-azure-search). Se il caso d'uso include l'esecuzione di query sui metadati per trovare le immagini che soddisfano criteri specifici, valutare la possibilità di usare Ricerca di Azure. La funzionalità di [ricerca cognitiva](/azure/search/cognitive-search-concept-intro), attualmente in anteprima, integra perfettamente questo flusso di lavoro.
 
 ## <a name="considerations"></a>Considerazioni
 
 ### <a name="scalability"></a>Scalabilità
 
-La maggior parte dei componenti di questo scenario è costituita da servizi gestiti con scalabilità automatica. Esistono alcune eccezioni significative. Funzioni di Azure ha un limite massimo di 200 istanze. Se è necessaria una scalabilità superiore, prendere in considerazione più aree o piani app.
+La maggior parte dei componenti di questo scenario è costituita da servizi gestiti con scalabilità automatica. Esistono un paio di eccezioni importanti: Funzioni di Azure ha un limite massimo di 200 istanze. Se è necessaria una scalabilità superiore, prendere in considerazione più aree o piani app.
 
 Cosmos DB non offre scalabilità automatica in termini di unità richiesta (UR) sottoposte a provisioning. Per indicazioni su come stimare i propri requisiti, vedere l'articolo relativo alle [unità richiesta](/azure/cosmos-db/request-units) nella documentazione. Per sfruttare appieno la scalabilità in Cosmos DB, esaminare il funzionamento delle [chiavi di partizione](/azure/cosmos-db/partition-data) in Cosmos DB.
 
@@ -80,9 +81,9 @@ Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi s
 
 Sono stati definiti tre profili di costo di esempio in base alla quantità di traffico, supponendo che tutte le immagini siano di 100 KB:
 
-* [Small][small-pricing]: questo esempio di prezzi è correlato all'elaborazione di &lt; 5000 immagini al mese.
-* [Medium][medium-pricing]: questo esempio di prezzi è correlato all'elaborazione di 500.000 immagini al mese.
-* [Large][large-pricing]: questo esempio di prezzi è correlato all'elaborazione di 50 milioni di immagini al mese.
+- [Small][small-pricing]: questo esempio di prezzi è correlato all'elaborazione di &lt; 5000 immagini al mese.
+- [Medium][medium-pricing]: questo esempio di prezzi è correlato all'elaborazione di 500.000 immagini al mese.
+- [Large][large-pricing]: questo esempio di prezzi è correlato all'elaborazione di 50 milioni di immagini al mese.
 
 ## <a name="related-resources"></a>Risorse correlate
 

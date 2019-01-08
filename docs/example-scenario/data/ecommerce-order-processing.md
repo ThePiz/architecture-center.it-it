@@ -1,18 +1,19 @@
 ---
-title: Elaborazione degli ordini scalabile in Azure
+title: Elaborazione degli ordini scalabile
+titleSuffix: Azure Example Scenarios
 description: Creare una pipeline di elaborazione degli ordini altamente scalabile con Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610856"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644190"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Elaborazione degli ordini scalabile in Azure
 
-Questo scenario di esempio è rivolto alle organizzazioni che necessitano di un'architettura altamente scalabile e resiliente per l'elaborazione degli ordini online. Le potenziali applicazioni includono e-commerce e punti vendita al dettaglio, evasione degli ordini e prenotazione e tracking dell'inventario. 
+Questo scenario di esempio è rivolto alle organizzazioni che necessitano di un'architettura altamente scalabile e resiliente per l'elaborazione degli ordini online. Le potenziali applicazioni includono e-commerce e punti vendita al dettaglio, evasione degli ordini e prenotazione e tracking dell'inventario.
 
 Questo scenario adotta un approccio di origine eventi, usando un modello di programmazione funzionale implementato tramite microservizi. Ogni microservizio viene gestito come un elaboratore di flusso e tutta la logica di business viene implementata tramite microservizi. Questo approccio consente disponibilità e resilienza elevate, replica geografica e prestazioni rapide.
 
@@ -22,10 +23,10 @@ L'uso di servizi gestiti di Azure come Cosmos DB e HDInsight può contribuire a 
 
 Gli altri casi d'uso pertinenti includono:
 
-* Sistemi di back-end per e-commerce o punti vendita al dettaglio.
-* Sistemi di gestione dell'inventario.
-* Sistemi di evasione degli ordini.
-* Altri scenari di integrazione correlati a una pipeline di elaborazione degli ordini.
+- Sistemi di back-end per e-commerce o punti vendita al dettaglio.
+- Sistemi di gestione dell'inventario.
+- Sistemi di evasione degli ordini.
+- Altri scenari di integrazione correlati a una pipeline di elaborazione degli ordini.
 
 ## <a name="architecture"></a>Architettura
 
@@ -41,12 +42,12 @@ Questa architettura indica i componenti chiave di una pipeline per l'elaborazion
 
 ### <a name="components"></a>Componenti
 
-* [Cosmos DB](/azure/cosmos-db/introduction) è il database multimodello di Microsoft, distribuito a livello globale, che consente di ridimensionare in modo flessibile e indipendente la velocità effettiva e le risorse di archiviazione delle soluzioni, in un numero qualsiasi di aree geografiche. Offre garanzie di produttività, latenza, disponibilità e coerenza con contratti di servizio completi. Questo scenario usa Cosmos DB per l'archiviazione di flussi di eventi e l'archiviazione di snapshot e sfrutta le funzioni di [feed di modifiche di Cosmos DB][docs-cosmos-db-change-feed] per garantire la coerenza dei dati e il recupero da errori.
-* [Apache Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) è un'implementazione di servizi gestiti di Apache Kafka, una piattaforma di streaming distribuita open-source per la creazione di applicazioni e pipeline di dati in streaming in tempo reale. Kafka offre anche una funzionalità di broker di messaggi simile a una coda di messaggi, in cui è possibile pubblicare e sottoscrivere flussi dei dati denominati. Questo scenario usa Kafka per l'elaborazione di eventi in ingresso e downstream nella pipeline di elaborazione degli ordini. 
+- [Cosmos DB](/azure/cosmos-db/introduction) è il database multimodello di Microsoft, distribuito a livello globale, che consente di ridimensionare in modo flessibile e indipendente la velocità effettiva e le risorse di archiviazione delle soluzioni, in un numero qualsiasi di aree geografiche. Offre garanzie di produttività, latenza, disponibilità e coerenza con contratti di servizio completi. Questo scenario usa Cosmos DB per l'archiviazione di flussi di eventi e l'archiviazione di snapshot e sfrutta le funzioni di [feed di modifiche di Cosmos DB][docs-cosmos-db-change-feed] per garantire la coerenza dei dati e il recupero da errori.
+- [Apache Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) è un'implementazione di servizi gestiti di Apache Kafka, una piattaforma di streaming distribuita open-source per la creazione di applicazioni e pipeline di dati in streaming in tempo reale. Kafka offre anche una funzionalità di broker di messaggi simile a una coda di messaggi, in cui è possibile pubblicare e sottoscrivere flussi dei dati denominati. Questo scenario usa Kafka per l'elaborazione di eventi in ingresso e downstream nella pipeline di elaborazione degli ordini.
 
 ## <a name="considerations"></a>Considerazioni
 
-Per l'inserimento di messaggi in tempo reale, l'archiviazione dei dati, l'elaborazione dei flussi, l'archiviazione dei dati analitici, l'analisi e la creazione di report sono disponibili molte opzioni tecnologiche. Per una panoramica di queste opzioni, delle relative funzionalità e dei principali criteri di selezione, vedere l'articolo su [architetture per Big Data ed elaborazione in tempo reale](/azure/architecture/data-guide/technology-choices/real-time-ingestion) in [Guida all'architettura dei dati di Azure](/azure/architecture/data-guide).
+Per l'inserimento di messaggi in tempo reale, l'archiviazione dei dati, l'elaborazione dei flussi, l'archiviazione dei dati analitici, l'analisi e la creazione di report sono disponibili molte opzioni tecnologiche. Per una panoramica di queste opzioni, delle relative funzionalità e dei principali criteri di selezione, vedere [Architetture per Big Data Inserimento di messaggi in tempo reale](/azure/architecture/data-guide/technology-choices/real-time-ingestion) in [Guida all'architettura dei dati di Azure](/azure/architecture/data-guide).
 
 I microservizi sono diventati uno stile di architettura diffuso per la creazione di applicazioni cloud che offrono resilienza, scalabilità elevata, possibilità di distribuzione indipendente e capacità di evolversi rapidamente. I microservizi richiedono un approccio diverso alla progettazione e alla creazione di applicazioni. Strumenti come Docker, Kubernetes, Azure Service Fabric e Nomad consentono lo sviluppo di architetture basate su microservizi. Per informazioni sulla creazione e l'esecuzione di un'architettura basata su microservizi, vedere [Progettazione di microservizi in Azure](/azure/architecture/microservices in Centro architetture di Azure.
 
@@ -54,7 +55,7 @@ I microservizi sono diventati uno stile di architettura diffuso per la creazione
 
 L'approccio di origine eventi di questo scenario consente di associare e distribuire i componenti di sistema in modo flessibile e indipendente l'uno dall'altro. Cosmos DB offre [disponibilità elevata][docs-cosmos-db-regional-failover] e consente all'organizzazione di gestire i compromessi associati a coerenza, disponibilità e prestazioni, il tutto con [garanzie corrispondenti][docs-cosmos-db-guarantees]. Anche Apache Kafka in HDInsight è progettato per la [disponibilità elevata][docs-kafka-high-availability].
 
-Monitoraggio di Azure offre interfacce utente unificate per il monitoraggio di diversi servizi di Azure. Per altre informazioni, vedere l'articolo relativo al [monitoraggio in Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Sia Hub eventi che Analisi di flusso sono integrati in Monitoraggio di Azure. 
+Monitoraggio di Azure offre interfacce utente unificate per il monitoraggio di diversi servizi di Azure. Per altre informazioni, vedere l'articolo relativo al [monitoraggio in Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Sia Hub eventi che Analisi di flusso sono integrati in Monitoraggio di Azure.
 
 Per altre considerazioni sulla disponibilità, vedere l'[elenco di controllo della disponibilità][availability].
 
@@ -83,21 +84,23 @@ La valuta di Azure Cosmos DB è l'unità richiesta (UR). Con le unità richiesta
 
 Sono stati definiti tre profili di costo di esempio in base alla quantità di attività prevista.
 
-* [Small][small-pricing]: questo esempio di prezzi corrisponde a 5 unità richiesta riservate con un archivio dati di 1 TB in Cosmos DB e un piccolo cluster Kafka (D3 v2).
-* [Medium][medium-pricing]: questo esempio di prezzi corrisponde a 50 unità richiesta riservate con un archivio dati di 10 TB in Cosmos DB e un cluster Kafka di medie dimensioni (D4 v2).
-* [Large][large-pricing]: questo esempio di prezzi corrisponde a 500 unità richiesta riservate con un archivio dati di 30 TB in Cosmos DB e un cluster Kafka di grandi dimensioni (D5 v2).
+- [Small][small-pricing]: questo esempio di prezzi corrisponde a 5 unità richiesta riservate con un archivio dati di 1 TB in Cosmos DB e un piccolo cluster Kafka (D3 v2).
+- [Medium][medium-pricing]: questo esempio di prezzi corrisponde a 50 unità richiesta riservate con un archivio dati di 10 TB in Cosmos DB e un cluster Kafka di medie dimensioni (D4 v2).
+- [Large][large-pricing]: questo esempio di prezzi corrisponde a 500 unità richiesta riservate con un archivio dati di 30 TB in Cosmos DB e un cluster Kafka di grandi dimensioni (D5 v2).
 
 ## <a name="related-resources"></a>Risorse correlate
 
 Questo scenario di esempio si basa su una versione più estesa di questa architettura, creata da [Jet.com](https://jet.com) per la propria pipeline di elaborazione degli ordini end-to-end. Per altre informazioni, vedere il [profilo tecnico del cliente jet.com][source-document] e la [presentazione di jet.com a Build 2018][source-presentation].
 
 Altre risorse correlate includono:
-* _[Designing Data-Intensive Applications](https://dataintensive.net)_ di Martin Kleppmann (O'Reilly Media, 2017).
-* _[Domain Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)_ di Scott Wlaschin (Pragmatic Programmers LLC, 2018).
-* Alti [casi d'uso di Cosmos DB][docs-cosmos-db-use-cases]
-* [Architettura di elaborazione in tempo reale](/azure/architecture/data-guide/big-data/real-time-processing) nella [Guida all'architettura dei dati di Azure](/azure/architecture/data-guide).
+
+- *[Designing Data-Intensive Applications](https://dataintensive.net)* di Martin Kleppmann (O'Reilly Media, 2017).
+- *[Domain Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)* di Scott Wlaschin (Pragmatic Programmers LLC, 2018).
+- Alti [casi d'uso di Cosmos DB][docs-cosmos-db-use-cases]
+- [Architettura di elaborazione in tempo reale](/azure/architecture/data-guide/big-data/real-time-processing) nella [Guida all'architettura dei dati di Azure](/azure/architecture/data-guide).
 
 <!-- links -->
+
 [architecture]: ./media/architecture-ecommerce-order-processing.png
 [product-category]: https://azure.microsoft.com/product-categories/databases/
 [source-document]: https://customers.microsoft.com/story/jet-com-powers-innovative-e-commerce-engine-on-azure-in-less-than-12-months

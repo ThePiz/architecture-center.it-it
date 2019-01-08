@@ -1,15 +1,16 @@
 ---
-title: Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure
+title: Applicazione Web multilivello creata per la disponibilità elevata e il ripristino di emergenza
+titleSuffix: Azure Example Scenarios
 description: Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure
 author: sujayt
 ms.date: 11/16/2018
 ms.custom: product-team
-ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: baa468697b4a72975e3b192efc9bdf1861a0c0da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004605"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644047"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure
 
@@ -25,9 +26,9 @@ Scenari applicativi comuni includono eventuali applicazioni di importanza crucia
 
 Gli altri casi d'uso pertinenti includono:
 
-* Distribuzione di applicazioni altamente resilienti, come SAP e SharePoint
-* Progettazione di un piano di continuità aziendale e ripristino di emergenza per applicazioni line-of-business
-* Configurare il ripristino di emergenza ed eseguire esercitazioni correlate per motivi di conformità
+- Distribuzione di applicazioni altamente resilienti, come SAP e SharePoint
+- Progettazione di un piano di continuità aziendale e ripristino di emergenza per applicazioni line-of-business
+- Configurare il ripristino di emergenza ed eseguire esercitazioni correlate per motivi di conformità
 
 ## <a name="architecture"></a>Architettura
 
@@ -49,17 +50,17 @@ Questo scenario dimostra un'applicazione multilivello che usa ASP.NET e Microsof
 
 ### <a name="components"></a>Componenti
 
-* I [set di disponibilità][docs-availability-sets] assicurano che le macchine virtuali distribuite in Azure vengano distribuite tra più nodi hardware isolati in un cluster. Se si verifica un errore hardware o software all'interno di Azure, solo un subset delle macchine virtuali viene interessato e l'intera soluzione rimane disponibile e operativa.
-* Le [zone di disponibilità][docs-availability-zones] proteggono le applicazioni e i dati dai guasti del data center. Le zone di disponibilità sono località fisiche separate all'interno di un'area di Azure. Ogni zona è costituita da uno o più data center dotati di impianti indipendenti per l'alimentazione, il raffreddamento e la connettività di rete. 
-* [Azure Site Recovery (ASR)][docs-azure-site-recovery] consente di replicare le macchine virtuali in un'altra area di Azure per esigenze di continuità aziendale e ripristino di emergenza. È possibile condurre esercitazioni periodiche sul ripristino di emergenza per assicurarsi di soddisfare le esigenze di conformità. La VM verrà replicata con le impostazioni specificate nell'area selezionata in modo da consentire il ripristino delle applicazioni in caso di interruzioni nell'area di origine.
-* [Gestione traffico di Azure][docs-traffic-manager] è un servizio di bilanciamento del carico basato su DNS che distribuisce il traffico in modo ottimale ai servizi nelle aree globali di Azure, offrendo al tempo stesso disponibilità e velocità di risposta elevate.
-* [Azure Load Balancer][docs-load-balancer] distribuisce il traffico in ingresso in base a regole e probe di integrità definiti. Un servizio di bilanciamento del carico offre bassa latenza e velocità effettiva elevata, aumentando le prestazioni fino a milioni di flussi per tutte le applicazioni TCP e UDP. In questo scenario viene usato un servizio di bilanciamento del carico pubblico per distribuire il traffico client nel livello Web. Questo scenario usa un servizio di bilanciamento del carico interno per distribuire il traffico dal livello business al cluster SQL Server di back-end.
+- I [set di disponibilità][docs-availability-sets] assicurano che le macchine virtuali distribuite in Azure vengano distribuite tra più nodi hardware isolati in un cluster. Se si verifica un errore hardware o software all'interno di Azure, solo un subset delle macchine virtuali viene interessato e l'intera soluzione rimane disponibile e operativa.
+- Le [zone di disponibilità][docs-availability-zones] proteggono le applicazioni e i dati dai guasti del data center. Le zone di disponibilità sono località fisiche separate all'interno di un'area di Azure. Ogni zona è costituita da uno o più data center dotati di impianti indipendenti per l'alimentazione, il raffreddamento e la connettività di rete.
+- [Azure Site Recovery (ASR)][docs-azure-site-recovery] consente di replicare le macchine virtuali in un'altra area di Azure per esigenze di continuità aziendale e ripristino di emergenza. È possibile condurre esercitazioni periodiche sul ripristino di emergenza per assicurarsi di soddisfare le esigenze di conformità. La VM verrà replicata con le impostazioni specificate nell'area selezionata in modo da consentire il ripristino delle applicazioni in caso di interruzioni nell'area di origine.
+- [Gestione traffico di Azure][docs-traffic-manager] è un servizio di bilanciamento del carico basato su DNS che distribuisce il traffico in modo ottimale ai servizi nelle aree globali di Azure, offrendo al tempo stesso disponibilità e velocità di risposta elevate.
+- [Azure Load Balancer][docs-load-balancer] distribuisce il traffico in ingresso in base a regole e probe di integrità definiti. Un servizio di bilanciamento del carico offre bassa latenza e velocità effettiva elevata, aumentando le prestazioni fino a milioni di flussi per tutte le applicazioni TCP e UDP. In questo scenario viene usato un servizio di bilanciamento del carico pubblico per distribuire il traffico client nel livello Web. Questo scenario usa un servizio di bilanciamento del carico interno per distribuire il traffico dal livello business al cluster SQL Server di back-end.
 
 ### <a name="alternatives"></a>Alternative
 
-* Windows può essere sostituito da altri sistemi operativi, perché l'infrastruttura non dipende dal sistema operativo.
-* [SQL Server per Linux][docs-sql-server-linux] può sostituire l'archivio dati di back-end.
-* Il database può essere sostituito da qualsiasi applicazione di database standard disponibile.
+- Windows può essere sostituito da altri sistemi operativi, perché l'infrastruttura non dipende dal sistema operativo.
+- [SQL Server per Linux][docs-sql-server-linux] può sostituire l'archivio dati di back-end.
+- Il database può essere sostituito da qualsiasi applicazione di database standard disponibile.
 
 ## <a name="other-considerations"></a>Altre considerazioni
 

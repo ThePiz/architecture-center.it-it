@@ -5,12 +5,12 @@ description: Distribuire un'applicazione sulle macchine virtuali di Azure in pi�
 author: MikeWasson
 ms.date: 07/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 5036d8c74dbf92d9547ab866b15b1576df48e3eb
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 84da8aaef7e552beff1f06befbaa2e50a3ac3d8b
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120000"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643709"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Eseguire un'applicazione a più livelli in più aree di Azure per una disponibilità elevata
 
@@ -159,6 +159,13 @@ Testare la resilienza del sistema agli errori. Di seguito sono riportati alcuni 
 - Arrestare il servizio DNS nei controller di dominio.
 
 Misurare i tempi di ripristino e verificare che soddisfino i requisiti aziendali. Testare anche le combinazioni di modalità di errore.
+
+## <a name="related-resources"></a>Risorse correlate
+
+Può essere utile esaminare gli [scenari di esempio di Azure](/azure/architecture/example-scenario) seguenti, che illustrano soluzioni specifiche usando alcune delle stesse tecnologie:
+
+- [Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure](/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery)
+- [Creazione di applicazioni Web sicure con macchine virtuali Windows in Azure](/azure/architecture/example-scenario/infrastructure/regulated-multitier-app)
 
 <!-- links -->
 

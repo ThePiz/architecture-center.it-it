@@ -5,12 +5,12 @@ description: Usare Azure per ottenere informazioni aziendali dettagliate da dati
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 656bf6f1bd342856fd8a2d2aa0b62a9dd4d4f87f
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 3808cc5d09e2e0a5aaee1a6cfcb050b98a0ef2ee
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120085"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644224"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Business intelligence aziendale in Azure con SQL Data Warehouse
 
@@ -113,7 +113,7 @@ Creare le tabelle di staging come tabelle heap, che non sono indicizzate. Le que
 
 PolyBase sfrutta automaticamente il parallelismo nel warehouse. Le prestazioni di caricamento vengono ridimensionate con l'aumento delle Unità Data Warehouse. Per prestazioni ottimali, usare un'unica operazione di caricamento. Suddividendo i dati di input in blocchi ed eseguendo più caricamenti simultanei non vi è alcun miglioramento delle prestazioni.
 
-PolyBase è in grado di leggere dati compressi in file Gzip. Tuttavia, verrà usato solo un singolo lettore per ogni file compresso, poiché la decompressione del file è un'operazione a thread singolo. Pertanto, evitare di caricare un unico file compresso di grandi dimensioni. Al contrario, suddividere i dati in più file compressi, per trarre vantaggio dal parallelismo. 
+PolyBase è in grado di leggere dati compressi in file Gzip. Tuttavia, verrà usato solo un singolo lettore per ogni file compresso, poiché la decompressione del file è un'operazione a thread singolo. Pertanto, evitare di caricare un unico file compresso di grandi dimensioni. Al contrario, suddividere i dati in più file compressi, per trarre vantaggio dal parallelismo.
 
 Tenere presente le limitazioni seguenti:
 
@@ -183,10 +183,10 @@ Per ridurre la quantità di elaborazione non necessaria è consigliabile usare p
 
 ### <a name="authorization"></a>Authorization
 
-Azure Analysis Services usa Azure Active Directory (Azure AD) per autenticare gli utenti che si connettono al server di Analysis Services. È possibile limitare i dati che un determinato utente è in grado di visualizzare creando dei ruoli e quindi assegnando gli utenti o gruppi di Azure AD a tali ruoli. Per ogni ruolo è possibile: 
+Azure Analysis Services usa Azure Active Directory (Azure AD) per autenticare gli utenti che si connettono al server di Analysis Services. È possibile limitare i dati che un determinato utente è in grado di visualizzare creando dei ruoli e quindi assegnando gli utenti o gruppi di Azure AD a tali ruoli. Per ogni ruolo è possibile:
 
-- Proteggere le singole colonne o tabelle. 
-- Proteggere le singole righe in base a espressioni filtro. 
+- Proteggere le singole colonne o tabelle.
+- Proteggere le singole righe in base a espressioni filtro.
 
 Per altre informazioni, vedere [Gestire ruoli del database e utenti](/azure/analysis-services/analysis-services-database-users).
 
@@ -202,6 +202,13 @@ Per distribuire ed eseguire l'implementazione di riferimento, seguire la procedu
 ## <a name="next-steps"></a>Passaggi successivi
 
 - Usare Azure Data Factory per automatizzare la pipeline ELT. Vedere [Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory][adf-ra].
+
+## <a name="related-resources"></a>Risorse correlate
+
+Può essere utile esaminare gli [scenari di esempio di Azure](/azure/architecture/example-scenario) seguenti, che illustrano soluzioni specifiche usando alcune delle stesse tecnologie:
+
+- [Data warehousing e analisi per vendite e marketing](/azure/architecture/example-scenario/data/data-warehouse)
+- [Processi ETL ibridi con distribuzioni SSIS locali esistenti e Azure Data Factory](/azure/architecture/example-scenario/data/hybrid-etl-with-adf)
 
 <!-- links -->
 

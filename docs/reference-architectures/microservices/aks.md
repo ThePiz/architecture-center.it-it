@@ -3,12 +3,12 @@ title: Architettura di microservizi nel servizio Azure Kubernetes (AKS)
 description: Distribuire un'architettura di microservizi nel servizio Azure Kubernetes (AKS)
 author: MikeWasson
 ms.date: 12/10/2018
-ms.openlocfilehash: c8fa92e012374882e3af89f7ef8f7d800a52dacb
-ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
+ms.openlocfilehash: 9e4b607cd7f5b33bbf08ce3af67dd5d4071ae8ef
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53233915"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644241"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Architettura di microservizi nel servizio Azure Kubernetes (AKS)
 
@@ -255,7 +255,7 @@ Automatizzare l'applicazione di patch all'immagine usando le attività del Regis
 
 Di seguito alcuni obiettivi relativi a un processo di CI/CD affidabile per un'architettura di microservizi:
 
-- Ogni team può creare e distribuire i servizi di sua proprietà in modo indipendente, senza influenzare o interrompere gli altri team. 
+- Ogni team può creare e distribuire i servizi di sua proprietà in modo indipendente, senza influenzare o interrompere gli altri team.
 
 - Prima che una nuova versione di un servizio venga distribuita all'ambiente di produzione, viene distribuita agli ambienti di sviluppo/test/controllo qualità per la convalida. I controlli di qualità vengono applicati in ogni fase.
 
@@ -280,27 +280,85 @@ Si consiglia di creare un cluster di produzione dedicato insieme a un cluster se
 - Rilevamento aggiornamenti e revisioni, con controllo delle versioni semantico, nonché la possibilità di eseguire il rollback a una versione precedente.
 - Uso dei modelli per evitare la duplicazione delle informazioni, ad esempio etichette e i selettori, attraverso più file.
 - Gestione delle dipendenze tra grafici.
-- Pubblicazione di grafici in un repository Helm, ad esempio il Registro Azure Container, e integrazione con la pipeline di compilazione. 
+- Pubblicazione di grafici in un repository Helm, ad esempio il Registro Azure Container, e integrazione con la pipeline di compilazione.
 
 Per altre informazioni sull'uso del Registro Container come repository Helm, vedere [Usare il Registro Azure Container come repository Helm per i grafici di applicazione](/azure/container-registry/container-registry-helm-repos).
 
 ### <a name="cicd-workflow"></a>Flusso di lavoro CI/CD
 
-Il diagramma seguente illustra un possibile flusso di lavoro CI/CD. Questo esempio presuppone che sia presente un ruolo di controllo di qualità separato dal ruolo di sviluppatore.
+Prima di creare un flusso di lavoro CI/CD, è necessario sapere come verrà strutturata e gestita la base di codice.
 
-![Flusso di lavoro CI/CD](./_images/aks-cicd.png)
+- I team lavorano in repository separati o in un singolo repository?
+- Qual è la strategia per la creazione dei rami?
+- Chi può eseguire il push del codice nell'ambiente di produzione? Esiste un ruolo di responsabile del rilascio?
 
-1. Lo sviluppatore esegue il commit di una modifica, che
-1. attiva la pipeline CI. Questa pipeline genera il codice, esegue i test e crea l'immagine del contenitore.
-1. Se vengono passati tutti i controlli, all'immagine viene eseguito il push nel repository immagini.
-1. Quando una nuova versione di un servizio è pronta per la distribuzione viene aggiunto un tag, che
-1. attiva la pipeline di test CD, che esegue un comando di aggiornamento helm per aggiornare il cluster di prova.
-1. Se la nuova versione è pronta per la distribuzione all'ambiente di produzione, il ruolo di controllo di qualità attiva manualmente la pipeline di produzione CD.
+L'approccio con singolo repository sta diventando popolare, ma esistono vantaggi e svantaggi per entrambi.
 
-### <a name="recommended-cicd-practices"></a>Procedure CI/CD consigliate
+| &nbsp; | Singolo repository | Più repository |
+|--------|----------|----------------|
+| **Vantaggi** | Condivisione del codice<br/>Più facile standardizzare codice e strumenti<br/>Più semplice effettuare il refactoring del codice<br/>Individuabilità - singola visualizzazione del codice<br/> | Proprietà chiara per ogni team<br/>Potenzialmente meno conflitti di merge<br/>Favorire la separazione dei microservizi |
+| **Problematiche** | Le modifiche al codice condiviso possono influire su più microservizi<br/>Maggiore rischio di conflitti di merge<br/>Gli strumenti devono supportare una base di codice di grandi dimensioni<br/>Controllo di accesso<br/>Processo di distribuzione più complesso | Più difficile la condivisione del codice<br/>Più difficile applicare standard di codifica<br/>Gestione delle dipendenze<br/>Base di codice diffusa, scarsa individuabilità<br/>Mancanza di un'infrastruttura condivisa
 
-Usare sempre imagePullPolicy, in modo che Kubernetes effettuerà sempre il pull dell'immagine più recente dal repository e non userà un'immagine memorizzata nella cache. È possibile applicare questo comportamento all'interno del cluster, usando il controller di ammissione AlwaysPullImages.
+In questa sezione viene presentato un possibile flusso di lavoro CI/CD basato sui presupposti seguenti:
 
-Non usare il tag `latest` per le immagini in un pod specifico. Specificare sempre la versione dell'immagine.
+- Il repository del codice è singolo, con cartelle organizzate in base ai microservizi.
+- La strategia di creazione dei rami del team è basata sullo [sviluppo basato su trunk](https://trunkbaseddevelopment.com/).
+- Il team usa [Azure Pipelines](/azure/devops/pipelines) per eseguire il processo CI/CD.
+- Il team usa [spazi dei nomi](/azure/container-registry/container-registry-best-practices#repository-namespaces) nel Registro Azure Container per isolare le immagini approvate per la produzione dalle immagini ancora in corso di test.
 
-Usare gli spazi dei nomi nel servizio Azure Container per far organizzare le immagini del contenitore al microservizio o al team di sviluppo.
+In questo esempio, uno sviluppatore sta lavorando a un microservizio denominato Delivery Service (Servizio di recapito). (Il nome deriva dall'implementazione di riferimento descritta [qui](../../microservices/index.md#the-drone-delivery-application).) Durante lo sviluppo di una nuova funzionalità, lo sviluppatore archivia il codice in un ramo di funzionalità.
+
+![Flusso di lavoro CI/CD](./_images/aks-cicd-1.png)
+
+Il push dei commit per questo ramo attiva una compilazione CI per il microservizio. Per convenzione, i rami di funzionalità sono denominati `feature/*`. Il [file di definizione di compilazione](/azure/devops/pipelines/yaml-schema) include un trigger che applica un filtro in base al nome del ramo e al percorso di origine. Con questo approccio, ogni team può avere una propria pipeline di compilazione.
+
+```yaml
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - feature/*
+
+    exclude:
+    - feature/experimental/*
+
+  paths:
+     include:
+     - /src/shipping/delivery/
+```
+
+A questo punto nel flusso di lavoro, la compilazione CI esegue alcune verifiche minime del codice:
+
+1. Compilare il codice
+1. Eseguire unit test
+
+L'obiettivo è mantenere brevi i tempi di compilazione in modo che lo sviluppatore possa ottenere un feedback rapido. Quando la funzionalità è pronta per il merge nel master, lo sviluppatore apre una richiesta pull. In questo modo viene attivata un'altra compilazione CI che esegue alcuni controlli aggiuntivi:
+
+1. Compilare il codice
+1. Eseguire unit test
+1. Compilare l'immagine del contenitore di runtime
+1. Eseguire analisi delle vulnerabilità sull'immagine
+
+![Flusso di lavoro CI/CD](./_images/aks-cicd-2.png)
+
+> [!NOTE]
+> In Azure Repos è possibile definire [criteri](/azure/devops/repos/git/branch-policies) per proteggere i rami. Ad esempio, i criteri potrebbero richiedere una compilazione CI riuscita oltre all'approvazione da un responsabile per poter eseguire il merge nel master.
+
+A un certo punto, il team è pronto per distribuire una nuova versione del servizio di recapito. A tale scopo, il responsabile del rilascio crea un ramo dal master con questo modello di denominazione: `release/<microservice name>/<semver>`. Ad esempio: `release/delivery/v1.0.2`.
+Viene così attivata una compilazione CI completa che esegue tutti i passaggi precedenti oltre a:
+
+1. Eseguire il push dell'immagine Docker nel Registro Azure Container. L'immagine viene contrassegnata con il numero di versione ottenuto dal nome del ramo.
+2. Eseguire `helm package` per creare un pacchetto del grafico Helm
+3. Eseguire il push del pacchetto Helm nel Registro Container eseguendo `az acr helm push`.
+
+Supponendo che la compilazione abbia esito positivo, viene attivato un processo di distribuzione tramite una [pipeline di rilascio](/azure/devops/pipelines/release/what-is-release-management) di Azure Pipelines. Questa pipeline
+
+1. Eseguire `helm upgrade` per distribuire il grafico Helm in un ambiente per il controllo di qualità.
+1. Un responsabile dà l'approvazione prima che il pacchetto venga spostato nell'ambiente di produzione. Vedere [Release deployment control using approvals](/azure/devops/pipelines/release/approvals/approvals) (Controllo della distribuzione della versione tramite approvazioni).
+1. Contrassegnare di nuovo l'immagine Docker per lo spazio dei nomi di produzione nel Registro Azure Container. Ad esempio, se il tag corrente è `myrepo.azurecr.io/delivery:v1.0.2`, il tag di produzione è `reponame.azurecr.io/prod/delivery:v1.0.2`.
+1. Eseguire `helm upgrade` per distribuire il grafico Helm nell'ambiente di produzione.
+
+![Flusso di lavoro CI/CD](./_images/aks-cicd-3.png)
+
+È importante ricordare che anche in un repository singolo, queste attività possono essere limitate a singoli microservizi, in modo che i team possano eseguire la distribuzione con velocità elevata. Il processo include alcuni passaggi manuali: Approvazione delle richieste pull, creazione di rami di rilascio e approvazione delle distribuzioni nel cluster di produzione. Questi passaggi sono manuali per definizione, ma possono essere completamente automatizzati se l'organizzazione lo preferisce.

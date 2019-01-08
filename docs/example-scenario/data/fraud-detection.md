@@ -1,14 +1,15 @@
 ---
-title: Rilevamento delle frodi in tempo reale in Azure
+title: Rilevamento delle frodi in tempo reale
+titleSuffix: Azure Example Scenarios
 description: Rilevare le attività fraudolente in tempo reale con Hub eventi e Analisi di flusso di Azure.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 9e4d8c5d24acc414ab38722d2df59102395250fb
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610618"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643406"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Rilevamento delle frodi in tempo reale in Azure
 
@@ -24,9 +25,9 @@ Questo esempio rappresenta una parte di un'architettura e una strategia di elabo
 
 Gli altri casi d'uso pertinenti includono:
 
-* Rilevamento di chiamate da telefono cellulare fraudolente in scenari di telecomunicazioni.
-* Identificazione di transazioni con carta di credito fraudolente per istituti bancari.
-* Identificazione di acquisti fraudolenti in scenari di vendita al dettaglio o e-commerce.
+- Rilevamento di chiamate da telefono cellulare fraudolente in scenari di telecomunicazioni.
+- Identificazione di transazioni con carta di credito fraudolente per istituti bancari.
+- Identificazione di acquisti fraudolenti in scenari di vendita al dettaglio o e-commerce.
 
 ## <a name="architecture"></a>Architettura
 
@@ -34,28 +35,28 @@ Gli altri casi d'uso pertinenti includono:
 
 Questo scenario include i componenti back-end di una pipeline di analisi in tempo reale. Il flusso dei dati nello scenario avviene come segue:
 
-1. I metadati delle chiamate da telefono cellulare vengono inviati dal sistema di origine a un'istanza di Hub eventi di Azure. 
+1. I metadati delle chiamate da telefono cellulare vengono inviati dal sistema di origine a un'istanza di Hub eventi di Azure.
 2. Viene avviato un processo di Analisi di flusso che riceve i dati tramite l'origine dell'hub eventi.
 3. Il processo di Analisi di flusso esegue una query predefinita per trasformare il flusso di input e analizzarlo in base a un algoritmo per le transazioni fraudolente. Questa query usa una finestra a cascata per segmentare il flusso in unità temporali distinte.
 4. Il processo di Analisi di flusso scrive il flusso trasformato che rappresenta le chiamate fraudolente rilevate in un sink di output nell'archivio BLOB di Azure.
 
 ### <a name="components"></a>Componenti
 
-* [Hub eventi di Azure][docs-event-hubs] è una piattaforma di streaming in tempo reale e un servizio di inserimento di eventi in grado di ricevere ed elaborare milioni di eventi al secondo. Hub eventi consente di elaborare e archiviare eventi, dati o dati di telemetria generati dal software distribuito e dai dispositivi. In questo scenario, Hub eventi riceve tutti i metadati delle telefonate da analizzare per individuare le attività fraudolente.
-* [Analisi di flusso di Azure][docs-stream-analytics] è un motore di elaborazione di eventi che può analizzare volumi elevati di dati trasmessi da dispositivi e altre origini dati. Supporta anche l'estrazione di informazioni dai flussi di dati per identificare modelli e relazioni. Tali modelli possono attivare altre azioni downstream. In questo scenario, Analisi di flusso trasforma il flusso di input da Hub eventi per identificare le chiamate fraudolente.
-* L'[archivio BLOB](/azure/storage/blobs/storage-blobs-introduction) viene usato in questo scenario per archiviare i risultati del processo di Analisi di flusso di Azure.
+- [Hub eventi di Azure][docs-event-hubs] è una piattaforma di streaming in tempo reale e un servizio di inserimento di eventi in grado di ricevere ed elaborare milioni di eventi al secondo. Hub eventi consente di elaborare e archiviare eventi, dati o dati di telemetria generati dal software distribuito e dai dispositivi. In questo scenario, Hub eventi riceve tutti i metadati delle telefonate da analizzare per individuare le attività fraudolente.
+- [Analisi di flusso di Azure][docs-stream-analytics] è un motore di elaborazione di eventi che può analizzare volumi elevati di dati trasmessi da dispositivi e altre origini dati. Supporta anche l'estrazione di informazioni dai flussi di dati per identificare modelli e relazioni. Tali modelli possono attivare altre azioni downstream. In questo scenario, Analisi di flusso trasforma il flusso di input da Hub eventi per identificare le chiamate fraudolente.
+- L'[archivio BLOB](/azure/storage/blobs/storage-blobs-introduction) viene usato in questo scenario per archiviare i risultati del processo di Analisi di flusso di Azure.
 
 ## <a name="considerations"></a>Considerazioni
 
 ### <a name="alternatives"></a>Alternative
 
-Per l'inserimento di messaggi in tempo reale, l'archiviazione dei dati, l'elaborazione dei flussi, l'archiviazione dei dati analitici, l'analisi e la creazione di report sono disponibili molte opzioni tecnologiche. Per una panoramica di queste opzioni, delle relative funzionalità e dei principali criteri di selezione, vedere l'articolo su [architetture per Big Data ed elaborazione in tempo reale](/azure/architecture/data-guide/technology-choices/real-time-ingestion) in Guida all'architettura dei dati di Azure.
+Per l'inserimento di messaggi in tempo reale, l'archiviazione dei dati, l'elaborazione dei flussi, l'archiviazione dei dati analitici, l'analisi e la creazione di report sono disponibili molte opzioni tecnologiche. Per una panoramica di queste opzioni, delle relative funzionalità e dei principali criteri di selezione, vedere [Architetture per Big Data Inserimento di messaggi in tempo reale](/azure/architecture/data-guide/technology-choices/real-time-ingestion) nella Guida all'architettura dei dati di Azure.
 
 Algoritmi più complessi per il rilevamento delle frodi possono inoltre essere offerti da vari servizi di apprendimento automatico in Azure. Per una panoramica di queste opzioni, vedere l'articolo relativo alle [opzioni tecnologiche per l'apprendimento automatico](/azure/architecture/data-guide/technology-choices/data-science-and-machine-learning) in [Guida all'architettura dei dati di Azure](../../data-guide/index.md).
 
 ### <a name="availability"></a>Disponibilità
 
-Monitoraggio di Azure offre interfacce utente unificate per il monitoraggio di diversi servizi di Azure. Per altre informazioni, vedere l'articolo relativo al [monitoraggio in Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Sia Hub eventi che Analisi di flusso sono integrati in Monitoraggio di Azure. 
+Monitoraggio di Azure offre interfacce utente unificate per il monitoraggio di diversi servizi di Azure. Per altre informazioni, vedere l'articolo relativo al [monitoraggio in Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Sia Hub eventi che Analisi di flusso sono integrati in Monitoraggio di Azure.
 
 Per altre considerazioni sulla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
 
@@ -85,9 +86,9 @@ Per esaminare il costo di esecuzione dello scenario, nel calcolatore dei costi s
 
 Sono stati definiti tre profili di costo di esempio in base alla quantità di traffico prevista.
 
-* [Small][small-pricing]: elaborazione di un milione di eventi tramite un'unità di streaming standard al mese.
-* [Medium][medium-pricing]: elaborazione di 100 milioni di eventi tramite cinque unità di streaming standard al mese.
-* [Large][large-pricing]: elaborazione di 999 milioni di eventi tramite 20 unità di streaming standard al mese.
+- [Small][small-pricing]: elaborazione di un milione di eventi tramite un'unità di streaming standard al mese.
+- [Medium][medium-pricing]: elaborazione di 100 milioni di eventi tramite cinque unità di streaming standard al mese.
+- [Large][large-pricing]: elaborazione di 999 milioni di eventi tramite 20 unità di streaming standard al mese.
 
 ## <a name="related-resources"></a>Risorse correlate
 
@@ -110,4 +111,3 @@ In scenari di rilevamento delle frodi più complessi può essere utile un modell
 [scalability]: /azure/architecture/checklist/scalability
 [resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
-

@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - security
-ms.openlocfilehash: 791132eabf926cc285567454c60f894efa286433
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542042"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450888"
 ---
 # <a name="valet-key-pattern"></a>Modello di passepartout
 
@@ -41,7 +41,7 @@ Il client usa questo token per accedere a una risorsa specifica nell'archivio da
 
 È anche possibile configurare una chiave con altre dipendenze, ad esempio l'ambito dei dati. Ad esempio, a seconda delle funzionalità dell'archivio dati, la chiave può specificare un'intera tabella in un archivio dati o solo le righe specifiche di una tabella. Nei sistemi di archiviazione cloud la chiave può specificare un contenitore o solo un elemento specifico al suo interno.
 
-La chiave può anche essere invalidata dall'applicazione. Si tratta di un approccio utile se il client segnala al server che l'operazione di trasferimento dei dati è stata completata. Il server può poi invalidare la chiave per impedire altre operazioni.
+La chiave può anche essere invalidata dall'applicazione. Si tratta di un approccio utile se il client segnala al server che l'operazione di trasferimento dei dati è stata completata. Il server può poi invalidare la chiave per impedire ulteriori accessi.
 
 Questo modello permette di semplificare la gestione dell'accesso alle risorse, perché non è necessario creare e autenticare un utente, concedere autorizzazioni e rimuovere di nuovo l'utente. Semplifica anche la possibilità di limitare la posizione, l'autorizzazione e il periodo di validità. generando semplicemente una chiave in fase di runtime. I fattori importanti consistono nel limitare il periodo di validità, e in particolare la posizione della risorsa, quanto più possibile per garantire che il destinatario possa usarla solo per lo scopo previsto.
 

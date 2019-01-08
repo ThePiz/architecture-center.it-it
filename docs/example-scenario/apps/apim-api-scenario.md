@@ -1,15 +1,16 @@
 ---
-title: Migrazione di un'applicazione Web legacy in un'architettura basata su API in Azure
+title: Migrazione di un'app Web in un'architettura basata su API
+titleSuffix: Azure Example Scenarios
 description: Usare Gestione API di Azure per modernizzare un'applicazione Web legacy.
 author: begim
 ms.date: 09/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: ea063653b4962e42cbec7f9d98c16e22e987efd1
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 257b9bb5c69afb00917f8934585c1164f909feb6
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004710"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643484"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>Migrazione di un'applicazione Web legacy in un'architettura basata su API in Azure
 
@@ -17,9 +18,9 @@ Una società di e-commerce del settore dei viaggi sta modernizzando lo stack sof
 
 Gli obiettivi per il progetto includono la gestione del debito tecnico, il miglioramento della manutenzione periodica e l'accelerazione dello sviluppo di funzionalità con meno bug di regressione. Il progetto userà un processo iterativo per evitare rischi, con alcuni passaggi eseguiti in parallelo:
 
-* Il team di sviluppo modernizzerà il back-end dell'applicazione, costituito da database relazionali ospitati in macchine virtuali.
-* Il team di sviluppo interno scriverà nuove funzionalità di business che verranno esposte tramite nuove API HTTP.
-* Un team di sviluppo di contratti compilerà una nuova interfaccia utente basata su browser, che sarà ospitata in Azure.
+- Il team di sviluppo modernizzerà il back-end dell'applicazione, costituito da database relazionali ospitati in macchine virtuali.
+- Il team di sviluppo interno scriverà nuove funzionalità di business che verranno esposte tramite nuove API HTTP.
+- Un team di sviluppo di contratti compilerà una nuova interfaccia utente basata su browser, che sarà ospitata in Azure.
 
 Le nuove funzionalità dell'applicazione verranno distribuite in più fasi. Queste funzionalità sostituiranno gradualmente le funzionalità esistenti dell'interfaccia utente di tipo client-server basata su browser (ospitata in locale) che è attualmente alla base dell'attività di e-commerce.
 
@@ -36,38 +37,38 @@ La nuova interfaccia utente verrà ospitata come applicazione PaaS (Platform as 
 1. L'applicazione Web locale esistente continuerà a usare direttamente i servizi Web locali esistenti.
 2. Le chiamate dalle app Web esistenti ai servizi HTTP esistenti rimarranno invariate. Queste chiamate sono interne alla rete aziendale.
 3. Le chiamate in ingresso vengono effettuate da Azure ai servizi interni esistenti:
-    * Il team responsabile della sicurezza consente al traffico proveniente dall'istanza di Gestione API di Azure di passare attraverso il firewall aziendale ai servizi locali [usando il trasporto sicuro (HTTPS/SSL)][apim-ssl].
-    * Il team operativo consentirà le chiamate in ingresso ai servizi solo dall'istanza di Gestione API di Azure. Questo requisito viene soddisfatto [inserendo nell'elenco elementi consentiti l'indirizzo IP dell'istanza di Gestione API di Azure][apim-whitelist-ip] entro il perimetro della rete aziendale.
-    * Nella pipeline di richieste di servizi HTTP locali viene configurato un nuovo modulo (**solo** per le connessioni con origine esterna), che convaliderà [un certificato che verrà fornito da Gestione API di Azure][apim-mutualcert-auth].
-1. La nuova API:
-    * Viene esposta solo tramite l'istanza di Gestione API di Azure, che fornirà la facciata dell'API. Non sarà possibile accedere direttamente alla nuova API.
-    * Viene sviluppata e pubblicata come [app per le API Web PaaS di Azure][azure-api-apps].
-    * Viene inserita nell'elenco elementi consentiti (tramite le [impostazioni dell'app Web][azure-appservice-ip-restrict]) per accettare solo l'[indirizzo VIP di Gestione API di Azure][apim-faq-vip].
-    * Viene ospitata in App Web di Azure con il trasporto sicuro/SSL attivato.
-    * Ha l'autorizzazione abilitata, [fornita dal Servizio app di Azure][azure-appservice-auth] tramite Azure Active Directory e OAuth2.
-2. La nuova applicazione Web basata sul browser dipenderà dall'istanza di Gestione API di Azure per **entrambe** le API, quella HTTP esistente e quella nuova.
+    - Il team responsabile della sicurezza consente al traffico proveniente dall'istanza di Gestione API di Azure di passare attraverso il firewall aziendale ai servizi locali [usando il trasporto sicuro (HTTPS/SSL)][apim-ssl].
+    - Il team operativo consentirà le chiamate in ingresso ai servizi solo dall'istanza di Gestione API di Azure. Questo requisito viene soddisfatto [inserendo nell'elenco elementi consentiti l'indirizzo IP dell'istanza di Gestione API di Azure][apim-whitelist-ip] entro il perimetro della rete aziendale.
+    - Nella pipeline di richieste di servizi HTTP locali viene configurato un nuovo modulo (**solo** per le connessioni con origine esterna), che convaliderà [un certificato che verrà fornito da Gestione API di Azure][apim-mutualcert-auth].
+4. La nuova API:
+    - Viene esposta solo tramite l'istanza di Gestione API di Azure, che fornirà la facciata dell'API. Non sarà possibile accedere direttamente alla nuova API.
+    - Viene sviluppata e pubblicata come [app per le API Web PaaS di Azure][azure-api-apps].
+    - Viene inserita nell'elenco elementi consentiti (tramite le [impostazioni dell'app Web][azure-appservice-ip-restrict]) per accettare solo l'[indirizzo VIP di Gestione API di Azure][apim-faq-vip].
+    - Viene ospitata in App Web di Azure con il trasporto sicuro/SSL attivato.
+    - Ha l'autorizzazione abilitata, [fornita dal Servizio app di Azure][azure-appservice-auth] tramite Azure Active Directory e OAuth2.
+5. La nuova applicazione Web basata sul browser dipenderà dall'istanza di Gestione API di Azure per **entrambe** le API, quella HTTP esistente e quella nuova.
 
 L'istanza di Gestione API di Azure verrà configurata per eseguire il mapping dei servizi HTTP legacy a un nuovo contratto API. In questo modo, la nuova interfaccia utente Web non è a conoscenza dell'integrazione con un set di nuove API e di servizi/API legacy. In futuro, il team del progetto convertirà gradualmente la funzionalità alle nuove API e ritirerà i servizi originali. Queste modifiche verranno gestite all'interno della configurazione di Gestione API di Azure, lasciando l'interfaccia utente front-end immutata ed evitando nuove attività di sviluppo.
 
 ### <a name="alternatives"></a>Alternative
 
-* Se l'organizzazione volesse spostare l'intera infrastruttura in Azure, incluse le macchine virtuali che ospitano le applicazioni legacy, Gestione API di Azure rimarrebbe l'opzione ideale perché può fungere da facciata per qualsiasi endpoint HTTP indirizzabile.
-* Se il cliente decidesse di mantenere privati gli endpoint esistenti e di non esporli pubblicamente, l'istanza di Gestione API potrebbe essere collegata a una [rete virtuale di Azure][azure-vnet]:
-  * In uno [scenario in modalità lift-and-shift di Azure][azure-vm-lift-shift] collegato alla rete virtuale di Azure distribuita il cliente potrebbe gestire direttamente il servizio back-end tramite gli indirizzi IP privati.
-  * Nello scenario locale l'istanza di Gestione API potrebbe raggiungere il servizio interno privatamente tramite un [gateway VPN di Azure e una connessione VPN IPSec da sito a sito][azure-vpn] o tramite [ExpressRoute][azure-er] trasformando questo scenario in uno [scenario locale e di Azure ibrido][azure-hybrid].
-* L'istanza di Gestione API può essere mantenuta privata distribuendo l'istanza di Gestione API in modalità interna. La distribuzione potrebbe quindi essere usata con un [gateway applicazione di Azure][azure-appgw] per abilitare l'accesso pubblico per alcune API mentre altre rimangono interne. Per altre informazioni, vedere [Connessione di Gestione API di Azure in modalità interna a una rete virtuale][apim-vnet-internal].
+- Se l'organizzazione volesse spostare l'intera infrastruttura in Azure, incluse le macchine virtuali che ospitano le applicazioni legacy, Gestione API di Azure rimarrebbe l'opzione ideale perché può fungere da facciata per qualsiasi endpoint HTTP indirizzabile.
+- Se il cliente decidesse di mantenere privati gli endpoint esistenti e di non esporli pubblicamente, l'istanza di Gestione API potrebbe essere collegata a una [rete virtuale di Azure][azure-vnet]:
+  - In uno [scenario in modalità lift-and-shift di Azure][azure-vm-lift-shift] collegato alla rete virtuale di Azure distribuita il cliente potrebbe gestire direttamente il servizio back-end tramite gli indirizzi IP privati.
+  - Nello scenario locale l'istanza di Gestione API potrebbe raggiungere il servizio interno privatamente tramite un [gateway VPN di Azure e una connessione VPN IPSec da sito a sito][azure-vpn] o tramite [ExpressRoute][azure-er] trasformando questo scenario in uno [scenario locale e di Azure ibrido][azure-hybrid].
+- L'istanza di Gestione API può essere mantenuta privata distribuendo l'istanza di Gestione API in modalità interna. La distribuzione potrebbe quindi essere usata con un [gateway applicazione di Azure][azure-appgw] per abilitare l'accesso pubblico per alcune API mentre altre rimangono interne. Per altre informazioni, vedere [Connessione di Gestione API di Azure in modalità interna a una rete virtuale][apim-vnet-internal].
 
 > [!NOTE]
 > Per informazioni generali sulla connessione di Gestione API a una rete virtuale, [vedere qui][apim-vnet].
 
 ### <a name="availability-and-scalability"></a>Disponibilità e scalabilità
 
-* È possibile [aumentare il numero di istanze][apim-scaleout] di Gestione API di Azure scegliendo un piano tariffario e quindi aggiungendo unità.
-* È anche possibile implementare la [scalabilità automatica][apim-autoscale].
-* La [distribuzione in più aree][apim-multi-regions] abilita le opzioni di failover e può essere eseguita nel [livello Premium][apim-pricing].
-* Considerare l'[integrazione con Azure Application Insights][azure-apim-ai], che espone le metriche tramite [Monitoraggio di Azure][azure-mon] per il monitoraggio.
+- È possibile [aumentare il numero di istanze][apim-scaleout] di Gestione API di Azure scegliendo un piano tariffario e quindi aggiungendo unità.
+- È anche possibile implementare la [scalabilità automatica][apim-autoscale].
+- La [distribuzione in più aree][apim-multi-regions] abilita le opzioni di failover e può essere eseguita nel [livello Premium][apim-pricing].
+- Considerare l'[integrazione con Azure Application Insights][azure-apim-ai], che espone le metriche tramite [Monitoraggio di Azure][azure-mon] per il monitoraggio.
 
-## <a name="deployment"></a>Distribuzione
+## <a name="deploy-the-scenario"></a>Distribuire lo scenario
 
 Per iniziare, [creare un'istanza di Gestione API di Azure nel portale][apim-create].
 
@@ -88,8 +89,8 @@ Per visualizzare i costi previsti ed eseguire la personalizzazione in base alle 
 
 Vedere le estese informazioni disponibili [nella documentazione e negli articoli di riferimento][apim] su Gestione API di Azure.
 
-
 <!-- links -->
+
 [architecture]: ./media/architecture-apim-api-scenario.png
 [apim-create]: /azure/api-management/get-started-create-service-instance
 [apim-git]: /azure/api-management/api-management-configuration-repository-git
