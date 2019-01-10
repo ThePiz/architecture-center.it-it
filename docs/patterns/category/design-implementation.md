@@ -1,21 +1,21 @@
 ---
 title: Modelli di progettazione e implementazione
+titleSuffix: Cloud Design Patterns
 description: Una progettazione efficace comprende fattori come la coerenza e la logica nella progettazione e nella distribuzione dei componenti, la manutenibilità per semplificare l'amministrazione e lo sviluppo e la riusabilità per consentire l'uso di componenti e sottosistemi in altri scenari e applicazioni. Le decisioni prese in fase di progettazione e implementazione hanno un notevole impatto sulla qualità e sul costo totale di proprietà delle applicazioni e dei servizi ospitati nel cloud.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 861445ceeca62e5b1e62fd4cb33924c35e10c0b0
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 38b20fad513109051d40c1b9556f75fa86e03dd7
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847799"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009798"
 ---
 # <a name="design-and-implementation-patterns"></a>Modelli di progettazione e implementazione
 
 Una progettazione efficace comprende fattori come la coerenza e la logica nella progettazione e nella distribuzione dei componenti, la manutenibilità per semplificare l'amministrazione e lo sviluppo e la riusabilità per consentire l'uso di componenti e sottosistemi in altri scenari e applicazioni. Le decisioni prese in fase di progettazione e implementazione hanno un notevole impatto sulla qualità e sul costo totale di proprietà delle applicazioni e dei servizi ospitati nel cloud.
-
 
 |                                Modello                                 |                                                                                                      Summary                                                                                                       |
 |------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,4 +33,3 @@ Una progettazione efficace comprende fattori come la coerenza e la logica nella 
 |                        [Sidecar](../sidecar.md)                        |                                                  Distribuire i componenti di un'applicazione in un processo o in un contenitore separato per fornire isolamento e incapsulamento.                                                  |
 |         [Hosting di contenuto statico](../static-content-hosting.md)         |                                                        Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client.                                                        |
 |                      [Sostituzione](../strangler.md)                      |                                         Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi.                                          |
-

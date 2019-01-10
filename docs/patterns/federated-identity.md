@@ -1,18 +1,17 @@
 ---
-title: Identità federata
+title: Modello di identità federativa
+titleSuffix: Cloud Design Patterns
 description: È possibile delegare l'autenticazione a un provider di identità esterno.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: a1edbdd080309383201d33e73602e2f18928c080
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: b268000a81edbb2f224a9244d5949def75854f04
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542634"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110358"
 ---
 # <a name="federated-identity-pattern"></a>Modello di identità federativa
 
@@ -41,7 +40,6 @@ I provider di identità attendibili includono le directory aziendali, i servizi 
 Nella figura viene illustrato il modello di identità federativa quando un'applicazione client deve accedere a un servizio che richiede l'autenticazione. L'autenticazione viene eseguita da un IdP che interagisce con un servizio token di sicurezza. L'IdP rilascia token di sicurezza con informazioni relative all'utente autenticato. Tali informazioni, denominate attestazioni, includono l'identità dell'utente e possono includere anche altre informazioni, ad esempio l'appartenenza ai ruoli e diritti di accesso più granulari.
 
 ![Panoramica dell'autenticazione federata](./_images/federated-identity-overview.png)
-
 
 Questo modello viene spesso definito controllo di accesso basato sulle attestazioni. Le applicazioni e i servizi autorizzano l'accesso alle funzionalità basate sulle attestazioni contenute nel token. Il servizio che richiede l'autenticazione deve considerare attendibile il provider di identità. L'applicazione client contatta il provider di identità che esegue l'autenticazione. Se l'autenticazione ha esito positivo, il provider di identità restituisce un token contenente le attestazioni che identificano l'utente per il servizio STS. Si noti che il provider di identità e il servizio token di sicurezza possono essere lo stesso servizio. Il servizio STS può trasformare e ottimizzare le attestazioni nel token in base a regole predefinite, prima di restituirlo al client. L'applicazione client può quindi passare questo token al servizio come prova dell'identità.
 
@@ -85,7 +83,6 @@ Un'organizzazione ospita un'applicazione SaaS in Microsoft Azure. L'applicazione
 
 ![Come accedono all'applicazione gli utenti di un sottoscrittore aziendale di grandi dimensioni](./_images/federated-identity-multitenat.png)
 
-
 Nella figura viene illustrato come i tenant eseguono l'autenticazione con il proprio provider di identità (passaggio 1), in questo caso ADFS. Dopo aver autenticato un tenant, ADFS rilascia un token. Il browser client inoltra il token al provider federativo dell'applicazione SaaS, che considera attendibili i token emessi da ADFS del tenant, per ottenere un token valido per il provider federativo SaaS (passaggio 2). Se necessario, il provider federativo SaaS esegue una trasformazione delle attestazioni contenute nel token in attestazioni che l'applicazione è in grado di riconoscere (passaggio 3) prima di restituire il nuovo token al browser client. L'applicazione considera attendibili i token rilasciati dal provider federativo SaaS e usa le attestazioni nel token per applicare le regole di autorizzazione (passaggio 4).
 
 I tenant non dovranno ricordare credenziali separate per accedere all'applicazione e un amministratore della società del tenant può configurare nel proprio servizio ADFS l'elenco di utenti che possono accedere all'applicazione.
@@ -95,5 +92,5 @@ I tenant non dovranno ricordare credenziali separate per accedere all'applicazio
 - [Microsoft Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 - [Active Directory Domain Services](https://msdn.microsoft.com/library/bb897402.aspx)
 - [Active Directory Federation Services](https://msdn.microsoft.com/library/bb897402.aspx)
-- [Gestione delle identità per le applicazioni multi-tenant in Microsoft Azure](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity/)
-- [Applicazioni multi-tenant in Azure](https://azure.microsoft.com/documentation/articles/dotnet-develop-multitenant-applications/)
+- [Gestione delle identità per le applicazioni multi-tenant in Microsoft Azure](/azure/architecture/multitenant-identity)
+- [Applicazioni multi-tenant in Azure](/azure/dotnet-develop-multitenant-applications)

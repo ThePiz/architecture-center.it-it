@@ -1,21 +1,21 @@
 ---
 title: Modelli di gestione e monitoraggio
+titleSuffix: Cloud Design Patterns
 description: Le applicazioni cloud vengono eseguite in un data center remoto in cui non si dispone del controllo completo dell'infrastruttura o, in alcuni casi, del sistema operativo. Ciò può rendere la gestione e il monitoraggio più complessi rispetto a una distribuzione locale. Le applicazioni devono esporre le informazioni sul runtime che gli amministratori e gli operatori possono usare per gestire e monitorare il sistema, nonché supportare i nuovi requisiti aziendali e la personalizzazione, senza che sia necessario arrestare o ridistribuire l'applicazione.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: faab137d59ce952e169839a71abdbbb3103ea772
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: fc75a3a56323b61651b9e840068a3117b31cf203
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846791"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009356"
 ---
 # <a name="management-and-monitoring-patterns"></a>Modelli di gestione e monitoraggio
 
 Le applicazioni cloud vengono eseguite in un data center remoto in cui non si dispone del controllo completo dell'infrastruttura o, in alcuni casi, del sistema operativo. Ciò può rendere la gestione e il monitoraggio più complessi rispetto a una distribuzione locale. Le applicazioni devono esporre le informazioni sul runtime che gli amministratori e gli operatori possono usare per gestire e monitorare il sistema, nonché supportare i nuovi requisiti aziendali e la personalizzazione, senza che sia necessario arrestare o ridistribuire l'applicazione.
-
 
 |                              Modello                               |                                                              Summary                                                              |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -28,4 +28,3 @@ Le applicazioni cloud vengono eseguite in un data center remoto in cui non si di
 |   [Monitoraggio endpoint di integrità](../health-endpoint-monitoring.md)   |   Implementare controlli funzionali all'interno di un'applicazione a cui gli strumenti esterni possono accedere tramite endpoint esposti a intervalli regolari.    |
 |                      [Collaterale](../sidecar.md)                      |         Distribuire i componenti di un'applicazione in un processo separato o in un contenitore, per fornire isolamento e incapsulamento.          |
 |                    [Sostituzione](../strangler.md)                    | Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi. |
-

@@ -1,18 +1,17 @@
 ---
-title: Consumer concorrenti
+title: Modello di consumer concorrenti
+titleSuffix: Cloud Design Patterns
 description: Consentire a più consumer concorrenti di elaborare i messaggi ricevuti sullo stesso canale di messaggistica.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 77459ff42422969acdc83e66535197547d555de1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428378"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112108"
 ---
 # <a name="competing-consumers-pattern"></a>Modello di consumer concorrenti
 
@@ -34,7 +33,7 @@ Usare una coda di messaggi per implementare il canale di comunicazione tra l'app
 
 Questa soluzione offre i vantaggi seguenti:
 
-- Offre un sistema con bilanciamento del carico che può gestire notevoli variazioni nel volume di richieste inviate da istanze dell'applicazione. La coda funge da buffer tra le istanze dell'applicazione e le istanze del servizio consumer. Questo contribuisce a ridurre al minimo l'impatto sulla disponibilità e sui tempi di risposta per le istanze sia dell'applicazione che del servizio, come descritto in [Modello di livellamento del carico basato sulle code](queue-based-load-leveling.md). La gestione di un messaggio che richiede operazioni di elaborazione a esecuzione prolungata non impedisce la gestione contemporanea di altri messaggi da parte di altre istanze del servizio consumer.
+- Offre un sistema con bilanciamento del carico che può gestire notevoli variazioni nel volume di richieste inviate da istanze dell'applicazione. La coda funge da buffer tra le istanze dell'applicazione e le istanze del servizio consumer. Questo contribuisce a ridurre al minimo l'impatto sulla disponibilità e sui tempi di risposta per le istanze sia dell'applicazione che del servizio, come descritto in [Modello di livellamento del carico basato sulle code](./queue-based-load-leveling.md). La gestione di un messaggio che richiede operazioni di elaborazione a esecuzione prolungata non impedisce la gestione contemporanea di altri messaggi da parte di altre istanze del servizio consumer.
 
 - Migliora l'affidabilità. Se un producer comunica direttamente con un consumer invece di usare questo modello, ma non controlla il consumer, esiste una forte probabilità che messaggi vadano persi o non vengano elaborati se si verifica un errore del consumer. In questo modello, i messaggi non vengono inviati a una specifica istanza del servizio. Un'istanza del servizio non riuscita non bloccherà il producer e i messaggi possono essere elaborati da qualsiasi istanza funzionante del servizio.
 
@@ -85,8 +84,9 @@ Questo modello potrebbe non essere utile quando:
 
 Azure offre code di archiviazione e code del bus di servizio che possono fungere da meccanismo per l'implementazione di questo modello. La logica dell'applicazione può inviare messaggi a una coda e i consumer implementati come attività in uno o più ruoli possono recuperare i messaggi dalla coda ed elaborarli. Per garantire la resilienza, le code del bus di servizio permettono a un consumer di usare la modalità `PeekLock` durante il recupero di un messaggio dalla coda. Questa modalità non rimuove effettivamente il messaggio, ma semplicemente lo nasconde agli altri consumer. Il consumer originale può eliminarlo dopo aver terminato l'elaborazione. In caso di errore del consumer, il blocco di visualizzazione raggiunge il timeout e il messaggio diventa nuovamente visibile, consentendo a un altro consumer di recuperarlo.
 
-> Per informazioni dettagliate sull'uso delle code del bus di servizio di Azure, vedere[Code, argomenti e sottoscrizioni del bus di servizio](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx).
-Per informazioni sull'uso delle code di archiviazione di Azure, vedere [Introduzione all'archiviazione code di Azure con .NET](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-queues/).
+Per informazioni dettagliate sull'uso delle code del bus di servizio di Azure, vedere[Code, argomenti e sottoscrizioni del bus di servizio](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx).
+
+Per informazioni sull'uso delle code di archiviazione di Azure, vedere [Introduzione all'archiviazione code di Azure con .NET](/azure/storage/queues/storage-dotnet-how-to-use-queues).
 
 L'esempio di codice dalla classe `QueueManager` della soluzione CompetingConsumers disponibile in [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) illustra come creare una coda usando un'istanza di `QueueClient` nel gestore dell'evento `Start` in un ruolo Web o di lavoro.
 
@@ -174,7 +174,7 @@ private void OptionsOnExceptionReceived(object sender,
 }
 ```
 
-Si noti che le funzionalità di scalabilità automatica, ad esempio quelle disponibili in Azure, possono essere usate per avviare e arrestare le istanze del ruolo in base alle variazioni della lunghezza della coda. Per altre informazioni, vedere [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Inoltre, non è necessario mantenere una corrispondenza uno a uno tra le istanze del ruolo e i processi di lavoro&mdash;una singola istanza del ruolo può implementare più processi di lavoro. Per altre informazioni, vedere [Modello di consolidamento delle risorse di calcolo](compute-resource-consolidation.md).
+Si noti che le funzionalità di scalabilità automatica, ad esempio quelle disponibili in Azure, possono essere usate per avviare e arrestare le istanze del ruolo in base alle variazioni della lunghezza della coda. Per altre informazioni, vedere [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Inoltre, non è necessario mantenere una corrispondenza uno a uno tra le istanze del ruolo e i processi di lavoro&mdash;una singola istanza del ruolo può implementare più processi di lavoro. Per altre informazioni, vedere [Modello di consolidamento delle risorse di calcolo](./compute-resource-consolidation.md).
 
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
@@ -184,8 +184,8 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 
 - [Scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Può essere possibile avviare e arrestare le istanze di un servizio consumer in base alla variazione della lunghezza della coda a cui le applicazioni inviano messaggi. La scalabilità automatica consente di mantenere la velocità effettiva durante i periodi di massima richiesta di elaborazione.
 
-- [Modello di consolidamento delle risorse di calcolo](compute-resource-consolidation.md). Può essere possibile consolidare più istanze di un servizio consumer in un singolo processo, per ridurre i costi e il sovraccarico di gestione. L'articolo Modello di consolidamento delle risorse di calcolo descrive i vantaggi e gli svantaggi di questo approccio.
+- [Compute Resource Consolidation pattern](./compute-resource-consolidation.md) (Modello di consolidamento delle risorse di calcolo). Può essere possibile consolidare più istanze di un servizio consumer in un singolo processo, per ridurre i costi e il sovraccarico di gestione. L'articolo Modello di consolidamento delle risorse di calcolo descrive i vantaggi e gli svantaggi di questo approccio.
 
-- [Modello di livellamento del carico basato sulle code](queue-based-load-leveling.md). Introdurre una coda di messaggi può aggiungere resilienza al sistema, consentendo alle istanze del servizio di gestire un'ampia gamma di volumi di richieste provenienti dalle istanze dell'applicazione. La coda di messaggi funge da buffer, livellando il carico. L'articolo Modello di livellamento del carico basato sulle code descrive in dettaglio i vantaggi e gli svantaggi di questo scenario.
+- [Schema di livellamento del carico basato sulle code](./queue-based-load-leveling.md). Introdurre una coda di messaggi può aggiungere resilienza al sistema, consentendo alle istanze del servizio di gestire un'ampia gamma di volumi di richieste provenienti dalle istanze dell'applicazione. La coda di messaggi funge da buffer, livellando il carico. L'articolo Modello di livellamento del carico basato sulle code descrive in dettaglio i vantaggi e gli svantaggi di questo scenario.
 
 - A questo modello è associata un'[applicazione di esempio](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers).

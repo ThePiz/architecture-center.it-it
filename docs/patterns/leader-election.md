@@ -1,19 +1,17 @@
 ---
-title: Designazione leader
+title: Modello Designazione leader
+titleSuffix: Cloud Design Patterns
 description: Coordinare le azioni eseguite da una raccolta di istanze di attività di collaborazione in un'applicazione distribuita designando un'istanza come leader, con la responsabilità di gestire le altre istanze.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- resiliency
-ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: cfc29e3490735c16b41c494e6cecbb8972cdc705
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429197"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010140"
 ---
 # <a name="leader-election-pattern"></a>Modello Designazione leader
 
@@ -41,6 +39,7 @@ Una singola istanza dell'attività deve essere designata per fungere da leader e
 Il sistema deve fornire un meccanismo efficiente per la scelta del leader. Questo metodo deve essere in grado di gestire eventi come interruzioni di rete o errori dei processi. In molte soluzioni le istanze delle attività subordinate monitorano il leader usando un metodo heartbeat o tramite polling. Se il leader designato termina in modo imprevisto o un errore di rete lo rende non disponibile per le istanze delle attività subordinate, è necessario poter designare un nuovo leader.
 
 Sono disponibili diverse strategie per designare un leader tra un set di attività in un ambiente distribuito, tra cui:
+
 - Selezione dell'istanza dell'attività con l'ID di processo o di istanza con la classificazione più bassa.
 - Competizione per acquisire un mutex condiviso e distribuito. La prima istanza dell'attività che acquisisce il mutex è il leader. Tuttavia, il sistema deve garantire che, se il leader termina o viene disconnesso dal resto del sistema, il mutex viene rilasciato per consentire a un'altra istanza dell'attività di diventare leader.
 - Implementazione di uno degli algoritmi di designazione leader comuni, ad esempio l'[algoritmo Bully](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) o l'[algoritmo Ring](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Questi algoritmi presuppongono che ciascun candidato alla designazione abbia un ID univoco e sia in grado di comunicare con altri candidati in modo affidabile.
@@ -48,6 +47,7 @@ Sono disponibili diverse strategie per designare un leader tra un set di attivit
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
 Prima di decidere come implementare questo modello, considerare quanto segue:
+
 - Il processo di designazione di un leader deve essere resiliente agli errori temporanei e permanenti.
 - Deve essere possibile rilevare quando il leader ha riscontrato un errore o è diventato non disponibile, ad esempio a causa di un problema di comunicazione. La rapidità con cui è necessario il rilevamento dipende dal sistema. Alcuni sistemi potrebbero essere in grado di funzionare in assenza di un leader per un breve periodo, durante il quale un errore temporaneo potrebbe essere corretto. In altri casi potrebbe essere necessario rilevare immediatamente l'errore del leader e attivare una nuova designazione.
 - In un sistema che implementa il ridimensionamento orizzontale il leader potrebbe essere terminato se il sistema riduce il numero di alcune delle risorse di calcolo o le arresta.
@@ -59,9 +59,10 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
 Usare questo modello quando le attività in un'applicazione distribuita, ad esempio una soluzione ospitata nel cloud, necessitano di un attento coordinamento e non è presente alcun leader naturale.
 
->  Evitare di fare del leader un collo di bottiglia nel sistema. L'obiettivo del leader consiste nel coordinare il lavoro delle attività subordinate; non deve necessariamente partecipare al lavoro, anche se deve essere in grado di farlo se l'attività non viene designata come leader.
+> Evitare di fare del leader un collo di bottiglia nel sistema. L'obiettivo del leader consiste nel coordinare il lavoro delle attività subordinate; non deve necessariamente partecipare al lavoro, anche se deve essere in grado di farlo se l'attività non viene designata come leader.
 
 Questo modello potrebbe non essere utile se:
+
 - È presente un leader naturale o un processo dedicato che può sempre fungere da leader. Ad esempio, potrebbe essere possibile implementare un processo singleton che coordina le istanze delle attività. Se questo processo non riesce o risulta non integro, il sistema può arrestarlo e riavviarlo.
 - Il coordinamento tra le attività può essere ottenuto usando un metodo più semplice. Ad esempio, se più istanze delle attività necessitano semplicemente dell'accesso coordinato a una risorsa condivisa, una soluzione migliore consiste nell'usare il blocco ottimistico o pessimistico per controllare l'accesso.
 - Una soluzione di terze parti è più appropriata. Ad esempio, il servizio Microsoft Azure HDInsight (basato su Apache Hadoop) usa i servizi forniti da Apache Zookeeper per coordinare la mappa e ridurre le attività di raccolta e riepilogo dei dati.
@@ -70,8 +71,8 @@ Questo modello potrebbe non essere utile se:
 
 Il progetto DistributedMutex nella soluzione LeaderElection (un esempio che illustra questo modello è disponibile in [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)) mostra come usare un lease in un BLOB del servizio di archiviazione di Azure per fornire un meccanismo per l'implementazione di un mutex distribuito condiviso. Questo mutex può essere usato per designare un leader in un gruppo di istanze del ruolo in un servizio cloud di Azure. La prima istanza del ruolo ad acquisire il lease viene designata come leader e rimane tale finché non rilascia il lease o non è in grado di rinnovarlo. Altre istanze del ruolo possono continuare a monitorare il lease del BLOB, nel caso in cui il leader non sia più disponibile.
 
->  Un lease del BLOB è un blocco di scrittura esclusivo su un BLOB. Un singolo BLOB può essere oggetto di un solo lease in qualsiasi punto nel tempo. Un'istanza del ruolo può richiedere un lease per un BLOB specifico e il lease verrà concesso se nessun'altra istanza del ruolo contiene un lease per lo stesso BLOB. In caso contrario, la richiesta genererà un'eccezione.
-> 
+> Un lease del BLOB è un blocco di scrittura esclusivo su un BLOB. Un singolo BLOB può essere oggetto di un solo lease in qualsiasi punto nel tempo. Un'istanza del ruolo può richiedere un lease per un BLOB specifico e il lease verrà concesso se nessun'altra istanza del ruolo contiene un lease per lo stesso BLOB. In caso contrario, la richiesta genererà un'eccezione.
+>
 > Per evitare che un'istanza del ruolo con errori mantenga il lease per un periodo illimitato, specificare una durata per il lease. Alla scadenza, il lease diventerà disponibile. Tuttavia, mentre un'istanza del ruolo contiene il lease può richiedere che il lease venga rinnovato e il lease verrà concesso per un ulteriore periodo di tempo. L'istanza del ruolo può ripetere continuamente questo processo se vuole mantenere il lease.
 > Per altre informazioni sul lease di un BLOB, vedere [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) (Lease Blob (API REST)).
 
@@ -167,7 +168,6 @@ Il metodo `KeepRenewingLease` è un altro metodo helper che usa l'oggetto `BlobL
 
 ![La figura 1 mostra le funzioni della classe BlobDistributedMutex](./_images/leader-election-diagram.png)
 
-
 L'esempio di codice seguente illustra come usare la classe `BlobDistributedMutex` in un ruolo di lavoro. Questo codice acquisisce un lease per un BLOB denominato `MyLeaderCoordinatorTask` nel contenitore del lease nell'archivio di sviluppo e specifica che il codice definito nel metodo `MyLeaderCoordinatorTask` sia eseguito se l'istanza del ruolo viene designata come leader.
 
 ```csharp
@@ -186,6 +186,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ```
 
 Tenere presente i punti seguenti riguardo alla soluzione di esempio:
+
 - Il BLOB è un singolo punto di guasto potenziale. Se il servizio BLOB non è più disponibile o è inaccessibile, il leader non sarà in grado di rinnovare il lease e nessun'altra istanza del ruolo potrà acquisire il lease. In questo caso, nessuna istanza del ruolo sarà in grado di fungere da leader. Tuttavia, il servizio BLOB è progettato per essere resiliente, pertanto un guasto completo del servizio BLOB è considerato estremamente improbabile.
 - Se l'attività eseguita dal leader è in fase di stallo, il leader potrebbe continuare a rinnovare il lease, impedendo a qualsiasi altra istanza del ruolo di acquisire il lease e assumere il ruolo di leader per coordinare le attività. Nel mondo reale è necessario verificare l'integrità del leader a intervalli frequenti.
 - Il processo di designazione è non deterministico. Non è possibile fare supposizioni su quale istanza del ruolo acquisirà il lease del BLOB e diventerà leader.
@@ -194,6 +195,7 @@ Tenere presente i punti seguenti riguardo alla soluzione di esempio:
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili le informazioni aggiuntive seguenti:
+
 - Questo modello ha un'[applicazione di esempio](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) scaricabile.
 - [Scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). È possibile avviare e arrestare le istanze degli host delle attività di pari passo con la variazione del carico sull'applicazione. La scalabilità automatica consente di mantenere la velocità effettiva e le prestazioni durante i periodi di massima richiesta di elaborazione.
 - [Indicazioni sul partizionamento del calcolo](https://msdn.microsoft.com/library/dn589773.aspx). Queste indicazioni descrivono come allocare attività agli host in un servizio cloud, in modo da ridurre al minimo i costi operativi mantenendo la scalabilità, le prestazioni, la disponibilità e la sicurezza del servizio.

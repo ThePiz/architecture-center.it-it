@@ -3,24 +3,24 @@ title: OLAP (Online Analytical Processing)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 2f938796a741b8a26694742f1098e29728e6818d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902599"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113570"
 ---
 # <a name="online-analytical-processing-olap"></a>OLAP (Online Analytical Processing)
 
 OLAP (Online Analytical Processing) è una tecnologia che consente di organizzare i database aziendali di grandi dimensioni e supporta l'esecuzione di analisi complesse. Può essere usata per eseguire query di analisi complesse senza influire negativamente sui sistemi transazionali.
 
-I database usati dalle aziende per archiviare tutti i record e le transazioni sono detti database [OLTP (Online Transaction Processing)](online-transaction-processing.md). Questi database includono in genere record che sono stati inseriti singolarmente e contengono una grande quantità di informazioni importanti per l'organizzazione. I database usati per l'elaborazione OLTP, tuttavia, non sono stati progettati per l'analisi. Il recupero di informazioni da questi database richiede quindi un impegno notevole in termini di tempo e prestazioni. Per facilitare l'estrazione di queste informazioni di business intelligence sono stati progettati i sistemi OLAP, che sono in grado di offrire prestazioni molto elevate. I database OLAP sono infatti ottimizzati per intensi carichi di lavoro in lettura e carichi di lavoro ridotti in scrittura.
+I database usati dalle aziende per archiviare tutti i record e le transazioni sono detti database [OLTP (Online Transaction Processing)](./online-transaction-processing.md). Questi database includono in genere record che sono stati inseriti singolarmente e contengono una grande quantità di informazioni importanti per l'organizzazione. I database usati per l'elaborazione OLTP, tuttavia, non sono stati progettati per l'analisi. Il recupero di informazioni da questi database richiede quindi un impegno notevole in termini di tempo e prestazioni. Per facilitare l'estrazione di queste informazioni di business intelligence sono stati progettati i sistemi OLAP, che sono in grado di offrire prestazioni molto elevate. I database OLAP sono infatti ottimizzati per intensi carichi di lavoro in lettura e carichi di lavoro ridotti in scrittura.
 
-![OLAP in Azure](../images/olap-data-pipeline.png) 
+![OLAP in Azure](../images/olap-data-pipeline.png)
 
 ## <a name="semantic-modeling"></a>Modellazione semantica
 
-Un modello di dati semantico è un modello concettuale che descrive il significato degli elementi di dati in esso contenuti. Le organizzazioni usano spesso i propri termini per elementi o operazioni, talvolta con sinonimi, o persino diversi significati per lo stesso termine. Un database di inventario potrebbe ad esempio registrare un dispositivo con un ID asset e un numero di serie, ma un database di vendite potrebbe fare riferimento al numero di serie come ID asset. Non esiste un modo semplice per correlare questi valori senza un modello che descriva la relazione. 
+Un modello di dati semantico è un modello concettuale che descrive il significato degli elementi di dati in esso contenuti. Le organizzazioni usano spesso i propri termini per elementi o operazioni, talvolta con sinonimi, o persino diversi significati per lo stesso termine. Un database di inventario potrebbe ad esempio registrare un dispositivo con un ID asset e un numero di serie, ma un database di vendite potrebbe fare riferimento al numero di serie come ID asset. Non esiste un modo semplice per correlare questi valori senza un modello che descriva la relazione.
 
 La modellazione semantica garantisce un livello di astrazione dello schema del database, in modo che non sia necessario che gli utenti conoscano le strutture di dati sottostanti. Questo semplifica l'esecuzione di query sui dati per gli utenti finali senza eseguire aggregazioni e join nello schema sottostante. Le colonne inoltre vengono in genere rinominate usando nomi più descrittivi, in modo da rendere più ovvi il contesto e il significato dei dati.
 
@@ -29,7 +29,7 @@ La modellazione semantica è prevalentemente usata per gli scenari con intensa a
 - I comportamenti di aggregazione vengono impostati in modo che gli strumenti di report li visualizzino correttamente.
 - Vengono definiti i calcoli e la logica di business.
 - Vengono inclusi calcoli basati sul tempo.
-- I dati sono spesso integrati da più origini. 
+- I dati sono spesso integrati da più origini.
 
 Per questi motivi in genere il livello semantico è posizionato in un data warehouse.
 
@@ -37,10 +37,11 @@ Per questi motivi in genere il livello semantico è posizionato in un data wareh
 
 Esistono due tipi principali di modelli semantici:
 
-* **Tabulare**. Usa costrutti di modellazione relazionale (modello, tabelle, colonne). Internamente i metadati vengono ereditati da costrutti di modellazione OLAP (cubi, dimensioni, misure). Il codice e lo script usano metadati OLAP.
-* **Multidimensionale**. Usa costrutti di modellazione OLAP tradizionali (cubi, dimensioni, misure).
+- **Tabulare**. Usa costrutti di modellazione relazionale (modello, tabelle, colonne). Internamente i metadati vengono ereditati da costrutti di modellazione OLAP (cubi, dimensioni, misure). Il codice e lo script usano metadati OLAP.
+- **Multidimensionale**. Usa costrutti di modellazione OLAP tradizionali (cubi, dimensioni, misure).
 
 Servizio di Azure pertinente:
+
 - [Azure Analysis Services](https://azure.microsoft.com/services/analysis-services/)
 
 ## <a name="example-use-case"></a>Esempio di caso d'uso
@@ -72,9 +73,9 @@ La modellazione semantica e l'elaborazione analitica hanno in genere le caratter
 
 Prendere in considerazione la tecnologia OLAP negli scenari seguenti:
 
-- È necessario eseguire con rapidità query ad hoc e di analisi complesse senza influire negativamente sui sistemi OLTP. 
+- È necessario eseguire con rapidità query ad hoc e di analisi complesse senza influire negativamente sui sistemi OLTP.
 - Si vuole offrire agli utenti aziendali una soluzione semplice per generare report dai dati.
-- Si vuole fornire una serie di aggregazioni che consenta agli utenti di ottenere risultati rapidi e coerenti. 
+- Si vuole fornire una serie di aggregazioni che consenta agli utenti di ottenere risultati rapidi e coerenti.
 
 OLAP è particolarmente utile per applicare calcoli di aggregazione a grandi quantità di dati. I sistemi OLAP sono ottimizzati per gli scenari che richiedono intensi carichi di lavoro in lettura, ad esempio per le applicazioni di analisi e business intelligence. OLAP consente agli utenti di segmentare i dati multidimensionali in sezioni visualizzabili in due dimensioni, ad esempio in una tabella pivot, o di filtrare i dati in base a valori specifici. Questo processo di segmentazione dei dati può essere eseguito indipendentemente dal fatto che i dati si trovino in diverse origini. Ciò consente agli utenti di individuare tendenze, identificare schemi ricorrenti ed esplorare i dati senza dover conoscere i dettagli dell'analisi dei dati tradizionale.
 
@@ -109,11 +110,11 @@ Per limitare le possibilità di scelta, rispondere prima di tutto a queste doman
 
 - Si richiede l'autenticazione sicura con Azure Active Directory (Azure AD)?
 
-- Si vogliono eseguire analisi in tempo reale? In caso affermativo, limitare la scelta alle opzioni che supportano l'analisi in tempo reale. 
+- Si vogliono eseguire analisi in tempo reale? In caso affermativo, limitare la scelta alle opzioni che supportano l'analisi in tempo reale.
 
     In questo contesto l'*analisi in tempo reale* si applica a una singola origine dati, ad esempio un'applicazione ERP (Enterprise Resource Planning), che gestisce contemporaneamente un carico di lavoro operativo e un carico di lavoro di analisi. Se si ha la necessità di integrare dati provenienti da più origini o di ottenere prestazioni di analisi estremamente elevate con l'uso di dati preaggregati, ad esempio i cubi, è possibile richiedere un data warehouse separato.
 
-- È necessario usare dati preaggregati, ad esempio per fornire modelli semantici che consentano un'analisi più intuitiva a livello aziendale? In caso affermativo, scegliere un'opzione con il supporto per cubi multidimensionali o modelli semantici tabulari. 
+- È necessario usare dati preaggregati, ad esempio per fornire modelli semantici che consentano un'analisi più intuitiva a livello aziendale? In caso affermativo, scegliere un'opzione con il supporto per cubi multidimensionali o modelli semantici tabulari.
 
     La disponibilità di dati preaggregati può aiutare gli utenti a calcolare le aggregazioni di dati in modo coerente. I dati preaggregati consentono inoltre di migliorare notevolmente le prestazioni quando si gestiscono più colonne per un numero elevato righe. I dati possono essere preaggregati in cubi multidimensionali o in modelli semantici tabulari.
 
@@ -125,6 +126,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="general-capabilities"></a>Funzionalità generali
 
+<!-- markdownlint-disable MD033 -->
+
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server con indici columnstore | Database SQL di Azure con indici columnstore |
 | --- | --- | --- | --- | --- |
 | Servizio gestito | Yes | No  | No  | Yes |
@@ -134,6 +137,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Supporto per l'analisi in tempo reale | No  | No  | Yes | Yes |
 | Necessità di un processo per copiare i dati da una o più origini | Yes | Sì | No  | No  |
 | Integrazione di Azure AD | Yes | No  | No <sup>2</sup> | Yes |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] Anche se SQL Server e il database SQL di Azure non possono essere usati per eseguire query da più origini dati esterne e integrare tali origini, è possibile creare una pipeline che esegua automaticamente questa operazione usando [SSIS](/sql/integration-services/sql-server-integration-services) o [Azure Data Factory](/azure/data-factory/). Con SQL Server ospitato in una macchina virtuale di Azure, è possibile sfruttare opzioni aggiuntive, ad esempio i server collegati e [PolyBase](/sql/relational-databases/polybase/polybase-guide). Per altre informazioni, vedere [Scelta di una tecnologia di orchestrazione di una pipeline di dati in Azure](../technology-choices/pipeline-orchestration-data-movement.md).
 
@@ -146,4 +151,3 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Server regionali ridondanti per disponibilità elevata |           Yes           |              No               |                 Yes                 |                     Yes                     |
 |             Supporto per la scalabilità orizzontale delle query             |           Yes           |              No               |                 Yes                 |                     No                       |
 |          Scalabilità dinamica (aumento delle prestazioni)          |           Yes           |              No               |                 Yes                 |                     No                       |
-

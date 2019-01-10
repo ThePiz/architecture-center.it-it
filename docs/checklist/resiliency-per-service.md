@@ -5,12 +5,12 @@ description: Elenco di controllo contenente indicazioni per la resilienza per va
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: e1fb780cf9f54a5078cc5d3c6b597b351f93e05e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307181"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112669"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Elenco di controllo per la resilienza per servizi di Azure specifici
 
@@ -124,7 +124,7 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
 **Replicare il database.** Usare i gruppi di disponibilità AlwaysOn di SQL Server per replicare il database. Questo approccio offre disponibilità elevata se un'istanza di SQL Server ha esito negativo. Per altre informazioni, vedere [Eseguire macchine virtuali Windows per un'applicazione a più livelli](../reference-architectures/virtual-machines-windows/n-tier.md).
 
-**Eseguire il backup del database.** Se si usa già [Backup di Azure](https://azure.microsoft.com/documentation/services/backup/) per eseguire il backup delle VM, considerare di usare [Backup di Azure per carichi di lavoro di SQL Server con DPM](/azure/backup/backup-azure-backup-sql/). Con questo approccio, si usano un solo ruolo di amministratore di backup per l'organizzazione e una procedura di ripristino unificata per le macchine virtuali e SQL Server. Usare altrimenti [Backup gestito di SQL Server in Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
+**Eseguire il backup del database.** Se si usa già [Backup di Azure](/azure/backup/) per eseguire il backup delle VM, considerare di usare [Backup di Azure per carichi di lavoro di SQL Server con DPM](/azure/backup/backup-azure-backup-sql/). Con questo approccio, si usano un solo ruolo di amministratore di backup per l'organizzazione e una procedura di ripristino unificata per le macchine virtuali e SQL Server. Usare altrimenti [Backup gestito di SQL Server in Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
 
 ## <a name="traffic-manager"></a>Gestione traffico
 

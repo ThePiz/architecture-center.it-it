@@ -1,23 +1,23 @@
 ---
 title: Modelli di gestione dei dati
+titleSuffix: Cloud Design Patterns
 description: La gestione dei dati è l'elemento principale delle applicazioni cloud e influenza la maggior parte degli attributi di qualità. In genere i dati risiedono in percorsi diversi e sono dislocati tra più server per motivi di prestazioni, scalabilità o disponibilità e ciò può implicare una serie di sfide. Ad esempio, è necessario mantenere la coerenza dei dati e sincronizzare in genere i dati tra posizioni diverse.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: b80c2a127af07e1e362e9078e2a476d33a26ef7c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: ff6d5703af64ddd8b012b588ddfe810da0b6630c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847091"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009186"
 ---
 # <a name="data-management-patterns"></a>Modelli di gestione dei dati
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 La gestione dei dati è l'elemento principale delle applicazioni cloud e influenza la maggior parte degli attributi di qualità. In genere i dati risiedono in percorsi diversi e sono dislocati tra più server per motivi di prestazioni, scalabilità o disponibilità e ciò può implicare una serie di sfide. Ad esempio, è necessario mantenere la coerenza dei dati e sincronizzare in genere i dati tra posizioni diverse.
-
 
 |                        Modello                         |                                                                  Summary                                                                  |
 |--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -29,4 +29,3 @@ La gestione dei dati è l'elemento principale delle applicazioni cloud e influen
 |               [Partizionamento orizzontale](../sharding.md)               |                                    Dividere un archivio dati in un set di partizioni orizzontali.                                     |
 | [Hosting di contenuto statico](../static-content-hosting.md) |                   Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client.                    |
 |              [Passepartout](../valet-key.md)              |                 Usare un token o una chiave che fornisca ai client l'accesso diretto limitato a una specifica risorsa o a un servizio.                 |
-

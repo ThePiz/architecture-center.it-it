@@ -5,12 +5,12 @@ description: Creare una pipeline di elaborazione di flussi end-to-end in Azure.
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: abd020fa12883ae3d23623c53e15fe025590de6f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643748"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011583"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>Creare una pipeline di elaborazione di flussi con Analisi di flusso di Azure
 
@@ -40,13 +40,13 @@ L'architettura è costituita dai componenti seguenti.
 
 ## <a name="data-ingestion"></a>Inserimento di dati
 
-<!-- markdownlint-disable MD033 MD034 -->
+<!-- markdownlint-disable MD033 -->
 
 Per simulare un'origine dati, questa architettura di riferimento usa il set di dati [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797) <sup>[[1]](#note1)</sup>. Questo set di dati contiene dati relativi alle corse dei taxi a New York City in un periodo di 4 anni (2010 &ndash; 2013). I tipi di record contenuti sono due: Dati relativi alle corse e dati relativi alle tariffe. I dati relativi alle corsa includono la durata della corsa, la distanza percorsa e le ubicazioni di salita e discesa del cliente. I dati relativi ai costi della corsa includono gli importi relativi a costo di base, imposte e mancia. I campi comuni in entrambi i tipi di record includono il numero di taxi, il numero di licenza e l'ID del fornitore. Questi tre campi identificano in modo univoco un taxi e un tassista. I dati vengono archiviati in formato CSV.
 
-[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). University of Illinois at Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
+[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). University of Illinois at Urbana-Champaign. <https://doi.org/10.13012/J8PN93H8>
 
-<!-- markdownlint-enable MD033 MD034 -->
+<!-- markdownlint-enable MD033 -->
 
 Il generatore di dati è un'applicazione .NET Core che legge i record e li invia a Hub eventi di Azure. Il generatore invia i dati relativi alle corse in formato JSON e i dati relativi ai costi in formato CSV.
 

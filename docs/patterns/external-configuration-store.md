@@ -1,19 +1,17 @@
 ---
-title: Archivio di configurazione esterno
+title: Modello di archivio di configurazione esterno
+titleSuffix: Cloud Design Patterns
 description: È possibile estrarre le informazioni di configurazione dal pacchetto di distribuzione dell'applicazione e spostarle in una posizione centralizzata.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- management-monitoring
-ms.openlocfilehash: 733ca979903d1526d3a1a6b281a8903893e19fda
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 7e37e5bc052a9d8e8747a3a4ac3d79a311185ea4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542282"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011311"
 ---
 # <a name="external-configuration-store-pattern"></a>Modello di archivio di configurazione esterno
 
@@ -40,7 +38,6 @@ L'archivio di backup che si sceglie per le informazioni di configurazione deve a
 > Molti sistemi di configurazione predefiniti leggono i dati all'avvio dell'applicazione e memorizzano i dati nella cache per consentire un accesso rapido e ridurre al minimo l'impatto sulle prestazioni dell'applicazione. In base al tipo di archivio di backup in uso e alla latenza di tale archivio, potrebbe essere utile implementare un meccanismo di memorizzazione nella cache all'interno dell'archivio di configurazione esterno. Per altre informazioni, vedere [Informazioni aggiuntive sulla memorizzazione nella cache](https://msdn.microsoft.com/library/dn589802.aspx). La figura illustra una panoramica del modello di archivio di configurazione esterno con cache locale facoltativa.
 
 ![Panoramica del modello di archivio di configurazione esterno con cache locale facoltativa](./_images/external-configuration-store-overview.png)
-
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
@@ -101,7 +98,7 @@ La classe `ExternalConfigurationManager` definisce un wrapper per un oggetto `Bl
 
 Si noti che tutte le impostazioni vengono anche memorizzate nella cache in un oggetto `Dictionary` all'interno della classe `ExternalConfigurationManager` per l'accesso rapido. Il metodo `GetSetting` usato per recuperare un'impostazione di configurazione legge i dati dalla cache. Se l'impostazione non viene individuata nella cache, viene recuperata dall'oggetto `BlobSettingsStore`.
 
-Il metodo `GetSettings` richiama il metodo `CheckForConfigurationChanges` per verificare se le informazioni di configurazione presenti nell'archiviazione BLOB sono state modificate. Il numero di versione viene esaminato e confrontato con il numero di versione corrente contenuto nell'oggetto `ExternalConfigurationManager`. Se sono state apportate una o più modifiche, viene generato l'evento `Changed` e le impostazioni di configurazione memorizzate nella cache nell'oggetto `Dictionary` vengono aggiornate. Si tratta di un'applicazione del [modello cache-aside](cache-aside.md).
+Il metodo `GetSettings` richiama il metodo `CheckForConfigurationChanges` per verificare se le informazioni di configurazione presenti nell'archiviazione BLOB sono state modificate. Il numero di versione viene esaminato e confrontato con il numero di versione corrente contenuto nell'oggetto `ExternalConfigurationManager`. Se sono state apportate una o più modifiche, viene generato l'evento `Changed` e le impostazioni di configurazione memorizzate nella cache nell'oggetto `Dictionary` vengono aggiornate. Si tratta di un'applicazione del [modello cache-aside](./cache-aside.md).
 
 L'esempio di codice che segue illustra come vengono implementati l'evento `Changed`, il metodo `GetSettings` e il metodo `CheckForConfigurationChanges`:
 
@@ -130,7 +127,7 @@ public class ExternalConfigurationManager : IDisposable
   public string GetAppSetting(string key)
   {
     ...
-    // Try to get the value from the settings cache. 
+    // Try to get the value from the settings cache.
     // If there's a cache miss, get the setting from the settings store and refresh the settings cache.
 
     string value;

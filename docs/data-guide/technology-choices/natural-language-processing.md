@@ -3,18 +3,22 @@ title: Scelta di una tecnologia di elaborazione del linguaggio naturale
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b1cb019164285d16b6e9d34eae220801785adab9
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 699e01bc9905d02fc8ec1113039087189f6e8caf
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902308"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114114"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Scelta di una tecnologia di elaborazione del linguaggio naturale in Azure
 
 L'elaborazione di testo in formato libero viene eseguita su documenti che contengono paragrafi di testo, in genere allo scopo di supportare la ricerca, ma viene usata anche per eseguire altre attività di elaborazione del linguaggio naturale, ad esempio analisi del sentiment, rilevamento di argomenti, rilevamento della lingua, estrazione di frasi chiave e categorizzazione di documenti. Questo articolo illustra le opzioni di tecnologia disponibili a supporto delle attività di elaborazione del linguaggio naturale.
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-an-nlp-service"></a>Opzioni disponibili per la scelta di un servizio di elaborazione del linguaggio naturale
+
+<!-- markdownlint-enable MD026 -->
 
 In Azure, i servizi seguenti forniscono funzionalità di elaborazione del linguaggio naturale:
 
@@ -36,7 +40,7 @@ Per limitare le possibilità di scelta, rispondere prima di tutto a queste doman
 
 ## <a name="capability-matrix"></a>Matrice delle funzionalità
 
-Le tabelle seguenti contengono un riepilogo delle differenze principali in termini di funzionalità.  
+Le tabelle seguenti contengono un riepilogo delle differenze principali in termini di funzionalità.
 
 ### <a name="general-capabilities"></a>Funzionalità generali
 
@@ -50,7 +54,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funzionalità di elaborazione del linguaggio naturale di base
 
 | | HDInsight di Azure | Servizi cognitivi Microsoft |  
-| --- | --- | --- | 
+| --- | --- | --- |
 | Tokenizer | Sì (Spark NLP) | Sì (API Analisi linguistica) |
 | Stemmer | Sì (Spark NLP) | No  |
 | Lemmatizer | Sì (Spark NLP) | No  |
@@ -63,8 +67,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 ### <a name="high-level-natural-language-processing-capabilities"></a>Funzionalità di elaborazione del linguaggio naturale avanzate
 
 | | HDInsight di Azure | Servizi cognitivi Microsoft |
-| --- | --- | --- | 
-| Estrazione e identificazione di entità/finalità | No  | Sì (API LUIS, Language Understanding Intelligent Service) |    
+| --- | --- | --- |
+| Estrazione e identificazione di entità/finalità | No  | Sì (API LUIS, Language Understanding Intelligent Service) |
 | Rilevamento di argomenti | Sì (Spark NLP) | Sì (API Analisi del testo) |
 | Controllo ortografico | Sì (Spark NLP) | Sì (API Controllo ortografico Bing) |
 | Analisi del sentiment | Sì (Spark NLP) | Sì (API Analisi del testo) |

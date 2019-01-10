@@ -1,14 +1,16 @@
 ---
 title: Usare il migliore archivio dati per il processo
-description: Scegliere la tecnologia di archiviazione che rappresenta la soluzione migliore per i dati e per le modalità d'uso che si adopereranno successivamente
+titleSuffix: Azure Application Architecture Guide
+description: Scegliere la tecnologia di archiviazione più adatta ai dati e alle modalità d'utilizzo previste.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 25839f5a749881f415c923db5497984d32b8ac91
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: ab7cbe7005a00bcc2bfd7bad97f3eaf125f53e12
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326092"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113298"
 ---
 # <a name="use-the-best-data-store-for-the-job"></a>Usare il migliore archivio dati per il processo
 
@@ -20,7 +22,7 @@ Sono ormai passati i tempi in cui i dati sarebbero solo stati bloccati in un gra
 - I dati devono essere normalizzati e conformi a uno schema predefinito (schema-on-write).
 - Contese di blocco possono influire sulla prestazioni.
 
-In qualsiasi soluzione di grandi dimensioni, è probabile che una sola tecnologia di archivio dati non soddisfi tutte le esigenze. Alternative a database relazionali includono: store chiave/valore, database di documenti, database di motori di ricerca, database di serie temporali, database della famiglia di colonna e database grafo. Ognuno di essi presenta vantaggi e svantaggi, e diversi tipi di dati si adattano con maggiore naturalezza in una o nell'altra alternativa. 
+In qualsiasi soluzione di grandi dimensioni, è probabile che una sola tecnologia di archivio dati non soddisfi tutte le esigenze. Alternative a database relazionali includono: store chiave/valore, database di documenti, database di motori di ricerca, database di serie temporali, database della famiglia di colonna e database grafo. Ognuno di essi presenta vantaggi e svantaggi, e diversi tipi di dati si adattano con maggiore naturalezza in una o nell'altra alternativa.
 
 Ad esempio, è possibile archiviare un catalogo di prodotti in un database di documento, come Cosmos DB, che offre uno schema flessibile. In tal caso, la descrizione di ogni prodotto è un documento autonomo. Per le query sull'intero catalogo, è possibile indicizzare lo stesso e archiviare l'indice nella ricerca di Azure. L'inventario dei prodotti potrebbe passare in un database SQL, poiché tali dati richiedono garanzie ACID.
 
@@ -30,13 +32,13 @@ Tenere presente che i dati non includono solo i dati applicazioni persistenti, m
 
 **Non usare un database relazionale per tutte le funzioni**. Prendere in considerazione altri archivi dati, quando è appropriato. Vedere [Choose the right data store][data-store-overview] (Scegliere il giusto archivio dati).
 
-**Adottare la persistenza poliglotta**. In qualsiasi soluzione di grandi dimensioni, è probabile che una sola tecnologia di archivio dati non soddisfi tutte le esigenze. 
+**Adottare la persistenza poliglotta**. In qualsiasi soluzione di grandi dimensioni, è probabile che una sola tecnologia di archivio dati non soddisfi tutte le esigenze.
 
 **Considerare il tipo di dati**. Ad esempio, inserire i dati transazionali in SQL, inserire i documenti JSON in un database di documenti, inserire i dati di telemetria in un database di serie temporale, inserire i registri applicazioni in Elasticsearch e BLOB nell'archiviazione Blob di Azure.
 
-**Scegliere la disponibilità rispetto alla (alta) coerenza** . Il teorema CAP implica che un sistema distribuito debba trovare un compromesso tra disponibilità e coerenza (le partizioni di rete, l'altro segmento del teorema CAP, non possono mai essere evitate completamente). Spesso, è possibile ottenere una maggiore disponibilità adottando un modello di *coerenza finale*. 
+**Scegliere la disponibilità rispetto alla (alta) coerenza** . Il teorema CAP implica che un sistema distribuito debba trovare un compromesso tra disponibilità e coerenza (le partizioni di rete, l'altro segmento del teorema CAP, non possono mai essere evitate completamente). Spesso, è possibile ottenere una maggiore disponibilità adottando un modello di *coerenza finale*.
 
-**Prendere in considerazione le capacità del team di sviluppo**. L'uso della persistenza poliglotta ha dei vantaggi, ma è possibile che si ecceda. L'adozione di una nuova tecnologia di archiviazione di dati richiede un nuovo set di competenze. È necessario che il team di sviluppo comprenda come sfruttare al meglio la tecnologia, che comprenda i modelli di uso appropriati, come ottimizzare le query e le prestazioni e così via. Tenere in considerazione ciò quando si valutano le tecnologie di archiviazione. 
+**Prendere in considerazione le capacità del team di sviluppo**. L'uso della persistenza poliglotta ha dei vantaggi, ma è possibile che si ecceda. L'adozione di una nuova tecnologia di archiviazione di dati richiede un nuovo set di competenze. È necessario che il team di sviluppo comprenda come sfruttare al meglio la tecnologia, che comprenda i modelli di uso appropriati, come ottimizzare le query e le prestazioni e così via. Tenere in considerazione ciò quando si valutano le tecnologie di archiviazione.
 
 **Usare la transazione di compensazione**. La singola transazione potrebbe scrivere i dati in più archivi e ciò rappresenta un effetto collaterale della persistenza poliglotta. Se qualcosa non ha un buon esito, è possibile usare le transazioni di compensazione per annullare eventuali passaggi precedentemente completati.
 

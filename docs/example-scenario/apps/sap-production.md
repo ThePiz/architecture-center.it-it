@@ -3,14 +3,14 @@ title: Esecuzione di carichi di lavoro di produzione SAP con un database Oracle
 titleSuffix: Azure Example Scenarios
 description: Eseguire una distribuzione di produzione SAP in Azure con un database Oracle.
 author: DharmeshBhagat
-ms.date: 9/12/2018
+ms.date: 09/12/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 2f398e98e383053f40fa8debcf5636c609339baf
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 02a6eb43d3e11604857b8bd1f461c22a48f655c7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643731"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110928"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure
 
@@ -43,9 +43,13 @@ Questo esempio include una configurazione a disponibilità elevata per un databa
 ### <a name="components"></a>Componenti
 
 - Le [reti virtuali](/azure/virtual-network/virtual-networks-overview) vengono usate in questo scenario per creare una topologia hub-spoke virtuale in Azure.
+
 - Le [macchine virtuali](/azure/virtual-machines/windows/overview) offrono le risorse di calcolo per ogni livello della soluzione. Ogni cluster di macchine virtuali è configurato come un [set di disponibilità](/azure/virtual-machines/windows/regions-and-availability#availability-sets).
+
 - [ExpressRoute](/azure/expressroute/expressroute-introduction) estende la rete locale nel cloud Microsoft tramite una connessione privata stabilita da un provider di connettività.
+
 - I [gruppi di sicurezza di rete (NSG)](/azure/virtual-network/security-overview) limitano l'accesso alla rete alle risorse in una rete virtuale. Un NSG contiene un elenco di regole di sicurezza che consentono o impediscono il traffico di rete in base all'indirizzo IP di origine o di destinazione, alla porta e al protocollo.
+
 - I [gruppi di risorse](/azure/azure-resource-manager/resource-group-overview#resource-groups) fungono da contenitori logici per le risorse di Azure.
 
 ### <a name="alternatives"></a>Alternative
@@ -54,13 +58,13 @@ SAP offre opzioni flessibili per diverse combinazioni di sistema operativo, sist
 
 ## <a name="considerations"></a>Considerazioni
 
-È stata definita una serie di procedure consigliate per la creazione di ambienti SAP a disponibilità elevata in Azure. Per altre informazioni, vedere [Architettura e scenari di disponibilità elevata per SAP NetWeaver](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios). Vedere anche [Disponibilità elevata per SAP NetWeaver in macchine virtuali di Azure](/azure/virtual-machines/workloads/sap/high-availability-guide).
+- È stata definita una serie di procedure consigliate per la creazione di ambienti SAP a disponibilità elevata in Azure. Per altre informazioni, vedere [Architettura e scenari di disponibilità elevata per SAP NetWeaver](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios). Vedere anche [Disponibilità elevata per SAP NetWeaver in macchine virtuali di Azure](/azure/virtual-machines/workloads/sap/high-availability-guide).
 
-Anche per i database Oracle sono disponibili procedure consigliate per Azure. Per altre informazioni, vedere [Progettazione e implementazione di un database Oracle in Azure](/azure/virtual-machines/workloads/oracle/oracle-design).
+- Anche per i database Oracle sono disponibili procedure consigliate per Azure. Per altre informazioni, vedere [Progettazione e implementazione di un database Oracle in Azure](/azure/virtual-machines/workloads/oracle/oracle-design).
 
-Oracle Data Guard viene usato per eliminare i singoli punti di guasto per i database Oracle cruciali. Per altre informazioni, vedere [Implementazione di Oracle Data Guard su una macchina virtuale Linux in Azure](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard).
+- Oracle Data Guard viene usato per eliminare i singoli punti di guasto per i database Oracle cruciali. Per altre informazioni, vedere [Implementazione di Oracle Data Guard su una macchina virtuale Linux in Azure](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard).
 
-Microsoft Azure offre servizi di infrastruttura che possono essere usati per distribuire prodotti SAP con un database Oracle. Per altre informazioni, vedere [Distribuzione di un sistema DBMS di Oracle in Azure per un carico di lavoro SAP](/azure/virtual-machines/workloads/sap/dbms_guide_oracle).
+- Microsoft Azure offre servizi di infrastruttura che possono essere usati per distribuire prodotti SAP con un database Oracle. Per altre informazioni, vedere [Distribuzione di un sistema DBMS di Oracle in Azure per un carico di lavoro SAP](/azure/virtual-machines/workloads/sap/dbms_guide_oracle).
 
 ## <a name="pricing"></a>Prezzi
 

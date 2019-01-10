@@ -1,20 +1,17 @@
 ---
-title: Monitoraggio endpoint di integrità
+title: Modello di monitoraggio endpoint di integrità
+titleSuffix: Cloud Design Patterns
 description: Implementare controlli funzionali all'interno di un'applicazione a cui gli strumenti esterni possono accedere tramite endpoint esposti a intervalli regolari.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- management-monitoring
-- resiliency
-ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 85a1355ff47e6fce80d9b2ed114024651eb994db
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428976"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114250"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Modello di monitoraggio endpoint di integrità
 
@@ -42,6 +39,7 @@ Il codice di risposta indica lo stato dell'applicazione e, facoltativamente, eve
 ![Panoramica del modello](./_images/health-endpoint-monitoring-pattern.png)
 
 Altri controlli che possono essere eseguiti dal codice di monitoraggio dell'integrità nell'applicazione includono:
+
 - Controllo della disponibilità e del tempo di risposta dell'archiviazione cloud o di un database.
 - Controllo di risorse o servizi nell'applicazione o altrove, ma usati dall'applicazione.
 
@@ -67,7 +65,7 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
 Come convalidare la risposta. Ad esempio, un singolo codice di stato 200 (OK) è sufficiente per verificare che l'applicazione funzioni correttamente? Sebbene questa situazione offra la misura ideale della disponibilità dell'applicazione e rappresenti l'implementazione minima di questo modello, fornisce poche informazioni sulle operazioni, sulle tendenze e sui possibili problemi imminenti nell'applicazione.
 
-   >  Verificare che l'applicazione restituisca un codice di stato 200 (OK) solo se la risorsa di destinazione viene trovata ed elaborata. In alcuni scenari, ad esempio quando si usa una pagina master per ospitare la pagina Web di destinazione, il server invia di nuovo un codice di stato 200 (OK) anziché un codice 404 (non trovato), anche se la pagina dei contenuti di destinazione non è stata trovata.
+   > Verificare che l'applicazione restituisca un codice di stato 200 (OK) solo se la risorsa di destinazione viene trovata ed elaborata. In alcuni scenari, ad esempio quando si usa una pagina master per ospitare la pagina Web di destinazione, il server invia di nuovo un codice di stato 200 (OK) anziché un codice 404 (non trovato), anche se la pagina dei contenuti di destinazione non è stata trovata.
 
 Il numero di endpoint da esporre per un'applicazione. Un approccio consiste nell'esporre almeno un endpoint per i servizi di base usato dall'applicazione e un altro per i servizi di priorità inferiore, consentendo di assegnare vari livelli di importanza a ogni risultato di monitoraggio. Valutare anche di esporre più endpoint, ad esempio uno per ogni servizio di base, per garantire maggiore granularità di monitoraggio. Un controllo di verifica dell'integrità potrebbe ad esempio controllare il database, la risorsa di archiviazione e un servizio di geocodifica esterno usato da un'applicazione, ognuno richiedente un livello diverso di tempi di attività e risposta. L'applicazione potrebbe comunque essere ancora integra se il servizio di geocodifica o un'altra attività in background non è disponibile per alcuni minuti.
 
@@ -98,6 +96,7 @@ Come configurare la sicurezza per gli endpoint di monitoraggio per la protezione
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello
 
 Questo modello è utile per:
+
 - Monitorare applicazioni e siti Web per verificare la disponibilità.
 - Monitorare applicazioni e siti Web per confermare il corretto funzionamento.
 - Monitorare servizi di livello intermedio o condivisi per rilevare e isolare un errore che può interrompere altre applicazioni.
@@ -134,6 +133,7 @@ public ActionResult CoreServices()
   return new HttpStatusCodeResult((int)HttpStatusCode.OK);
 }
 ```
+
 Il metodo `ObscurePath` mostra come leggere un percorso dalla configurazione dell'applicazione e usarlo come endpoint per i test. Questo esempio, in C#, illustra anche come accettare un ID come parametro e usarlo per verificare la presenza di richieste valide.
 
 ```csharp
@@ -178,6 +178,7 @@ public ActionResult TestResponseFromConfig()
   return new HttpStatusCodeResult(returnStatusCode);
 }
 ```
+
 ## <a name="monitoring-endpoints-in-azure-hosted-applications"></a>Monitoraggio di endpoint nelle applicazioni ospitate di Azure
 
 Di seguito sono riportate alcune opzioni per il monitoraggio degli endpoint nelle applicazioni di Azure:
@@ -192,7 +193,7 @@ Di seguito sono riportate alcune opzioni per il monitoraggio degli endpoint nell
 
 Le condizioni che è possibile monitorare variano a seconda del meccanismo di hosting scelto per l'applicazione (ad esempio Siti Web, Servizi cloud, Macchine virtuali o Servizi mobili), ma tutti consentono di creare una regola di avviso che usa un endpoint Web specificato nelle impostazioni per il servizio. L'endpoint risponde in modo tempestivo, in modo che il sistema di avvisi possa rilevare il corretto funzionamento dell'applicazione.
 
->  Sono disponibili altre informazioni sulla [creazione di notifiche di avviso][portal-alerts].
+> Sono disponibili altre informazioni sulla [creazione di notifiche di avviso][portal-alerts].
 
 Se si ospita l'applicazione nei ruoli Web e di lavoro di Servizi cloud di Azure o in Macchine virtuali, è possibile usufruire di un servizio integrato in Azure, denominato Gestione traffico. Gestione traffico è un servizio di routing e bilanciamento del carico che consente di distribuire le richieste a istanze specifiche dell'applicazione ospitata in Servizi cloud in base a un'ampia gamma di regole e impostazioni.
 
@@ -200,13 +201,14 @@ Oltre al routing delle richieste, Gestione traffico esegue il ping di un URL, un
 
 Gestione traffico attenderà tuttavia solo dieci secondi per ricevere una risposta dall'URL di monitoraggio. È pertanto necessario verificare che il codice di verifica dell'integrità sia in esecuzione, consentendo la latenza di rete necessaria per il round trip da Gestione traffico all'applicazione e viceversa.
 
->  Sono disponibili altre informazioni sull'uso di [Gestione traffico per monitorare le applicazioni](https://azure.microsoft.com/documentation/services/traffic-manager/). Gestione traffico è anche descritto in[Multiple Datacenter Deployment Guidance](https://msdn.microsoft.com/library/dn589779.aspx) (Guida alla distribuzione in più data center).
+> Sono disponibili altre informazioni sull'uso di [Gestione traffico per monitorare le applicazioni](/azure/traffic-manager/). Gestione traffico è anche descritto in[Multiple Datacenter Deployment Guidance](https://msdn.microsoft.com/library/dn589779.aspx) (Guida alla distribuzione in più data center).
 
 ## <a name="related-guidance"></a>Informazioni correlate
 
 Quando si implementa questo modello, possono essere utili le linee guida seguenti:
+
 - [Indicazioni sulla strumentazione e la telemetria](https://msdn.microsoft.com/library/dn589775.aspx). Il controllo dell'integrità di servizi e componenti viene in genere eseguita mediante probing, ma è anche utile avere a disposizione le informazioni per monitorare le prestazioni dell'applicazione e rilevare gli eventi che si verificano durante il runtime. Questi dati possono essere trasmessi di nuovo agli strumenti di monitoraggio come informazioni aggiuntive per il monitoraggio dell'integrità. Indicazioni sulla strumentazione e la telemetria esplora le informazioni di diagnostica raccolte dalla strumentazione di applicazioni.
 - [Ricezione di avvisi di allerta][portal-alerts].
 - Questo modello include un'[applicazione di esempio](https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring) scaricabile.
 
-[portal-alerts]: https://azure.microsoft.com/documentation/articles/insights-receive-alert-notifications/
+[portal-alerts]: /azure/azure-monitor/platform/alerts-metric

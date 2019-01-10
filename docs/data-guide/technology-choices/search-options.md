@@ -3,24 +3,29 @@ title: Scelta di un archivio dati di ricerca
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b5943cd1410777b974a8cefcd77c7c2f1f2bfe67
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 331777ff289b2158a1804541a01e8f61be38cdf7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902330"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113400"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>Scelta di un archivio dati di ricerca in Azure
 
-Questo articolo mette a confronto le tecnologie disponibili per gli archivi dati di ricerca in Azure. Un archivio dati di ricerca viene usato per creare e archiviare indici specializzati per l'esecuzione di ricerche di testo in formato libero. Il testo indicizzato può trovarsi in un archivio dati separato, ad esempio una risorsa di archiviazione BLOB. Un'applicazione invia una query all'archivio dati di ricerca e ottiene come risultato un elenco di documenti corrispondenti. Per altre informazioni su questo scenario, vedere [Elaborazione di testo in formato libero per la ricerca](../scenarios/search.md). 
+Questo articolo mette a confronto le tecnologie disponibili per gli archivi dati di ricerca in Azure. Un archivio dati di ricerca viene usato per creare e archiviare indici specializzati per l'esecuzione di ricerche di testo in formato libero. Il testo indicizzato può trovarsi in un archivio dati separato, ad esempio una risorsa di archiviazione BLOB. Un'applicazione invia una query all'archivio dati di ricerca e ottiene come risultato un elenco di documenti corrispondenti. Per altre informazioni su questo scenario, vedere [Elaborazione di testo in formato libero per la ricerca](../scenarios/search.md).
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-a-search-data-store"></a>Opzioni disponibili per la scelta di un archivio dati di ricerca
+
+<!-- markdownlint-enable MD026 -->
+
 In Azure tutti gli archivi dati elencati di seguito soddisfano i requisiti di base per la ricerca sui dati di testo in formato libero fornendo un indice di ricerca:
+
 - [Ricerca di Azure](/azure/search/search-what-is-azure-search)
 - [Elasticsearch](https://azuremarketplace.microsoft.com/marketplace/apps/elastic.elasticsearch?tab=Overview)
 - [HDInsight con Solr](/azure/hdinsight/hdinsight-hadoop-solr-install-linux)
 - [Database SQL di Azure con ricerca full-text](/sql/relational-databases/search/full-text-search)
-
 
 ## <a name="key-selection-criteria"></a>Criteri di scelta principali
 
@@ -44,37 +49,37 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 ### <a name="general-capabilities"></a>Funzionalità generali
 
-| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
-| --- | --- | --- | --- | --- | 
+| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
+| --- | --- | --- | --- | --- |
 | Servizio gestito | Yes | No  | Yes | Yes |  
 | API REST | Yes | Sì | Sì | No  |
-| Programmabilità | .NET | Java | Java | T-SQL | 
+| Programmabilità | .NET | Java | Java | T-SQL |
 | Indicizzatori di documenti per tipi di file comuni (PDF, DOCX, TXT e così via) | Yes | No  | Yes | No  |
 
 ### <a name="manageability-capabilities"></a>Funzionalità per la gestibilità
 
-| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
+| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
 | --- | --- | --- | --- | --- |
 | Schema aggiornabile | No  | Yes | Sì | Yes |
 | Supporto per la scalabilità orizzontale  | Yes | Sì | Sì | No  |
 
 ### <a name="analytic-workload-capabilities"></a>Funzionalità per carichi di lavoro di analisi
 
-| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
-| --- | --- | --- | --- | --- | 
+| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
+| --- | --- | --- | --- | --- |
 | Supporto per funzionalità di analisi oltre alla ricerca full-text | No  | Yes | Sì | Yes |
 | Parte di uno stack per l'analisi di log | No  | Sì (ELK) |  No  | No  |
-| Supporto per la ricerca semantica | Sì (trova solo documenti simili) | Yes | Sì | Yes | 
+| Supporto per la ricerca semantica | Sì (trova solo documenti simili) | Yes | Sì | Yes |
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
 
-| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL | 
-| --- | --- | --- | --- | --- | 
-| Sicurezza a livello di riga | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Yes | Yes | 
+| | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
+| --- | --- | --- | --- | --- |
+| Sicurezza a livello di riga | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Yes | Yes |
 | Transparent Data Encryption | No  | No  | No  | Yes |  
-| Limitazione dell'accesso a specifici indirizzi IP | No  | Yes | Sì | Yes |   
+| Limitazione dell'accesso a specifici indirizzi IP | No  | Yes | Sì | Yes |
 | Limitazione dell'accesso alla rete virtuale | No  | Yes | Sì | Yes |  
-| Autenticazione di Active Directory (integrata) | No  | No  | No  | Yes | 
+| Autenticazione di Active Directory (integrata) | No  | No  | No  | Yes |
 
 ## <a name="see-also"></a>Vedere anche 
 

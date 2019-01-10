@@ -1,16 +1,17 @@
 ---
 title: Modelli di protezione
+titleSuffix: Cloud Design Patterns
 description: La sicurezza è la capacità di un sistema di impedire azioni dannose o accidentali al di fuori dell'utilizzo designato e di impedire la divulgazione o la perdita di informazioni. Le applicazioni cloud sono esposte in Internet fuori dai limiti locali attendibili, spesso sono aperte al pubblico e possono essere usate da utenti non attendibili. Le applicazioni devono essere progettate e distribuite in modo da proteggerle da attacchi dannosi, limitare l'accesso solo agli utenti approvati e proteggere i dati sensibili.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 8437b8dfef751226580437a1b5678ca0e0e71f18
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 259d4bd5178ca8ab85df0cd03e5268c5a7845a3a
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846999"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009441"
 ---
 # <a name="security-patterns"></a>Modelli di protezione
 
@@ -18,10 +19,8 @@ ms.locfileid: "30846999"
 
 La sicurezza è la capacità di un sistema di impedire azioni dannose o accidentali al di fuori dell'utilizzo designato e di impedire la divulgazione o la perdita di informazioni. Le applicazioni cloud sono esposte in Internet fuori dai limiti locali attendibili, spesso sono aperte al pubblico e possono essere usate da utenti non attendibili. Le applicazioni devono essere progettate e distribuite in modo da proteggerle da attacchi dannosi, limitare l'accesso solo agli utenti approvati e proteggere i dati sensibili.
 
-
 |                    Modello                     |                                                                                                         Summary                                                                                                         |
 |------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Identità federativa](../federated-identity.md) |                                                                                È possibile delegare l'autenticazione a un provider di identità esterno.                                                                                |
 |         [Gatekeeper](../gatekeeper.md)         | Proteggere le applicazioni e i servizi usando un'istanza host dedicata che funga da broker tra i client e l'applicazione o il servizio, convalidi e purifichi le richieste e passi le richieste e i dati tra di essi. |
 |          [Passepartout](../valet-key.md)          |                                                        Usare un token o una chiave che fornisca ai client l'accesso diretto limitato a una specifica risorsa o a un servizio.                                                        |
-

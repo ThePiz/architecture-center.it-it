@@ -2,14 +2,14 @@
 title: Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning
 description: Implementare un servizio di stima in tempo reale in R con Machine Learning Server in esecuzione nel servizio Azure Kubernetes.
 author: njray
-ms.date: 12/12/18
+ms.date: 12/12/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: a6069704c48fbc1f1a1e4b5df428011d6b5b883d
-ms.sourcegitcommit: 62d2211badd1d6950e8cb819d70c9a4ab1ee01d9
+ms.openlocfilehash: 6f3447d1dcab801ccdaf4cf88611725cc00eb68d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53318993"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112278"
 ---
 # <a name="real-time-scoring-of-r-machine-learning-models"></a>Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning
 
@@ -51,7 +51,7 @@ L'[operazionalizzazione del modello][operationalization] di Microsoft Machine Le
 
 È necessario installare un certificato token JSON Web (JWT) perché l'operazionalizzazione del modello funzioni correttamente con Microsoft Machine Learning Server nei contenitori. Questa distribuzione usa un certificato fornito da Microsoft. In uno scenario di produzione, è necessario fornire il proprio certificato.
 
-Per il traffico tra il servizio Azure Kubernetes e il Registro Azure Container, provare ad abilitare il [controllo degli accessi in base al ruolo][rbac] (RBAC) per limitare i privilegi di accesso solo a quelli necessari. 
+Per il traffico tra il servizio Azure Kubernetes e il Registro Azure Container, provare ad abilitare il [controllo degli accessi in base al ruolo][rbac] (RBAC) per limitare i privilegi di accesso solo a quelli necessari.
 
 ### <a name="separate-storage"></a>Archiviazione separata
 

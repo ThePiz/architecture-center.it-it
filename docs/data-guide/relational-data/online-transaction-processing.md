@@ -3,12 +3,12 @@ title: OLTP (Online Transaction Processing)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: be24bc173359539785385de4a188e7536f6d2ffe
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 331da288384bf14581eeda35116085d759807245
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902766"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113961"
 ---
 # <a name="online-transaction-processing-oltp"></a>OLTP (Online Transaction Processing)
 
@@ -16,11 +16,11 @@ La gestione di dati transazionali tramite sistemi informatici prende il nome di 
 
 ## <a name="transactional-data"></a>Dati transazionali
 
-I dati transazionali sono informazioni che tengono traccia delle interazioni correlate alle attività di un'organizzazione. Tali interazioni sono in genere transazioni aziendali, ad esempio pagamenti ricevuti dai clienti, pagamenti effettuati ai fornitori, movimentazione di prodotti dell'inventario, elaborazione di ordini o fornitura di servizi. Gli eventi transazionali, che rappresentano le transazioni stesse, in genere contengono una dimensione temporale, alcuni valori numerici e riferimenti ad altri dati. 
+I dati transazionali sono informazioni che tengono traccia delle interazioni correlate alle attività di un'organizzazione. Tali interazioni sono in genere transazioni aziendali, ad esempio pagamenti ricevuti dai clienti, pagamenti effettuati ai fornitori, movimentazione di prodotti dell'inventario, elaborazione di ordini o fornitura di servizi. Gli eventi transazionali, che rappresentano le transazioni stesse, in genere contengono una dimensione temporale, alcuni valori numerici e riferimenti ad altri dati.
 
 In genere, le transazioni devono essere *atomiche* e *coerenti*. L'atomicità indica che un'intera transazione ha sempre esito positivo o negativo come unità di lavoro e non viene mai lasciata in uno stato parziale. Se una transazione non può essere completata, il sistema di database deve eseguire il rollback di eventuali passaggi già eseguiti come parte di tale transazione. In un sistema di gestione di database relazionali (RDBMS) tradizionale, il rollback viene eseguito automaticamente se una transazione non può essere completata. La coerenza indica che le transazioni lasciano sempre i dati in uno stato valido. Queste sono descrizioni molto informali dei concetti di atomicità e coerenza. Sono tuttavia disponibili definizioni più formali di queste proprietà, ad esempio [ACID](https://en.wikipedia.org/wiki/ACID).
 
-I database transazionali possono supportare la coerenza assoluta per le transazioni che usano diverse strategie di blocco, ad esempio il blocco pessimistico, per garantire che tutti i dati siano fortemente coerenti nel contesto aziendale per tutti gli utenti e i processi. 
+I database transazionali possono supportare la coerenza assoluta per le transazioni che usano diverse strategie di blocco, ad esempio il blocco pessimistico, per garantire che tutti i dati siano fortemente coerenti nel contesto aziendale per tutti gli utenti e i processi.
 
 L'architettura di distribuzione più comune che usa i dati transazionali è il livello di archivio dati in un'architettura a 3 livelli. Un'architettura a 3 livelli in genere è costituita da livello di presentazione, livello di logica di business e livello di archivio dati. Un'architettura di distribuzione correlata è l'architettura [a più livelli](/azure/architecture/guide/architecture-styles/n-tier), che può avere più livelli intermedi che gestiscono la logica di business.
 
@@ -44,7 +44,7 @@ I dati transazionali hanno, in genere, le caratteristiche seguenti:
 | Modello | Relazionale |
 | Forma dei dati | Tabulare |
 | Flessibilità query | Flessibilità elevata |
-| Scalabilità | Da piccole (MB) a grandi (alcuni TB) dimensioni | 
+| Scalabilità | Da piccole (MB) a grandi (alcuni TB) dimensioni |
 
 ## <a name="when-to-use-this-solution"></a>Quando usare questa soluzione
 
@@ -53,6 +53,7 @@ Scegliere OLTP nei casi in cui è necessario elaborare e archiviare in modo effi
 I sistemi OLTP sono progettati per elaborare e archiviare in modo efficiente le transazioni, nonché per eseguire query sui dati transazionali. L'obiettivo dei sistemi OLTP di elaborare e archiviare in modo efficiente singole transazioni viene parzialmente soddisfatto dalla normalizzazione dei dati, ovvero dalla suddivisione dei dati in blocchi più piccoli meno ridondanti. Questo meccanismo favorisce l'efficienza perché consente al sistema OLTP di elaborare grandi quantità di transazioni in modo indipendente ed evita le attività di elaborazione altrimenti necessarie per mantenere l'integrità dei dati in presenza di dati ridondanti.
 
 ## <a name="challenges"></a>Problematiche
+
 L'implementazione e l'utilizzo di un sistema OLTP può creare alcune problematiche:
 
 - I sistemi OLTP non sono sempre adatti per la gestione di aggregazioni di grandi quantità di dati, sebbene esistano alcune eccezioni, come una soluzione basata su SQL Server ben pianificata. L'analisi dei dati, che si basa su calcoli aggregati di milioni di singole transazioni, richiede l'utilizzo di moltissime risorse per un sistema OLTP. L'esecuzione dei calcoli, infatti, può essere molto lunga e causare rallentamenti bloccando le altre transazioni nel database.
@@ -80,7 +81,7 @@ Per limitare le possibilità di scelta, rispondere prima di tutto a queste doman
 
 - Si ha una soluzione con specifiche dipendenze per la compatibilità con Microsoft SQL Server, MySQL o PostgreSQL? L'applicazione può limitare gli archivi dati che è possibile scegliere in base ai driver supportati per la comunicazione con l'archivio dati o può essere in grado di formulare solo alcune ipotesi riguardo al database usato.
 
-- Si hanno requisiti particolarmente elevati per la velocità effettiva di scrittura? In caso affermativo, scegliere un'opzione in grado di fornire tabelle in memoria. 
+- Si hanno requisiti particolarmente elevati per la velocità effettiva di scrittura? In caso affermativo, scegliere un'opzione in grado di fornire tabelle in memoria.
 
 - Si ha una soluzione multi-tenant? In caso affermativo, prendere in considerazione le opzioni che supportano pool di capacità, in cui più istanze di database estraggono le risorse da un pool elastico, anziché risorse fisse per singolo database. In questo modo verrà ottimizzata la distribuzione della capacità in tutte le istanze di database e la soluzione risulterà economicamente più vantaggiosa.
 
@@ -94,13 +95,17 @@ Per limitare le possibilità di scelta, rispondere prima di tutto a queste doman
 
 Le tabelle seguenti contengono un riepilogo delle differenze principali in termini di funzionalità.
 
-### <a name="general-capabilities"></a>Funzionalità generali 
+### <a name="general-capabilities"></a>Funzionalità generali
+
+<!-- markdownlint-disable MD033 -->
 
 |                              | Database SQL di Azure | SQL Server in una macchina virtuale di Azure | Database di Azure per MySQL | Database di Azure per PostgreSQL |
 |------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
 |      Servizio gestito      |        Yes         |                   No                    |           Yes            |              Yes              |
 |       Piattaforma       |        N/D         |         Windows, Linux, Docker         |           N/D            |              N/D              |
 | Programmabilità <sup>1</sup> |   T-SQL, .NET, R   |         T-SQL, .NET, R, Python         |  T-SQL, .NET, R, Python  |              SQL              |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] Non è incluso il supporto per i driver client, che consente a molti linguaggi di programmazione di connettersi all'archivio dati OLTP e usarne le risorse.
 
@@ -116,7 +121,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 ### <a name="analytic-workload-capabilities"></a>Funzionalità per carichi di lavoro di analisi
 
 | | Database SQL di Azure | SQL Server in una macchina virtuale di Azure| Database di Azure per MySQL | Database di Azure per PostgreSQL|
-| --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- |
 | Tabelle temporali | Yes | Sì | No  | No  |
 | Tabelle in memoria (ottimizzate per la memoria) | Yes | Sì | No  | No  |
 | Supporto per columnstore | Yes | Sì | No  | No  |
@@ -125,9 +130,9 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 ### <a name="availability-capabilities"></a>Funzionalità per la disponibilità
 
 | | Database SQL di Azure | SQL Server in una macchina virtuale di Azure| Database di Azure per MySQL | Database di Azure per PostgreSQL|
-| --- | --- | --- | --- | --- | --- | 
-| Repliche secondarie leggibili | Yes | Sì | No  | No  | 
-| Replica geografica | Yes | Sì | No  | No  | 
+| --- | --- | --- | --- | --- | --- |
+| Repliche secondarie leggibili | Yes | Sì | No  | No  |
+| Replica geografica | Yes | Sì | No  | No  |
 | Failover automatico in replica secondaria | Yes | No  | No  | No |
 | Ripristino temporizzato | Yes | Sì | Sì | Yes |
 
@@ -145,4 +150,3 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 |                                         Autenticazione a più fattori                                         |        Yes         |                  Sì                   |            No             |              No                |
 | Supporto per [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        Yes         |                  Sì                   |           Sì            |              No                |
 |                                                 IP privato                                                  |         No          |                  Yes                   |           Sì            |              No                |
-

@@ -1,19 +1,17 @@
 ---
-title: Partizionamento orizzontale
+title: Modello di partizionamento orizzontale
+titleSuffix: Cloud Design Patterns
 description: Dividere un archivio dati in un set di partizioni orizzontali.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 52c0579e4b08aa18456e0cc5a26742aab39a1a7e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428857"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010325"
 ---
 # <a name="sharding-pattern"></a>Modello di partizionamento orizzontale
 
@@ -57,7 +55,7 @@ L'astrazione della posizione fisica dei dati nella logica di partizionamento ori
 
 Per assicurare prestazioni e scalabilità ottimali, è importante suddividere i dati in un modo appropriato ai tipi di query che vengono eseguite dall'applicazione. In molti casi, è improbabile che lo schema di partizionamento corrisponda esattamente ai requisiti di ogni query. In un sistema multi-tenant, ad esempio, un'applicazione potrebbe avere bisogno di recuperare i dati di tenant usando l'ID tenant, ma potrebbe avere bisogno anche di cercare questi dati in base a qualche altro attributo, ad esempio la posizione o il nome del tenant. Per gestire queste situazioni, implementare una strategia di partizionamento orizzontale con una chiave di partizione che supporti le query di uso più comune.
 
-Se le query recuperano regolarmente i dati usando una combinazione di valori di attributo, è probabilmente possibile definire una chiave di partizione composita collegando insieme gli attributi. In alternativa, usare un modello, ad esempio [Tabella dell'indice](index-table.md) per offrire una ricerca veloce dei dati in base ad attributi che non sono coperti dalla chiave di partizione.
+Se le query recuperano regolarmente i dati usando una combinazione di valori di attributo, è probabilmente possibile definire una chiave di partizione composita collegando insieme gli attributi. In alternativa, usare un modello, ad esempio [Tabella dell'indice](./index-table.md) per offrire una ricerca veloce dei dati in base ad attributi che non sono coperti dalla chiave di partizione.
 
 ## <a name="sharding-strategies"></a>Strategie di partizionamento
 
@@ -67,8 +65,7 @@ Quando si seleziona una chiave di partizionamento e si decide come distribuire i
 
    ![Figura 1: Partizionamento dei dati di tenant in base agli ID di tenant](./_images/sharding-tenant.png)
 
-
-   Il mapping tra la chiave di partizione e l'archiviazione fisica può essere basato su partizioni fisiche in cui ogni chiave di partizione esegue il mapping a una partizione fisica. In alternativa, una tecnica più flessibile per il ribilanciamento delle partizioni è il partizionamento virtuale, dove la chiave di partizionamento esegue il mapping allo stesso numero di partizioni virtuali, che a loro volta eseguono il mapping a un numero inferiore di partizioni fisiche. In questo approccio, un'applicazione individua i dati tramite una chiave di partizione che fa riferimento a una partizione virtuale e il sistema esegue il mapping trasparente delle partizioni virtuali alle partizioni fisiche. Il mapping tra una partizione virtuale e una fisica può cambiare senza dover modificare il codice dell'applicazione per usare un set diverso di chiavi di partizione.
+Il mapping tra la chiave di partizione e l'archiviazione fisica può essere basato su partizioni fisiche in cui ogni chiave di partizione esegue il mapping a una partizione fisica. In alternativa, una tecnica più flessibile per il ribilanciamento delle partizioni è il partizionamento virtuale, dove la chiave di partizionamento esegue il mapping allo stesso numero di partizioni virtuali, che a loro volta eseguono il mapping a un numero inferiore di partizioni fisiche. In questo approccio, un'applicazione individua i dati tramite una chiave di partizione che fa riferimento a una partizione virtuale e il sistema esegue il mapping trasparente delle partizioni virtuali alle partizioni fisiche. Il mapping tra una partizione virtuale e una fisica può cambiare senza dover modificare il codice dell'applicazione per usare un set diverso di chiavi di partizione.
 
 **Strategia di intervallo**. Questa strategia raggruppa gli elementi correlati nella stessa partizione e li ordina in base alla chiave di partizione. Le chiavi di partizione sono sequenziali. Questa strategia è utile per le applicazioni che recuperano spesso set di elementi usando query di intervallo, vale a dire query che restituiscono un set di dati per una chiave di partizione che rientra in un intervallo specificato. Se, ad esempio, un'applicazione deve regolarmente trovare tutti gli ordini effettuati in un determinato mese, questi dati possono essere recuperati più rapidamente se sono archiviati in ordine di data e ora nella stessa partizione. Se ogni ordine fosse archiviato in una partizione diversa, lo si dovrebbe recuperare individualmente mediante l'esecuzione di un numero elevato di query di tipo punto, vale a dire di query che restituiscono un singolo elemento dati. La figura successiva illustra l'archiviazione di set sequenziali (intervalli) di dati in partizioni.
 
@@ -124,7 +121,7 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
     >  Anche i valori che vengono incrementati automaticamente in altri campi che non sono chiavi di partizione possono causare problemi. Se, ad esempio, si usano campi a incremento automatico per generare ID univoci, è possibile che a due diversi elementi posti in partizioni diverse venga assegnato lo stesso ID.
 
-- Potrebbe non essere possibile progettare una chiave di partizione che corrisponde ai requisiti di ogni possibile query sui dati. Partizionare i dati per supportare le query di uso più comune e, se necessario, creare tabelle dell'indice secondarie per supportare le query che recuperano i dati usando criteri basati su attributi che non fanno parte della chiave di partizione. Per altre informazioni, vedere [Index Table pattern](index-table.md) (Modello di tabella dell'indice).
+- Potrebbe non essere possibile progettare una chiave di partizione che corrisponde ai requisiti di ogni possibile query sui dati. Partizionare i dati per supportare le query di uso più comune e, se necessario, creare tabelle dell'indice secondarie per supportare le query che recuperano i dati usando criteri basati su attributi che non fanno parte della chiave di partizione. Per altre informazioni, vedere [Index Table pattern](./index-table.md) (Modello di tabella dell'indice).
 
 - Le query che accedono solo a una singola partizione sono più efficienti di quelle che recuperano i dati da più partizioni. È pertanto consigliabile evitare di implementare un sistema di partizionamento orizzontale che comporta da parte delle applicazioni l'esecuzione di un numero elevato di query che creano un join con i dati contenuti in partizioni diverse. Ricordare che una singola partizione può contenere i dati di più tipi di entità. Considerare la denormalizzazione dei dati per mantenere le entità correlate comunemente soggette a query (ad esempio i dettagli di clienti e ordini inseriti) nella stessa partizione per ridurre il numero di letture separate eseguite da un'applicazione.
 
@@ -150,7 +147,8 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
 Usare questo modello quando un archivio dati deve essere ridimensionato oltre le risorse disponibili a un singolo nodo di archiviazione o per migliorare le prestazioni riducendo la contesa in un archivio dati.
 
->  L'obiettivo principale del partizionamento orizzontale è di migliorare le prestazioni e la scalabilità di un sistema, ma come sottoprodotto può anche migliorare la disponibilità a causa della modalità di suddivisione dei dati in partizioni distinte. Un errore in una partizione non impedisce necessariamente a un'applicazione di accedere ai dati contenuti in altre partizioni e un operatore può eseguire la manutenzione o il ripristino di una o più partizioni senza rendere inaccessibili tutti i dati a un'applicazione. Per altre informazioni, vedere [Linee guida di partizionamento di dati](https://msdn.microsoft.com/library/dn589795.aspx).
+> [!NOTE]
+L'obiettivo principale del partizionamento orizzontale è di migliorare le prestazioni e la scalabilità di un sistema, ma come sottoprodotto può anche migliorare la disponibilità a causa della modalità di suddivisione dei dati in partizioni distinte. Un errore in una partizione non impedisce necessariamente a un'applicazione di accedere ai dati contenuti in altre partizioni e un operatore può eseguire la manutenzione o il ripristino di una o più partizioni senza rendere inaccessibili tutti i dati a un'applicazione. Per altre informazioni, vedere [Linee guida di partizionamento di dati](https://msdn.microsoft.com/library/dn589795.aspx).
 
 ## <a name="example"></a>Esempio
 
@@ -215,7 +213,8 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
+
 - [Nozioni di base sulla coerenza dei dati](https://msdn.microsoft.com/library/dn589800.aspx). Potrebbe essere necessario mantenere la coerenza dei dati distribuiti tra partizioni diverse. Questo argomento riepiloga i problemi da affrontare per mantenere la coerenza dei dati distribuiti e descrive i vantaggi e i compromessi di diversi modelli di coerenza.
 - [Linee guida di partizionamento di dati](https://msdn.microsoft.com/library/dn589795.aspx). Il partizionamento orizzontale di un archivio dati può introdurre una gamma di problemi aggiuntivi. Descrive questi problemi in relazione al partizionamento di archivi dati nel cloud per migliorare la scalabilità, ridurre la contesa e ottimizzare le prestazioni.
-- [Modello di tabella degli indici](index-table.md). In alcuni casi, non è possibile supportare completamente le query solo tramite la progettazione della chiave di partizione. Consente a un'applicazione di recuperare rapidamente i dati da un archivio dati di grandi dimensioni, specificando una chiave diversa dalla chiave di partizione.
-- [Modello di vista materializzata](materialized-view.md). Per mantenere le prestazioni di alcune operazioni di query, è utile creare viste materializzate grado di aggregare e riepilogare i dati, soprattutto se questi dati di riepilogo si basano su informazioni distribuite in più partizioni. Descrive come generare e popolare queste viste.
+- [Modello di tabella degli indici](./index-table.md). In alcuni casi, non è possibile supportare completamente le query solo tramite la progettazione della chiave di partizione. Consente a un'applicazione di recuperare rapidamente i dati da un archivio dati di grandi dimensioni, specificando una chiave diversa dalla chiave di partizione.
+- [Modello di vista materializzata](./materialized-view.md). Per mantenere le prestazioni di alcune operazioni di query, è utile creare viste materializzate grado di aggregare e riepilogare i dati, soprattutto se questi dati di riepilogo si basano su informazioni distribuite in più partizioni. Descrive come generare e popolare queste viste.

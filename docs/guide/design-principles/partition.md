@@ -1,14 +1,16 @@
 ---
 title: Creare partizioni per ovviare ai limiti
-description: Usare il partizionamento per risolvere il problema dei limiti a livello di calcolo, database e rete
+titleSuffix: Azure Application Architecture Guide
+description: Usare il partizionamento per risolvere il problema dei limiti a livello di calcolo, database e rete.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 2f6bf797c2c7e5af7c487635c19eaf77eee77dec
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: f6c0daa1b1ea469413156fdf3cd6969f98528fb3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326297"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110493"
 ---
 # <a name="partition-around-limits"></a>Creare partizioni per ovviare ai limiti
 
@@ -22,7 +24,7 @@ Ci sono molti modi per partizionare un sistema, ad esempio:
 
 - Partizionare una coda o un bus di messaggi per ovviare ai limiti relativi al numero di richieste o al numero di connessioni simultanee.
 
-- Partizionare un'app Web del servizio app per ovviare ai limiti relativi al numero di istanze per ogni piano di servizio app. 
+- Partizionare un'app Web del servizio app per ovviare ai limiti relativi al numero di istanze per ogni piano di servizio app.
 
 Un database può essere partizionato *orizzontalmente*, *verticalmente* o dal punto di vista *funzionale*.
 
@@ -40,14 +42,12 @@ Per informazioni più dettagliate, vedere [Data partitioning][data-partitioning-
 
 **Progettare la chiave di partizione in modo da evitare sovraccarichi**. Se si partiziona un database, ma una partizione riceve comunque la maggior parte delle richieste, il problema non si risolve. Idealmente, il carico deve essere distribuito uniformemente tra le partizioni. Ad esempio, eseguire l'hashing in base all'ID cliente e non alla prima lettera del nome del cliente, perché alcune lettere sono più frequenti. Lo stesso principio vale per il partizionamento di una coda di messaggi. Scegliere una chiave di partizione che consenta una distribuzione uniforme dei messaggi nel set di code. Per altre informazioni, vedere [Sharding][sharding] (Partizionamento).
 
-**Creare partizioni per ovviare ai limiti dei servizi e della sottoscrizione di Azure**. I singoli componenti e servizi prevedono limiti, ma ci sono limiti anche per le sottoscrizioni e i gruppi di risorse. Per le applicazioni molto grandi, potrebbe essere necessario creare partizioni per ovviare a tali limiti.  
+**Creare partizioni per ovviare ai limiti dei servizi e della sottoscrizione di Azure**. I singoli componenti e servizi prevedono limiti, ma ci sono limiti anche per le sottoscrizioni e i gruppi di risorse. Per le applicazioni molto grandi, potrebbe essere necessario creare partizioni per ovviare a tali limiti.
 
-**Creare partizioni a livelli diversi**. Si consideri un server di database distribuito in una macchina virtuale. La macchina virtuale ha un disco rigido virtuale supportato da Archiviazione di Azure. L'account di archiviazione appartiene a una sottoscrizione di Azure. Si noti che ogni passaggio nella gerarchia prevede limiti. Il server di database può avere un limite relativo al pool di connessioni. Le macchine virtuali hanno limiti relativi a CPU e rete. Le risorse di archiviazione hanno limiti relativi alle operazioni di I/O al secondo. La sottoscrizione ha limiti relativi al numero di core delle macchine virtuali. In genere, è più facile creare partizioni ai livelli più bassi della gerarchia. Solo le applicazioni di grandi dimensioni richiedono partizioni a livello di sottoscrizione. 
+**Creare partizioni a livelli diversi**. Si consideri un server di database distribuito in una macchina virtuale. La macchina virtuale ha un disco rigido virtuale supportato da Archiviazione di Azure. L'account di archiviazione appartiene a una sottoscrizione di Azure. Si noti che ogni passaggio nella gerarchia prevede limiti. Il server di database può avere un limite relativo al pool di connessioni. Le macchine virtuali hanno limiti relativi a CPU e rete. Le risorse di archiviazione hanno limiti relativi alle operazioni di I/O al secondo. La sottoscrizione ha limiti relativi al numero di core delle macchine virtuali. In genere, è più facile creare partizioni ai livelli più bassi della gerarchia. Solo le applicazioni di grandi dimensioni richiedono partizioni a livello di sottoscrizione.
 
 <!-- links -->
 
 [azure-limits]: /azure/azure-subscription-service-limits
 [data-partitioning-guidance]: ../../best-practices/data-partitioning.md
 [sharding]: ../../patterns/sharding.md
-
- 

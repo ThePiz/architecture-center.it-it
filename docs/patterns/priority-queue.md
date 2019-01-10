@@ -1,19 +1,17 @@
 ---
-title: Coda con priorità
+title: Modello di coda con priorità
+titleSuffix: Cloud Design Patterns
 description: Assegnare una priorità alle richieste inviate ai servizi in modo che le richieste con una priorità più alta vengano ricevute ed elaborate più rapidamente rispetto a quelle con priorità più bassa.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- performance-scalability
-ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: ddd9cc9ec85c6ed23fabaaa58424736ba1aa9421
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428500"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011124"
 ---
 # <a name="priority-queue-pattern"></a>Modello di coda con priorità
 
@@ -31,12 +29,11 @@ Una coda è in genere una struttura First-In, First-Out (FIFO) e gli utenti soli
 
 ![Figura 1 - Uso di un meccanismo di accodamento che supporta l'assegnazione di priorità ai messaggi](./_images/priority-queue-pattern.png)
 
-> La maggior parte delle implementazioni delle code di messaggi supporta più consumer (secondo il [modello di consumer concorrenti](https://msdn.microsoft.com/library/dn568101.aspx)) e il numero di processi consumer può essere aumentato o diminuito in base alla richiesta.
+> La maggior parte delle implementazioni delle code di messaggi supporta più consumer (secondo il [modello di consumer concorrenti](./competing-consumers.md)) e il numero di processi consumer può essere aumentato o diminuito in base alla richiesta.
 
 Come soluzione alternativa nei sistemi che non supportano le code di messaggi basate sulla priorità è possibile gestire una coda separata per ogni priorità. L'applicazione è responsabile dell'inserimento dei messaggi nella coda appropriata. Ogni coda può avere un pool di consumer distinto. Le code con priorità maggiore possono avere un pool di consumer più ampio eseguito su hardware più veloce rispetto alle code con priorità inferiore. La figura seguente illustra l'uso di code di messaggi separate per ogni priorità.
 
 ![Figura 2 - Uso di code di messaggi separate per ogni priorità](./_images/priority-queue-separate.png)
-
 
 Una variante di questa strategia consiste nell'usare un unico pool di consumer che gestisca prima i messaggi nelle code con priorità elevata e successivamente inizi a recuperare i messaggi dalle code con priorità inferiore. Esistono alcune differenze a livello semantico tra una soluzione che usa un solo pool di processi consumer (con una sola coda che supporta messaggi con priorità diverse o con più code ognuna delle quali gestisce messaggi con una sola priorità) e una soluzione che usa più code con un pool separato per ogni coda.
 
@@ -88,7 +85,6 @@ Una soluzione di Azure può implementare un argomento del bus di servizio in cui
 
 ![Figura 3 - Implementazione di una coda con priorità con argomenti e sottoscrizioni del bus di servizio di Azure](./_images/priority-queue-service-bus.png)
 
-
 Nella figura riportata sopra l'applicazione crea diversi messaggi e assegna una proprietà personalizzata chiamata `Priority` in ogni messaggio con un valore, `High` o `Low`. L'applicazione inserisce questi messaggi in un argomento. All'argomento sono associate due sottoscrizioni che filtrano i messaggi esaminando la proprietà `Priority`. Una sottoscrizione accetta i messaggi in cui la proprietà `Priority` è impostata su `High`, mentre l'altra accetta i messaggi in cui la proprietà `Priority` è impostata su `Low`. Un pool di consumer legge i messaggi di ogni sottoscrizione. La sottoscrizione con priorità alta ha un pool più ampio e i relativi consumer potrebbero essere eseguiti in computer più potenti con più risorse a disposizione rispetto ai consumer del pool con priorità bassa.
 
 In questo esempio non c'è niente di speciale in merito alla designazione di messaggi con priorità alta e bassa. Si tratta di semplici etichette specificate come proprietà in ogni messaggio e usate per indirizzare i messaggi a una sottoscrizione specifica. Se sono necessarie ulteriori priorità, è relativamente facile creare altre sottoscrizioni e pool di processi consumer per gestire queste priorità.
@@ -121,6 +117,7 @@ public class PriorityWorkerRole : RoleEntryPoint
   }
 }
 ```
+
 I ruoli di lavoro `PriorityQueue.High` e `PriorityQueue.Low` eseguono entrambi l'override della funzionalità predefinita del metodo `ProcessMessage`. Il codice seguente mostra il metodo `ProcessMessage` per il ruolo di lavoro `PriorityQueue.High`.
 
 ```csharp
@@ -170,11 +167,10 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 
 - [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx). Un servizio consumer che elabora una richiesta potrebbe dover inviare una risposta all'istanza dell'applicazione che ha inviato la richiesta. Fornisce informazioni sulle strategie che è possibile usare per implementare la messaggistica richiesta-risposta.
 
-- [Modello di consumer concorrenti](competing-consumers.md). Per aumentare la velocità effettiva delle code, è possibile impostare più consumer in ascolto sulla stessa coda ed elaborare le attività in parallelo. Questi consumer competeranno per i messaggi, ma solo uno dovrebbe essere in grado di elaborare ogni messaggio. Offre altre informazioni sui vantaggi e gli svantaggi dell'implementazione di questo approccio.
+- [Modello di consumer concorrenti](./competing-consumers.md). Per aumentare la velocità effettiva delle code, è possibile impostare più consumer in ascolto sulla stessa coda ed elaborare le attività in parallelo. Questi consumer competeranno per i messaggi, ma solo uno dovrebbe essere in grado di elaborare ogni messaggio. Offre altre informazioni sui vantaggi e gli svantaggi dell'implementazione di questo approccio.
 
-- [Modello di limitazione](throttling.md). È possibile implementare la limitazione delle richieste mediante le code. L'assegnazione di priorità ai messaggi può garantire che alle richieste provenienti da applicazioni di importanza cruciale o da applicazioni eseguite da clienti importanti sia data priorità sulle richieste provenienti da applicazioni meno importanti.
+- [Modello di limitazione](./throttling.md). È possibile implementare la limitazione delle richieste mediante le code. L'assegnazione di priorità ai messaggi può garantire che alle richieste provenienti da applicazioni di importanza cruciale o da applicazioni eseguite da clienti importanti sia data priorità sulle richieste provenienti da applicazioni meno importanti.
 
 - [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). Potrebbe essere possibile aumentare o ridurre le dimensioni del pool di processi consumer che gestiscono una coda in base alla lunghezza della coda. Questa strategia può migliorare le prestazioni, specialmente per i pool che gestiscono messaggi con priorità alta.
 
 - [Modelli di integrazione aziendale con il bus di servizio](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) sul blog di Abhishek Lal.
-

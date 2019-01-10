@@ -1,19 +1,17 @@
 ---
-title: Pipe e filtri
+title: Modello di pipe e filtri
+titleSuffix: Cloud Design Patterns
 description: Scomporre un'attività che esegue un'elaborazione complessa in una serie di elementi distinti riutilizzabili.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- messaging
-ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7084b538159f7104d2322e35f94f43e905f700bf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429571"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011685"
 ---
 # <a name="pipes-and-filters-pattern"></a>Modello di pipe e filtri
 
@@ -39,7 +37,6 @@ Suddividere l'elaborazione richiesta per ogni flusso in un set di componenti sep
 
 ![Figura 2. Una soluzione implementata usando pipe e filtri](./_images/pipes-and-filters-solution.png)
 
-
 Il tempo impiegato per elaborare una singola richiesta dipende dalla velocità del filtro più lento nella pipeline. Uno o più filtri potrebbero rappresentare un collo di bottiglia, soprattutto se in un flusso si verifica un numero elevato di richieste da una determinata origine dati. Un vantaggio chiave della struttura della pipeline è l'opportunità di eseguire istanze parallele di filtri lenti, consentendo al sistema di distribuire il carico e migliorare la velocità effettiva.
 
 I filtri che compongono una pipeline possono essere eseguiti su macchine diverse, che consentono loro di essere scalati in modo indipendente e di sfruttare l'elasticità offerta da molti ambienti cloud. Un filtro impegnativo da un punto di vista computazionale può essere eseguito su hardware ad alte prestazioni, mentre altri filtri meno esigenti possono essere ospitati su hardware meno costoso. I filtri non devono nemmeno trovarsi nello stesso data center o nella medesima posizione geografica, il che consente a ciascun elemento di una pipeline di essere eseguito in un ambiente sito in prossimità delle risorse richieste.  La figura seguente mostra un esempio applicato alla pipeline dei dati dall'Origine 1.
@@ -50,11 +47,12 @@ Se l'input e l'output di un filtro sono strutturati come flusso, è possibile es
 
 Un altro vantaggio è la resilienza che questo modello è in grado di offrire. Se un filtro ha esito negativo o la macchina su cui è in esecuzione non è più disponibile, la pipeline può riprogrammare il lavoro che il filtro stava eseguendo e dirigerlo su un'altra istanza del componente. Il fallimento di un solo filtro non comporta necessariamente il fallimento dell'intera pipeline.
 
-L'uso del modello di Pipe e Filtri in combinazione con il [Modello di transazioni di compensazione](compensating-transaction.md) è un approccio alternativo all'implementazione delle transazioni distribuite. Una transazione distribuita può essere suddivisa in attività separate e compensabili, ognuna delle quali può essere implementata usando un filtro che implementa anche il modello di transazioni di compensazione. I filtri in una pipeline possono essere implementati come attività ospitate separate in esecuzione in prossimità dei dati che gestiscono.
+L'uso del modello di Pipe e Filtri in combinazione con il [Modello di transazioni di compensazione](./compensating-transaction.md) è un approccio alternativo all'implementazione delle transazioni distribuite. Una transazione distribuita può essere suddivisa in attività separate e compensabili, ognuna delle quali può essere implementata usando un filtro che implementa anche il modello di transazioni di compensazione. I filtri in una pipeline possono essere implementati come attività ospitate separate in esecuzione in prossimità dei dati che gestiscono.
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
 Prima di decidere come implementare questo schema, è opportuno considerare quanto segue:
+
 - **Complessità**. La maggiore flessibilità offerta da questo modello può anche presentare complessità, specialmente se i filtri in una pipeline sono distribuiti su server diversi.
 
 - **Affidabilità**. Uso di un'infrastruttura che assicura che i dati che si propagano tra i filtri in una pipeline non vadano persi.
@@ -70,11 +68,12 @@ Prima di decidere come implementare questo schema, è opportuno considerare quan
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello
 
 Usare questo modello quando:
+
 - L'elaborazione richiesta da un'applicazione può essere facilmente suddivisa in un set di passaggi indipendenti.
 
 - I passaggi di elaborazione eseguiti da un'applicazione hanno requisiti di scalabilità differenti.
 
-    >  È possibile raggruppare i filtri che dovrebbero scalare insieme nello stesso processo. Per altre informazioni, vedere [Compute Resource Consolidation pattern](compute-resource-consolidation.md) (Modello di consolidamento delle risorse di calcolo).
+    >  È possibile raggruppare i filtri che dovrebbero scalare insieme nello stesso processo. Per altre informazioni, vedere [Compute Resource Consolidation pattern](./compute-resource-consolidation.md) (Modello di consolidamento delle risorse di calcolo).
 
 - La flessibilità è necessaria per riordinare i passaggi di elaborazione eseguiti da un'applicazione o per aggiungere e rimuovere passaggi.
 
@@ -83,6 +82,7 @@ Usare questo modello quando:
 - È necessaria una soluzione affidabile che riduca al minimo gli effetti di un errore in un passaggio durante l'elaborazione dei dati.
 
 Questo modello potrebbe non essere utile quando:
+
 - I passaggi di elaborazione eseguiti da un'applicazione non sono indipendenti o devono essere eseguiti insieme come parte della stessa transazione.
 
 - La quantità di informazioni di contesto o di stato richiesta da un passaggio rende questo approccio inefficiente. Potrebbe invece essere possibile mantenere le informazioni sullo stato in un database, ma non usare questa strategia se il carico aggiuntivo sul database causa una contesa eccessiva.
@@ -93,10 +93,9 @@ Questo modello potrebbe non essere utile quando:
 
 ![Figura 4. Implementazione di una pipeline usando le code dei messaggi](./_images/pipes-and-filters-message-queues.png)
 
-
 Se si sta creando una soluzione su Azure, è possibile usare le code del bus di servizio per fornire un meccanismo di accodamento affidabile e scalabile. La classe `ServiceBusPipeFilter` mostrata di seguito in C# dimostra come è possibile implementare un filtro che riceve i messaggi di input da una coda, elabora questi messaggi e inserisce i risultati in un'altra coda.
 
->  La classe `ServiceBusPipeFilter` è definita nel progetto PipesAndFilters.Shared disponibile da [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
+> La classe `ServiceBusPipeFilter` è definita nel progetto PipesAndFilters.Shared disponibile da [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
 
 ```csharp
 public class ServiceBusPipeFilter
@@ -278,8 +277,9 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
+
 - Un esempio che illustra questo modello è disponibile su [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
-- [Modello di consumer concorrenti](competing-consumers.md). Una pipeline può contenere più istanze di uno o più filtri. Questo approccio è utile per eseguire istanze parallele di filtri lenti, consentendo al sistema di distribuire il carico e migliorare la velocità effettiva. Ogni istanza di un filtro concorrerà per l'input con le altre istanze, due istanze di un filtro non dovrebbero essere in grado di elaborare gli stessi dati. Fornisce una spiegazione di questo approccio.
-- [Compute Resource Consolidation pattern](compute-resource-consolidation.md) (Modello di consolidamento delle risorse di calcolo). È possibile raggruppare i filtri che dovrebbero scalare insieme nello stesso processo. Offre altre informazioni sui vantaggi e gli svantaggi di questa strategia.
-- [Modello di transazioni di compensazione](compensating-transaction.md). Un filtro può essere implementato come un'operazione che può essere invertita o che ha un'operazione di compensazione che in caso di errore ripristina lo stato a una versione precedente. Spiega come questa può essere implementata per mantenere o ottenere la coerenza finale.
+- [Modello di consumer concorrenti](./competing-consumers.md). Una pipeline può contenere più istanze di uno o più filtri. Questo approccio è utile per eseguire istanze parallele di filtri lenti, consentendo al sistema di distribuire il carico e migliorare la velocità effettiva. Ogni istanza di un filtro concorrerà per l'input con le altre istanze, due istanze di un filtro non dovrebbero essere in grado di elaborare gli stessi dati. Fornisce una spiegazione di questo approccio.
+- [Compute Resource Consolidation pattern](./compute-resource-consolidation.md) (Modello di consolidamento delle risorse di calcolo). È possibile raggruppare i filtri che dovrebbero scalare insieme nello stesso processo. Offre altre informazioni sui vantaggi e gli svantaggi di questa strategia.
+- [Modello di transazioni di compensazione](./compensating-transaction.md). Un filtro può essere implementato come un'operazione che può essere invertita o che ha un'operazione di compensazione che in caso di errore ripristina lo stato a una versione precedente. Spiega come questa può essere implementata per mantenere o ottenere la coerenza finale.
 - [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Modelli di idempotenza) sul blog di Jonathan Oliver.

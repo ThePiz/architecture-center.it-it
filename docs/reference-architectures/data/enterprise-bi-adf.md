@@ -5,18 +5,18 @@ description: Automatizzare un'estrazione, caricamento e trasformazione (ELT - Ex
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 8263da7675beb61add371c945aab72b203c2349c
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 579ef0361ec44d0eb82b9076490eed5a6d88df35
+ms.sourcegitcommit: cd3de23543f739a95a1daf38886561f67add9d64
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644006"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54183593"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Business intelligence aziendale automatizzata con SQL Data Warehouse e Azure Data Factory
 
 Questa architettura di riferimento mostra come eseguire il caricamento incrementale in una pipeline [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (estrazione-caricamento-trasformazione). Usa Azure Data Factory per automatizzare la pipeline ELT. La pipeline sposta in modo incrementale i dati OLTP più recenti da un database di SQL Server locale in SQL Data Warehouse. I dati transazionali vengono trasformati in un modello tabulare per l'analisi.
 
-> [!VIDEO <https://www.microsoft.com/videoplayer/embed/RE2Gnz2>]
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 Un'implementazione di riferimento per questa architettura è disponibile in [GitHub][github].
 

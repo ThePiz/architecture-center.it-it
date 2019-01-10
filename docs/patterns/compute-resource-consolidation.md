@@ -1,18 +1,17 @@
 ---
-title: Consolidamento delle risorse di calcolo
-description: Consolidare più attività o operazioni in un'unica unità di calcolo
+title: Modello di consolidamento delle risorse di calcolo
+titleSuffix: Cloud Design Patterns
+description: Consolidare più attività o operazioni in un'unica unità di calcolo.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 0f787537fb97f52ad69df7f0784b7fca3c45d7d1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428840"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111479"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Modello di consolidamento delle risorse di calcolo
 
@@ -27,7 +26,6 @@ Un'applicazione cloud spesso implementa una serie di operazioni. In alcune soluz
 La figura mostra un esempio di struttura semplificata di una soluzione ospitata dal cloud implementata tramite più unità di calcolo. Ogni unità di calcolo viene eseguita nel proprio ambiente virtuale. Ogni funzione è stata implementata come attività separata, denominata attività da A a E, in esecuzione in una specifica unità di calcolo.
 
 ![Esecuzione di attività in un ambiente cloud tramite un set di unità di calcolo dedicate](./_images/compute-resource-consolidation-diagram.png)
-
 
 Ogni unità di calcolo usa risorse addebitabili, anche quando è inattiva o poco usata. Pertanto, questa non è sempre la soluzione più conveniente.
 
@@ -67,7 +65,7 @@ Prima di implementare questo modello, considerare quanto segue:
 **Contesa**. Evitare di introdurre contese tra le attività che si contendono le risorse nella stessa unità di calcolo. In teoria, le attività che condividono la stessa unità di calcolo devono presentare caratteristiche di uso diverso delle risorse. Ad esempio, due attività a elevato utilizzo di calcolo probabilmente non dovrebbero trovarsi nella stessa unità di calcolo, così come due attività che usano grandi quantità di memoria. Tuttavia, la combinazione di un'attività ad elevato utilizzo di calcolo con un'attività che richiede una grande quantità di memoria è una combinazione possibile.
 
 > [!NOTE]
->  Prendere in considerazione il consolidamento delle risorse di calcolo solo per un sistema che sia stato in produzione per un periodo di tempo, in modo che gli operatori e gli sviluppatori possono monitorarlo e creare una _mappa termica_ che identifichi come ogni attività usa risorse diverse. Questa mappa consente di determinare quali attività sono candidati validi per la condivisione delle risorse di calcolo.
+> Prendere in considerazione il consolidamento delle risorse di calcolo solo per un sistema che sia stato in produzione per un periodo di tempo, in modo che gli operatori e gli sviluppatori possono monitorarlo e creare una _mappa termica_ che identifichi come ogni attività usa risorse diverse. Questa mappa consente di determinare quali attività sono candidati validi per la condivisione delle risorse di calcolo.
 
 **Complessità**. La combinazione di più attività in una singola unità di calcolo aggiunge complessità al codice dell'unità, rendendolo più difficile da testare, eseguire il debug e gestire.
 
@@ -85,7 +83,7 @@ Questo modello potrebbe non essere adatto per le attività che eseguono operazio
 
 Quando si compila un servizio cloud in Azure, è possibile consolidare l'elaborazione eseguita da più attività in un unico ruolo. In genere si tratta di un ruolo di lavoro che esegue attività di elaborazione asincrona o in background.
 
-> In alcuni casi è possibile includere attività di elaborazione asincrona o in background nel ruolo Web. Questa tecnica consente di ridurre i costi e semplificare la distribuzione, anche se può ridurre la scalabilità e la velocità di risposta dell'interfaccia pubblica disponibile per il ruolo Web. 
+> In alcuni casi è possibile includere attività di elaborazione asincrona o in background nel ruolo Web. Questa tecnica consente di ridurre i costi e semplificare la distribuzione, anche se può ridurre la scalabilità e la velocità di risposta dell'interfaccia pubblica disponibile per il ruolo Web.
 
 Il ruolo è responsabile di avviare e arrestare le attività. Quando il controller di infrastruttura di Azure carica un ruolo, viene generato l'evento `Start` per il ruolo. È possibile eseguire l'override del metodo `OnStart` della classe `WebRole` o `WorkerRole` per gestire questo evento, ad esempio per inizializzare i dati e altre risorse da cui dipendono le attività di questo metodo.
 
@@ -104,7 +102,6 @@ Quando un ruolo viene arrestato o riciclato, il controller di infrastruttura blo
 Le attività sono avviate dal metodo `Run` che attende il completamento delle attività. Le attività implementano la logica di business del servizio cloud e possono rispondere a messaggi inviati al ruolo tramite il bilanciamento del carico di Azure. La figura illustra il ciclo di vita delle attività e delle risorse in un ruolo in un servizio cloud di Azure.
 
 ![Il ciclo di vita delle attività e delle risorse in un ruolo in un servizio cloud di Azure](./_images/compute-resource-consolidation-lifecycle.png)
-
 
 Il file _WorkerRole.cs_ nel progetto _ComputeResourceConsolidation.Worker_ mostra un esempio di come è possibile implementare questo modello in un servizio cloud di Azure.
 

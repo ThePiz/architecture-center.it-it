@@ -1,16 +1,17 @@
 ---
 title: Modelli di messaggistica
+titleSuffix: Cloud Design Patterns
 description: La tipologia distribuita delle applicazioni cloud richiede un'infrastruttura di messaggistica in grado di connettere componenti e servizi, idealmente con un approccio "a regime di controllo libero" per ottimizzare la scalabilità. La messaggistica asincrona è ampiamente usata e, pur offrendo numerosi vantaggi, comporta anche sfide come l'ordinamento dei messaggi, la gestione dei messaggi non elaborabili, l'idempotenza e altro ancora.
 keywords: schema progettuale
 author: dragon119
 ms.date: 12/07/2018
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 754e9a7dcad20dc1c4471af00f3f142f18022d62
-ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
+ms.custom: seodec18
+ms.openlocfilehash: 4619d30c152f050f3f95aee3f9983b8fe85911ed
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53233881"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011328"
 ---
 # <a name="messaging-patterns"></a>Modelli di messaggistica
 

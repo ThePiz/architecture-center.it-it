@@ -5,12 +5,12 @@ description: Distribuire le appliance virtuali di rete con disponibilità elevat
 author: telmosampaio
 ms.date: 12/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: d3f9017db1bbf9741b10db16eb5a3dbab78f1160
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: 646721f80d19f493b7674884f8108762d743201b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120753"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011090"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Distribuire appliance virtuali di rete con disponibilità elevata
 
@@ -30,6 +30,8 @@ Per rendere un'appliance virtuale di rete altamente disponibile, distribuire pi�
 
 Le architetture seguenti descrivono le risorse e la configurazione necessarie per le appliance virtuali di rete a disponibilità elevata:
 
+<!-- markdownlint-disable MD033 -->
+
 | Soluzione | Vantaggi | Considerazioni |
 | --- | --- | --- |
 | [Dati in ingresso con appliance virtuali di rete di livello 7][ingress-with-layer-7] |Tutti i nodi dell'appliance virtuale di rete sono attivi |Richiede un'appliance virtuale di rete che può interrompere le connessioni e usare SNAT<br/> Richiede un set separato di appliance virtuali di rete per il traffico proveniente da Internet e da Azure <br/> Può essere usato solo per il traffico proveniente da punti esterni ad Azure |
@@ -37,6 +39,8 @@ Le architetture seguenti descrivono le risorse e la configurazione necessarie pe
 | [Dati in ingresso e in uscita con appliance virtuali di rete di livello 7][ingress-egress-with-layer-7] |Tutti i nodi sono attivi<br/>In grado di gestire il traffico generato in Azure |Richiede un'appliance virtuale di rete che può interrompere le connessioni e usare SNAT<br/>Richiede un set separato di appliance virtuali di rete per il traffico proveniente da Internet e da Azure |
 | [Commutatore PIP-UDR][pip-udr-switch] |Un solo set di appliance virtuali di rete per tutto il traffico<br/>In grado di gestire tutto il traffico (nessun limite alle regole di porta) |Modello attivo/passivo<br/>Richiede un processo di failover |
 | [PIP-UDR senza SNAT](#pip-udr-nvas-without-snat) | Un solo set di appliance virtuali di rete per tutto il traffico<br/>In grado di gestire tutto il traffico (nessun limite alle regole di porta)<br/>Non richiede la configurazione di SNAT per le richieste in ingresso |Modello attivo/passivo<br/>Richiede un processo di failover<br/>La logica di probe e il failover vengono eseguiti all'esterno della rete virtuale |
+
+<!-- markdown-enable MD033 -->
 
 ## <a name="ingress-with-layer-7-nvas"></a>Dati in ingresso con appliance virtuali di rete di livello 7
 

@@ -3,12 +3,12 @@ title: Scelta di una tecnologia di servizi cognitivi
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 13d510056e4b1ce6eeec603427658215691e48ab
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902550"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110987"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Scelta di una tecnologia di servizi cognitivi Microsoft
 
@@ -16,26 +16,33 @@ I servizi cognitivi Microsoft sono API basate sul cloud che è possibile usare i
 
 I servizi cognitivi includono:
 
-* Analisi del testo
-* Visione artificiale
-* Analisi di video
-* Riconoscimento e generazione vocale
-* Comprensione del linguaggio naturale
-* Ricerca intelligente
+- Analisi del testo
+- Visione artificiale
+- Analisi di video
+- Riconoscimento e generazione vocale
+- Comprensione del linguaggio naturale
+- Ricerca intelligente
 
 Vantaggi principali:
 
-* Semplificazione delle attività di sviluppo per i servizi di intelligenza artificiale all'avanguardia.
-* Integrazione semplificata nelle app tramite interfacce REST HTTP.
-* Supporto integrato per l'utilizzo dei servizi cognitivi in Azure Data Lake Analytics.
+- Semplificazione delle attività di sviluppo per i servizi di intelligenza artificiale all'avanguardia.
+- Integrazione semplificata nelle app tramite interfacce REST HTTP.
+- Supporto integrato per l'utilizzo dei servizi cognitivi in Azure Data Lake Analytics.
 
 Considerazioni:
 
-* Disponibili solo nel Web. È in genere necessaria la connettività Internet. Un'eccezione è il Servizio visione artificiale personalizzato, il cui modello con training può essere esportato per eseguire stime nei dispositivi e in IoT Edge.
-* Nonostante un ampio supporto per la personalizzazione, è possibile che i servizi disponibili non soddisfino tutti i requisiti di analisi predittiva.
+- Disponibili solo nel Web. È in genere necessaria la connettività Internet. Un'eccezione è il Servizio visione artificiale personalizzato, il cui modello con training può essere esportato per eseguire stime nei dispositivi e in IoT Edge.
+
+- Nonostante un ampio supporto per la personalizzazione, è possibile che i servizi disponibili non soddisfino tutti i requisiti di analisi predittiva.
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-amongst-the-cognitive-services"></a>Opzioni disponibili per la scelta di servizi cognitivi
+
+<!-- markdownlint-disable MD026 -->
+
 In Azure sono disponibili numerosi servizi cognitivi. L'elenco aggiornato di questi servizi è disponibile in una directory classificata in base all'area funzionale supportata:
+
 - [Visione artificiale](https://azure.microsoft.com/services/cognitive-services/directory/vision/)
 - [Sintesi vocale](https://azure.microsoft.com/services/cognitive-services/directory/speech/)
 - [Conoscenza](https://azure.microsoft.com/services/cognitive-services/directory/know/)
@@ -46,13 +53,13 @@ In Azure sono disponibili numerosi servizi cognitivi. L'elenco aggiornato di que
 
 Per limitare le possibilità di scelta, rispondere prima di tutto a queste domande:
 
-- Quali tipi di dati vengono utilizzati? Limitare la scelta in base al tipo di dati di input utilizzati. Ad esempio, se l'input è un testo, selezionare i servizi che hanno questo tipo di input. 
+- Quali tipi di dati vengono utilizzati? Limitare la scelta in base al tipo di dati di input utilizzati. Ad esempio, se l'input è un testo, selezionare i servizi che hanno questo tipo di input.
 
-- Sono disponibili dati per eseguire il training del modello? In caso affermativo, prendere in considerazione i servizi personalizzati che consentono di eseguire il training dei modelli sottostanti con i dati forniti, per prestazioni migliori e maggiore precisione. 
+- Sono disponibili dati per eseguire il training del modello? In caso affermativo, prendere in considerazione i servizi personalizzati che consentono di eseguire il training dei modelli sottostanti con i dati forniti, per prestazioni migliori e maggiore precisione.
 
 ## <a name="capability-matrix"></a>Matrice delle funzionalità
 
-Le tabelle seguenti contengono un riepilogo delle differenze principali in termini di funzionalità. 
+Le tabelle seguenti contengono un riepilogo delle differenze principali in termini di funzionalità.
 
 ### <a name="uses-prebuilt-models"></a>Uso di modelli predefiniti
 
@@ -89,7 +96,6 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | | Tipo di input | Vantaggi principali |
 | --- | --- | --- |
 | Servizio visione artificiale personalizzato | Immagini (o fotogrammi da video) | Personalizzare i modelli di visione artificiale. |
-| Servizio di riconoscimento vocale personalizzato | Sintesi vocale | Superare gli ostacoli al riconoscimento vocale, come modo di parlare, rumore di fondo e vocabolario. | 
+| Servizio di riconoscimento vocale personalizzato | Sintesi vocale | Superare gli ostacoli al riconoscimento vocale, come modo di parlare, rumore di fondo e vocabolario. |
 | Servizio decisionale personalizzato | Contenuto Web (ad esempio, feed RSS) | Usare l'apprendimento automatico per selezionare automaticamente il contenuto appropriato per la home page. |
 | API Ricerca personalizzata Bing | Testo (query di ricerca Web) | Strumento di ricerca di livello commerciale. |
-

@@ -1,23 +1,23 @@
 ---
 title: Modelli di prestazioni e scalabilità
+titleSuffix: Cloud Design Patterns
 description: Le prestazioni sono un'indicazione della velocità di risposta con cui un sistema esegue qualsiasi azione all'interno di un determinato intervallo di tempo, mentre la scalabilità è la capacità di un sistema di gestire gli aumenti del carico senza influire sulle prestazioni o di aumentare facilmente le risorse disponibili. In genere le applicazioni cloud hanno carichi di lavoro e picchi di attività variabili. La previsione di questi aspetti, soprattutto in uno scenario multi-tenant, è quasi impossibile. Le applicazioni, invece, devono essere in grado di aumentare le risorse entro i limiti per soddisfare i picchi di domanda e di ridurle quando la domanda diminuisce. La scalabilità non riguarda solo le istanze di calcolo, ma anche altri elementi, come l'archiviazione dei dati, l'infrastruttura di messaggistica e altro.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: e60c7c5779e73925d7eed51b41eb37e5c2ad49ff
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 986e17f943e2238d70a5c9e0fd4c84e37c5f06a6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848530"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011039"
 ---
 # <a name="performance-and-scalability-patterns"></a>Modelli di prestazioni e scalabilità
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 Le prestazioni sono un'indicazione della velocità di risposta con cui un sistema esegue qualsiasi azione all'interno di un determinato intervallo di tempo, mentre la scalabilità è la capacità di un sistema di gestire gli aumenti del carico senza influire sulle prestazioni o di aumentare facilmente le risorse disponibili. In genere le applicazioni cloud hanno carichi di lavoro e picchi di attività variabili. La previsione di questi aspetti, soprattutto in uno scenario multi-tenant, è quasi impossibile. Le applicazioni, invece, devono essere in grado di aumentare le risorse entro i limiti per soddisfare i picchi di domanda e di ridurle quando la domanda diminuisce. La scalabilità non riguarda solo le istanze di calcolo, ma anche altri elementi, come l'archiviazione dei dati, l'infrastruttura di messaggistica e altro.
-
 
 |                           Modello                            |                                                                        Summary                                                                         |
 |--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,4 +31,3 @@ Le prestazioni sono un'indicazione della velocità di risposta con cui un sistem
 |                  [Partizionamento orizzontale](../sharding.md)                  |                                           Dividere un archivio dati in un set di partizioni orizzontali.                                           |
 |    [Hosting di contenuto statico](../static-content-hosting.md)    |                          Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client.                          |
 |                [Limitazione](../throttling.md)                |                Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio.                 |
-

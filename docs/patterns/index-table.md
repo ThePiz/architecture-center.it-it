@@ -1,19 +1,17 @@
 ---
-title: Tabella degli indici
+title: Modello di tabella degli indici
+titleSuffix: Cloud Design Patterns
 description: Creare indici sui campi negli archivi dati spesso referenziati dalle query.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 24a1061349af84d13f05f88a1698b4efe4b0f449
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 206d064b80dd980c9b5fdfb1233ff2dd8baafbaf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541786"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011002"
 ---
 # <a name="index-table-pattern"></a>Modello di tabella degli indici
 
@@ -26,7 +24,6 @@ Creare indici sui campi negli archivi dati spesso referenziati dalle query. Ques
 Molti archivi dati consentono di organizzare i dati per una raccolta di entità usando la chiave primaria. Un'applicazione può usare questa chiave per individuare e recuperare i dati. Nella figura viene illustrato un esempio di un archivio dati che contiene informazioni sul cliente. La chiave primaria è l'ID cliente. La figura mostra informazioni sul cliente organizzate per la chiave primaria (ID cliente).
 
 ![Figura 1. Informazioni sul cliente organizzate per la chiave primaria (ID cliente)](./_images/index-table-figure-1.png)
-
 
 Mentre la chiave primaria è utile per le query che recuperano i dati in base al suo valore, un'applicazione potrebbe non riuscire a usare la chiave primaria se è necessario recuperare i dati in base a un altro campo. Nell'esempio dei clienti un'applicazione non può usare la chiave primaria ID cliente per recuperare i clienti se sottopone a query i dati facendo riferimento solamente al valore di qualche altro attributo, ad esempio la città in cui si trova il cliente. Per eseguire una query come questa, l'applicazione potrebbe dover recuperare ed esaminare ogni record del cliente, processo che potrebbe rivelarsi lento.
 
@@ -44,13 +41,11 @@ La prima strategia consiste nel duplicare i dati in ciascuna tabella dell'indice
 
 ![Figura 2. I dati vengono duplicati in ciascuna tabella dell'indice](./_images/index-table-figure-2.png)
 
-
 Questa strategia è adeguata se i dati sono relativamente statici rispetto al numero di volte in cui vengono sottoposti a query usando ciascuna chiave. Se i dati sono più dinamici, il sovraccarico della gestione di ogni tabella dell'indice diventa troppo grande perché questo approccio sia utile. Inoltre, se il volume dei dati è molto elevato, la quantità di spazio necessaria per archiviare i dati duplicati diventa significativa.
 
 La seconda strategia consiste nel creare le tabelle dell'indice normalizzate organizzate in base a diverse chiavi e nel far riferimento ai dati originali usando la chiave primaria, anziché duplicandola, come illustrato nella figura seguente. I dati originali vengono chiamati da una tabella dei fatti.
 
 ![Figura 3. Dati a cui si fa riferimento da ogni tabella dell'indice](./_images/index-table-figure-3.png)
-
 
 Questa tecnica consente di risparmiare spazio e riduce il sovraccarico della gestione dei dati duplicati. Lo svantaggio è che un'applicazione deve eseguire due operazioni di ricerca per trovare i dati usando una chiave secondaria. Deve trovare la chiave primaria per i dati nella tabella dell'indice e quindi usare la chiave primaria per cercare i dati nella tabella dei fatti.
 
@@ -58,18 +53,15 @@ La terza strategia consiste nel creare tabelle dell'indice parzialmente normaliz
 
 ![Figura 4. I campi usati più frequentemente vengono duplicati in ogni tabella dell'indice](./_images/index-table-figure-4.png)
 
-
 Con questa strategia, è possibile raggiungere un equilibrio tra i primi due approcci. I dati per le query comuni possono essere recuperati rapidamente usando una singola ricerca, mentre il sovraccarico dello spazio e della manutenzione non è significativo come duplicare l'intero set di dati.
 
 Se un'applicazione esegue di frequente query di dati specificando una combinazione di valori (ad esempio, "Trova tutti i clienti che risiedono a Redmond e di cognome Smith"), è possibile implementare le chiavi negli elementi della tabella dell'indice come una concatenazione degli attributi Town (Città) e LastName (Cognome). La figura seguente mostra una tabella dell'indice basata sulle chiavi composte. Le chiavi vengono ordinate in base a Town (Città) e quindi a LastName (Cognome) per i record che hanno lo stesso valore per Town (Città).
 
 ![Figura 5. Una tabella dell'indice basata sulle chiavi composte](./_images/index-table-figure-5.png)
 
-
 Le tabelle dell'indice possono velocizzare le operazioni di query su dati partizionati e sono particolarmente utili laddove la chiave di partizione venga sottoposta a hash. La figura seguente mostra un esempio in cui la chiave di partizione è un hash dell'ID cliente. La tabella dell'indice può organizzare i dati in base al valore senza hash (Town [Città] e LastName [Cognome]) e fornire la chiave di partizione con hash come i dati di ricerca. Ciò consente di evitare all'applicazione di calcolare ripetutamente le chiavi hash (operazione dispendiosa) quando occorre recuperare i dati che rientrano in un intervallo o recuperare i dati nell'ordine della chiave senza hash. Ad esempio, una query come "Trova tutti i clienti che risiedono in Redmond" può essere risolta rapidamente individuando gli elementi corrispondenti nella tabella dell'indice, in cui sono tutti archiviati in un blocco contiguo. Seguire quindi i riferimenti ai dati dei clienti usando le chiavi di partizione archiviate nella tabella dell'indice.
 
 ![Figura 6. Una tabella dell'indice che fornisce una ricerca rapida dei dati partizionati](./_images/index-table-figure-6.png)
-
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
@@ -104,18 +96,16 @@ Ad esempio, si consideri un'applicazione che archivia le informazioni sui film. 
 
 ![Figura 7. Dati dei film archiviati in una tabella di Azure](./_images/index-table-figure-7.png)
 
-
 Questo approccio è meno efficace se l'applicazione deve anche sottoporre a query i film in base all'attore. In questo caso, è possibile creare una tabella di Azure separata che agisce come una tabella dell'indice. La chiave di partizione è l'attore mentre la chiave di riga è il nome del film. I dati di ogni attore sono archiviati in partizioni distinte. Se un film è interpretato da più attori, lo stesso film si presenterà in più partizioni.
 
 È possibile duplicare i dati dei film nei valori mantenuti per ogni partizione adottando il primo approccio descritto nella precedente sezione Soluzione. Tuttavia è probabile che ogni film verrà replicato più volte (una volta per ogni attore), pertanto potrebbe essere più efficiente denormalizzare parzialmente i dati per supportare le query più comuni (ad esempio i nomi degli altri attori) e consentire a un'applicazione di recuperare le informazioni rimanenti includendo la chiave di partizione necessaria per trovare le informazioni complete nelle partizioni del genere. Questo approccio è descritto dalla terza opzione nella sezione Soluzione. La figura seguente illustra questo approccio.
 
 ![Figura 8. Partizioni attore che fungono da tabelle dell'indice per i dati del film](./_images/index-table-figure-8.png)
 
-
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
 
 - [Nozioni di base sulla coerenza dei dati](https://msdn.microsoft.com/library/dn589800.aspx). Una tabella dell'indice deve essere gestita come i dati di cui indicizza le modifiche. Nel cloud, potrebbe non essere possibile o necessario eseguire le operazioni di aggiornamento di un indice come parte della stessa transazione che modifica i dati. In tal caso, è più indicato un approccio per la coerenza finale. Vengono fornite informazioni sui problemi legati alla coerenza finale.
-- [Modello di partizionamento orizzontale](https://msdn.microsoft.com/library/dn589797.aspx). Il modello di tabella dell'indice viene spesso usato in combinazione con dati partizionati tramite le partizioni. Il modello di partizionamento orizzontale offre altre informazioni su come suddividere un archivio dati in un set di partizioni.
-- [Modello di vista materializzata](materialized-view.md). Anziché indicizzare i dati per supportare le query che riepilogano i dati, potrebbe essere più appropriato creare una vista materializzata dei dati. Descrive come supportare query riepilogative efficienti generando viste prepopolate sui dati.
+- [Modello di partizionamento orizzontale](./sharding.md). Il modello di tabella dell'indice viene spesso usato in combinazione con dati partizionati tramite le partizioni. Il modello di partizionamento orizzontale offre altre informazioni su come suddividere un archivio dati in un set di partizioni.
+- [Modello di vista materializzata](./materialized-view.md). Anziché indicizzare i dati per supportare le query che riepilogano i dati, potrebbe essere più appropriato creare una vista materializzata dei dati. Descrive come supportare query riepilogative efficienti generando viste prepopolate sui dati.

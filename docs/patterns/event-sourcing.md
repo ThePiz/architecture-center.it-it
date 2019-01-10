@@ -1,19 +1,17 @@
 ---
-title: Origine eventi
+title: Modello di origine eventi
+titleSuffix: Cloud Design Patterns
 description: Usare un archivio di solo accodamento per registrare la serie completa di eventi che descrivono le azioni eseguite sui dati di un dominio.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 56db321e33ecef17704eda4eda971ff3c7e44133
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429333"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011634"
 ---
 # <a name="event-sourcing-pattern"></a>Modello di origine eventi
 
@@ -42,14 +40,13 @@ Il modello di origine eventi definisce un approccio alla gestione delle operazio
 
 Gli eventi vengono salvati in modo permanente in un archivio eventi che svolge la funzione di sistema di registrazione (origine dati autorevole) dello stato corrente dei dati. L'archivio eventi pubblica in genere questi eventi in modo che i consumer vengano informati e, se necessario, possano gestirli. I consumer, ad esempio, possono iniziare le attività che si applicano alle operazioni sugli eventi di altri sistemi oppure eseguire qualsiasi altra azione associata necessaria per completare l'operazione. Tenere presente che il codice dell'applicazione che genera gli eventi è separato dai sistemi che sottoscrivono gli eventi.
 
-Gli usi tipici degli eventi pubblicati dall'archivio eventi prevedono la gestione di viste materializzate di entità come azioni nell'applicazione e per l'integrazione con sistemi esterni. Un sistema, ad esempio, può gestire una vista materializzata di tutti gli ordini clienti usata per popolare parti dell'interfaccia utente. Quando l'applicazione aggiunge nuovi ordini, aggiunge o rimuove elementi nell'ordine o aggiunge le informazioni di spedizione, gli eventi che descrivono queste modifiche possono essere gestiti e usati per aggiornare la [vista materializzata](materialized-view.md).
+Gli usi tipici degli eventi pubblicati dall'archivio eventi prevedono la gestione di viste materializzate di entità come azioni nell'applicazione e per l'integrazione con sistemi esterni. Un sistema, ad esempio, può gestire una vista materializzata di tutti gli ordini clienti usata per popolare parti dell'interfaccia utente. Quando l'applicazione aggiunge nuovi ordini, aggiunge o rimuove elementi nell'ordine o aggiunge le informazioni di spedizione, gli eventi che descrivono queste modifiche possono essere gestiti e usati per aggiornare la [vista materializzata](./materialized-view.md).
 
 In qualsiasi momento, inoltre, le applicazioni possono leggere la cronologia degli eventi e usarla per materializzare lo stato corrente di un'entità riproducendo e consumando tutti gli eventi correlati all'entità. Questa operazione può verificarsi su richiesta per materializzare un oggetto di dominio quando si gestisce una richiesta o tramite un'attività pianificata in modo che lo stato dell'entità possa essere archiviato come una vista materializzata per supportare il livello di presentazione.
 
 La figura illustra una panoramica del modello, incluse alcune delle opzioni relative all'uso del flusso eventi, tra cui la creazione di una vista materializzata, l'integrazione di eventi con applicazioni e sistemi esterni e la riproduzione di eventi per poter creare proiezioni dello stato corrente di specifiche entità.
 
 ![Panoramica ed esempio del modello di origine eventi](./_images/event-sourcing-overview.png)
-
 
 Il modello di origine eventi offre i vantaggi seguenti:
 
@@ -128,7 +125,6 @@ Il grafico seguente illustra come il sottosistema di prenotazione dei posti del 
 
 ![Uso del modello di origine eventi per acquisire informazioni sulle prenotazioni in un sistema di gestione delle conferenze](./_images/event-sourcing-bounded-context.png)
 
-
 Di seguito è illustrata la sequenza di azioni per la prenotazione di due posti:
 
 1. L'interfaccia utente esegue un comando per prenotare i posti per due partecipanti. Il comando viene gestito da un gestore di comando separato. Una parte della logica che viene separata dall'interfaccia utente diventa responsabile della gestione delle richieste inviate sotto forma di comandi.
@@ -153,11 +149,11 @@ Oltre a garantire una maggiore scalabilità, l'uso di un archivio eventi offre a
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
 
-- [Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)](cqrs.md). L'archivio di scrittura che costituisce un'origine permanente di informazioni per l'implementazione di un modello CQRS è spesso basato su un'implementazione del modello di origine eventi. Questo modello descrive come isolare in un'applicazione le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati tramite l'uso di interfacce separate.
+- [Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)](./cqrs.md). L'archivio di scrittura che costituisce un'origine permanente di informazioni per l'implementazione di un modello CQRS è spesso basato su un'implementazione del modello di origine eventi. Questo modello descrive come isolare in un'applicazione le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati tramite l'uso di interfacce separate.
 
-- [Modello di viste materializzate](materialized-view.md). L'archivio dati usato in un sistema basato sull'origine di eventi non è in genere adatto per l'esecuzione di query efficienti. In questo caso, l'approccio comune è quello di generare viste dati prepopolate a intervalli regolari o in caso di variazione dei dati. Questo modello illustra come viene eseguita questa operazione.
+- [Modello di vista materializzata](./materialized-view.md). L'archivio dati usato in un sistema basato sull'origine di eventi non è in genere adatto per l'esecuzione di query efficienti. In questo caso, l'approccio comune è quello di generare viste dati prepopolate a intervalli regolari o in caso di variazione dei dati. Questo modello illustra come viene eseguita questa operazione.
 
-- [Modello di transazioni di compensazione](compensating-transaction.md). I dati esistenti in un archivio di origine eventi non vengono aggiornati, ma vengono aggiunte nuove voci che determinano la transizione dello stato delle entità su nuovi valori. Per annullare una modifica, vengono usati voci di compensazione poiché non è possibile annullare semplicemente la modifica precedente. In questo modello viene descritto come annullare le conseguenze prodotte da un'operazione precedente.
+- [Modello di transazioni di compensazione](./compensating-transaction.md). I dati esistenti in un archivio di origine eventi non vengono aggiornati, ma vengono aggiunte nuove voci che determinano la transizione dello stato delle entità su nuovi valori. Per annullare una modifica, vengono usati voci di compensazione poiché non è possibile annullare semplicemente la modifica precedente. In questo modello viene descritto come annullare le conseguenze prodotte da un'operazione precedente.
 
 - [Nozioni di base sulla coerenza dei dati](https://msdn.microsoft.com/library/dn589800.aspx). Quando si usa il modello di origine eventi con un archivio di letture o viste materializzate diverse, i dati letti non saranno subito coerenti ma avranno una coerenza finale. Questo modello riepiloga i problemi da affrontare per mantenere la coerenza dei dati distribuiti.
 

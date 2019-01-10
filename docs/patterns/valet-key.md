@@ -1,19 +1,17 @@
 ---
-title: Passepartout
+title: Modello di passepartout
+titleSuffix: Cloud Design Patterns
 description: Usare un token o una chiave che fornisca ai client l'accesso diretto limitato a una specifica risorsa o a un servizio.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- security
-ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 09173717d499d524d4d5dad2c1202c1bf361b1e5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450888"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009866"
 ---
 # <a name="valet-key-pattern"></a>Modello di passepartout
 
@@ -105,7 +103,7 @@ Azure supporta firme di accesso condiviso in Archiviazione di Azure per il contr
 
 Le firme di accesso condiviso di Azure supportano anche criteri di accesso archiviati nel server che possono essere associati a una risorsa specifica, ad esempio una tabella o un BLOB. Questa funzionalità offre un livello maggiore di controllo e flessibilità rispetto ai token di firma di accesso condiviso generati dall'applicazione e deve essere usata laddove possibile. Le impostazioni definite in un criterio archiviato nel server possono essere modificate e vengono riflesse nel token senza richiederne l'emissione di uno nuovo, mentre le impostazioni definite nel token non possono essere modificate senza emettere un nuovo token. Questo approccio consente anche di revocare un token di firma di accesso condiviso valido prima della scadenza.
 
-> Per altre informazioni, vedere [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Introduzione alla tabella SAS (firma di accesso condiviso), alla coda SAS e all'aggiornamento nel BLOB SAS) e [Uso delle firme di accesso condiviso](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/) su MSDN.
+> Per altre informazioni, vedere [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Introduzione alla tabella SAS (firma di accesso condiviso), alla coda SAS e all'aggiornamento nel BLOB SAS) e [Uso delle firme di accesso condiviso](/azure/storage/common/storage-dotnet-shared-access-signature-part-1) su MSDN.
 
 Il codice seguente mostra come creare un token di firma di accesso condiviso valido per cinque minuti. Il metodo `GetSharedAccessReferenceForUpload` restituisce un token di firma di accesso condiviso che può essere usato per caricare un file in Archiviazione BLOB di Azure.
 
@@ -162,9 +160,10 @@ public class ValuesController : ApiController
 ## <a name="next-steps"></a>Passaggi successivi
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
+
 - Un esempio che illustra questo modello è disponibile su [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/valet-key).
-- [Modello Gatekeeper](gatekeeper.md). Questo modello può essere usato insieme al modello Passepartout per proteggere le applicazioni e i servizi usando un'istanza host dedicata che funga da broker tra i client e l'applicazione o il servizio. Il gatekeeper convalida e purifica le richieste e passa richieste e dati tra il client e l'applicazione. Può conferire un livello aggiuntivo di sicurezza e ridurre la superficie di attacco del sistema.
-- [Modello di hosting del contenuto statico](static-content-hosting.md). Descrive come distribuire risorse statiche in un servizio di archiviazione basato su cloud in grado di recapitare queste risorse direttamente al client per ridurre l'esigenza di dispendiose istanze di calcolo. Laddove le risorse non siano destinate a essere rese disponibili pubblicamente, il modello di passepartout può essere usato per proteggerle.
+- [Modello Gatekeeper](./gatekeeper.md). Questo modello può essere usato insieme al modello Passepartout per proteggere le applicazioni e i servizi usando un'istanza host dedicata che funga da broker tra i client e l'applicazione o il servizio. Il gatekeeper convalida e purifica le richieste e passa richieste e dati tra il client e l'applicazione. Può conferire un livello aggiuntivo di sicurezza e ridurre la superficie di attacco del sistema.
+- [Modello di hosting del contenuto statico](./static-content-hosting.md). Descrive come distribuire risorse statiche in un servizio di archiviazione basato su cloud in grado di recapitare queste risorse direttamente al client per ridurre l'esigenza di dispendiose istanze di calcolo. Laddove le risorse non siano destinate a essere rese disponibili pubblicamente, il modello di passepartout può essere usato per proteggerle.
 - [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Introduzione alla tabella SAS (firma di accesso condiviso), alla coda SAS e all'aggiornamento nel BLOB SAS)
-- [Uso delle firme di accesso condiviso](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)
-- [Autenticazione della firma di accesso condiviso con il bus di servizio](https://azure.microsoft.com/documentation/articles/service-bus-shared-access-signature-authentication/)
+- [Uso delle firme di accesso condiviso](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)
+- [Autenticazione della firma di accesso condiviso con il bus di servizio](/azure/service-bus-messaging/service-bus-sas)

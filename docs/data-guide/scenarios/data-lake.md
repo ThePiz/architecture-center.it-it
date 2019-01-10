@@ -7,13 +7,13 @@ I vantaggi di un archivio data lake sono i seguenti:
 - I dati non vengono mai eliminati perché vengono archiviati nel formato non elaborato. Ciò è particolarmente utile in un ambiente Big Data, quando non si sa in anticipo quali informazioni siano disponibili nei dati.
 - Gli utenti possono esplorare i dati e creare le proprie query.
 - Può essere più rapido degli strumenti di estrazione, trasformazione e caricamento tradizionali.
-- È più flessibile di un data warehouse perché consente di archiviare dati non strutturati e semistrutturati. 
+- È più flessibile di un data warehouse perché consente di archiviare dati non strutturati e semistrutturati.
 
 Una soluzione data lake completa prevede l'archiviazione e l'elaborazione. L'archiviazione in un data lake è progettata per la tolleranza di errore, la scalabilità illimitata e l'elevata velocità nell'inserimento dei dati con diverse forme e dimensioni. L'elaborazione in un data lake prevede l'uso di uno o più motori creati tenendo presenti questi obiettivi e che sono in grado di elaborare i dati archiviati nel data lake su larga scala.
 
 ## <a name="when-to-use-a-data-lake"></a>Quando usare un archivio data lake
 
-L'archivio data lake viene tipicamente usato per l'[esplorazione dei dati](./interactive-data-exploration.md), l'analisi dei dati e le attività di Machine Learning. 
+L'archivio data lake viene tipicamente usato per l'[esplorazione dei dati](./interactive-data-exploration.md), l'analisi dei dati e le attività di Machine Learning.
 
 Un archivio data lake può anche essere usato come origine dati di un data warehouse. Con questo approccio, i dati non elaborati vengono inseriti nell'archivio data lake e quindi trasformati in un formato strutturato disponibile per le query. Questa trasformazione usa in genere una pipeline [ELT](../relational-data/etl.md#extract-load-and-transform-elt) (Extract, Load, and Transform) in cui i dati vengono inseriti e trasformati sul posto. Un'origine dati già relazionale può essere inserita direttamente nel data warehouse usando un processo ETL, senza passare per l'archivio data lake.
 
@@ -23,14 +23,13 @@ Gli archivi di data lake vengono spesso usati in scenari di Internet delle cose 
 
 - L'assenza di uno schema o di metadati descrittivi può rendere complesso l'utilizzo dei dati o l'esecuzione di query.
 - L'assenza di coerenza semantica tra i dati può rendere complicato eseguire l'analisi dei dati, a meno che gli utenti non abbiano competenze particolarmente elevate in materia di analisi.
-- Può essere difficile garantire la qualità dei dati che vengono inseriti nell'archivio data lake. 
+- Può essere difficile garantire la qualità dei dati che vengono inseriti nell'archivio data lake.
 - Senza una governance appropriata, gli aspetti correlati al controllo degli accessi e alla privacy possono rappresentare problemi. È necessario stabilire quali informazioni verranno inserite nell'archivio data lake, chi potrà accedere ai dati e per quali fini.
 - Un archivio data lake potrebbe non essere il modo migliore per integrare dati già relazionali.
-- Un archivio data lake non fornisce di per sé visualizzazioni integrate o olistiche dell'intera organizzazione. 
+- Un archivio data lake non fornisce di per sé visualizzazioni integrate o olistiche dell'intera organizzazione.
 - Un archivio data lake può diventare una "discarica" di dati che non vengono mai effettivamente analizzati o sottoposti a data mining per ottenere informazioni dettagliate.
 
 ## <a name="relevant-azure-services"></a>Servizi di Azure pertinenti
 
 - [Data Lake Store](/azure/data-lake-store/) è un repository con iperscalabilità compatibile con Hadoop.
 - [Data Lake Analytics](/azure/data-lake-analytics/) è un servizio per processi di analisi su richiesta che semplifica l'analisi dei Big Data.
-
