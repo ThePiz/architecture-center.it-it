@@ -7,12 +7,12 @@ tags: azure-resource-manager
 ms.service: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1d8a9e860ab1a66104dc4133eb5f22ffb4706b84
-ms.sourcegitcommit: 5a3fa0bf35376bbe4a6dd668f2d7d44f9cf9c806
+ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53411685"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011194"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Data center virtuale di Azure: una prospettiva di rete
 
@@ -51,15 +51,6 @@ L'implementazione di un data center virtuale consente alle aziende di spostare c
 -   Implementazione di requisiti di sicurezza e accesso condivisi o centralizzati nei carichi di lavoro
 -   Combinazione di Azure DevOps e IT centralizzato in modo appropriato per un'organizzazione di grandi dimensioni
 
-La chiave per usufruire dei vantaggi del data center virtuale è una topologia centralizzata (hub-spoke) con una combinazione di funzionalità di Azure: 
-
-- [Rete virtuale di Azure][VNet] 
-- [Gruppi di sicurezza di rete (NSG)][NSG]
-- [Peering di rete virtuale][VNetPeering] 
-- [Route definite dall'utente][UDR]
-- Servizi di gestione delle identità di Azure con il [controllo degli accessi in base al ruolo][RBAC] 
-- Facoltativamente, [Firewall di Azure][AzFW], [DNS di Azure][DNS], [servizio Frontdoor di Azure][AFD] e [rete WAN virtuale di Azure][vWAN].
-
 La chiave per usufruire dei vantaggi del data center virtuale è una topologia di rete hub-spoke centralizzata con una combinazione di servizi funzionalità di Azure:
 
 * [Rete virtuale di Azure][VNet],
@@ -79,9 +70,6 @@ Le organizzazioni che stanno considerando la modalità DevOps, possono anche sfr
 ## <a name="considerations-for-implementing-a-virtual-datacenter"></a>Considerazioni sull'implementazione di un data center virtuale
 
 Quando si progetta l'implementazione di un data center virtuale, è opportuno considerare alcuni punti fondamentali:
-
-### <a name="identity-and-directory-services"></a>Identità e servizi directory
-L'identità e i servizi directory sono aspetti chiave di tutti i data center, sia locali che nel cloud. L'identità è correlata a tutti gli aspetti dell'accesso e dell'autorizzazione per i servizi nel data center virtuale. Per fare in modo che solo utenti e processi autorizzati accedano all'account e alle risorse di Azure, Azure usa diversi tipi di credenziali per l'autenticazione, tra cui password (per accedere all'account Azure), chiavi crittografiche, firme digitali e certificati. 
 
 ### <a name="identity-and-directory-service"></a>Identità e servizi directory
 
@@ -340,7 +328,7 @@ Le possibilità dei carichi di lavoro sono infinite. I seguenti sono solo alcuni
 
 **Big Data e analisi**: quando è necessario aumentare di molto il volume dei dati, è possibile che le prestazioni dei database non aumentino correttamente. La tecnologia Hadoop offre un sistema per eseguire parallelamente le query distribuite in un numero elevato di nodi. I clienti hanno la possibilità di eseguire i carichi di lavoro dei dati nelle VM IaaS o in ambiente PaaS ([HDInsight][HDI]). HDInsight supporta la distribuzione in una rete virtuale basata sulla posizione, in un cluster in uno spoke del data center virtuale.
 
-**Eventi e messaggistica**: [Hub eventi di Azure][EventHubs] è un servizio di inserimento di dati di telemetria su vastissima scala che raccoglie, trasforma e archivia milioni di eventi. In quanto piattaforma di streaming distribuita, offre bassa latenza e tempo di conservazione configurabile, permettendo di inserire quantità molto elevate di dati di telemetria in Azure e leggere tali dati da più applicazioni. Con Hub eventi, un solo flusso può supportare pipeline sia in tempo reale che basate su batch.
+**Eventi e messaggistica**: Hub eventi di Azure[EventHubs] è un servizio di inserimento di dati di telemetria su vastissima scala che raccoglie, trasforma e archivia milioni di eventi. In quanto piattaforma di streaming distribuita, offre bassa latenza e tempo di conservazione configurabile, permettendo di inserire quantità molto elevate di dati di telemetria in Azure e leggere tali dati da più applicazioni. Con Hub eventi, un solo flusso può supportare pipeline sia in tempo reale che basate su batch.
 
 Un servizio di messaggistica cloud altamente affidabile tra applicazioni e servizi può essere implementato tramite il [bus di servizio di Azure][ServiceBus] che offre la messaggistica negoziata asincrona tra il client e il server, insieme a funzionalità di messaggistica e pubblicazione e sottoscrizione FIFO (First-In-First-Out) strutturate.
 
@@ -385,7 +373,7 @@ In genere, le connessioni Peering reti virtuali o ExpressRoute sono il tipo pref
 
 Poiché usa DNS, Gestione traffico è destinato solo all'uso con gli endpoint pubblici di Azure.  Il servizio viene in genere usato per controllare o deviare il traffico verso le macchine virtuali di Azure e le app Web nell'istanza integra di un'implementazione di data center virtuale. Gestione traffico è resiliente anche nel caso in cui si verifichino errori in un'intera area di Azure e può controllare la distribuzione del traffico degli utenti per gli endpoint di servizio in data center virtuali diversi in base a più criteri. Ad esempio, l'errore di un servizio in un'implementazione di data center virtuale specifica o la selezione dell'implementazione di data center virtuale con la latenza di rete più bassa.
 
-### <a name="summary"></a>Riepilogo
+### <a name="summary"></a>Summary
 
 Il data center virtuale è un approccio alla migrazione del data center per creare un'architettura scalabile in Azure che ottimizza l'uso delle risorse del cloud, riduce i costi e semplifica la governance del sistema. Il data center virtuale si basa sulla topologia di rete hub-spoke che prevede servizi condivisi comuni e applicazioni/carichi di lavoro specifici negli spoke. Il data center virtuale corrisponde anche alla struttura dei ruoli aziendali, in cui reparti diversi (ad esempio IT centrale, DevOps, operazioni e manutenzione) collaborano tra loro svolgendo allo stesso tempo ruoli specifici. Il data center virtuale soddisfa i requisiti della migrazione "lift-and-shift", ma offre anche molti vantaggi per le distribuzioni cloud native.
 
