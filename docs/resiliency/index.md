@@ -4,12 +4,12 @@ description: Come creare applicazioni resilienti in Azure per disponibilità ele
 author: MikeWasson
 ms.date: 12/18/2018
 ms.custom: resiliency
-ms.openlocfilehash: 28ad589c6d54a1574b5cd5c4f08e3c6adfe349c3
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: ef8fd64756c483528aa83048e23f6387dedb74d6
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113128"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160860"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -148,7 +148,7 @@ Ci sono, però, compromessi a questo approccio. La logica dell'applicazione è p
 
 **Contratto di servizio per distribuzioni in più aree**. Un'altra tecnica a disponibilità elevata consiste nel distribuire l'applicazione in più aree e usare Gestione traffico di Azure per effettuare il failover, se l'applicazione si interrompe in un'unica area. Per una distribuzione in più aree, il contratto di servizio viene calcolato come segue.
 
-Si consideri *N* come il contratto di servizio composito per l'applicazione distribuita in un'area e *R* il numero di aree in cui viene distribuita l'applicazione. La probabilità prevista che l'applicazione si interrompa contemporaneamente in tutte le aree è data dalla formula ((1 &minus N) ^ R).
+Si consideri *N* come il contratto di servizio composito per l'applicazione distribuita in un'area e *R* il numero di aree in cui viene distribuita l'applicazione. La probabilità prevista che l'applicazione si interrompa contemporaneamente in tutte le aree è data dalla formula ((1 &minus; N) ^ R).
 
 Ad esempio, se il contratto di servizio per area singola è pari al 99,95%:
 
