@@ -1,17 +1,17 @@
 ---
 title: Protezione di un'API Web back-end in un'applicazione multi-tenant
-description: Come proteggere un'API Web back-end
+description: Come proteggere un'API Web back-end.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: e738eb94b5978efa4e7a4bebcc72daa7968ac904
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 517bdbb6e1a1063db9337b63905e2ff5f4bdd4d4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901593"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114029"
 ---
 # <a name="secure-a-backend-web-api"></a>Proteggere un'API Web back-end
 
@@ -19,13 +19,13 @@ ms.locfileid: "52901593"
 
 L'applicazione [Tailspin Surveys] usa un'API Web back-end per gestire le operazioni CRUD nei sondaggi. Ad esempio, quando un utente fa clic su "My Surveys" l'applicazione Web invia una richiesta HTTP all'API Web:
 
-```
+```http
 GET /users/{userId}/surveys
 ```
 
 L'API Web restituisce un oggetto JSON:
 
-```
+```http
 {
   "Published":[],
   "Own":[
@@ -40,8 +40,6 @@ L'API Web non consente le richieste anonime, quindi l'app Web deve autenticarsi 
 
 > [!NOTE]
 > Si tratta di uno scenario di connessioni tra server specifici. L'applicazione non esegue chiamate AJAX all'API dal browser client.
-> 
-> 
 
 Esistono due principali approcci possibili:
 
@@ -75,23 +73,25 @@ Il resto di questo articolo presuppone l'autenticazione dell'applicazione con Az
 ![Ottenere il token di accesso](./images/access-token.png)
 
 ## <a name="register-the-web-api-in-azure-ad"></a>Registrare l'API Web in Azure AD
+
 Per consentire ad Azure AD di emettere un token di connessione per l'API Web, è necessario configurare alcuni aspetti in Azure AD.
 
 1. Registrare l'API Web in Azure AD.
 
 2. Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` . Vedere l'articolo su come [aggiornare i manifesti delle applicazioni].
 
-3. Autorizzare l'applicazione Web a chiamare l'API Web. Nel portale di gestione di Microsoft Azure è possibile impostare due tipi di autorizzazioni: "Autorizzazioni applicazione" per l'identità dell'applicazione (flusso di credenziali client) o "Autorizzazioni delegate" per l'identità utente delegato.
-   
+3. Autorizzare l'applicazione Web a chiamare l'API Web. Nel portale di gestione di Azure è possibile impostare due tipi di autorizzazioni: "Autorizzazioni applicazione" per l'identità dell'applicazione (flusso di credenziali client) o "Autorizzazioni delegate" per l'identità utente delegato.
+
    ![Autorizzazioni delegate](./images/delegated-permissions.png)
 
 ## <a name="getting-an-access-token"></a>Recupero di un token di accesso
+
 Prima di chiamare l'API Web, l'applicazione Web ottiene un token di accesso da Azure AD. In un'applicazione .NET usare [Azure AD Authentication Library (ADAL) for .NET][ADAL] (Raccolta di Autenticazione di Azure AD (ADAL) per .NET).
 
 Nel flusso di codici di autorizzazione OAuth 2 l'applicazione scambia un codice di autorizzazione per un token di accesso. Il codice seguente usa ADAL per ottenere il token di accesso. Questo codice viene chiamato durante l'evento `AuthorizationCodeReceived` .
 
 ```csharp
-// The OpenID Connect middleware sends this event when it gets the authorization code.   
+// The OpenID Connect middleware sends this event when it gets the authorization code.
 public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
 {
     string authorizationCode = context.ProtocolMessage.Code;
@@ -127,9 +127,10 @@ var result = await authContext.AcquireTokenSilentAsync(resourceID, credential, n
 dove `userId` è l'ID oggetto dell'utente, disponibile nell'attestazione `http://schemas.microsoft.com/identity/claims/objectidentifier`.
 
 ## <a name="using-the-access-token-to-call-the-web-api"></a>Usare il token di accesso per chiamare l'API Web
+
 Dopo aver creato il token, inviarlo all'API Web nell'intestazione di autorizzazione delle richieste HTTP.
 
-```
+```http
 Authorization: Bearer xxxxxxxxxx
 ```
 
@@ -155,6 +156,7 @@ public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(th
 ```
 
 ## <a name="authenticating-in-the-web-api"></a>Autenticarsi nell'API Web
+
 L'API Web deve autenticare il token di connessione. In ASP.NET Core è possibile usare il pacchetto [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer]. Questo pacchetto offre un middleware che consente all'applicazione di ricevere i token di connessione OpenID Connect.
 
 Registrare il middleware nella classe `Startup` dell'API Web.
@@ -172,7 +174,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
         },
         Events= new SurveysJwtBearerEvents(loggerFactory.CreateLogger<SurveysJwtBearerEvents>())
     });
-    
+
     // ...
 }
 ```
@@ -183,6 +185,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
 * **Eventi** è una classe che deriva da **JwtBearerEvents**.
 
 ### <a name="issuer-validation"></a>Convalida dell'autorità di certificazione
+
 Convalidare l'autorità di certificazione del token nell'evento **JwtBearerEvents.ValidatedToken**. L'autorità di certificazione viene inviata nell'attestazione "iss".
 
 Nell'applicazione Surveys l'API Web non gestisce l' [iscrizione del tenant]. Per questo motivo, controlla solo se l'autorità di certificazione si trova già nel database dell'applicazione. In caso contrario, viene generata un'eccezione che determina la mancata autenticazione.
@@ -221,7 +224,8 @@ public override async Task TokenValidated(TokenValidatedContext context)
 Come illustrato in questo esempio, è possibile anche usare l'evento **TokenValidated** per modificare le attestazioni. Si noti che le attestazioni provengono direttamente da Azure AD. Se l'applicazione Web modifica le attestazioni ottenute, tali modifiche non verranno visualizzate nel token di connessione ricevuto dall'API Web. Per maggiori informazioni, vedere [Trasformazioni delle attestazioni][claims-transformation].
 
 ## <a name="authorization"></a>Authorization
-Per una discussione generale sulle autorizzazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse][Authorization]. 
+
+Per una discussione generale sulle autorizzazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse][Authorization].
 
 Il middleware JwtBearer gestisce le risposte di autorizzazione. Ad esempio, per limitare un'azione del controller agli utenti autenticati, usare l'attributo **[Authorize]** e specificare  **JwtBearerDefaults.AuthenticationScheme** come schema di autenticazione:
 
@@ -248,18 +252,18 @@ public void ConfigureServices(IServiceCollection services)
             policy =>
             {
                 policy.AddRequirements(new SurveyCreatorRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
         options.AddPolicy(PolicyNames.RequireSurveyAdmin,
             policy =>
             {
                 policy.AddRequirements(new SurveyAdminRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
     });
-    
+
     // ...
 }
 ```

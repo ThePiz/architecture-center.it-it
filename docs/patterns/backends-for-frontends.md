@@ -1,14 +1,17 @@
 ---
 title: Modello back-end per front-end
+titleSuffix: Cloud Design Patterns
 description: Creare servizi back-end separati che vengono utilizzati da interfacce o applicazioni front-end specifiche.
+keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 1fc597ded3e87ca7b4a200a13af9dce5ba2dbec5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428789"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009747"
 ---
 # <a name="backends-for-frontends-pattern"></a>Modello back-end per front-end
 
@@ -18,19 +21,19 @@ Creare servizi back-end separati che vengono utilizzati da interfacce o applicaz
 
 Un'applicazione può essere destinata inizialmente un'interfaccia utente Web desktop. In genere, viene sviluppato in parallelo un servizio back-end che fornisce le funzionalità necessarie per tale interfaccia utente. Con l'aumentare della base utenti dell'applicazione, viene sviluppata un'applicazione per dispositivi mobili che deve interagire con lo stesso back-end. Il servizio back-end diventa un back-end generico, che soddisfa i requisiti di entrambe le interfacce, desktop e per dispositivi mobili.
 
-Le funzionalità di un dispositivo mobile sono tuttavia notevolmente diverse da quelle di browser desktop, in termini di dimensioni dello schermo, prestazioni e limitazioni di visualizzazione. Di conseguenza, i requisiti per un back-end dell'applicazione per dispositivi mobili sono diversi rispetto a quelli dell'interfaccia utente Web desktop. 
+Le funzionalità di un dispositivo mobile sono tuttavia notevolmente diverse da quelle di browser desktop, in termini di dimensioni dello schermo, prestazioni e limitazioni di visualizzazione. Di conseguenza, i requisiti per un back-end dell'applicazione per dispositivi mobili sono diversi rispetto a quelli dell'interfaccia utente Web desktop.
 
 Queste differenze determinano la necessità di definire requisiti diversi per il back-end. Il back-end richiede modifiche regolari e significative, valide sia per l'interfaccia utente Web desktop che per l'applicazione per dispositivi mobili. Spesso, i team che si occupano delle interfacce lavorano sui singoli front-end, di conseguenza il back-end diventa un collo di bottiglia nel processo di sviluppo. I diversi requisiti per gli aggiornamenti e la necessità di garantire l'operatività del servizio per entrambi i front-end possono comportare un notevole dispendio di energie su un'unica risorsa distribuibile.
 
-![](./_images/backend-for-frontend.png) 
+![Diagramma di contesto e problema del modello back-end per front-end](./_images/backend-for-frontend.png)
 
-Dal momento che l'attività di sviluppo è incentrata sul servizio back-end, è possibile creare un apposito team dedicato alla gestione e alla manutenzione del back-end. Questo causa uno scollamento tra gli team di sviluppo dell'interfaccia utente e del back-end, con quest'ultimo che deve provare a bilanciare i requisiti dei diversi team di sviluppo dell'interfaccia utente. Quando un team di sviluppo dell'interfaccia utente richiede modifiche al back-end, tali modifiche devono essere convalidate con gli altri team di sviluppo dell'interfaccia utente prima di poterle integrare nel back-end. 
+Dal momento che l'attività di sviluppo è incentrata sul servizio back-end, è possibile creare un apposito team dedicato alla gestione e alla manutenzione del back-end. Questo causa uno scollamento tra gli team di sviluppo dell'interfaccia utente e del back-end, con quest'ultimo che deve provare a bilanciare i requisiti dei diversi team di sviluppo dell'interfaccia utente. Quando un team di sviluppo dell'interfaccia utente richiede modifiche al back-end, tali modifiche devono essere convalidate con gli altri team di sviluppo dell'interfaccia utente prima di poterle integrare nel back-end.
 
 ## <a name="solution"></a>Soluzione
 
 Creare un solo back-end per ogni interfaccia utente. Ottimizzare il comportamento e le prestazioni di ogni back-end per rispondere meglio alle esigenze dell'ambiente front-end, senza preoccuparsi dell'impatto su altre esperienze front-end.
 
-![](./_images/backend-for-frontend-example.png) 
+![Diagramma del modello back-end per front-end](./_images/backend-for-frontend-example.png)
 
 Dal momento che ogni back-end è specifico di una sola interfaccia, può essere ottimizzato per tale interfaccia. Di conseguenza, sarà più piccolo, meno complesso e probabilmente più veloce rispetto a un back-end generico che prova a soddisfare i requisiti di tutte le interfacce. Ogni team di sviluppo dell'interfaccia può controllare autonomamente il proprio back-end e non si basa su un team centralizzato di sviluppo del back-end. Il team di sviluppo dell'interfaccia utente può quindi scegliere in modo flessibile il linguaggio, la frequenza di rilascio, l'assegnazione delle priorità del carico di lavoro e l'integrazione delle funzionalità nel back-end.
 
@@ -64,5 +67,3 @@ Questo modello potrebbe non essere adatto:
 - [Modello di aggregazione gateway](./gateway-aggregation.md)
 - [Modello di offload gateway](./gateway-offloading.md)
 - [Modello di routing gateway](./gateway-routing.md)
-
-

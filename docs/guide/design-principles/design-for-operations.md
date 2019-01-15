@@ -1,14 +1,16 @@
 ---
 title: Progettare per le operazioni
-description: Progettare un'applicazione per offrire al team operativo degli strumenti necessari
+titleSuffix: Azure Application Architecture Guide
+description: Progettare un'applicazione per offrire al team operativo gli strumenti necessari.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: a73479a7661c042d05db61907d1f993fc04ac11d
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: c14f3d14330633e7a8c88eedd38f1844291195b1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326239"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110408"
 ---
 # <a name="design-for-operations"></a>Progettare per le operazioni
 
@@ -30,19 +32,16 @@ Per le applicazioni cloud è particolarmente importante poter contare su funzion
 
 **Instrumentare per il monitoraggio**. Il monitoraggio offre informazioni dettagliate sull'esecuzione di un'applicazione, in termini di disponibilità, prestazioni e integrità del sistema. Il monitoraggio consente, ad esempio, di sapere se si sta rispettando il contratto di servizio. Il monitoraggio viene eseguito durante il normale utilizzo del sistema. Deve essere il più possibile in tempo reale, in modo che il personale addetto alle operazioni possa intervenire tempestivamente in caso di problemi. In teoria, il monitoraggio può contribuire a risolvere i problemi prima che generino un errore critico. Per altre informazioni, vedere [Monitoraggio e diagnostica][monitoring].
 
-**Strumento per l'analisi della causa radice**. L'analisi della causa radice è il processo di individuazione della causa principale degli errori. Viene eseguita dopo che si è già verificato un errore. 
+**Strumento per l'analisi della causa radice**. L'analisi della causa radice è il processo di individuazione della causa principale degli errori. Viene eseguita dopo che si è già verificato un errore.
 
-**Usare l'analisi distribuita**. Usare un sistema di analisi distribuita progettato per la concorrenza, la modalità asincrona e la scalabilità cloud. Le analisi devono includere un ID di correlazione che passi attraverso i limiti di servizio. Una singola operazione potrebbe comportare chiamate a più servizi dell'applicazione. Se un'operazione non riesce, l'ID di correlazione consente di individuare la causa dell'errore. 
+**Usare l'analisi distribuita**. Usare un sistema di analisi distribuita progettato per la concorrenza, la modalità asincrona e la scalabilità cloud. Le analisi devono includere un ID di correlazione che passi attraverso i limiti di servizio. Una singola operazione potrebbe comportare chiamate a più servizi dell'applicazione. Se un'operazione non riesce, l'ID di correlazione consente di individuare la causa dell'errore.
 
 **Standardizzare log e metriche**. Il team operativo dovrà aggregare i log dei vari servizi nella soluzione. Se ogni servizio usa un proprio formato di registrazione, diventa difficile o impossibile usarli per ottenere informazioni utili. Definire uno schema comune che includa campi quali ID di correlazione, nome dell'evento, indirizzo IP del mittente e così via. I singoli servizi possono derivare schemi personalizzati che ereditano lo schema di base e contengono campi aggiuntivi.
 
-**Automatizzare le attività di gestione**, inclusi provisioning, distribuzione e monitoraggio. L'automazione di un'attività consente di renderla ripetibile e meno soggetta a errori umani. 
+**Automatizzare le attività di gestione**, inclusi provisioning, distribuzione e monitoraggio. L'automazione di un'attività consente di renderla ripetibile e meno soggetta a errori umani.
 
-**Gestire la configurazione come codice**. Archiviare i file di configurazione in un sistema di controllo della versione, in modo da tenere traccia e controllare la versione delle modifiche ed eseguirne il rollback, se necessario. 
-
+**Gestire la configurazione come codice**. Archiviare i file di configurazione in un sistema di controllo della versione, in modo da tenere traccia e controllare la versione delle modifiche ed eseguirne il rollback, se necessario.
 
 <!-- links -->
 
 [monitoring]: ../../best-practices/monitoring.md
-
-

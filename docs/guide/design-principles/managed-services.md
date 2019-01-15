@@ -1,14 +1,16 @@
 ---
 title: Usare servizi gestiti
-description: Quando possibile, usare la piattaforma distribuita come servizio (PaaS) rispetto all'infrastruttura distribuita come servizio (IaaS)
+titleSuffix: Azure Application Architecture Guide
+description: Quando possibile, usare una piattaforma distribuita come servizio (PaaS) anziché un'infrastruttura distribuita come servizio (IaaS).
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: f6777a19e126a8a7f64be05dfad9bc503d27b1c3
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 6f1ea3f3bf2442b331583a59973e3d32908aadeb
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325775"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111666"
 ---
 # <a name="use-managed-services"></a>Usare servizi gestiti
 
@@ -16,7 +18,7 @@ ms.locfileid: "43325775"
 
 L'infrastruttura distribuita come servizio (IaaS) è come una scatola di mattoncini per le costruzioni: si può costruire tutto quello che si vuole, ma occorre assemblarlo autonomamente. I servizi gestiti sono più semplici da configurare e amministrare. Non è necessario eseguire il provisioning di macchine virtuali, configurare reti virtuali, gestire patch e aggiornamenti e occuparsi di tutto il sovraccarico restante associato all'esecuzione del software in una macchina virtuale.
 
-Si supponga, ad esempio, che l'applicazione necessiti di una coda di messaggi. È possibile configurare il proprio servizio di messaggistica in una macchina virtuale, usando uno strumento come RabbitMQ. Ma il bus di servizio di Azure fornisce già funzionalità di messaggistica affidabili sotto forma di servizio ed è più semplice da configurare. È sufficiente creare uno spazio dei nomi del bus di servizio (nell'ambito di uno script di distribuzione) e quindi chiamare il bus di servizio usando l'SDK del client. 
+Si supponga, ad esempio, che l'applicazione necessiti di una coda di messaggi. È possibile configurare il proprio servizio di messaggistica in una macchina virtuale, usando uno strumento come RabbitMQ. Ma il bus di servizio di Azure fornisce già funzionalità di messaggistica affidabili sotto forma di servizio ed è più semplice da configurare. È sufficiente creare uno spazio dei nomi del bus di servizio (nell'ambito di uno script di distribuzione) e quindi chiamare il bus di servizio usando l'SDK del client.
 
 Naturalmente, l'applicazione può avere requisiti specifici che rendono più appropriato un approccio IaaS. Tuttavia, anche se l'applicazione è basata su IaaS, identificare scenari in cui potrebbe essere naturale incorporare i servizi gestiti, tra cui cache, code e archiviazione dei dati.
 
@@ -28,6 +30,4 @@ Naturalmente, l'applicazione può avere requisiti specifici che rendono più app
 | IIS | Servizio app |
 | MongoDB | Cosmos DB |
 | Redis | Cache Redis di Azure |
-| SQL Server | database SQL di Azure |
-
-
+| SQL Server | Database SQL di Azure |

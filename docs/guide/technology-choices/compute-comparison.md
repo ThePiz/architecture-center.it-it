@@ -1,20 +1,24 @@
 ---
 title: Criteri per la scelta di un servizio di calcolo di Azure
-description: Confrontare i servizi di calcolo di Azure in base a diverse coordinate
+titleSuffix: Azure Application Architecture Guide
+description: Confrontare i servizi di calcolo di Azure in base a diverse coordinate.
 author: MikeWasson
 ms.date: 08/08/2018
-ms.openlocfilehash: dbd5314c4c77e83f5b45ef0b49e83860479c8f92
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seojan19
+ms.openlocfilehash: 4874e68d6ac1b9bac2bc1e4d2ac3c8c2f1a428d6
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916375"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112244"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Criteri per la scelta di un servizio di calcolo di Azure
 
 Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione. Le tabelle seguenti confrontano i servizi di calcolo di Azure in base a diverse coordinate. Fare riferimento a queste tabelle per scegliere un'opzione di calcolo per l'applicazione.
 
 ## <a name="hosting-model"></a>Modello di hosting
+
+<!-- markdownlint-disable MD033 -->
 
 | Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Azure Kubernetes Service | Istanze di contenitore | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
@@ -47,8 +51,7 @@ Note
 Note
 
 1. <span id="note1b">Le opzioni disponibili includono IIS Express per ASP.NET o node.js (iisnode), server Web PHP, Azure Toolkit for IntelliJ, Azure Toolkit for Eclipse. Servizio app supporta anche il debug remoto dell'app Web distribuita.</span>
-2. <span id="note2b">Vedere [Provider, aree, versioni API e schemi di Resource Manager][resource-manager-supported-services].</span> 
-
+2. <span id="note2b">Vedere [Provider, aree, versioni API e schemi di Resource Manager][resource-manager-supported-services].</span>
 
 ## <a name="scalability"></a>Scalabilità
 
@@ -56,7 +59,7 @@ Note
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Scalabilità automatica | Set di scalabilità di macchine virtuali | Servizio integrato | Set di scalabilità delle VM | Servizio integrato | Non supportate | Non supportate | N/D |
 | Bilanciamento del carico | Azure Load Balancer | Integrato | Azure Load Balancer | Integrato | Integrato |  Nessun supporto integrato | Azure Load Balancer |
-| Limite di scalabilità<a href="#note1c"><sup>1</sup></a> | Immagine della piattaforma: 1000 nodi per set di scalabilità di macchine virtuali, immagine personalizzata: 100 nodi per set di scalabilità di macchine virtuali | 20 istanze, 100 con l'ambiente del servizio app | 100 nodi per set di scalabilità di macchine virtuali | 200 istanze per ogni app per le funzioni | 100 nodi per cluster (limite predefinito) |20 gruppi di contenitori per sottoscrizione (limite predefinito) | 20 core (limite predefinito) |
+| Limite di scalabilità<a href="#note1c"><sup>1</sup></a> | Immagine della piattaforma: 1000 nodi per set di scalabilità di macchine virtuali. Immagine personalizzata: 100 nodi per set di scalabilità di macchine virtuali | 20 istanze, 100 con l'ambiente del servizio app | 100 nodi per set di scalabilità di macchine virtuali | 200 istanze per ogni app per le funzioni | 100 nodi per cluster (limite predefinito) |20 gruppi di contenitori per sottoscrizione (limite predefinito) | 20 core (limite predefinito) |
 
 Note
 
@@ -67,7 +70,7 @@ Note
 | Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Azure Kubernetes Service | Istanze di contenitore | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Contratto di servizio | [Contratto di servizio per Macchine virtuali][sla-vm] | [Contratto di servizio per Servizio app][sla-app-service] | [Contratto di servizio per Service Fabric][sla-sf] | [Contratto di servizio per Funzioni][sla-functions] | [Contratto di servizio per il servizio Kubernetes di Azure][sla-acs] | [Contratto di servizio per le istanze di contenitore](https://azure.microsoft.com/support/legal/sla/container-instances/) | [Contratto di servizio per Azure Batch][sla-batch] |
-| Failover in più aree | Gestione traffico | Gestione traffico | Gestione traffico, cluster in più aree | Non supportate  | Gestione traffico | Non supportate | Non supportato |
+| Failover in più aree | Gestione traffico | Gestione traffico | Gestione traffico, cluster in più aree | Non supportate | Gestione traffico | Non supportate | Non supportato |
 
 ## <a name="other"></a>Altri
 
@@ -76,6 +79,8 @@ Note
 | SSL | Configurato in VM | Supportato | Supportato  | Supportato | [Controller di ingresso](/azure/aks/ingress) | Usare il contenitore [sidecar](../../patterns/sidecar.md) | Supportato |
 | Costi | [Windows][cost-windows-vm], [Linux][cost-linux-vm] | [Prezzi di Servizio app][cost-app-service] | [Prezzi di Service Fabric][cost-service-fabric] | [Prezzi di Funzioni di Azure][cost-functions] | [Prezzi del servizio Kubernetes di Azure][cost-acs] | [Prezzi delle istanze di contenitore](https://azure.microsoft.com/pricing/details/container-instances/) | [Prezzi di Azure Batch][cost-batch]
 | Stili di architettura adatti | [Livello N][n-tier], [Big Compute][big-compute] (HPC) | [Web-Queue-Worker][w-q-w], [a più livelli][n-tier] | [Microservizi][microservices], [Architettura guidata dagli eventi][event-driven] | [Microservizi][microservices], [Architettura guidata dagli eventi][event-driven] | [Microservizi][microservices], [Architettura guidata dagli eventi][event-driven] | [Microservizi][microservices], automazione delle attività, processi batch  | [Big Compute][big-compute] (HPC) |
+
+<!-- markdownlint-enable MD033 -->
 
 [cost-linux-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 [cost-windows-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/

@@ -3,27 +3,31 @@ title: Scelta di una tecnologia per l'archiviazione di dati
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: c97249228ca45a7a17822b6dd55acad6360c6f6b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 9fe28249b51083bb588808770aba9ac7d48d560e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902647"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113162"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>Scelta di una tecnologia per l'archiviazione di Big Data in Azure
 
 Questo argomento mette a confronto le opzioni di archiviazione disponibili per le soluzioni per Big Data &mdash; in particolare l'inserimento di dati in blocco e l'elaborazione batch, e le tecnologie per gli [archivi dati analitici](./analytical-data-stores.md) o l'[inserimento di streaming in tempo reale](./real-time-ingestion.md).
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-data-storage-in-azure"></a>Opzioni disponibili per la scelta di una tecnologia per l'archiviazione di dati in Azure
 
-Sono disponibili diverse opzioni per l'inserimento di dati in Azure, in base alle esigenze specifiche:
+<!-- markdownlint-enable MD026 -->
 
-**Archiviazione file**
+Sono disponibili diverse opzioni per l'inserimento di dati in Azure, in base alle esigenze specifiche.
+
+**Archiviazione file:**
 
 - [BLOB del servizio di archiviazione di Azure](/azure/storage/blobs/storage-blobs-introduction)
 - [Azure Data Lake Store](/azure/data-lake-store/)
 
-**Database NoSQL**
+**Database NoSQL:**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
 - [HBase in HDInsight](https://hbase.apache.org/)
@@ -34,7 +38,7 @@ Archiviazione di Azure è un servizio di archiviazione gestito altamente disponi
 
 In Archiviazione di Azure sono disponibili vari servizi per archiviare i dati. L'opzione più flessibile per l'archiviazione di BLOB da più origini dati è [Archiviazione BLOB](/azure/storage/blobs/storage-blobs-introduction). I BLOB sono essenzialmente file in cui vengono archiviati dati di qualsiasi tipo, ad esempio immagini, documenti, file HTML, dischi rigidi virtuali, Big Data come log, backup di database. I BLOB vengono archiviati nei contenitori, che sono simili alle cartelle. Un contenitore consente di raggruppare un set di BLOB. Un account di archiviazione può contenere un numero illimitato di contenitori, ciascuno dei quali può archiviare un numero illimitato di BLOB.
 
-Archiviazione di Azure è una scelta ottimale per le soluzioni per l'analisi e i Big Data, grazie alla flessibilità, alla disponibilità elevata e ai costi contenuti. Offre diversi livelli di archiviazione, ad accesso frequente, ad accesso sporadico e archivio, per diversi casi d'uso. Per altre informazioni, vedere [Archivio BLOB di Azure: livelli di archiviazione ad accesso frequente, ad accesso sporadico e archivio](/azure/storage/blobs/storage-blob-storage-tiers).
+Archiviazione di Azure è una scelta ottimale per le soluzioni per l'analisi e i Big Data, grazie alla flessibilità, alla disponibilità elevata e ai costi contenuti. Offre diversi livelli di archiviazione, ad accesso frequente, ad accesso sporadico e archivio, per diversi casi d'uso. Per altre informazioni, vedere [Archiviazione BLOB di Azure: livelli di archiviazione ad accesso frequente, ad accesso sporadico e archivio](/azure/storage/blobs/storage-blob-storage-tiers).
 
 Archiviazione BLOB di Azure è accessibile da Hadoop (disponibile tramite HDInsight). HDInsight può usare un contenitore BLOB in Archiviazione di Azure come file system predefinito per il cluster. Grazie a un'interfaccia HDFS (Hadoop Distributed File System) fornita da un driver WASB, tutti i componenti disponibili in HDInsight possono agire direttamente sui dati strutturati o non strutturati archiviati come BLOB. Archiviazione BLOB di Azure è accessibile anche tramite Azure SQL Data Warehouse con la funzionalità PolyBase.
 
@@ -59,7 +63,7 @@ Insieme ad Azure Data Lake Analytics, Data Lake Store è stato progettato per co
 
 [Azure Cosmos DB](/azure/cosmos-db/) è il database multimodello di Microsoft distribuito a livello globale. Cosmos DB garantisce latenze di pochi millisecondi al 99° percentile ovunque nel mondo, offre più modelli di coerenza ben definiti per ottimizzare le prestazioni e garantisce la disponibilità elevata con funzionalità di multihosting.
 
-Azure Cosmos DB è completamente indipendente dallo schema. Indicizza automaticamente tutti i dati senza che sia necessario gestire manualmente indici e schemi. È anche un database multimodello e supporta in modalità nativa modelli di dati basati su documenti, coppie chiave-valore, grafi e famiglie di colonne. 
+Azure Cosmos DB è completamente indipendente dallo schema. Indicizza automaticamente tutti i dati senza che sia necessario gestire manualmente indici e schemi. È anche un database multimodello e supporta in modalità nativa modelli di dati basati su documenti, coppie chiave-valore, grafi e famiglie di colonne.
 
 Funzionalità di Azure Cosmos DB:
 
@@ -119,4 +123,3 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Integrazione nativa di Funzioni di Azure |                        [Sì](/azure/cosmos-db/serverless-computing-database)                        |                                                                     No                                                                      |
 |   Distribuzione globale automatica    |                          [Sì](/azure/cosmos-db/distribute-data-globally)                           | Non [è possibile configurare una replica di cluster HBase](/azure/hdinsight/hbase/apache-hbase-replication) in aree geografiche con coerenza finale |
 |           Modello di prezzi            | Unità richiesta (RU) scalabili in modo elastico addebitate al secondo in base alle esigenze, archiviazione scalabile in modo elastico |                              Prezzi al minuto per il cluster HDInsight (scalabilità orizzontale dei nodi), archiviazione                               |
-

@@ -1,19 +1,17 @@
 ---
-title: Supervisione agente di pianificazione
+title: Modello di supervisione agente di pianificazione
+titleSuffix: Cloud Design Patterns
 description: Coordinare un set di azioni in un set distribuito di servizi e di altre risorse remote.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- resiliency
-ms.openlocfilehash: 7914708413d68689e2326df28ced00e5fc3a5dd8
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7e1f45b1f2f206e1739d69bab6d4b2641f58a0f9
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428670"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011719"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>Modello di supervisione agente di pianificazione
 
@@ -25,7 +23,7 @@ Coordinare un set di azioni distribuite come singola operazione. Se una qualsias
 
 Un'applicazione esegue attività che comprendono diversi passaggi, alcuni dei quali potrebbero richiamare servizi remoti o accedere a risorse remote. I singoli passaggi potrebbero essere indipendenti tra loro, ma sono coordinati dalla logica dell'applicazione che implementa l'attività.
 
-Quando possibile, l'applicazione deve garantire che l'attività venga eseguita fino al completamento e risolvere eventuali problemi che potrebbero verificarsi durante l'accesso a risorse o servizi remoti. Possono verificarsi errori per diversi motivi. Ad esempio, la rete potrebbe essere inattiva, le comunicazioni potrebbero essere interrotte, un servizio remoto potrebbe non rispondere o essere in uno stato instabile oppure una risorsa remota potrebbe essere temporaneamente inaccessibile, forse a causa di vincoli. In molti casi gli errori sono temporanei e possono essere gestiti tramite il [modello di ripetizione dei tentativi][retry-pattern].
+Quando possibile, l'applicazione deve garantire che l'attività venga eseguita fino al completamento e risolvere eventuali problemi che potrebbero verificarsi durante l'accesso a risorse o servizi remoti. Possono verificarsi errori per diversi motivi. Ad esempio, la rete potrebbe essere inattiva, le comunicazioni potrebbero essere interrotte, un servizio remoto potrebbe non rispondere o essere in uno stato instabile oppure una risorsa remota potrebbe essere temporaneamente inaccessibile, forse a causa di vincoli. In molti casi, gli errori sono temporanei e possono essere gestiti con il [modello di ripetizione dei tentativi](./retry.md).
 
 Se l'applicazione rileva un errore più permanente da cui non è possibile eseguire facilmente il recupero, deve essere in grado di ripristinare il sistema a uno stato coerente e garantire l'integrità dell'intera operazione.
 
@@ -47,8 +45,8 @@ L'utilità di pianificazione gestisce le informazioni sullo stato dell'attività
 
 ![Figura 1 - Attori nel modello di supervisione agente di pianificazione](./_images/scheduler-agent-supervisor-pattern.png)
 
-
-> Questo diagramma mostra una versione semplificata del modello. In un'implementazione reale varie istanze dell'utilità di pianificazione potrebbero essere in esecuzione contemporaneamente, ognuna con un subset di attività. In modo analogo, il sistema può eseguire più istanze di ogni agente o anche più supervisori. In questo caso i supervisori devono coordinare attentamente il lavoro tra loro per verificare che non si trovino a recuperare gli stessi passaggi e attività non riusciti. Il [modello di designazione leader](leader-election.md) offre una possibile soluzione a questo problema.
+> [!NOTE]
+> Questo diagramma mostra una versione semplificata del modello. In un'implementazione reale varie istanze dell'utilità di pianificazione potrebbero essere in esecuzione contemporaneamente, ognuna con un subset di attività. In modo analogo, il sistema può eseguire più istanze di ogni agente o anche più supervisori. In questo caso i supervisori devono coordinare attentamente il lavoro tra loro per verificare che non si trovino a recuperare gli stessi passaggi e attività non riusciti. Il [modello di designazione leader](./leader-election.md) offre una possibile soluzione a questo problema.
 
 Quando l'applicazione è pronta per l'esecuzione di un'attività, invia una richiesta all'utilità di pianificazione. L'utilità di pianificazione registra le informazioni sullo stato iniziale dell'attività e dei relativi passaggi (ad esempio, indicando che il passaggio non è ancora stata avviato) nell'archivio stati e poi inizia a eseguire le operazioni definite dal flusso di lavoro. All'avvio di ogni passaggio, l'utilità di pianificazione aggiorna le informazioni sullo stato del passaggio nell'archivio stati (ad esempio, come passaggio in esecuzione).
 
@@ -60,11 +58,11 @@ Se l'agente ha esito negativo, l'utilità di pianificazione non riceverà una ri
 
 In caso di timeout o errore in un passaggio, l'archivio stati conterrà un record che indica che il passaggio è in esecuzione, ma l'ora di completamento sarà stato superato. Il supervisore cerca passaggi come questo e tenta di recuperarli. Una possibile strategia prevede che il supervisore aggiorni il valore dell'ora di completamento per estendere la durata disponibile per completare il passaggio e invii un messaggio all'utilità di pianificazione identificando il passaggio con timeout. A questo punto l'utilità di pianificazione potrà provare a ripetere il passaggio. Tuttavia, per questa soluzione le attività devono essere idempotenti.
 
-Il supervisore potrebbe dover impedire che lo stesso passaggio venga ripetuto se continuano a verificarsi errori o timeout. A tale scopo, il supervisore può gestire un numero di tentativi per ogni passaggio, insieme alle informazioni sullo stato, nell'archivio stati. Se questo numero supera una soglia predefinita, il supervisore può adottare una strategia di attesa per un periodo più esteso prima di indicare all'utilità di pianificazione di provare a ripetere il passaggio, nell'eventualità che l'errore venga risolto durante questo periodo. In alternativa, il supervisore può inviare un messaggio all'utilità di pianificazione per richiedere di annullare l'intera attività implementando un [modello di transazioni di compensazione](compensating-transaction.md). Questo approccio varia a seconda che l'utilità di pianificazione e gli agenti forniscano o meno le informazioni necessarie per implementare le operazioni di compensazione per ogni passaggio completato correttamente.
+Il supervisore potrebbe dover impedire che lo stesso passaggio venga ripetuto se continuano a verificarsi errori o timeout. A tale scopo, il supervisore può gestire un numero di tentativi per ogni passaggio, insieme alle informazioni sullo stato, nell'archivio stati. Se questo numero supera una soglia predefinita, il supervisore può adottare una strategia di attesa per un periodo più esteso prima di indicare all'utilità di pianificazione di provare a ripetere il passaggio, nell'eventualità che l'errore venga risolto durante questo periodo. In alternativa, il supervisore può inviare un messaggio all'utilità di pianificazione per richiedere di annullare l'intera attività implementando un [modello di transazioni di compensazione](./compensating-transaction.md). Questo approccio varia a seconda che l'utilità di pianificazione e gli agenti forniscano o meno le informazioni necessarie per implementare le operazioni di compensazione per ogni passaggio completato correttamente.
 
 > Non è compito del supervisore monitorare l'utilità di pianificazione e gli agenti e riavviarli in caso di errori. Questo aspetto del sistema deve essere gestito dall'infrastruttura in cui sono in esecuzione questi componenti. In modo analogo, il supervisore non è tenuto a conoscere le effettive operazioni di business svolte dalle attività in esecuzione nell'utilità di pianificazione (tra cui la procedura di compensazione in caso di errori in queste attività). È compito della logica di flusso di lavoro implementata dall'utilità di pianificazione. L'unica responsabilità del supervisore consiste nel determinare se un passaggio non è riuscito e disporne la ripetizione oppure l'annullamento dell'intera attività che include il passaggio con errori.
 
-Se l'utilità di pianificazione viene riavviata dopo un errore o il flusso di lavoro eseguito dall'utilità di pianificazione si arresta in modo imprevisto, l'utilità di pianificazione dovrà essere in grado di determinare lo stato di qualsiasi attività in elaborazione al suo interno al momento dell'errore ed essere pronta a riprenderla dal punto dell'interruzione. I dettagli di implementazione di questo processo sono probabilmente specifici del sistema. Se l'attività non può essere recuperata, potrebbe essere necessario annullare il lavoro già eseguito dall'attività stessa. Potrebbe essere anche necessario implementare una [transazione di compensazione](compensating-transaction.md).
+Se l'utilità di pianificazione viene riavviata dopo un errore o il flusso di lavoro eseguito dall'utilità di pianificazione si arresta in modo imprevisto, l'utilità di pianificazione dovrà essere in grado di determinare lo stato di qualsiasi attività in elaborazione al suo interno al momento dell'errore ed essere pronta a riprenderla dal punto dell'interruzione. I dettagli di implementazione di questo processo sono probabilmente specifici del sistema. Se l'attività non può essere recuperata, potrebbe essere necessario annullare il lavoro già eseguito dall'attività stessa. Potrebbe essere anche necessario implementare una [transazione di compensazione](./compensating-transaction.md).
 
 Il vantaggio principale di questo modello è che il sistema è resiliente in caso di errori temporanei o irreversibili imprevisti. Il sistema può essere progettato per la riparazione automatica. Ad esempio, se si verifica un errore nell'agente o nell'utilità di pianificazione, è possibile avviare un nuovo agente e il supervisore può predisporre la ripresa di un'attività. Se si verificano errori nel supervisore, un'altra istanza può essere avviata e riprendere dal punto in cui si è verificato l'errore. Se il supervisore è pianificato per l'esecuzione periodica, una nuova istanza può essere avviata automaticamente dopo un intervallo predefinito. È possibile replicare l'archivio stati per raggiungere anche un maggiore grado di resilienza.
 
@@ -102,15 +100,16 @@ Le informazioni sullo stato create durante il processo di invio dell'ordine incl
 
 - **ProcessState**. Stato corrente dell'attività che gestisce l'ordine. Gli stati possibili sono elencati di seguito:
 
-    - **Pending**. L'ordine è stato creato, ma l'elaborazione non è ancora stata avviata.
-    - **Processing**. L'ordine è in fase di elaborazione.
-    - **Processed**. L'ordine è stato elaborato correttamente.
-    - **Error**. L'elaborazione degli ordini non è riuscita.
+  - **Pending**. L'ordine è stato creato, ma l'elaborazione non è ancora stata avviata.
+  - **Processing**. L'ordine è in fase di elaborazione.
+  - **Processed**. L'ordine è stato elaborato correttamente.
+  - **Error**. L'elaborazione degli ordini non è riuscita.
 
 - **FailureCount**. Numero di tentativi di elaborazione dell'ordine.
 
 In queste informazioni sullo stato il campo `OrderID` viene copiato dall'ID del nuovo ordine. I campi `LockedBy` e `CompleteBy` sono impostati su `null`, il campo `ProcessState` su `Pending`e il campo `FailureCount` su 0.
 
+> [!NOTE]
 > In questo esempio, la logica di gestione degli ordini è relativamente semplice e include un solo passaggio che richiama un servizio remoto. In uno scenario più complesso a più passaggi, il processo di invio comporterebbe diversi passaggi e verrebbero creati vari record nell'archivio stati, ognuno con la descrizione dello stato di un singolo passaggio.
 
 Anche l'utilità di pianificazione viene eseguita nell'ambito di un ruolo di lavoro e implementa la logica di business che gestisce l'ordine. Un'istanza dell'utilità di pianificazione che esegue il polling di nuovi ordini esamina l'archivio stati alla ricerca dei record in cui il campo `LockedBy` è Null e il campo `ProcessState` è Pending. Quando l'utilità di pianificazione individua un nuovo ordine, popola immediatamente il campo `LockedBy` con lo specifico ID di istanza, imposta il campo `CompleteBy` su un'ora appropriata e imposta il campo `ProcessState` per l'elaborazione. Il codice è progettato per essere esclusivo e atomico, per garantire che due istanze simultanee dell'utilità di pianificazione non tentino di gestire contemporaneamente lo stesso ordine.
@@ -136,14 +135,13 @@ Per consentire la segnalazione dello stato dell'ordine, l'applicazione può usar
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
-- [Modello di ripetizione dei tentativi][retry-pattern]. Un agente può usare questo modello per ripetere in modo trasparente un'operazione che accede a un servizio remoto o una risorsa precedentemente non riuscita. Usarlo quando si prevede che la causa dell'errore sia temporanea e possa essere corretta.
-- [Modello di interruttore](circuit-breaker.md). Un agente può usare questo modello per gestire gli errori la cui correzione potrebbe richiedere una quantità variabile di tempo in fase di connessione a una risorsa o a un servizio remoto.
-- [Modello di transazioni di compensazione](compensating-transaction.md). Se il flusso di lavoro eseguito da un'utilità di pianificazione non può essere completato, potrebbe essere necessario annullare le operazioni eseguite in precedenza. Il modello di transizioni di compensazione descrive come ottenere questo risultato per le operazioni che seguono il modello di coerenza finale. Questi tipi di operazioni sono in genere implementate da un'utilità di pianificazione che esegue processi di business e flussi di lavoro complessi.
-- [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx). I componenti nel modello di supervisione agente di pianificazione vengono in genere eseguiti decuplicati tra loro e comunicano in modo asincrono. Descrive alcuni approcci che possono essere adottati per implementare la comunicazione asincrona in base alle code di messaggi.
-- [Modello di designazione leader](leader-election.md). Potrebbe essere necessario coordinare le azioni di più istanze di un supervisore per evitare che tentino di recuperare lo stesso processo non riuscito. Il modello di designazione leader descrive come ottenere questo risultato.
-- [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Architettura cloud: modello di supervisione agente di pianificazione) sul blog di Clemens Vasters
-- [Process Manager pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) (Modello del gestore processi)
-- [Reference 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Riferimento 6: una saga su Sagas). Esempio che illustra in che modo il modello CQRS usa un gestore processi (nell'ambito delle indicazioni sul passaggio a CQRS).
-- [Utilità di pianificazione di Microsoft Azure](https://azure.microsoft.com/services/scheduler/)
 
-[retry-pattern]: ./retry.md
+- [Modello di ripetizione dei tentativi](./retry.md). Un agente può usare questo modello per ripetere in modo trasparente un'operazione che accede a un servizio remoto o una risorsa precedentemente non riuscita. Usarlo quando si prevede che la causa dell'errore sia temporanea e possa essere corretta.
+- [Modello di interruttore](./circuit-breaker.md). Un agente può usare questo modello per gestire gli errori la cui correzione potrebbe richiedere una quantità variabile di tempo in fase di connessione a una risorsa o a un servizio remoto.
+- [Modello di transazioni di compensazione](./compensating-transaction.md). Se il flusso di lavoro eseguito da un'utilità di pianificazione non può essere completato, potrebbe essere necessario annullare le operazioni eseguite in precedenza. Il modello di transizioni di compensazione descrive come ottenere questo risultato per le operazioni che seguono il modello di coerenza finale. Questi tipi di operazioni sono in genere implementate da un'utilità di pianificazione che esegue processi di business e flussi di lavoro complessi.
+- [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx). I componenti nel modello di supervisione agente di pianificazione vengono in genere eseguiti decuplicati tra loro e comunicano in modo asincrono. Descrive alcuni approcci che possono essere adottati per implementare la comunicazione asincrona in base alle code di messaggi.
+- [Modello di designazione leader](./leader-election.md). Potrebbe essere necessario coordinare le azioni di più istanze di un supervisore per evitare che tentino di recuperare lo stesso processo non riuscito. Il modello di designazione leader descrive come ottenere questo risultato.
+- [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Architettura cloud: modello di supervisione agente di pianificazione) nel blog di Clemens Vasters
+- [Process Manager pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) (Modello del gestore processi)
+- [Reference 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Informazioni di riferimento 6: una saga sulle saghe). Esempio che illustra in che modo il modello CQRS usa un gestore processi (nell'ambito delle indicazioni sul passaggio a CQRS).
+- [Utilità di pianificazione di Microsoft Azure](https://azure.microsoft.com/services/scheduler/)

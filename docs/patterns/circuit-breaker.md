@@ -1,18 +1,17 @@
 ---
-title: Interruttore
+title: Modello a interruttore
+titleSuffix: Cloud Design Patterns
 description: Gestire gli errori la cui correzione potrebbe richiedere una quantità variabile di tempo in fase di connessione a una risorsa o a un servizio remoto.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 5a9c8254bf62488b46517ee3582c2323e206df8a
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.custom: seodec18
+ms.openlocfilehash: 56c90fcb23fd68b0d1b545db90adeab3272705c2
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37090952"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009764"
 ---
 # <a name="circuit-breaker-pattern"></a>Modello a interruttore
 
@@ -20,7 +19,7 @@ Gestire gli errori il cui ripristino potrebbe richiedere una quantità variabile
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
-In un ambiente distribuito le chiamate alle risorse remote e ai servizi possono non riuscire a causa di errori temporanei, ad esempio connessioni di rete lente, timeout oppure indisponibilità o overcommit delle risorse. Questi errori in genere si risolvono autonomamente dopo un breve periodo di tempo. Un'applicazione cloud affidabile deve essere preparata per gestirli tramite una strategia, ad esempio un [modello di ripetizione dei tentativi][retry-pattern].
+In un ambiente distribuito le chiamate alle risorse remote e ai servizi possono non riuscire a causa di errori temporanei, ad esempio connessioni di rete lente, timeout oppure indisponibilità o overcommit delle risorse. Questi errori in genere si risolvono autonomamente dopo un breve periodo di tempo. Un'applicazione cloud affidabile deve essere preparata per gestirli con una strategia come il [modello di ripetizione dei tentativi][retry-pattern].
 
 Tuttavia, possono anche verificarsi situazioni in cui gli errori sono causati da eventi imprevisti, per cui la risoluzione potrebbe richiedere molto più tempo. Questi errori possono variare, in base alla gravità, dalla perdita parziale della connettività alla totale interruzione di un servizio. In queste situazioni potrebbe essere inutile ripetere continuamente un'operazione che ha scarse possibilità di successo, mentre invece è importante che l'applicazione accetti rapidamente l'esito negativo dell'operazione e gestisca il problema in modo appropriato.
 
@@ -40,9 +39,9 @@ Il proxy può essere implementato come una macchina a stati, con gli stati segue
 
     > Lo scopo del timer di timeout è dare al sistema il tempo per risolvere il problema che ha causato l'errore prima di consentire all'applicazione di tentare una nuova esecuzione dell'operazione.
 
-- **Aperto**: la richiesta inviata dall'applicazione ha un esito negativo immediato che restituisce un'eccezione all'applicazione.
+- **Aperto**: la richiesta inviata dall'applicazione ha immediatamente esito negativo e viene restituita un'eccezione all'applicazione.
 
-- **Semiaperto**: solo un numero limitato di richieste inviate dall'applicazione può passare e richiamare l'operazione. Se queste richieste hanno esito positivo, si presuppone che l'errore che si è verificato in precedenza sia stato risolto e l'interruttore passa allo stato **Chiuso** (il contatore degli errori viene reimpostato). Se una richiesta ha esito negativo, l'interruttore presuppone che l'errore sia ancora presente e pertanto ripristina lo stato **Aperto** e riavvia il timer di timeout per concedere al sistema un ulteriore intervallo di tempo in cui correggere l'errore.
+- **Semiaperto**: un numero limitato di richieste dell'applicazione può passare e richiamare l'operazione. Se queste richieste hanno esito positivo, si presuppone che l'errore che si è verificato in precedenza sia stato risolto e l'interruttore passa allo stato **Chiuso** (il contatore degli errori viene reimpostato). Se una richiesta ha esito negativo, l'interruttore presuppone che l'errore sia ancora presente e pertanto ripristina lo stato **Aperto** e riavvia il timer di timeout per concedere al sistema un ulteriore intervallo di tempo in cui correggere l'errore.
 
     > Lo stato **Semiaperto** è utile per impedire che un servizio di recupero venga improvvisamente sommerso di richieste. Quando un servizio viene ripristinato, potrebbe essere in grado di supportare un volume di richieste limitato finché il ripristino non sarà stato completato; tuttavia, mentre questo processo è in corso, l'invio di una grande quantità di richieste potrebbe causare un nuovo timeout o una nuova interruzione del servizio.
 
@@ -68,7 +67,7 @@ Prima di decidere come implementare questo schema, è opportuno considerare quan
 
 **Recuperabilità**. È necessario configurare l'interruttore in modo che corrisponda al probabile modello di recupero dell'operazione che protegge. Se, ad esempio, l'interruttore rimane a lungo nello stato **Aperto**, potrebbe generare eccezioni anche se il motivo dell'errore è stato risolto. Analogamente, un interruttore potrebbe fluttuare e ridurre i tempi di risposta delle applicazioni se passa dallo stato **Aperto** allo stato **Semiaperto** troppo rapidamente.
 
-**Test delle operazioni non riuscite**. Nello stato **Aperto**, anziché usare un timer per stabilire quando passare allo stato **Semiaperto**, un interruttore può eseguire periodicamente un ping alla risorsa o al servizio remoto per determinare se è nuovamente disponibile. Questo ping potrebbe assumere la forma di un tentativo di richiamo di un'operazione precedentemente non riuscita oppure potrebbe usare un'operazione speciale, specificamente fornita dal servizio remoto per il test dell'integrità del servizio, come descritto dal [modello di monitoraggio degli endpoint di integrità](health-endpoint-monitoring.md).
+**Test delle operazioni non riuscite**. Nello stato **Aperto**, anziché usare un timer per stabilire quando passare allo stato **Semiaperto**, un interruttore può eseguire periodicamente un ping alla risorsa o al servizio remoto per determinare se è nuovamente disponibile. Questo ping potrebbe assumere la forma di un tentativo di richiamo di un'operazione precedentemente non riuscita oppure potrebbe usare un'operazione speciale, specificamente fornita dal servizio remoto per il test dell'integrità del servizio, come descritto dal [modello di monitoraggio degli endpoint di integrità](./health-endpoint-monitoring.md).
 
 **Sostituzione manuale**. In un sistema in cui il tempo per il recupero di un'operazione in errore è estremamente variabile, può essere utile offrire un'opzione di ripristino manuale che consenta a un amministratore di chiudere un interruttore e reimpostare il contatore degli errori. Analogamente, un amministratore può forzare l'attivazione dello stato **Aperto** di un interruttore e riavviare il timer di timeout se l'operazione protetta dall'interruttore è temporaneamente non disponibile.
 
@@ -284,9 +283,6 @@ catch (Exception ex)
 
 Quando si implementa questo modello, possono essere utili anche i modelli seguenti:
 
-- [Modello di ripetizione dei tentativi][retry-pattern]. Descrive in che modo un'applicazione può gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza.
+- [Modello di ripetizione dei tentativi](./retry.md). Descrive in che modo un'applicazione può gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza.
 
-- [Criterio di monitoraggio endpoint di integrità](health-endpoint-monitoring.md). Un interruttore potrebbe essere in grado di verificare l'integrità di un servizio inviando una richiesta a un endpoint esposto dal servizio. Il servizio dovrebbe restituire informazioni che ne indicano lo stato.
-
-
-[retry-pattern]: ./retry.md
+- [Modello di monitoraggio endpoint di integrità](./health-endpoint-monitoring.md). Un interruttore potrebbe essere in grado di verificare l'integrità di un servizio inviando una richiesta a un endpoint esposto dal servizio. Il servizio dovrebbe restituire informazioni che ne indicano lo stato.

@@ -1,17 +1,17 @@
 ---
 title: Iscrizione e onboarding del tenant in applicazioni multi-tenant
-description: Come eseguire l'onboarding del tenant in un'applicazione multi-tenant
+description: Come eseguire l'onboarding dei tenant in un'applicazione multi-tenant.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: 541a4dd9abb2168eef4a60a0ec99e1e7c06049b5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: d112cb65e3cd8bae7b273a974bf8e5d2b04aff8a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902477"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112720"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>Iscrizione e onboarding del tenant
 
@@ -25,6 +25,7 @@ Questo articolo descrive come implementare un *processo* di iscrizione in un'app
 * Eseguire installazioni occasionali per ogni tenant richieste dall'applicazione.
 
 ## <a name="admin-consent-and-azure-ad-permissions"></a>Consenso dell'amministratore e autorizzazioni di Azure AD
+
 Per l'autenticazione con Azure AD, un'applicazione deve accedere alla directory dell'utente. Come requisito minimo, l'applicazione necessita dell'autorizzazione per leggere il profilo dell'utente. Al primo accesso dell'utente, Azure AD illustra una pagina di consenso che elenca le autorizzazioni richieste. Facendo clic su **Accetta**, l'utente concede l'autorizzazione all'applicazione.
 
 Per impostazione predefinita, viene fornito il consenso per ogni utente. Ogni utente che accede vede la pagina di consenso. Tuttavia, Azure AD supporta anche il *consenso dell'amministratore*, che consente a un amministratore di AD di fornire il consenso per un'intera organizzazione.
@@ -39,9 +40,10 @@ Solo un amministratore di AD può autorizzare questo tipo di consenso, in quanto
 
 ![Errore di consenso](./images/consent-error.png)
 
-Se l'applicazione richiede autorizzazioni aggiuntive in un secondo momento, il cliente dovrà accedere nuovamente e acconsentire alle autorizzazioni aggiornate.  
+Se l'applicazione richiede autorizzazioni aggiuntive in un secondo momento, il cliente dovrà accedere nuovamente e acconsentire alle autorizzazioni aggiornate.
 
 ## <a name="implementing-tenant-sign-up"></a>Implementazione dell'iscrizione del tenant
+
 Sono stati definiti diversi requisiti del processo di iscrizione per l'applicazione [Tailspin Surveys][Tailspin]:
 
 * Affinché gli utenti possano accedere, il tenant deve eseguire l'accesso.
@@ -58,7 +60,7 @@ Quando un utente anonimo visita l'applicazione Surveys, visualizza due pulsanti:
 
 Questi pulsanti richiamano le azioni nella classe `AccountController`.
 
-L'azione `SignIn` restituisce **ChallegeResult**, in modo che il middleware di OpenID Connect esegua il reindirizzamento all'endpoint di autenticazione. Questa è la modalità predefinita per attivare l'autenticazione in ASP.NET Core.  
+L'azione `SignIn` restituisce **ChallegeResult**, in modo che il middleware di OpenID Connect esegua il reindirizzamento all'endpoint di autenticazione. Questa è la modalità predefinita per attivare l'autenticazione in ASP.NET Core.
 
 ```csharp
 [AllowAnonymous]
@@ -92,7 +94,7 @@ public IActionResult SignUp()
 
 Come `SignIn`, l'azione `SignUp` restituisce anche un `ChallengeResult`. Ma questa volta, viene aggiunta una parte di informazioni sullo stato di `AuthenticationProperties` nel `ChallengeResult`:
 
-* signup: un contrassegno booleano che indica che l'utente ha avviato il processo di iscrizione.
+* signup: flag booleano che indica che l'utente ha avviato il processo di iscrizione.
 
 Le informazioni sullo stato in `AuthenticationProperties` vengono aggiunte al parametro [state] di OpenID Connect che esegue un ciclo durante il flusso di autenticazione.
 
@@ -101,11 +103,16 @@ Le informazioni sullo stato in `AuthenticationProperties` vengono aggiunte al pa
 Dopo che l'utente viene autenticato in Azure AD e viene reindirizzato all'applicazione, il ticket di autenticazione contiene informazioni sullo stato. Questo aspetto viene usato per assicurarsi che il valore "signup" venga mantenuto per l'intero flusso di autenticazione.
 
 ## <a name="adding-the-admin-consent-prompt"></a>Aggiunta della richiesta di consenso dell'amministratore
+
 In Azure AD, il flusso di consenso dell'amministratore viene attivato mediante l'aggiunta di un parametro "prompt" alla stringa di query nella richiesta di autenticazione:
+
+<!-- markdownlint-disable MD040 -->
 
 ```
 /authorize?prompt=admin_consent&...
 ```
+
+<!-- markdownlint-enable MD040 -->
 
 L'applicazione Surveys aggiunge tale parametro durante l'evento `RedirectToAuthenticationEndpoint` . Questo evento viene chiamato subito prima che il middleware esegua il reindirizzamento all'endpoint di autenticazione.
 
@@ -122,7 +129,7 @@ public override Task RedirectToAuthenticationEndpoint(RedirectContext context)
 }
 ```
 
-L'impostazione` ProtocolMessage.Prompt` indica al middleware di aggiungere il parametro "prompt" alla richiesta di autenticazione.
+L'impostazione `ProtocolMessage.Prompt` indica al middleware di aggiungere il parametro "prompt" alla richiesta di autenticazione.
 
 Si noti che la richiesta è necessaria solo durante l'iscrizione, in un accesso normale non è inclusa. Per comprendere la differenza, viene verificato il valore di `signup` nello stato di autenticazione. Il metodo di estensione seguente consente di verificare questa condizione:
 
@@ -143,7 +150,8 @@ internal static bool IsSigningUp(this BaseControlContext context)
     bool isSigningUp;
     if (!bool.TryParse(signupValue, out isSigningUp))
     {
-        // The value for signup is not a valid boolean, throw                
+        // The value for signup is not a valid boolean, throw
+
         throw new InvalidOperationException($"'{signupValue}' is an invalid boolean value");
     }
 
@@ -152,6 +160,7 @@ internal static bool IsSigningUp(this BaseControlContext context)
 ```
 
 ## <a name="registering-a-tenant"></a>Registrazione di un tenant
+
 L'applicazione Surveys archivia alcune informazioni su ogni tenant e su ogni utente nel database dell'applicazione.
 
 ![Tabella Tenant](./images/tenant-table.png)
@@ -255,7 +264,8 @@ Di seguito è riportato un riepilogo dell'intero flusso di iscrizione all'applic
 
 [**Avanti**][app roles]
 
-<!-- Links -->
+<!-- links -->
+
 [app roles]: app-roles.md
 [Tailspin]: tailspin.md
 

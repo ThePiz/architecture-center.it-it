@@ -1,25 +1,19 @@
 ---
-title: Livellamento del carico basato sulle code
+title: Schema di livellamento del carico basato sulle code
+titleSuffix: Cloud Design Patterns
 description: Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i carichi di lavoro elevati intermittenti.
 keywords: schema progettuale
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- availability
-- performance-scalability
-- resiliency
-ms.openlocfilehash: 99b226511fe14bffdab3cdcf65d4e6cffe89bba6
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.date: 01/02/2019
+ms.custom: seodec18
+ms.openlocfilehash: bb519fa52fcb6472733b6e52d7332d470eda8349
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359320"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011549"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>Schema di livellamento del carico basato sulle code
-
-[!INCLUDE [header](../_includes/header.md)]
 
 Usare una coda che funge da buffer tra un'attività e un servizio richiamato per alleggerire i sovraccarichi a intermittenza che possono causare la mancata esecuzione del servizio o il timeout dell'attività. Ciò consente di ridurre al minimo l'impatto dei picchi della domanda di disponibilità e i tempi di risposta sia per l'attività che per il servizio.
 
@@ -63,20 +57,26 @@ Questo modello non è utile se l'applicazione attende una risposta dal servizio 
 
 ## <a name="example"></a>Esempio
 
-Un ruolo Web di Microsoft Azure archivia i dati tramite un servizio di archiviazione separata. Se un numero elevato di istanze del ruolo Web vien eseguito contemporaneamente, è possibile che il servizio di archiviazione non sia in grado di rispondere alle richieste in modo sufficientemente rapido per impedire il timeout o l'errore delle richieste. Questa figura illustra un servizio sovraccaricato da un numero elevato di richieste simultanee provenienti da istanze di un ruolo Web.
+Un'app Web scrive dati in un archivio dati esterno. Se viene eseguito contemporaneamente un numero elevato di istanze dell'app Web, l'archivio dati potrebbe non riuscire a rispondere alle richieste in modo sufficientemente rapido, causando il timeout, la limitazione o un altro tipo di esito negativo delle richieste. Il diagramma seguente illustra un archivio dati sovraccaricato da un numero elevato di richieste simultanee provenienti dalle istanze di un'applicazione.
 
-![Figura 2 - Un servizio sovraccaricato da un numero elevato di richieste simultanee provenienti da istanze di un ruolo Web](./_images/queue-based-load-leveling-overwhelmed.png)
+![Figura 2 - Servizio sovraccaricato da un numero elevato di richieste simultanee provenienti dalle istanze di un'app Web](./_images/queue-based-load-leveling-overwhelmed.png)
+
+Per risolvere il problema, è possibile usare una coda per livellare il carico tra le istanze dell'applicazione e l'archivio dati. Un'app per le funzioni di Azure legge i messaggi dalla coda e invia le richieste di lettura/scrittura all'archivio dati. La logica dell'applicazione nell'app per le funzioni può controllare la frequenza con cui le richieste vengono passate all'archivio dati per impedire il sovraccarico dell'archivio. In caso contrario, l'app per le funzioni si limiterà a reintrodurre lo stesso problema nel back-end.
+
+![Figura 3 - Uso di una coda e di un'app per le funzioni per livellare il carico](./_images/queue-based-load-leveling-function.png)
 
 
-Per risolvere questo problema, è possibile usare una coda per livellare il carico tra le istanze del ruolo Web e il servizio di archiviazione. Tuttavia, il servizio di archiviazione è progettato per accettare le richieste sincrone e non può essere modificato facilmente per poter leggere i messaggi e gestire la velocità effettiva. È possibile introdurre un ruolo di lavoro che agisca come un servizio proxy che riceve le richieste dalla coda e le inoltra al servizio di archiviazione. La logica dell'applicazione nel ruolo di lavoro può controllare la frequenza con cui passa le richieste al servizio di archiviazione per impedire che questo venga sovraccaricato. Questa figura illustra l'uso di una coda e di un ruolo di lavoro per livellare il carico tra le istanze del ruolo Web e il servizio.
-
-![Figura 3 - Uso di una coda e di un ruolo di lavoro per livellare il carico tra le istanze del ruolo Web e il servizio](./_images/queue-based-load-leveling-worker-role.png)
 
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
 
 - [Introduzione alla messaggistica asincrona](https://msdn.microsoft.com/library/dn589781.aspx). Le code di messaggi sono intrinsecamente asincrone. Potrebbe essere necessario riprogettare la logica dell'applicazione in un'attività se è stata adattata dalla diretta comunicazione con un servizio per l'uso di una coda di messaggi. Analogamente, potrebbe essere necessario effettuare il refactoring di un servizio affinché accetti le richieste da una coda di messaggi. In alternativa, è possibile implementare un servizio proxy, come descritto nell'esempio.
-- [Modello di consumer concorrenti](competing-consumers.md). È possibile eseguire più istanze di un servizio, ognuna delle quali agisce come un consumer di messaggi dalla coda di livellamento del carico. È possibile usare questo approccio per regolare la frequenza con cui i messaggi vengono ricevuti e passati a un servizio.
-- [Modello di limitazione](throttling.md). Un modo semplice per implementare la limitazione delle richieste con un servizio è usare il livellamento del carico basato su coda e indirizzare tutte le richieste a un servizio tramite una coda di messaggi. Il servizio può elaborare le richieste con una frequenza che garantisce che le risorse necessarie al servizio non si esauriscano e per ridurre il conflitto che potrebbe verificarsi.
-- [Concetti del servizio di accodamento](https://msdn.microsoft.com/library/azure/dd179353.aspx). Informazioni sulla scelta di un meccanismo di messaggistica e accodamento nelle applicazioni di Azure.
+
+- [Modello di consumer concorrenti](./competing-consumers.md). È possibile eseguire più istanze di un servizio, ognuna delle quali agisce come un consumer di messaggi dalla coda di livellamento del carico. È possibile usare questo approccio per regolare la frequenza con cui i messaggi vengono ricevuti e passati a un servizio.
+
+- [Modello di limitazione](./throttling.md). Un modo semplice per implementare la limitazione delle richieste con un servizio è usare il livellamento del carico basato su coda e indirizzare tutte le richieste a un servizio tramite una coda di messaggi. Il servizio può elaborare le richieste con una frequenza che garantisce che le risorse necessarie al servizio non si esauriscano e per ridurre il conflitto che potrebbe verificarsi.
+
+- [Scegliere tra i servizi di messaggistica di Azure](/azure/event-grid/compare-messaging-services). Informazioni sulla scelta di un meccanismo di messaggistica e accodamento nelle applicazioni di Azure.
+
+- [Migliorare la scalabilità in un'applicazione Web di Azure](../reference-architectures/app-service-web-app/scalable-web-app.md). Questa architettura di riferimento include il livellamento del carico basato sulle code come parte dell'architettura.

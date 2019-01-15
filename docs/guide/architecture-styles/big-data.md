@@ -1,22 +1,24 @@
 ---
 title: Stile di architettura per Big Data
-description: Descrive i vantaggi, le problematiche e le procedure consigliate per le architetture per i Big Data in Azure
+titleSuffix: Azure Application Architecture Guide
+description: Illustra i vantaggi, le problematiche e le procedure consigliate per le architetture per Big Data in Azure.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 107ea7ad4e97a891236596291b0cee41a72eb865
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seojan19
+ms.openlocfilehash: 507cd4dcf74ed7e106a99b93dd029dfdffd6e4bc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295566"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112499"
 ---
 # <a name="big-data-architecture-style"></a>Stile di architettura per Big Data
 
 Un'architettura per Big Data è progettata per gestire l'inserimento, l'elaborazione e l'analisi di dati troppo grandi o complessi per i sistemi di database tradizionali.
 
-![](./images/big-data-logical.svg)
+![Diagramma logico dello stile di un'architettura per Big Data](./images/big-data-logical.svg)
 
- Le soluzioni per i Big Data implicano in genere uno o più dei seguenti tipi di carico di lavoro:
+Le soluzioni per i Big Data implicano in genere uno o più dei seguenti tipi di carico di lavoro:
 
 - L'elaborazione batch di origini di Big Data inattivi.
 - L'elaborazione in tempo reale di Big Data in movimento.
@@ -25,25 +27,25 @@ Un'architettura per Big Data è progettata per gestire l'inserimento, l'elaboraz
 
 La maggior parte delle architetture per i Big Data include alcuni o tutti i seguenti componenti:
 
-- **Origini dati**: tutte le soluzioni per i Big Data iniziano con una o più origini dati. Tra gli esempi sono inclusi:
+- **Origini dati**. Il punto di partenza di tutte le soluzioni per Big Data è costituito da una o più origini dati. Tra gli esempi sono inclusi:
 
-    - Archivi dati di applicazioni, ad esempio database relazionali.
-    - File statici generati dalle applicazioni, ad esempio file di log di server Web.
-    - Origini dati in tempo reale, ad esempio dispositivi IoT.
+  - Archivi dati di applicazioni, ad esempio database relazionali.
+  - File statici generati dalle applicazioni, ad esempio file di log di server Web.
+  - Origini dati in tempo reale, ad esempio dispositivi IoT.
 
-- **Archiviazione dei dati**: i dati per le operazioni di elaborazione batch vengono in genere archiviati in un archivio di file distribuito che può contenere volumi elevati di file di grandi dimensioni in vari formati. Questo tipo di archivio viene spesso chiamato *data lake*. Alcune opzioni per l'implementazione di questo tipo di archiviazione sono Azure Data Lake Store o i contenitori BLOB in Archiviazione di Azure. 
+- **Archiviazione dati**. I dati per le operazioni di elaborazione batch vengono in genere inseriti in un archivio di file distribuito che può contenere volumi elevati di file di grandi dimensioni in vari formati. Questo tipo di archivio viene spesso chiamato *data lake*. Alcune opzioni per l'implementazione di questo tipo di archiviazione sono Azure Data Lake Store o i contenitori BLOB in Archiviazione di Azure.
 
-- **Elaborazione batch**: i set di dati sono di grandi dimensioni e una soluzione per Big Data deve spesso elaborare i file di dati mediante processi batch con esecuzione prolungata per filtrare, aggregare e preparare in altro modo i dati per l'analisi. In genere questi processi prevedono la lettura dei file di origine, la relativa elaborazione e la scrittura dell'output in nuovi file. Le opzioni includono l'esecuzione di processi U-SQL in Azure Data Lake Analytics, l'utilizzo di Hive, Pig o di processi MapReduce personalizzati in un cluster HDInsight Hadoop o l'utilizzo di programmi Java, Scala o Python in un cluster HDInsight Spark.
+- **Elaborazione batch**. Poiché i set di dati hanno dimensioni considerevoli, una soluzione per Big Data deve spesso elaborare i file di dati mediante processi batch con esecuzione prolungata per filtrare, aggregare e preparare in altro modo i dati per l'analisi. In genere questi processi prevedono la lettura dei file di origine, la relativa elaborazione e la scrittura dell'output in nuovi file. Le opzioni includono l'esecuzione di processi U-SQL in Azure Data Lake Analytics, l'utilizzo di Hive, Pig o di processi MapReduce personalizzati in un cluster HDInsight Hadoop o l'utilizzo di programmi Java, Scala o Python in un cluster HDInsight Spark.
 
-- **Inserimento di messaggi in tempo reale**: se la soluzione include origini in tempo reale, l'architettura deve includere un modo per acquisire e archiviare i messaggi in tempo reale per l'elaborazione del flusso. Potrebbe trattarsi di un archivio dati semplice in cui i messaggi in ingresso vengono rilasciati in una cartella per l'elaborazione. Tuttavia, molte soluzioni richiedono che un archivio di inserimento dei messaggi funga da buffer per i messaggi e supporti l'elaborazione scale-out, il recapito affidabile e altri tipi di semantica di accodamento dei messaggi. Le opzioni includono Hub eventi di Azure, hub IoT di Azure e Kafka.
+- **Inserimento di messaggi in tempo reale**. Se la soluzione include origini in tempo reale, l'architettura deve includere un modo per acquisire e archiviare i messaggi in tempo reale per l'elaborazione del flusso. Potrebbe trattarsi di un archivio dati semplice in cui i messaggi in ingresso vengono rilasciati in una cartella per l'elaborazione. Tuttavia, molte soluzioni richiedono che un archivio di inserimento dei messaggi funga da buffer per i messaggi e supporti l'elaborazione scale-out, il recapito affidabile e altri tipi di semantica di accodamento dei messaggi. Le opzioni includono Hub eventi di Azure, hub IoT di Azure e Kafka.
 
-- **Elaborazione del flusso**: dopo avere acquisito i messaggi in tempo reale, la soluzione deve elaborarli filtrando, aggregando e preparando in altro modo i dati per l'analisi. I dati del flusso elaborati vengono quindi scritti in un sink di output. Analisi di flusso di Azure offre un servizio di elaborazione del flusso gestito basato su query SQL in esecuzione perenne che operano su flussi non associati. È possibile anche usare tecnologie di streaming open source di Apache, come Storm e Spark Streaming in un cluster HDInsight.
+- **Elaborazione del flusso**. Dopo avere acquisito i messaggi in tempo reale, la soluzione deve elaborarli filtrando, aggregando e preparando in altro modo i dati per l'analisi. I dati del flusso elaborati vengono quindi scritti in un sink di output. Analisi di flusso di Azure offre un servizio di elaborazione del flusso gestito basato su query SQL in esecuzione perenne che operano su flussi non associati. È possibile anche usare tecnologie di streaming open source di Apache, come Storm e Spark Streaming in un cluster HDInsight.
 
-- **Archivio dati analitici**: numerose soluzioni per Big Data preparano i dati per l'analisi e quindi servono i dati elaborati in un formato strutturato su sui è possibile eseguire query con strumenti analitici. L'archivio dati analitici usato per rispondere a queste query può essere un data warehouse relazionale in stile Kimball, come nella maggior parte delle soluzioni di business intelligence (BI) tradizionali. In alternativa, i dati possono essere presentati tramite una tecnologia NoSQL a bassa latenza come HBase o un database Hive interattivo che fornisce un'astrazione di metadati sui file di dati nell'archivio dati distribuito. Azure SQL Data Warehouse fornisce un servizio gestito per il data warehousing su larga scala basato su cloud. HDInsight supporta Interactive Hive, HBase e Spark SQL, che possono anche essere usati per fornire dati per l'analisi.
+- **Archivio dati analitici**. Numerose soluzioni per Big Data preparano i dati per l'analisi e quindi servono i dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti analitici. L'archivio dati analitici usato per rispondere a queste query può essere un data warehouse relazionale in stile Kimball, come nella maggior parte delle soluzioni di business intelligence (BI) tradizionali. In alternativa, i dati possono essere presentati tramite una tecnologia NoSQL a bassa latenza come HBase o un database Hive interattivo che fornisce un'astrazione di metadati sui file di dati nell'archivio dati distribuito. Azure SQL Data Warehouse fornisce un servizio gestito per il data warehousing su larga scala basato su cloud. HDInsight supporta Interactive Hive, HBase e Spark SQL, che possono anche essere usati per fornire dati per l'analisi.
 
-- **Analisi e creazione di report**: l'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite l'analisi e il reporting. Per consentire agli utenti di analizzare i dati, l'architettura può includere un livello di modellazione dei dati, ad esempio un cubo OLAP multidimensionale o un modello di dati tabulari in Azure Analysis Services. Potrebbe inoltre supportare la business intelligence in modalità self-service, usando le tecnologie di modellazione e visualizzazione in Microsoft Power BI o Microsoft Excel. L'analisi e il reporting possono anche assumere la forma di esplorazione interattiva dei dati da parte di data scientist o analisti di dati. Per questi scenari, molti servizi di Azure supportano notebook analitici come Jupyter, consentendo a questi utenti di sfruttare le proprie competenze esistenti con Python o R. Per l'esplorazione di dati su larga scala, è possibile usare Microsoft R Server, sia autonomo che con Spark.
+- **Analisi e creazione di report**. L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite strumenti di analisi e report. Per consentire agli utenti di analizzare i dati, l'architettura può includere un livello di modellazione dei dati, ad esempio un cubo OLAP multidimensionale o un modello di dati tabulari in Azure Analysis Services. Potrebbe inoltre supportare la business intelligence in modalità self-service, usando le tecnologie di modellazione e visualizzazione in Microsoft Power BI o Microsoft Excel. L'analisi e il reporting possono anche assumere la forma di esplorazione interattiva dei dati da parte di data scientist o analisti di dati. Per questi scenari, molti servizi di Azure supportano notebook analitici come Jupyter, consentendo a questi utenti di sfruttare le proprie competenze esistenti con Python o R. Per l'esplorazione di dati su larga scala, è possibile usare Microsoft R Server, sia autonomo che con Spark.
 
-- **Orchestrazione**: la maggior parte delle soluzioni per Big Data consiste in operazioni ripetute di elaborazione dei dati, incapsulate in flussi di lavoro, che trasformano i dati di origine, spostano i dati tra più origini e sink, caricano i dati elaborati in un archivio dati analitico o li inseriscono direttamente in un report o i un dashboard. Per automatizzare questi flussi di lavoro, è possibile usare una tecnologia di orchestrazione come Azure Data Factory o Apache Oozie e Sqoop.
+- **Orchestrazione**. La maggior parte delle soluzioni per Big Data consiste in operazioni ripetute di elaborazione dei dati, incapsulate in flussi di lavoro, che trasformano i dati di origine, spostano i dati tra più origini e sink, caricano i dati elaborati in un archivio dati analitico o li inseriscono direttamente in un report o in un dashboard. Per automatizzare questi flussi di lavoro, è possibile usare una tecnologia di orchestrazione come Azure Data Factory o Apache Oozie e Sqoop.
 
 Azure include molti servizi che possono essere usati in un'architettura per Big Data. Si dividono approssimativamente in due categorie:
 
@@ -85,7 +87,7 @@ Prendere in considerazione questo stile di architettura quando è necessario:
 
 - **Elaborare i dati sul posto**. Le soluzioni tradizionali di business intelligence usano spesso un processo di estrazione, trasformazione e (ETL) per trasferire i dati in un data warehouse. Con volumi di dati di dimensioni maggiori e una gamma di formati più ampia, in genere le soluzioni per Big Data usano variazioni del processo ETL, ad esempio trasformazione, estrazione e caricamento (TEL). Con questo approccio i dati vengono elaborati all'interno dell'archivio dati distribuito, trasformandoli nella struttura richiesta, prima di spostare i dati trasformati in un archivio dati analitici.
 
-- **Bilanciare il costo unitario e il costo per l'utilizzo**. Per i processi di elaborazione batch, è importante considerare due fattori: il costo unitario dei nodi di calcolo e il costo al minuto dell'utilizzo di tali nodi per completare il processo. Ad esempio, un processo batch può richiedere otto ore con quattro nodi cluster. Tuttavia, potrebbe risultare che il processo usi tutti e quattro i nodi solo durante le prime due ore e, successivamente, siano necessari solo due nodi. In tal caso, eseguire l'intero lavoro su due nodi aumenterebbe il tempo totale del lavoro, ma non lo raddoppierebbe e quindi il costo totale sarebbe inferiore. In alcuni scenari aziendali, un tempo di elaborazione più lungo può essere preferibile al costo più elevato dell'utilizzo di risorse cluster sottoutilizzate.
+- **Bilanciare il costo unitario e il costo per l'utilizzo**. Per i processi di elaborazione batch, è importante considerare due fattori: il costo unitario dei nodi di calcolo e il costo al minuto dell'uso di tali nodi per completare il processo. Ad esempio, un processo batch può richiedere otto ore con quattro nodi cluster. Tuttavia, potrebbe risultare che il processo usi tutti e quattro i nodi solo durante le prime due ore e, successivamente, siano necessari solo due nodi. In tal caso, eseguire l'intero lavoro su due nodi aumenterebbe il tempo totale del lavoro, ma non lo raddoppierebbe e quindi il costo totale sarebbe inferiore. In alcuni scenari aziendali, un tempo di elaborazione più lungo può essere preferibile al costo più elevato dell'utilizzo di risorse cluster sottoutilizzate.
 
 - **Separare le risorse del cluster**. Quando si distribuiscono cluster HDInsight, di solito si ottengono prestazioni migliori mediante il provisioning di risorse cluster separate per ogni tipo di carico di lavoro. Ad esempio, sebbene i cluster Spark includano Hive, se è necessario eseguire un'elaborazione estesa con Hive e Spark, è consigliabile considerare l'implementazione di cluster Spark e Hadoop dedicati separati. Analogamente, se si usa HBase e Storm per l'elaborazione di flussi a bassa latenza e Hive per l'elaborazione batch, considerare l'utilizzo di cluster separati per Storm, HBase e Hadoop.
 
@@ -97,7 +99,7 @@ Prendere in considerazione questo stile di architettura quando è necessario:
 
 Internet delle cose (IoT) è un subset specifico di soluzioni per Big Data. Il diagramma seguente mostra una possibile architettura logica per IoT. Il diagramma evidenzia i componenti del flusso di eventi dell'architettura.
 
-![](./images/iot.png)
+![Diagramma di un'architettura IoT](./images/iot.png)
 
 Il **gateway cloud** inserisce gli eventi di dispositivo in corrispondenza dei limiti del cloud, usando un sistema di messaggistica a bassa latenza affidabile.
 
@@ -109,9 +111,9 @@ Di seguito vengono indicati alcuni tipi comuni di elaborazione. Naturalmente, l'
 
 - Scrittura dei dati di evento nell'archiviazione offline sicura per l'analisi batch.
 
-- Analisi Percorso critico, che analizza il flusso di eventi (quasi) in tempo reale, per rilevare le anomalie, riconoscere i modelli in base a intervalli di tempo ricorrenti o attivare avvisi quando si verifica una condizione specifica nel flusso. 
+- Analisi Percorso critico, che analizza il flusso di eventi (quasi) in tempo reale, per rilevare le anomalie, riconoscere i modelli in base a intervalli di tempo ricorrenti o attivare avvisi quando si verifica una condizione specifica nel flusso.
 
-- Gestione di tipi speciali di messaggi non di telemetria dai dispositivi, come le notifiche e gli allarmi. 
+- Gestione di tipi speciali di messaggi non di telemetria dai dispositivi, come le notifiche e gli allarmi.
 
 - Machine Learning.
 

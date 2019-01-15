@@ -3,24 +3,24 @@ title: Registrazione e monitoraggio in microservizi
 description: Registrazione e monitoraggio in microservizi
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 9d385a141edb34b2b0f4badb7dfcaf53baac2666
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 6fe7c9477ac65f98dfc106dc05a82dc2a2c56266
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305911"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113621"
 ---
-# <a name="designing-microservices-logging-and-monitoring"></a>Progettazione dei microservizi: registrazione e monitoraggio
+# <a name="designing-microservices-logging-and-monitoring"></a>Progettazione di microservizi: registrazione e monitoraggio
 
-In qualsiasi applicazione complessa è inevitabile che a un certo punto si verifichi un errore. In un'applicazione di microservizi è necessario tenere traccia di quanto avviene in decine o addirittura centinaia di servizi. La registrazione e il monitoraggio sono estremamente importanti per avere una visione olistica del sistema. 
+In qualsiasi applicazione complessa è inevitabile che a un certo punto si verifichi un errore. In un'applicazione di microservizi è necessario tenere traccia di quanto avviene in decine o addirittura centinaia di servizi. La registrazione e il monitoraggio sono estremamente importanti per avere una visione olistica del sistema.
 
-![](./images/monitoring.png)
+![Diagramma del monitoraggio in un'architettura di microservizi](./images/monitoring.png)
 
-In un'architettura di microservizi può risultare particolarmente difficile individuare la causa esatta di errori o colli di bottiglia delle prestazioni. Una singola operazione utente potrebbe infatti interessare più servizi. I servizi potrebbero raggiungere i limiti di I/O della rete all'interno del cluster. Una catena di chiamate tra servizi potrebbe causare una contropressione nel sistema, generando errori a cascata o una latenza elevata. Senza contare che, in genere, non si conosce il nodo in cui verrà eseguito un determinato contenitore. I contenitori presenti nello stesso nodo potrebbero contendersi la CPU o la memoria limitata. 
+In un'architettura di microservizi può risultare particolarmente difficile individuare la causa esatta di errori o colli di bottiglia delle prestazioni. Una singola operazione utente potrebbe infatti interessare più servizi. I servizi potrebbero raggiungere i limiti di I/O della rete all'interno del cluster. Una catena di chiamate tra servizi potrebbe causare una contropressione nel sistema, generando errori a cascata o una latenza elevata. Senza contare che, in genere, non si conosce il nodo in cui verrà eseguito un determinato contenitore. I contenitori presenti nello stesso nodo potrebbero contendersi la CPU o la memoria limitata.
 
 Per comprendere quello che succede, è necessario raccogliere i dati di telemetria dell'applicazione.  I dati di telemetria possono essere divisi in *log* e *metriche*. [Monitoraggio di Azure](/azure/monitoring-and-diagnostics/monitoring-overview) raccoglie sia log che metriche nella piattaforma Azure.
 
-I **log** sono record di eventi basati su testo che si verificano durante l'esecuzione dell'applicazione. Includono elementi quali i registri applicazioni (istruzioni di analisi) o i log del server Web. Sono utili principalmente per la scienza forense e l'analisi delle cause radice. 
+I **log** sono record di eventi basati su testo che si verificano durante l'esecuzione dell'applicazione. Includono elementi quali i registri applicazioni (istruzioni di analisi) o i log del server Web. Sono utili principalmente per la scienza forense e l'analisi delle cause radice.
 
 Per **metriche** si intendono valori numerici che è possibile analizzare. È possibile usare le metriche per osservare il sistema in tempo reale o quasi in tempo reale oppure per analizzare le tendenze delle prestazioni nel tempo. Le metriche possono essere ulteriormente suddivise in categorie come descritto di seguito:
 
@@ -28,7 +28,7 @@ Per **metriche** si intendono valori numerici che è possibile analizzare. È po
 
 - Metriche del **contenitore**. Se i servizi vengono eseguiti all'interno dei contenitori, è necessario raccogliere le metriche a livello di contenitore, non solo a livello di macchina virtuale. È possibile configurare Monitoraggio di Azure in modo da monitorare i carichi di lavoro dei contenitori nel servizio Kubernetes di Azure (AKS). Per altre informazioni, vedere [Panoramica di Monitoraggio di Azure per contenitori](/azure/monitoring/monitoring-container-insights-overview). Per altri agenti di orchestrazione, usare [Soluzione Monitoraggio contenitori in Log Analytics](/azure/log-analytics/log-analytics-containers).
 
-- Metriche dell'**applicazione**. Includono tutte le metriche utili per comprendere il comportamento di un servizio, ad esempio il numero di richieste HTTP in ingresso in coda, la latenza delle richieste, la lunghezza della coda di messaggi. Le applicazioni possono creare anche metriche personalizzate specifiche per il dominio, come il numero di transazioni aziendali elaborate al minuto. Usare [Application Insights](/azure/application-insights/app-insights-overview) per abilitare le metriche dell'applicazione. 
+- Metriche dell'**applicazione**. Includono tutte le metriche utili per comprendere il comportamento di un servizio, ad esempio il numero di richieste HTTP in ingresso in coda, la latenza delle richieste, la lunghezza della coda di messaggi. Le applicazioni possono creare anche metriche personalizzate specifiche per il dominio, come il numero di transazioni aziendali elaborate al minuto. Usare [Application Insights](/azure/application-insights/app-insights-overview) per abilitare le metriche dell'applicazione.
 
 - Metriche dei **servizi dipendenti**. I servizi possono chiamare servizi esterni o endpoint, ad esempio servizi SaaS o PaaS gestiti. I servizi di terze parti possono o meno fornire metriche. Se non forniscono metriche, è necessario basarsi sulle metriche dell'applicazione per tenere traccia delle statistiche relative alla latenza e alla frequenza degli errori.
 
@@ -40,19 +40,17 @@ L'articolo [Monitoraggio e diagnostica](../best-practices/monitoring.md) illustr
 
 **Velocità di inserimento dati**. Qual è la velocità effettiva alla quale il sistema è in grado di inserire gli eventi di telemetria? Cosa accade se tale velocità viene superata? È ad esempio possibile che il sistema limiti le richieste dei client, causando la perdita di dati di telemetria, oppure che i dati vengano sottocampionati. In alcuni casi è possibile ovviare a questo problema riducendo la quantità di dati raccolti, come descritto di seguito:
 
-  - Aggregare le metriche calcolando le statistiche, ad esempio la media e la deviazione standard, e inviare i dati statistici al sistema di monitoraggio.  
+- Aggregare le metriche calcolando le statistiche, ad esempio la media e la deviazione standard, e inviare i dati statistici al sistema di monitoraggio.
+- Sottocampionare i dati, ovvero elaborare solo una percentuale degli eventi.
+- Inviare i dati in batch per ridurre il numero di chiamate di rete al servizio di monitoraggio.
 
-  - Sottocampionare i dati, ovvero elaborare solo una percentuale degli eventi.
+**Costo**. Il costo relativo all'inserimento e all'archiviazione dei dati di telemetria può essere alto, soprattutto in caso di volumi elevati. In alcuni casi può persino superare il costo di esecuzione dell'applicazione. In questa situazione potrebbe essere necessario ridurre il volume di dati di telemetria aggregando, sottocampionando o inviando in batch i dati, come descritto in precedenza.
 
-  - Inviare i dati in batch per ridurre il numero di chiamate di rete al servizio di monitoraggio.
-
-**Costo**. Il costo relativo all'inserimento e all'archiviazione dei dati di telemetria può essere alto, soprattutto in caso di volumi elevati. In alcuni casi può persino superare il costo di esecuzione dell'applicazione. In questa situazione potrebbe essere necessario ridurre il volume di dati di telemetria aggregando, sottocampionando o inviando in batch i dati, come descritto in precedenza. 
-        
-**Fedeltà dei dati**. Qual è il livello di accuratezza delle metriche? Le medie possono celare outlier, in particolare su vasta scala. Se inoltre la frequenza di campionamento è troppo bassa, i dati potrebbero non presentare fluttuazioni. Potrebbe sembrare che la latenza end-to-end sia uguale per tutte le richieste, quando in realtà una parte significativa delle richieste richiede più tempo. 
+**Fedeltà dei dati**. Qual è il livello di accuratezza delle metriche? Le medie possono celare outlier, in particolare su vasta scala. Se inoltre la frequenza di campionamento è troppo bassa, i dati potrebbero non presentare fluttuazioni. Potrebbe sembrare che la latenza end-to-end sia uguale per tutte le richieste, quando in realtà una parte significativa delle richieste richiede più tempo.
 
 **Latenza**. Per abilitare gli avvisi e il monitoraggio in tempo reale, i dati di telemetria devono essere disponibili in tempi brevi. A quanto risalgono effettivamente i dati visualizzati nel dashboard di monitoraggio? A qualche secondo? A più di un minuto?
 
-**Archiviazione**. Per i log, potrebbe essere più efficace scrivere gli eventi di log in un archivio temporaneo nel cluster e configurare un agente per inviare i file di log a un archivio permanente.  Alla fine i dati dovrebbero essere spostati in un archivio a lungo termine in modo che siano disponibili per l'analisi retrospettiva. Un'architettura di microservizi può generare un volume elevato di dati di telemetria, di conseguenza il costo di archiviazione dei dati è un fattore rilevante. È inoltre necessario tenere in considerazione come si intende eseguire query sui dati. 
+**Archiviazione**. Per i log, potrebbe essere più efficace scrivere gli eventi di log in un archivio temporaneo nel cluster e configurare un agente per inviare i file di log a un archivio permanente.  Alla fine i dati dovrebbero essere spostati in un archivio a lungo termine in modo che siano disponibili per l'analisi retrospettiva. Un'architettura di microservizi può generare un volume elevato di dati di telemetria, di conseguenza il costo di archiviazione dei dati è un fattore rilevante. È inoltre necessario tenere in considerazione come si intende eseguire query sui dati.
 
 **Dashboard e visualizzazione**. Si ha una visione olistica del sistema, relativa a tutti i servizi, sia all'interno del cluster che nei servizi esterni? Se i log e i dati di telemetria vengono scritti in più posizioni, è possibile visualizzarli tutti nel dashboard e correlarli? Il dashboard di monitoraggio dovrebbe visualizzare almeno le informazioni seguenti:
 
@@ -60,7 +58,6 @@ L'articolo [Monitoraggio e diagnostica](../best-practices/monitoring.md) illustr
 - Metriche dei contenitori correlate a livello di servizio.
 - Metriche di sistema correlate ai contenitori.
 - Errori e outlier dei servizi.
-    
 
 ## <a name="distributed-tracing"></a>Analisi distribuita
 
@@ -68,7 +65,7 @@ Come accennato in precedenza, uno degli aspetti più complessi nei microservizi 
 
 Il primo servizio che riceve una richiesta client deve generare l'ID di correlazione. Se il servizio effettua una chiamata HTTP a un altro servizio, inserisce l'ID di correlazione in un'intestazione di richiesta. Analogamente, se il servizio invia un messaggio asincrono, inserisce l'ID di correlazione nel messaggio. I servizi downstream continuano a propagare l'ID di correlazione, in modo che attraversi l'intero sistema. L'ID di correlazione deve inoltre essere incluso in tutto il codice che scrive le metriche o gli eventi dei registri applicazioni.
 
-Quando le chiamate al servizio sono correlate, è possibile calcolare le metriche operative, ad esempio la latenza end-to-end per una transazione completa, il numero di transazioni riuscite al secondo e la percentuale di transazioni non riuscite. L'aggiunta dell'ID di correlazione nei registri applicazioni consente anche di eseguire l'analisi delle cause radice. Se un'operazione non riesce, è possibile trovare le istruzioni del log per tutte le chiamate a servizi include nella stessa operazione. 
+Quando le chiamate al servizio sono correlate, è possibile calcolare le metriche operative, ad esempio la latenza end-to-end per una transazione completa, il numero di transazioni riuscite al secondo e la percentuale di transazioni non riuscite. L'aggiunta dell'ID di correlazione nei registri applicazioni consente anche di eseguire l'analisi delle cause radice. Se un'operazione non riesce, è possibile trovare le istruzioni del log per tutte le chiamate a servizi include nella stessa operazione.
 
 Ecco alcuni aspetti da considerare quando si implementa l'analisi distribuita:
 
@@ -76,16 +73,15 @@ Ecco alcuni aspetti da considerare quando si implementa l'analisi distribuita:
 
 - Nel caso dei messaggi asincroni, se l'infrastruttura di messaggistica supporta l'aggiunta di metadati ai messaggi, è necessario includere l'ID di correlazione come metadati. In caso contrario, includerlo come parte dello schema del messaggio.
 
-- Invece di un unico identificatore opaco, è possibile inviare un *contesto di correlazione* che include informazioni più dettagliate, ad esempio le relazioni tra chiamante e chiamato. 
+- Invece di un unico identificatore opaco, è possibile inviare un *contesto di correlazione* che include informazioni più dettagliate, ad esempio le relazioni tra chiamante e chiamato.
 
 - Azure Application Insights SDK inserisce automaticamente il contesto di correlazione nelle intestazioni HTTP e include l'ID di correlazione nei log di Application Insights. Se si decide di usare le funzionalità di correlazione incorporate in Application Insights, è possibile che alcuni servizi debbano ancora propagare in modo esplicito le intestazioni di correlazione, a seconda delle librerie in uso. Per altre informazioni, vedere [Correlazione di dati di telemetria in Application Insights](/azure/application-insights/application-insights-correlation).
-   
-- Se si usa Istio o linkerd come mesh del servizio, queste tecnologie generano automaticamente le intestazioni di correlazione quando le chiamate HTTP vengono indirizzate tramite i proxy della mesh del servizio. I servizi devono inoltrare le intestazioni pertinenti. 
 
-    - Istio: [Distributed Request Tracing](https://istio-releases.github.io/v0.1/docs/tasks/zipkin-tracing.html) (Analisi delle richieste distribuite)
-    
-    - linkerd: [Context Headers](https://linkerd.io/config/1.3.0/linkerd/index.html#http-headers) (Intestazioni di contesto)
-    
+- Se si usa Istio o linkerd come mesh del servizio, queste tecnologie generano automaticamente le intestazioni di correlazione quando le chiamate HTTP vengono indirizzate tramite i proxy della mesh del servizio. I servizi devono inoltrare le intestazioni pertinenti.
+
+  - Istio: [Distributed Request Tracing](https://istio-releases.github.io/v0.1/docs/tasks/zipkin-tracing.html) (Analisi distribuita delle richieste)
+  - Linkerd: [Context Headers](https://linkerd.io/config/1.3.0/linkerd/index.html#http-headers) (Intestazioni di contesto)
+
 - Valutare in che modo si intende aggregare i log. È opportuno definire procedure standard tra i team su come includere l'ID di correlazione nei log. Usare un formato strutturato o semistrutturato, ad esempio JSON, e definire un campo comune in cui verrà inserito l'ID di correlazione.
 
 ## <a name="technology-options"></a>Opzioni relative alla tecnologia
@@ -94,13 +90,13 @@ Ecco alcuni aspetti da considerare quando si implementa l'analisi distribuita:
 
 Tenere presente che Application applica una limitazione se la velocità dei dati supera un limite massimo. Per informazioni dettagliate, vedere [Limiti relativi ad Application Insights](/azure/azure-subscription-service-limits#application-insights-limits). Una singola operazione può generare diversi eventi di telemetria, di conseguenza se nell'applicazione viene rilevato un volume di traffico elevato, è probabile che vengano applicate delle limitazioni. Per ovviare a questo problema, è possibile eseguire il campionamento in modo da ridurre il traffico dei dati di telemetria. Questo implica però una minor precisione delle metriche. Per altre informazioni, vedere [Campionamento in Application Insights](/azure/application-insights/app-insights-sampling). È anche possibile ridurre il volume dei dati aggregando preventivamente le metriche, ovvero calcolando i valori statistici quali media e deviazione standard, e inviando tali valori invece dei dati di telemetria non elaborati. Per informazioni sull'uso di Application Insights su vasta scala, vedere il post di blog [Azure Monitoring and Analytics at Scale](https://blogs.msdn.microsoft.com/azurecat/2017/05/11/azure-monitoring-and-analytics-at-scale/) (Monitoraggio e analisi di Azure su vasta scala).
 
-Assicurarsi anche di aver compreso il modello di determinazione prezzi per Application Insights, perché gli addebiti sono basati sul volume dei dati. Per altre informazioni, vedere [Gestire volumi di dati e prezzi in Application Insights](/azure/application-insights/app-insights-pricing). Se l'applicazione genera un notevole volume di dati di telemetria e non si vuole eseguire il campionamento o l'aggregazione dei dati, Application Insights potrebbe non essere la scelta più appropriata. 
+Assicurarsi anche di aver compreso il modello di determinazione prezzi per Application Insights, perché gli addebiti sono basati sul volume dei dati. Per altre informazioni, vedere [Gestire volumi di dati e prezzi in Application Insights](/azure/application-insights/app-insights-pricing). Se l'applicazione genera un notevole volume di dati di telemetria e non si vuole eseguire il campionamento o l'aggregazione dei dati, Application Insights potrebbe non essere la scelta più appropriata.
 
 Se Application Insights non soddisfa i propri requisiti, ecco alcuni approcci consigliati che usano tecnologie open source molto diffuse.
 
 Per le metriche di sistema e dei contenitori, provare a esportare le metriche in un database di serie temporali, ad esempio **Prometheus** o **InfluxDB** in esecuzione nel cluster.
 
-- InfluxDB è un sistema basato sul push, questo significa che un agente deve eseguire il push delle metriche. È possibile usare [Heapster][heapster], un servizio che raccoglie le metriche a livello di cluster da kubelet, aggrega i dati e ne esegue il push in InfluxDB o in un'altra soluzione di archiviazione per serie temporali. Il servizio contenitore di Azure distribuisce Heapster durante la configurazione del cluster. Un'altra opzione è [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), ovvero un agente per la raccolta di metriche e la creazione di report da metriche. 
+- InfluxDB è un sistema basato sul push, questo significa che un agente deve eseguire il push delle metriche. È possibile usare [Heapster][heapster], un servizio che raccoglie le metriche a livello di cluster da kubelet, aggrega i dati e ne esegue il push in InfluxDB o in un'altra soluzione di archiviazione per serie temporali. Il servizio contenitore di Azure distribuisce Heapster durante la configurazione del cluster. Un'altra opzione è [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), ovvero un agente per la raccolta di metriche e la creazione di report da metriche.
 
 - Prometheus è un sistema basato sul pull, che recupera periodicamente le metriche da posizioni configurate. Prometheus può recuperare le metriche generate da cAdvisor o kube-state-metrics. [kube-state-metrics][kube-state-metrics] è un servizio che raccoglie le metriche dal server API di Kubernetes e le mette a disposizione di Prometheus (o di uno scraper compatibile con un endpoint client di Prometheus). Laddove Heapster aggrega le metriche generate da Kubernetes e le inoltra a un sink, kube-state-metrics genera le proprie metriche e le rende disponibili tramite un endpoint per il recupero. Per le metriche di sistema usare [Node exporter](https://github.com/prometheus/node_exporter), uno strumento di esportazione di Prometheus per le metriche di sistema. Prometheus supporta i dati in formato a virgola mobile, ma non i dati in formato stringa, di conseguenza è appropriato per le metriche di sistema, ma non per i log.
 
@@ -108,7 +104,7 @@ Per le metriche di sistema e dei contenitori, provare a esportare le metriche in
 
 Per i registri applicazioni, provare a usare **Fluentd** ed **Elasticsearch**. Fluentd è un agente di raccolta dati open source, mentre Elasticsearch è un database di documenti ottimizzato per l'uso come motore di ricerca. Con questo approccio, ogni servizio invia i log a `stdout` e `stderr`, mentre Kubernetes scrive questi flussi nel file system locale. Fluentd raccoglie i log, se necessario li arricchisce con ulteriori metadati di Kubernetes e invia i log a Elasticsearch. Per creare un dashboard per Elasticsearch, usare Kibana, Grafana o uno strumento simile. Fluentd viene eseguito come daemonset nel cluster, in modo da assicurare che a ogni nodo venga assegnato un solo pod Fluentd. È possibile configurare Fluentd per la raccolta sia dei log di kubelet che dei log dei contenitori. In presenza di volumi elevati, la scrittura di log nel file system locale potrebbe generare un collo di bottiglia delle prestazioni, in particolare nello stesso nodo vengono eseguiti più servizi. Eseguire il monitoraggio della latenza dei dischi e dell'utilizzo del file system nell'ambiente di produzione.
 
-Un vantaggio correlato all'uso di Fluentd con Elasticsearch per i log è che i servizi non richiedono alcuna dipendenza di libreria aggiuntiva. Ogni servizio scrive solo in `stdout` e `stderr`, mentre è Fluentd a gestire l'esportazione dei log in Elasticsearch. I team che scrivono i servizi non devono inoltre sapere come configurare l'infrastruttura di registrazione. Uno degli aspetti più problematici consiste nel configurare il cluster Elasticsearch per una distribuzione in ambiente di produzione, adattandolo in modo da riuscire a gestire il traffico. 
+Un vantaggio correlato all'uso di Fluentd con Elasticsearch per i log è che i servizi non richiedono alcuna dipendenza di libreria aggiuntiva. Ogni servizio scrive solo in `stdout` e `stderr`, mentre è Fluentd a gestire l'esportazione dei log in Elasticsearch. I team che scrivono i servizi non devono inoltre sapere come configurare l'infrastruttura di registrazione. Uno degli aspetti più problematici consiste nel configurare il cluster Elasticsearch per una distribuzione in ambiente di produzione, adattandolo in modo da riuscire a gestire il traffico.
 
 Un'altra opzione consiste nell'inviare i log a Log Analytics di Operations Management Suite (OMS). Il servizio [Log Analytics][log-analytics] raccoglie i dati in un repository centrale ed è anche in grado di consolidare i dati di altri servizi di Azure usati dall'applicazione. Per altre informazioni, vedere [Monitorare un cluster del servizio contenitore di Azure con Microsoft Operations Management Suite (OMS)][k8s-to-oms].
 
@@ -128,7 +124,7 @@ export interface ILogger {
 }
 ```
 
-Ecco un'implementazione di `ILogger` che include la libreria Winston. Accetta l'ID di correlazione come parametro di costruttore e inserisce l'ID in ogni messaggio del log. 
+Ecco un'implementazione di `ILogger` che include la libreria Winston. Accetta l'ID di correlazione come parametro di costruttore e inserisce l'ID in ogni messaggio del log.
 
 ```ts
 class WinstonLogger implements ILogger {
@@ -161,7 +157,7 @@ Il servizio Package deve estrarre l'ID correlazione dalla richiesta HTTP. Se ad 
 export type CorrelationIdFn = (ctx: Context) => string;
 
 export function logger(level: string, getCorrelationId: CorrelationIdFn) {
-    winston.configure({ 
+    winston.configure({
         level: level,
         transports: [new (winston.transports.Console)()]
         });
@@ -172,7 +168,7 @@ export function logger(level: string, getCorrelationId: CorrelationIdFn) {
 }
 ```
 
-Questo middleware richiama `getCorrelationId`, una funzione definita dal chiamante per ottenere l'ID di correlazione. Crea quindi un'istanza del logger e la accantona in `ctx.state`, ovvero un dizionario chiave-valore usato in Koa per passare le informazioni tramite la pipeline. 
+Questo middleware richiama `getCorrelationId`, una funzione definita dal chiamante per ottenere l'ID di correlazione. Crea quindi un'istanza del logger e la accantona in `ctx.state`, ovvero un dizionario chiave-valore usato in Koa per passare le informazioni tramite la pipeline.
 
 Il middleware del logger viene aggiunto alla pipeline all'avvio:
 

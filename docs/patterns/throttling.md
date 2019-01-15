@@ -1,19 +1,17 @@
 ---
-title: Limitazione
+title: Modello Limitazione
+titleSuffix: Cloud Design Patterns
 description: Controllare il consumo delle risorse usate da un'istanza di un'applicazione, un singolo tenant o un intero servizio.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- performance-scalability
-ms.openlocfilehash: 29156fc72f40a952dd53adcb20ffa7c3d0af79b4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 9babe6b3c81b0846e83dfef98bbd76a89661d911
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541258"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010668"
 ---
 # <a name="throttling-pattern"></a>Modello Limitazione
 
@@ -37,14 +35,13 @@ Il sistema potrebbe implementare diverse strategie di limitazione, tra cui:
 
 - Disabilitare o degradare la funzionalità di servizi non essenziali selezionati in modo che i servizi essenziali possano essere eseguiti senza problemi con risorse sufficienti. Ad esempio, se l'applicazione sta trasmettendo l'output video, potrebbe passare a una risoluzione inferiore.
 
-- Usare il livellamento del carico per regolare il volume di attività; questo approccio è descritto in maggior dettaglio nello [schema di livellamento del carico basato sulle code](queue-based-load-leveling.md). In un ambiente multi-tenant questo approccio ridurrà le prestazioni per ogni tenant. Se il sistema deve supportare un insieme di tenant con contratti di servizio diversi, le operazioni i tenant di alto valore possono essere eseguite immediatamente. Le richieste di altri tenant possono essere tratenute e gestite quando il backlog è diminuito. Lo [schema della coda di priorità][] può essere usato per facilitare l'implementazione di questo approccio.
+- Usare il livellamento del carico per regolare il volume di attività; questo approccio è descritto in maggior dettaglio nello [schema di livellamento del carico basato sulle code](./queue-based-load-leveling.md). In un ambiente multi-tenant questo approccio ridurrà le prestazioni per ogni tenant. Se il sistema deve supportare un insieme di tenant con contratti di servizio diversi, le operazioni i tenant di alto valore possono essere eseguite immediatamente. Le richieste di altri tenant possono essere tratenute e gestite quando il backlog è diminuito. Per facilitare l'implementazione di questo approccio potrebbe essere usato il modello di coda con priorità.
 
 - Rinviare operazioni eseguite per conto di tenant o di applicazioni con priorità più bassa. Queste operazioni possono essere sospese o limitate, con un'eccezione generata per informare il tenant che il sistema è occupato e che l'operazione dovrebbe essere ritentata successivamente.
 
 La figura mostra un grafo ad area per l'utilizzo delle risorse (una combinazione di memoria, CPU, larghezza di banda e di altri fattori) rispetto al tempo per cui le applicazioni usano le tre funzioni. Una funzione è un'area di funzionalità, ad esempio un componente che esegue una serie specifica di attività, una parte del codice che esegue un calcolo complesso o un elemento che fornisce un servizio, ad esempio una cache in memoria. Queste funzioni sono etichettate come A, B e C.
 
 ![Figura 1: grafo che mostra l'utilizzo delle risorse rispetto al tempo di esecuzione delle applicazioni per conto di tre utenti](./_images/throttling-resource-utilization.png)
-
 
 > L'area immediatamente sotto la linea per una funzione indica le risorse usate dalle applicazioni quando richiamano questa funzione. Ad esempio, l'area sotto la riga per la Funzione A mostra le risorse usate dalle applicazioni che usano la Funzione A e l'area tra le righe per la Funzione A e la Funzione B indica le risorse usate dalle applicazioni che richiamano la Funzione B. L'aggregazione delle aree per ogni funzione mostra l'utilizzo totale delle risorse del sistema.
 
@@ -55,7 +52,6 @@ Gli approcci di scalabilità automatica e limitazione possono anche essere combi
 La figura seguente mostra un grafo ad area sull'utilizzo generale delle risorse da parte di tutte le applicazioni eseguite in un sistema rispetto al tempo e illustra come è possibile combinare la limitazione delle richieste con la scalabilità automatica.
 
 ![Figura 2: grafo che mostra gli effetti ottenuti combinando la limitazione delle richieste con la scalabilità automatica](./_images/throttling-autoscaling.png)
-
 
 All'ora T1 viene raggiunta la soglia che specifica il limite flessibile di utilizzo di risorse. A questo punto il sistema può iniziare a scalare orizzontalmente. Tuttavia, se le nuove risorse non diventano disponibili abbastanza rapidamente, le risorse esistenti potrebbero esaurirsi e si potrebbe verificare un errore del sistema. Per evitare questo problema, il sistema viene limitato temporaneamente, come descritto in precedenza. Dopo che la scalabilità automatica è stata completata e che risorse aggiuntive sono diventate disponibili, è possibile ridurre la limitazione.
 
@@ -93,14 +89,12 @@ Per impedire agli utenti di un tenant di compromettere i tempi di risposta e la 
 
 ![Figura 3: implementazione della limitazione delle richieste in un'applicazione multi-tenant](./_images/throttling-multi-tenant.png)
 
-
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
+
 - [Indicazioni sulla strumentazione e la telemetria](https://msdn.microsoft.com/library/dn589775.aspx). La limitazione dipende dalla raccolta di informazioni sulla frequenza di utilizzo di un servizio. Descrive come generare e acquisire informazioni di monitoraggio personalizzate.
 - [Indicazioni sulla misurazione del servizio](https://msdn.microsoft.com/library/dn589796.aspx). Descrive come controllare l'utilizzo dei servizi per comprenderne le modalità di utilizzo. Queste informazioni possono essere utili per determinare come limitare un servizio.
-- [Indicazioni sulla scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). La limitazione delle richieste può essere usata come misura provvisoria mentre un sistema esegue la scalabilità automatica o per non rendere necessaria questa operazione. Contiene informazioni sulle strategie di scalabilità automatica.
-- [Schema di livellamento del carico basato sulle code](queue-based-load-leveling.md). Il livellamento del carico basato sulle code è un meccanismo di utilizzo comune per implementare la limitazione delle richieste. Una coda può fungere da buffer che aiuta a bilanciare la velocità con cui le richieste inviate da un'applicazione vengono recapitate a un servizio.
-- [schema della coda di priorità][]. Un sistema può usare l'accodamento prioritario nell'ambito della strategia di limitazione per garantire le prestazioni per le applicazioni strategiche o di livello superiore, riducendo al contempo le prestazioni delle applicazioni meno importanti.
-
-[schema della coda di priorità]: priority-queue.md
+- [Scalabilità automatica](https://msdn.microsoft.com/library/dn589774.aspx). La limitazione delle richieste può essere usata come misura provvisoria mentre un sistema esegue la scalabilità automatica o per non rendere necessaria questa operazione. Contiene informazioni sulle strategie di scalabilità automatica.
+- [Schema di livellamento del carico basato sulle code](./queue-based-load-leveling.md). Il livellamento del carico basato sulle code è un meccanismo di utilizzo comune per implementare la limitazione delle richieste. Una coda può fungere da buffer che aiuta a bilanciare la velocità con cui le richieste inviate da un'applicazione vengono recapitate a un servizio.
+- [Schema di coda di priorità](./priority-queue.md). Un sistema può usare l'accodamento prioritario nell'ambito della strategia di limitazione per garantire le prestazioni per le applicazioni strategiche o di livello superiore, riducendo al contempo le prestazioni delle applicazioni meno importanti.

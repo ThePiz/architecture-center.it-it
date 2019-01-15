@@ -1,18 +1,17 @@
 ---
-title: Retry
+title: Modello di ripetizione dei tentativi
+titleSuffix: Cloud Design Patterns
 description: È possibile abilitare un'applicazione per gestire gli errori temporanei previsti durante il tentativo di connessione a un servizio o a una risorsa di rete ritentando in modo trasparente un'operazione non riuscita in precedenza.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 73fdcbcc2bd75593a4c8e33dc2259c90593e14db
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.custom: seodec18
+ms.openlocfilehash: 44a9c7e188bcf76a5f6904879c2121d50397da6c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478256"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011512"
 ---
 # <a name="retry-pattern"></a>Modello di ripetizione dei tentativi
 
@@ -36,7 +35,7 @@ Se un'applicazione rileva un errore durante il tentativo di inviare una richiest
 
 - **Riprovare**. Se l'errore specifico segnalato è insolito o raro, potrebbe essere stato causato da circostanze non comuni, ad esempio un pacchetto di rete danneggiato durante la trasmissione. In questo caso, l'applicazione può ritentare immediatamente la richiesta in errore, perché è improbabile che si ripeta lo stesso errore ed è invece probabile che la richiesta venga completata.
 
-- **Ritentare dopo un certo periodo di tempo.** Se l'errore è causato da uno degli errori di più comuni di connettività o di servizio occupato, potrebbe essere necessario aspettare un breve periodo di tempo per fare in modo che i problemi di connettività vengano risolti o che venga completato il backlog di lavoro. In questo caso, l'applicazione deve attendere per un periodo di tempo appropriato prima di ritentare la richiesta.
+- **Riprovare dopo un certo intervallo di tempo**. Se l'errore è causato da uno degli errori di più comuni di connettività o di servizio occupato, potrebbe essere necessario aspettare un breve periodo di tempo per fare in modo che i problemi di connettività vengano risolti o che venga completato il backlog di lavoro. In questo caso, l'applicazione deve attendere per un periodo di tempo appropriato prima di ritentare la richiesta.
 
 Per gli errori temporanei più comuni, l'intervallo tra i tentativi deve essere scelto in modo da distribuire le richieste da più istanze dell'applicazione nel modo più uniforme possibile. Si riduce così la possibilità che un servizio occupato continui a essere sovraccaricato. Se molte istanze di un'applicazione inondano continuamente un servizio di richieste di nuovi tentativi, al servizio servirà più tempo per il ripristino.
 
@@ -60,7 +59,7 @@ I criteri di ripetizione dei tentativi devono essere adattati ai requisiti azien
 
 Criteri di ripetizione aggressivi con un ritardo minimo tra tentativi, così come un numero elevato di tentativi, potrebbero peggiorare ulteriormente la situazione per un servizio occupato eseguito ai limiti della capacità. Questo tipo di criteri di ripetizione possono influire anche sulla velocità di risposta dell'applicazione, se tenta continuamente di eseguire un'operazione che non riesce.
 
-Se una richiesta non riesce dopo un numero significativo di tentativi, è consigliabile che l'applicazione eviti ulteriori richieste per la stessa risorsa e che invece segnali immediatamente un errore. Al termine del periodo, l'applicazione può provare a consentire una o più richieste per verificare se riescono. Per altri dettagli su questa strategia, vedere [Modello a interruttore](circuit-breaker.md).
+Se una richiesta non riesce dopo un numero significativo di tentativi, è consigliabile che l'applicazione eviti ulteriori richieste per la stessa risorsa e che invece segnali immediatamente un errore. Al termine del periodo, l'applicazione può provare a consentire una o più richieste per verificare se riescono. Per altri dettagli su questa strategia, vedere [Modello a interruttore](./circuit-breaker.md).
 
 Valutare se l'operazione è idempotente. In caso affermativo, la ripetizione dei tentativi è intrinsecamente sicura. In caso contrario, i tentativi potrebbero causare più esecuzioni dell'operazione, con effetti collaterali imprevisti. Ad esempio, un servizio potrebbe ricevere la richiesta ed elaborarla correttamente, ma non riuscire invece a inviare una risposta. A questo punto, la logica di ripetizione dei tentativi potrebbe inviare nuovamente la richiesta, partendo dal presupposto che la prima richiesta non sia stata ricevuta.
 
@@ -74,7 +73,7 @@ Implementare la logica di ripetizione dei tentativi solo nei casi in cui è noto
 
 È importante registrare tutti gli errori di connettività che causano un nuovo tentativo, in modo da poter identificare i problemi sottostanti con l'applicazione, i servizi o le risorse.
 
-Esaminare gli errori che è più probabile che si verifichino per un servizio o una risorsa per stabilire se è probabile che siano durevoli o terminali. In questo caso, è preferibile gestire l'errore come un'eccezione. L'applicazione può segnalare o registrare l'eccezione e quindi tentare di continuare richiamando un servizio alternativo (se disponibile) o offrendo funzionalità ridotte. Per altre informazioni su come rilevare e gestire gli errori di lunga durata, vedere il [modello di interruttore](circuit-breaker.md).
+Esaminare gli errori che è più probabile che si verifichino per un servizio o una risorsa per stabilire se è probabile che siano durevoli o terminali. In questo caso, è preferibile gestire l'errore come un'eccezione. L'applicazione può segnalare o registrare l'eccezione e quindi tentare di continuare richiamando un servizio alternativo (se disponibile) o offrendo funzionalità ridotte. Per altre informazioni su come rilevare e gestire gli errori di lunga durata, vedere il [modello di interruttore](./circuit-breaker.md).
 
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello
 
@@ -120,7 +119,7 @@ public async Task OperationWithBasicRetryAsync()
       // long to wait, based on the retry strategy.
       if (currentRetry > this.retryCount || !IsTransient(ex))
       {
-        // If this isn't a transient error or we shouldn't retry, 
+        // If this isn't a transient error or we shouldn't retry,
         // rethrow the exception.
         throw;
       }
@@ -173,6 +172,6 @@ private bool IsTransient(Exception ex)
 
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
-- [Modello di interruttore](circuit-breaker.md). Il modello di ripetizione dei tentativi è utile per la gestione degli errori temporanei. Se si prevede che un errore sia di maggiore durata, potrebbe essere più appropriato implementare il modello di interruttore. Il modello di ripetizione dei tentativi può essere usato anche in combinazione con un interruttore per ottenere un approccio completo alla gestione degli errori.
+- [Modello di interruttore](./circuit-breaker.md). Il modello di ripetizione dei tentativi è utile per la gestione degli errori temporanei. Se si prevede che un errore sia di maggiore durata, potrebbe essere più appropriato implementare il modello di interruttore. Il modello di ripetizione dei tentativi può essere usato anche in combinazione con un interruttore per ottenere un approccio completo alla gestione degli errori.
 - [Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)
 - [Resilienza della connessione](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)

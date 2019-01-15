@@ -5,12 +5,12 @@ description: Elenco di controllo in cui vengono fornite le linee guida per gesti
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 1201e2045c6a5f7be9c8286cd192559a8d66d169
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 1a3c7b899be1c61cc53eb9caee30f5153edeb5ae
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307453"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113604"
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -80,7 +80,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 **Considerare di usare un tipo di account di archiviazione con ridondanza geografica.** I dati archiviati in un account di archiviazione di Azure vengono sempre replicati in locale. Esistono tuttavia più strategie di replica tra cui scegliere quando viene eseguito il provisioning di un account di archiviazione. Selezionare [Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS)](/azure/storage/storage-redundancy/#read-access-geo-redundant-storage) per proteggere i dati delle applicazioni nel caso raro in cui un'intera area diventi non disponibile.
 
 > [!NOTE]
-> Per le macchine virtuali, non affidarsi alla replica RA-GRS per ripristinare i dischi di macchina virtuale (file VHD). Usare invece [Backup di Azure][azure-backup].
+> Per le macchine virtuali, non affidarsi alla replica RA-GRS per ripristinare i dischi di macchina virtuale (file VHD). Usare invece [Backup di Azure](/azure/backup).
 
 ## <a name="security"></a>Sicurezza
 
@@ -169,7 +169,6 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 [app-service-autoscale]: /azure/monitoring-and-diagnostics/insights-how-to-scale/
 [asynchronous-c-sharp]: /dotnet/articles/csharp/async
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
-[azure-backup]: https://azure.microsoft.com/documentation/services/backup/
 [circuit-breaker]: ../patterns/circuit-breaker.md
 [cloud-service-autoscale]: /azure/cloud-services/cloud-services-how-to-scale/
 [fma]: ../resiliency/failure-mode-analysis.md

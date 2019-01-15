@@ -1,18 +1,17 @@
 ---
-title: Gatekeeper
+title: Modello Gatekeeper
+titleSuffix: Cloud Design Patterns
 description: Proteggere le applicazioni e i servizi usando un'istanza host dedicata che funga da broker tra i client e l'applicazione o il servizio, convalidi e purifichi le richieste e passi le richieste e i dati tra di essi.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: 39f8548bbccb5e19d433f65b2e7e09147d676996
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: a45ace8ea05e4a7dd1d8a48653e94a5fe5bfb0f6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541322"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009696"
 ---
 # <a name="gatekeeper-pattern"></a>Modello Gatekeeper
 
@@ -32,12 +31,11 @@ Per ridurre al minimo il rischio che i client possano accedere a informazioni e 
 
 ![Panoramica generale del modello](./_images/gatekeeper-diagram.png)
 
-
 Il modello Gatekeeper può essere usato semplicemente per proteggere le risorse di archiviazione oppure come interfaccia più completa per proteggere tutte le funzioni dell'applicazione. Di seguito i fattori importanti:
 
-- **Convalida controllata.** Gatekeeper convalida tutte le richieste e rifiuta quelle che non soddisfano i requisiti della convalida.
-- **Rischio ed esposizione limitati.** Gatekeeper non ha accesso alle credenziali o alle chiavi usate dall'host attendibile per accedere ai servizi e all'archiviazione. Se il gatekeeper è compromesso, l'autore dell'attacco non potrà accedere a tali credenziali o chiavi.
-- **Adeguata protezione.** Gatekeeper viene eseguito in una modalità con privilegi limitati, mentre il resto dell'applicazione viene eseguito nella modalità di totale attendibilità richiesta per accedere alle risorse di archiviazione e ai servizi. Se il gatekeeper risulta compromesso, non può accedere direttamente ai servizi o ai dati dell'applicazione.
+- **Convalida controllata**. Gatekeeper convalida tutte le richieste e rifiuta quelle che non soddisfano i requisiti della convalida.
+- **Rischio ed esposizione limitati**. Gatekeeper non ha accesso alle credenziali o alle chiavi usate dall'host attendibile per accedere ai servizi e all'archiviazione. Se il gatekeeper è compromesso, l'autore dell'attacco non potrà accedere a tali credenziali o chiavi.
+- **Sicurezza appropriata**. Gatekeeper viene eseguito in una modalità con privilegi limitati, mentre il resto dell'applicazione viene eseguito nella modalità di totale attendibilità richiesta per accedere alle risorse di archiviazione e ai servizi. Se il gatekeeper risulta compromesso, non può accedere direttamente ai servizi o ai dati dell'applicazione.
 
 Questo modello agisce come un firewall in una tipica topografia di rete. Consente al gatekeeper di esaminare le richieste e di prendere una decisione sull'opportunità di passare la richiesta all'host attendibile, anche noto come master chiavi, che esegue le attività richieste. In genere la decisione richiede al gatekeeper di convalidare e purificare il contenuto della richiesta prima di passarlo all'host.
 
@@ -65,7 +63,6 @@ In uno scenario ospitato su cloud, è possibile implementare questo modello sepa
 
 ![Un esempio del modello che usa ruoli di lavoro e Web di Servizi cloud](./_images/gatekeeper-endpoint.png)
 
-
 ## <a name="related-patterns"></a>Modelli correlati
 
-Il [Modello Passepartout](valet-key.md) può essere importante durante l'implementazione del modello Gatekeeper. Durante la comunicazione tra i ruoli attendibili e il Gatekeeper è consigliabile incrementare la sicurezza tramite chiavi o token che limitano le autorizzazioni di accesso alle risorse. Descrive come usare un token o una chiave che fornisce ai client l'accesso diretto limitato a una risorsa o a un servizio specifico.
+Il [Modello Passepartout](./valet-key.md) può essere importante durante l'implementazione del modello Gatekeeper. Durante la comunicazione tra i ruoli attendibili e il Gatekeeper è consigliabile incrementare la sicurezza tramite chiavi o token che limitano le autorizzazioni di accesso alle risorse. Descrive come usare un token o una chiave che fornisce ai client l'accesso diretto limitato a una risorsa o a un servizio specifico.

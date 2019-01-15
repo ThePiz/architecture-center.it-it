@@ -1,17 +1,17 @@
 ---
 title: Memorizzazione nella cache dei token di accesso in un'applicazione multi-tenant
-description: Memorizzazione nella cache dei token di accesso usati per richiamare un'API Web back-end
+description: Memorizzazione nella cache dei token di accesso usati per richiamare un'API Web back-end.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 0cf4b3c3b9187759522b4530c94268ce8d7baa86
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901712"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110953"
 ---
 # <a name="cache-access-tokens"></a>Memorizzare nella cache i token di accesso
 
@@ -41,14 +41,14 @@ Nell'applicazione Tailspin Surveys la classe `DistributedTokenCache` implementa 
 L'archivio di backup viene partizionato dall'utente. Per ogni richiesta HTTP, i token, per quel cliente, vengono letti dall'archivio di backup e caricati nel dizionario `TokenCache`. Se Redis è usato come archivio di backup, ogni istanza del server in un cluster di server legge/scrive nella stessa cache, e questo approccio scala a molti utenti.
 
 ## <a name="encrypting-cached-tokens"></a>Crittografia dei token memorizzati nella cache
+
 I token sono dati sensibili, perché garantiscono l'accesso alle risorse dell'utente. (Per di più, a differenza di una password di un utente, non è possibile solo archiviare un hash del token.) Pertanto, è fondamentale proteggere i token in modo che non vengano compromessi. La cache di backup Redis è protetta da un codice di accesso e se qualcuno dovesse venire a conoscenza di tale codice, otterrebbe anche i token di accesso memorizzati nella cache. Per questo motivo, la `DistributedTokenCache` crittografa tutto ciò che scrive nell'archivio di backup. La crittografia viene eseguita usando [Protezione dati][data-protection] in ASP.NET Core: le API di Consumer, configurazione, API di estensibilità e implementazione.
 
 > [!NOTE]
 > Se si distribuisce ai siti Web di Azure, viene eseguito il backup delle chiavi di crittografia nella risorsa di archiviazione di rete. Le chiavi vengono poi sincronizzate in tutti i computer (vedere [Key management and lifetime][key-management] (Gestione e durata delle chiavi)). Per impostazione predefinita, le chiavi non sono crittografate durante l'esecuzione in siti Web di Azure, ma è possibile [abilitare la crittografia tramite un certificato X.509][x509-cert-encryption].
-> 
-> 
 
 ## <a name="distributedtokencache-implementation"></a>Implementazione di DistributedTokenCache
+
 La classe `DistributedTokenCache` deriva dalla classe [TokenCache][tokencache-class] di ADAL.
 
 Nel costruttore, la classe `DistributedTokenCache` crea una chiave per l'utente corrente e carica la cache dall'archivio di backup:

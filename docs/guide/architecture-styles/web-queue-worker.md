@@ -1,36 +1,38 @@
 ---
 title: Stile di architettura Web/coda/ruolo di lavoro
-description: Descrive i vantaggi, le problematiche e le procedure consigliate per l'architettura Web/coda/ruolo di lavoro in Azure
+titleSuffix: Azure Application Architecture Guide
+description: Illustra i vantaggi, le problematiche e le procedure consigliate per le architetture Web/coda/ruolo di lavoro in Azure.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 0ebcf49c08c74cec3f1820da2d6f30ba95256e81
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 0b478344c4b64808d30156bd563917d9d8d7ec30
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325352"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113281"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Stile di architettura Web/coda/ruolo di lavoro
 
-I componenti di base di questa architettura sono un **front-end Web** che gestisce le richieste client e un **ruolo di lavoro** che esegue attività a elevato utilizzo di risorse, flussi di lavoro a esecuzione prolungata o processi batch.  Il front-end Web comunica con il ruolo di lavoro tramite una **coda di messaggi**.  
+I componenti di base di questa architettura sono un **front-end Web** che gestisce le richieste client e un **ruolo di lavoro** che esegue attività a elevato utilizzo di risorse, flussi di lavoro a esecuzione prolungata o processi batch.  Il front-end Web comunica con il ruolo di lavoro tramite una **coda di messaggi**.
 
-![](./images/web-queue-worker-logical.svg)
+![Diagramma logico dello stile di architettura Web/coda/ruolo di lavoro](./images/web-queue-worker-logical.svg)
 
 Altri componenti comunemente integrati in questa architettura sono i seguenti:
 
-- Uno o più database. 
+- Uno o più database.
 - Una cache per archiviare i valori dal database per letture rapide.
 - Rete CDN per rendere disponibile il contenuto statico
 - Servizi remoti, tra cui i servizi di posta elettronica o SMS. Questi vengono spesso forniti da terze parti.
 - Provider di identità per l'autenticazione.
 
-Il front-end Web e il ruolo di lavoro sono entrambi senza stato. Lo stato della sessione può essere archiviato in una cache distribuita. Qualsiasi operazione a esecuzione prolungata viene eseguita in modo asincrono dal ruolo di lavoro. Il ruolo di lavoro può essere attivato da messaggi nella coda oppure può essere eseguito in base a una pianificazione per l'elaborazione batch. Il ruolo di lavoro è un componente facoltativo. In assenza di operazioni a esecuzione prolungata, il ruolo di lavoro può essere omesso.  
+Il front-end Web e il ruolo di lavoro sono entrambi senza stato. Lo stato della sessione può essere archiviato in una cache distribuita. Qualsiasi operazione a esecuzione prolungata viene eseguita in modo asincrono dal ruolo di lavoro. Il ruolo di lavoro può essere attivato da messaggi nella coda oppure può essere eseguito in base a una pianificazione per l'elaborazione batch. Il ruolo di lavoro è un componente facoltativo. In assenza di operazioni a esecuzione prolungata, il ruolo di lavoro può essere omesso.
 
 Il front-end può essere costituito da un'API Web. Sul lato client l'API Web può essere utilizzata da un'applicazione a singola pagina che effettua chiamate AJAX oppure da un'applicazione client nativa.
 
 ## <a name="when-to-use-this-architecture"></a>Quando usare questa architettura
 
-L'architettura Web/coda/ruolo di lavoro viene in genere implementata usando servizi di calcolo gestiti, Servizio app di Azure o Servizi cloud di Azure. 
+L'architettura Web/coda/ruolo di lavoro viene in genere implementata usando servizi di calcolo gestiti, Servizio app di Azure o Servizi cloud di Azure.
 
 Prendere in considerazione questo stile di architettura per:
 
@@ -49,7 +51,7 @@ Prendere in considerazione questo stile di architettura per:
 ## <a name="challenges"></a>Problematiche
 
 - Senza un'attenta progettazione, il front-end e il ruolo di lavoro possono diventare componenti monolitici di grandi dimensioni, difficili da gestire e aggiornare.
-- Possono essere presenti dipendenze nascoste, se il front-end e il ruolo di lavoro condividono schemi di dati o moduli di codice. 
+- Possono essere presenti dipendenze nascoste, se il front-end e il ruolo di lavoro condividono schemi di dati o moduli di codice.
 
 ## <a name="best-practices"></a>Procedure consigliate
 
@@ -60,14 +62,13 @@ Prendere in considerazione questo stile di architettura per:
 - Usare la programmazione poliglotta persistente nei casi appropriati. Vedere [Usare il migliore archivio dati per il processo][polyglot].
 - Partizionare i dati per migliorare la scalabilità, ridurre i conflitti e ottimizzare le prestazioni. Vedere [Procedure consigliate per il partizionamento dei dati][data-partition].
 
-
 ## <a name="web-queue-worker-on-azure-app-service"></a>Architettura Web/coda/ruolo di lavoro per Servizio app di Azure
 
-Questa sezione descrive un'architettura Web/coda/ruolo di lavoro consigliata che usa Servizio app di Azure. 
+Questa sezione descrive un'architettura Web/coda/ruolo di lavoro consigliata che usa Servizio app di Azure.
 
-![](./images/web-queue-worker-physical.png)
+![Diagramma fisico dello stile di architettura Web/coda/ruolo di lavoro](./images/web-queue-worker-physical.png)
 
-Il front-end viene implementato come app Web di Servizio app di Azure, mentre il ruolo di lavoro viene implementato come processo Web. L'app Web e il processo Web sono entrambi associati a un piano di servizio app che fornisce le istanze di macchina virtuale. 
+Il front-end viene implementato come app Web di Servizio app di Azure, mentre il ruolo di lavoro viene implementato come processo Web. L'app Web e il processo Web sono entrambi associati a un piano di servizio app che fornisce le istanze di macchina virtuale.
 
 È possibile usare code del bus di servizio di Azure o di archiviazione di Azure per la coda di messaggi. Il diagramma mostra una coda di archiviazione di Azure.
 
@@ -75,7 +76,7 @@ Cache Redis di Azure archivia lo stato della sessione e altri dati che richiedon
 
 La rete CDN di Azure viene usata per memorizzare nella cache contenuto statico come immagini, CSS o HTML.
 
-Per l'archiviazione, scegliere le tecnologie più adatte in base alle esigenze dell'applicazione. È possibile usare più tecnologie di archiviazione (programmazione poliglotta persistente). Per illustrare questo concetto, il diagramma mostra il database SQL di Azure e Azure Cosmos DB.  
+Per l'archiviazione, scegliere le tecnologie più adatte in base alle esigenze dell'applicazione. È possibile usare più tecnologie di archiviazione (programmazione poliglotta persistente). Per illustrare questo concetto, il diagramma mostra il database SQL di Azure e Azure Cosmos DB.
 
 Per altre informazioni, vedere [App Service web application reference architecture][scalable-web-app] (Architettura di riferimento per le applicazioni Web di Servizio app).
 
@@ -83,9 +84,9 @@ Per altre informazioni, vedere [App Service web application reference architectu
 
 - Non tutte le transazioni devono passare dalla coda e dal ruolo di lavoro per l'archiviazione. Il front-end Web può eseguire semplici operazioni di lettura/scrittura direttamente. I ruoli di lavoro sono progettati per attività a elevato utilizzo di risorse o flussi di lavoro a esecuzione prolungata. In alcuni casi, un ruolo di lavoro può essere totalmente superfluo.
 
-- Usare la funzionalità di scalabilità automatica predefinita di Servizio app per aumentare il numero di istanze di macchina virtuale. Se il carico sull'applicazione segue modelli prevedibili, usare la scalabilità automatica basata sulla pianificazione. Se il carico è imprevedibile, usare regole di scalabilità automatica basate sulle metriche.      
+- Usare la funzionalità di scalabilità automatica predefinita di Servizio app per aumentare il numero di istanze di macchina virtuale. Se il carico sull'applicazione segue modelli prevedibili, usare la scalabilità automatica basata sulla pianificazione. Se il carico è imprevedibile, usare regole di scalabilità automatica basate sulle metriche.
 
-- Provare a includere l'app Web e il processo Web in piani di servizio app separati. In questo modo, saranno ospitati in istanze di macchina virtuale separate e potranno essere ridimensionati in modo indipendente. 
+- Provare a includere l'app Web e il processo Web in piani di servizio app separati. In questo modo, saranno ospitati in istanze di macchina virtuale separate e potranno essere ridimensionati in modo indipendente.
 
 - Usare piani di servizio app separati per gli ambienti di produzione e test. In caso contrario, se si usa lo stesso piano per gli ambienti di produzione e test, i test verranno eseguiti nelle macchine virtuali di produzione.
 

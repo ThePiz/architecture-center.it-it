@@ -1,17 +1,17 @@
 ---
 title: Autorizzazioni nelle applicazioni multi-tenant
-description: Come eseguire le autorizzazioni in un'applicazione multi-tenant
+description: Come eseguire l'autorizzazione in un'applicazione multi-tenant.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 8ff2317eb85197ed93e048b6a2d836405436cc17
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 6e406a7e80b77dea161db194a82ccae043bdc777
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307164"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110340"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Autorizzazione basata sui ruoli e sulle risorse
 
@@ -25,6 +25,7 @@ L' [implementazione di riferimento] è un'applicazione ASP.NET Core. In questo a
 In genere, un'app può impiegare una combinazione di entrambi gli approcci. Ad esempio, per eliminare una risorsa l'utente deve essere proprietario *o* amministratore della risorsa.
 
 ## <a name="role-based-authorization"></a>Autorizzazione basata sui ruoli
+
 L'applicazione [Tailspin Surveys][Tailspin] definisce i ruoli seguenti:
 
 * Amministratore. Può eseguire tutte le operazioni CRUD in qualsiasi sondaggio che appartiene al tenant.
@@ -38,6 +39,7 @@ Per una discussione su come definire e gestire i ruoli, vedere l'articolo relati
 Il codice di autorizzazione risulterà invariato indipendentemente dalla modalità di gestione dei ruoli. ASP.NET Core 1.0 include un'astrazione denominata [Criteri di autorizzazione][policies]. Questa funzionalità consente di definire i criteri di autorizzazione nel codice e quindi applicare i criteri alle azioni del controller. I criteri vengono separati dal controller.
 
 ### <a name="create-policies"></a>Creare criteri
+
 Per definire i criteri, creare innanzitutto una classe che implementa `IAuthorizationRequirement`. La procedura più semplice consiste nella derivazione da `AuthorizationHandler`. Nel metodo `Handle` esaminare le attestazioni pertinenti.
 
 Ecco un esempio dell'applicazione Tailspin Surveys:
@@ -47,7 +49,7 @@ public class SurveyCreatorRequirement : AuthorizationHandler<SurveyCreatorRequir
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SurveyCreatorRequirement requirement)
     {
-        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) || 
+        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) ||
             context.User.HasClaim(ClaimTypes.Role, Roles.SurveyCreator))
         {
             context.Succeed(requirement);
@@ -68,7 +70,7 @@ services.AddAuthorization(options =>
         policy =>
         {
             policy.AddRequirements(new SurveyCreatorRequirement());
-            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
             // By adding the CookieAuthenticationDefaults.AuthenticationScheme, if an authenticated
             // user is not in the appropriate role, they will be redirected to a "forbidden" page.
             policy.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -87,6 +89,7 @@ services.AddAuthorization(options =>
 Questo codice consente inoltre di impostare lo schema di autenticazione, che indica ad ASP.NET il middleware di autenticazione da eseguire se l'autorizzazione non riesce. In questo caso, viene specificato il middleware di autenticazione dei cookie, in quanto tale middleware può reindirizzare gli utenti a una pagina di accesso negato. Il percorso della pagina di accesso negato è impostato nell'opzione `AccessDeniedPath` del middleware dei cookie. Vedere [Configurazione del middleware di autenticazione].
 
 ### <a name="authorize-controller-actions"></a>Autorizzare le azioni del controller
+
 Infine, per autorizzare un'azione in un controller MVC, impostare i criteri nell'attributo `Authorize` :
 
 ```csharp
@@ -112,6 +115,7 @@ Questa opzione è ancora supportata in ASP.NET Core, ma presenta alcuni svantagg
 * I criteri consentono di abilitare decisioni di autorizzazione più complesse, ad esempio età >= 21, che non possono essere espresse dalla semplice appartenenza al ruolo.
 
 ## <a name="resource-based-authorization"></a>Autorizzazione basata sulle risorse
+
 *Autorizzazione basata sulle risorse* si verifica ogni volta che l'autorizzazione dipende da una risorsa specifica che verrà influenzata da un'operazione. Nell'applicazione Tailspin Surveys ogni sondaggio ha un proprietario e collaboratori zero-a-molti.
 
 * Il proprietario può leggere, aggiornare, eliminare, pubblicare e annullare la pubblicazione del sondaggio.
@@ -247,7 +251,8 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 
 [**Avanti**][web-api]
 
-<!-- Links -->
+<!-- links -->
+
 [Tailspin]: tailspin.md
 
 [ruoli dell'applicazione]: app-roles.md

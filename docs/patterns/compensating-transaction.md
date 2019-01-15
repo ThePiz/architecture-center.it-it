@@ -1,18 +1,17 @@
 ---
-title: Transazione di compensazione
+title: Modello di transazioni di compensazione
+titleSuffix: Cloud Design Patterns
 description: Annullare il lavoro eseguito da una serie di passaggi che insieme definiscono un'operazione coerente.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: b81151a6db08c2c14c7f26af3b4b79bfd22a18bb
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428143"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011617"
 ---
 # <a name="compensating-transaction-pattern"></a>Modello di transazioni di compensazione
 
@@ -86,7 +85,7 @@ Si noti che le operazioni nella transazione di compensazione potrebbero non esse
 
 ![Nella figura viene illustrata la generazione di una transazione di compensazione per annullare una transazione a esecuzione prolungata per la prenotazione di un itinerario di viaggio](./_images/compensating-transaction-diagram.png)
 
-
+> [!NOTE]
 > Potrebbe essere possibile eseguire in parallelo i passaggi di una transazione di compensazione, a seconda di come è stata progettata la logica di compensazione per ogni passaggio.
 
 In molte soluzioni aziendali, l'esito negativo di un unico passaggio non sempre richiede il roll-back del sistema tramite una transazione di compensazione. Ad esempio, se &mdash; dopo che aver prenotato i voli F1, F2 e F3 nello scenario del sito Web di viaggio &mdash; il cliente non è in grado di prenotare una stanza nell'hotel H1, è preferibile offrire al cliente una stanza in un altro albergo della stessa città anziché annullare i voli. Il cliente può comunque decidere di annullare la prenotazione (in tal caso, viene eseguita la transazione di compensazione e vengono annullate le prenotazioni effettuate sui voli F1, F2 e F3), ma questa decisione deve essere effettuata dal cliente anziché dal sistema.
@@ -97,6 +96,6 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Nozioni di base sulla coerenza dei dati). Il modello di transazioni di compensazione viene spesso usato per annullare le operazioni che implementano il modello di coerenza finale. Queste nozioni di base offrono informazioni su vantaggi e compromessi della coerenza finale.
 
-- [Scheduler-Agent-Supervisor Pattern](scheduler-agent-supervisor.md) (Modello di supervisore agente di pianificazione). Descrive come implementare sistemi resilienti che eseguono operazioni aziendali che usano risorse e servizi distribuiti. Potrebbe talvolta essere necessario annullare il lavoro eseguito da un'operazione usando una transazione di compensazione.
+- [Modello di supervisione agente di pianificazione](./scheduler-agent-supervisor.md). Descrive come implementare sistemi resilienti che eseguono operazioni aziendali che usano risorse e servizi distribuiti. Potrebbe talvolta essere necessario annullare il lavoro eseguito da un'operazione usando una transazione di compensazione.
 
 - [Modello di ripetizione dei tentativi](./retry.md). L'esecuzione delle transazioni di compensazione può essere costosa. Per ridurne al minimo l'uso è possibile implementare criteri efficaci per la ripetizione delle operazioni non riuscite seguendo il modello di ripetizione dei tentativi.

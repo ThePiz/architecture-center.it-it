@@ -5,12 +5,12 @@ description: Implementare un'architettura di rete sicura da sito a sito, che si 
 author: telmosampaio
 ms.date: 10/22/2017
 ms.custom: seodec18
-ms.openlocfilehash: 8e9de168fe2969159f62ce84a19f4b21fd1cb538
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 1308f85f2f6d05b86e22f2558d89f164d076d182
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120391"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112788"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>Connettere una rete locale ad Azure tramite ExpressRoute
 
@@ -207,8 +207,7 @@ Per impostazione predefinita, le sessioni BGP usano un valore di timeout inattiv
 
 - Connettere la rete virtuale a più circuiti ExpressRoute, forniti da diversi provider di servizi. Questa strategia offre funzionalità di disponibilità elevata e di ripristino di emergenza aggiuntive.
 
-- Configurare una VPN da sito a sito come percorso di failover per ExpressRoute. Per altre informazioni su questa opzione, vedere [Connettere una rete locale ad Azure tramite ExpressRoute con failover VPN][highly-available-network-architecture].
- Questa opzione si applica solo al peering privato. Per i servizi di Azure e Office 365, Internet è l'unico percorso di failover.
+- Configurare una VPN da sito a sito come percorso di failover per ExpressRoute. Per altre informazioni su questa opzione, vedere [Connettere una rete locale ad Azure tramite ExpressRoute con failover VPN][highly-available-network-architecture]. Questa opzione si applica solo al peering privato. Per i servizi di Azure e Office 365, Internet è l'unico percorso di failover.
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 
@@ -224,7 +223,7 @@ Per ottimizzare la sicurezza, aggiungere dispositivi di sicurezza di rete tra la
 
 ![[2]][2]
 
-Per motivi di conformità o di controllo, potrebbe essere necessario impedire l'accesso diretto da componenti in esecuzione nella rete virtuale a Internet e implementare il [tunneling forzato][forced-tuneling]. In questo caso, il traffico Internet deve essere reindirizzato attraverso un proxy in esecuzione in locale in cui può essere controllato. Il proxy può essere configurato per bloccare i flussi di traffico in uscita non autorizzato e filtrare il traffico in ingresso potenzialmente dannoso.
+Per motivi di conformità o di controllo, potrebbe essere necessario impedire l'accesso diretto da componenti in esecuzione nella rete virtuale a Internet e implementare il [tunneling forzato][forced-tunneling]. In questo caso, il traffico Internet dovrà essere reindirizzato tramite un proxy eseguito in locale in cui può essere controllato. Il proxy può essere configurato per bloccare i flussi di traffico in uscita non autorizzato e filtrare il traffico in ingresso potenzialmente dannoso.
 
 ![[3]][3]
 
@@ -270,7 +269,7 @@ Per distribuire la soluzione, seguire questa procedura.
 
 <!-- links -->
 
-[forced-tuneling]: ../dmz/secure-vnet-hybrid.md
+[forced-tunneling]: ../dmz/secure-vnet-hybrid.md
 [highly-available-network-architecture]: ./expressroute-vpn-failover.md
 
 [expressroute-technical-overview]: /azure/expressroute/expressroute-introduction
@@ -286,8 +285,8 @@ Per distribuire la soluzione, seguire questa procedura.
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
-[azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[azure-powershell-download]: /powershell/azure/overview
+[azure-cli]: /cli/azure/install-azure-cli
 
 [0]: ./images/expressroute.png "Architettura di rete ibrida tramite Azure ExpressRoute"
 [1]: ../_images/guidance-hybrid-network-expressroute/figure2.png "Uso di router ridondanti con circuiti di ExpressRoute primari e secondari"

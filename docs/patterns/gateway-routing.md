@@ -1,14 +1,17 @@
 ---
 title: Modello di routing gateway
+titleSuffix: Cloud Design Patterns
 description: Eseguire il routing delle richieste a più servizi, usando un singolo endpoint.
+keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.custom: seodec18
+ms.openlocfilehash: 4db98038f582e0315a743a55d46013d2eda187e3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252601"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010478"
 ---
 # <a name="gateway-routing-pattern"></a>Modello di routing gateway
 
@@ -26,8 +29,8 @@ Con questo modello, l'applicazione client deve conoscere e comunicare solo con u
 
 Un gateway consente anche di astrarre i servizi back-end dai client, permettendo di mantenere semplici le chiamate client e consentendo nel contempo le modifiche ai servizi back-end dietro il gateway. Le chiamate client possono essere instradate al servizio, o ai servizi, che devono gestire il comportamento previsto del client, in modo che sia possibile aggiungere, dividere e riorganizzare i servizi dietro il gateway senza modificare il client.
 
-![](./_images/gateway-routing.png)
- 
+![Diagramma del modello di routing gateway](./_images/gateway-routing.png)
+
 Questo modello è utile anche per la distribuzione, perché consente di gestire la modalità di implementazione degli aggiornamenti per gli utenti. Quando viene distribuita una nuova versione del servizio, la distribuzione può avvenire in parallelo con la versione esistente. Il routing consente di controllare la versione del servizio presentata ai client, offrendo la flessibilità di scegliere tra diverse strategie di rilascio, ovvero implementazioni incrementali, parallele o complete degli aggiornamenti. È possibile correggere rapidamente eventuali problemi rilevati dopo la distribuzione del nuovo servizio modificando la configurazione nel gateway, senza influire sui client.
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
@@ -51,7 +54,7 @@ Questo modello potrebbe non essere appropriato quando si ha un'applicazione semp
 
 Usando Nginx come router, di seguito viene fornito un semplice file di configurazione di esempio per un server che esegue il routing delle richieste per le applicazioni che si trovano in directory virtuali diverse nei vari computer nel back-end.
 
-```
+```console
 server {
     listen 80;
     server_name domain.com;
@@ -75,6 +78,3 @@ server {
 - [Modello back-end per front-end](./backends-for-frontends.md)
 - [Modello di aggregazione gateway](./gateway-aggregation.md)
 - [Modello di offload gateway](./gateway-offloading.md)
-
-
-

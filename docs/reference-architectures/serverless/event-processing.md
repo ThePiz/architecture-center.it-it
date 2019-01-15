@@ -1,16 +1,16 @@
 ---
 title: Funzioni di Azure per l'elaborazione degli eventi senza server
 titleSuffix: Azure Reference Architectures
-description: Architettura di riferimento che mostra l'elaborazione e l'inserimento di eventi senza server
+description: Architettura di riferimento per l'inserimento e l'elaborazione di eventi serverless con Funzioni di Azure.
 author: MikeWasson
 ms.date: 10/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 23edc69e52981cfd15717b491875b34ed025958a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119898"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111394"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>Funzioni di Azure per l'elaborazione degli eventi senza server
 

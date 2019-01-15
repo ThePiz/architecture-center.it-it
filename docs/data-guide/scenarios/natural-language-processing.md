@@ -3,30 +3,30 @@ title: Elaborazione del linguaggio naturale
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 32f2a5e3a0baddc765fb36ccc42fe2626faa5eba
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 373afbabec78dd1ec30b6d07bca9d5da62b5d6e3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901440"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110476"
 ---
 # <a name="natural-language-processing"></a>Elaborazione del linguaggio naturale
 
 L'elaborazione del linguaggio naturale (NLP, Natural Language Processing) viene usata per attività quali l'analisi del sentiment, il rilevamento di argomenti, il rilevamento della lingua, l'estrazione di frasi chiave e la categorizzazione di documenti.
 
-![](./images/nlp-pipeline.png)
+![Diagramma di una pipeline di elaborazione del linguaggio naturale](./images/nlp-pipeline.png)
 
 ## <a name="when-to-use-this-solution"></a>Quando usare questa soluzione
 
-L'elaborazione del linguaggio naturale può essere usata per classificare i documenti, ad esempio per etichettarli come sensibili o indesiderati. L'output dell'elaborazione del linguaggio naturale può essere usato per attività successive di elaborazione o ricerca. Un altro possibile uso è quello di fornire una sintesi di un documento identificando le entità presenti nel testo. Queste entità possono essere usate anche per assegnare tag ai documenti usando parole chiave, in modo da facilitarne la ricerca e il recupero in base al contenuto. Le entità possono essere combinate in argomenti, con informazioni di riepilogo che descrivono gli argomenti importanti presenti in ogni documento. Gli argomenti rilevati possono essere usati per classificare i documenti e facilitarne l'esplorazione o per enumerare i documenti correlati in base a un argomento selezionato. Un altro uso dell'elaborazione del linguaggio naturale consiste nell'assegnare un punteggio al testo per valutare il tono positivo o negativo di un documento, ovvero il relativo sentiment. Queste soluzioni d'uso sfruttano molte tecniche adottate nell'elaborazione del linguaggio naturale, ad esempio: 
+L'elaborazione del linguaggio naturale può essere usata per classificare i documenti, ad esempio per etichettarli come sensibili o indesiderati. L'output dell'elaborazione del linguaggio naturale può essere usato per attività successive di elaborazione o ricerca. Un altro possibile uso è quello di fornire una sintesi di un documento identificando le entità presenti nel testo. Queste entità possono essere usate anche per assegnare tag ai documenti usando parole chiave, in modo da facilitarne la ricerca e il recupero in base al contenuto. Le entità possono essere combinate in argomenti, con informazioni di riepilogo che descrivono gli argomenti importanti presenti in ogni documento. Gli argomenti rilevati possono essere usati per classificare i documenti e facilitarne l'esplorazione o per enumerare i documenti correlati in base a un argomento selezionato. Un altro uso dell'elaborazione del linguaggio naturale consiste nell'assegnare un punteggio al testo per valutare il tono positivo o negativo di un documento, ovvero il relativo sentiment. Queste soluzioni d'uso sfruttano molte tecniche adottate nell'elaborazione del linguaggio naturale, ad esempio:
 
 - **Tokenizer**. Suddivisione del testo in parole o combinazioni di parole.
-- **Stemming e lemmatizzazione**. Normalizzazione delle parole in modo da consentire l'associazione delle diverse forme alla parola canonica con lo stesso significato. Ad esempio, "avuto" e "ha" sono associate ad "avere". 
+- **Stemming e lemmatizzazione**. Normalizzazione delle parole in modo da consentire l'associazione delle diverse forme alla parola canonica con lo stesso significato. Ad esempio, "avuto" e "ha" sono associate ad "avere".
 - **Estrazione di entità**. Identificazione di argomenti nel testo.
 - **Rilevamento delle parti del discorso**. Identificazione delle parti del testo come verbo, nome, participio, sintagma verbale e così via.
 - **Rilevamento dei limiti delle frasi**. Rilevamento di frasi intere all'interno dei paragrafi di testo.
 
-Quando si usa l'elaborazione del linguaggio naturale per estrarre informazioni e dati significativi da testo in formato libero, il punto di partenza è costituito in genere da documenti non elaborati archiviati in un servizio per l'archiviazione di oggetti come Archiviazione di Azure o Azure Data Lake Store. 
+Quando si usa l'elaborazione del linguaggio naturale per estrarre informazioni e dati significativi da testo in formato libero, il punto di partenza è costituito in genere da documenti non elaborati archiviati in un servizio per l'archiviazione di oggetti come Archiviazione di Azure o Azure Data Lake Store.
 
 ## <a name="challenges"></a>Problematiche
 

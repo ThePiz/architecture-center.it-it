@@ -1,24 +1,19 @@
 ---
-title: Hosting di contenuto statico
+title: Modello di hosting del contenuto statico
+titleSuffix: Cloud Design Patterns
 description: Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client.
 keywords: schema progettuale
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 01/04/2019
+ms.custom: seodec18
+ms.openlocfilehash: cf4f65e935a01e4d84b3cc82b5779edb729bd80e
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428212"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058183"
 ---
 # <a name="static-content-hosting-pattern"></a>Modello di hosting del contenuto statico
-
-[!INCLUDE [header](../_includes/header.md)]
 
 Distribuire contenuto statico in un servizio di archiviazione basato sul cloud in grado di inviarlo direttamente al client. Questo può ridurre la necessità di istanze di calcolo potenzialmente dispendiose.
 
@@ -26,11 +21,11 @@ Distribuire contenuto statico in un servizio di archiviazione basato sul cloud i
 
 Le applicazioni Web includono in genere alcuni elementi del contenuto statico. Il contenuto statico potrebbe includere pagine HTML e altre risorse, ad esempio immagini e documenti disponibili per il client, come parte di una pagina HTML, ad esempio immagini in linea con il testo, fogli di stile e file JavaScript lato client, o come download separati, quali documenti PDF.
 
-Sebbene i server Web vengano regolati per ottimizzare le richieste tramite l'esecuzione efficiente del codice di una pagina dinamica e la memorizzazione nella cache di output, devono ancora gestire le richieste per scaricare il contenuto statico. Usa cicli di elaborazione che potrebbero spesso essere usati in modo migliore.
+Nonostante siano ottimizzati per il rendering dinamico e la memorizzazione dell'output nella cache, i server Web devono comunque gestire le richieste per il download del contenuto statico. Usa cicli di elaborazione che potrebbero spesso essere usati in modo migliore.
 
 ## <a name="solution"></a>Soluzione
 
-Nella maggior parte degli ambienti di hosting cloud è possibile ridurre al minimo la necessità di istanze di calcolo, ad esempio usando un'istanza più piccola o meno istanze, individuando alcune risorse e pagine statiche dell'applicazione in un servizio di archiviazione. Il costo dell'archiviazione ospitata su cloud è in genere molto inferiore rispetto a quello per le istanze di calcolo.
+Nella maggior parte degli ambienti di hosting cloud, è possibile includere alcune risorse e pagine statiche di un'applicazione in un servizio di archiviazione. Il servizio di archiviazione potrà gestire le richieste relative a tali risorse riducendo il carico sulle risorse di calcolo che gestiscono le altre richieste Web. Il costo dell'archiviazione ospitata su cloud è in genere molto inferiore rispetto a quello per le istanze di calcolo.
 
 Quando si ospitano alcune parti di un'applicazione in un servizio di archiviazione, le principali considerazioni sono correlate alla distribuzione dell'applicazione e alla protezione delle risorse che non devono essere disponibili agli utenti anonimi.
 
@@ -44,11 +39,13 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
 - Gli account di archiviazione sono spesso sottoposti a replica geografica per impostazione predefinita per offrire resilienza in caso di eventi che potrebbero interessare un datacenter. Ciò significa che l'indirizzo IP potrebbe cambiare, ma l'URL resta invariato.
 
-- Quando alcuni contenuti si trovano in un account di archiviazione e altri in un'istanza di calcolo ospitata diventa più difficile distribuire un'applicazione e aggiornarla. Potrebbe essere necessario eseguire distribuzioni separate e controllare la versione dell'applicazione e del contenuto per gestirla in modo più semplice&mdash;soprattutto quando il contenuto statico include file script o componenti dell'interfaccia utente. Tuttavia, se è necessario aggiornare solo le risorse statiche, basta caricarle nell'account di archiviazione senza dover ridistribuire il pacchetto dell'applicazione.
+- Quando alcuni contenuti si trovano in un account di archiviazione e altri in un'istanza di calcolo ospitata, la distribuzione e l'aggiornamento dell'applicazione diventano più complessi. Potrebbe essere necessario eseguire distribuzioni separate e controllare la versione dell'applicazione e del contenuto per gestirla in modo più semplice&mdash;soprattutto quando il contenuto statico include file script o componenti dell'interfaccia utente. Tuttavia, se è necessario aggiornare solo le risorse statiche, basta caricarle nell'account di archiviazione senza dover ridistribuire il pacchetto dell'applicazione.
 
 - I servizi di archiviazione potrebbero non supportare l'uso di nomi di dominio personalizzati. In questo caso è necessario specificare l'URL completo delle risorse nei collegamenti, in quanto si troveranno in un dominio diverso dal contenuto generato in modo dinamico che contiene i collegamenti.
 
-- I contenitori di archiviazione devono essere configurati per l'accesso in lettura pubblico, un'operazione fondamentale per garantire che non siano configurati per l'accesso pubblico in scrittura e impedire agli utenti di caricare il contenuto. È consigliabile usare un passepartout o un token per controllare l'accesso alle risorse che non devono essere disponibili in modo anonimo&mdash;vedere [Valet Key pattern](valet-key.md) (Modello passepartout) per altre informazioni.
+- I contenitori di archiviazione devono essere configurati per l'accesso in lettura pubblico, un'operazione fondamentale per garantire che non siano configurati per l'accesso pubblico in scrittura e impedire agli utenti di caricare il contenuto.
+
+- Valutare la possibilità di usare un passepartout o un token per controllare l'accesso alle risorse che non devono essere accessibili in modo anonimo. Per altre informazioni, vedere [Modello di passepartout](./valet-key.md).
 
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello
 
@@ -56,7 +53,7 @@ Questo modello è utile per:
 
 - Ridurre al minimo il costo di hosting di applicazioni e siti Web che contengono risorse statiche.
 
-- Ridurre al minimo il costo di hosting per i siti Web costituiti solo da contenuto statico e risorse. In base alle funzionalità del sistema di archiviazione del provider hosting, potrebbe essere possibile ospitare un sito Web statico completo in un account di archiviazione.
+- Ridurre al minimo il costo di hosting per i siti Web costituiti solo da contenuto statico e risorse. In base alle funzionalità del sistema di archiviazione del provider di hosting, potrebbe essere possibile ospitare completamente un sito Web interamente statico in un account di archiviazione.
 
 - Esposizione di risorse e contenuto statico per applicazioni in esecuzione in ambienti di hosting diversi o in server locali.
 
@@ -72,30 +69,15 @@ Questo modello può non essere utile nelle situazioni seguenti:
 
 ## <a name="example"></a>Esempio
 
-Il contenuto statico che si trova nell'archivio BLOB di Azure è accessibile direttamente da un Web browser. Azure offre un'interfaccia basata su HTTP per quanto riguarda l'archiviazione che può essere esposta pubblicamente ai client. Ad esempio, il contenuto in un contenitore di archivio BLOB di Azure verrà esposto tramite un URL nel formato seguente:
+Archiviazione di Azure supporta la gestione di contenuto statico direttamente da un contenitore di archiviazione. I file vengono gestiti tramite richieste di accesso anonimo. Per impostazione predefinita, i file hanno un URL in un sottodominio di `core.windows.net`, ad esempio `https://contoso.z4.web.core.windows.net/image.png`. È possibile configurare un nome di dominio personalizzato e usare Rete CDN di Azure per accedere ai file tramite HTTPS. Per altre informazioni, vedere [Hosting di siti Web statici in Archiviazione di Azure](/azure/storage/blobs/storage-blob-static-website).
 
-`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+![Distribuzione delle parti statiche di un'applicazione direttamente da un servizio di archiviazione](./_images/static-content-hosting-pattern.png)
 
+L'hosting di siti Web statici rende i file disponibili per l'accesso anonimo. Se è necessario controllare quali utenti possono accedere ai file, è possibile archiviare i file in un archivio BLOB di Azure e quindi generare [firme di accesso condiviso](/azure/storage/common/storage-dotnet-shared-access-signature-part-1) per limitare l'accesso.
 
-Quando si carica il contenuto è necessario creare uno o più contenitori BLOB per i file e i documenti. Si noti che l'autorizzazione predefinita per un nuovo contenitore è Privata ed è necessario modificarla in Pubblica per consentire ai client di accedere al contenuto. Se è necessario proteggere il contenuto dall'accesso anonimo, è possibile implementare il [modello passepartout](valet-key.md) in modo che gli utenti debbano presentare un token valido per scaricare le risorse.
+I collegamenti nelle pagine distribuite al client devono specificare l'URL completo della risorsa. Se la risorsa è protetta con un passepartout, ad esempio una firma di accesso condiviso, la firma deve essere inclusa nell'URL.
 
-> [Blob Service Concepts](https://msdn.microsoft.com/library/azure/dd179376.aspx) (Concetti relativi al servizio BLOB) dispone di informazioni sull'archiviazione BLOB e i modi in cui è possibile accedervi e usarla.
-
-I collegamenti di ogni pagina specificheranno l'URL della risorsa e il client potrà accedervi direttamente dal servizio di archiviazione. La figura illustra come recapitare le parti statiche di un'applicazione direttamente da un servizio di archiviazione.
-
-![Figura 1 - Recapito di parti statiche di un'applicazione direttamente da un servizio di archiviazione](./_images/static-content-hosting-pattern.png)
-
-
-I collegamenti nelle pagine inviate al client devono specificare l'URL completo del contenitore BLOB e la risorsa. Ad esempio, una pagina che contiene un collegamento a un'immagine in un contenitore pubblico può contenere il seguente codice HTML.
-
-```html
-<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
-     alt="My image" />
-```
-
-> Se le risorse sono protette tramite un passepartout, ad esempio una firma di accesso condiviso di Azure, la firma deve essere inclusa negli URL dei collegamenti.
-
-In [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) è disponibile una soluzione denominata StaticContentHosting che illustra l'uso dell'archiviazione esterna per le risorse statiche. Il progetto StaticContentHosting.Cloud contiene i file di configurazione che specificano l'account di archiviazione e il contenitore che include il contenuto statico.
+In [GitHub][sample-app] è disponibile un'applicazione di esempio che illustra l'uso di un archivio esterno per le risorse statiche. L'esempio usa file di configurazione che specificano l'account di archiviazione e il contenitore in cui si trova il contenuto statico.
 
 ```xml
 <Setting name="StaticContent.StorageConnectionString"
@@ -167,6 +149,8 @@ Il file Index.cshtml nella cartella Visualizzazioni\Home contiene un elemento im
 
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
-- Un esempio che illustra questo modello è disponibile su [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting).
-- [Valet Key pattern](valet-key.md) (Modello di passepartout). Se si suppone che le risorse di destinazione non debbano essere disponibili agli utenti anonimi è necessario implementare la sicurezza dell'archivio che contiene il contenuto statico. Descrive come usare un token o una chiave che offra ai client l'accesso diretto limitato a una risorsa o a un servizio specifico quali un servizio di archiviazione ospitato su cloud.
-- [Blob Service Concepts](https://msdn.microsoft.com/library/azure/dd179376.aspx) (Concetti relativi al servizio BLOB)
+- [Esempio di hosting di contenuto statico][sample-app]: applicazione di esempio che illustra questo modello.
+- [Modello di passepartout](./valet-key.md): se non è previsto che le risorse di destinazione siano disponibili per utenti anonimi, usare questo modello per limitare l'accesso diretto.
+- [Applicazione Web serverless in Azure](../reference-architectures/serverless/web-app.md): architettura di riferimento che usa l'hosting di siti Web statici con Funzioni di Azure per implementare un'app Web serverless.
+
+[sample-app]: https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting

@@ -1,14 +1,14 @@
 ---
 title: Usare un oggetto come parametro in un modello di Azure Resource Manager
-description: Viene descritto come estendere la funzionalità dei modelli di Azure Resource Manager per usare oggetti come parametri
+description: Illustra come estendere le funzionalità dei modelli di Azure Resource Manager per usare oggetti come parametri.
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: f0826d8ed1ce446d295ebdacc66d8b0bef0b0dec
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251890"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111207"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Usare un oggetto come parametro in un modello di Azure Resource Manager
 
@@ -24,10 +24,11 @@ Di seguito è riportato un esempio che distribuisce una risorsa di rete virtuale
     "VNetSettings":{"type":"object"}
 },
 ```
+
 Successivamente inserire i valori per l'oggetto `VNetSettings`:
 
 > [!NOTE]
-> Per informazioni su come specificare i valori dei parametri durante la distribuzione, vedere la sezione **Parametri** di [Comprendere la struttura e la sintassi dei modelli di Azure Resource Manager][azure-resource-manager-authoring-templates]. 
+> Per informazioni su come specificare i valori dei parametri durante la distribuzione, vedere la sezione **Parametri** di [Comprendere la struttura e la sintassi dei modelli di Azure Resource Manager][azure-resource-manager-authoring-templates].
 
 ```json
 "parameters":{
@@ -91,9 +92,10 @@ Viene riportata ora la restante parte del modello per vedere come viene usato l'
     }
   ]
 ```
-I valori dell'oggetto `VNetSettings` vengono applicati alle proprietà richieste dalla risorsa di rete virtuale usando la funzione `parameters()` sia con l'indicizzatore `[]` che con l'operatore punto. Questo approccio funziona se si desidera applicare in modo statico solo i valori dell'oggetto parametro alla risorsa. Tuttavia, se si desidera assegnare in modo dinamico una matrice di valori della proprietà durante la distribuzione è possibile usare un [ciclo di copia][azure-resource-manager-create-multiple-instances]. Per usare un ciclo di copia, indicare una matrice JSON dei valori della proprietà della risorsa; il ciclo di copia applica in modo dinamico questi valori alle proprietà della risorsa. 
 
-Se si usa l'approccio dinamico è possibile che si verifichi un problema. Per illustrare il problema osservare una matrice standard dei valori della proprietà. In questo esempio i valori delle proprietà vengono archiviati in una variabile. Si noti che qui sono disponibili due matrici &mdash; una denominata `firstProperty` e l'altra denominata `secondProperty`. 
+I valori dell'oggetto `VNetSettings` vengono applicati alle proprietà richieste dalla risorsa di rete virtuale usando la funzione `parameters()` sia con l'indicizzatore `[]` che con l'operatore punto. Questo approccio funziona se si desidera applicare in modo statico solo i valori dell'oggetto parametro alla risorsa. Tuttavia, se si desidera assegnare in modo dinamico una matrice di valori della proprietà durante la distribuzione è possibile usare un [ciclo di copia][azure-resource-manager-create-multiple-instances]. Per usare un ciclo di copia, indicare una matrice JSON dei valori della proprietà della risorsa; il ciclo di copia applica in modo dinamico questi valori alle proprietà della risorsa.
+
+Se si usa l'approccio dinamico è possibile che si verifichi un problema. Per illustrare il problema osservare una matrice standard dei valori della proprietà. In questo esempio i valori delle proprietà vengono archiviati in una variabile. Si noti che qui sono disponibili due matrici &mdash; una denominata `firstProperty` e l'altra denominata `secondProperty`.
 
 ```json
 "variables": {
@@ -166,9 +168,9 @@ Si noti il terzo elemento nella matrice. Manca la proprietà `number`, tuttavia 
 
 ## <a name="using-a-property-object-in-a-copy-loop"></a>Usare un oggetto proprietà in un ciclo di copia
 
-Questo approccio diventa ancora più utile in combinazione con [serial copy loop][azure-resource-manager-create-multiple], in particolare per la distribuzione di risorse figlio. 
+Questo approccio diventa ancora più utile in combinazione con [serial copy loop][azure-resource-manager-create-multiple], in particolare per la distribuzione di risorse figlio.
 
-Per dimostrare questo concetto, si osservi un modello che distribuisce un [gruppo di sicurezza di rete][nsg] con due regole di sicurezza. 
+Per dimostrare questo concetto, si osservi un modello che distribuisce un [gruppo di sicurezza di rete][nsg] con due regole di sicurezza.
 
 Osservare innanzitutto i parametri. Se si osserva il modello si nota che è stato definito un parametro denominato `networkSecurityGroupsSettings` che include una matrice denominata `securityRules`. Questa matrice contiene due oggetti JSON che specificano molte impostazioni per la regola di sicurezza.
 
@@ -176,7 +178,7 @@ Osservare innanzitutto i parametri. Se si osserva il modello si nota che è stat
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters":{
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -249,7 +251,7 @@ Osservare ora il modello. La prima risorsa denominata `NSG1` distribuisce il gru
                 "resources": [],
                 "outputs": {}
             }
-        }       
+        }
     },
     {
         "apiVersion": "2015-01-01",
@@ -292,12 +294,12 @@ Osservare ora il modello. La prima risorsa denominata `NSG1` distribuisce il gru
           }
         }
     }
-  ],          
+  ],
   "outputs": {}
 }
 ```
 
-È opportuno esaminare più approfonditamente come si specificano i valori delle proprietà nella risorsa figlio `securityRules`. A tutte la proprietà viene fatto riferimento tramite la funzione `parameter()`, si usa poi l'operatore punto per fare riferimento alla matrice `securityRules`, indicizzata in base al valore attuale dell'iterazione. Infine, si usa un altro operatore punto per fare riferimento al nome dell'oggetto. 
+È opportuno esaminare più approfonditamente come si specificano i valori delle proprietà nella risorsa figlio `securityRules`. A tutte la proprietà viene fatto riferimento tramite la funzione `parameter()`, si usa poi l'operatore punto per fare riferimento alla matrice `securityRules`, indicizzata in base al valore attuale dell'iterazione. Infine, si usa un altro operatore punto per fare riferimento al nome dell'oggetto.
 
 ## <a name="try-the-template"></a>Provare il modello
 
@@ -316,8 +318,8 @@ az group deployment create -g <resource-group-name> \
 
 - Informazioni su come creare un modello che scorre una matrice di oggetti e la trasforma in uno schema JSON. Vedere [Implementare un trasformatore e un agente di raccolta di proprietà in un modello di Azure Resource Manager](./collector.md)
 
-
 <!-- links -->
+
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
 [azure-resource-manager-create-template]: /azure/azure-resource-manager/resource-manager-create-first-template
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple

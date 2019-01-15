@@ -1,14 +1,16 @@
 ---
 title: Criteri per la scelta di un archivio dati
-description: Panoramica delle opzioni di calcolo di Azure
+titleSuffix: Azure Application Architecture Guide
+description: Panoramica delle opzioni di calcolo di Azure.
 author: MikeWasson
 ms.date: 06/01/2018
-ms.openlocfilehash: f8996cdeb937a28b3f3056da3921a3f89dd36b1a
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seojan19
+ms.openlocfilehash: 156df11d74d033d40d943c60e8e41d4920a24175
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916431"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114318"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Criteri per la scelta di un archivio dati
 
@@ -21,46 +23,68 @@ Per avviare il confronto, raccogliere il maggior numero possibile delle informaz
 ### <a name="functional-requirements"></a>Requisiti funzionali
 
 - **Formato dati**. Che tipo di dati si intende archiviare? I tipi comuni includono dati transazionali, oggetti JSON, dati di telemetria, indici di ricerca o file flat.
+
 - **Dimensioni dei dati**. Quali sono le dimensioni delle entità che occorre archiviare? Queste entità dovranno essere gestite come un singolo documento o possono essere suddivise tra più documenti, tabelle, raccolte e così via?
-- **Scala e struttura**. Qual è la quantità totale di capacità di archiviazione necessaria? Si prevede il partizionamento dei dati? 
-- **Relazioni tra i dati**. I dati dovranno supportare relazioni uno-a-molti o molti-a-molti? Le relazioni stesse rappresentano una parte importante dei dati? Sarà necessario creare join o combinare in altri modi i dati all'interno dello stesso set o provenienti da set di dati esterni? 
+
+- **Scala e struttura**. Qual è la quantità totale di capacità di archiviazione necessaria? Si prevede il partizionamento dei dati?
+
+- **Relazioni tra i dati**. I dati dovranno supportare relazioni uno-a-molti o molti-a-molti? Le relazioni stesse rappresentano una parte importante dei dati? Sarà necessario creare join o combinare in altri modi i dati all'interno dello stesso set o provenienti da set di dati esterni?
+
 - **Modello di coerenza**. Quanto è importante che gli aggiornamenti eseguiti in un nodo compaiano negli altri nodi prima che sia possibile apportare altre modifiche? È accettabile la coerenza finale? Sono necessarie garanzie ACID per le transazioni?
+
 - **Flessibilità dello schema**. Che tipo di schemi verranno applicati ai dati? Si userà uno schema fisso, un approccio di schema in scrittura o un approccio di schema in lettura?
+
 - **Concorrenza**. Che tipo di meccanismo di concorrenza si vuole usare per l'aggiornamento e la sincronizzazione dei dati? L'applicazione eseguirà numerosi aggiornamenti che potrebbero essere potenzialmente in conflitto? In questo caso, potrebbero essere necessari il blocco dei record e il controllo della concorrenza pessimistica. In alternativa, si possono supportare controlli di concorrenza ottimistica? In questo caso, è sufficiente il semplice controllo della concorrenza basato su timestamp o è necessaria la funzionalità aggiuntiva di controllo della concorrenza per più versioni?
+
 - **Spostamento dei dati**. La soluzione dovrà eseguire operazioni di estrazione, trasformazione e caricamento per spostare i dati in altri archivi o data warehouse?
+
 - **Ciclo di vita dei dati**. I dati sono di tipo WORM? Possono essere spostati in un'archiviazione offline sicura o ad accesso sporadico?
+
 - **Altre funzionalità supportate**. Sono necessarie altre funzionalità specifiche, ad esempio convalida dello schema, aggregazione, indicizzazione, ricerca full-text, MapReduce o altre funzionalità di query?
 
 ### <a name="non-functional-requirements"></a>Requisiti non funzionali
 
 - **Prestazioni e scalabilità**. Quali sono i requisiti di prestazioni dei dati? Si hanno requisiti specifici relativi alla frequenza di inserimento e alla velocità di elaborazione dei dati? Quali sono i tempi di risposta accettabili per l'esecuzione di query e l'aggregazione dei dati dopo l'inserimento? Di quanto dovranno aumentare le prestazioni dell'archivio dati? Il carico di lavoro è a elevato utilizzo delle risorse di scrittura o a elevato utilizzo delle risorse di lettura?
-- **Affidabilità**. Quale contratto di servizio complessivo è necessario supportare? Che livello di tolleranza di errore è necessario fornire per i consumer di dati? Quali tipi di funzionalità di backup e ripristino sono necessari? 
-- **Replica**. I dati dovranno essere distribuiti tra più repliche o aree? Quali tipi di funzionalità di replica dei dati sono necessari? 
-- **Limiti**. I limiti di un particolare archivio dati supporteranno i requisiti di scalabilità, numero di connessioni e velocità effettiva? 
+
+- **Affidabilità**. Quale contratto di servizio complessivo è necessario supportare? Che livello di tolleranza di errore è necessario fornire per i consumer di dati? Quali tipi di funzionalità di backup e ripristino sono necessari?
+
+- **Replica**. I dati dovranno essere distribuiti tra più repliche o aree? Quali tipi di funzionalità di replica dei dati sono necessari?
+
+- **Limiti**. I limiti di un particolare archivio dati supporteranno i requisiti di scalabilità, numero di connessioni e velocità effettiva?
 
 ### <a name="management-and-cost"></a>Gestione e costi
 
 - **Servizio gestito**. Quando possibile, usare un servizio dati gestito, a meno che non siano necessarie funzionalità specifiche disponibili solo in un archivio dati basato su IaaS.
+
 - **Disponibilità in base all'area geografica**. Per i servizi gestiti, il servizio è disponibile in tutte le aree di Azure? La soluzione deve essere ospitata in specifiche aree di Azure?
+
 - **Portabilità**. Sarà necessario eseguire la migrazione dei dati in locale, in data center esterni o in altri ambienti di hosting cloud?
+
 - **Licenze**. Si hanno preferenze tra tipo di licenza OSS o proprietaria? Esistono altre restrizioni esterne rispetto al tipo di licenza che è possibile usare?
+
 - **Costo complessivo**. Qual è il costo complessivo dell'uso del servizio all'interno della soluzione? Quante istanze sarà necessario eseguire per supportare i requisiti di velocità effettiva e tempo di attività? Considerare in questo calcolo i costi delle operazioni. Uno dei motivi per preferire i servizi gestiti è la riduzione dei costi operativi.
+
 - **Convenienza**. È possibile partizionare i dati per archiviarli in modo più efficiente sotto il profilo dei costi? Ad esempio, è possibile spostare gli oggetti di grandi dimensioni da un costoso database relazionale a un archivio di oggetti?
 
 ### <a name="security"></a>Sicurezza
 
 - **Sicurezza**. Che tipo di crittografia occorre implementare? È necessaria la crittografia dei dati inattivi? Che tipo di meccanismo di autenticazione si vuole usare per la connessione ai dati?
+
 - **Controllo**. Che tipo di log di controllo è necessario generare?
+
 - **Requisiti di rete**. È necessario limitare o gestire in altro modo l'accesso ai dati da altre risorse di rete? I dati devono essere accessibili solo dall'interno dell'ambiente Azure? I dati devono essere accessibili da specifici indirizzi IP o subnet? Devono essere accessibili da applicazioni o servizi ospitati in locale o in altri data center esterni?
 
 ### <a name="devops"></a>DevOps
 
 - **Competenze**. Esistono specifici linguaggi di programmazione, sistemi operativi o altre tecnologie con cui il team ha particolare familiarità? Ne esistono altri che sarebbe difficile utilizzare per il team?
+
 - **Client**. È disponibile un supporto client ottimale per i linguaggi di sviluppo usati?
 
 Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in termini di profilo del carico di lavoro, tipi di dati e casi d'uso di esempio.
 
 ## <a name="relational-database-management-systems-rdbms"></a>Sistemi di gestione di database relazionali (RDBMS)
+
+<!-- markdownlint-disable MD033 -->
 
 <table>
 <tr><td><strong>Carico di lavoro</strong></td>
@@ -305,7 +329,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
     <td>
         <ul>
             <li>Analisi dei dati</li>
-            <li>Business intelligence aziendale   </li>
+            <li>Business intelligence aziendale</li>
         </ul>
     </td>
 </tr>
@@ -324,7 +348,6 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
     </td>
 </tr>
 </table>
-
 
 ## <a name="time-series-databases"></a>Database di serie temporali
 
@@ -424,3 +447,5 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
     </td>
 </tr>
 </table>
+
+<!-- markdownlint-enable MD033 -->

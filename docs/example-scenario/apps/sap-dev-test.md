@@ -3,14 +3,14 @@ title: Ambienti di sviluppo/test per i carichi di lavoro SAP
 titleSuffix: Azure Example Scenarios
 description: Creare un ambiente di sviluppo/test per i carichi di lavoro SAP.
 author: AndrewDibbins
-ms.date: 7/11/18
+ms.date: 07/11/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 3f6c828e8757a3f82ad6972a8f21cd2fed629162
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 9f9e8ec971373e4309703800c200ba2c62fe9a66
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643969"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111020"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure
 
@@ -31,12 +31,12 @@ Gli altri casi d'uso pertinenti includono:
 
 ## <a name="architecture"></a>Architettura
 
-![Diagramma dell'architettura per gli ambienti di sviluppo/test per i carichi di lavoro SAP](media/architecture-sap-dev-test.png)
+![Diagramma dell'architettura per gli ambienti di sviluppo/test per i carichi di lavoro SAP](./media/architecture-sap-dev-test.png)
 
 Questo scenario illustra il provisioning di un singolo database di sistema SAP e del server applicazioni SAP in una singola macchina virtuale. Il flusso dei dati nello scenario avviene come segue:
 
 1. I clienti usano l'interfaccia utente SAP o altri strumenti client (Excel, un Web browser o un'altra applicazione Web) per accedere al sistema SAP basato su Azure.
-2. Per la connettività viene usata una connessione ExpressRoute stabilita, che termina nel gateway ExpressRoute in Azure. Il traffico di rete viene indirizzato attraverso il gateway ExpressRoute alla subnet del gateway, da questa alla subnet spoke del livello applicazione (vedere il [modello hub-spoke][hub-spoke]) e quindi tramite un gateway di sicurezza di rete alla macchina virtuale dell'applicazione SAP.
+2. Per la connettività viene usata una connessione ExpressRoute stabilita, che termina nel gateway ExpressRoute in Azure. Il traffico di rete viene indirizzato attraverso il gateway ExpressRoute alla subnet del gateway, da questa alla subnet spoke del livello applicazione (vedere la [topologia di rete hub-spoke][hub-spoke]) e quindi tramite un gateway di sicurezza di rete alla macchina virtuale dell'applicazione SAP.
 3. I server di gestione delle identità offrono servizi di autenticazione.
 4. Il jumpbox offre funzionalità di gestione locale.
 
@@ -52,7 +52,7 @@ Questo scenario illustra il provisioning di un singolo database di sistema SAP e
 
 ### <a name="availability"></a>Disponibilità
 
- Microsoft offre un contratto di servizio per le singole istanze di VM. Per altre informazioni sul contratto di servizio di Microsoft Azure per le macchine virtuali, vedere [Contratto di Servizio per Macchine virtuali](https://azure.microsoft.com/support/legal/sla/virtual-machines).
+Microsoft offre un contratto di servizio per le singole istanze di VM. Per altre informazioni sul contratto di servizio di Microsoft Azure per le macchine virtuali, vedere [Contratto di Servizio per Macchine virtuali](https://azure.microsoft.com/support/legal/sla/virtual-machines).
 
 ### <a name="scalability"></a>Scalabilità
 

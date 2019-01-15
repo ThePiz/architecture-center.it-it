@@ -5,12 +5,12 @@ description: Indicazioni per la denominazione di macchine virtuali, account di a
 author: telmosampaio
 ms.date: 10/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4f934102acea24e8e1070ed6a25d63927f0bd252
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: f0349b5db7eb15037bd92567eaf917b5d044daa0
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307079"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058200"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Convenzioni di denominazione per le risorse di Azure
 
@@ -62,7 +62,7 @@ Gli affissi possono fare riferimento ai diversi aspetti che descrivono le specif
 | --- | --- | --- |
 | Environment |dev, prod, QA |Identifica l'ambiente per la risorsa. |
 | Località |usOcc (Stati Uniti occidentali), usOr (Stati Uniti orientali) |Identifica l'area in cui la risorsa viene distribuita. |
-| Istanza |01, 02 |Per le risorse che hanno più di un'istanza denominata, come server Web e così via. |
+| Istanza |1, 2,... |Per risorse con più istanze denominate, ad esempio VM o schede di interfaccia di rete. |
 | Prodotto o servizio |service |Identifica il prodotto, l'applicazione o il servizio supportato dalla risorsa |
 | Ruolo |sql, web, messaggistica |Identifica il ruolo della risorsa associata. |
 
@@ -175,7 +175,7 @@ Sono disponibili due casi d'uso principali per gli account di archiviazione, ovv
 
 È possibile configurare un nome di dominio personalizzato per l'accesso ai dati del BLOB nell'account di Archiviazione di Azure. L'endpoint predefinito per il servizio BLOB è `https://<name>.blob.core.windows.net`.
 
-Se si esegue il mapping di un dominio personalizzato, ad esempio www.contoso.com, all'endpoint BLOB per l'account di archiviazione, sarà possibile accedere anche ai dati BLOB dell'account di archiviazione usando tale dominio. Ad esempio, con un nome di dominio personalizzato, è possibile accedere a `https://mystorage.blob.core.windows.net/mycontainer/myblob` come `https://www.contoso.com/mycontainer/myblob`.
+Se si esegue il mapping di un dominio personalizzato, ad esempio `www.contoso.com`, all'endpoint BLOB per l'account di archiviazione, è anche possibile accedere ai dati di BLOB dell'account di archiviazione usando tale dominio. Ad esempio, con un nome di dominio personalizzato, è possibile accedere a `https://mystorage.blob.core.windows.net/mycontainer/myblob` come `https://www.contoso.com/mycontainer/myblob`.
 
 Per altre informazioni sulla configurazione di questa funzionalità, fare riferimento a [Configurare un nome di dominio personalizzato per l'endpoint di archiviazione BLOB](/azure/storage/storage-custom-domain-name/).
 

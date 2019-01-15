@@ -1,14 +1,14 @@
 ---
 title: Aggiornare una risorsa in un modello di Azure Resource Manager
-description: Viene descritto come estendere la funzionalità dei Modelli di Azure Resource Manager per aggiornare una risorsa
+description: Illustra come estendere le funzionalità dei modelli di Azure Resource Manager per aggiornare una risorsa.
 author: petertay
 ms.date: 10/31/2018
-ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 927826283163b2ae45575035168d6238de98dc00
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251822"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113417"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>Aggiornare una risorsa in un modello di Azure Resource Manager
 
@@ -20,7 +20,7 @@ In seguito specificare il nome della proprietà esistente da modificare o un nuo
 
 ## <a name="example-template"></a>Modello di esempio
 
-Viene ora illustrato un modello di esempio che illustra questa operazione. Il modello distribuisce una rete virtuale denominata `firstVNet` dotata di una subnet denominata `firstSubnet`. Distribuisce quindi un'interfaccia di rete virtuale denominata `nic1` e la associa alla subnet. Quindi, una risorsa di distribuzione denominata `updateVNet` include un modello annidato che aggiorna la risorsa `firstVNet` mediante l'aggiunta di una seconda subnet denominata `secondSubnet`. 
+Viene ora illustrato un modello di esempio che illustra questa operazione. Il modello distribuisce una rete virtuale denominata `firstVNet` che include una subnet denominata `firstSubnet`. Distribuisce quindi un'interfaccia di rete virtuale denominata `nic1` e la associa alla subnet. Quindi, una risorsa di distribuzione denominata `updateVNet` include un modello annidato che aggiorna la risorsa `firstVNet` mediante l'aggiunta di una seconda subnet denominata `secondSubnet`.
 
 ```json
 {
@@ -37,7 +37,7 @@ Viene ora illustrato un modello di esempio che illustra questa operazione. Il mo
           "addressSpace":{"addressPrefixes": [
               "10.0.0.0/22"
           ]},
-          "subnets":[              
+          "subnets":[
               {
                   "name":"firstSubnet",
                   "properties":{
@@ -130,11 +130,11 @@ az group deployment create -g <resource-group-name> \
     --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
 ```
 
-Al termine della distribuzione, aprire il gruppo di risorse specificato nel portale. Viene visualizzata una rete virtuale denominata `firstVNet` e una scheda di interfaccia di rete denominata `nic1`. Fare clic su `firstVNet`, quindi fare clic su `subnets`. Viene visualizzato il `firstSubnet` che è stato originariamente creato e viene visualizzato il `secondSubnet` che è stato aggiunto nella risorsa `updateVNet`. 
+Al termine della distribuzione, aprire il gruppo di risorse specificato nel portale. Viene visualizzata una rete virtuale denominata `firstVNet` e una scheda di interfaccia di rete denominata `nic1`. Fare clic su `firstVNet`, quindi fare clic su `subnets`. Viene visualizzato il `firstSubnet` che è stato originariamente creato e viene visualizzato il `secondSubnet` che è stato aggiunto nella risorsa `updateVNet`.
 
 ![Subnet originale e subnet aggiornata](../_images/firstVNet-subnets.png)
 
-Quindi, tornare al gruppo di risorse, fare clic su `nic1` e quindi fare clic su `IP configurations`. Nella sezione `IP configurations` il `subnet` è impostato su `firstSubnet (10.0.0.0/24)`. 
+Quindi, tornare al gruppo di risorse, fare clic su `nic1` e quindi fare clic su `IP configurations`. Nella sezione `IP configurations` il `subnet` è impostato su `firstSubnet (10.0.0.0/24)`.
 
 ![impostazioni di configurazioni IP NIC1](../_images/nic1-ipconfigurations.png)
 

@@ -5,12 +5,12 @@ description: Procedure consolidate per l'esecuzione di SAP HANA in un ambiente a
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 47953037827923ea0e4f492dfc29ce815072a20e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644088"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011362"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Eseguire SAP HANA in istanze Large di Azure
 
@@ -41,7 +41,7 @@ L'architettura è costituita dai componenti dell'infrastruttura seguenti.
 
 - **Archiviazione di NFS (Network File System)**. Il server [NFS][nfs] supporta la condivisione di file di rete che fornisce la persistenza dei dati protetta per l'istanza Large di HANA.
 
-- **ExpressRoute**. [ExpressRoute][expressroute] è il servizio di rete Azure consigliato per la creazione di connessioni private, che non passano attraverso la rete Internet pubblica, tra una rete locale e le reti virtuali di Azure. Le macchine virtuali di Azure si connettono alle istanze Large di HANA usando un'altra connessione ExpressRoute. La connessione ExpressRoute tra la rete virtuale di Azure e le istanze Large di HANA è configurata come parte dell'offerta di Microsoft.
+- **ExpressRoute**. [ExpressRoute][expressroute] è il servizio di rete di Azure consigliato per creare connessioni private che non passano attraverso la rete Internet pubblica tra una rete locale e le reti virtuali di Azure. Le macchine virtuali di Azure si connettono alle istanze Large di HANA usando un'altra connessione ExpressRoute. La connessione ExpressRoute tra la rete virtuale di Azure e le istanze Large di HANA è configurata come parte dell'offerta di Microsoft.
 
 - **Gateway**. Il gateway di ExpressRoute è usato per la connessione della rete virtuale di Azure usata per il livello di applicazione SAP alla rete dell'istanza Large di HANA. Usare la SKU [Prestazioni elevate o Prestazioni extra][sku].
 

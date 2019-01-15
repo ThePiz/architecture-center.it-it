@@ -1,23 +1,24 @@
 ---
 title: Uso delle identità basate sulle attestazioni nelle applicazioni multi-tenant
-description: Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione
+description: Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 3ed6c7c9a48f3617f82112e76878c770099fde3e
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: ffaa6085dd9ca9ddec203e6661575e984b2e25e0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902426"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113587"
 ---
 # <a name="work-with-claims-based-identities"></a>Usare le identità basate sulle attestazioni
 
 [![GitHub](../_images/github.png) Codice di esempio][sample application]
 
 ## <a name="claims-in-azure-ad"></a>Attestazioni in Azure AD
+
 Quando un utente esegue l'accesso, Azure AD invia un token ID che contiene un set di attestazioni relative all'utente. Un'attestazione è semplicemente un'informazione espressa come coppia chiave/valore. Ad esempio, `email`=`bob@contoso.com`.  Le attestazioni hanno un'autorità di certificazione &mdash; in questo caso Azure AD &mdash; che è l'entità che autentica l'utente e crea le attestazioni. Le attestazioni vengono considerate attendibili perché si considera attendibile l'autorità di certificazione. (Al contrario, se non si considera attendibile l'autorità di certificazione, le attestazioni non vengono considerate attendibili.)
 
 In generale:
@@ -51,15 +52,15 @@ Questa tabella elenca i tipi di attestazione, come vengono visualizzati nel toke
 * upn > `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`
 
 ## <a name="claims-transformations"></a>Trasformazioni delle attestazioni
+
 Durante il flusso di autenticazione, può essere necessario modificare le attestazioni ottenute dal provider di identità. In ASP.NET Core è possibile eseguire la trasformazione delle attestazioni all'interno dell'evento **AuthenticationValidated** dal middleware OpenID Connect. Vedere la sezione relativa agli [eventi di autenticazione].
 
 Qualsiasi attestazione aggiunta durante l'evento **AuthenticationValidated** viene memorizzata nel cookie di autenticazione della sessione. Le attestazioni non vengono reindirizzate ad Azure AD.
 
 Ecco alcuni esempi di trasformazioni delle attestazioni:
 
-* **Normalizzazione di attestazioni**o coerenza delle attestazioni tra gli utenti. Si tratta di una trasformazione particolarmente importante se si ottengono attestazioni da più provider di identità che possono usare diversi tipi di attestazione per informazioni analoghe.
-  Ad esempio, Azure AD invia un'attestazione "upn" che contiene messaggi di posta elettronica dell'utente. Altri provider di identità possono inviare un'attestazione "email". Il codice seguente converte l'attestazione "upn" in un'attestazione "email":
-  
+* **Normalizzazione di attestazioni**o coerenza delle attestazioni tra gli utenti. Si tratta di una trasformazione particolarmente importante se si ottengono attestazioni da più provider di identità che possono usare diversi tipi di attestazione per informazioni analoghe. Ad esempio, Azure AD invia un'attestazione "upn" che contiene messaggi di posta elettronica dell'utente. Altri provider di identità possono inviare un'attestazione "email". Il codice seguente converte l'attestazione "upn" in un'attestazione "email":
+
   ```csharp
   var email = principal.FindFirst(ClaimTypes.Upn)?.Value;
   if (!string.IsNullOrWhiteSpace(email))
@@ -67,12 +68,14 @@ Ecco alcuni esempi di trasformazioni delle attestazioni:
       identity.AddClaim(new Claim(ClaimTypes.Email, email));
   }
   ```
+
 * Aggiungere **valori di attestazione predefiniti** per le attestazioni non presenti &mdash;, ad esempio l'assegnazione di un utente a un ruolo predefinito. In alcuni casi ciò consente di semplificare la logica di autorizzazione.
-* Aggiunta di **tipi di attestazione personalizzati** con informazioni specifiche dell'applicazione sull'utente. Ad esempio, è possibile archiviare alcune informazioni sull'utente in un database. È possibile aggiungere un'attestazione personalizzata con queste informazioni al ticket di autenticazione. L'attestazione viene archiviata in un cookie, quindi è sufficiente scaricarla dal database una sola volta per sessione di accesso. Può essere inoltre opportuno evitare di creare cookie di dimensioni troppo grandi, è quindi necessario considerare il compromesso tra la dimensione di un cookie e le ricerche nel database.   
+* Aggiunta di **tipi di attestazione personalizzati** con informazioni specifiche dell'applicazione sull'utente. Ad esempio, è possibile archiviare alcune informazioni sull'utente in un database. È possibile aggiungere un'attestazione personalizzata con queste informazioni al ticket di autenticazione. L'attestazione viene archiviata in un cookie, quindi è sufficiente scaricarla dal database una sola volta per sessione di accesso. Può essere inoltre opportuno evitare di creare cookie di dimensioni troppo grandi, è quindi necessario considerare il compromesso tra la dimensione di un cookie e le ricerche nel database.
 
 Dopo aver completato il flusso di autenticazione, le attestazioni sono disponibili in `HttpContext.User`. A questo punto è necessario considerarle come una raccolta di sola lettura &mdash;, ad esempio usarle per prendere decisioni di autorizzazione.
 
 ## <a name="issuer-validation"></a>Convalida dell'autorità di certificazione
+
 In OpenID Connect, l'attestazione dell'autorità di certificazione ("iss") identifica il provider di identità che ha emesso il token ID. Parte del flusso di autenticazione OIDC consiste nel verificare che l'attestazione dell'autorità di certificazione corrisponda all'autorità di certificazione effettiva. Il middleware OIDC gestisce tale flusso automaticamente.
 
 In Azure AD, il valore dell'autorità di certificazione è univoco per ogni tenant di AD (`https://sts.windows.net/<tenantID>`). Un'applicazione deve quindi eseguire un ulteriore controllo per assicurarsi che l'autorità di certificazione rappresenti un tenant che consente di accedere all'app.
@@ -87,25 +90,28 @@ Per un'applicazione single-tenant, è sufficiente verificare che l'autorità di 
 Per informazioni più dettagliate, vedere [Iscrizione e onboarding del tenant in un'applicazione multi-tenant][signup].
 
 ## <a name="using-claims-for-authorization"></a>Uso delle attestazioni per le autorizzazioni
+
 Con le attestazioni, l'identità di un utente non è più un'entità monolitica. Ad esempio, un utente potrebbe avere indirizzo di posta elettronica, numero di telefono, data di nascita, sesso e così via. È possibile che il provider di identità dell'utente archivi tutte queste informazioni. Quando si autentica l'utente, tuttavia, in genere si ottiene un subset di queste informazioni sotto forma di attestazioni. In questo modello, l'identità dell'utente è semplicemente un'aggregazione di attestazioni. Quando si prendono decisioni di autorizzazione relative a un utente, si cercano particolari set di attestazioni. In altre parole, la domanda "L'utente X può eseguire l'azione Y?" diventa "L'utente X dispone dell'attestazione Z?".
 
 Ecco alcuni modelli di base per la verifica delle attestazioni.
 
 * Per verificare che l'utente abbia un'attestazione specifica con un valore specifico:
-  
+
    ```csharp
    if (User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
    ```
+
    Questo codice verifica se l'utente ha un'attestazione di ruolo con il valore "Admin". Gestisce correttamente il caso in cui l'utente non ha alcuna attestazione di ruolo o ha più attestazioni di ruolo.
   
    La classe **ClaimType** definisce le costanti per i tipi di attestazione di uso comune. Tuttavia, è possibile usare qualsiasi valore stringa per il tipo di attestazione.
 * Per ottenere un singolo valore in relazione a un tipo di attestazione, quando si prevede che possa essere presente al massimo un valore:
-  
+
   ```csharp
   string email = User.FindFirst(ClaimTypes.Email)?.Value;
   ```
+
 * Per ottenere tutti i valori di un tipo di attestazione:
-  
+
   ```csharp
   IEnumerable<Claim> groups = User.FindAll("groups");
   ```
@@ -114,8 +120,7 @@ Per altre informazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse 
 
 [**Avanti**][signup]
 
-
-<!-- Links -->
+<!-- links -->
 
 [parametro di ambito]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [Token e tipi di attestazioni supportati]: /azure/active-directory/active-directory-token-and-claims/

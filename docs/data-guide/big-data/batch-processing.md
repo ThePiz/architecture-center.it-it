@@ -3,12 +3,12 @@ title: Elaborazione batch
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: fe07d4d6501d4778025b75807f4d6be5854c3e09
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 50e50ae121fda7ceb9dd298b8a072bd7cc4053d9
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901984"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114182"
 ---
 # <a name="batch-processing"></a>Elaborazione batch
 
@@ -16,7 +16,7 @@ Uno scenario di Big Data comune è costituito dall'elaborazione batch di dati in
 
 Ad esempio, i log di un server Web possono essere copiati in una cartella e quindi elaborati durante la notte per generare report giornalieri dell'attività Web.
 
-![](./images/batch-pipeline.png)
+![Diagramma di una pipeline di elaborazione batch](./images/batch-pipeline.png)
 
 ## <a name="when-to-use-this-solution"></a>Quando usare questa soluzione
 
@@ -28,21 +28,21 @@ Un esempio di elaborazione batch è la trasformazione di un ampio set di file fl
 
 - **Formato di dati e codifica**. Alcuni dei problemi più difficili da correggere si verificano quando i file usano una codifica o un formato non previsto. Ad esempio, i file di origine potrebbero usare una combinazione di codifica UTF-16 e UTF-8 oppure contenere delimitatori imprevisti (spazio anziché tabulazione) o includere caratteri imprevisti. Un altro esempio comune è costituito da campi di testo che contengono tabulazioni, spazi o virgole interpretati come delimitatori. La logica di caricamento e analisi dei dati deve essere sufficientemente flessibile da rilevare e gestire questi problemi.
 
-- **Orchestrazione degli intervalli di tempo.** Spesso i dati di origine sono inseriti in una gerarchia di cartelle che riflette gli intervalli di elaborazione, organizzati per anno, mese, giorno, ora e così via. In alcuni casi, i dati possono arrivare in ritardo. Ad esempio, si supponga che in un server Web si verifichi un errore e che i log relativi al 7 marzo arrivino nella cartella di elaborazione solo il 9 marzo. Sarà necessario stabilire se devono essere semplicemente ignorati a causa del ritardo o se la logica di elaborazione downstream sarà in grado di gestire i record non disponibili.
+- **Orchestrazione dei periodi di tempo**. Spesso i dati di origine sono inseriti in una gerarchia di cartelle che riflette gli intervalli di elaborazione, organizzati per anno, mese, giorno, ora e così via. In alcuni casi, i dati possono arrivare in ritardo. Ad esempio, si supponga che in un server Web si verifichi un errore e che i log relativi al 7 marzo arrivino nella cartella di elaborazione solo il 9 marzo. Sarà necessario stabilire se devono essere semplicemente ignorati a causa del ritardo o se la logica di elaborazione downstream sarà in grado di gestire i record non disponibili.
 
 ## <a name="architecture"></a>Architettura
 
 Un'architettura per l'elaborazione batch include i componenti logici seguenti, illustrati nel diagramma precedente.
 
-- **Archiviazione dati.** In genere si tratta di un archivio di file distribuito che può essere usato come repository per volumi elevati di file di grandi dimensioni in diversi formati. Genericamente, questo tipo di archivio viene spesso definito data lake. 
+- **Archiviazione dei dati**. In genere si tratta di un archivio di file distribuito che può essere usato come repository per volumi elevati di file di grandi dimensioni in diversi formati. Genericamente, questo tipo di archivio viene spesso definito data lake.
 
-- **Elaborazione batch.** Poiché i Big Data hanno dimensioni considerevoli, le soluzioni spesso devono elaborare i file di dati mediante processi batch con esecuzione prolungata per filtrare, aggregare e preparare in altro modo i dati per l'analisi. In genere questi processi prevedono la lettura dei file di origine, la relativa elaborazione e la scrittura dell'output in nuovi file. 
+- **Elaborazione batch**. Poiché i Big Data hanno dimensioni considerevoli, le soluzioni spesso devono elaborare i file di dati mediante processi batch con esecuzione prolungata per filtrare, aggregare e preparare in altro modo i dati per l'analisi. In genere questi processi prevedono la lettura dei file di origine, la relativa elaborazione e la scrittura dell'output in nuovi file.
 
-- **Archivio dati analitici.** Numerose soluzioni per Big Data sono progettate per preparare i dati per l'analisi e quindi servire i dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti di analisi. 
+- **Archivio dati analitici**. Numerose soluzioni per Big Data sono progettate per preparare i dati per l'analisi e quindi servire i dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti di analisi.
 
-- **Analisi e creazione di report.** L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite strumenti di analisi e report. 
+- **Analisi e creazione di report**. L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite funzionalità per l'analisi e la creazione di report.
 
-- **Orchestrazione.** Con l'elaborazione batch è in genere necessaria un'orchestrazione per eseguire la migrazione o la copia dei dati nella risorsa di archiviazione dati, nell'elaborazione batch, nell'archivio dati analitici e nei livelli per la creazione di report.
+- **Orchestrazione**. Con l'elaborazione batch è in genere necessaria un'orchestrazione per eseguire la migrazione o la copia dei dati nella risorsa di archiviazione dati, nell'elaborazione batch, nell'archivio dati analitici e nei livelli per la creazione di report.
 
 ## <a name="technology-choices"></a>Scelte di tecnologia
 
@@ -55,7 +55,11 @@ Per le soluzioni di elaborazione batch in Azure è consigliabile usare le tecnol
 
 Per altre informazioni, vedere [Archiviazione dei dati](../technology-choices/data-storage.md).
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="batch-processing"></a>Elaborazione batch
+
+<!-- markdownlint-enable MD024 -->
 
 - **U-SQL**. U-SQL è il linguaggio usato da Azure Data Lake Analytics per l'elaborazione delle query. Combina il carattere dichiarativo di SQL con l'estendibilità procedurale di C#, avvalendosi del parallelismo per consentire un'elaborazione efficiente dei dati su larga scala.
 - **Hive**. Hive è un linguaggio simile a SQL ed è supportato in quasi tutte le distribuzioni Hadoop, incluso HDInsight. Consente di elaborare i dati da qualsiasi archivio compatibile con HDFS, inclusi Archiviazione BLOB di Azure e Azure Data Lake Store.

@@ -1,20 +1,23 @@
 ---
 title: Modello A scomparti
-description: Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti
+titleSuffix: Cloud Design Patterns
+description: Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti.
+keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 9917870e1dcbed87aaa41e051f1622ad4950456a
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.custom: seodec18
+ms.openlocfilehash: 0a2ae4789d3c1653405a59ef8cb4f6171a8abc81
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012706"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112193"
 ---
 # <a name="bulkhead-pattern"></a>Modello A scomparti
 
 Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti.
 
-Questo modello è denominato *A scomparti* perché ricorda le aree divise da porte tagliafuoco nello scafo di una nave. Se lo scafo subisce un danno, si riempie d'acqua solo la sezione danneggiata, impedendo quindi che l'intera nave affondi. 
+Questo modello è denominato *A scomparti* perché ricorda le aree divise da porte tagliafuoco nello scafo di una nave. Se lo scafo subisce un danno, si riempie d'acqua solo la sezione danneggiata, impedendo quindi che l'intera nave affondi.
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
@@ -34,22 +37,22 @@ Questo schema mostra i vantaggi seguenti:
 
 - Consente di isolare consumer e servizi evitando errori a catena. Un problema che interessa un consumer o un servizio può restare isolato nel proprio scomparto, evitando che il problema si ripercuota sull'intera soluzione.
 - Consente di mantenere alcune funzionalità in caso di errore di un servizio. Altri servizi e funzionalità dell'applicazione continueranno a funzionare.
-- Consente di distribuire servizi che offrono una diversa qualità del servizio per applicazioni più esigenti. È possibile configurare un pool di consumer ad alta priorità che usa servizi ad alta priorità. 
+- Consente di distribuire servizi che offrono una diversa qualità del servizio per applicazioni più esigenti. È possibile configurare un pool di consumer ad alta priorità che usa servizi ad alta priorità.
 
 Il diagramma seguente mostra scomparti strutturati in pool di connessioni che chiamano singoli servizi. Se nel Servizio A si verifica un errore o un altro problema, il pool di connessioni è isolato, e l'errore o il problema interesserà soli i carichi di lavoro che usano il pool di thread assegnato al Servizio A. I carichi di lavoro che usano i Servizi B e C non sono interessati e possono continuare a lavorare senza interruzioni.
 
-![](./_images/bulkhead-1.png) 
+![Primo diagramma del modello A scomparti](./_images/bulkhead-1.png)
 
 Il diagramma seguente mostra più client che chiamano un singolo servizio. Ad ogni client viene assegnata un'istanza del servizio distinta. Il Client 1 ha inviato un numero eccessivo di richieste, con conseguente sovraccarico sulla relativa istanza. Poiché ogni istanza del servizio è isolata dalle altre, gli altri client possono continuare a effettuare chiamate.
 
-![](./_images/bulkhead-2.png)
-     
+![Primo diagramma del modello A scomparti](./_images/bulkhead-2.png)
+
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
 - Definire le partizioni in funzione dei requisiti aziendali e tecnici dell'applicazione.
 - Quando si suddividono in scomparti i servizi o i consumer, è consigliabile considerare il livello di isolamento offerto dalla tecnologia in uso, nonché il sovraccarico in termini di costo, prestazioni e gestibilità.
 - Considerare la combinazione del modello A scomparti con i modelli Nuovo tentativo, Interruttore e Limitazione per offrire una gestione degli errori più complessa.
-- Quando si suddividono i consumer in scomparti, valutare l'uso di processi, pool di thread e semafori. Progetti come [Netflix Hystrix][hystrix] e [Polly][polly] offrono un framework per la creazione di scomparti per consumer.
+- Quando si suddividono i consumer in scomparti, valutare l'uso di processi, pool di thread e semafori. Progetti come [Netflix Hystrix] [ hystrix] e [Polly] [ polly] offrono un framework per la creazione di scomparti per consumer.
 - Quando si suddividono i servizi in scomparti, valutarne la distribuzione in macchine virtuali, contenitori o processi distinti. I contenitori offrono un buon bilanciamento dell'isolamento delle risorse con un sovraccarico non significativo.
 - I servizi che comunicano tramite messaggi asincroni possono essere isolati usando diversi set di code. Ogni coda può disporre di un set dedicato di istanze che elabora i messaggi nella coda o di un singolo gruppo di istanze che usa un algoritmo per rimuovere la coda ed elaborare gli invii.
 - Determinare il livello di granularità degli scomparti. Se, ad esempio, si distribuiscono i tenant tra partizioni, è possibile posizionare ogni tenant in una partizione distinta o posizionare diversi tenant in una sola partizione.
@@ -92,11 +95,10 @@ spec:
 
 ## <a name="related-guidance"></a>Informazioni correlate
 
-- [Modello Interruttore](./circuit-breaker.md)
 - [Progettazione di applicazioni resilienti per Azure](../resiliency/index.md)
+- [Modello Interruttore](./circuit-breaker.md)
 - [Modello Nuovo tentativo](./retry.md)
 - [Modello Limitazione](./throttling.md)
-
 
 <!-- links -->
 

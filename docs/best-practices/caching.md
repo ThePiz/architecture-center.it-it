@@ -5,12 +5,12 @@ description: Indicazioni per la memorizzazione nella cache per migliorare le pre
 author: dragon119
 ms.date: 05/24/2017
 ms.custom: seodec18
-ms.openlocfilehash: b7f720b9e08b0316f9967a19e1b93069aa04e55f
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: da676ba3037f5c232ea97b9cb41488c7c2202476
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307470"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113111"
 ---
 # <a name="caching"></a>Memorizzazione nella cache
 
@@ -476,9 +476,9 @@ var customer1 = cache.Wait(task1);
 var customer2 = cache.Wait(task2);
 ```
 
-Per maggiori informazioni sulla scrittura di applicazioni client che possono usare Cache Redis di Azure, consultare la [documentazione su Cache Redis di Azure](https://azure.microsoft.com/documentation/services/cache/). Altre informazioni sono disponibili anche su [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md).
+Per altre informazioni sulla scrittura di applicazioni client che possono usare Cache Redis di Azure, vedere la [documentazione di Cache Redis di Azure](/azure/azure-cache-for-redis/). Altre informazioni sono disponibili anche su [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md).
 
-La pagina relativa a [pipeline e multiplexer](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) nello stesso sito Web offre altre informazioni sulle operazioni asincrone e sul pipelining con Redis e la libreria StackExchange. 
+La pagina relativa a [pipeline e multiplexer](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) nello stesso sito Web offre altre informazioni sulle operazioni asincrone e sul pipelining con Redis e la libreria StackExchange.
 
 ## <a name="using-redis-caching"></a>Uso della memorizzazione nella cache di Redis
 
@@ -898,7 +898,7 @@ Anche i modelli seguenti potrebbero essere importanti per lo scenario quando si 
 
 ## <a name="more-information"></a>Altre informazioni
 
-- [Documentazione di Cache Redis di Azure](https://azure.microsoft.com/documentation/services/cache/) 
+- [Documentazione di Cache Redis di Azure](/azure/azure-cache-for-redis/)
 - [Domande frequenti su Cache Redis di Azure](/azure/redis-cache/cache-faq)
 - [Modello asincrono basato su attività](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)
 - [Documentazione di Redis](https://redis.io/documentation)

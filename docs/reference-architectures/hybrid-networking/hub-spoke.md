@@ -5,12 +5,12 @@ description: Implementare una topologia di rete hub-spoke in Azure.
 author: telmosampaio
 ms.date: 10/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: fe56630b621f02fe71b864642b75688ba1965862
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: c7cf2923856b3c659876afcc89bb312e492c6409
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329433"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112448"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementare una topologia di rete hub-spoke in Azure
 
@@ -176,11 +176,9 @@ Per distribuire la rete virtuale dell'hub, seguire questa procedura.
 
 5. Attendere il completamento della distribuzione. Questa distribuzione crea una rete virtuale, una macchina virtuale, un gateway VPN e una connessione al gateway.  Occorreranno circa 40 minuti per creare il gateway VPN.
 
-### <a name="test-connectivity-with-the-hub"></a>Testare la connettività con l'hub
+### <a name="test-connectivity-to-the-hub-vnet-mdash-windows-deployment"></a>Testare la connettività alla rete virtuale hub: distribuzione in Windows
 
-Testare la connettività dall'ambiente locale simulato alla rete virtuale hub dell'hub.
-
-**Distribuzione in Windows**
+Per testare la connettività dall'ambiente locale simulato alla rete virtuale hub con VM Windows, seguire questa procedura:
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
 
@@ -206,11 +204,13 @@ TcpTestSucceeded : True
 > [!NOTE]
 > Per impostazione predefinita, le VM Windows Server non consentono risposte ICMP in Azure. Se si vuole usare `ping` per testare la connettività, è necessario abilitare il traffico ICMP in Windows Firewall con sicurezza avanzata per ogni VM.
 
-**Distribuzione in Linux**
+### <a name="test-connectivity-to-the-hub-vnet-mdash-linux-deployment"></a>Testare la connettività alla rete virtuale hub: distribuzione in Linux
+
+Per testare la connettività dall'ambiente locale simulato alla rete virtuale hub con VM Linux, seguire questa procedura:
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
 
-2. Fare clic su `Connect` e copiare il comando `ssh` visualizzato nel portale. 
+2. Fare clic su `Connect` e copiare il comando `ssh` visualizzato nel portale.
 
 3. Da un prompt di Linux, eseguire `ssh` per connettersi all'ambiente locale simulato. Usare la password specificata nel file parametro `onprem.json`.
 
@@ -253,11 +253,9 @@ Per distribuire le reti virtuali spoke, seguire questa procedura.
    azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet-peering.json --deploy
    ```
 
-### <a name="test-connectivity"></a>Testare la connettività
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-windows-deployment"></a>Testare la connettività alle reti virtuali spoke: distribuzione in Windows
 
-Testare la connettività dall'ambiente locale simulato alle reti virtuali spoke.
-
-**Distribuzione in Windows**
+Per testare la connettività dall'ambiente locale simulato alle reti virtuali spoke con VM Windows, seguire questa procedura:
 
 1. Usare il portale di Azure per trovare la macchina virtuale denominata `jb-vm1` nel gruppo di risorse `onprem-jb-rg`.
 
@@ -270,7 +268,7 @@ Testare la connettività dall'ambiente locale simulato alle reti virtuali spoke.
    Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
    ```
 
-**Distribuzione in Linux**
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-linux-deployment"></a>Testare la connettività alle reti virtuali spoke: distribuzione in Linux
 
 Per testare la connettività dall'ambiente locale simulato alle reti virtuali spoke con VM Linux, seguire questa procedura:
 
@@ -329,4 +327,3 @@ Questo passaggio è facoltativo. Se si vuole consentire la connessione tra gli s
 [1]: ./images/hub-spoke-gateway-routing.svg "Topologia hub-spoke in Azure con routing transitivo"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Topologia hub-spoke in Azure con routing transitivo usando un'appliance virtuale di rete"
 [3]: ./images/hub-spokehub-spoke.svg "Topologia hub-spoke-hub-spoke in Azure"
-[ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

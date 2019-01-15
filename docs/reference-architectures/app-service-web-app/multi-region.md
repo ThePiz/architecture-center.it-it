@@ -5,12 +5,12 @@ description: Architettura consigliata per un'applicazione Web a disponibilità e
 author: MikeWasson
 ms.date: 10/25/2018
 ms.custom: seodec18
-ms.openlocfilehash: 61ee7220dbc37140ff1598de78f89aaef8a3e922
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 04ba786ea16aa3245a8f0b7fcafeacc60ac447c2
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119847"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113332"
 ---
 # <a name="run-a-web-application-in-multiple-azure-regions-for-high-availability"></a>Eseguire un’applicazione in più aree di Azure per una disponibilità elevata
 
@@ -65,7 +65,7 @@ Assicurarsi tuttavia che entrambe le aree supportino tutti i servizi di Azure ne
 
 Come procedura consigliata, creare un endpoint del probe di integrità che segnali l'integrità complessiva dell'applicazione e usare questo endpoint per il probe di integrità. L'endpoint dovrebbe controllare le dipendenze critiche, come le app del servizio app, la coda di archiviazione e il database SQL. In caso contrario, il probe potrebbe segnalare un endpoint integro quando le parti più importanti dell'applicazione in realtà hanno esito negativo.
 
-D'altra parte, non usare il probe di integrità per controllare i servizi con una priorità più bassa. Ad esempio, se un servizio di posta elettronica si arresta, l'applicazione può passare a un secondo provider o semplicemente inviare i messaggi in un secondo momento. Non si tratta di una priorità sufficientemente alta da giustificare il failover dell'applicazione. Per altre informazioni, vedere [Health Endpoint Monitoring Pattern][health-endpoint-monitoring-pattern] (Modello di monitoraggio degli endpoint di integrità).
+D'altra parte, non usare il probe di integrità per controllare i servizi con una priorità più bassa. Ad esempio, se un servizio di posta elettronica si arresta, l'applicazione può passare a un secondo provider o semplicemente inviare i messaggi in un secondo momento. Non si tratta di una priorità sufficientemente alta da giustificare il failover dell'applicazione. Per altre informazioni, vedere [Modello di monitoraggio endpoint di integrità][health-endpoint-monitoring-pattern].
 
 ### <a name="sql-database"></a>Database SQL
 
@@ -147,7 +147,7 @@ Se nel database primario si verifica un errore, effettuare un failover manuale a
 
 <!-- links -->
 
-[azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-sql-db]: /azure/sql-database/
 [azure-dns]: /azure/dns/dns-overview
 [cosmosdb-geo]: /azure/cosmos-db/distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md

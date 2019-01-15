@@ -5,12 +5,12 @@ description: Distribuire un'applicazione sulle macchine virtuali di Azure in pi�
 author: MikeWasson
 ms.date: 07/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 84da8aaef7e552beff1f06befbaa2e50a3ac3d8b
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 5eef936dded1829ee561ce1b13df4fb147694dc7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643709"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111989"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Eseguire un'applicazione a più livelli in più aree di Azure per una disponibilità elevata
 
@@ -67,7 +67,7 @@ Assicurarsi tuttavia che entrambe le aree supportino tutti i servizi di Azure ne
 Quando si configura Gestione traffico, tenere presente quanto segue:
 
 - **Routing**. Gestione traffico supporta diversi [algoritmi di routing][tm-routing]. Per lo scenario descritto in questo articolo, usare il routing *Priorità* (precedentemente denominato routing *Failover*). Con questa impostazione, Gestione traffico invia tutte le richieste all'area primaria, a meno che l'area primaria non diventi irraggiungibile. A questo punto, viene automaticamente effettuato il failover all'area secondaria. Vedere [Configurare il metodo di routing failover][tm-configure-failover].
-- **Probe di integrità**. Gestione traffico usa un [probe][tm-monitoring] HTTP (o HTTPS) per monitorare la disponibilità di ogni area. Il probe verifica una risposta HTTP 200 per un percorso URL specificato. Come procedura consigliata, creare un endpoint che segnali l'integrità complessiva dell'applicazione e usare questo endpoint per il probe di integrità. In caso contrario, il probe potrebbe segnalare un endpoint integro quando le parti più importanti dell'applicazione in realtà hanno esito negativo. Per altre informazioni, vedere [Health Endpoint Monitoring Pattern][health-endpoint-monitoring-pattern] (Modello di monitoraggio degli endpoint di integrità).
+- **Probe di integrità**. Gestione traffico usa un [probe][tm-monitoring] HTTP (o HTTPS) per monitorare la disponibilità di ogni area. Il probe verifica una risposta HTTP 200 per un percorso URL specificato. Come procedura consigliata, creare un endpoint che segnali l'integrità complessiva dell'applicazione e usare questo endpoint per il probe di integrità. In caso contrario, il probe potrebbe segnalare un endpoint integro quando le parti più importanti dell'applicazione in realtà hanno esito negativo. Per altre informazioni, vedere [Modello di monitoraggio endpoint di integrità][health-endpoint-monitoring-pattern].
 
 Quando Gestione traffico effettua il failover, per un periodo di tempo i client non riescono a raggiungere l'applicazione. La durata di questo periodo è influenzata dai fattori seguenti:
 
@@ -172,7 +172,7 @@ Può essere utile esaminare gli [scenari di esempio di Azure](/azure/architectur
 [hybrid-vpn]: ../hybrid-networking/vpn.md
 [azure-dns]: /azure/dns/dns-overview
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
-[azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-sql-db]: /azure/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
 [azure-cli]: /cli/azure/
 [regional-pairs]: /azure/best-practices-availability-paired-regions

@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: Implementare un'architettura a più livelli in Azure per la disponibilità, la sicurezza, la scalabilità e la gestibilità.
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: 38983dec83718f53fc1ffd79c1347582200f5db0
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: e7dbd8dd2b8e5aff8f18ff9b87fce0b76a850bce
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120128"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011379"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Applicazione a più livelli Windows in Azure con SQL Server
 
@@ -25,7 +25,7 @@ L'architettura include i componenti seguenti:
 
 - **Gruppo di risorse**. I [gruppi di risorse][resource-manager-overview] vengono usati per raggruppare le risorse in modo che possano essere gestite in base alla durata, al proprietario o ad altri criteri.
 
-- **Rete virtuale (VNey) e subnet**. Ogni VM di Azure viene distribuita in una rete virtuale che può essere segmentata in subnet. Creare una subnet separata per ogni livello.
+- **Rete virtuale (VNet) e subnet**. Ogni VM di Azure viene distribuita in una rete virtuale che può essere segmentata in subnet. Creare una subnet separata per ogni livello.
 
 - **Gateway applicazione**. Il [gateway applicazione di Azure](/azure/application-gateway/) è un servizio di bilanciamento del carico di livello 7. In questa architettura, instrada le richieste HTTP al front-end Web. Il gateway applicazione fornisce anche un [Web application firewall](/azure/application-gateway/waf-overview) (WAF) che protegge l'applicazione da exploit e vulnerabilità comuni.
 

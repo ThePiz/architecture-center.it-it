@@ -1,16 +1,16 @@
 ---
 title: Applicazione Web multilivello creata per la disponibilità elevata e il ripristino di emergenza
 titleSuffix: Azure Example Scenarios
-description: Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure
+description: Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure.
 author: sujayt
 ms.date: 11/16/2018
 ms.custom: product-team
-ms.openlocfilehash: baa468697b4a72975e3b192efc9bdf1861a0c0da
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: d2b466cc691c02ea3c5fb6ff72d91865d33c3378
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644047"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114097"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure
 

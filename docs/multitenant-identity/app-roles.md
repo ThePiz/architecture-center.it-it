@@ -1,23 +1,23 @@
 ---
 title: Ruoli applicazione
-description: Come implementare l'autorizzazione con i ruoli dell'applicazione
+description: Come eseguire l'autorizzazione con ruoli applicazione.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: 4a694eb65de717e6b5a7c65a2d6fb28f192dcdc5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 04749bff820132e40f3cbb5195bf65648ab39ab3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902511"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112533"
 ---
 # <a name="application-roles"></a>Ruoli applicazione
 
 [![GitHub](../_images/github.png) Codice di esempio][sample application]
 
-I ruoli dell'applicazione consentono di assegnare le autorizzazioni agli utenti. Ad esempio, l'applicazione [Tailspin Surveys][Tailspin] definisce i ruoli seguenti:
+I ruoli dell'applicazione consentono di assegnare le autorizzazioni agli utenti. Ad esempio, l'applicazione [Tailspin Surveys][tailspin] definisce i ruoli seguenti:
 
 * Amministratore. Può eseguire tutte le operazioni CRUD in qualsiasi sondaggio che appartiene al tenant.
 * Autore. Può creare nuovi sondaggi.
@@ -30,14 +30,13 @@ Durante il processo di [autorizzazione], i ruoli verranno convertiti in autorizz
 * [Gestione ruoli dell'applicazione](#roles-using-an-application-role-manager).
 
 ## <a name="roles-using-azure-ad-app-roles"></a>Definizione dei ruoli con i ruoli dell'app Azure AD
+
 Si tratta dell'approccio usato nell'app Tailspin Surveys.
 
 Secondo questo approccio, il provider SaaS definisce i ruoli dell'applicazione aggiungendoli al manifesto dell'applicazione. Dopo l'iscrizione, un amministratore della directory AD del cliente assegna gli utenti ai ruoli. Quando l'utente esegue l'accesso, i ruoli assegnati dell'utente vengono inviati come attestazioni.
 
 > [!NOTE]
 > Se il cliente usa Azure AD Premium, l'amministratore può assegnare un gruppo di sicurezza a un ruolo e i membri del gruppo ereditano il ruolo dell'app. Si tratta di una soluzione pratica per gestire i ruoli, perché il proprietario del gruppo non deve essere un amministratore di Active Directory.
-> 
-> 
 
 Vantaggi di questo approccio:
 
@@ -52,6 +51,7 @@ Svantaggi:
 * Se è presente un'API Web back-end separata dall'app Web, le assegnazioni dei ruoli per l'app Web non valgono per l'API Web. Per altre informazioni su questo argomento, vedere [Protezione di un'API Web back-end].
 
 ### <a name="implementation"></a>Implementazione
+
 **Definire i ruoli.** Il provider SaaS dichiara i ruoli dell'app nel [manifesto dell'applicazione]. Ad esempio, ecco la voce del manifesto per l'app Surveys:
 
 ```json
@@ -85,8 +85,6 @@ La proprietà `value` viene visualizzata nell'attestazione basata su ruolo. La `
 
 > [!NOTE]
 > Come indicato in precedenza, i clienti che non hanno Azure AD Premium non possono assegnare i gruppi di sicurezza ai ruoli.
-> 
-> 
 
 Lo screenshot seguente del portale di Azure mostra gli utenti e i gruppi per l'applicazione Surveys. Amministratore e Autore sono gruppi, assegnati rispettivamente ai ruoli SurveyAdmin e SurveyCreator. Alice è un utente che è stato assegnato direttamente al ruolo SurveyAdmin. Bob e Charles sono utenti che non sono stati assegnati direttamente a un ruolo.
 
@@ -96,12 +94,10 @@ Come mostrato nello screenshot seguente, Charles fa parte del gruppo Amministrat
 
 ![Membri del gruppo Amministratore](./images/running-the-app/admin-members.png)
 
-
 > [!NOTE]
 > <Un approccio alternativo per l'applicazione consiste nell'assegnare ruoli a livello di codice, tramite l'API Graph di Azure AD. Questo tuttavia richiede che l'applicazione ottenga le autorizzazioni di scrittura per la directory Active Directory del cliente. Un'applicazione con queste autorizzazioni può provocare danni significativi, mentre il cliente si aspetta che l'app non crei problemi nella directory. I clienti non desiderano che l'app crei problemi alla directory e molti potrebbero non essere disponibili a concedere un tale livello di accesso.
-> 
 
-**Ottenere le attestazioni basate su ruolo**. Quando l'utente esegue l'accesso, l'applicazione riceve i ruoli assegnati dell'utente in un'attestazione con il tipo `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`.  
+**Ottenere le attestazioni basate su ruolo**. Quando l'utente esegue l'accesso, l'applicazione riceve i ruoli assegnati dell'utente in un'attestazione con il tipo `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`.
 
 Un utente può avere più ruoli o nessun ruolo. Nel codice dell'autorizzazione non supporre che l'utente abbia esattamente un'attestazione del ruolo. Scrivere un codice in grado di verificare se è presente un valore attestazione specifico:
 
@@ -110,6 +106,7 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 ```
 
 ## <a name="roles-using-azure-ad-security-groups"></a>Definizione dei ruoli con i gruppi di sicurezza di Azure AD
+
 In questo approccio, i ruoli sono rappresentati come gruppi di sicurezza di Active Directory. L'applicazione assegna le autorizzazioni agli utenti in base alle rispettive appartenenze ai gruppi di sicurezza.
 
 Vantaggi:
@@ -121,7 +118,12 @@ Svantaggi:
 * Complessità. Poiché ogni tenant invia attestazioni dei gruppi diverse, l'app deve tenere traccia dei gruppi di sicurezza e dei rispettivi ruoli dell'applicazione corrispondenti, per ogni tenant.
 * Se il cliente rimuove l'applicazione dal tenant di Active Directory, i gruppi di sicurezza rimangono nella directory di Active Directory.
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="implementation"></a>Implementazione
+
+<!-- markdownlint-enable MD024 -->
+
 Nel manifesto dell'applicazione impostare la proprietà `groupMembershipClaims` su "SecurityGroup". Questa operazione è necessaria per ottenere le attestazioni delle appartenenze a gruppi da AAD.
 
 ```json
@@ -135,8 +137,6 @@ Quando un nuovo cliente effettua l'iscrizione, l'applicazione richiede al client
 
 > [!NOTE]
 > In alternativa, l'applicazione può creare i gruppi a livello di codice, usando l'API Graph di Azure AD.  Questo approccio è meno soggetto a errori. In questo caso, tuttavia, è necessario che l'applicazione ottenga le autorizzazioni di lettura e scrittura in tutti i gruppi per la directory Active Directory del cliente. I clienti non desiderano che l'app crei problemi alla directory e molti potrebbero non essere disponibili a concedere un tale livello di accesso.
-> 
-> 
 
 Quando un utente esegue l'accesso:
 
@@ -148,6 +148,7 @@ Quando un utente esegue l'accesso:
 I criteri di autorizzazione devono usare l'attestazione del ruolo personalizzata e non l'attestazione del gruppo.
 
 ## <a name="roles-using-an-application-role-manager"></a>Definizione dei ruoli con la funzionalità di gestione ruoli dell'applicazione
+
 Con questo approccio, i ruoli dell'applicazione non vengono archiviati in Azure AD. L'applicazione archivia invece le assegnazioni di ruolo per ogni utente nel proprio database, ad esempio tramite la classe **RoleManager** in ASP.NET Identity.
 
 Vantaggi:
@@ -158,14 +159,13 @@ Svantaggi:
 
 * Soluzione più complessa, difficile da gestire.
 * Non consente di usare i gruppi di sicurezza di Active Directory per gestire le assegnazioni dei ruoli.
-* Archivia le informazioni dell'utente nel database dell'applicazione che può non mantenere la sincronizzazione con la directory di Active Directory del tenant quando gli utenti vengono aggiunti o rimossi.   
-
+* Archivia le informazioni dell'utente nel database dell'applicazione che può non mantenere la sincronizzazione con la directory di Active Directory del tenant quando gli utenti vengono aggiunti o rimossi.
 
 [**Avanti**][autorizzazione]
 
-<!-- Links -->
-[Tailspin]: tailspin.md
+<!-- links -->
 
+[tailspin]: tailspin.md
 [autorizzazione]: authorize.md
 [Protezione di un'API Web back-end]: web-api.md
 [Manifesto dell'applicazione]: /azure/active-directory/active-directory-application-manifest/

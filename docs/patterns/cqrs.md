@@ -1,20 +1,17 @@
 ---
-title: CQRS
+title: Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)
+titleSuffix: Cloud Design Patterns
 description: Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 320f6cd51a44b3a6732d8395f0a5e1db8f9f5774
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450871"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010376"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)
 
@@ -56,7 +53,7 @@ L'archivio di lettura può essere una replica di sola lettura di quello di scrit
 
 La separazione degli archivi di lettura e scrittura consente anche di dimensionare ogni archivio a seconda del carico. Il carico degli archivi di lettura, ad esempio, è in genere molto più elevato rispetto a quello degli archivi di scrittura.
 
-Quando il modello di query/lettura contiene dati denormalizzati (vedere [Modello di vista materializzata](materialized-view.md)), le prestazioni sono ottimizzate durante la lettura dei dati per ogni visualizzazione in un'applicazione o quando si eseguono query sui dati nel sistema.
+Quando il modello di query/lettura contiene dati denormalizzati (vedere [Modello di vista materializzata](./materialized-view.md)), le prestazioni sono ottimizzate durante la lettura dei dati per ogni visualizzazione in un'applicazione o quando si eseguono query sui dati nel sistema.
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
@@ -96,7 +93,7 @@ Questo modello non è consigliabile nelle situazioni seguenti:
 
 ## <a name="event-sourcing-and-cqrs"></a>Origine evento e modello CQRS
 
-Il modello CQRS viene spesso usato con il modello di origine evento. I sistemi basati su CQRS usano modelli dati di lettura e scrittura separati, ognuno personalizzato in base ad attività rilevanti e spesso situato in archivi separati fisicamente. Quando si usa il modello di [origine evento](event-sourcing.md), l'archivio di eventi rappresenta il modello di scrittura ed è l'origine ufficiale delle informazioni. Il modello di lettura di un sistema basato su CQRS offre viste materializzate dei dati, in genere come viste fortemente denormalizzate. Tali viste sono specifiche per le interfacce e i requisiti di visualizzazione dell'applicazione, in modo da ottimizzare sia le prestazioni delle query che quelle di visualizzazione.
+Il modello CQRS viene spesso usato con il modello di origine evento. I sistemi basati su CQRS usano modelli dati di lettura e scrittura separati, ognuno personalizzato in base ad attività rilevanti e spesso situato in archivi separati fisicamente. Quando vengono usati con il [modello di origine eventi](./event-sourcing.md), l'archivio degli eventi è il modello di scrittura e l'origine ufficiale delle informazioni. Il modello di lettura di un sistema basato su CQRS offre viste materializzate dei dati, in genere come viste fortemente denormalizzate. Tali viste sono specifiche per le interfacce e i requisiti di visualizzazione dell'applicazione, in modo da ottimizzare sia le prestazioni delle query che quelle di visualizzazione.
 
 L'uso del flusso di eventi come archivio di scrittura, anziché dei dati effettivi in un punto nel tempo, consente di evitare conflitti di aggiornamento su una singola funzione di aggregazione e di ottimizzare prestazioni e scalabilità. Gli eventi possono essere usati per generare in modo asincrono le viste materializzate dei dati usati per popolare l'archivio di lettura.
 
@@ -242,10 +239,10 @@ Quando si implementa questo modello, possono essere utili i modelli e le linee g
 
 - [Linee guida di partizionamento di dati](https://msdn.microsoft.com/library/dn589795.aspx). Descrive il modo in cui gli archivi dati in lettura e scrittura usati nel modello CQRS possono essere suddivisi in partizioni che è possibile gestire e a cui è possibile accedere separatamente per migliorare la scalabilità, ridurre i conflitti e ottimizzare le prestazioni.
 
-- [Modello di origine evento](event-sourcing.md). Descrive in dettaglio il modo in cui l'origine evento può essere usata con il modello CQRS per semplificare le attività in domini complessi e migliorare nel contempo prestazioni, scalabilità e velocità di risposta. Descrive anche come offrire coerenza per i dati transazionali e mantenere controlli completi e cronologia che possono abilitare le azioni di compensazione.
+- [Modello di origine eventi](./event-sourcing.md). Descrive in dettaglio il modo in cui l'origine evento può essere usata con il modello CQRS per semplificare le attività in domini complessi e migliorare nel contempo prestazioni, scalabilità e velocità di risposta. Descrive anche come offrire coerenza per i dati transazionali e mantenere controlli completi e cronologia che possono abilitare le azioni di compensazione.
 
-- [Modello di viste materializzate](materialized-view.md). Il modello di lettura di un'implementazione CQRS può contenere viste materializzate dei dati del modello di scrittura oppure può essere usato per generare viste materializzate.
+- [Modello di vista materializzata](./materialized-view.md). Il modello di lettura di un'implementazione CQRS può contenere viste materializzate dei dati del modello di scrittura oppure può essere usato per generare viste materializzate.
 
-- Guida ai modelli e alle procedure consigliate [Percorso CQRS](https://aka.ms/cqrs). In particolare [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introduzione al modello CSRS) esamina il modello e illustra quando è utile ed [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilogo: Esperienze acquisite) consente di comprendere alcuni dei problemi da affrontare quando si usa questo modello.
+- Guida ai modelli e alle procedure consigliate [Percorso CQRS](https://aka.ms/cqrs). In particolare, [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introduzione al modello CQRS) esamina il modello e illustra quando è utile, mentre [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilogo: Esperienze acquisite) consente di comprendere alcuni dei problemi da affrontare quando si usa questo modello.
 
 - Il post [CQRS di Martin Fowler](https://martinfowler.com/bliki/CQRS.html), che illustra le nozioni di base del modello e contiene collegamenti ad altre risorse utili.

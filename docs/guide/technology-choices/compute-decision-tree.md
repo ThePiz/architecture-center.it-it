@@ -1,21 +1,23 @@
 ---
 title: Albero delle decisioni per i servizi di calcolo di Azure
-description: Diagramma di flusso per la selezione di un servizio di calcolo
+titleSuffix: Azure Application Architecture Guide
+description: Diagramma di flusso per la selezione di un servizio di calcolo.
 author: MikeWasson
 ms.date: 11/03/2018
-ms.openlocfilehash: cb074272b8d00a71223d8c5755ef8cde3a3f2592
-ms.sourcegitcommit: 225251ee2dd669432a9c9abe3aa8cd84d9e020b7
+ms.custom: seojan19
+ms.openlocfilehash: 905b9956c9dcddddb21a87ea588af0ad5160ae2a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/04/2018
-ms.locfileid: "50981981"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114080"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Albero delle decisioni per i servizi di calcolo di Azure
 
-Azure offre una serie di modi per ospitare il codice dell'applicazione. Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione. Il diagramma di flusso seguente consente di scegliere un servizio di calcolo per l'applicazione. Il diagramma di flusso illustra un set di criteri decisionali chiave per ottenere delle indicazioni. 
+Azure offre una serie di modi per ospitare il codice dell'applicazione. Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione. Il diagramma di flusso seguente consente di scegliere un servizio di calcolo per l'applicazione. Il diagramma di flusso illustra un set di criteri decisionali chiave per ottenere delle indicazioni.
 
 **Considerare questo diagramma di flusso come un punto di partenza.** Dato che ogni applicazione presenta requisiti specifici, usare le indicazioni come punto di partenza e quindi eseguire una valutazione più dettagliata, esaminando aspetti come i seguenti:
- 
+
 - Set di funzionalità
 - [Limiti del servizio](/azure/azure-subscription-service-limits)
 - [Costii](https://azure.microsoft.com/pricing/)
@@ -26,11 +28,11 @@ Azure offre una serie di modi per ospitare il codice dell'applicazione. Il termi
 
 Se l'applicazione è costituita da più carichi di lavoro, valutare ogni carico di lavoro separatamente. Una soluzione completa può includere due o più servizi di calcolo.
 
-Per altre informazioni sulle opzioni per l'hosting di contenitori in Azure, vedere https://azure.microsoft.com/overview/containers/.
+Per altre informazioni sulle opzioni per l'hosting di contenitori in Azure, vedere [Azure Container](https://azure.microsoft.com/overview/containers/).
 
 ## <a name="flowchart"></a>Diagramma di flusso
 
-![](../images/compute-decision-tree.svg)
+![Albero delle decisioni per i servizi di calcolo di Azure](../images/compute-decision-tree.svg)
 
 ## <a name="definitions"></a>Definizioni
 

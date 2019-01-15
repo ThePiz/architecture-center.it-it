@@ -1,18 +1,21 @@
 ---
 title: Modello Sostituzione
+titleSuffix: Cloud Design Patterns
 description: Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi.
+keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 0bf0b76a69f947419da83edd894a04dbea02371b
-ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
+ms.custom: seodec18
+ms.openlocfilehash: 7d7c58c97537537ae9f2f96b7ecf1b437fc258b4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50001882"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010216"
 ---
 # <a name="strangler-pattern"></a>Modello Sostituzione
 
-Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi. Mano a mano che le funzionalità del sistema precedente vengono sostituite, il nuovo sistema sostituisce tutte le funzionalità del sistema precedente fino a quando non è possibile effettuarne la completa dismissione. 
+Migrare in maniera incrementale un sistema legacy, sostituendo gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi. Mano a mano che le funzionalità del sistema precedente vengono sostituite, il nuovo sistema sostituisce tutte le funzionalità del sistema precedente fino a quando non è possibile effettuarne la completa dismissione.
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
@@ -24,7 +27,7 @@ La sostituzione totale di un sistema complesso può rappresentare un impegno not
 
 Sostituire gradualmente parti specifiche di funzionalità con nuove applicazioni e servizi. Creare un'interfaccia che intercetta le richieste inviate al sistema back-end legacy. L'interfaccia indirizza tali richieste all'applicazione legacy o ai nuovi servizi. Le funzionalità esistenti possono essere migrate nel nuovo sistema gradualmente, e i consumer possono continuare a usare la stessa interfaccia senza percepire l'avvenuta migrazione.
 
-![](./_images/strangler.png)  
+![Diagramma del modello Sostituzione](./_images/strangler.png)
 
 Questo modello contribuisce a ridurre i rischi implicati dalla migrazione e a diluire l'attività di sviluppo nel tempo. Grazie all'interfaccia che indirizza gli utenti in modo sicuro all'applicazione corretta, è possibile aggiungere le funzionalità al nuovo sistema al ritmo preferito, assicurando al contempo il funzionamento continuo dell'applicazione legacy. Nel tempo, le funzionalità vengono migrate nel nuovo sistema e il sistema legacy viene sostituito fino a non essere più necessario. Una volta completato questo processo, sarà possibile ritirare il sistema legacy in modo sicuro.
 
@@ -48,9 +51,3 @@ Questo modello potrebbe non essere adatto nelle situazioni seguenti:
 ## <a name="related-guidance"></a>Informazioni correlate
 
 - Post di blog di Martin Fowler su [StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html)
-- [Modello Livello anti-danneggiamento](./anti-corruption-layer.md)
-- [Modello Routing gateway](./gateway-routing.md)
-
-
- 
-

@@ -1,19 +1,17 @@
 ---
-title: Vista materializzata
+title: Modello di vista materializzata
+titleSuffix: Cloud Design Patterns
 description: Generare viste prepopolate sui dati in uno o più archivi dati quando i dati non sono formattati in modo ideale per le operazioni di query necessarie.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 992abcb57204c65a7ca9e9e2525d3ea7339c4a2c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 42795e218d1a46c9aec98c207d1207f1afdbc2fd
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540234"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011566"
 ---
 # <a name="materialized-view-pattern"></a>Modello di vista materializzata
 
@@ -39,7 +37,6 @@ Quando i dati di origine per la vista cambiano, la vista deve essere aggiornata 
 
 ![La figura 1 mostra un esempio di come è possibile usare il modello di vista materializzata](./_images/materialized-view-pattern-diagram.png)
 
-
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
 Prima di decidere come implementare questo modello, considerare quanto segue:
@@ -61,6 +58,7 @@ Se il meccanismo di archiviazione lo consente, è possibile indicizzare la vista
 ## <a name="when-to-use-this-pattern"></a>Quando usare questo modello
 
 Questo modello è utile per:
+
 - Creare viste materializzate su dati su cui è difficile eseguire una query direttamente o nei casi in cui le query devono essere molto complesse per estrarre i dati archiviati in modo non strutturato, semistrutturato o normalizzato.
 - Creare viste temporanee che possono migliorare notevolmente le prestazioni di query o che possono fungere direttamente da viste di origine o oggetti di trasferimento dati per l'interfaccia utente, per la creazione di report o la visualizzazione.
 - Supportare scenari connessi occasionalmente o disconnessi, in cui la connessione all'archivio dati non è sempre disponibile. In questo caso, la vista può essere memorizzata nella cache in locale.
@@ -69,6 +67,7 @@ Questo modello è utile per:
 - Creare un collegamento tra diversi archivi dati, per sfruttare le relative funzionalità. È ad esempio possibile usare un archivio cloud efficiente per la scrittura come archivio dati di riferimento e un database relazionale che offre buone prestazioni di lettura e query per contenere le viste materializzate.
 
 Questo modello non è utile nelle situazioni seguenti:
+
 - I dati di origine sono semplici ed è facile eseguire query su di essi.
 - I dati di origine cambiano molto rapidamente oppure è possibile accedervi senza usare una vista. In questi casi, è consigliabile evitare il sovraccarico di elaborazione correlato alla creazione di viste.
 - La coerenza è molto importante. Le viste potrebbero non essere sempre completamente coerenti con i dati originali.
@@ -79,15 +78,15 @@ La figura seguente mostra un esempio di uso del modello di vista materializzata 
 
 ![Figura 2: Uso del modello di vista materializzata per generare un riepilogo delle vendite](./_images/materialized-view-summary-diagram.png)
 
-
 La creazione di questa vista materializzata richiede query complesse. Esponendo il risultato della query come vista materializzata, tuttavia, gli utenti possono ottenere facilmente i risultati e usarli direttamente o includerli in un'altra query. La vista può essere probabilmente usata in un sistema di creazione di report o un dashboard e può essere aggiornata in base a una pianificazione, ad esempio ogni settimana.
 
->  Anche se questo esempio usa l'archiviazione tabelle di Azure, anche molti sistemi di gestione di database relazionali forniscono il supporto nativo per le viste materializzate.
+> Anche se questo esempio usa l'archiviazione tabelle di Azure, anche molti sistemi di gestione di database relazionali forniscono il supporto nativo per le viste materializzate.
 
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 Per l'implementazione di questo modello possono risultare utili i modelli e le informazioni aggiuntive seguenti:
+
 - [Nozioni di base sulla coerenza dei dati](https://msdn.microsoft.com/library/dn589800.aspx). Le informazioni di riepilogo in una vista materializzata devono essere gestite in modo da riflettere i valori dei dati sottostanti. Quando i valori dei dati cambiano, potrebbe risultare poco pratico aggiornare i dati di riepilogo in tempo reale e potrebbe quindi essere necessario adottare un approccio di coerenza finale. Questo argomento riepiloga i problemi da affrontare per mantenere la coerenza dei dati distribuiti e descrive i vantaggi e i compromessi di diversi modelli di coerenza.
-- [Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)](cqrs.md). Usare questo modello per aggiornare le informazioni contenute in una vista materializzata rispondendo agli eventi che si verificano quando i valori dei dati sottostanti cambiano.
-- [Modello di origine eventi](event-sourcing.md). Usare questo modello in combinazione con il modello CQRS per gestire le informazioni in una vista materializzata. Quando i valori dei dati su cui è basata una vista materializzata cambiano, il sistema può generare eventi che descrivono le modifiche e salvarli in un archivio eventi.
-- [Modello di tabella degli indici](index-table.md). I dati in una vista materializzata sono organizzati in genere in base a una chiave primaria, ma le query potrebbero dover recuperare le informazioni da questa vista esaminando i dati in altri campi. Usare questo modello per creare indici secondari sui set di dati per gli archivi dati che non supportano gli indici secondari nativi.
+- [Modello di separazione di responsabilità per query e comandi (CQRS, Command and Query Responsibility Segregation)](./cqrs.md). Usare questo modello per aggiornare le informazioni contenute in una vista materializzata rispondendo agli eventi che si verificano quando i valori dei dati sottostanti cambiano.
+- [Modello di origine eventi](./event-sourcing.md). Usare questo modello in combinazione con il modello CQRS per gestire le informazioni in una vista materializzata. Quando i valori dei dati su cui è basata una vista materializzata cambiano, il sistema può generare eventi che descrivono le modifiche e salvarli in un archivio eventi.
+- [Modello di tabella degli indici](./index-table.md). I dati in una vista materializzata sono organizzati in genere in base a una chiave primaria, ma le query potrebbero dover recuperare le informazioni da questa vista esaminando i dati in altri campi. Usare questo modello per creare indici secondari sui set di dati per gli archivi dati che non supportano gli indici secondari nativi.

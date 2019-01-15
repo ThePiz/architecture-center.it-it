@@ -1,23 +1,24 @@
 ---
 title: Federazione con AD FS di un cliente
-description: Come eseguire la federazione con il servizio AD FS del cliente in un'applicazione multi-tenant
+description: Come eseguire la federazione con il servizio AD FS di un cliente in un'applicazione multi-tenant.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: fec10ca0e067b3b51bf9dba70d66ceb12423787d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 27fad1aab8d359346353cc031a2e8d8746294818
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902698"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113553"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federazione con AD FS di un cliente
 
 Questo articolo descrive come un'applicazione SaaS multi-tenant può supportare l'autenticazione tramite Active Directory Federation Services (AD FS) per la federazione con il servizio AD FS del cliente.
 
 ## <a name="overview"></a>Panoramica
+
 Azure Active Directory (Azure AD) semplifica la procedura di accesso degli utenti dai tenant di Azure AD, ed è disponibile anche per i clienti di Office365 e Dynamics CRM Online. Per i clienti che usano Active Directory in una Intranet aziendale è tuttavia necessario valutare altre soluzioni.
 
 Una opzione prevede che i clienti sincronizzino il servizio Active Directory locale con Azure AD tramite [Azure AD Connect]. Per alcuni clienti potrebbe risultare impossibile adottare questo approccio a causa di criteri IT aziendali o altri motivi. In questo caso, per la federazione è possibile usare Active Directory Federation Services (AD FS).
@@ -38,22 +39,24 @@ Esistono tre ruoli principali nella relazione di trust:
 
 > [!NOTE]
 > In questo articolo si presuppone che l'applicazione usi OpenID Connect come protocollo di autenticazione. Un'altra opzione prevede l'uso di WS-Federation.
-> 
+>
 > Per il protocollo OpenID Connect, il provider SaaS deve usare AD FS 2016 in esecuzione in Windows Server 2016. AD FS 3.0 non supporta il protocollo OpenID Connect.
-> 
+>
 > ASP.NET Core non include il supporto predefinito per WS-Federation.
-> 
-> 
+>
+>
 
 Per un esempio di utilizzo di WS-Federation con ASP.NET 4, vedere l'[esempio active-directory-dotnet-webapp-wsfederation][active-directory-dotnet-webapp-wsfederation].
 
 ## <a name="authentication-flow"></a>Flusso di autenticazione
+
 1. Quando l'utente fa clic su "accedi", l'applicazione lo reindirizza a un endpoint OpenID Connect del servizio AD FS del provider SaaS.
 2. L'utente immette il nome utente aziendale ("`alice@corp.contoso.com`"). AD FS usa l'individuazione dell'area di autenticazione principale per il reindirizzamento al servizio AD FS del cliente, in cui l'utente immette le proprie credenziali.
 3. Il servizio AD FS del cliente invia le attestazioni utente al servizio AD FS del provider SaaS tramite WS-Federation o SAML.
 4. Le attestazioni vengono inviate da AD FS all'app tramite OpenID Connect. Questo passaggio richiede una transizione di protocollo da WS-Federation.
 
 ## <a name="limitations"></a>Limitazioni
+
 Per impostazione predefinita, l'applicazione relying party riceve solo un set fisso delle attestazioni disponibili nel parametro id_token, illustrato nella tabella seguente. Con AD FS 2016, è possibile personalizzare il parametro id_token negli scenari di OpenID Connect. Per altre informazioni, vedere [Custom ID Tokens in AD FS](/windows-server/identity/ad-fs/development/customize-id-token-ad-fs-2016) (Token ID personalizzati in AD FS).
 
 | Attestazione | DESCRIZIONE |
@@ -72,12 +75,11 @@ Per impostazione predefinita, l'applicazione relying party riceve solo un set fi
 
 > [!NOTE]
 > L'attestazione "iss" contiene l'istanza AD FS del partner. In genere, questa attestazione identifica il provider SaaS come autorità emittente. Non identifica l'istanza AD FS del cliente. Il dominio del cliente è incluso nel nome dell'entità utente.
-> 
-> 
 
 La parte seguente di questo articolo descrive come configurare la relazione di trust tra la relying party (app) e il partner account (cliente).
 
 ## <a name="ad-fs-deployment"></a>Distribuzione di AD FS
+
 Il provider SaaS può distribuire AD FS in locale o in macchine virtuali di Azure. Per garantire la sicurezza e la disponibilità, seguire queste linee guida:
 
 * Distribuire almeno due server AD FS e due server proxy AD FS per ottenere la maggiore disponibilità del servizio AD FS.
@@ -87,13 +89,15 @@ Il provider SaaS può distribuire AD FS in locale o in macchine virtuali di Azur
 Per configurare una topologia simile in Azure, è necessario usare reti virtuali, gruppi di sicurezza di rete, macchine virtuali di Azure e set di disponibilità. Per altre informazioni, vedere [Linee guida per la distribuzione di Windows Server Active Directory nelle macchine virtuali di Azure][active-directory-on-azure].
 
 ## <a name="configure-openid-connect-authentication-with-ad-fs"></a>Configurare l'autenticazione OpenID Connect con AD FS
-Il provider SaaS deve abilitare la connessione OpenID Connect tra l'applicazione e AD FS. A tale scopo, aggiungere un gruppo di applicazioni in AD FS.  Per istruzioni dettagliate su questa procedura, vedere l'argomento relativo alla configurazione di un'app Web per l'accesso ad AD FS tramite OpenID Connect in questo [post di blog]. 
+
+Il provider SaaS deve abilitare la connessione OpenID Connect tra l'applicazione e AD FS. A tale scopo, aggiungere un gruppo di applicazioni in AD FS.  Per istruzioni dettagliate su questa procedura, vedere l'argomento relativo alla configurazione di un'app Web per l'accesso ad AD FS tramite OpenID Connect in questo [post di blog].
 
 Configurare quindi il middleware per OpenID Connect. L'endpoint dei metadati è `https://domain/adfs/.well-known/openid-configuration`, dove il dominio corrisponde al dominio AD FS del provider SaaS.
 
 In genere questo endpoint verrà combinato con altri endpoint OpenID Connect, ad esempio AAD. Sarà necessario prevedere due pulsanti di accesso diversi per poterli distinguere, in modo che l'utente venga indirizzato all'endpoint di autenticazione corretto.
 
 ## <a name="configure-the-ad-fs-resource-partner"></a>Configurare il partner risorse AD FS
+
 Il provider SaaS deve eseguire la procedura seguente per ogni cliente che si connette tramite AD FS:
 
 1. Aggiungere un trust del provider di attestazioni.
@@ -103,6 +107,7 @@ Il provider SaaS deve eseguire la procedura seguente per ogni cliente che si con
 Ecco la procedura dettagliata.
 
 ### <a name="add-the-claims-provider-trust"></a>Aggiungere il trust del provider di attestazioni
+
 1. In Server Manager selezionare **Strumenti** e quindi **Gestione AD FS**.
 2. Nell'albero della console fare clic con il pulsante destro del mouse su **Attendibilità provider di attestazioni** in **AD FS**. Scegliere **Aggiungi attendibilità provider di attestazioni**.
 3. Fare clic su **Avvia** per avviare la procedura guidata.
@@ -110,6 +115,7 @@ Ecco la procedura dettagliata.
 5. Completare la procedura guidata usando le opzioni predefinite.
 
 ### <a name="edit-claims-rules"></a>Modificare le regole attestazioni
+
 1. Fare clic con il pulsante destro del mouse sul trust del provider di attestazioni e scegliere **Modifica regole attestazione**.
 2. Fare clic su **Aggiungi regola**.
 3. Selezionare "Applicare la funzione di pass-through o di filtro a un'attestazione in ingresso" e fare clic su **Avanti**.
@@ -123,9 +129,10 @@ Ecco la procedura dettagliata.
 9. Fare clic su **OK** per completare la procedura guidata.
 
 ### <a name="enable-home-realm-discovery"></a>Abilitare l'individuazione dell'area di autenticazione
+
 Eseguire lo script di PowerShell seguente:
 
-```
+```powershell
 Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("suffix")
 ```
 
@@ -134,12 +141,14 @@ dove "name" corrisponde al nome descrittivo del trust del provider di attestazio
 Con questa configurazione, gli utenti possono specificare il proprio account aziendale e AD FS seleziona automaticamente il provider di attestazioni corrispondente. Per altre informazioni, vedere la sezione "Configurare il provider di identità per l'uso di determinati suffissi di posta elettronica" in [Personalizzazione delle pagine di accesso ad AD FS].
 
 ## <a name="configure-the-ad-fs-account-partner"></a>Configurare il partner account di AD FS
+
 Procedura per il cliente:
 
 1. Aggiungere un trust della relying party.
 2. Aggiungere le regole attestazioni.
 
 ### <a name="add-the-rp-trust"></a>Aggiungere il trust della relying party.
+
 1. In Server Manager selezionare **Strumenti** e quindi **Gestione AD FS**.
 2. Nell'albero della console fare clic con il pulsante destro del mouse su **Attendibilità componente** in **AD FS**. Scegliere **Aggiungi attendibilità componente**.
 3. Selezionare **In grado di riconoscere attestazioni** e fare clic su **Avvia**.
@@ -152,6 +161,7 @@ Procedura per il cliente:
 8. Fare clic su **Avanti** per completare la procedura guidata.
 
 ### <a name="add-claims-rules"></a>Aggiungere le regole attestazioni
+
 1. Fare clic con il pulsante destro del mouse sul trust della relying party appena aggiunto e quindi scegliere **Modifica criteri di rilascio delle attestazioni**.
 2. Fare clic su **Aggiungi regola**.
 3. Selezionare "Inviare attributi LDAP come attestazioni" e fare clic su **Avanti**.
@@ -167,19 +177,19 @@ Procedura per il cliente:
 9. Selezionare "Inviare attestazioni mediante una regola personalizzata" e fare clic su **Avanti**.
 10. Immettere un nome per la regola, ad esempio "Tipo di attestazione ancoraggio".
 11. In **Regola personalizzata**immettere quanto segue:
-    
-    ```
+
+    ```console
     EXISTS([Type == "http://schemas.microsoft.com/ws/2014/01/identity/claims/anchorclaimtype"])=>
     issue (Type = "http://schemas.microsoft.com/ws/2014/01/identity/claims/anchorclaimtype",
           Value = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn");
     ```
-    
+
     Con questa regola viene rilasciata un'attestazione di tipo `anchorclaimtype`. L'attestazione indica alla relying party di usare il nome dell'entità utente come ID non modificabile dell'utente.
 12. Fare clic su **Fine**.
 13. Fare clic su **OK** per completare la procedura guidata.
 
+<!-- links -->
 
-<!-- Links -->
 [Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [trust federativo]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [partner account]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx

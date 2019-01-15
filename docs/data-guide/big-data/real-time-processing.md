@@ -3,18 +3,18 @@ title: Elaborazione in tempo reale
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: ccd098ab0d5393231eeb26eb1c56c52cdcb78fbe
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 75b52ae9bf7419b451084bb1a1eaf0984258433c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901618"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113910"
 ---
 # <a name="real-time-processing"></a>Elaborazione in tempo reale
 
 L'elaborazione in tempo reale riguarda i flussi di dati acquisiti in tempo reale ed elaborati con latenza minima per generare report in tempo reale o quasi in tempo reale oppure risposte automatiche. Ad esempio, un soluzione di monitoraggio del traffico in tempo reale potrebbe usare i dati dei sensori per rilevare volumi elevati di traffico. Tali dati possono essere usati per aggiornare dinamicamente una mappa che mostri le zone di traffico intenso oppure per creare automaticamente corsie ad alta occupazione o avviare altri sistemi di gestione del traffico.
 
-![](./images/real-time-pipeline.png)
+![Diagramma di una pipeline di elaborazione in tempo reale](./images/real-time-pipeline.png)
 
 L'elaborazione in tempo reale è definita come l'elaborazione del flusso non associato di dati di input, con requisiti di latenza molto breve per l'elaborazione &mdash; misurata in millisecondi o secondi. In genere questi dati in ingresso arrivano in formato non strutturato o semistrutturato, ad esempio in formato JSON, e hanno gli stessi requisiti di elaborazione dell'[elaborazione batch](./batch-processing.md), ma con tempi di completamento più brevi per supportare l'utilizzo in tempo reale.
 
@@ -32,9 +32,9 @@ Un'architettura per l'elaborazione in tempo reale include i componenti logici se
 
 - **Elaborazione del flusso.** Dopo avere acquisito i messaggi in tempo reale, la soluzione deve elaborarli filtrando, aggregando e preparando in altro modo i dati per l'analisi.
 
-- **Archivio dati analitici.** Numerose soluzioni per Big Data sono progettate per preparare i dati per l'analisi e quindi servire i dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti di analisi. 
+- **Archivio dati analitici.** Numerose soluzioni per Big Data sono progettate per preparare i dati per l'analisi e quindi servire i dati elaborati in un formato strutturato su cui è possibile eseguire query con strumenti di analisi.
 
-- **Analisi e creazione di report.** L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite strumenti di analisi e report. 
+- **Analisi e creazione di report.** L'obiettivo della maggior parte delle soluzioni per Big Data è fornire informazioni dettagliate sui dati tramite strumenti di analisi e report.
 
 ## <a name="technology-choices"></a>Scelte di tecnologia
 

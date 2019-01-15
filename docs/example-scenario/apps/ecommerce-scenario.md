@@ -3,14 +3,14 @@ title: Front-end per e-commerce
 titleSuffix: Azure Example Scenarios
 description: Ospitare un sito di e-commerce in Azure.
 author: masonch
-ms.date: 7/13/18
+ms.date: 07/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: d6587218813fa450b284f3a300c7254a3c9fe41f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: f07c21b8eb9d812b9831abe8f2e4f6d131893df2
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643952"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160809"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Front-end per e-commerce in Azure
 
@@ -67,7 +67,7 @@ Altre opzioni per il livello Web e le funzioni includono:
 - [Service Fabric][docs-service-fabric]: piattaforma incentrata su componenti distribuiti per i quali sono utili la distribuzione e l'esecuzione in un cluster con un livello elevato di controllo. È possibile usare Service Fabric anche per l'hosting di contenitori.
 - [Servizio Kubernetes di Azure][docs-kubernetes-service]: piattaforma per la creazione e la distribuzione di soluzioni basate su contenitori che possono essere usate come un'unica implementazione di un'architettura di microservizi. Ciò consente la scalabilità indipendente dei diversi componenti dell'applicazione su richiesta.
 - [Istanze di contenitore di Azure][docs-container-instances]: modalità di distribuzione ed esecuzione rapida di contenitori con ciclo di vita breve. Questi contenitori vengono distribuiti per eseguire un processo di elaborazione rapido, come l'elaborazione di un messaggio o l'esecuzione di un calcolo, quindi vengono immediatamente sottoposti a deprovisioning al termine dell'operazione.
-- È possibile usare il bus di servizio al posto delle code di archiviazione.
+- [Bus di servizio][service-bus]: può essere usato al posto di una coda di archiviazione.
 
 Altre opzioni per il livello dati includono:
 
@@ -156,5 +156,6 @@ Sono stati definiti tre profili di costo di esempio in base alla quantità di tr
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
 [secure-development]: https://www.microsoft.com/SDL/process/design.aspx
+[service-bus]: /azure/service-bus-messaging/
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

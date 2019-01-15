@@ -1,14 +1,14 @@
 ---
 title: Implementare un trasformatore e un agente di raccolta della proprietà in un modello di Azure Resource Manager
-description: Descrive come implementare un trasformatore e un agente di raccolta della proprietà in un modello di Azure Resource Manager
+description: Illustra come implementare un trasformatore e un agente di raccolta di proprietà in un modello di Azure Resource Manager.
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: ad5b3a71f516ec12fee311e25c43f434f9f306ed
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 1a6a01ee513609132d8522a79ccb81b7938651b5
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251788"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113808"
 ---
 # <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a>Implementare un trasformatore e un agente di raccolta della proprietà in un modello di Azure Resource Manager
 
@@ -24,12 +24,14 @@ Viene ora illustrato come implementare un agente di raccolta e un trasformatore 
 ![architettura dell'agente di raccolta e del trasformatore della proprietà](../_images/collector-transformer.png)
 
 Il **modello di chiamata** include due risorse:
-* un collegamento del modello che richiama il **modello dell'agente di raccolta**;
-* la risorsa NSG da distribuire.
+
+- Collegamento a un modello che richiama il **modello dell'agente di raccolta**.
+- Risorsa NSG da distribuire.
 
 Il **modello dell'agente di raccolta** include due risorse:
-* una risorsa di **ancoraggio**;
-* un collegamento del modello che richiama il modello di trasformazione in un ciclo di copia.
+
+- Risorsa di **ancoraggio**.
+- Collegamento a un modello che richiama il modello di trasformazione in un ciclo di copia.
 
 Il **modello di trasformazione** include una sola risorsa: un modello vuoto con una variabile che trasforma il JSON `source` nello schema JSON previsto dalla risorsa NSG nel **modello principale**.
 
@@ -41,7 +43,7 @@ Verrà usato l'oggetto parametro `securityRules` di [oggetti come parametri][obj
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters": {
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -80,9 +82,10 @@ Prima di tutto viene esaminato il **modello di trasformazione**.
 
 ## <a name="transform-template"></a>Modello di trasformazione
 
-Il **modello di trasformazione** include due parametri che vengono passati dal **modello dell'agente di raccolta**: 
-* `source` è un oggetto che riceve uno degli oggetti valore della proprietà dalla matrice della proprietà. In questo esempio, gli oggetti della matrice `"securityRules"` verranno passati uno alla volta.
-* `state` è una matrice che riceve i risultati concatenati di tutte le trasformazioni precedenti. Questa è la raccolta di JSON trasformati.
+Il **modello di trasformazione** include due parametri che vengono passati dal **modello dell'agente di raccolta**:
+
+- `source` è un oggetto che riceve uno degli oggetti valore della proprietà dalla matrice della proprietà. In questo esempio, gli oggetti della matrice `"securityRules"` verranno passati uno alla volta.
+- `state` è una matrice che riceve i risultati concatenati di tutte le trasformazioni precedenti. Questa è la raccolta di JSON trasformati.
 
 I parametri sono simili ai seguenti:
 
@@ -115,7 +118,7 @@ Il modello definisce anche una variabile denominata `instance`. Esegue la trasfo
             "destinationAddressPrefix": "[parameters('source').destinationAddressPrefix]",
             "access": "[parameters('source').access]",
             "priority": "[parameters('source').priority]",
-            "direction": "[parameters('source').direction]"            
+            "direction": "[parameters('source').direction]"
         }
       }
     ]
@@ -139,9 +142,10 @@ Successivamente, viene esaminato il **modello dell'agente di raccolta** per vede
 ## <a name="collector-template"></a>Modello dell'agente di raccolta
 
 Il **modello dell'agente di raccolta** include tre parametri:
-* `source` è la matrice completa dell'oggetto parametro. Viene passata dal **modello di chiamata**. Ha lo stesso nome del parametro `source` nel **modello di trasformazione**, ma c'è una differenza fondamentale che probabilmente l'utente avrà già notato: è la matrice completa, ma solo un elemento alla volta della matrice viene passato al **modello di trasformazione**.
-* `transformTemplateUri` è l'URI del **modello di trasformazione**. In questa sede viene definito come parametro per il riutilizzo del modello.
-* `state` è una matrice inizialmente vuota che viene passata al **modello di trasformazione**. Archivia la raccolta di oggetti parametro trasformati quando il ciclo di copia è stato completato.
+
+- `source` è la matrice completa dell'oggetto parametro. Viene passata dal **modello di chiamata**. Ha lo stesso nome del parametro `source` nel **modello di trasformazione**, ma c'è una differenza fondamentale che probabilmente l'utente avrà già notato: è la matrice completa, ma solo un elemento alla volta della matrice viene passato al **modello di trasformazione**.
+- `transformTemplateUri` è l'URI del **modello di trasformazione**. In questa sede viene definito come parametro per il riutilizzo del modello.
+- `state` è una matrice inizialmente vuota che viene passata al **modello di trasformazione**. Archivia la raccolta di oggetti parametro trasformati quando il ciclo di copia è stato completato.
 
 I parametri sono simili ai seguenti:
 
@@ -153,7 +157,7 @@ I parametri sono simili ai seguenti:
       "type": "array",
       "defaultValue": [ ]
     }
-``` 
+```
 
 Successivamente, viene definita una variabile denominata `count`. Il suo valore è la lunghezza della matrice dell'oggetto parametro `source`:
 
@@ -166,8 +170,9 @@ Successivamente, viene definita una variabile denominata `count`. Il suo valore 
 Come si può immaginare, viene usata per il numero di iterazioni nel ciclo di copia.
 
 Osservare ora le risorse. Si definiscono due risorse:
-* `loop-0` è la risorsa in base zero per il ciclo di copia.
-* `loop-` è concatenata al risultato della funzione `copyIndex(1)` per generare un nome univoco basato sull'iterazione per la risorsa, che inizia con `1`.
+
+- `loop-0` è la risorsa in base zero per il ciclo di copia.
+- `loop-` è concatenata al risultato della funzione `copyIndex(1)` per generare un nome univoco basato sull'iterazione per la risorsa, che inizia con `1`.
 
 Le risorse sono simili a quanto segue:
 
@@ -231,6 +236,7 @@ Infine, `output` del modello restituisce `output` dell'ultima iterazione del **m
     }
   }
 ```
+
 Potrebbe sembrare illogico restituire `output` dell'ultima iterazione del **modello di trasformazione** al **modello di chiamata** perché sembrava che venisse archiviato nel parametro `source`. Tenere tuttavia presente che l'ultima iterazione del **modello di trasformazione** contiene la matrice completa degli oggetti proprietà trasformati e il risultato che si desidera restituire.
 
 Infine, è opportuno esaminare come chiamare il **modello dell'agente di raccolta** dal **modello di chiamata**.
@@ -277,8 +283,9 @@ Come previsto, si tratta dell'URI per il **modello dell'agente di raccolta** che
 ```
 
 Vengono passati due parametri al **modello dell'agente di raccolta**:
-* `source` è la matrice dell'oggetto proprietà. In questo esempio è il parametro `networkSecurityGroupsSettings`.
-* `transformTemplateUri` è la variabile definita con l'URI del **modello dell'agente di raccolta**.
+
+- `source` è la matrice dell'oggetto proprietà. In questo esempio è il parametro `networkSecurityGroupsSettings`.
+- `transformTemplateUri` è la variabile definita con l'URI del **modello dell'agente di raccolta**.
 
 Infine, la risorsa `Microsoft.Network/networkSecurityGroups` assegna direttamente `output` del modello collegato `collector` alla proprietà `securityRules`:
 

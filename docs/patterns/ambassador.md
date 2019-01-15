@@ -1,14 +1,17 @@
 ---
 title: Modello Ambassador
+titleSuffix: Cloud Design Patterns
 description: Creare servizi helper che inviano richieste di rete per conto di un servizio consumer o di un'applicazione.
+keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 6c545619aab6a5817e55854350e3769834df27cd
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: f03bfa0b45494ac1428aeee5cc6c413d5607ba79
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540794"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009781"
 ---
 # <a name="ambassador-pattern"></a>Modello Ambassador
 
@@ -18,7 +21,7 @@ Questo modello può essere utile per eseguire l'offload di attività di connetti
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
-Le applicazioni resilienti basate sul cloud richiedono funzionalità come il [circuit breaking][circuit-breaker] (modello a interruttore), il routing, la misurazione e il monitoraggio, nonché la possibilità di eseguire aggiornamenti delle configurazioni di rete. Potrebbe essere difficile o impossibile aggiornare le applicazioni legacy o librerie di codice esistenti per aggiungere queste funzionalità, poiché il codice non viene più mantenuto o non può essere modificato facilmente dal team di sviluppo.
+Per applicazioni basate sul cloud resilienti sono necessarie funzionalità come [interruzione del circuito](./circuit-breaker.md), routing, misurazione e monitoraggio, nonché la possibilità di eseguire aggiornamenti della configurazione correlati alla rete. Potrebbe essere difficile o impossibile aggiornare le applicazioni legacy o librerie di codice esistenti per aggiungere queste funzionalità, poiché il codice non viene più mantenuto o non può essere modificato facilmente dal team di sviluppo.
 
 Le chiamate di rete richiedono anche una configurazione considerevole della connessione, dell'autenticazione e dell'autorizzazione. Queste chiamate, se vengono usate tra più applicazioni create attraverso più linguaggi di scrittura e framework, devono essere configurate per ognuna di queste istanze. Può anche essere necessario che la funzionalità di rete e sicurezza sai gestita da un team centrale all'interno dell'organizzazione. Con una codebase di grandi dimensioni, può essere rischioso che tale team aggiorni un codice applicazione con cui non ha familiarità.
 
@@ -26,11 +29,11 @@ Le chiamate di rete richiedono anche una configurazione considerevole della conn
 
 Inserire i framework client e le librerie in un processo esterno che funge da proxy tra l'applicazione e i servizi esterni. Distribuire il proxy nello stesso ambiente host dell'applicazione per permettere il controllo sul routing, sulla resilienza, sulle funzionalità di sicurezza e per evitare eventuali restrizioni di accesso all'host. È anche possibile usare il modello ad ambasciata per standardizzare ed estendere la strumentazione. Il proxy può monitorare le metriche delle prestazioni, come la latenza o l'utilizzo delle risorse, e tale monitoraggio viene eseguito nello stesso ambiente host dell'applicazione.
 
-![](./_images/ambassador.png)
+![Diagramma del modello Ambassador](./_images/ambassador.png)
 
 Le funzionalità che vengono scaricate sull'Ambassador possono essere gestite in modo indipendente dall'applicazione. È possibile, non solo aggiornare e modificare l'Ambassador senza interferire con le funzionalità legacy dell'applicazione, ma anche che team separati e specializzati implementino e mantengano la sicurezza, la rete e le funzionalità di autenticazione che sono state spostate nell'Ambassador.
 
-I servizi Ambassador possono essere distribuiti come un [collaterale][sidecar] che accompagna il ciclo di vita di un'applicazione o un servizio consumer. In alternativa, se un Ambassador è condiviso da più processi separati in un host comune, può essere distribuito come un daemon o un servizio di Windows. Se il servizio consumer è inserito in contenitori, l'Ambassador dovrebbe essere creato come un contenitore separato nello stesso host, con i collegamenti appropriati configurati per la comunicazione.
+I servizi Ambassador possono essere distribuiti come [sidecar](./sidecar.md) per accompagnare il ciclo di vita di un'applicazione o un servizio consumer. In alternativa, se un Ambassador è condiviso da più processi separati in un host comune, può essere distribuito come un daemon o un servizio di Windows. Se il servizio consumer è inserito in contenitori, l'Ambassador dovrebbe essere creato come un contenitore separato nello stesso host, con i collegamenti appropriati configurati per la comunicazione.
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
@@ -58,7 +61,7 @@ Questo modello potrebbe non essere adatto nelle situazioni seguenti:
 
 Il diagramma seguente illustra la richiesta da parte di un'applicazione a un servizio remoto tramite un proxy ambasciata. L'ambasciata fornisce il routing, l'interruttore e la registrazione. Quest'ultimo chiama il servizio remoto e quindi restituisce la risposta all'applicazione client:
 
-![](./_images/ambassador-example.png) 
+![Esempio del modello Ambassador](./_images/ambassador-example.png)
 
 ## <a name="related-guidance"></a>Informazioni correlate
 
@@ -66,6 +69,4 @@ Il diagramma seguente illustra la richiesta da parte di un'applicazione a un ser
 
 <!-- links -->
 
-[circuit-breaker]: ./circuit-breaker.md
 [resiliency-patterns]: ./category/resiliency.md
-[sidecar]: ./sidecar.md

@@ -3,12 +3,12 @@ title: "Adozione del cloud nell'organizzazione: gestione dell'accesso alle risor
 description: "Spiegazione dei costrutti di gestione dell'accesso alle risorse in Azure: Azure Resource Manager, sottoscrizioni, gruppi di risorse e risorse"
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 8cb28d0dd5dbdfcef846786083d5197f435bf3ea
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428704"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160792"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>Adozione del cloud nell'organizzazione: gestione dell'accesso alle risorse in Azure
 
@@ -46,7 +46,7 @@ In [Funzionamento di Azure](what-is-azure.md) si è appreso che Azure include un
 ![](../_images/governance-1-12.png)   
 *Figura 4. Azure Resource Manager.*
 
-La figura seguente mostra tre client: [PowerShell](/powershell/azure/overview), [il portale di Azure](https://portal.azure.com) e l'[interfaccia della riga di comando di Azure](/cli/azure):
+La figura seguente mostra tre client: [PowerShell](/powershell/azure/overview), il [portale di Azure](https://portal.azure.com) e l'[interfaccia della riga di comando di Azure](/cli/azure).
 
 ![](../_images/governance-1-13.png)   
 *Figura 5. I client di Azure si connettono all'API RESTful di Azure Resource Manager.*

@@ -1,22 +1,24 @@
 ---
 title: Panoramica delle opzioni di calcolo di Azure
-description: Panoramica delle opzioni di calcolo di Azure
+titleSuffix: Azure Application Architecture Guide
+description: Panoramica delle opzioni di calcolo di Azure.
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: cb59c4472b183d9a14031497f0b6db673938c9a9
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.custom: seojan19
+ms.openlocfilehash: 80e57263207ef3a96791d61097ff9f0e3259bf53
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818820"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111496"
 ---
 # <a name="overview-of-azure-compute-options"></a>Panoramica delle opzioni di calcolo di Azure
 
-Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione. 
+Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calcolo in cui viene eseguita l'applicazione.
 
 ## <a name="overview"></a>Panoramica
 
-A un'estremità dello spettro si colloca l'**infrastruttura distribuita come servizio** (IaaS). Con IaaS, si esegue il provisioning delle macchine virtuali necessarie, oltre che dei componenti di archiviazione e di rete associati. In seguito, si distribuiscono il software e le applicazioni desiderate sulle macchine virtuali. Questo modello è il più simile a un ambiente locale tradizionale, con la differenza che l'infrastruttura viene gestita da Microsoft. È comunque possibile gestire le singole macchine virtuali.  
+A un'estremità dello spettro si colloca l'**infrastruttura distribuita come servizio** (IaaS). Con IaaS, si esegue il provisioning delle macchine virtuali necessarie, oltre che dei componenti di archiviazione e di rete associati. In seguito, si distribuiscono il software e le applicazioni desiderate sulle macchine virtuali. Questo modello è il più simile a un ambiente locale tradizionale, con la differenza che l'infrastruttura viene gestita da Microsoft. È comunque possibile gestire le singole macchine virtuali.
 
 Il modello di **piattaforma distribuita come servizio** (PaaS, Platform-as-a-Service) offre un ambiente di hosting gestito, in cui è possibile distribuire l'applicazione senza bisogno di gestire le macchine virtuali o le risorse di rete. Ad esempio, anziché creare singole macchine virtuali, si specifica un numero di istanze e il servizio eseguirà il provisioning, la configurazione e la gestione delle risorse necessarie. Servizio app di Azure è un esempio di servizio PaaS.
 
@@ -32,22 +34,22 @@ Ecco le principali opzioni di calcolo attualmente disponibili in Azure:
 
 - [Macchine virtuali](/azure/virtual-machines/) è un servizio IaaS, che consente di distribuire e gestire macchine virtuali all'interno di una rete virtuale (VNet).
 - Il [servizio app](/azure/app-service/app-service-value-prop-what-is) è un'offerta PaaS gestita per l'hosting di app Web, back-end di app per dispositivi mobili, API REST o processi aziendali automatizzati.
-- [Service Fabric](/azure/service-fabric/service-fabric-overview) è una piattaforma di sistemi distribuiti che è possibile eseguire in molti ambienti, ad esempio in Azure o in locale. Service Fabric è un agente di orchestrazione dei microservizi in un cluster di computer. 
+- [Service Fabric](/azure/service-fabric/service-fabric-overview) è una piattaforma di sistemi distribuiti che è possibile eseguire in molti ambienti, ad esempio in Azure o in locale. Service Fabric è un agente di orchestrazione dei microservizi in un cluster di computer.
 - Il [servizio contenitore di Azure](/azure/container-service/container-service-intro) consente di creare, configurare e gestire un cluster di macchine virtuali preconfigurate per l'esecuzione delle applicazioni all'interno di contenitori.
 - [Istanze di contenitore di Azure](/azure/container-instances/container-instances-overview) rappresenta il modo più semplice e rapido per eseguire un contenitore in Azure, senza dover effettuare il provisioning di macchine virtuali o adottare un servizio di livello superiore.
 - [Funzioni di Azure](/azure/azure-functions/functions-overview) è un servizio FaaS gestito.
 - [Azure Batch](/azure/batch/batch-technical-overview) è un servizio gestito per l'esecuzione di applicazioni parallele e HPC (High Performance Computing) su larga scala.
-- [Servizi cloud](/azure/cloud-services/cloud-services-choose-me) è un servizio gestito per l'esecuzione di applicazioni cloud. Usa un modello di hosting PaaS. 
+- [Servizi cloud](/azure/cloud-services/cloud-services-choose-me) è un servizio gestito per l'esecuzione di applicazioni cloud. Usa un modello di hosting PaaS.
 
 Ecco alcuni fattori da considerare per la scelta di un'opzione di calcolo:
 
-- Modello di hosting. Come viene ospitato il servizio? Quali requisiti e limitazioni impone questo ambiente di hosting? 
+- Modello di hosting. Come viene ospitato il servizio? Quali requisiti e limitazioni impone questo ambiente di hosting?
 - DevOps. È disponibile il supporto predefinito per gli aggiornamenti delle applicazioni? Qual è il modello di distribuzione?
-- Scalabilità. In che modo il servizio gestisce l'aggiunta e la rimozione di istanze? Offre scalabilità automatica in base al carico e ad altre metriche? 
-- Disponibilità. Cosa prevede il contratto di servizio? 
+- Scalabilità. In che modo il servizio gestisce l'aggiunta e la rimozione di istanze? Offre scalabilità automatica in base al carico e ad altre metriche?
+- Disponibilità. Cosa prevede il contratto di servizio?
 - Costi. Oltre al costo del servizio stesso, prendere in considerazione il costo delle operazioni per la gestione di una soluzione basata su tale servizio. Ad esempio, le soluzioni IaaS potrebbero avere un costo operativo superiore.
-- Quali sono le limitazioni complessive di ogni servizio? 
-- Quali tipi di architetture applicative sono appropriati per questo servizio? 
+- Quali sono le limitazioni complessive di ogni servizio?
+- Quali tipi di architetture applicative sono appropriati per questo servizio?
 
 ## <a name="next-steps"></a>Passaggi successivi
 
