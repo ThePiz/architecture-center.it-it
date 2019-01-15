@@ -4,12 +4,12 @@ description: Architetture di riferimento, progetti e materiale sussidiario per l
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 4e0f3b32abc8d2e0da9b139b0e6aae1d48152a37
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: e62d2cb8230885fc508076f6a4984c3dc4538119
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160775"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307706"
 ---
 # <a name="azure-reference-architectures"></a>Architetture di riferimento di Azure
 
@@ -23,20 +23,20 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
 
 <!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
-<!-- Batch scoring of Python models -->
+<!-- Distributed training of deep learning models -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./ai/training-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="../_images/icons/python-powered-h.svg" />
+                            <img src="../_images/icons/batch-ai.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Assegnazione dei punteggi in batch per i modelli Python</h3>
-                        <p>È possibile usare Azure Batch per intelligenza artificiale per assegnare punteggi in batch a numerosi modelli Python in parallelo in base a una pianificazione.</p>
+                        <h3>Training distribuito di modelli di Deep Learning</h3>
+                        <p>Eseguire il training distribuito di modelli di Deep Learning in cluster di macchine virtuali abilitate per GPU.</p>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,26 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
         </div>
     </a>
 </li>
+<!-- Batch scoring of Python models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Assegnazione dei punteggi in batch per i modelli Python</h3>
+                        <p>È possibile usare Azure Batch per intelligenza artificiale per assegnare punteggi in batch a numerosi modelli Python in parallelo in base a una pianificazione.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Real-time scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -75,7 +95,7 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Assegnazione dei punteggi in tempo reale per i modelli Python</h3>
+                        <h3>Assegnazione di punteggi in tempo reale per modelli Python e di Deep Learning</h3>
                         <p>Distribuire i modelli Python come servizi Web per eseguire stime in tempo reale, usando i modelli normali di Python o i modelli di apprendimento avanzato.</p>
                     </div>
                 </div>
