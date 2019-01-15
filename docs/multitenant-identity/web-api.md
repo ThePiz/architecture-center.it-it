@@ -1,31 +1,31 @@
 ---
 title: Protezione di un'API Web back-end in un'applicazione multi-tenant
-description: Come proteggere un'API Web back-end
+description: Come proteggere un'API Web back-end.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: e738eb94b5978efa4e7a4bebcc72daa7968ac904
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 517bdbb6e1a1063db9337b63905e2ff5f4bdd4d4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901593"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114029"
 ---
-# <a name="secure-a-backend-web-api"></a><span data-ttu-id="1fb80-103">Proteggere un'API Web back-end</span><span class="sxs-lookup"><span data-stu-id="1fb80-103">Secure a backend web API</span></span>
+# <a name="secure-a-backend-web-api"></a><span data-ttu-id="53519-103">Proteggere un'API Web back-end</span><span class="sxs-lookup"><span data-stu-id="53519-103">Secure a backend web API</span></span>
 
-<span data-ttu-id="1fb80-104">[![GitHub](../_images/github.png) Codice di esempio][sample application]</span><span class="sxs-lookup"><span data-stu-id="1fb80-104">[![GitHub](../_images/github.png) Sample code][sample application]</span></span>
+<span data-ttu-id="53519-104">[![GitHub](../_images/github.png) Codice di esempio][sample application]</span><span class="sxs-lookup"><span data-stu-id="53519-104">[![GitHub](../_images/github.png) Sample code][sample application]</span></span>
 
-<span data-ttu-id="1fb80-105">L'applicazione [Tailspin Surveys] usa un'API Web back-end per gestire le operazioni CRUD nei sondaggi.</span><span class="sxs-lookup"><span data-stu-id="1fb80-105">The [Tailspin Surveys] application uses a backend web API to manage CRUD operations on surveys.</span></span> <span data-ttu-id="1fb80-106">Ad esempio, quando un utente fa clic su "My Surveys" l'applicazione Web invia una richiesta HTTP all'API Web:</span><span class="sxs-lookup"><span data-stu-id="1fb80-106">For example, when a user clicks "My Surveys", the web application sends an HTTP request to the web API:</span></span>
+<span data-ttu-id="53519-105">L'applicazione [Tailspin Surveys] usa un'API Web back-end per gestire le operazioni CRUD nei sondaggi.</span><span class="sxs-lookup"><span data-stu-id="53519-105">The [Tailspin Surveys] application uses a backend web API to manage CRUD operations on surveys.</span></span> <span data-ttu-id="53519-106">Ad esempio, quando un utente fa clic su "My Surveys" l'applicazione Web invia una richiesta HTTP all'API Web:</span><span class="sxs-lookup"><span data-stu-id="53519-106">For example, when a user clicks "My Surveys", the web application sends an HTTP request to the web API:</span></span>
 
-```
+```http
 GET /users/{userId}/surveys
 ```
 
-<span data-ttu-id="1fb80-107">L'API Web restituisce un oggetto JSON:</span><span class="sxs-lookup"><span data-stu-id="1fb80-107">The web API returns a JSON object:</span></span>
+<span data-ttu-id="53519-107">L'API Web restituisce un oggetto JSON:</span><span class="sxs-lookup"><span data-stu-id="53519-107">The web API returns a JSON object:</span></span>
 
-```
+```http
 {
   "Published":[],
   "Own":[
@@ -36,62 +36,62 @@ GET /users/{userId}/surveys
 }
 ```
 
-<span data-ttu-id="1fb80-108">L'API Web non consente le richieste anonime, quindi l'app Web deve autenticarsi con i token di connessione OAuth 2.</span><span class="sxs-lookup"><span data-stu-id="1fb80-108">The web API does not allow anonymous requests, so the web app must authenticate itself using OAuth 2 bearer tokens.</span></span>
+<span data-ttu-id="53519-108">L'API Web non consente le richieste anonime, quindi l'app Web deve autenticarsi con i token di connessione OAuth 2.</span><span class="sxs-lookup"><span data-stu-id="53519-108">The web API does not allow anonymous requests, so the web app must authenticate itself using OAuth 2 bearer tokens.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="1fb80-109">Si tratta di uno scenario di connessioni tra server specifici.</span><span class="sxs-lookup"><span data-stu-id="1fb80-109">This is a server-to-server scenario.</span></span> <span data-ttu-id="1fb80-110">L'applicazione non esegue chiamate AJAX all'API dal browser client.</span><span class="sxs-lookup"><span data-stu-id="1fb80-110">The application does not make any AJAX calls to the API from the browser client.</span></span>
-> 
-> 
+> <span data-ttu-id="53519-109">Si tratta di uno scenario di connessioni tra server specifici.</span><span class="sxs-lookup"><span data-stu-id="53519-109">This is a server-to-server scenario.</span></span> <span data-ttu-id="53519-110">L'applicazione non esegue chiamate AJAX all'API dal browser client.</span><span class="sxs-lookup"><span data-stu-id="53519-110">The application does not make any AJAX calls to the API from the browser client.</span></span>
 
-<span data-ttu-id="1fb80-111">Esistono due principali approcci possibili:</span><span class="sxs-lookup"><span data-stu-id="1fb80-111">There are two main approaches you can take:</span></span>
+<span data-ttu-id="53519-111">Esistono due principali approcci possibili:</span><span class="sxs-lookup"><span data-stu-id="53519-111">There are two main approaches you can take:</span></span>
 
-* <span data-ttu-id="1fb80-112">Identità utente delegato.</span><span class="sxs-lookup"><span data-stu-id="1fb80-112">Delegated user identity.</span></span> <span data-ttu-id="1fb80-113">L'applicazione Web si autentica con l'identità utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-113">The web application authenticates with the user's identity.</span></span>
-* <span data-ttu-id="1fb80-114">Identità dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-114">Application identity.</span></span> <span data-ttu-id="1fb80-115">L'applicazione Web si autentica con l'ID client tramite il flusso di credenziali client OAuth2.</span><span class="sxs-lookup"><span data-stu-id="1fb80-115">The web application authenticates with its client ID, using OAuth2 client credential flow.</span></span>
+* <span data-ttu-id="53519-112">Identità utente delegato.</span><span class="sxs-lookup"><span data-stu-id="53519-112">Delegated user identity.</span></span> <span data-ttu-id="53519-113">L'applicazione Web si autentica con l'identità utente.</span><span class="sxs-lookup"><span data-stu-id="53519-113">The web application authenticates with the user's identity.</span></span>
+* <span data-ttu-id="53519-114">Identità dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="53519-114">Application identity.</span></span> <span data-ttu-id="53519-115">L'applicazione Web si autentica con l'ID client tramite il flusso di credenziali client OAuth2.</span><span class="sxs-lookup"><span data-stu-id="53519-115">The web application authenticates with its client ID, using OAuth2 client credential flow.</span></span>
 
-<span data-ttu-id="1fb80-116">L'applicazione Tailspin implementa l'identità utente delegato.</span><span class="sxs-lookup"><span data-stu-id="1fb80-116">The Tailspin application implements delegated user identity.</span></span> <span data-ttu-id="1fb80-117">Le principali differenze sono le seguenti:</span><span class="sxs-lookup"><span data-stu-id="1fb80-117">Here are the main differences:</span></span>
+<span data-ttu-id="53519-116">L'applicazione Tailspin implementa l'identità utente delegato.</span><span class="sxs-lookup"><span data-stu-id="53519-116">The Tailspin application implements delegated user identity.</span></span> <span data-ttu-id="53519-117">Le principali differenze sono le seguenti:</span><span class="sxs-lookup"><span data-stu-id="53519-117">Here are the main differences:</span></span>
 
-<span data-ttu-id="1fb80-118">**Identità utente delegato**</span><span class="sxs-lookup"><span data-stu-id="1fb80-118">**Delegated user identity**</span></span>
+<span data-ttu-id="53519-118">**Identità utente delegato**</span><span class="sxs-lookup"><span data-stu-id="53519-118">**Delegated user identity:**</span></span>
 
-* <span data-ttu-id="1fb80-119">Il token di connessione inviato all'API Web contiene l'identità utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-119">The bearer token sent to the web API contains the user identity.</span></span>
-* <span data-ttu-id="1fb80-120">L'API Web prende decisioni di autorizzazione in base all'identità utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-120">The web API makes authorization decisions based on the user identity.</span></span>
-* <span data-ttu-id="1fb80-121">L'applicazione Web deve gestire gli errori 403 (accesso negato) dall'API Web se l'utente non è autorizzato a eseguire un'azione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-121">The web application needs to handle 403 (Forbidden) errors from the web API, if the user is not authorized to perform an action.</span></span>
-* <span data-ttu-id="1fb80-122">In genere, l'applicazione Web continua a prendere alcune decisioni di autorizzazione che influiscono sull'interfaccia utente, ad esempio mostrare o nascondere elementi dell'interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-122">Typically, the web application still makes some authorization decisions that affect UI, such as showing or hiding UI elements).</span></span>
-* <span data-ttu-id="1fb80-123">Potenzialmente l'API Web potrebbe essere usata da client non attendibili, ad esempio un'applicazione JavaScript o un'applicazione client nativa.</span><span class="sxs-lookup"><span data-stu-id="1fb80-123">The web API can potentially be used by untrusted clients, such as a JavaScript application or a native client application.</span></span>
+* <span data-ttu-id="53519-119">Il token di connessione inviato all'API Web contiene l'identità utente.</span><span class="sxs-lookup"><span data-stu-id="53519-119">The bearer token sent to the web API contains the user identity.</span></span>
+* <span data-ttu-id="53519-120">L'API Web prende decisioni di autorizzazione in base all'identità utente.</span><span class="sxs-lookup"><span data-stu-id="53519-120">The web API makes authorization decisions based on the user identity.</span></span>
+* <span data-ttu-id="53519-121">L'applicazione Web deve gestire gli errori 403 (accesso negato) dall'API Web se l'utente non è autorizzato a eseguire un'azione.</span><span class="sxs-lookup"><span data-stu-id="53519-121">The web application needs to handle 403 (Forbidden) errors from the web API, if the user is not authorized to perform an action.</span></span>
+* <span data-ttu-id="53519-122">In genere, l'applicazione Web continua a prendere alcune decisioni di autorizzazione che influiscono sull'interfaccia utente, ad esempio mostrare o nascondere elementi dell'interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="53519-122">Typically, the web application still makes some authorization decisions that affect UI, such as showing or hiding UI elements).</span></span>
+* <span data-ttu-id="53519-123">Potenzialmente l'API Web potrebbe essere usata da client non attendibili, ad esempio un'applicazione JavaScript o un'applicazione client nativa.</span><span class="sxs-lookup"><span data-stu-id="53519-123">The web API can potentially be used by untrusted clients, such as a JavaScript application or a native client application.</span></span>
 
-<span data-ttu-id="1fb80-124">**Identità dell'applicazione**</span><span class="sxs-lookup"><span data-stu-id="1fb80-124">**Application identity**</span></span>
+<span data-ttu-id="53519-124">**Identità dell'applicazione**</span><span class="sxs-lookup"><span data-stu-id="53519-124">**Application identity:**</span></span>
 
-* <span data-ttu-id="1fb80-125">L'API Web non ottiene informazioni sull'utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-125">The web API does not get information about the user.</span></span>
-* <span data-ttu-id="1fb80-126">L'API Web non può eseguire alcuna autorizzazione basata sull'identità utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-126">The web API cannot perform any authorization based on the user identity.</span></span> <span data-ttu-id="1fb80-127">Tutte le decisioni di autorizzazione vengono prese dall'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-127">All authorization decisions are made by the web application.</span></span>  
-* <span data-ttu-id="1fb80-128">L'API Web non può essere usata da un client non attendibile, ad esempio JavaScript o un'applicazione client nativa.</span><span class="sxs-lookup"><span data-stu-id="1fb80-128">The web API cannot be used by an untrusted client (JavaScript or native client application).</span></span>
-* <span data-ttu-id="1fb80-129">Questo approccio è in qualche modo più semplice da implementare perché non sussiste alcuna logica di autorizzazione nell'API Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-129">This approach may be somewhat simpler to implement, because there is no authorization logic in the Web API.</span></span>
+* <span data-ttu-id="53519-125">L'API Web non ottiene informazioni sull'utente.</span><span class="sxs-lookup"><span data-stu-id="53519-125">The web API does not get information about the user.</span></span>
+* <span data-ttu-id="53519-126">L'API Web non può eseguire alcuna autorizzazione basata sull'identità utente.</span><span class="sxs-lookup"><span data-stu-id="53519-126">The web API cannot perform any authorization based on the user identity.</span></span> <span data-ttu-id="53519-127">Tutte le decisioni di autorizzazione vengono prese dall'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="53519-127">All authorization decisions are made by the web application.</span></span>  
+* <span data-ttu-id="53519-128">L'API Web non può essere usata da un client non attendibile, ad esempio JavaScript o un'applicazione client nativa.</span><span class="sxs-lookup"><span data-stu-id="53519-128">The web API cannot be used by an untrusted client (JavaScript or native client application).</span></span>
+* <span data-ttu-id="53519-129">Questo approccio è in qualche modo più semplice da implementare perché non sussiste alcuna logica di autorizzazione nell'API Web.</span><span class="sxs-lookup"><span data-stu-id="53519-129">This approach may be somewhat simpler to implement, because there is no authorization logic in the Web API.</span></span>
 
-<span data-ttu-id="1fb80-130">In entrambi gli approcci, l'applicazione Web deve ottenere un token di accesso che corrisponde alle credenziali necessarie per chiamare l'API Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-130">In either approach, the web application must get an access token, which is the credential needed to call the web API.</span></span>
+<span data-ttu-id="53519-130">In entrambi gli approcci, l'applicazione Web deve ottenere un token di accesso che corrisponde alle credenziali necessarie per chiamare l'API Web.</span><span class="sxs-lookup"><span data-stu-id="53519-130">In either approach, the web application must get an access token, which is the credential needed to call the web API.</span></span>
 
-* <span data-ttu-id="1fb80-131">Per l'identità utente delegato il token deve provenire da IDP, in grado di rilasciare un token per conto dell'utente.</span><span class="sxs-lookup"><span data-stu-id="1fb80-131">For delegated user identity, the token has to come from the IDP, which can issue a token on behalf of the user.</span></span>
-* <span data-ttu-id="1fb80-132">Per le credenziali client, un'applicazione può ottenere il token da IDP oppure ospitare il proprio token server.</span><span class="sxs-lookup"><span data-stu-id="1fb80-132">For client credentials, an application might get the token from the IDP or host its own token server.</span></span> <span data-ttu-id="1fb80-133">Non scrivere però un server di token da zero. Usare un framework ben collaudato come [IdentityServer4]. Se si esegue l'autenticazione con Azure AD, è consigliabile ottenere il token di accesso da Azure AD, anche con il flusso di credenziali del client.</span><span class="sxs-lookup"><span data-stu-id="1fb80-133">(But don't write a token server from scratch; use a well-tested framework like [IdentityServer4].) If you authenticate with Azure AD, it's strongly recommended to get the access token from Azure AD, even with client credential flow.</span></span>
+* <span data-ttu-id="53519-131">Per l'identità utente delegato il token deve provenire da IDP, in grado di rilasciare un token per conto dell'utente.</span><span class="sxs-lookup"><span data-stu-id="53519-131">For delegated user identity, the token has to come from the IDP, which can issue a token on behalf of the user.</span></span>
+* <span data-ttu-id="53519-132">Per le credenziali client, un'applicazione può ottenere il token da IDP oppure ospitare il proprio token server.</span><span class="sxs-lookup"><span data-stu-id="53519-132">For client credentials, an application might get the token from the IDP or host its own token server.</span></span> <span data-ttu-id="53519-133">Non scrivere però un server di token da zero. Usare un framework ben collaudato come [IdentityServer4]. Se si esegue l'autenticazione con Azure AD, è consigliabile ottenere il token di accesso da Azure AD, anche con il flusso di credenziali del client.</span><span class="sxs-lookup"><span data-stu-id="53519-133">(But don't write a token server from scratch; use a well-tested framework like [IdentityServer4].) If you authenticate with Azure AD, it's strongly recommended to get the access token from Azure AD, even with client credential flow.</span></span>
 
-<span data-ttu-id="1fb80-134">Il resto di questo articolo presuppone l'autenticazione dell'applicazione con Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1fb80-134">The rest of this article assumes the application is authenticating with Azure AD.</span></span>
+<span data-ttu-id="53519-134">Il resto di questo articolo presuppone l'autenticazione dell'applicazione con Azure AD.</span><span class="sxs-lookup"><span data-stu-id="53519-134">The rest of this article assumes the application is authenticating with Azure AD.</span></span>
 
 ![Ottenere il token di accesso](./images/access-token.png)
 
-## <a name="register-the-web-api-in-azure-ad"></a><span data-ttu-id="1fb80-136">Registrare l'API Web in Azure AD</span><span class="sxs-lookup"><span data-stu-id="1fb80-136">Register the web API in Azure AD</span></span>
-<span data-ttu-id="1fb80-137">Per consentire ad Azure AD di emettere un token di connessione per l'API Web, è necessario configurare alcuni aspetti in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1fb80-137">In order for Azure AD to issue a bearer token for the web API, you need to configure some things in Azure AD.</span></span>
+## <a name="register-the-web-api-in-azure-ad"></a><span data-ttu-id="53519-136">Registrare l'API Web in Azure AD</span><span class="sxs-lookup"><span data-stu-id="53519-136">Register the web API in Azure AD</span></span>
 
-1. <span data-ttu-id="1fb80-138">Registrare l'API Web in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1fb80-138">Register the web API in Azure AD.</span></span>
+<span data-ttu-id="53519-137">Per consentire ad Azure AD di emettere un token di connessione per l'API Web, è necessario configurare alcuni aspetti in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="53519-137">In order for Azure AD to issue a bearer token for the web API, you need to configure some things in Azure AD.</span></span>
 
-2. <span data-ttu-id="1fb80-139">Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` .</span><span class="sxs-lookup"><span data-stu-id="1fb80-139">Add the client ID of the web app to the web API application manifest, in the `knownClientApplications` property.</span></span> <span data-ttu-id="1fb80-140">Vedere l'articolo su come [aggiornare i manifesti delle applicazioni].</span><span class="sxs-lookup"><span data-stu-id="1fb80-140">See [Update the application manifests].</span></span>
+1. <span data-ttu-id="53519-138">Registrare l'API Web in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="53519-138">Register the web API in Azure AD.</span></span>
 
-3. <span data-ttu-id="1fb80-141">Autorizzare l'applicazione Web a chiamare l'API Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-141">Give the web application permission to call the web API.</span></span> <span data-ttu-id="1fb80-142">Nel portale di gestione di Microsoft Azure è possibile impostare due tipi di autorizzazioni: "Autorizzazioni applicazione" per l'identità dell'applicazione (flusso di credenziali client) o "Autorizzazioni delegate" per l'identità utente delegato.</span><span class="sxs-lookup"><span data-stu-id="1fb80-142">In the Azure Management Portal, you can set two types of permissions: "Application Permissions" for application identity (client credential flow), or "Delegated Permissions" for delegated user identity.</span></span>
-   
+2. <span data-ttu-id="53519-139">Aggiungere l'ID client dell'app Web nel manifesto dell'applicazione API Web nella proprietà `knownClientApplications` .</span><span class="sxs-lookup"><span data-stu-id="53519-139">Add the client ID of the web app to the web API application manifest, in the `knownClientApplications` property.</span></span> <span data-ttu-id="53519-140">Vedere l'articolo su come [aggiornare i manifesti delle applicazioni].</span><span class="sxs-lookup"><span data-stu-id="53519-140">See [Update the application manifests].</span></span>
+
+3. <span data-ttu-id="53519-141">Autorizzare l'applicazione Web a chiamare l'API Web.</span><span class="sxs-lookup"><span data-stu-id="53519-141">Give the web application permission to call the web API.</span></span> <span data-ttu-id="53519-142">Nel portale di gestione di Azure è possibile impostare due tipi di autorizzazioni: "Autorizzazioni applicazione" per l'identità dell'applicazione (flusso di credenziali client) o "Autorizzazioni delegate" per l'identità utente delegato.</span><span class="sxs-lookup"><span data-stu-id="53519-142">In the Azure Management Portal, you can set two types of permissions: "Application Permissions" for application identity (client credential flow), or "Delegated Permissions" for delegated user identity.</span></span>
+
    ![Autorizzazioni delegate](./images/delegated-permissions.png)
 
-## <a name="getting-an-access-token"></a><span data-ttu-id="1fb80-144">Recupero di un token di accesso</span><span class="sxs-lookup"><span data-stu-id="1fb80-144">Getting an access token</span></span>
-<span data-ttu-id="1fb80-145">Prima di chiamare l'API Web, l'applicazione Web ottiene un token di accesso da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1fb80-145">Before calling the web API, the web application gets an access token from Azure AD.</span></span> <span data-ttu-id="1fb80-146">In un'applicazione .NET usare [Azure AD Authentication Library (ADAL) for .NET][ADAL] (Raccolta di Autenticazione di Azure AD (ADAL) per .NET).</span><span class="sxs-lookup"><span data-stu-id="1fb80-146">In a .NET application, use the [Azure AD Authentication Library (ADAL) for .NET][ADAL].</span></span>
+## <a name="getting-an-access-token"></a><span data-ttu-id="53519-144">Recupero di un token di accesso</span><span class="sxs-lookup"><span data-stu-id="53519-144">Getting an access token</span></span>
 
-<span data-ttu-id="1fb80-147">Nel flusso di codici di autorizzazione OAuth 2 l'applicazione scambia un codice di autorizzazione per un token di accesso.</span><span class="sxs-lookup"><span data-stu-id="1fb80-147">In the OAuth 2 authorization code flow, the application exchanges an authorization code for an access token.</span></span> <span data-ttu-id="1fb80-148">Il codice seguente usa ADAL per ottenere il token di accesso.</span><span class="sxs-lookup"><span data-stu-id="1fb80-148">The following code uses ADAL to get the access token.</span></span> <span data-ttu-id="1fb80-149">Questo codice viene chiamato durante l'evento `AuthorizationCodeReceived` .</span><span class="sxs-lookup"><span data-stu-id="1fb80-149">This code is called during the `AuthorizationCodeReceived` event.</span></span>
+<span data-ttu-id="53519-145">Prima di chiamare l'API Web, l'applicazione Web ottiene un token di accesso da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="53519-145">Before calling the web API, the web application gets an access token from Azure AD.</span></span> <span data-ttu-id="53519-146">In un'applicazione .NET usare [Azure AD Authentication Library (ADAL) for .NET][ADAL] (Raccolta di Autenticazione di Azure AD (ADAL) per .NET).</span><span class="sxs-lookup"><span data-stu-id="53519-146">In a .NET application, use the [Azure AD Authentication Library (ADAL) for .NET][ADAL].</span></span>
+
+<span data-ttu-id="53519-147">Nel flusso di codici di autorizzazione OAuth 2 l'applicazione scambia un codice di autorizzazione per un token di accesso.</span><span class="sxs-lookup"><span data-stu-id="53519-147">In the OAuth 2 authorization code flow, the application exchanges an authorization code for an access token.</span></span> <span data-ttu-id="53519-148">Il codice seguente usa ADAL per ottenere il token di accesso.</span><span class="sxs-lookup"><span data-stu-id="53519-148">The following code uses ADAL to get the access token.</span></span> <span data-ttu-id="53519-149">Questo codice viene chiamato durante l'evento `AuthorizationCodeReceived` .</span><span class="sxs-lookup"><span data-stu-id="53519-149">This code is called during the `AuthorizationCodeReceived` event.</span></span>
 
 ```csharp
-// The OpenID Connect middleware sends this event when it gets the authorization code.   
+// The OpenID Connect middleware sends this event when it gets the authorization code.
 public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
 {
     string authorizationCode = context.ProtocolMessage.Code;
@@ -107,33 +107,34 @@ public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedCo
 }
 ```
 
-<span data-ttu-id="1fb80-150">Ecco i diversi parametri necessari:</span><span class="sxs-lookup"><span data-stu-id="1fb80-150">Here are the various parameters that are needed:</span></span>
+<span data-ttu-id="53519-150">Ecco i diversi parametri necessari:</span><span class="sxs-lookup"><span data-stu-id="53519-150">Here are the various parameters that are needed:</span></span>
 
-* <span data-ttu-id="1fb80-151">`authority`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-151">`authority`.</span></span> <span data-ttu-id="1fb80-152">Derivato dall'ID tenant dell'utente connesso.</span><span class="sxs-lookup"><span data-stu-id="1fb80-152">Derived from the tenant ID of the signed in user.</span></span> <span data-ttu-id="1fb80-153">Non l'ID tenant del provider SaaS.</span><span class="sxs-lookup"><span data-stu-id="1fb80-153">(Not the tenant ID of the SaaS provider)</span></span>  
-* <span data-ttu-id="1fb80-154">`authorizationCode`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-154">`authorizationCode`.</span></span> <span data-ttu-id="1fb80-155">Il codice di autorizzazione restituito da IDP.</span><span class="sxs-lookup"><span data-stu-id="1fb80-155">the auth code that you got back from the IDP.</span></span>
-* <span data-ttu-id="1fb80-156">`clientId`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-156">`clientId`.</span></span> <span data-ttu-id="1fb80-157">L'ID client dell'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-157">The web application's client ID.</span></span>
-* <span data-ttu-id="1fb80-158">`clientSecret`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-158">`clientSecret`.</span></span> <span data-ttu-id="1fb80-159">Chiave privata client dell'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-159">The web application's client secret.</span></span>
-* <span data-ttu-id="1fb80-160">`redirectUri`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-160">`redirectUri`.</span></span> <span data-ttu-id="1fb80-161">L'URI di reindirizzamento impostato per OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="1fb80-161">The redirect URI that you set for OpenID connect.</span></span> <span data-ttu-id="1fb80-162">L'IDP richiama qui con il token.</span><span class="sxs-lookup"><span data-stu-id="1fb80-162">This is where the IDP calls back with the token.</span></span>
-* <span data-ttu-id="1fb80-163">`resourceID`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-163">`resourceID`.</span></span> <span data-ttu-id="1fb80-164">L'URI ID app dell'API Web creato al momento della registrazione dell'API Web in Azure AD</span><span class="sxs-lookup"><span data-stu-id="1fb80-164">The App ID URI of the web API, which you created when you registered the web API in Azure AD</span></span>
-* <span data-ttu-id="1fb80-165">`tokenCache`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-165">`tokenCache`.</span></span> <span data-ttu-id="1fb80-166">Un oggetto che memorizza nella cache i token di accesso.</span><span class="sxs-lookup"><span data-stu-id="1fb80-166">An object that caches the access tokens.</span></span> <span data-ttu-id="1fb80-167">Vedere l'articolo sulla [memorizzazione nella cache dei token].</span><span class="sxs-lookup"><span data-stu-id="1fb80-167">See [Token caching].</span></span>
+* <span data-ttu-id="53519-151">`authority`.</span><span class="sxs-lookup"><span data-stu-id="53519-151">`authority`.</span></span> <span data-ttu-id="53519-152">Derivato dall'ID tenant dell'utente connesso.</span><span class="sxs-lookup"><span data-stu-id="53519-152">Derived from the tenant ID of the signed in user.</span></span> <span data-ttu-id="53519-153">Non l'ID tenant del provider SaaS.</span><span class="sxs-lookup"><span data-stu-id="53519-153">(Not the tenant ID of the SaaS provider)</span></span>  
+* <span data-ttu-id="53519-154">`authorizationCode`.</span><span class="sxs-lookup"><span data-stu-id="53519-154">`authorizationCode`.</span></span> <span data-ttu-id="53519-155">Il codice di autorizzazione restituito da IDP.</span><span class="sxs-lookup"><span data-stu-id="53519-155">the auth code that you got back from the IDP.</span></span>
+* <span data-ttu-id="53519-156">`clientId`.</span><span class="sxs-lookup"><span data-stu-id="53519-156">`clientId`.</span></span> <span data-ttu-id="53519-157">L'ID client dell'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="53519-157">The web application's client ID.</span></span>
+* <span data-ttu-id="53519-158">`clientSecret`.</span><span class="sxs-lookup"><span data-stu-id="53519-158">`clientSecret`.</span></span> <span data-ttu-id="53519-159">Chiave privata client dell'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="53519-159">The web application's client secret.</span></span>
+* <span data-ttu-id="53519-160">`redirectUri`.</span><span class="sxs-lookup"><span data-stu-id="53519-160">`redirectUri`.</span></span> <span data-ttu-id="53519-161">L'URI di reindirizzamento impostato per OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="53519-161">The redirect URI that you set for OpenID connect.</span></span> <span data-ttu-id="53519-162">L'IDP richiama qui con il token.</span><span class="sxs-lookup"><span data-stu-id="53519-162">This is where the IDP calls back with the token.</span></span>
+* <span data-ttu-id="53519-163">`resourceID`.</span><span class="sxs-lookup"><span data-stu-id="53519-163">`resourceID`.</span></span> <span data-ttu-id="53519-164">L'URI ID app dell'API Web creato al momento della registrazione dell'API Web in Azure AD</span><span class="sxs-lookup"><span data-stu-id="53519-164">The App ID URI of the web API, which you created when you registered the web API in Azure AD</span></span>
+* <span data-ttu-id="53519-165">`tokenCache`.</span><span class="sxs-lookup"><span data-stu-id="53519-165">`tokenCache`.</span></span> <span data-ttu-id="53519-166">Un oggetto che memorizza nella cache i token di accesso.</span><span class="sxs-lookup"><span data-stu-id="53519-166">An object that caches the access tokens.</span></span> <span data-ttu-id="53519-167">Vedere l'articolo sulla [memorizzazione nella cache dei token].</span><span class="sxs-lookup"><span data-stu-id="53519-167">See [Token caching].</span></span>
 
-<span data-ttu-id="1fb80-168">Se `AcquireTokenByAuthorizationCodeAsync` viene eseguito correttamente, ADAL memorizza nella cache il token.</span><span class="sxs-lookup"><span data-stu-id="1fb80-168">If `AcquireTokenByAuthorizationCodeAsync` succeeds, ADAL caches the token.</span></span> <span data-ttu-id="1fb80-169">In seguito è possibile ottenere il token dalla cache chiamando AcquireTokenSilentAsync:</span><span class="sxs-lookup"><span data-stu-id="1fb80-169">Later, you can get the token from the cache by calling AcquireTokenSilentAsync:</span></span>
+<span data-ttu-id="53519-168">Se `AcquireTokenByAuthorizationCodeAsync` viene eseguito correttamente, ADAL memorizza nella cache il token.</span><span class="sxs-lookup"><span data-stu-id="53519-168">If `AcquireTokenByAuthorizationCodeAsync` succeeds, ADAL caches the token.</span></span> <span data-ttu-id="53519-169">In seguito è possibile ottenere il token dalla cache chiamando AcquireTokenSilentAsync:</span><span class="sxs-lookup"><span data-stu-id="53519-169">Later, you can get the token from the cache by calling AcquireTokenSilentAsync:</span></span>
 
 ```csharp
 AuthenticationContext authContext = new AuthenticationContext(authority, tokenCache);
 var result = await authContext.AcquireTokenSilentAsync(resourceID, credential, new UserIdentifier(userId, UserIdentifierType.UniqueId));
 ```
 
-<span data-ttu-id="1fb80-170">dove `userId` è l'ID oggetto dell'utente, disponibile nell'attestazione `http://schemas.microsoft.com/identity/claims/objectidentifier`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-170">where `userId` is the user's object ID, which is found in the `http://schemas.microsoft.com/identity/claims/objectidentifier` claim.</span></span>
+<span data-ttu-id="53519-170">dove `userId` è l'ID oggetto dell'utente, disponibile nell'attestazione `http://schemas.microsoft.com/identity/claims/objectidentifier`.</span><span class="sxs-lookup"><span data-stu-id="53519-170">where `userId` is the user's object ID, which is found in the `http://schemas.microsoft.com/identity/claims/objectidentifier` claim.</span></span>
 
-## <a name="using-the-access-token-to-call-the-web-api"></a><span data-ttu-id="1fb80-171">Usare il token di accesso per chiamare l'API Web</span><span class="sxs-lookup"><span data-stu-id="1fb80-171">Using the access token to call the web API</span></span>
-<span data-ttu-id="1fb80-172">Dopo aver creato il token, inviarlo all'API Web nell'intestazione di autorizzazione delle richieste HTTP.</span><span class="sxs-lookup"><span data-stu-id="1fb80-172">Once you have the token, send it in the Authorization header of the HTTP requests to the web API.</span></span>
+## <a name="using-the-access-token-to-call-the-web-api"></a><span data-ttu-id="53519-171">Usare il token di accesso per chiamare l'API Web</span><span class="sxs-lookup"><span data-stu-id="53519-171">Using the access token to call the web API</span></span>
 
-```
+<span data-ttu-id="53519-172">Dopo aver creato il token, inviarlo all'API Web nell'intestazione di autorizzazione delle richieste HTTP.</span><span class="sxs-lookup"><span data-stu-id="53519-172">Once you have the token, send it in the Authorization header of the HTTP requests to the web API.</span></span>
+
+```http
 Authorization: Bearer xxxxxxxxxx
 ```
 
-<span data-ttu-id="1fb80-173">Il seguente metodo di estensione dall'applicazione Surveys imposta l'intestazione di autorizzazione su una richiesta HTTP con la classe **HttpClient** .</span><span class="sxs-lookup"><span data-stu-id="1fb80-173">The following extension method from the Surveys application sets the Authorization header on an HTTP request, using the **HttpClient** class.</span></span>
+<span data-ttu-id="53519-173">Il seguente metodo di estensione dall'applicazione Surveys imposta l'intestazione di autorizzazione su una richiesta HTTP con la classe **HttpClient** .</span><span class="sxs-lookup"><span data-stu-id="53519-173">The following extension method from the Surveys application sets the Authorization header on an HTTP request, using the **HttpClient** class.</span></span>
 
 ```csharp
 public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(this HttpClient httpClient, HttpMethod method, string path, object requestBody, string accessToken, CancellationToken ct)
@@ -154,10 +155,11 @@ public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(th
 }
 ```
 
-## <a name="authenticating-in-the-web-api"></a><span data-ttu-id="1fb80-174">Autenticarsi nell'API Web</span><span class="sxs-lookup"><span data-stu-id="1fb80-174">Authenticating in the web API</span></span>
-<span data-ttu-id="1fb80-175">L'API Web deve autenticare il token di connessione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-175">The web API has to authenticate the bearer token.</span></span> <span data-ttu-id="1fb80-176">In ASP.NET Core è possibile usare il pacchetto [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer].</span><span class="sxs-lookup"><span data-stu-id="1fb80-176">In ASP.NET Core, you can use the [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] package.</span></span> <span data-ttu-id="1fb80-177">Questo pacchetto offre un middleware che consente all'applicazione di ricevere i token di connessione OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="1fb80-177">This package provides middleware that enables the application to receive OpenID Connect bearer tokens.</span></span>
+## <a name="authenticating-in-the-web-api"></a><span data-ttu-id="53519-174">Autenticarsi nell'API Web</span><span class="sxs-lookup"><span data-stu-id="53519-174">Authenticating in the web API</span></span>
 
-<span data-ttu-id="1fb80-178">Registrare il middleware nella classe `Startup` dell'API Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-178">Register the middleware in your web API `Startup` class.</span></span>
+<span data-ttu-id="53519-175">L'API Web deve autenticare il token di connessione.</span><span class="sxs-lookup"><span data-stu-id="53519-175">The web API has to authenticate the bearer token.</span></span> <span data-ttu-id="53519-176">In ASP.NET Core è possibile usare il pacchetto [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer].</span><span class="sxs-lookup"><span data-stu-id="53519-176">In ASP.NET Core, you can use the [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] package.</span></span> <span data-ttu-id="53519-177">Questo pacchetto offre un middleware che consente all'applicazione di ricevere i token di connessione OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="53519-177">This package provides middleware that enables the application to receive OpenID Connect bearer tokens.</span></span>
+
+<span data-ttu-id="53519-178">Registrare il middleware nella classe `Startup` dell'API Web.</span><span class="sxs-lookup"><span data-stu-id="53519-178">Register the middleware in your web API `Startup` class.</span></span>
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext, ILoggerFactory loggerFactory)
@@ -172,20 +174,21 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
         },
         Events= new SurveysJwtBearerEvents(loggerFactory.CreateLogger<SurveysJwtBearerEvents>())
     });
-    
+
     // ...
 }
 ```
 
-* <span data-ttu-id="1fb80-179">**Destinatari**.</span><span class="sxs-lookup"><span data-stu-id="1fb80-179">**Audience**.</span></span> <span data-ttu-id="1fb80-180">Impostare questa opzione per l'URL dell'ID app per l'API Web creato al momento della registrazione dell'API Web con Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1fb80-180">Set this to the App ID URL for the web API, which you created when you registered the web API with Azure AD.</span></span>
-* <span data-ttu-id="1fb80-181">**Autorità**.</span><span class="sxs-lookup"><span data-stu-id="1fb80-181">**Authority**.</span></span> <span data-ttu-id="1fb80-182">Per un'applicazione multi-tenant impostarla su `https://login.microsoftonline.com/common/`.</span><span class="sxs-lookup"><span data-stu-id="1fb80-182">For a multitenant application, set this to `https://login.microsoftonline.com/common/`.</span></span>
-* <span data-ttu-id="1fb80-183">**Parametri di validazione del token**.</span><span class="sxs-lookup"><span data-stu-id="1fb80-183">**TokenValidationParameters**.</span></span> <span data-ttu-id="1fb80-184">Per un'applicazione multi-tenant, impostare **ValidateIssuer** su false:</span><span class="sxs-lookup"><span data-stu-id="1fb80-184">For a multitenant application, set **ValidateIssuer** to false.</span></span> <span data-ttu-id="1fb80-185">ciò significa che l'applicazione convaliderà l'autorità di certificazione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-185">That means the application will validate the issuer.</span></span>
-* <span data-ttu-id="1fb80-186">**Eventi** è una classe che deriva da **JwtBearerEvents**.</span><span class="sxs-lookup"><span data-stu-id="1fb80-186">**Events** is a class that derives from **JwtBearerEvents**.</span></span>
+* <span data-ttu-id="53519-179">**Destinatari**.</span><span class="sxs-lookup"><span data-stu-id="53519-179">**Audience**.</span></span> <span data-ttu-id="53519-180">Impostare questa opzione per l'URL dell'ID app per l'API Web creato al momento della registrazione dell'API Web con Azure AD.</span><span class="sxs-lookup"><span data-stu-id="53519-180">Set this to the App ID URL for the web API, which you created when you registered the web API with Azure AD.</span></span>
+* <span data-ttu-id="53519-181">**Autorità**.</span><span class="sxs-lookup"><span data-stu-id="53519-181">**Authority**.</span></span> <span data-ttu-id="53519-182">Per un'applicazione multi-tenant impostarla su `https://login.microsoftonline.com/common/`.</span><span class="sxs-lookup"><span data-stu-id="53519-182">For a multitenant application, set this to `https://login.microsoftonline.com/common/`.</span></span>
+* <span data-ttu-id="53519-183">**Parametri di validazione del token**.</span><span class="sxs-lookup"><span data-stu-id="53519-183">**TokenValidationParameters**.</span></span> <span data-ttu-id="53519-184">Per un'applicazione multi-tenant, impostare **ValidateIssuer** su false:</span><span class="sxs-lookup"><span data-stu-id="53519-184">For a multitenant application, set **ValidateIssuer** to false.</span></span> <span data-ttu-id="53519-185">ciò significa che l'applicazione convaliderà l'autorità di certificazione.</span><span class="sxs-lookup"><span data-stu-id="53519-185">That means the application will validate the issuer.</span></span>
+* <span data-ttu-id="53519-186">**Eventi** è una classe che deriva da **JwtBearerEvents**.</span><span class="sxs-lookup"><span data-stu-id="53519-186">**Events** is a class that derives from **JwtBearerEvents**.</span></span>
 
-### <a name="issuer-validation"></a><span data-ttu-id="1fb80-187">Convalida dell'autorità di certificazione</span><span class="sxs-lookup"><span data-stu-id="1fb80-187">Issuer validation</span></span>
-<span data-ttu-id="1fb80-188">Convalidare l'autorità di certificazione del token nell'evento **JwtBearerEvents.ValidatedToken**.</span><span class="sxs-lookup"><span data-stu-id="1fb80-188">Validate the token issuer in the **JwtBearerEvents.TokenValidated** event.</span></span> <span data-ttu-id="1fb80-189">L'autorità di certificazione viene inviata nell'attestazione "iss".</span><span class="sxs-lookup"><span data-stu-id="1fb80-189">The issuer is sent in the "iss" claim.</span></span>
+### <a name="issuer-validation"></a><span data-ttu-id="53519-187">Convalida dell'autorità di certificazione</span><span class="sxs-lookup"><span data-stu-id="53519-187">Issuer validation</span></span>
 
-<span data-ttu-id="1fb80-190">Nell'applicazione Surveys l'API Web non gestisce l' [iscrizione del tenant].</span><span class="sxs-lookup"><span data-stu-id="1fb80-190">In the Surveys application, the web API doesn't handle [tenant sign-up].</span></span> <span data-ttu-id="1fb80-191">Per questo motivo, controlla solo se l'autorità di certificazione si trova già nel database dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-191">Therefore, it just checks if the issuer is already in the application database.</span></span> <span data-ttu-id="1fb80-192">In caso contrario, viene generata un'eccezione che determina la mancata autenticazione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-192">If not, it throws an exception, which causes authentication to fail.</span></span>
+<span data-ttu-id="53519-188">Convalidare l'autorità di certificazione del token nell'evento **JwtBearerEvents.ValidatedToken**.</span><span class="sxs-lookup"><span data-stu-id="53519-188">Validate the token issuer in the **JwtBearerEvents.TokenValidated** event.</span></span> <span data-ttu-id="53519-189">L'autorità di certificazione viene inviata nell'attestazione "iss".</span><span class="sxs-lookup"><span data-stu-id="53519-189">The issuer is sent in the "iss" claim.</span></span>
+
+<span data-ttu-id="53519-190">Nell'applicazione Surveys l'API Web non gestisce l' [iscrizione del tenant].</span><span class="sxs-lookup"><span data-stu-id="53519-190">In the Surveys application, the web API doesn't handle [tenant sign-up].</span></span> <span data-ttu-id="53519-191">Per questo motivo, controlla solo se l'autorità di certificazione si trova già nel database dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="53519-191">Therefore, it just checks if the issuer is already in the application database.</span></span> <span data-ttu-id="53519-192">In caso contrario, viene generata un'eccezione che determina la mancata autenticazione.</span><span class="sxs-lookup"><span data-stu-id="53519-192">If not, it throws an exception, which causes authentication to fail.</span></span>
 
 ```csharp
 public override async Task TokenValidated(TokenValidatedContext context)
@@ -218,26 +221,27 @@ public override async Task TokenValidated(TokenValidatedContext context)
 }
 ```
 
-<span data-ttu-id="1fb80-193">Come illustrato in questo esempio, è possibile anche usare l'evento **TokenValidated** per modificare le attestazioni.</span><span class="sxs-lookup"><span data-stu-id="1fb80-193">As this example shows, you can also use the **TokenValidated** event to modify the claims.</span></span> <span data-ttu-id="1fb80-194">Si noti che le attestazioni provengono direttamente da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1fb80-194">Remember that the claims come directly from Azure AD.</span></span> <span data-ttu-id="1fb80-195">Se l'applicazione Web modifica le attestazioni ottenute, tali modifiche non verranno visualizzate nel token di connessione ricevuto dall'API Web.</span><span class="sxs-lookup"><span data-stu-id="1fb80-195">If the web application modifies the claims that it gets, those changes won't show up in the bearer token that the web API receives.</span></span> <span data-ttu-id="1fb80-196">Per maggiori informazioni, vedere [Trasformazioni delle attestazioni][claims-transformation].</span><span class="sxs-lookup"><span data-stu-id="1fb80-196">For more information, see [Claims transformations][claims-transformation].</span></span>
+<span data-ttu-id="53519-193">Come illustrato in questo esempio, è possibile anche usare l'evento **TokenValidated** per modificare le attestazioni.</span><span class="sxs-lookup"><span data-stu-id="53519-193">As this example shows, you can also use the **TokenValidated** event to modify the claims.</span></span> <span data-ttu-id="53519-194">Si noti che le attestazioni provengono direttamente da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="53519-194">Remember that the claims come directly from Azure AD.</span></span> <span data-ttu-id="53519-195">Se l'applicazione Web modifica le attestazioni ottenute, tali modifiche non verranno visualizzate nel token di connessione ricevuto dall'API Web.</span><span class="sxs-lookup"><span data-stu-id="53519-195">If the web application modifies the claims that it gets, those changes won't show up in the bearer token that the web API receives.</span></span> <span data-ttu-id="53519-196">Per maggiori informazioni, vedere [Trasformazioni delle attestazioni][claims-transformation].</span><span class="sxs-lookup"><span data-stu-id="53519-196">For more information, see [Claims transformations][claims-transformation].</span></span>
 
-## <a name="authorization"></a><span data-ttu-id="1fb80-197">Authorization</span><span class="sxs-lookup"><span data-stu-id="1fb80-197">Authorization</span></span>
-<span data-ttu-id="1fb80-198">Per una discussione generale sulle autorizzazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse][Authorization].</span><span class="sxs-lookup"><span data-stu-id="1fb80-198">For a general discussion of authorization, see [Role-based and resource-based authorization][Authorization].</span></span> 
+## <a name="authorization"></a><span data-ttu-id="53519-197">Authorization</span><span class="sxs-lookup"><span data-stu-id="53519-197">Authorization</span></span>
 
-<span data-ttu-id="1fb80-199">Il middleware JwtBearer gestisce le risposte di autorizzazione.</span><span class="sxs-lookup"><span data-stu-id="1fb80-199">The JwtBearer middleware handles the authorization responses.</span></span> <span data-ttu-id="1fb80-200">Ad esempio, per limitare un'azione del controller agli utenti autenticati, usare l'attributo **[Authorize]** e specificare  **JwtBearerDefaults.AuthenticationScheme** come schema di autenticazione:</span><span class="sxs-lookup"><span data-stu-id="1fb80-200">For example, to restrict a controller action to authenticated users, use the **[Authorize]** atrribute and specify **JwtBearerDefaults.AuthenticationScheme** as the authentication scheme:</span></span>
+<span data-ttu-id="53519-198">Per una discussione generale sulle autorizzazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse][Authorization].</span><span class="sxs-lookup"><span data-stu-id="53519-198">For a general discussion of authorization, see [Role-based and resource-based authorization][Authorization].</span></span>
+
+<span data-ttu-id="53519-199">Il middleware JwtBearer gestisce le risposte di autorizzazione.</span><span class="sxs-lookup"><span data-stu-id="53519-199">The JwtBearer middleware handles the authorization responses.</span></span> <span data-ttu-id="53519-200">Ad esempio, per limitare un'azione del controller agli utenti autenticati, usare l'attributo **[Authorize]** e specificare  **JwtBearerDefaults.AuthenticationScheme** come schema di autenticazione:</span><span class="sxs-lookup"><span data-stu-id="53519-200">For example, to restrict a controller action to authenticated users, use the **[Authorize]** atrribute and specify **JwtBearerDefaults.AuthenticationScheme** as the authentication scheme:</span></span>
 
 ```csharp
 [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 ```
 
-<span data-ttu-id="1fb80-201">Questo restituisce un codice di stato 401 se l'utente non è autenticato.</span><span class="sxs-lookup"><span data-stu-id="1fb80-201">This returns a 401 status code if the user is not authenticated.</span></span>
+<span data-ttu-id="53519-201">Questo restituisce un codice di stato 401 se l'utente non è autenticato.</span><span class="sxs-lookup"><span data-stu-id="53519-201">This returns a 401 status code if the user is not authenticated.</span></span>
 
-<span data-ttu-id="1fb80-202">Per limitare un'azione del controller attraverso i criteri di autorizzazione, specificare il nome del criterio nell'attributo **[Authorize]**:</span><span class="sxs-lookup"><span data-stu-id="1fb80-202">To restrict a controller action by authorizaton policy, specify the policy name in the **[Authorize]** attribute:</span></span>
+<span data-ttu-id="53519-202">Per limitare un'azione del controller attraverso i criteri di autorizzazione, specificare il nome del criterio nell'attributo **[Authorize]**:</span><span class="sxs-lookup"><span data-stu-id="53519-202">To restrict a controller action by authorizaton policy, specify the policy name in the **[Authorize]** attribute:</span></span>
 
 ```csharp
 [Authorize(Policy = PolicyNames.RequireSurveyCreator)]
 ```
 
-<span data-ttu-id="1fb80-203">Questo restituisce un codice di stato 401 se l'utente non è autenticato e 403 se l'utente è autenticato ma non autorizzato.</span><span class="sxs-lookup"><span data-stu-id="1fb80-203">This returns a 401 status code if the user is not authenticated, and 403 if the user is authenticated but not authorized.</span></span> <span data-ttu-id="1fb80-204">Registrare i criteri all'avvio:</span><span class="sxs-lookup"><span data-stu-id="1fb80-204">Register the policy on startup:</span></span>
+<span data-ttu-id="53519-203">Questo restituisce un codice di stato 401 se l'utente non è autenticato e 403 se l'utente è autenticato ma non autorizzato.</span><span class="sxs-lookup"><span data-stu-id="53519-203">This returns a 401 status code if the user is not authenticated, and 403 if the user is authenticated but not authorized.</span></span> <span data-ttu-id="53519-204">Registrare i criteri all'avvio:</span><span class="sxs-lookup"><span data-stu-id="53519-204">Register the policy on startup:</span></span>
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -248,23 +252,23 @@ public void ConfigureServices(IServiceCollection services)
             policy =>
             {
                 policy.AddRequirements(new SurveyCreatorRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
         options.AddPolicy(PolicyNames.RequireSurveyAdmin,
             policy =>
             {
                 policy.AddRequirements(new SurveyAdminRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
     });
-    
+
     // ...
 }
 ```
 
-<span data-ttu-id="1fb80-205">[**Avanti**][token cache]</span><span class="sxs-lookup"><span data-stu-id="1fb80-205">[**Next**][token cache]</span></span>
+<span data-ttu-id="53519-205">[**Avanti**][token cache]</span><span class="sxs-lookup"><span data-stu-id="53519-205">[**Next**][token cache]</span></span>
 
 <!-- links -->
 [ADAL]: https://msdn.microsoft.com/library/azure/jj573266.aspx
