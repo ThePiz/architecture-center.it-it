@@ -4,12 +4,12 @@ description: Architettura consigliata per le applicazioni IoT in Azure che usano
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: bde507527262a722219edba534275fb7ab499069
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: c0aa1771abc99b1f17f1e553c9626e50a386f34c
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54166023"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307689"
 ---
 # <a name="azure-iot-reference-architecture"></a>Architettura di riferimento di Azure IoT
 
@@ -39,7 +39,7 @@ L'architettura è costituita dai componenti seguenti. Alcune applicazioni potreb
 
 **Provisioning di dispositivi**. Per la registrazione e la connessione di set di dispositivi di grandi dimensioni, è consigliabile usare il [servizio Device Provisioning in hub IoT](/azure/iot-dps/). Il servizio Device Provisioning in hub IoT consente di assegnare e registrare i dispositivi in endpoint hub IoT di Azure su vasta scala.
 
-**Elaborazione dei flussi**. L'elaborazione dei flussi analizza flussi di record di dati di grandi dimensioni e valuta le regole per tali flussi. Per l'elaborazione dei flussi, è consigliabile usare [Analisi di flusso di Azure](/azure/stream-analytics/). Analisi di flusso di Azure può eseguire analisi complesse su larga scala, usando funzioni per le finestre temporali, aggregazioni di flusso e join di origini dati esterne. Un'altra opzione prevede l'uso di Apache Spark in [Azure Databricks](/azure/azure-databricks/).
+**Elaborazione del flusso**. L'elaborazione dei flussi analizza flussi di record di dati di grandi dimensioni e valuta le regole per tali flussi. Per l'elaborazione dei flussi, è consigliabile usare [Analisi di flusso di Azure](/azure/stream-analytics/). Analisi di flusso di Azure può eseguire analisi complesse su larga scala, usando funzioni per le finestre temporali, aggregazioni di flusso e join di origini dati esterne. Un'altra opzione prevede l'uso di Apache Spark in [Azure Databricks](/azure/azure-databricks/).
 
 L'apprendimento automatico consente di eseguire algoritmi predittivi su dati di telemetria cronologici per abilitare scenari come la manutenzione predittiva. Per l'apprendimento automatico, è consigliabile usare il [servizio Azure Machine Learning](/azure/machine-learning/service/).
 
