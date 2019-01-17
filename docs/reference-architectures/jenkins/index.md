@@ -100,7 +100,7 @@ Il modello di soluzione per Jenkins in Azure installa diversi plug-in Azure. Il 
 
 - Usare il plug-in [Azure VM Agents][vm-agent] per creare agenti di Jenkins eseguiti in VM di Azure. Questo plug-in consente di aumentare il numero di istanze degli agenti in modo elastico e può usare tipi distinti di macchine virtuali. È possibile selezionare una diversa immagine di base in Azure Marketplace o usare un'immagine personalizzata. Per informazioni dettagliate sul ridimensionamento degli agenti di Jenkins, vedere [Architecting for Scale][scale] (Progettazione per la scalabilità) nella documentazione di Jenkins.
 
-- Usare il plug-in [Azure Container Agents][container-agents] per eseguire un contenitore come agente nel [servizio contenitore di Azure con Kubernetes](/azure/container-service/kubernetes/) o in [Istanze di contenitore di Azure](/azure/container-instances/).
+- Usare il plug-in [Azure Container Agents][container-agents] per eseguire un contenitore come agente nel [servizio Azure Container con Kubernetes](/azure/container-service/kubernetes/) o in [Istanze di Azure Container](/azure/container-instances/).
 
 Il ridimensionamento di macchine virtuali presenta in genere un costo superiore rispetto a quello di contenitori. Per usare contenitori per il ridimensionamento, tuttavia, è necessario che il processo di compilazione venga eseguito con contenitori.
 
@@ -142,7 +142,7 @@ Usare gli approcci seguenti per bloccare la sicurezza in un server Jenkins di ba
 
 - Usare il controllo degli accessi in base al ruolo per limitare l'accesso dell'entità servizio al minimo necessario per eseguire i processi. Ciò consente di limitare eventuali danni dovuti a processi non autorizzati.
 
-I processi Jenkins spesso richiedono segreti per accedere ai servizi di Azure per cui è necessaria l'autorizzazione, come il servizio contenitore di Azure. Per gestire in modo sicuro questi segreti, usare [Key Vault][key-vault] insieme al [plug-in Azure Credentials][configure-credential]. Usare Key Vault per archiviare le credenziali delle entità servizio, le password, i token e altri segreti.
+I processi Jenkins spesso richiedono segreti per accedere ai servizi di Azure per cui è necessaria l'autorizzazione, come il servizio Azure Container. Per gestire in modo sicuro questi segreti, usare [Key Vault][key-vault] insieme al [plug-in Azure Credentials][configure-credential]. Usare Key Vault per archiviare le credenziali delle entità servizio, le password, i token e altri segreti.
 
 Per ottenere una visualizzazione centrale dello stato di sicurezza delle risorse di Azure, usare il [Centro sicurezza di Azure][security-center]. Il Centro sicurezza monitora potenziali problemi di sicurezza e offre un'immagine completa dello stato della sicurezza della distribuzione. Il Centro sicurezza è configurato per ogni sottoscrizione di Azure. Abilitare la raccolta dei dati di sicurezza come descritto nella [Guida introduttiva per il Centro sicurezza di Azure][quick-start]. Quando la raccolta di dati è abilitata, il Centro sicurezza analizza automaticamente tutte le macchine virtuali create nell'ambito della sottoscrizione.
 
