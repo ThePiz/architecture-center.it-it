@@ -20,7 +20,7 @@ Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calc
 
 <!-- markdownlint-disable MD033 -->
 
-| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di contenitore | Azure Batch |
+| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Composizione dell'applicazione | Agnostico | Applicazioni, contenitori | Servizi, eseguibili guest, contenitori | Funzioni | Contenitori | Contenitori | Processi pianificati  |
 | Densità | Agnostico | Più app per istanza tramite piani di servizio app | Più servizi per VM | Senza server <a href="#note1"><sup>1</sup></a> | Più contenitori per nodo |Nessuna istanza dedicata | Più app per VM |
@@ -42,7 +42,7 @@ Note
 
 ## <a name="devops"></a>DevOps
 
-| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di contenitore | Azure Batch |
+| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Debug locale | Agnostico | IIS Express, altri<a href="#note1b"><sup>1</sup></a> | Cluster a nodi locali | Visual Studio o interfaccia della riga di comando di Funzioni di Azure | Minikube, altri | Runtime del contenitore locale | Non supportate |
 | Modello di programmazione | Agnostico | Applicazioni Web e API, processi Web per attività in background | Eseguibile guest, modello del servizio, modello Actor, contenitori | Funzioni con trigger | Agnostico | Agnostico | Applicazione della riga di comando |
@@ -55,7 +55,7 @@ Note
 
 ## <a name="scalability"></a>Scalabilità
 
-| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di contenitore | Azure Batch |
+| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Scalabilità automatica | Set di scalabilità di macchine virtuali | Servizio integrato | Set di scalabilità delle VM | Servizio integrato | Non supportate | Non supportate | N/D |
 | Bilanciamento del carico | Azure Load Balancer | Integrato | Azure Load Balancer | Integrato | Integrato |  Nessun supporto integrato | Azure Load Balancer |
@@ -67,14 +67,14 @@ Note
 
 ## <a name="availability"></a>Disponibilità
 
-| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di contenitore | Azure Batch |
+| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Contratto di servizio | [Contratto di servizio per Macchine virtuali][sla-vm] | [Contratto di servizio per Servizio app][sla-app-service] | [Contratto di servizio per Service Fabric][sla-sf] | [Contratto di servizio per Funzioni][sla-functions] | [Contratto di servizio per il servizio Kubernetes di Azure][sla-acs] | [Contratto di servizio per le istanze di contenitore](https://azure.microsoft.com/support/legal/sla/container-instances/) | [Contratto di servizio per Azure Batch][sla-batch] |
 | Failover in più aree | Gestione traffico | Gestione traffico | Gestione traffico, cluster in più aree | Non supportate | Gestione traffico | Non supportate | Non supportato |
 
 ## <a name="other"></a>Altri
 
-| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di contenitore | Azure Batch |
+| Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | SSL | Configurato in VM | Supportato | Supportato  | Supportato | [Controller di ingresso](/azure/aks/ingress) | Usare il contenitore [sidecar](../../patterns/sidecar.md) | Supportato |
 | Costi | [Windows][cost-windows-vm], [Linux][cost-linux-vm] | [Prezzi di Servizio app][cost-app-service] | [Prezzi di Service Fabric][cost-service-fabric] | [Prezzi di Funzioni di Azure][cost-functions] | [Prezzi del servizio Kubernetes di Azure][cost-acs] | [Prezzi delle istanze di contenitore](https://azure.microsoft.com/pricing/details/container-instances/) | [Prezzi di Azure Batch][cost-batch]

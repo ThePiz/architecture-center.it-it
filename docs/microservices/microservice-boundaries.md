@@ -87,14 +87,14 @@ Un agente di orchestrazione gestisce attività correlate alla distribuzione e al
 
 Nella piattaforma Azure prendere in considerazione le opzioni seguenti:
 
-- Il [servizio Kubernetes di Azure](/azure/aks/) (AKS) è un ambiente Kubernetes gestito. Il servizio contenitore di Azure effettua il provisioning di Kubernetes ed espone gli endpoint delle API Kubernetes, ma ospita e gestisce il pannello di controllo di Kubernetes, eseguendo aggiornamenti automatici, applicazione di patch automatica, ridimensionamento automatico e altre attività di gestione. Il servizio contenitore di Azure può essere considerato "API Kubernetes come servizio".
+- Il [servizio Kubernetes di Azure](/azure/aks/) (AKS) è un ambiente Kubernetes gestito. Il servizio Azure Container effettua il provisioning di Kubernetes ed espone gli endpoint delle API Kubernetes, ma ospita e gestisce il pannello di controllo di Kubernetes, eseguendo aggiornamenti automatici, applicazione di patch automatica, ridimensionamento automatico e altre attività di gestione. Il servizio Azure Container può essere considerato "API Kubernetes come servizio".
 
 - [Service Fabric](/azure/service-fabric/) è una piattaforma di sistemi distribuiti per la creazione di pacchetti, la distribuzione e la gestione di microservizi. I microservizi possono essere distribuiti in Service Fabric come contenitori, file binari eseguibili oppure come [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction). Con il modello di programmazione di Reliable Services, i servizi possono usare direttamente le API di programmazione di Service Fabric per eseguire query sul sistema, creare report di integrità, ricevere notifiche relative a modifiche di configurazione e codice e individuare altri servizi. Un fattore essenziale per la differenziazione di Service Fabric è la creazione di servizi con stato tramite [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 - Il [servizio contenitore di Azure](/azure/container-service/) è un servizio di Azure che consente di distribuire un cluster DC/OS, Docker Swarm o Kubernetes pronto per la produzione.
 
   > [!NOTE]
-  > Anche se Kubernetes è supportato dal servizio contenitore di Azure, è consigliabile usare AKS per l'esecuzione di Kubernetes in Azure. AKS offre funzionalità di gestione avanzate e maggiori vantaggi in termini di costi.
+  > Anche se Kubernetes è supportato dal servizio Azure Container, è consigliabile usare servizio Azure Kubernetes per l'esecuzione di Kubernetes in Azure. servizio Azure Kubernetes offre funzionalità di gestione avanzate e maggiori vantaggi in termini di costi.
 
 ### <a name="containers"></a>Contenitori
 

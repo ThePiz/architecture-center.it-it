@@ -138,7 +138,7 @@ Sono stati definiti tre profili di costo di esempio in base al numero di immagin
 
 ## <a name="related-resources"></a>Risorse correlate
 
-In questo scenario sono stati usati Registro Azure Container e il servizio Azure Kubernetes per archiviare ed eseguire un'applicazione basata su contenitori. Per eseguire applicazioni basate su contenitori senza dover effettuare il provisioning di componenti di orchestrazione, è anche possibile usare Istanze di contenitore di Azure. Per altre informazioni, vedere la [panoramica di Istanze di contenitore di Azure][docs-aci].
+In questo scenario sono stati usati Registro Azure Container e il servizio Azure Kubernetes per archiviare ed eseguire un'applicazione basata su contenitori. Per eseguire applicazioni basate su contenitori senza dover effettuare il provisioning di componenti di orchestrazione, è anche possibile usare Istanze di Azure Container. Per altre informazioni, vedere la [panoramica di Istanze di Azure Container][docs-aci].
 
 <!-- links -->
 [architecture]: ./media/architecture-devops-with-aks.png

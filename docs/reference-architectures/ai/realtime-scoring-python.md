@@ -64,9 +64,9 @@ L'architettura è costituita dai componenti seguenti.
 
 **[Macchina virtuale][vm]** (VM). La VM è riportata come un esempio di dispositivo (locale o nel cloud) che può inviare una richiesta HTTP.
 
-**[Servizio Kubernetes di Azure][aks]** (AKS). Viene usato per distribuire l'applicazione in un cluster Kubernetes. AKS semplifica la distribuzione e le operazioni di Kubernetes. Il cluster può essere configurato usando VM solo CPU per i modelli Python normali o VM abilitate per GPU per i modelli di Deep Learning.
+**[Servizio Kubernetes di Azure][aks]** (AKS). Viene usato per distribuire l'applicazione in un cluster Kubernetes. Il servizio Azure Kubernetes semplifica la distribuzione e le operazioni di Kubernetes. Il cluster può essere configurato usando VM solo CPU per i modelli Python normali o VM abilitate per GPU per i modelli di Deep Learning.
 
-**[Servizio di bilanciamento del carico][lb]**. AKS effettua il provisioning di un servizio di bilanciamento del carico che verrà usato per esporre il servizio esternamente. Il traffico proveniente dal servizio di bilanciamento del carico viene indirizzato ai pod back-end.
+**[Servizio di bilanciamento del carico][lb]**. servizio Azure Kubernetes effettua il provisioning di un servizio di bilanciamento del carico che verrà usato per esporre il servizio esternamente. Il traffico proveniente dal servizio di bilanciamento del carico viene indirizzato ai pod back-end.
 
 **[Hub Docker][docker]**. Viene usato per archiviare l'immagine Docker distribuita nel cluster Kubernetes. L'hub Docker è stato scelto per questa architettura perché è facile da usare ed è il repository di immagini predefinito per gli utenti di Docker. Per questa architettura è possibile usare anche [Registro contenitori di Azure][acr].
 
@@ -76,37 +76,37 @@ Per le architetture di assegnazione di punteggi in tempo reale, le prestazioni i
 
 Per i carichi di lavoro di Deep Learning, in cui la velocità è un collo di bottiglia, le GPU offrono invece in genere [prestazioni][gpus-vs-cpus] superiori rispetto alle CPU. Per ottenere prestazioni corrispondenti a quelle delle GPU usando CPU, è in genere necessario un cluster con un numero elevato di CPU.
 
-Per questa architettura, è possibile usare CPU in entrambi gli scenari, ma per i modelli di Deep Learning le GPU offrono valori di velocità effettiva nettamente superiori rispetto a un cluster di CPU con costo simile. AKS supporta l'uso di GPU e questo è uno dei vantaggi offerti da AKS per questa architettura. Le distribuzioni di Deep Learning, inoltre, usano in genere modelli con un numero elevato di parametri. L'uso di GPU evita la contesa per le risorse tra il modello e il servizio Web che costituisce invece un problema nelle distribuzioni solo CPU.
+Per questa architettura, è possibile usare CPU in entrambi gli scenari, ma per i modelli di Deep Learning le GPU offrono valori di velocità effettiva nettamente superiori rispetto a un cluster di CPU con costo simile. servizio Azure Kubernetes supporta l'uso di GPU e questo è uno dei vantaggi offerti da servizio Azure Kubernetes per questa architettura. Le distribuzioni di Deep Learning, inoltre, usano in genere modelli con un numero elevato di parametri. L'uso di GPU evita la contesa per le risorse tra il modello e il servizio Web che costituisce invece un problema nelle distribuzioni solo CPU.
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
-Per i modelli Python normali, in cui il provisioning del cluster AKS viene effettuato con VM solo CPU, prestare attenzione in caso di [aumento del numero di istanze dei pod][manually-scale-pods]. L'obiettivo è utilizzare appieno il cluster. Il ridimensionamento dipende dalle richieste e dai limiti di CPU definiti per i pod. Kubernetes supporta anche il [ridimensionamento automatico][autoscale-pods] dei pod per modificare il numero di pod in una distribuzione in base all'utilizzo delle CPU o ad altre metriche selezionate. Il [ridimensionamento automatico del cluster][autoscaler] (in anteprima) può ridimensionare i nodi agente in base ai pod in sospeso.
+Per i modelli Python normali, in cui il provisioning del cluster servizio Azure Kubernetes viene effettuato con VM solo CPU, prestare attenzione in caso di [aumento del numero di istanze dei pod][manually-scale-pods]. L'obiettivo è utilizzare appieno il cluster. Il ridimensionamento dipende dalle richieste e dai limiti di CPU definiti per i pod. Kubernetes supporta anche il [ridimensionamento automatico][autoscale-pods] dei pod per modificare il numero di pod in una distribuzione in base all'utilizzo delle CPU o ad altre metriche selezionate. Il [ridimensionamento automatico del cluster][autoscaler] (in anteprima) può ridimensionare i nodi agente in base ai pod in sospeso.
 
 Per gli scenari di Deep Learning con VM abilitate per GPU, i limiti di risorse per i pod sono tali che una GPU viene assegnata a un unico pod. A seconda del tipo di VM usato, è necessario [ridimensionare i nodi del cluster][scale-cluster] in base alle esigenze del servizio. Questa operazione può essere eseguita facilmente usando kubectl e l'interfaccia della riga di comando di Azure.
 
 ## <a name="monitoring-and-logging-considerations"></a>Considerazioni relative a monitoraggio e registrazione
 
-### <a name="aks-monitoring"></a>Monitoraggio di AKS
+### <a name="aks-monitoring"></a>Monitoraggio di servizio Azure Kubernetes
 
-Per ottenere la visibilità delle prestazioni di AKS, usare la funzionalità [Monitoraggio di Azure per i contenitori][monitor-containers], che raccoglie metriche sulla memoria e sul processore da controller, nodi e contenitori disponibili in Kubernetes tramite l'API Metriche.
+Per ottenere la visibilità delle prestazioni di servizio Azure Kubernetes, usare la funzionalità [Monitoraggio di Azure per i contenitori][monitor-containers], che raccoglie metriche sulla memoria e sul processore da controller, nodi e contenitori disponibili in Kubernetes tramite l'API Metriche.
 
-Durante la distribuzione dell'applicazione, monitorare il cluster AKS per verificare che funzioni come previsto, che tutti i nodi siano operativi e che tutti i pod siano in esecuzione. Nonostante sia possibile usare lo strumento da riga di comando [kubectl][kubectl] per recuperare lo stato dei pod, Kubernetes include anche un dashboard Web per il monitoraggio di base dello stato del cluster e la gestione.
+Durante la distribuzione dell'applicazione, monitorare il cluster servizio Azure Kubernetes per verificare che funzioni come previsto, che tutti i nodi siano operativi e che tutti i pod siano in esecuzione. Nonostante sia possibile usare lo strumento da riga di comando [kubectl][kubectl] per recuperare lo stato dei pod, Kubernetes include anche un dashboard Web per il monitoraggio di base dello stato del cluster e la gestione.
 
 ![Screenshot del dashboard Kubernetes](./_images/python-kubernetes-dashboard.png)
 
 Per visualizzare lo stato generale del cluster e dei nodi, passare alla sezione **Nodes** (Nodi) del dashboard Kubernetes. In caso di nodo inattivo o con errori, è possibile visualizzare i log degli errori da tale pagina. Analogamente, passare alle sezioni **Pods** (Pod) e **Deployments** (Distribuzioni) per informazioni sul numero di pod e sullo stato della distribuzione.
 
-### <a name="aks-logs"></a>Log di AKS
+### <a name="aks-logs"></a>Log di servizio Azure Kubernetes
 
-AKS registra automaticamente ogni stdout/stderr nei log dei pod del cluster. Usare kubectl per visualizzare questi elementi nonché gli eventi e i log a livello di nodo. Per informazioni dettagliate, vedere la procedura di distribuzione.
+servizio Azure Kubernetes registra automaticamente ogni stdout/stderr nei log dei pod del cluster. Usare kubectl per visualizzare questi elementi nonché gli eventi e i log a livello di nodo. Per informazioni dettagliate, vedere la procedura di distribuzione.
 
 Usare [Monitoraggio di Azure per i contenitori][monitor-containers] per raccogliere metriche e log tramite una versione in contenitori dell'agente di Log Analytics per Linux, archiviata nell'area di lavoro di Log Analytics.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
 
-Usare il [Centro sicurezza di Azure][security-center] per ottenere una visualizzazione centrale dello stato di sicurezza delle risorse di Azure. Il Centro sicurezza monitora i potenziali problemi di sicurezza e offre un quadro completo dell'integrità della sicurezza della distribuzione, pur non monitorando i nodi agente AKS. Il Centro sicurezza è configurato per ogni sottoscrizione di Azure. Abilitare la raccolta dei dati sulla sicurezza come illustrato nell'articolo relativo all'[onboarding della sottoscrizione di Azure nel Centro sicurezza Standard][get-started]. Quando la raccolta dei dati è abilitata, il Centro sicurezza analizza automaticamente tutte le macchine virtuali create nell'ambito della sottoscrizione.
+Usare il [Centro sicurezza di Azure][security-center] per ottenere una visualizzazione centrale dello stato di sicurezza delle risorse di Azure. Il Centro sicurezza monitora i potenziali problemi di sicurezza e offre un quadro completo dell'integrità della sicurezza della distribuzione, pur non monitorando i nodi agente servizio Azure Kubernetes. Il Centro sicurezza è configurato per ogni sottoscrizione di Azure. Abilitare la raccolta dei dati sulla sicurezza come illustrato nell'articolo relativo all'[onboarding della sottoscrizione di Azure nel Centro sicurezza Standard][get-started]. Quando la raccolta dei dati è abilitata, il Centro sicurezza analizza automaticamente tutte le macchine virtuali create nell'ambito della sottoscrizione.
 
-**Operazioni**. Per accedere a un cluster AKS con il token di autenticazione di Azure Active Directory (Azure AD), configurare AKS per l'uso di Azure AD per l'[autenticazione utente][aad-auth]. Gli amministratori di cluster possono anche configurare il controllo degli accessi in base al ruolo di Kubernetes in base all'identità o all'appartenenza a gruppi della directory di un utente.
+**Operazioni**. Per accedere a un cluster servizio Azure Kubernetes con il token di autenticazione di Azure Active Directory (Azure AD), configurare servizio Azure Kubernetes per l'uso di Azure AD per l'[autenticazione utente][aad-auth]. Gli amministratori di cluster possono anche configurare il controllo degli accessi in base al ruolo di Kubernetes in base all'identità o all'appartenenza a gruppi della directory di un utente.
 
 Usare il [controllo degli accessi in base al ruolo][rbac] per controllare l'accesso alle risorse di Azure distribuite. Il controllo degli accessi in base al ruolo consente di assegnare i ruoli di autorizzazione ai membri del proprio team DevOps. Un utente può essere assegnato a più ruoli ed è possibile creare ruoli personalizzati per [autorizzazioni] ancora più specifiche.
 
