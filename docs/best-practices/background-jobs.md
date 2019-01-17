@@ -177,7 +177,7 @@ I contenitori possono essere utili per l'esecuzione di processi in background. A
 - I contenitori supportano l'hosting ad alta densità. È possibile isolare un'attività in background in un contenitore, durante l'inserimento di più contenitori in una macchina virtuale.
 - L'agente di orchestrazione del contenitore gestisce un servizio di bilanciamento del carico interno, la configurazione della rete interna e altre attività di configurazione.
 - È possibile avviare e arrestare i contenitori in base alle esigenze.
-- Registro contenitori di Azure consente di registrare i contenitori all'interno dei limiti di Azure. Questo implica vantaggi di sicurezza, privacy e prossimità.
+- Registro Azure Container consente di registrare i contenitori all'interno dei limiti di Azure. Questo implica vantaggi di sicurezza, privacy e prossimità.
 
 <!-- markdownlint-disable MD024 -->
 

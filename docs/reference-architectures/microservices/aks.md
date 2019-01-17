@@ -245,11 +245,11 @@ Non eseguire i contenitori in modalità privilegiata. La modalità privilegiata 
 
 Quando possibile, evitare di eseguire i processi come radice all'interno di contenitori. I contenitori non forniscono isolamento completo dal punto di vista della sicurezza, di conseguenza è preferibile eseguire un processo del contenitore come utente senza privilegi. 
 
-Archiviare immagini in un registro privato attendibile, ad esempio nel Registro Azure Container o nel Registro Docker Trusted. Usare un webhook di ammissione e di convalida in Kubernetes per garantire che i pod possano eseguire il pull delle immagini solamente dal registro di sistema attendibile.
+Archiviare immagini in un registro privato attendibile, ad esempio in Registro Azure Container o nel Registro Docker Trusted. Usare un webhook di ammissione e di convalida in Kubernetes per garantire che i pod possano eseguire il pull delle immagini solamente dal registro di sistema attendibile.
 
 Analizzare le immagini per le vulnerabilità note usando una soluzione di analisi, ad esempio Twistlock e Aqua, disponibili su Azure Marketplace.
 
-Automatizzare l'applicazione di patch all'immagine usando le attività del Registro Azure Container, una funzionalità del registro Azure Container. Un'immagine del contenitore viene costruita a partire da livelli. I livelli di base includono l'immagine del sistema operativo e le immagini di framework dell'applicazione, ad esempio ASP.NET Core o Node. js. Le immagini di base vengono in genere create upstream dagli sviluppatori delle applicazioni e gestite da altri gestori di progetti. Quando a queste immagini vengono applicate patch upstream, è importante aggiornare, testare e ridistribuire le proprie immagini, in modo da non lasciare alcuna vulnerabilità di sicurezza nota. Le Attività del Registro Azure Container sono in grado di automatizzare questo processo.
+Automatizzare l'applicazione di patch all'immagine usando le attività di Registro Azure Container, una funzionalità di Registro Azure Container. Un'immagine del contenitore viene costruita a partire da livelli. I livelli di base includono l'immagine del sistema operativo e le immagini di framework dell'applicazione, ad esempio ASP.NET Core o Node. js. Le immagini di base vengono in genere create upstream dagli sviluppatori delle applicazioni e gestite da altri gestori di progetti. Quando a queste immagini vengono applicate patch upstream, è importante aggiornare, testare e ridistribuire le proprie immagini, in modo da non lasciare alcuna vulnerabilità di sicurezza nota. Le Attività del Registro Azure Container sono in grado di automatizzare questo processo.
 
 ## <a name="deployment-cicd-considerations"></a>Considerazioni sulla distribuzione (CI/CD)
 

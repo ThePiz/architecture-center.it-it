@@ -124,7 +124,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
-|Registro di sistema del contenitore | Globale |5-50 |Non fa distinzione tra maiuscole e minuscole | Alfanumerico |`<service short name>registry` |`app1registry` |
+|Registro Container | Globale |5-50 |Non fa distinzione tra maiuscole e minuscole | Alfanumerico |`<service short name>registry` |`app1registry` |
 
 ## <a name="organize-resources-with-tags"></a>Organizza le risorse con i tag
 

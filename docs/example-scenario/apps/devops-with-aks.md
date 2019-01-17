@@ -37,7 +37,7 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 2. Viene eseguito il commit della modifica al codice in un repository di controllo del codice sorgente, come GitHub.
 3. Per avviare il processo di integrazione continua, un webhook GitHub attiva la compilazione di un progetto Jenkins.
 4. Il processo di compilazione Jenkins usa un agente di compilazione dinamico nel servizio Azure Kubernetes per eseguire un processo di compilazione di contenitori.
-5. Viene creata un'immagine del contenitore dal codice nel controllo del codice sorgente e ne viene quindi eseguito il push in un'istanza di Registro contenitori di Azure.
+5. Viene creata un'immagine del contenitore dal codice nel controllo del codice sorgente e ne viene quindi eseguito il push in un'istanza di Registro Azure Container.
 6. Tramite funzionalità di distribuzione continua, Jenkins distribuisce questa immagine del contenitore aggiornata nel cluster Kubernetes.
 7. L'applicazione Web Node.js usa Cosmos DB come back-end. Sia Cosmos DB che il servizio Azure Kubernetes segnalano le metriche a Monitoraggio di Azure.
 8. Un'istanza di Grafana offre dashboard visivi delle prestazioni dell'applicazione in base ai dati provenienti da Monitoraggio di Azure.
