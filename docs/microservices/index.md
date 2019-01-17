@@ -88,7 +88,7 @@ Questo scenario prevede un dominio piuttosto complesso. Alcuni dei problemi azie
 > [!NOTE]
 > Per un aiuto nella scelta tra un'architettura di microservizi e altri stili di architettura, vedere [Guida all'architettura delle applicazioni in Azure](../guide/index.md).
 
-L'implementazione di riferimento usa Kubernetes con il [servizio Kubernetes di Azure](/azure/aks/) (AKS). Molte delle scelte e delle sfide generali relative all'architettura si applicano tuttavia a qualsiasi agente di orchestrazione di contenitori, tra cui [Azure Service Fabric](/azure/service-fabric/).
+L'implementazione di riferimento usa Kubernetes con il [servizio Azure Kubernetes](/azure/aks/). Molte delle scelte e delle sfide generali relative all'architettura si applicano tuttavia a qualsiasi agente di orchestrazione di contenitori, tra cui [Azure Service Fabric](/azure/service-fabric/).
 
 > [!div class="nextstepaction"]
 > [Analisi del dominio](./domain-analysis.md)

@@ -110,7 +110,7 @@ Usare il [Centro sicurezza di Azure][security-center] per ottenere una visualizz
 
 Usare il [controllo degli accessi in base al ruolo][rbac] per controllare l'accesso alle risorse di Azure distribuite. Il controllo degli accessi in base al ruolo consente di assegnare i ruoli di autorizzazione ai membri del proprio team DevOps. Un utente può essere assegnato a più ruoli ed è possibile creare ruoli personalizzati per [autorizzazioni] ancora più specifiche.
 
-**HTTPS**. Come procedura consigliata per la sicurezza, l'applicazione dovrebbe imporre HTTPS e reindirizzare le richieste HTTP. Usare un [controller di ingresso][ingress-controller] per distribuire un proxy inverso per la terminazione SSL e il reindirizzamento delle richieste HTTP. Per altre informazioni, vedere [Creare un controller di ingresso HTTPS nel servizio Kubernetes di Azure (AKS)][https-ingress].
+**HTTPS**. Come procedura consigliata per la sicurezza, l'applicazione dovrebbe imporre HTTPS e reindirizzare le richieste HTTP. Usare un [controller di ingresso][ingress-controller] per distribuire un proxy inverso per la terminazione SSL e il reindirizzamento delle richieste HTTP. Per altre informazioni, vedere [Creare un controller di ingresso HTTPS nel servizio Azure Kubernetes][https-ingress].
 
 **Autenticazione**. Questa soluzione non limita l'accesso agli endpoint. Per distribuire l'architettura in un contesto aziendale, proteggere gli endpoint tramite chiavi API e aggiungere una qualche forma di autenticazione utente all'applicazione client.
 

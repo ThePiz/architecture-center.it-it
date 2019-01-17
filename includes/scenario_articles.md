@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 0ffff7786ae0b613f6938171a43b0084456b900a
+ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53334942"
+---
 
 ## <a name="ai-scenarios"></a>Scenari di intelligenza artificiale
 
@@ -115,7 +123,7 @@
                     </div>
                     <div class="cardText">
                         <h3>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori</h3>
-                        <p>Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.</p>
+                        <p>Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro Azure Container, il servizio Azure Kubernetes, Cosmos DB e Grafana.</p>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 ---
 title: Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 titleSuffix: Azure Example Scenarios
-description: Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro contenitori di Azure, il servizio Kubernetes di Azure, Cosmos DB e Grafana.
+description: Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro Azure Container, il servizio Azure Kubernetes, Cosmos DB e Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
 ms.openlocfilehash: 9d2681294b5c332e15259706518e4b02a488002f
@@ -13,11 +13,11 @@ ms.locfileid: "53643765"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 
-Questo scenario di esempio è applicabile ad aziende che vogliono modernizzare lo sviluppo di applicazioni usando contenitori e flussi di lavoro DevOps. In questo scenario, un'app Web Node.js viene compilata e distribuita tramite Jenkins in un'istanza di Registro contenitori di Azure e nel servizio Kubernetes di Azure. Per un livello database distribuito a livello globale, viene usato Azure Cosmos DB. Per monitorare le prestazioni dell'applicazione e risolvere i relativi problemi, Monitoraggio di Azure si integra con un dashboard e un'istanza di Grafana.
+Questo scenario di esempio è applicabile ad aziende che vogliono modernizzare lo sviluppo di applicazioni usando contenitori e flussi di lavoro DevOps. In questo scenario, un'app Web Node.js viene compilata e distribuita tramite Jenkins in un'istanza di Registro Azure Container e nel servizio Azure Kubernetes. Per un livello database distribuito a livello globale, viene usato Azure Cosmos DB. Per monitorare le prestazioni dell'applicazione e risolvere i relativi problemi, Monitoraggio di Azure si integra con un dashboard e un'istanza di Grafana.
 
 Gli scenari di applicazione di esempio includono l'implementazione di un ambiente di sviluppo automatizzato, la convalida di nuovi commit di codice e il push di nuove distribuzioni in ambienti di staging o di produzione. Generalmente le aziende devono creare e compilare manualmente le applicazioni e gli aggiornamenti e gestire una base di codice monolitica di grande dimensioni. Con un approccio moderno allo sviluppo di applicazioni con integrazione continua e distribuzione continua, è possibile compilare, testare e distribuire servizi più rapidamente. Questo approccio moderno consente di rilasciare applicazioni e aggiornamenti ai clienti più velocemente e di rispondere a esigenze aziendali mutevoli con maggiore flessibilità.
 
-Con servizi di Azure come il servizio Kubernetes di Azure, Registro contenitori e Cosmos DB, le aziende possono usare le tecniche e gli strumenti di sviluppo di applicazioni più innovativi per semplificare il processo di implementazione della disponibilità elevata.
+Con servizi di Azure come il servizio Azure Kubernetes, Registro Container e Cosmos DB, le aziende possono usare le tecniche e gli strumenti di sviluppo di applicazioni più innovativi per semplificare il processo di implementazione della disponibilità elevata.
 
 ## <a name="relevant-use-cases"></a>Casi d'uso pertinenti
 
@@ -29,28 +29,28 @@ Gli altri casi d'uso pertinenti includono:
 
 ## <a name="architecture"></a>Architettura
 
-![Panoramica dell'architettura dei componenti di Azure coinvolti in uno scenario DevOps con Jenkins, Registro contenitori di Azure e il servizio Kubernetes di Azure][architecture]
+![Panoramica dell'architettura dei componenti di Azure coinvolti in uno scenario DevOps con Jenkins, Registro Azure Container e il servizio Azure Kubernetes][architecture]
 
 Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un database back-end. Il flusso dei dati nello scenario avviene come segue:
 
 1. Uno sviluppatore apporta modifiche al codice sorgente dell'applicazione Web Node.js.
 2. Viene eseguito il commit della modifica al codice in un repository di controllo del codice sorgente, come GitHub.
 3. Per avviare il processo di integrazione continua, un webhook GitHub attiva la compilazione di un progetto Jenkins.
-4. Il processo di compilazione Jenkins usa un agente di compilazione dinamico nel servizio Kubernetes di Azure per eseguire un processo di compilazione di contenitori.
+4. Il processo di compilazione Jenkins usa un agente di compilazione dinamico nel servizio Azure Kubernetes per eseguire un processo di compilazione di contenitori.
 5. Viene creata un'immagine del contenitore dal codice nel controllo del codice sorgente e ne viene quindi eseguito il push in un'istanza di Registro contenitori di Azure.
 6. Tramite funzionalità di distribuzione continua, Jenkins distribuisce questa immagine del contenitore aggiornata nel cluster Kubernetes.
-7. L'applicazione Web Node.js usa Cosmos DB come back-end. Sia Cosmos DB che il servizio Kubernetes di Azure segnalano le metriche a Monitoraggio di Azure.
+7. L'applicazione Web Node.js usa Cosmos DB come back-end. Sia Cosmos DB che il servizio Azure Kubernetes segnalano le metriche a Monitoraggio di Azure.
 8. Un'istanza di Grafana offre dashboard visivi delle prestazioni dell'applicazione in base ai dati provenienti da Monitoraggio di Azure.
 
 ### <a name="components"></a>Componenti
 
-- [Jenkins][jenkins] è un server di automazione open source che può integrarsi con i servizi di Azure per supportare l'integrazione continua e la distribuzione continua. In questo scenario, Jenkins orchestra la creazione di nuove immagini del contenitore in base ai commit nel controllo del codice sorgente, esegue il push di tali immagini in Registro contenitori di Azure e quindi aggiorna le istanze dell'applicazione nel servizio Kubernetes di Azure.
+- [Jenkins][jenkins] è un server di automazione open source che può integrarsi con i servizi di Azure per supportare l'integrazione continua e la distribuzione continua. In questo scenario, Jenkins orchestra la creazione di nuove immagini del contenitore in base ai commit nel controllo del codice sorgente, esegue il push di tali immagini in Registro Azure Container e quindi aggiorna le istanze dell'applicazione nel servizio Azure Kubernetes.
 - Le [macchine virtuali Linux di Azure][docs-virtual-machines] rappresentano la piattaforma IaaS usata per eseguire le istanze di Jenkins e Grafana.
 - [Registro contenitori di Azure][docs-acr] archivia e gestisce le immagini del contenitore usate dal cluster del servizio Kubernetes di Azure. Le immagini vengono archiviate in modo sicuro e possono essere replicate dalla piattaforma Azure in altre aree per ridurre i tempi di distribuzione.
 - Il [servizio Kubernetes di Azure][docs-aks] è una piattaforma Kubernetes gestita che consente di distribuire e gestire applicazioni in contenitori senza competenze nell'orchestrazione di contenitori. Come servizio Kubernetes ospitato, Azure gestisce attività critiche quali il monitoraggio dell'integrità e la manutenzione per l'utente.
 - [Azure Cosmos DB][docs-cosmos-db] è un database multimodello distribuito a livello globale che consente di scegliere tra vari modelli di database e di coerenza in base alle esigenze. Con Cosmos DB è possibile eseguire la replica dei dati a livello globale e non è necessario distribuire e configurare componenti di replica o gestione cluster.
 - [Monitoraggio di Azure][docs-azure-monitor] consente di tenere traccia delle prestazioni, gestire la sicurezza e identificare le tendenze. Le metriche ottenute da Monitoraggio possono essere usate da altri strumenti e risorse, come Grafana.
-- [Grafana][grafana] è una soluzione open source per l'esecuzione di query, la visualizzazione, la generazione di avvisi e la comprensione delle metriche. Un plug-in di origine dati per Monitoraggio di Azure consente a Grafana di creare dashboard visivi per monitorare le prestazioni delle applicazioni che vengono eseguite nel servizio Kubernetes di Azure e usano Cosmos DB.
+- [Grafana][grafana] è una soluzione open source per l'esecuzione di query, la visualizzazione, la generazione di avvisi e la comprensione delle metriche. Un plug-in di origine dati per Monitoraggio di Azure consente a Grafana di creare dashboard visivi per monitorare le prestazioni delle applicazioni che vengono eseguite nel servizio Azure Kubernetes e usano Cosmos DB.
 
 ### <a name="alternatives"></a>Alternative
 
@@ -64,13 +64,13 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 
 Per monitorare le prestazioni dell'applicazione e segnalare i problemi, questo scenario combina Monitoraggio di Azure e Grafana per offrire dashboard visivi. Questi strumenti consentono il monitoraggio e la risoluzione dei problemi di prestazioni che potrebbero richiedere aggiornamenti del codice, che possono quindi essere distribuiti tutti con la pipeline di integrazione continua/distribuzione continua.
 
-Nell'ambito del cluster del servizio Kubernetes di Azure, un servizio di bilanciamento del carico distribuisce il traffico dell'applicazione a uno o più contenitori (pod) in cui viene eseguita. Questo approccio per l'esecuzione di applicazioni in contenitori in Kubernetes offre un'infrastruttura a disponibilità elevata per i clienti.
+Nell'ambito del cluster del servizio Azure Kubernetes, un servizio di bilanciamento del carico distribuisce il traffico dell'applicazione a uno o più contenitori (pod) in cui viene eseguita. Questo approccio per l'esecuzione di applicazioni in contenitori in Kubernetes offre un'infrastruttura a disponibilità elevata per i clienti.
 
 Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture di Azure.
 
 ### <a name="scalability"></a>Scalabilità
 
-Il servizio Kubernetes di Azure consente di ridimensionare il numero di nodi del cluster in base alle esigenze delle applicazioni. Con la crescita dell'applicazione, è possibile aumentare il numero di nodi Kubernetes che eseguono il servizio.
+Il servizio Azure Kubernetes consente di ridimensionare il numero di nodi del cluster in base alle esigenze delle applicazioni. Con la crescita dell'applicazione, è possibile aumentare il numero di nodi Kubernetes che eseguono il servizio.
 
 I dati dell'applicazione vengono archiviati in Azure Cosmos DB, un database multimodello con distribuzione e scalabilità a livello globale. Con Cosmos DB non è necessario ridimensionare l'infrastruttura come con i componenti di database tradizionali ed è possibile scegliere di eseguire la replica di Cosmos DB a livello globale per soddisfare le esigenze dei clienti.
 
@@ -86,7 +86,7 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 ### <a name="resiliency"></a>Resilienza
 
-Questo scenario usa il servizio Kubernetes di Azure per l'applicazione. In Kubernetes sono integrati componenti di resilienza che monitorano e riavviano i contenitori (pod) in caso di problemi. Con l'esecuzione di più nodi Kubernetes, l'applicazione può tollerare l'indisponibilità di un pod o un nodo.
+Questo scenario usa il servizio Azure Kubernetes per l'applicazione. In Kubernetes sono integrati componenti di resilienza che monitorano e riavviano i contenitori (pod) in caso di problemi. Con l'esecuzione di più nodi Kubernetes, l'applicazione può tollerare l'indisponibilità di un pod o un nodo.
 
 Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
 
@@ -138,7 +138,7 @@ Sono stati definiti tre profili di costo di esempio in base al numero di immagin
 
 ## <a name="related-resources"></a>Risorse correlate
 
-In questo scenario sono stati usati Registro contenitori di Azure e il servizio Kubernetes di Azure per archiviare ed eseguire un'applicazione basata su contenitori. Per eseguire applicazioni basate su contenitori senza dover effettuare il provisioning di componenti di orchestrazione, è anche possibile usare Istanze di contenitore di Azure. Per altre informazioni, vedere la [panoramica di Istanze di contenitore di Azure][docs-aci].
+In questo scenario sono stati usati Registro Azure Container e il servizio Azure Kubernetes per archiviare ed eseguire un'applicazione basata su contenitori. Per eseguire applicazioni basate su contenitori senza dover effettuare il provisioning di componenti di orchestrazione, è anche possibile usare Istanze di contenitore di Azure. Per altre informazioni, vedere la [panoramica di Istanze di contenitore di Azure][docs-aci].
 
 <!-- links -->
 [architecture]: ./media/architecture-devops-with-aks.png

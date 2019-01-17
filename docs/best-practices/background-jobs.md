@@ -80,7 +80,7 @@ Se occorre che un'attività in background comunichi con l'attività chiamante pe
 - [**App Web e Processi Web di Azure**](#azure-web-apps-and-webjobs). È possibile usare Processi Web per eseguire processi personalizzati basati su tipi diversi di script o programmi eseguibili nell'ambito di un'app Web.
 - [**Macchine virtuali di Azure**](#azure-virtual-machines). Se si dispone di un servizio Windows o si desidera usare Utilità di pianificazione di Windows, è pratica comune ospitare le attività in background in una macchina virtuale dedicata.
 - [**Azure Batch**](#azure-batch). Batch è un servizio di piattaforma che consente di pianificare il lavoro a elevato uso di calcoli da eseguire su una raccolta gestita di macchine virtuali. Può scalare automaticamente le risorse di calcolo.
-- [**Servizio Kubernetes di Azure**](#azure-kubernetes-service) (AKS). Il servizio Kubernetes di Azure offre un ambiente di hosting gestito per Kubernetes in Azure.
+- [**Servizio Kubernetes di Azure**](#azure-kubernetes-service) (AKS). Il servizio Azure Kubernetes offre un ambiente di hosting gestito per Kubernetes in Azure.
 
 Le sezioni seguenti descrivono dettagliatamente le opzioni e contengono considerazioni che consentono di scegliere quella appropriata.
 
@@ -168,9 +168,9 @@ Per altre informazioni, vedere:
 - [Sviluppare soluzioni di calcolo parallele su larga scala con Batch](/azure/batch/batch-api-basics)
 - [Soluzioni batch e HPC per carichi di lavoro di calcolo su larga scala](/azure/batch/batch-hpc-solutions)
 
-### <a name="azure-kubernetes-service"></a>Azure Kubernetes Service
+### <a name="azure-kubernetes-service"></a>Servizio Azure Kubernetes
 
-Il servizio Kubernetes di Azure (AKS) gestisce l'ambiente Kubernetes ospitato facilitando la distribuzione e la gestione di applicazioni in contenitori.
+Il servizio Azure Kubernetes gestisce l'ambiente Kubernetes ospitato facilitando la distribuzione e la gestione di applicazioni in contenitori.
 
 I contenitori possono essere utili per l'esecuzione di processi in background. Alcuni vantaggi includono:
 
