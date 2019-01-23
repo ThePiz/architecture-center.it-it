@@ -5,12 +5,14 @@ author: david-stanford
 ms.date: 11/01/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 6872cc17e8d7262e36c97e765ecc9de1043269c0
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 0492567cee6135ba7f29774aa0ae8e5459f8cf49
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901417"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482868"
 ---
 # <a name="azure-example-scenarios"></a>Scenari di esempio di Azure
 

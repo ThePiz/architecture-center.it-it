@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Architettura consigliata per la distribuzione di una farm di SharePoint Server 2016 a disponibilità elevata in Azure.
 author: njray
 ms.date: 07/26/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 6cc8255f95cb4944ff3ef138ad5edf2e5bbea4b4
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: cf8d2ad580b559ba813591d34759946642d9b9b9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120102"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488359"
 ---
 # <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure
 
@@ -123,7 +126,7 @@ Per altre informazioni su queste indicazioni, vedere [Account amministrativi e d
 
 Questa architettura di riferimento distribuisce una farm di SharePoint Server 2016 che può essere usata come [ambiente ibrido SharePoint][sharepoint-hybrid]&mdash;, ovvero estendendo SharePoint Server 2016 a Office 365 SharePoint Online. Se si dispone di Office Online Server, vedere [Office Web Apps and Office Online Server supportability in Azure][office-web-apps] (Supporto di Office Web Apps e Office Online Server in Azure).
 
-Le applicazioni di servizio predefinite in questa distribuzione sono progettate per supportare carichi di lavoro ibridi. Tutti i carichi di lavoro di SharePoint Server 2016 e Office 365 possono essere distribuiti nella farm senza apportare modifiche all'infrastruttura di SharePoint con un'unica eccezione: l'applicazione del servizio di ricerca ibrida su cloud non deve essere distribuita nei server in cui è presente in hosting una topologia di ricerca esistente. È quindi necessario aggiungere una o più macchine virtuali basate sui ruoli di ricerca alla farm per supportare questo scenario ibrido.
+Le applicazioni di servizio predefinite in questa distribuzione sono progettate per supportare carichi di lavoro ibridi. Tutti i carichi di lavoro ibridi di SharePoint Server 2016 e Office 365 possono essere distribuiti in questa farm senza modifiche all'infrastruttura di SharePoint, con una sola eccezione: l'applicazione del servizio di ricerca ibrido sul cloud non deve essere distribuita nei server che ospitano una topologia di ricerca esistente. È quindi necessario aggiungere una o più macchine virtuali basate sui ruoli di ricerca alla farm per supportare questo scenario ibrido.
 
 ### <a name="sql-server-always-on-availability-groups"></a>Gruppi di disponibilità Always On di SQL Server
 
@@ -147,7 +150,7 @@ Si noti che SharePoint Server 2016 non supporta l'uso di set di scalabilità di 
 
 Questa architettura di riferimento supporta la disponibilità elevata all'interno di un'area di Azure perché ogni ruolo dispone almeno di due macchine virtuali distribuite in un set di disponibilità.
 
-Per evitare un errore a livello di area, creare una farm separata per il ripristino di emergenza in un'area diversa di Azure. Gli obiettivi del tempo di ripristino (RTO) e gli obiettivi del punto di ripristino (RPO) determineranno i requisiti della configurazione. Per informazioni dettagliate, vedere [Choose a disaster recovery strategy for SharePoint 2016][sharepoint-dr] (Scegliere una strategia di ripristino di emergenza per SharePoint 2016). L'area secondaria deve essere un'*area abbinata* all'area primaria. Nel caso di un'interruzione su vasta scala, viene definita la priorità di ripristino di un'area per ogni coppia. Per altre informazioni, vedere [Continuità aziendale e ripristino di emergenza nelle aree geografiche abbinate di Azure][paired-regions].
+Per evitare un errore a livello di area, creare una farm separata per il ripristino di emergenza in un'area diversa di Azure. Gli obiettivi del tempo di ripristino (RTO) e gli obiettivi del punto di ripristino (RPO) determineranno i requisiti della configurazione. Per informazioni dettagliate, vedere [Choose a disaster recovery strategy for SharePoint 2016][sharepoint-dr] (Scegliere una strategia di ripristino di emergenza per SharePoint 2016). L'area secondaria deve essere un'*area abbinata* all'area primaria. Nel caso di un'interruzione su vasta scala, viene definita la priorità di ripristino di un'area per ogni coppia. Per altre informazioni, vedere [Continuità aziendale e ripristino di emergenza (BCDR): aree geografiche abbinate di Azure][paired-regions].
 
 ## <a name="manageability-considerations"></a>Considerazioni sulla gestibilità
 

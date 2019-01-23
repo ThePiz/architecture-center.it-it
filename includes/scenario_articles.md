@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 0ffff7786ae0b613f6938171a43b0084456b900a
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: dfc4af0a5be29b32d90cc4a05715fd3e2f71427b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53334942"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488665"
 ---
 
 ## <a name="ai-scenarios"></a>Scenari di intelligenza artificiale
@@ -21,7 +21,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Chatbot di conversazione per prenotazioni di hotel in Azure</h3>
+                        <h3>Chatbot di conversazione per prenotazioni di hotel</h3>
                         <p>Creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot.</p>
                     </div>
                 </div>
@@ -40,8 +40,27 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Classificazione delle immagini per richieste di indennizzo assicurativo in Azure</h3>
+                        <h3>Classificazione delle immagini per richieste di indennizzo assicurativo</h3>
                         <p>Integrare l'elaborazione di immagini nelle applicazioni Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/movie-recommendations.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./ai/media/architecture-movie-recommender.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Consigli cinematografici in Azure</h3>
+                        <p>Usare Machine Learning per automatizzare i consigli cinematografici, sui prodotti e di altro tipo usando Machine Learning e Azure Data Science Virtual Machine (DSVM) per eseguire il training di un modello in Azure.</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +84,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Migrazione di un'applicazione Web legacy in un'architettura basata su API in Azure</h3>
+                        <h3>Migrazione di un'app Web in un'architettura basata su API</h3>
                         <p>Usare Gestione API di Azure per modernizzare un'applicazione Web legacy.</p>
                     </div>
                 </div>
@@ -84,7 +103,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Relazione di trust decentralizzata tra le banche in Azure</h3>
+                        <h3>Relazione di trust decentralizzata tra le banche</h3>
                         <p>Creare un ambiente attendibile per la comunicazione e la condivisione di informazioni senza dover ricorrere a un database centralizzato.</p>
                     </div>
                 </div>
@@ -141,7 +160,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Front-end per e-commerce in Azure</h3>
+                        <h3>Front-end per e-commerce</h3>
                         <p>Ospitare un sito di e-commerce in Azure.</p>
                     </div>
                 </div>
@@ -179,7 +198,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Un servizio CAE (Computer-Aided Engineering) in Azure</h3>
+                        <h3>Un servizio CAE (Computer-Aided Engineering)</h3>
                         <p>Fornire una piattaforma software come un servizio (SaaS) per CAE (Computer-Aided Engineering) in Azure.</p>
                     </div>
                 </div>
@@ -198,7 +217,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ambienti di sviluppo/test per i carichi di lavoro SAP in Azure</h3>
+                        <h3>Ambienti di sviluppo/test per i carichi di lavoro SAP</h3>
                         <p>Creare un ambiente di sviluppo/test per i carichi di lavoro SAP.</p>
                     </div>
                 </div>
@@ -217,7 +236,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure</h3>
+                        <h3>Esecuzione di carichi di lavoro di produzione SAP con un database Oracle</h3>
                         <p>Eseguire una distribuzione di produzione SAP in Azure con un database Oracle.</p>
                     </div>
                 </div>
@@ -280,7 +299,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Elaborazione degli ordini scalabile in Azure</h3>
+                        <h3>Elaborazione degli ordini scalabile</h3>
                         <p>Creare una pipeline di elaborazione degli ordini altamente scalabile con Azure Cosmos DB.</p>
                     </div>
                 </div>
@@ -299,7 +318,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Rilevamento delle frodi in tempo reale in Azure</h3>
+                        <h3>Rilevamento delle frodi in tempo reale</h3>
                         <p>Rilevare le attività fraudolente in tempo reale con Hub eventi e Analisi di flusso di Azure.</p>
                     </div>
                 </div>
@@ -319,7 +338,7 @@ ms.locfileid: "53334942"
                     </div>
                     <div class="cardText">
                         <h3>Processi ETL ibridi con distribuzioni SSIS locali esistenti e Azure Data Factory</h3>
-                        <p>Processi ETL ibridi con distribuzioni SQL Server Integration Services (SSIS) locali esistenti e Azure Data Factory</p>
+                        <p>Processi ETL ibridi con distribuzioni SQL Server Integration Services (SSIS) locali esistenti e Azure Data Factory.</p>
                     </div>
                 </div>
             </div>
@@ -362,7 +381,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Esecuzione di simulazioni di fluidodinamica computazionale (CFD) in Azure</h3>
+                        <h3>Esecuzione di simulazioni CFD</h3>
                         <p>Eseguire simulazioni di fluidodinamica computazionale (CFD) in Azure.</p>
                     </div>
                 </div>
@@ -400,8 +419,8 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure</h3>
-                        <p>Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure</p>
+                        <h3>Applicazione Web multilivello creata per la disponibilità elevata e il ripristino di emergenza</h3>
+                        <p>Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure.</p>
                     </div>
                 </div>
             </div>
@@ -419,7 +438,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Creazione di app Web sicure con macchine virtuali Windows in Azure</h3>
+                        <h3>Creazione di app Web sicure con macchine virtuali Windows</h3>
                         <p>Creare un'applicazione Web multilivello sicura con Windows Server in Azure con set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.</p>
                     </div>
                 </div>
@@ -438,7 +457,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Uso di Service Fabric per scomporre applicazioni monolitiche</h3>
+                        <h3>Uso di Service Fabric per scomporre applicazioni</h3>
                         <p>Scomporre un'applicazione monolitica di grandi dimensioni in microservizi.</p>
                     </div>
                 </div>
@@ -457,7 +476,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Rendering di video 3D in Azure</h3>
+                        <h3>Rendering di video 3D</h3>
                         <p>Eseguire carichi di lavoro HPC nativi in Azure con il servizio Azure Batch.</p>
                     </div>
                 </div>
@@ -476,7 +495,7 @@ ms.locfileid: "53334942"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Siti Web Wordpress altamente scalabili e sicuri in Azure</h3>
+                        <h3>Siti Web WordPress altamente scalabili e sicuri</h3>
                         <p>Creare un sito Web WordPress altamente scalabile e sicuro per gli eventi multimediali.</p>
                     </div>
                 </div>
