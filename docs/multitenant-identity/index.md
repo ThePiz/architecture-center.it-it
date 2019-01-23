@@ -3,12 +3,15 @@ title: Gestione delle identità per le applicazioni multi-tenant
 description: Procedure consigliate per l'autenticazione, l'autorizzazione e la gestione delle identità in applicazioni multi-tenant.
 author: MikeWasson
 ms.date: 07/21/2017
-ms.openlocfilehash: 864317cc98ee0211d4f4274253eda12b72beceed
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: f8875612ad6b1a71fdb6f7a768078ae599eb70b5
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114148"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54480548"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>Gestire le identità in applicazioni multi-tenant
 

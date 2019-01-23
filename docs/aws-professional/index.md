@@ -5,13 +5,16 @@ description: Nozioni fondamentali sgli account, sulla piattaforma e sui servizi 
 keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze tra azure e aws, azure e aws
 author: lbrader
 ms.date: 09/19/2018
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 92cc81c1bc697bea0feafd63e61a63a41f455eaa
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 56e308b40e24d2febefe995dffc7a14069a5c078
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113077"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482239"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 

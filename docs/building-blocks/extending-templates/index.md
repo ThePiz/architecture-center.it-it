@@ -3,12 +3,15 @@ title: Estendere le funzionalità dei modelli di Azure Resource Manager
 description: Fornisce suggerimenti e consigli su come estendere le funzionalità dei modelli di Azure Resource Manager.
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 725013df3d0551060a9f504da7a97cdc370f956a
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: 108d82066d9867682c246c4de802849e2e561cbc
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111377"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486438"
 ---
 # <a name="extend-azure-resource-manager-template-functionality"></a>Estendere le funzionalità dei modelli di Azure Resource Manager
 
