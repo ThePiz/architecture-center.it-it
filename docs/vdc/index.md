@@ -3,12 +3,15 @@ title: Data center virtuale di Azure
 description: Risorse per il data center virtuale di Microsoft Azure
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: 5b5b6f58911e39ae1296722194b58c601b9baea8
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.topic: landing-page
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428092"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486957"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Data center virtuale di Azure e piano di controllo aziendale
 
@@ -26,21 +29,21 @@ Il data center virtuale di Azure rappresenta un approccio per ottenere il massim
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="/azure/networking/networking-virtual-datacenter"><img src="./images/vdc-network.png" alt="Network Perspective" /></a></td>
     <td>
-        <h3><a href="networking-virtual-datacenter.md">Data center virtuale di Microsoft Azure: una prospettiva di rete</a></h3>
+        <h3><a href="networking-virtual-datacenter.md">Data center virtuale di Azure: una prospettiva di rete</a></h3>
         <p>Questo articolo online offre una panoramica di modelli e progettazioni di rete che consentono di risolvere le problematiche di sicurezza, prestazioni e scalabilità a livello di architettura affrontate da molti clienti che stanno considerando il passaggio al cloud in massa.</p>
     </td>
 </tr>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
     <td>
-        <h3><a href="https://aka.ms/VDC/Lift">Data center virtuale di Azure: guida al lift and shift</a></h3>
+        <h3><a href="https://aka.ms/VDC/Lift">Data center virtuale di Azure: guida al trasferimento in modalità lift-and-shift</a></h3>
         <p>Questo white paper illustra il processo che il personale IT e i decisori aziendali possono usare per identificare e pianificare la migrazione delle applicazioni e dei server in Azure servendosi del metodo lift and shift, riducendo al minimo eventuali costi di sviluppo aggiuntivi, ottimizzando al tempo stesso le opzioni di hosting su cloud.</p>
     </td>
 </tr>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
     <td>
-        <h3><a href="https://aka.ms/VDC/Deck">Data center virtuale di Azure: gruppo di presentazioni</a></h3>
+        <h3><a href="https://aka.ms/VDC/Deck">Data center virtuale di Azure: Presentation Deck </a></h3>
         <p>Questo gruppo di presentazioni illustra gli strumenti e le linee guida del data center virtuale di Azure. Descrive gli obiettivi del data center virtuale, i driver di clienti, le aree di Azure, gli elementi di automazione di un data center virtuale, i data center virtuali di Azure più industrializzati e attendibili e termina con un piano di azione sulle linee guida del CIO. Contiene anche informazioni di supporto tecnico e formazione.</p>
     </td>
 </tr>
