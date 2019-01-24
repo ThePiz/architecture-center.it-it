@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: Indicazioni relative alla suddivisione di partizioni dati per la gestione e l'accesso separati.
 author: dragon119
 ms.date: 11/04/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 609da490537c20c1ea5e3fd739233d51435c689a
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: cfbe877a4e3a4a1d5aa87c4a77ad2c5f23a6d664
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307300"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484483"
 ---
 # <a name="data-partitioning-strategies"></a>Strategie di partizionamento dei dati
 

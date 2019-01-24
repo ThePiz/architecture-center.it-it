@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: Indicazioni specifiche del servizio per impostare il meccanismo di ripetizione dei tentativi.
 author: dragon119
 ms.date: 08/13/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: ad26b55625276ae95004652acfd745b2c4b53a8f
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: d99c63b9cb5f2ed7ffcd869b5b8ac7910b9dabe3
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307351"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487138"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -406,7 +409,7 @@ La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizi
 
 | Impostazione | Valore predefinito | Significato |
 |---------|---------------|---------|
-| Criterio | Esponenziali | Backoff esponenziale. |
+| Policy | Esponenziali | Backoff esponenziale. |
 | MinimalBackoff | 0 | Intervallo minimo di backoff. Viene aggiunto all'intervallo per i tentativi calcolato a partire da deltaBackoff. |
 | MaximumBackoff | 30 secondi | Intervallo massimo di backoff. Si usa MaximumBackoff se l'intervallo tra i tentativi calcolato è maggiore di MaxBackoff. |
 | DeltaBackoff | 3 secondi | Intervallo di backoff tra i tentativi. Per i successivi tentativi verranno utilizzati i multipli di questi timespan. |
@@ -728,7 +731,7 @@ La tabella seguente mostra le impostazioni predefinite per i criteri di ripetizi
 
 | Impostazione | Valore predefinito | Significato |
 |---------|---------------|---------|
-| Criterio | Esponenziali | Backoff esponenziale. |
+| Policy | Esponenziali | Backoff esponenziale. |
 | MaxRetryCount | 5 | Numero massimo di tentativi. |
 | MaxDelay | 30 secondi | Ritardo massimo tra i tentativi. Questa valore non influisce sulla modalità di calcolo della serie di ritardi. Definisce solo un limite superiore. |
 | DefaultCoefficient | 1 secondo | Coefficiente per il calcolo del backoff esponenziale. Questo valore non può essere modificato. |
