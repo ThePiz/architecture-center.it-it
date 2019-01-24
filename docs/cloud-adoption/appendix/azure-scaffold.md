@@ -4,14 +4,17 @@ description: Viene descritto uno scaffold che le organizzazioni possono usare pe
 author: rdendtler
 ms.author: rodend
 ms.date: 9/22/2018
-ms.openlocfilehash: 66af73f5bfc7f7145c20446af05f33a9d69e6c28
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 883f32b1533261977aa274f64c78762c9e7b13f3
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011736"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484415"
 ---
-# <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Scaffolding aziendale Azure: governance prescrittiva per le sottoscrizioni
+# <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Scaffolding aziendale Azure: Governance prescrittiva per le sottoscrizioni
 
 Le organizzazioni stanno adottando sempre di più il cloud pubblico per la sua agilità e la sua flessibilità. Utilizzano i punti di forza del cloud per generare ricavi e ottimizzare l'uso delle risorse per l'azienda. Microsoft Azure fornisce numerosi servizi e funzionalità che le organizzazioni assemblano come blocchi predefiniti per affrontare le esigenze di una vasta gamma di applicazioni e carichi di lavoro.
 
@@ -175,7 +178,7 @@ Quando si implementa l'accesso in base al ruolo, è consigliabile tenere present
 
 Una delle migliori strategie per mitigare i rischi che è possibile adottare ed è consigliabile considerare obbligatoria per ogni distribuzione consiste nel pianificare e preparare l'identità e i controlli degli accessi e seguire la procedura consigliata di Azure Identity Management ([collegamento](/azure/security/azure-security-identity-management-best-practices)).
 
-## <a name="security"></a>Sicurezza
+## <a name="security"></a>Security
 
 Uno dei principali ostacoli per l'adozione del cloud è generalmente rappresentato dalle preoccupazioni legate alla sicurezza. I responsabili della gestione dei costi dell'IT e i reparti della sicurezza devono assicurarsi che le risorse in Azure siano al sicuro e protette per impostazione predefinita. Azure offre numerose funzionalità che è possibile usare per proteggere le risorse e rilevare o impedire le minacce per tali risorse.
 

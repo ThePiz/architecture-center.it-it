@@ -4,12 +4,15 @@ description: Vengono forniti esempi di come implementare la governance delle sot
 author: rdendtler
 ms.date: 01/03/2017
 ms.author: rodend
-ms.openlocfilehash: 51be0e1cdbcb3258102c9e4a4790764cada98d1e
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: cbf3aae20639d26a73aac07e1b66374af09fbb38
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243666"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486203"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>Esempi di implementazione di scaffold enterprise di Azure
 In questo articolo vengono forniti esempi di come un'azienda può implementare gli elementi consigliati per uno [scaffold enterprise di Azure](azure-scaffold.md). Usa una società fittizia denominata Contoso per illustrare le procedure consigliate per scenari comuni.

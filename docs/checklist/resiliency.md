@@ -4,13 +4,16 @@ titleSuffix: Azure Design Review Framework
 description: Elenco di controllo in cui vengono fornite le linee guida per gestire l'aspetto della resilienza durante la progettazione.
 author: petertaylor9999
 ms.date: 11/26/2018
+ms.topic: checklist
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 1a3c7b899be1c61cc53eb9caee30f5153edeb5ae
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: b96195ced1cad091d0ec843ffcc0007b46f05f8d
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113604"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486251"
 ---
 # <a name="resiliency-checklist"></a>Elenco di controllo per la resilienza
 
@@ -82,7 +85,7 @@ La resilienza è la capacità di un sistema di recuperare in caso di errore e co
 > [!NOTE]
 > Per le macchine virtuali, non affidarsi alla replica RA-GRS per ripristinare i dischi di macchina virtuale (file VHD). Usare invece [Backup di Azure](/azure/backup).
 
-## <a name="security"></a>Sicurezza
+## <a name="security"></a>Security
 
 **Implementare la protezione a livello di applicazione contro gli attacchi denial of service distribuiti (DDoS).** I servizi di Azure sono protetti dagli attacchi DDoS a livello rete. Azure non può tuttavia proteggere contro gli attacchi a livello applicazione, perché è difficile distinguere tra le richieste di utente normali e le richieste di utenti malintenzionati. Per altre informazioni sulla protezione dagli attacchi DDoS a livello applicazione, vedere la sezione "Protecting against DDoS"(Protezione contro attacchi DDoS) del PDF scaricabile [Microsoft Azure Network Security](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (Sicurezza di rete di Microsoft Azure).
 

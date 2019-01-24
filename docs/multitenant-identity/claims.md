@@ -3,15 +3,18 @@ title: Uso delle identità basate sulle attestazioni nelle applicazioni multi-te
 description: Come usare le attestazioni per l'autorizzazione e la convalida dell'autorità di certificazione.
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: ffaa6085dd9ca9ddec203e6661575e984b2e25e0
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 8b8cbd2b857493d94103e80f53f187207feaa11e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113587"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486506"
 ---
 # <a name="work-with-claims-based-identities"></a>Usare le identità basate sulle attestazioni
 

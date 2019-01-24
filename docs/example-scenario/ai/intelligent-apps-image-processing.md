@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: Integrare l'elaborazione di immagini nelle applicazioni Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 2630a2a353b2fb5fd6e77e49c7f2027b00503ea6
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643446"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484886"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Classificazione delle immagini per richieste di indennizzo assicurativo in Azure
 
@@ -63,7 +66,7 @@ I database NoSQL spesso privilegiano la disponibilità, la scalabilità e la par
 
 Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 [Identità gestite per le risorse di Azure][msi] vengono usate per offrire l'accesso ad altre risorse interne all'account e quindi assegnate a Funzioni di Azure. In tali identità consentire l'accesso solo alle risorse necessarie in modo da non esporre nient'altro alle funzioni e potenzialmente ai clienti.
 

@@ -4,12 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Fornire una piattaforma software come un servizio (SaaS) per CAE (Computer-Aided Engineering) in Azure.
 author: alexbuckgit
 ms.date: 08/22/2018
-ms.openlocfilehash: 0e8ce29639e4e189acef633585191b178c6c8721
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: HPC
+ms.openlocfilehash: 7c543df71176ca0da621d6ec67fc6fe2ca36f9fa
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643867"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481508"
 ---
 # <a name="a-computer-aided-engineering-service-on-azure"></a>Un servizio CAE (Computer-Aided Engineering) in Azure
 
@@ -47,7 +51,7 @@ Gli altri casi d'uso pertinenti includono:
 - [Le macchine virtuali serie NV](/azure/virtual-machines/windows/sizes-gpu) offrono agli ingegneri le funzionalità di una workstation di fascia alta in un Web browser standard. Queste macchine virtuali hanno GPU NVIDIA Tesla M60 che supportano il rendering avanzato e possono eseguire carichi di lavoro con precisione singola.
 - [Le macchine virtuali per utilizzo generico](/azure/virtual-machines/linux/sizes-general) che eseguono CentOS gestiscono i carichi di lavoro più tradizionali, ad esempio le applicazioni Web.
 - [Il gateway applicazione](/azure/application-gateway/overview) bilancia il carico delle richieste in entrata nei server Web.
-- [Il servizio Kubernetes di Azure (AKS)](/azure/aks/intro-kubernetes) viene usato per eseguire i carichi di lavoro scalabili a un costo inferiore per le simulazioni che non richiedono le funzionalità di fascia alta di macchine virtuali HPC o GPU.
+- [Il servizio Azure Kubernetes](/azure/aks/intro-kubernetes) viene usato per eseguire i carichi di lavoro scalabili a un costo inferiore per le simulazioni che non richiedono le funzionalità di fascia alta di macchine virtuali HPC o GPU.
 - [La suite Altair PBS Works ](https://www.pbsworks.com/PBSProduct.aspx?n=PBS-Works-Suite&c=Overview-and-Capabilities) orchestra il flusso di lavoro HPC, assicurando che siano disponibili istanze di macchine virtuali sufficienti per gestire il carico corrente. Inoltre, dealloca le macchine virtuali quando la richiesta è inferiore per ridurre i costi.
 - [L'archiviazione BLOB](/azure/storage/blobs/storage-blobs-introduction) archivia i file che supportano i processi pianificati.
 

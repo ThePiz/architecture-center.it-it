@@ -3,14 +3,18 @@ title: "Adozione del cloud nell'organizzazione: distribuire un carico di lavoro 
 description: Descrive come distribuire un carico di lavoro di base in Azure
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 363e7e6f394389fb6c1577e2cbaeffeddcf2de1a
-ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: Windows, Linux
+ms.openlocfilehash: 031a8f2e1dc0b137fc830733d025997a2657ef3c
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47167354"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481406"
 ---
-# <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>Adozione del cloud nell'organizzazione: distribuire un carico di lavoro di base
+# <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>Adozione del cloud nell'organizzazione: Distribuire un carico di lavoro di base
 
 Il termine **carico di lavoro** viene in genere inteso come un'unità arbitraria di funzionalità, ad esempio un'applicazione o un servizio. Il carico di lavoro può essere immaginato in termini di elementi di codice distribuiti in un server, nonché di altri servizi necessari. Questa definizione è utile per un'applicazione o un servizio locale, ma nel cloud è necessario estenderla.
 

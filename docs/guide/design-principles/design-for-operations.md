@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Progettare un'applicazione per offrire al team operativo gli strumenti necessari.
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: c14f3d14330633e7a8c88eedd38f1844291195b1
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 75eaa7f8e322c66a83d2b43d180780a2fdcd745b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110408"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54480485"
 ---
 # <a name="design-for-operations"></a>Progettare per le operazioni
 

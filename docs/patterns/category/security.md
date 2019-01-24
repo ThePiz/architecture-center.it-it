@@ -5,13 +5,16 @@ description: La sicurezza è la capacità di un sistema di impedire azioni danno
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 259d4bd5178ca8ab85df0cd03e5268c5a7845a3a
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: c18255dccdbd8659705884a4141f5ecd099d9ece
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009441"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482086"
 ---
 # <a name="security-patterns"></a>Modelli di protezione
 

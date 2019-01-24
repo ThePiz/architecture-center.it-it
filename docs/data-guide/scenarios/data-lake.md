@@ -1,3 +1,18 @@
+---
+title: Archivi data lake
+description: ''
+author: zoinerTejada
+ms.date: 02/12/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d433867886ce0afc219fcc9f35eb7f8b3ce6bee1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484704"
+---
 # <a name="data-lakes"></a>Archivi data lake
 
 Un archivio data lake è un repository che contiene una grande quantità di dati nel relativo formato nativo non elaborato. Gli archivi data lake sono ottimizzati per la scalabilità fino a terabyte e petabyte di dati. I dati provengono generalmente da più origini eterogenee e possono essere strutturati, semistrutturati o non strutturati. L'obiettivo di un archivio data lake è archiviare tutti gli elementi nello stato originale, senza trasformazioni. Questo approccio differisce dal tradizionale [data warehouse](../relational-data/data-warehousing.md), che invece trasforma ed elabora i dati al momento dell'inserimento.

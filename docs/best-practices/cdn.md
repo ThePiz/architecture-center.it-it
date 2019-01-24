@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: Indicazioni sull'uso di reti per la distribuzione di contenuti (CDN) per fornire contenuto a larghezza di banda elevata ospitato in Azure.
 author: dragon119
 ms.date: 02/02/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 5fb3ac17833a2399bb73e9cc7064651090ac7ee1
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: f4ffe9c5cdd7a53ab8359ef303076c5e53e9e45c
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307204"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485214"
 ---
 # <a name="content-delivery-networks-cdns"></a>Reti per la distribuzione di contenuti (CDN)
 
@@ -100,7 +103,7 @@ Per altre informazioni, vedere [Funzionamento della memorizzazione nella cache](
 
 Per evitare la presenza di oggetti nella rete CDN, è possibile eliminarli dall'origine, rimuovere o eliminare l'endpoint della rete CDN o, nel caso dell'archiviazione BLOB, rendere privato il contenitore o il BLOB. Gli elementi, tuttavia, non vengono rimossi prima del termine della durata (TTL). È anche possibile ripulire un endpoint della rete CDN manualmente.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 La rete CDN può distribuire il contenuto tramite HTTPS (SSL) usando il certificato messo a disposizione dalla rete CDN, ma anche tramite HTTP. Per evitare avvisi del browser sul contenuto misto potrebbe essere necessario usare HTTPS per richiedere il contenuto statico visualizzato nelle pagine caricate tramite HTTPS.
 

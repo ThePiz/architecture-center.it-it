@@ -3,12 +3,16 @@ title: 'Indicazioni tecniche: ripristino da errori locali in Azure'
 description: Articolo incentrato sugli errori locali in Azure per comprendere e progettare applicazioni resilienti a disponibilità elevata e tolleranza di errore e pianificare il ripristino di emergenza.
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: c5e26eefb8d5a8d424534081ddd5d1ea0454c17e
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: resiliency
+ms.openlocfilehash: a567b138580999c7b7a6ae8dedb244f4e37970e7
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112856"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486047"
 ---
 [!INCLUDE [header](../_includes/header.md)]
 

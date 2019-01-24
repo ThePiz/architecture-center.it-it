@@ -5,13 +5,16 @@ description: Dividere un archivio dati in un set di partizioni orizzontali.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 52c0579e4b08aa18456e0cc5a26742aab39a1a7e
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 62c8f5be8975a5c05a9118dccadcebf8717bf0ff
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54010325"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488512"
 ---
 # <a name="sharding-pattern"></a>Modello di partizionamento orizzontale
 

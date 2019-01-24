@@ -3,12 +3,15 @@ title: Eseguire l'applicazione Surveys
 description: Come eseguire l'applicazione di esempio Surveys in locale.
 author: MikeWasson
 ms.date: 07/21/2017
-ms.openlocfilehash: b73eeb04755b3dc8443b215bb034c82e3095681d
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: bdc2f4da6dd151cf395bee700e6a44e827c1e4f9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160758"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481582"
 ---
 # <a name="run-the-surveys-application"></a>Eseguire l'applicazione Surveys
 

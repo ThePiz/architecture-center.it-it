@@ -3,12 +3,15 @@ title: Scelta di una tecnologia per il trasferimento dei dati
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 1cb763ade2aa263d07a59cc6bfc29d59bec7af19
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113043"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484534"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Trasferimento dei dati da e verso Azure
 
@@ -134,7 +137,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | --- | --- | --- | --- |
 | Ottimizzazione per Big Data | No  | No  | Yes |
 | Copia in database relazionale | No  | No  | Yes |
-| Copia in database relazionale | No  | No  | Yes |
+| Copia da database relazionale | No  | No  | Yes |
 | Copia in archiviazione BLOB | Yes | No  | Yes |
 | Copia da archiviazione BLOB | Yes | No  | Yes |
 | Copia in Data Lake Store | No  | No  | Yes |

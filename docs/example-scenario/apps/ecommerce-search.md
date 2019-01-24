@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Fornire un'esperienza di ricerca di qualità elevata in un'applicazione di e-commerce.
 author: jelledruyts
 ms.date: 09/14/2018
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
 ms.custom: fasttrack
-ms.openlocfilehash: 9e24f7ab2104f877fcc3aec310dd21677160608c
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: fe67c891a9e42d5216fe6fd81de6ea1333d5bd37
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643467"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488240"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Motore di ricerca di prodotti intelligente per l'e-commerce
 
@@ -75,7 +78,7 @@ Ricerca di Azure offre un [contratto di servizio con disponibilità garantita al
 
 Se è necessario apportare all'indice modifiche che causano un'interruzione senza tempi di inattività, ad esempio modifica dei tipi di dati, eliminazione o ridenominazione di campi, sarà necessario ricompilare l'indice. Come per la modifica del livello di servizio, questo significa creare un nuovo indice, ripopolarlo con i dati e quindi aggiornare le applicazioni esistenti in modo che puntino al nuovo indice.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Ricerca di Azure è conforme con molti [standard di sicurezza e privacy dei dati][search-security] e per questo può essere usato nella maggior parte dei settori.
 

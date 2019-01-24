@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Illustra i vantaggi, le problematiche e le procedure consigliate per le architetture per Big Data in Azure.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.custom: seojan19
-ms.openlocfilehash: 507cd4dcf74ed7e106a99b93dd029dfdffd6e4bc
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seojan19, IoT
+ms.openlocfilehash: 07fb955fdc5475020097554070753689d1515462
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112499"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488022"
 ---
 # <a name="big-data-architecture-style"></a>Stile di architettura per Big Data
 
@@ -27,7 +30,7 @@ Le soluzioni per i Big Data implicano in genere uno o più dei seguenti tipi di 
 
 La maggior parte delle architetture per i Big Data include alcuni o tutti i seguenti componenti:
 
-- **Origini dati**. Il punto di partenza di tutte le soluzioni per Big Data è costituito da una o più origini dati. Tra gli esempi sono inclusi:
+- **Origini dati**: Il punto di partenza di tutte le soluzioni per Big Data è costituito da una o più origini dati. Tra gli esempi sono inclusi:
 
   - Archivi dati di applicazioni, ad esempio database relazionali.
   - File statici generati dalle applicazioni, ad esempio file di log di server Web.

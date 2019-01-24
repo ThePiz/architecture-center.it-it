@@ -4,12 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Risolvere i problemi relativi a una connessione gateway VPN tra una rete locale e Azure.
 author: telmosampaio
 ms.date: 10/08/2018
-ms.openlocfilehash: 501429a614fb39177312a374c19ac40213234e42
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: networking
+ms.openlocfilehash: 49dfcf444665ef526e76cac0f4ad13104a142840
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329466"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485928"
 ---
 # <a name="troubleshoot-a-hybrid-vpn-connection"></a>Risolvere i problemi relativi a una connessione VPN ibrida
 

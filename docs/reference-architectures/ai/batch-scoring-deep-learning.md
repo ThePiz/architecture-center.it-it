@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Batch per intelligenza artificiale.
 author: jiata
 ms.date: 10/02/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 0396903a39d00a4131df65872a63f4b3fde8dce7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 26a83b3f75b2e7e9ec4a8a99ab8b4d8f1b1ef4d7
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119881"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488563"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Punteggio batch in Azure per modelli di apprendimento avanzato
 
@@ -51,9 +54,9 @@ L'architettura è costituita dai componenti seguenti.
 
 **[App per la logica di Azure][logic-apps]** viene usato per attivare il flusso di lavoro. Quando App per la logica rileva che un BLOB è stato aggiunto al contenitore, attiva il processo di Batch per intelligenza artificiale. App per la logica rappresenta una buona base per questa architettura di riferimento perché offre un modo semplice per rilevare le modifiche apportate ad Archiviazione BLOB e fornisce una procedura semplice per la modifica del trigger.
 
-**[Istanze di contenitore di Azure][container-instances]** viene usato per eseguire gli script Python che creano i processi Batch per intelligenza artificiale. Un modo pratico per eseguirli su richiesta consiste nell'eseguire questi script all'interno di un contenitore Docker. Per questa architettura viene usato Istanze di Container, poiché esiste un connettore App per la logica predefinito che consente ad App per la logica di attivare il processo Batch per intelligenza artificiale. Istanze di Container può attivare rapidamente i processi senza stato.
+**[Istanze di Azure Container][container-instances]** viene usato per eseguire gli script Python che creano i processi Batch per intelligenza artificiale. Un modo pratico per eseguirli su richiesta consiste nell'eseguire questi script all'interno di un contenitore Docker. Per questa architettura viene usato Istanze di Container, poiché esiste un connettore App per la logica predefinito che consente ad App per la logica di attivare il processo Batch per intelligenza artificiale. Istanze di Container può attivare rapidamente i processi senza stato.
 
-**[DockerHub][dockerhub]** viene usato per archiviare l'immagine Docker che Istanze di contenitore usa per la creazione del processo. DockerHub è stato scelto per questa architettura perché è facile da usare ed è il repository di immagini predefinito per gli utenti di Docker. È possibile usare anche il [Registro contenitori di Azure][container-registry].
+**[DockerHub][dockerhub]** viene usato per archiviare l'immagine Docker che Istanze di Container usa per la creazione del processo. DockerHub è stato scelto per questa architettura perché è facile da usare ed è il repository di immagini predefinito per gli utenti di Docker. È possibile usare anche il [Registro Azure Container][container-registry].
 
 ### <a name="data-preparation"></a>Preparazione dei dati
 

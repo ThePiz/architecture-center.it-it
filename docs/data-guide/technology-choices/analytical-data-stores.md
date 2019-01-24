@@ -3,12 +3,15 @@ title: Scelta di un archivio dati analitici
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 166361c73a3a9c812e07445f6b039e843e5e32f8
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 236f5eaffffa8eb1206f13f3eb7fb57828f0a12d
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902341"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483769"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>Scelta di un archivio dati analitici in Azure
 

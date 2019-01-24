@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Confrontare i servizi di calcolo di Azure in base a diverse coordinate.
 author: MikeWasson
 ms.date: 08/08/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 4874e68d6ac1b9bac2bc1e4d2ac3c8c2f1a428d6
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 2b6b9b941bf7a3c0136b71ecb65bfe4b4a59e07b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112244"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484857"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Criteri per la scelta di un servizio di calcolo di Azure
 
@@ -69,7 +72,7 @@ Note
 
 | Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
-| Contratto di servizio | [Contratto di servizio per Macchine virtuali][sla-vm] | [Contratto di servizio per Servizio app][sla-app-service] | [Contratto di servizio per Service Fabric][sla-sf] | [Contratto di servizio per Funzioni][sla-functions] | [Contratto di servizio per il servizio Kubernetes di Azure][sla-acs] | [Contratto di servizio per le istanze di contenitore](https://azure.microsoft.com/support/legal/sla/container-instances/) | [Contratto di servizio per Azure Batch][sla-batch] |
+| Contratto di servizio | [Contratto di servizio per Macchine virtuali][sla-vm] | [Contratto di servizio per Servizio app][sla-app-service] | [Contratto di servizio per Service Fabric][sla-sf] | [Contratto di servizio per Funzioni][sla-functions] | [Contratto di servizio per il servizio Azure Kubernetes][sla-acs] | [Contratto di servizio per Istanze di Container](https://azure.microsoft.com/support/legal/sla/container-instances/) | [Contratto di servizio per Azure Batch][sla-batch] |
 | Failover in più aree | Gestione traffico | Gestione traffico | Gestione traffico, cluster in più aree | Non supportate | Gestione traffico | Non supportate | Non supportato |
 
 ## <a name="other"></a>Altri
@@ -77,7 +80,7 @@ Note
 | Criteri | Macchine virtuali | Servizio app | Service Fabric | Funzioni di Azure | Servizio Azure Kubernetes | Istanze di Container | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | SSL | Configurato in VM | Supportato | Supportato  | Supportato | [Controller di ingresso](/azure/aks/ingress) | Usare il contenitore [sidecar](../../patterns/sidecar.md) | Supportato |
-| Costi | [Windows][cost-windows-vm], [Linux][cost-linux-vm] | [Prezzi di Servizio app][cost-app-service] | [Prezzi di Service Fabric][cost-service-fabric] | [Prezzi di Funzioni di Azure][cost-functions] | [Prezzi del servizio Kubernetes di Azure][cost-acs] | [Prezzi delle istanze di contenitore](https://azure.microsoft.com/pricing/details/container-instances/) | [Prezzi di Azure Batch][cost-batch]
+| Costi | [Windows][cost-windows-vm], [Linux][cost-linux-vm] | [Prezzi di Servizio app][cost-app-service] | [Prezzi di Service Fabric][cost-service-fabric] | [Prezzi di Funzioni di Azure][cost-functions] | [Prezzi del servizio Azure Kubernetes][cost-acs] | [Prezzi di Istanze di Container](https://azure.microsoft.com/pricing/details/container-instances/) | [Prezzi di Azure Batch][cost-batch]
 | Stili di architettura adatti | [Livello N][n-tier], [Big Compute][big-compute] (HPC) | [Web-Queue-Worker][w-q-w], [a più livelli][n-tier] | [Microservizi][microservices], [Architettura guidata dagli eventi][event-driven] | [Microservizi][microservices], [Architettura guidata dagli eventi][event-driven] | [Microservizi][microservices], [Architettura guidata dagli eventi][event-driven] | [Microservizi][microservices], automazione delle attività, processi batch  | [Big Compute][big-compute] (HPC) |
 
 <!-- markdownlint-enable MD033 -->

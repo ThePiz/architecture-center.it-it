@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Ospitare un sito di e-commerce in Azure.
 author: masonch
 ms.date: 07/13/2018
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
 ms.custom: fasttrack
-ms.openlocfilehash: f07c21b8eb9d812b9831abe8f2e4f6d131893df2
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: 6ba4d98055258ca10b1ac06df217196a8a0151f5
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160809"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483922"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Front-end per e-commerce in Azure
 
@@ -65,8 +68,8 @@ Sono disponibili molte altre tecnologie per compilare un'applicazione rivolta ai
 Altre opzioni per il livello Web e le funzioni includono:
 
 - [Service Fabric][docs-service-fabric]: piattaforma incentrata su componenti distribuiti per i quali sono utili la distribuzione e l'esecuzione in un cluster con un livello elevato di controllo. È possibile usare Service Fabric anche per l'hosting di contenitori.
-- [Servizio Kubernetes di Azure][docs-kubernetes-service]: piattaforma per la creazione e la distribuzione di soluzioni basate su contenitori che possono essere usate come un'unica implementazione di un'architettura di microservizi. Ciò consente la scalabilità indipendente dei diversi componenti dell'applicazione su richiesta.
-- [Istanze di contenitore di Azure][docs-container-instances]: modalità di distribuzione ed esecuzione rapida di contenitori con ciclo di vita breve. Questi contenitori vengono distribuiti per eseguire un processo di elaborazione rapido, come l'elaborazione di un messaggio o l'esecuzione di un calcolo, quindi vengono immediatamente sottoposti a deprovisioning al termine dell'operazione.
+- [Servizio Azure Kubernetes][docs-kubernetes-service]: piattaforma per la creazione e la distribuzione di soluzioni basate su contenitori che possono essere usate come un'unica implementazione di un'architettura di microservizi. Ciò consente la scalabilità indipendente dei diversi componenti dell'applicazione su richiesta.
+- [Istanze di Azure Container][docs-container-instances]: modalità di distribuzione ed esecuzione rapida di contenitori con ciclo di vita breve. Questi contenitori vengono distribuiti per eseguire un processo di elaborazione rapido, come l'elaborazione di un messaggio o l'esecuzione di un calcolo, quindi vengono immediatamente sottoposti a deprovisioning al termine dell'operazione.
 - [Bus di servizio][service-bus]: può essere usato al posto di una coda di archiviazione.
 
 Altre opzioni per il livello dati includono:
@@ -87,7 +90,7 @@ Altre opzioni per il livello dati includono:
 - Esaminare le considerazioni sulla scalabilità riportate in relazione all'[architettura di riferimento per applicazioni Web del servizio app][app-service-reference-architecture] appropriata.
 - Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture di Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 - Valutare la possibilità di sfruttare i [modelli di progettazione tipici per la sicurezza][design-patterns-security], quando opportuno.
 - Esaminare le considerazioni sulla sicurezza riportate in relazione all'[architettura di riferimento per applicazioni Web del servizio app][app-service-reference-architecture] appropriata.

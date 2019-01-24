@@ -3,13 +3,16 @@ title: Monitoraggio delle applicazioni Web in Azure
 description: Monitorare un'applicazione Web ospitata in Servizio app di Azure.
 author: adamboeglin
 ms.date: 12/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat
-ms.openlocfilehash: 2333ab0884e37354dc00113c8c40b6184fdf6ff1
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: 5219d08fce5cf09b075b6d7adfb73970e007ded4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329486"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487934"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Monitoraggio delle applicazioni Web in Azure
 
@@ -77,7 +80,7 @@ Application Insights prevede [limiti][app-insights-limits] per il numero di rich
 
 Le considerazioni sulla disponibilità elevata per l'app eseguita, tuttavia, sono responsabilità dello sviluppatore. Per informazioni sulla scalabilità, ad esempio, vedere la sezione [Considerazioni sulla scalabilità](#scalability-considerations) nell'architettura di riferimento dell'applicazione Web di base. Dopo la distribuzione di un'app, è possibile configurare i test per [monitorarne la disponibilità][monitor its availability] usando Application Insights.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 I requisiti di conformità e le informazioni sensibili influiscono sulla raccolta, la conservazione e l'archiviazione dei dati. Sono disponibili altre informazioni su come [Application Insights][application-insights] e [Log Analytics][log-analytics] gestiscono i dati di telemetria.
 

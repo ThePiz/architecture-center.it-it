@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Eseguire carichi di lavoro HPC nativi in Azure con il servizio Azure Batch.
 author: adamboeglin
 ms.date: 07/13/2018
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
 ms.custom: fasttrack
-ms.openlocfilehash: 7e86da637553378a460b1c179c4f59ac258f0b34
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: ffb400f542b94ed02d1398b2e5e909d79708248b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643574"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485707"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Rendering di video 3D in Azure
 
@@ -83,7 +86,7 @@ Funzionalità di monitoraggio dei componenti di Azure Batch sono disponibili tra
 
 I pool in un account Azure Batch possono essere ridimensionati manualmente oppure automaticamente con una formula basata sulle metriche di Azure Batch. Per altre informazioni in proposito, vedere l'articolo [Creare una formula di scalabilità automatica per la scalabilità dei nodi di calcolo in un pool Batch][batch-scaling].
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [documentazione sulla sicurezza di Azure][security].
 

@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: Creare una pipeline DevOps per un'app Web Node.js con Jenkins, Registro Azure Container, il servizio Azure Kubernetes, Cosmos DB e Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 9d2681294b5c332e15259706518e4b02a488002f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 7cf05b79b8984ff4bcad62df44058b0989bc124a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643765"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481967"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Pipeline di integrazione continua/distribuzione continua per carichi di lavoro basati su contenitori
 
@@ -46,8 +49,8 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 
 - [Jenkins][jenkins] è un server di automazione open source che può integrarsi con i servizi di Azure per supportare l'integrazione continua e la distribuzione continua. In questo scenario, Jenkins orchestra la creazione di nuove immagini del contenitore in base ai commit nel controllo del codice sorgente, esegue il push di tali immagini in Registro Azure Container e quindi aggiorna le istanze dell'applicazione nel servizio Azure Kubernetes.
 - Le [macchine virtuali Linux di Azure][docs-virtual-machines] rappresentano la piattaforma IaaS usata per eseguire le istanze di Jenkins e Grafana.
-- [Registro contenitori di Azure][docs-acr] archivia e gestisce le immagini del contenitore usate dal cluster del servizio Kubernetes di Azure. Le immagini vengono archiviate in modo sicuro e possono essere replicate dalla piattaforma Azure in altre aree per ridurre i tempi di distribuzione.
-- Il [servizio Kubernetes di Azure][docs-aks] è una piattaforma Kubernetes gestita che consente di distribuire e gestire applicazioni in contenitori senza competenze nell'orchestrazione di contenitori. Come servizio Kubernetes ospitato, Azure gestisce attività critiche quali il monitoraggio dell'integrità e la manutenzione per l'utente.
+- [Registro Azure Container][docs-acr] archivia e gestisce le immagini del contenitore usate dal cluster del servizio Azure Kubernetes. Le immagini vengono archiviate in modo sicuro e possono essere replicate dalla piattaforma Azure in altre aree per ridurre i tempi di distribuzione.
+- Il [servizio Azure Kubernetes][docs-aks] è una piattaforma Kubernetes gestita che consente di distribuire e gestire applicazioni in contenitori senza competenze nell'orchestrazione di contenitori. Come servizio Kubernetes ospitato, Azure gestisce attività critiche quali il monitoraggio dell'integrità e la manutenzione per l'utente.
 - [Azure Cosmos DB][docs-cosmos-db] è un database multimodello distribuito a livello globale che consente di scegliere tra vari modelli di database e di coerenza in base alle esigenze. Con Cosmos DB è possibile eseguire la replica dei dati a livello globale e non è necessario distribuire e configurare componenti di replica o gestione cluster.
 - [Monitoraggio di Azure][docs-azure-monitor] consente di tenere traccia delle prestazioni, gestire la sicurezza e identificare le tendenze. Le metriche ottenute da Monitoraggio possono essere usate da altri strumenti e risorse, come Grafana.
 - [Grafana][grafana] è una soluzione open source per l'esecuzione di query, la visualizzazione, la generazione di avvisi e la comprensione delle metriche. Un plug-in di origine dati per Monitoraggio di Azure consente a Grafana di creare dashboard visivi per monitorare le prestazioni delle applicazioni che vengono eseguite nel servizio Azure Kubernetes e usano Cosmos DB.
@@ -56,7 +59,7 @@ Questo scenario include una pipeline DevOps per un'applicazione Web Node.js e un
 
 - [Azure Pipelines][azure-pipelines] consente di implementare una pipeline di integrazione, test e distribuzione continui per qualsiasi app.
 - [Kubernetes][kubernetes] può essere eseguito direttamente in VM di Azure anziché tramite un servizio gestito, se si vuole ottenere maggiore controllo sul cluster.
-- [Service Fabric][service-fabric] è un altro agente di orchestrazione di contenitori che può sostituire il servizio Kubernetes di Azure.
+- [Service Fabric][service-fabric] è un altro agente di orchestrazione di contenitori che può sostituire il servizio Azure Kubernetes.
 
 ## <a name="considerations"></a>Considerazioni
 
@@ -76,7 +79,7 @@ I dati dell'applicazione vengono archiviati in Azure Cosmos DB, un database mult
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture di Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Per ridurre al minimo il footprint di attacco, questo scenario non espone l'istanza di macchina virtuale Jenkins tramite HTTP. Per tutte le attività di gestione che richiedono l'interazione con Jenkins, si crea una connessione remota sicura usando un tunnel SSH dal computer locale. Per le istanze di VM Jenkins e Grafana è consentita solo l'autenticazione con chiave pubblica SSH. Gli accessi basati su password sono disabilitati. Per altre informazioni, vedere [Eseguire un server Jenkins in Azure](../../reference-architectures/jenkins/index.md).
 

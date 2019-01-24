@@ -3,14 +3,18 @@ title: Analisi del dominio per i microservizi
 description: Analisi del dominio per i microservizi.
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 7355c80dae9673378631e84a80b9e798d8ec4d4e
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: cc265aabf401f56a1a81a630e143b2c59986a8e2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113009"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482716"
 ---
-# <a name="designing-microservices-domain-analysis"></a>Progettazione di microservizi: analisi del dominio
+# <a name="designing-microservices-domain-analysis"></a>Progettazione di microservizi: Analisi del dominio
 
 Una delle principali problematiche dei microservizi consiste nel definire i limiti dei singoli servizi. La regola generale è che un servizio deve svolgere "un compito", ma mettere in pratica questa regola richiede particolare attenzione. Non esistono processi meccanici in grado di generare la progettazione "corretta". È necessario valutare attentamente il dominio, i requisiti e gli obiettivi aziendali. In caso contrario, si potrebbe ottenere una progettazione casuale con caratteristiche non desiderate, ad esempio dipendenze nascoste tra servizi, accoppiamento rigido o interfacce con una progettazione di bassa qualità. In questo capitolo verrà illustrato l'approccio basato su dominio alla progettazione di microservizi.
 

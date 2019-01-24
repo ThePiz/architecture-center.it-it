@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: Rilevare le attività fraudolente in tempo reale con Hub eventi e Analisi di flusso di Azure.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: 9e4d8c5d24acc414ab38722d2df59102395250fb
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 392d23ed813a9605392b03de5cb8a7c7638bc4fc
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643406"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487225"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Rilevamento delle frodi in tempo reale in Azure
 
@@ -66,7 +69,7 @@ I componenti di questo scenario sono progettati per l'inserimento con iperscalab
 
 Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Hub eventi di Azure protegge i dati tramite un [modello di sicurezza e autenticazione][docs-event-hubs-security-model] basato su una combinazione di token di firma di accesso condiviso e autori di eventi. Un autore di eventi definisce un endpoint virtuale per un hub eventi. L'autore è utilizzabile solo per inviare messaggi a un hub eventi. Non è possibile ricevere messaggi da un autore.
 

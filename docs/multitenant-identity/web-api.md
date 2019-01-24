@@ -3,15 +3,18 @@ title: Protezione di un'API Web back-end in un'applicazione multi-tenant
 description: Come proteggere un'API Web back-end.
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: 517bdbb6e1a1063db9337b63905e2ff5f4bdd4d4
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: a895276a77c111e660f29397d250373bee53f29e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114029"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54480769"
 ---
 # <a name="secure-a-backend-web-api"></a>Proteggere un'API Web back-end
 

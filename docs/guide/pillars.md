@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 'Descrive i cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza.'
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 2f013063afea89e3e322aa6f36484f6df50210be
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113944"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486234"
 ---
 # <a name="pillars-of-software-quality"></a>Concetti fondamentali della qualità del software
 
@@ -22,7 +25,7 @@ Un'applicazione cloud efficace è basata su cinque concetti fondamentali per la 
 | Disponibilità | La percentuale di tempo per cui il sistema funziona ed è in esecuzione. |
 | Resilienza | La capacità di un sistema di correggere gli errori e continuare a funzionare. |
 | Gestione | Processi operativi che mantengono un sistema in esecuzione in produzione. |
-| Sicurezza | Protezione delle applicazioni e dei dati dalle minacce. |
+| Security | Protezione delle applicazioni e dei dati dalle minacce. |
 
 ## <a name="scalability"></a>Scalabilità
 
@@ -131,7 +134,7 @@ Usare l'[elenco di controllo di DevOps] [ devops-checklist] per esaminare il pro
 - [Schemi progettuali per la gestione e il monitoraggio][management-patterns]
 - Procedure consigliate: [Monitoraggio e diagnostica][monitoring]
 
-## <a name="security"></a>Sicurezza
+## <a name="security"></a>Security
 
 È necessario tenere presente la sicurezza durante l'intero ciclo di vita di un'applicazione, dalla progettazione e implementazione alla distribuzione e alle operazioni. La piattaforma Azure offre la protezione da un'ampia gamma di minacce, quali le intrusioni di rete e gli attacchi DDoS. È tuttavia necessario implementare la sicurezza nell'applicazione e nei processi DevOps.
 

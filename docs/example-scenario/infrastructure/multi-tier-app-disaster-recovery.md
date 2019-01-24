@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Creare un'applicazione Web multilivello per la disponibilità elevata e il ripristino di emergenza in Azure usando macchine virtuali di Azure, set di disponibilità, zone di disponibilità, Azure Site Recovery e Gestione traffico di Azure.
 author: sujayt
 ms.date: 11/16/2018
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
 ms.custom: product-team
-ms.openlocfilehash: d2b466cc691c02ea3c5fb6ff72d91865d33c3378
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 377c1663b8cd81f7788a1f2ce82b562a9695f3b0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114097"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483987"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Applicazione Web multilivello per disponibilità elevata e ripristino di emergenza in Azure
 
@@ -70,7 +73,7 @@ Questo scenario dimostra un'applicazione multilivello che usa ASP.NET e Microsof
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Tutto il traffico di rete virtuale nel livello applicazione front-end è protetto da gruppi di sicurezza di rete. Le regole limitano il flusso del traffico in modo che solo le istanze di macchina virtuale a livello applicazione front-end possano accedere al livello di database di backend. Non è consentito il traffico Internet in uscita dal livello business o di database. Per ridurre la superficie di attacco, non sono aperte porte di gestione remota diretta. Per altre informazioni, vedere [Gruppi di sicurezza di rete di Azure][docs-nsg].
 

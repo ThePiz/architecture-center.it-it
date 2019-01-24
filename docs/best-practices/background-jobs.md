@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: Indicazioni sulle attività in background eseguite in modo indipendente dall'interfaccia utente.
 author: dragon119
 ms.date: 11/05/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 78b5dd35b1d97d96d434bcd711a20251be37448b
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 4b96c19dd8613a941a7408e1b99945d5fa0f5364
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307334"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482069"
 ---
 # <a name="background-jobs"></a>Processi in background
 
@@ -80,7 +83,7 @@ Se occorre che un'attività in background comunichi con l'attività chiamante pe
 - [**App Web e Processi Web di Azure**](#azure-web-apps-and-webjobs). È possibile usare Processi Web per eseguire processi personalizzati basati su tipi diversi di script o programmi eseguibili nell'ambito di un'app Web.
 - [**Macchine virtuali di Azure**](#azure-virtual-machines). Se si dispone di un servizio Windows o si desidera usare Utilità di pianificazione di Windows, è pratica comune ospitare le attività in background in una macchina virtuale dedicata.
 - [**Azure Batch**](#azure-batch). Batch è un servizio di piattaforma che consente di pianificare il lavoro a elevato uso di calcoli da eseguire su una raccolta gestita di macchine virtuali. Può scalare automaticamente le risorse di calcolo.
-- [**Servizio Kubernetes di Azure**](#azure-kubernetes-service) (AKS). Il servizio Azure Kubernetes offre un ambiente di hosting gestito per Kubernetes in Azure.
+- [**Servizio Azure Kubernetes**](#azure-kubernetes-service). Il servizio Azure Kubernetes offre un ambiente di hosting gestito per Kubernetes in Azure.
 
 Le sezioni seguenti descrivono dettagliatamente le opzioni e contengono considerazioni che consentono di scegliere quella appropriata.
 

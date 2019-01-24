@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: Creare un sito Web WordPress altamente scalabile e sicuro per gli eventi multimediali.
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: c0dad12e1da1f17b75d0661195123da4a8267152
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 22297c5f908bd52a064048fcfebb07ebab1f4d23
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644044"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488546"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Sito Web WordPress altamente scalabile e sicuro
 
@@ -78,7 +81,7 @@ Il back-end è un cluster MariaDB in un set di disponibilità. Per altre informa
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Tutto il traffico di rete virtuale nel livello applicazione front-end è protetto da gruppi di sicurezza di rete. Le regole limitano il flusso del traffico in modo che solo le istanze di macchina virtuale a livello applicazione front-end possano accedere al livello di database di backend. Non è consentito il traffico Internet in uscita dal livello di database. Per ridurre la superficie di attacco, non sono aperte porte di gestione remota diretta. Per altre informazioni, vedere [Gruppi di sicurezza di rete di Azure][docs-nsg].
 

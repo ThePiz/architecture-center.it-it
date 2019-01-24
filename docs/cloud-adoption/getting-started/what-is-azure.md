@@ -1,16 +1,19 @@
 ---
-title: "Adozione del cloud nell'organizzazione: funzionamento di Azure"
+title: "Adozione del cloud nell'organizzazione: Funzionamento di Azure"
 description: Spiegazione del funzionamento interno di Azure
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 1d9ff8003e97bcfe88121e8231473236f8cfb527
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 510fc1040812d61b8d736b25c434511ea981b9e5
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389061"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481831"
 ---
-# <a name="enterprise-cloud-adoption-how-does-azure-work"></a>Adozione del cloud nell'organizzazione: funzionamento di Azure
+# <a name="enterprise-cloud-adoption-how-does-azure-work"></a>Adozione del cloud nell'organizzazione: Funzionamento di Azure
 
 Azure è una piattaforma cloud pubblica di Microsoft. Azure offre un'ampia varietà di servizi di tipo piattaforma distribuita come servizio (PaaS), infrastruttura distribuita come servizio (IaaS), database distribuito come servizio (DBaaS) e molti altri. Ma che cos'è esattamente Azure e come funziona?
 

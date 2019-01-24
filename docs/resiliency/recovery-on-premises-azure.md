@@ -4,17 +4,20 @@ titleSuffix: Azure Resiliency Technical Guidance
 description: Informazioni sui sistemi di ripristino dall'infrastruttura locale ad Azure e relativa progettazione.
 author: adamglick
 ms.date: 08/18/2016
-ms.custom: seojan19
-ms.openlocfilehash: 5e4c4ea4eede5f11e787b9957b8de47736645672
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: seojan19, resiliency
+ms.openlocfilehash: 768e53e1024533b384c610378385c96d88d8571f
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111360"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487373"
 ---
 [!INCLUDE [header](../_includes/header.md)]
 
-# <a name="azure-resiliency-technical-guidance-recovery-from-on-premises-to-azure"></a>Indicazioni tecniche sulla resilienza di Azure: ripristino dall'ambiente locale ad Azure
+# <a name="azure-resiliency-technical-guidance-recovery-from-on-premises-to-azure"></a>Indicazioni tecniche sulla resilienza di Azure: Ripristino dall'ambiente locale ad Azure
 
 Azure offre una serie completa di servizi per abilitare l'estensione di un data center locale ad Azure per scopi di disponibilità elevata e ripristino di emergenza:
 

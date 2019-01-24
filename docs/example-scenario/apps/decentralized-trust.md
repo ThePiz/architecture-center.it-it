@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Creare un ambiente attendibile per la comunicazione e la condivisione di informazioni senza dover ricorrere a un database centralizzato.
 author: vitoc
 ms.date: 09/09/2018
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
 ms.custom: csa-team
-ms.openlocfilehash: bd38986a86055305cec97db7a3f3f3e75ff600b0
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 7e47ad855684ea12d8f17364f8a744f61878e62f
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643703"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486104"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Relazione di trust decentralizzata tra le banche in Azure
 
@@ -76,7 +79,7 @@ Un problema comune per la blockchain è il numero di transazioni che può includ
 
 Per indicazioni generali sulla progettazione di soluzioni scalabili, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 [Azure Key Vault][vault] viene usato per archiviare e gestire facilmente le chiavi private dei validator. La distribuzione predefinita in questo esempio crea una rete di blockchain accessibile tramite Internet. Per gli scenari di produzione in cui è necessaria una rete privata, i membri possono essere connessi tra loro tramite connessioni gateway VPN tra reti virtuali. I passaggi per configurare una VPN sono inclusi nella sezione Risorse correlate di seguito.
 

@@ -3,13 +3,16 @@ title: Creare un'API per raccomandazioni in tempo reale in Azure
 description: Usare l'apprendimento automatico per automatizzare le raccomandazioni usando Azure Databricks e Data Science Virtual Machine (DSVM) di Azure per il training di un modello in Azure.
 author: njray
 ms.date: 12/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: ca9d854f0e29ae769f5a86648b94cce7a2fd146e
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.openlocfilehash: 8fa15c82275f18af78d1f42ec1750ab9b28119fb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450829"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487115"
 ---
 # <a name="build-a-real-time-recommendation-api-on-azure"></a>Creare un'API per raccomandazioni in tempo reale in Azure
 

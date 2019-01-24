@@ -5,13 +5,16 @@ description: Distribuire contenuto statico in un servizio di archiviazione basat
 keywords: schema progettuale
 author: dragon119
 ms.date: 01/04/2019
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: cf4f65e935a01e4d84b3cc82b5779edb729bd80e
-ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
+ms.openlocfilehash: 719f0221ecc8d52267cba3136eec20dadef30b99
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/05/2019
-ms.locfileid: "54058183"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483446"
 ---
 # <a name="static-content-hosting-pattern"></a>Modello di hosting del contenuto statico
 
@@ -150,7 +153,7 @@ Il file Index.cshtml nella cartella Visualizzazioni\Home contiene un elemento im
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 
 - [Esempio di hosting di contenuto statico][sample-app]: applicazione di esempio che illustra questo modello.
-- [Modello di passepartout](./valet-key.md): se non è previsto che le risorse di destinazione siano disponibili per utenti anonimi, usare questo modello per limitare l'accesso diretto.
+- [Valet Key pattern](./valet-key.md) (Modello di passepartout). se non è previsto che le risorse di destinazione siano disponibili per utenti anonimi, usare questo modello per limitare l'accesso diretto.
 - [Applicazione Web serverless in Azure](../reference-architectures/serverless/web-app.md): architettura di riferimento che usa l'hosting di siti Web statici con Funzioni di Azure per implementare un'app Web serverless.
 
 [sample-app]: https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting

@@ -1,16 +1,19 @@
 ---
-title: "Adozione del cloud nell'organizzazione: introduzione"
+title: "Adozione del cloud nell'organizzazione: Introduzione"
 description: Viene descritta una panoramica della prima fase della trasformazione digitale di un'organizzazione che adotta tecnologie cloud di Azure
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: b51e834a56f4d9818ca9475f959c3f888bae20bc
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 027757c76008da092e0d7ab65b072259a04b3cad
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389305"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488087"
 ---
-# <a name="enterprise-cloud-adoption-getting-started"></a>Adozione del cloud nell'organizzazione: introduzione 
+# <a name="enterprise-cloud-adoption-getting-started"></a>Adozione del cloud nell'organizzazione: Introduzione 
 
 La **trasformazione digitale** al cloud computing rappresenta un passaggio dal lavoro in locale al lavoro nel cloud. Questo passaggio include nuovi modi per condurre un'attività commerciale, ad esempio, la trasformazione digitale consente di passare dalle spese di capitale per software e hardware del data center a spese operative per l'uso di risorse cloud. 
 
@@ -63,7 +66,7 @@ Le lacune della strategia aziendale possono essere classificate nelle categorie 
 |Gestione dei costi|Rappresenta una lacuna nel modo in cui l'organizzazione paga per la tecnologia.|
 |Governance|Rappresenta una lacuna nei processi usati dall'azienda per proteggere i propri asset da un uso improprio che potrebbe generare costi eccessivi, problemi di sicurezza o di conformità. | 
 |Conformità|Rappresenta una lacuna nel modo in cui l'organizzazione rispetta i propri processi e criteri interni, oltre a leggi, normative e standard esterni. |
-|Sicurezza|Rappresenta una lacuna nel modo in cui l'organizzazione protegge gli asset di dati e la tecnologia da minacce esterne. |
+|Security|Rappresenta una lacuna nel modo in cui l'organizzazione protegge gli asset di dati e la tecnologia da minacce esterne. |
 |Governance dei dati|Rappresenta una lacuna nel modo in cui un'azienda gestisce i dati, in particolare i dati dei clienti. Il nuovo Regolamento generale sulla protezione dei dati, o GDPR, dell'Unione europea, ad esempio, ha requisiti rigorosi per la protezione dei dati dei clienti che potrebbero richiedere nuovi hardware e software.|    
 
 Dopo che l'azienda ha classificato tutte le lacune della strategia aziendale in queste categorie, il passaggio successivo consiste nel determinare una soluzione di alto livello per ogni problema.
@@ -74,7 +77,7 @@ La tabella seguente illustra alcuni esempi:
 |-----|-----|-----|
 | I servizi attualmente ospitati in locale riscontrano problemi di disponibilità, resilienza e scalabilità nella fase dei picchi della domanda, che rappresenta approssimativamente il 10% dell'uso. I server nel data center locale hanno raggiunto la fine del ciclo di vita. L'IT aziendale consiglia di acquistare un nuovo hardware locale per il data center con specifiche per gestire i picchi della domanda.| Gestione dei costi | Eseguire la migrazione dei carichi di lavoro locali esistenti interessati a risorse scalabili nel cloud, pagando solo per l'uso. |
 | Le normative e le leggi sulla gestione dei dati esterni richiedono all'azienda di aderire a un insieme di controlli standard che prevedono la crittografia dei dati inattivi con un nuovo hardware e software. | Governance dei dati | Spostare i dati nella crittografia del servizio di archiviazione di Azure per dati inattivi. |
-| Per i servizi ospitati nel data center locale si verificano attacchi Distributed Denial of Service nei servizi pubblici. È difficile mitigare gli attacchi, sono necessari un nuovo hardware e un nuovo software oltre a personale di sicurezza per gestire la situazione in modo efficace. | Sicurezza | Eseguire la migrazione di servizi in Azure e sfruttare la protezione DDoS di Azure.|
+| Per i servizi ospitati nel data center locale si verificano attacchi Distributed Denial of Service nei servizi pubblici. È difficile mitigare gli attacchi, sono necessari un nuovo hardware e un nuovo software oltre a personale di sicurezza per gestire la situazione in modo efficace. | Security | Eseguire la migrazione di servizi in Azure e sfruttare la protezione DDoS di Azure.|
 
 Dopo aver enumerato tutti le lacune della strategia aziendale e aver definito le soluzioni di alto livello, classificare l'elenco. Questa operazione può essere effettuata allineando le lacune della strategia aziendale con gli obiettivi a breve e a lungo termine dell'azienda per ogni categoria. Ad esempio, se un obiettivo a breve termine dell'azienda è ridurre i costi IT nei due trimestri fiscali successivi, le lacune aziendali nella categoria *gestione dei costi* possono essere classificate in base al risparmio previsto associato ad ognuna di esse.
 

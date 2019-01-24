@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Illustra i vantaggi, le problematiche e le procedure consigliate per le architetture di microservizi in Azure.
 author: MikeWasson
 ms.date: 11/13/2018
-ms.custom: seojan19
-ms.openlocfilehash: fb9f97b41306a2f1aa6cfc6c1639c152a7e556b6
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seojan19, microservices
+ms.openlocfilehash: cc72f61003f4146fd65e501feebda0c0d1d27993
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111224"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485129"
 ---
 # <a name="microservices-architecture-style"></a>Stile di architettura di microservizi
 

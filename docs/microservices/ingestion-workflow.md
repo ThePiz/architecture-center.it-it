@@ -3,14 +3,18 @@ title: Inserimento e flusso di lavoro nei microservizi
 description: Inserimento e flusso di lavoro nei microservizi
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 8a6d2d3209ca61e0588c96ed92862c1a7b91109f
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: aa5c2b4357ed53da9bebf4795fcbefb89afe0c78
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112805"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482572"
 ---
-# <a name="designing-microservices-ingestion-and-workflow"></a>Progettazione di microservizi: inserimento e flusso di lavoro
+# <a name="designing-microservices-ingestion-and-workflow"></a>Progettazione di microservizi: Inserimento e flusso di lavoro
 
 I microservizi presentano spesso un flusso di lavoro che coinvolge più servizi per una singola transazione. Il flusso di lavoro deve essere affidabile e non può perdere transazioni o lasciarle in uno stato parzialmente completato. È anche fondamentale controllare la frequenza di inserimento delle richieste in ingresso. Con un numero elevato di piccoli servizi che comunicano tra loro, un picco di richieste in ingresso può compromettere la comunicazione tra i servizi.
 

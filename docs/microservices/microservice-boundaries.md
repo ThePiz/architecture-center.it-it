@@ -3,14 +3,18 @@ title: Identificazione dei limiti dei microservizi
 description: Identificazione dei limiti dei microservizi.
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: d353051e651b57472168609c36bbc47c02096ee7
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: 961dd98081978c312ca6e0e347c66bef70f01624
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112635"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484194"
 ---
-# <a name="designing-microservices-identifying-microservice-boundaries"></a>Progettazione di microservizi: identificazione dei limiti dei microservizi
+# <a name="designing-microservices-identifying-microservice-boundaries"></a>Progettazione di microservizi: Identificazione dei limiti dei microservizi
 
 Definizione delle dimensioni corrette di un microservizio Nella definizione delle dimensioni, vengono spesso consigliate vaghe vie di mezzo &mdash; che tuttavia non sono molto utili nella pratica. Se tuttavia si inizia da un modello di dominio progettato con attenzione, è molto più facile definire i microservizi.
 
@@ -87,11 +91,11 @@ Un agente di orchestrazione gestisce attività correlate alla distribuzione e al
 
 Nella piattaforma Azure prendere in considerazione le opzioni seguenti:
 
-- Il [servizio Kubernetes di Azure](/azure/aks/) (AKS) è un ambiente Kubernetes gestito. Il servizio Azure Container effettua il provisioning di Kubernetes ed espone gli endpoint delle API Kubernetes, ma ospita e gestisce il pannello di controllo di Kubernetes, eseguendo aggiornamenti automatici, applicazione di patch automatica, ridimensionamento automatico e altre attività di gestione. Il servizio Azure Container può essere considerato "API Kubernetes come servizio".
+- Il [servizio Azure Kubernetes](/azure/aks/) è un ambiente Kubernetes gestito. Il servizio Azure Container effettua il provisioning di Kubernetes ed espone gli endpoint delle API Kubernetes, ma ospita e gestisce il pannello di controllo di Kubernetes, eseguendo aggiornamenti automatici, applicazione di patch automatica, ridimensionamento automatico e altre attività di gestione. Il servizio Azure Container può essere considerato "API Kubernetes come servizio".
 
 - [Service Fabric](/azure/service-fabric/) è una piattaforma di sistemi distribuiti per la creazione di pacchetti, la distribuzione e la gestione di microservizi. I microservizi possono essere distribuiti in Service Fabric come contenitori, file binari eseguibili oppure come [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction). Con il modello di programmazione di Reliable Services, i servizi possono usare direttamente le API di programmazione di Service Fabric per eseguire query sul sistema, creare report di integrità, ricevere notifiche relative a modifiche di configurazione e codice e individuare altri servizi. Un fattore essenziale per la differenziazione di Service Fabric è la creazione di servizi con stato tramite [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
-- Il [servizio contenitore di Azure](/azure/container-service/) è un servizio di Azure che consente di distribuire un cluster DC/OS, Docker Swarm o Kubernetes pronto per la produzione.
+- Il [servizio Azure Container](/azure/container-service/) è un servizio di Azure che consente di distribuire un cluster DC/OS, Docker Swarm o Kubernetes pronto per la produzione.
 
   > [!NOTE]
   > Anche se Kubernetes è supportato dal servizio Azure Container, è consigliabile usare servizio Azure Kubernetes per l'esecuzione di Kubernetes in Azure. servizio Azure Kubernetes offre funzionalità di gestione avanzate e maggiori vantaggi in termini di costi.

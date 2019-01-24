@@ -3,12 +3,15 @@ title: Scelta di una tecnologia di inserimento di messaggi in tempo reale
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 961e377591f67aec995c8495fa9188c851e464fc
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 9f787a0de5db97f5c0a5651b510e49762fbc44b9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111241"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482997"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Scelta di una tecnologia di inserimento di messaggi in tempo reale in Azure
 
@@ -73,7 +76,7 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | Caricamento di file avviati da dispositivo | Yes | No  | No  |
 | Informazioni sullo stato dei dispositivi | [Dispositivi gemelli](/azure/iot-hub/iot-hub-devguide-device-twins) | No  | No  |
 | Supporto dei protocolli | MQTT, AMQP, HTTPS <sup>1</sup> | AMQP, HTTPS | [Protocollo Kafka](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
-| Sicurezza | Identità per dispositivo, controllo di accesso revocabile. | Criteri di accesso condivisi, revoca limitata tramite criteri di pubblicazione. | Autenticazione tramite SASL, autorizzazione modulare, integrazione con servizi di autenticazione esterna supportata. |
+| Security | Identità per dispositivo, controllo di accesso revocabile. | Criteri di accesso condivisi, revoca limitata tramite criteri di pubblicazione. | Autenticazione tramite SASL, autorizzazione modulare, integrazione con servizi di autenticazione esterna supportata. |
 
 <!-- markdownlint-enable MD026 -->
 

@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Architettura consigliata per l'esecuzione delle applicazioni Web di base in Azure.
 author: MikeWasson
 ms.date: 12/12/2017
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2b985052e8799a8aa108fc6921d48cb8e003e480
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 95f634284fe821386704174894a85a4dbca815f7
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114301"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485078"
 ---
 # <a name="run-a-basic-web-application-in-azure"></a>Esecuzione di un'applicazione Web di base in Azure
 

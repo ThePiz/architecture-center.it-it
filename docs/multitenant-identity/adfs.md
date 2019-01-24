@@ -3,15 +3,18 @@ title: Federazione con AD FS di un cliente
 description: Come eseguire la federazione con il servizio AD FS di un cliente in un'applicazione multi-tenant.
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 27fad1aab8d359346353cc031a2e8d8746294818
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 82b39d77f1ee9af4063c4715a4688ef4b69bc477
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113553"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487856"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federazione con AD FS di un cliente
 

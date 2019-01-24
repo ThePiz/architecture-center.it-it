@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Panoramica delle opzioni di calcolo di Azure.
 author: MikeWasson
 ms.date: 06/13/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 80e57263207ef3a96791d61097ff9f0e3259bf53
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: a887be4fc643822b97f898fa405f68e797a41484
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111496"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485673"
 ---
 # <a name="overview-of-azure-compute-options"></a>Panoramica delle opzioni di calcolo di Azure
 
@@ -35,8 +38,8 @@ Ecco le principali opzioni di calcolo attualmente disponibili in Azure:
 - [Macchine virtuali](/azure/virtual-machines/) è un servizio IaaS, che consente di distribuire e gestire macchine virtuali all'interno di una rete virtuale (VNet).
 - Il [servizio app](/azure/app-service/app-service-value-prop-what-is) è un'offerta PaaS gestita per l'hosting di app Web, back-end di app per dispositivi mobili, API REST o processi aziendali automatizzati.
 - [Service Fabric](/azure/service-fabric/service-fabric-overview) è una piattaforma di sistemi distribuiti che è possibile eseguire in molti ambienti, ad esempio in Azure o in locale. Service Fabric è un agente di orchestrazione dei microservizi in un cluster di computer.
-- Il [servizio contenitore di Azure](/azure/container-service/container-service-intro) consente di creare, configurare e gestire un cluster di macchine virtuali preconfigurate per l'esecuzione delle applicazioni all'interno di contenitori.
-- [Istanze di contenitore di Azure](/azure/container-instances/container-instances-overview) rappresenta il modo più semplice e rapido per eseguire un contenitore in Azure, senza dover effettuare il provisioning di macchine virtuali o adottare un servizio di livello superiore.
+- Il [servizio Azure Container](/azure/container-service/container-service-intro) consente di creare, configurare e gestire un cluster di macchine virtuali preconfigurate per l'esecuzione delle applicazioni all'interno di contenitori.
+- [Istanze di Azure Container](/azure/container-instances/container-instances-overview) rappresenta il modo più semplice e rapido per eseguire un contenitore in Azure, senza dover effettuare il provisioning di macchine virtuali o adottare un servizio di livello superiore.
 - [Funzioni di Azure](/azure/azure-functions/functions-overview) è un servizio FaaS gestito.
 - [Azure Batch](/azure/batch/batch-technical-overview) è un servizio gestito per l'esecuzione di applicazioni parallele e HPC (High Performance Computing) su larga scala.
 - [Servizi cloud](/azure/cloud-services/cloud-services-choose-me) è un servizio gestito per l'esecuzione di applicazioni cloud. Usa un modello di hosting PaaS.

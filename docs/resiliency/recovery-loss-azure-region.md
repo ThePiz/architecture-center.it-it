@@ -3,12 +3,16 @@ title: Recuperare la perdita di un'area di Azure
 description: Informazioni sulle applicazioni resilienti a disponibilità elevata e tolleranza di errore, relativa progettazione e pianificazione del ripristino di emergenza.
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: bd0d8a7e544188a79cbba4b58a9e31358e4ccf0d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: resiliency
+ms.openlocfilehash: 7f207bbc0bb0128126f9b828dc100d43553cb100
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111972"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487977"
 ---
 [!INCLUDE [header](../_includes/header.md)]
 
@@ -41,7 +45,7 @@ Sono disponibili molte strategie alternative per implementare il calcolo distrib
 
 - **Warm Spare (attivo/passivo)**: viene creato un servizio ospitato secondario in un'area alternativa e i ruoli vengono distribuiti in modo da garantire una capacità minima, ma non ricevono traffico di produzione. Questo approccio è utile per le applicazioni che non sono state progettate per distribuire il traffico tra le aree.
 
-- **Hot Spare (attivo/attivo)**: l'applicazione è progettata per ricevere il carico di produzione in più aree. I servizi cloud di ogni area possono essere configurati per una capacità superiore a quella richiesta per scopi di ripristino di emergenza. In alternativa è possibile aumentare il numero di istanze dei servizi cloud in base alle esigenze al momento di un'emergenza e di un failover. Questo approccio richiede un investimento sostanziale nella progettazione dell'applicazione, ma presenta vantaggi significativi. I vantaggi includono tempo di ripristino garantito e ridotto, test continuo di tutti i percorsi di ripristino e utilizzo efficiente della capacità.
+- **Hot Spare (attivo/attivo)**: L'applicazione è progettata per ricevere il carico di produzione in più aree. I servizi cloud di ogni area possono essere configurati per una capacità superiore a quella richiesta per scopi di ripristino di emergenza. In alternativa è possibile aumentare il numero di istanze dei servizi cloud in base alle esigenze al momento di un'emergenza e di un failover. Questo approccio richiede un investimento sostanziale nella progettazione dell'applicazione, ma presenta vantaggi significativi. I vantaggi includono tempo di ripristino garantito e ridotto, test continuo di tutti i percorsi di ripristino e utilizzo efficiente della capacità.
 
 La descrizione completa della progettazione distribuita non rientra nell'ambito di questo documento. Per altre informazioni vedere [Ripristino di emergenza e disponibilità elevata per le applicazioni di Azure](https://aka.ms/drtechguide).
 

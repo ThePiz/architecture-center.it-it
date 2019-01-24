@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Creare un'applicazione Web multilivello sicura con Windows Server in Azure con set di scalabilità, gateway applicazione e servizi di bilanciamento del carico.
 author: iainfoulds
 ms.date: 12/06/2018
-ms.custom: seodec18
-ms.openlocfilehash: c5c1d4468df72edd989f2ab8f303781b26d50017
-ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: seodec18, Windows
+ms.openlocfilehash: 12c7b4749507d4b96e5ce43f98739885c8133e7e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54211989"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485537"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Creazione di applicazioni Web sicure con macchine virtuali Windows in Azure
 
@@ -71,7 +74,7 @@ Questo scenario usa i set di scalabilità di macchine virtuali per i componenti 
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Tutto il traffico di rete virtuale nel livello applicazione front-end è protetto da gruppi di sicurezza di rete. Le regole limitano il flusso del traffico in modo che solo le istanze di macchina virtuale a livello applicazione front-end possano accedere al livello di database di backend. Non è consentito il traffico Internet in uscita dal livello di database. Per ridurre la superficie di attacco, non sono aperte porte di gestione remota diretta. Per altre informazioni, vedere [Gruppi di sicurezza di rete di Azure][nsg-docs].
 

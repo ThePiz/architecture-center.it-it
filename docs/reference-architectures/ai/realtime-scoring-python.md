@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Questa architettura di riferimento illustra come distribuire modelli Python come servizi Web in Azure per ottenere previsioni in tempo reale.
 author: msalvaris
 ms.date: 11/09/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: b40072b43630adf13e8ead0b6aa6bec59ca1bfac
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 135e86b447684efd9f54340eda4b6bf6e4c35bbb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110893"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487679"
 ---
 # <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Assegnazione di punteggi in tempo reale per modelli Python scikit-learn e di Deep Learning in Azure
 
@@ -64,11 +67,11 @@ L'architettura è costituita dai componenti seguenti.
 
 **[Macchina virtuale][vm]** (VM). La VM è riportata come un esempio di dispositivo (locale o nel cloud) che può inviare una richiesta HTTP.
 
-**[Servizio Kubernetes di Azure][aks]** (AKS). Viene usato per distribuire l'applicazione in un cluster Kubernetes. Il servizio Azure Kubernetes semplifica la distribuzione e le operazioni di Kubernetes. Il cluster può essere configurato usando VM solo CPU per i modelli Python normali o VM abilitate per GPU per i modelli di Deep Learning.
+**[Servizio Azure Kubernetes][aks]**. Viene usato per distribuire l'applicazione in un cluster Kubernetes. Il servizio Azure Kubernetes semplifica la distribuzione e le operazioni di Kubernetes. Il cluster può essere configurato usando VM solo CPU per i modelli Python normali o VM abilitate per GPU per i modelli di Deep Learning.
 
 **[Servizio di bilanciamento del carico][lb]**. servizio Azure Kubernetes effettua il provisioning di un servizio di bilanciamento del carico che verrà usato per esporre il servizio esternamente. Il traffico proveniente dal servizio di bilanciamento del carico viene indirizzato ai pod back-end.
 
-**[Hub Docker][docker]**. Viene usato per archiviare l'immagine Docker distribuita nel cluster Kubernetes. L'hub Docker è stato scelto per questa architettura perché è facile da usare ed è il repository di immagini predefinito per gli utenti di Docker. Per questa architettura è possibile usare anche [Registro contenitori di Azure][acr].
+**[Hub Docker][docker]**. Viene usato per archiviare l'immagine Docker distribuita nel cluster Kubernetes. L'hub Docker è stato scelto per questa architettura perché è facile da usare ed è il repository di immagini predefinito per gli utenti di Docker. Per questa architettura è possibile usare anche [Registro Azure Container][acr].
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
 

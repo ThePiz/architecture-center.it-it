@@ -5,13 +5,16 @@ description: Scomporre un'attività che esegue un'elaborazione complessa in una 
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 7084b538159f7104d2322e35f94f43e905f700bf
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: c7e9346ac3ee7143d33b7ebcabc942ad0e92cfbd
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011685"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483514"
 ---
 # <a name="pipes-and-filters-pattern"></a>Modello di pipe e filtri
 

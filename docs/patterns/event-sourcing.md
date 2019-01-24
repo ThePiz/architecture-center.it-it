@@ -5,13 +5,16 @@ description: Usare un archivio di solo accodamento per registrare la serie compl
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56db321e33ecef17704eda4eda971ff3c7e44133
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 0183342257c676538aedc073f4f31a1c38ffdeef
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011634"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488631"
 ---
 # <a name="event-sourcing-pattern"></a>Modello di origine eventi
 

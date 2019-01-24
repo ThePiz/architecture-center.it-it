@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: Creare un chatbot di conversazione per applicazioni commerciali con il servizio Azure Bot.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 31a7384b11262ac967ab5f8a6c5e7f17e9a00b6f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: a8540f61a8c5ec500147dc04dc94f3ea6742e6f3
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643850"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486999"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Chatbot di conversazione per prenotazioni di hotel in Azure
 
@@ -69,7 +72,7 @@ Questo scenario usa il servizio app di Azure. Con il servizio app, è possibile 
 
 Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Per l'autenticazione degli utenti, questo scenario usa Azure Active Directory B2C (Business to Consumer). Con AAD B2C, il chatbot non archivia credenziali o informazioni riservate degli account dei clienti. Per altre informazioni, vedere la [panoramica di Azure Active Directory B2C][aadb2c-docs].
 
