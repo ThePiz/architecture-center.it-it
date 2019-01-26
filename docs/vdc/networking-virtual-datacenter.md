@@ -4,15 +4,18 @@ description: Informazioni su come creare il data center virtuale in Azure
 author: tracsman
 manager: rossort
 tags: azure-resource-manager
-ms.service: virtual-network
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 1f61996d231f3bf0cc2c550f4d3e119116bb7bc0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011194"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488648"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Data center virtuale di Azure: una prospettiva di rete
 
@@ -103,7 +106,7 @@ Una [**VPN da sito a sito di Azure**][VPN] è un servizio di interconnessione tr
 
 Per un numero elevato di connessioni VPN, la [**rete WAN virtuale di Azure**][vWAN] è un servizio di rete che offre connettività tra succursali ottimizzata e automatizzata tramite Azure. La rete WAN virtuale consente di connettere e configurare i dispositivi delle succursali per la comunicazione con Azure. La connessione e la configurazione possono essere eseguite manualmente oppure usando i dispositivi di provider preferiti tramite un partner di rete WAN virtuale. L'uso di dispositivi di provider preferiti consente la facilità d'uso, semplifica le operazioni di connettività e agevola la gestione della configurazione. Il dashboard predefinito della rete WAN di Azure offre informazioni dettagliate immediate per la risoluzione dei problemi, che consentono di risparmiare tempo e permette di visualizzare con facilità la connettività da sito a sito su larga scala.
 
-[**ExpressRoute**][ExR] è un servizio di connettività di Azure che consente connessioni private tra l'implementazione di un data center virtuale ed eventuali reti locali. Le connessioni ExpressRoute non sfruttano la rete Internet pubblica e offrono un livello di sicurezza superiore, maggiore affidabilità e velocità più elevate (fino a 10 Gbps), oltre a una latenza coerente. ExpressRoute è utile per le implementazioni di data center virtuale perché i clienti di ExpressRoute possono sfruttare i vantaggi offerti dalle regole di conformità associate alle connessioni private. Con ExpressRoute Direct [ExRD] è possibile connettersi direttamente ai router Microsoft a 100 Gbps per i clienti con maggiori esigenze di larghezza di banda.
+[**ExpressRoute**][ExR] è un servizio di connettività di Azure che consente connessioni private tra l'implementazione di un data center virtuale ed eventuali reti locali. Le connessioni ExpressRoute non sfruttano la rete Internet pubblica e offrono un livello di sicurezza superiore, maggiore affidabilità e velocità più elevate (fino a 10 Gbps), oltre a una latenza coerente. ExpressRoute è utile per le implementazioni di data center virtuale perché i clienti di ExpressRoute possono sfruttare i vantaggi offerti dalle regole di conformità associate alle connessioni private. Con [ExpressRoute Direct][ExRD] è possibile connettersi direttamente ai router Microsoft a 100 Gbps per i clienti con maggiori esigenze di larghezza di banda.
 
 Per distribuire le connessioni ExpressRoute, in genere è necessario un provider di servizi ExpressRoute. I clienti che devono iniziare subito di solito usano prima una VPN da sito a sito per stabilire la connettività tra l'implementazione di un data center virtuale e le risorse locali e quindi eseguono la migrazione alla connessione ExpressRoute quando l'interconnessione fisica con il provider di servizi è completa.
 
@@ -292,7 +295,7 @@ In Azure sono disponibili due tipi principali di lo:
 
 Tutti i log possono essere archiviati negli account di archiviazione di Azure a scopo di controllo, analisi statica o backup. Quando i log vengono archiviati in un account di archiviazione di Azure, i clienti possono usare tipi diversi di framework per recuperare, preparare, analizzare e visualizzare questi dati per segnalare lo stato e l'integrità delle risorse cloud. 
 
-Le grandi imprese devono avere già acquisito un framework standard per il monitoraggio dei sistemi locali e possono estendere tale framework per integrare i log generati dalle distribuzioni cloud. Con [Azure Log Analytics][https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-queries] le organizzazioni possono tenere tutte le registrazioni nel cloud. Poiché Log Analytics viene implementato come servizio basato sul cloud, è possibile renderlo operativo rapidamente con un investimento minimo nei servizi di infrastruttura. Log Analytics può anche essere integrato con i componenti di System Center, come System Center Operations Manager, per estendere al cloud gli investimenti per la gestione già esistenti. 
+Le grandi imprese devono avere già acquisito un framework standard per il monitoraggio dei sistemi locali e possono estendere tale framework per integrare i log generati dalle distribuzioni cloud. Con [Azure Log Analytics](/azure/log-analytics/log-analytics-queries) le organizzazioni possono tenere tutte le registrazioni nel cloud. Poiché Log Analytics viene implementato come servizio basato sul cloud, è possibile renderlo operativo rapidamente con un investimento minimo nei servizi di infrastruttura. Log Analytics può anche essere integrato con i componenti di System Center, come System Center Operations Manager, per estendere al cloud gli investimenti per la gestione già esistenti. 
 
 Log Analytics è un servizio di Azure che consente di raccogliere, correlare, cercare e modificare i dati dei log e delle prestazioni generati da sistemi operativi, applicazioni e componenti cloud dell'infrastruttura. Fornisce ai clienti informazioni operative in tempo reale usando la ricerca integrata e i dashboard personalizzati per analizzare tutti i record in tutti i carichi di lavoro dell'implementazione di un data center virtuale.
 
@@ -328,7 +331,7 @@ Le possibilità dei carichi di lavoro sono infinite. I seguenti sono solo alcuni
 
 **Big Data e analisi**: quando è necessario aumentare di molto il volume dei dati, è possibile che le prestazioni dei database non aumentino correttamente. La tecnologia Hadoop offre un sistema per eseguire parallelamente le query distribuite in un numero elevato di nodi. I clienti hanno la possibilità di eseguire i carichi di lavoro dei dati nelle VM IaaS o in ambiente PaaS ([HDInsight][HDI]). HDInsight supporta la distribuzione in una rete virtuale basata sulla posizione, in un cluster in uno spoke del data center virtuale.
 
-**Eventi e messaggistica**: Hub eventi di Azure[EventHubs] è un servizio di inserimento di dati di telemetria su vastissima scala che raccoglie, trasforma e archivia milioni di eventi. In quanto piattaforma di streaming distribuita, offre bassa latenza e tempo di conservazione configurabile, permettendo di inserire quantità molto elevate di dati di telemetria in Azure e leggere tali dati da più applicazioni. Con Hub eventi, un solo flusso può supportare pipeline sia in tempo reale che basate su batch.
+**Eventi e messaggistica**: [Hub eventi di Azure][EventHubs] è un servizio di inserimento di dati di telemetria su vastissima scala che raccoglie, trasforma e archivia milioni di eventi. In quanto piattaforma di streaming distribuita, offre bassa latenza e tempo di conservazione configurabile, permettendo di inserire quantità molto elevate di dati di telemetria in Azure e leggere tali dati da più applicazioni. Con Hub eventi, un solo flusso può supportare pipeline sia in tempo reale che basate su batch.
 
 Un servizio di messaggistica cloud altamente affidabile tra applicazioni e servizi può essere implementato tramite il [bus di servizio di Azure][ServiceBus] che offre la messaggistica negoziata asincrona tra il client e il server, insieme a funzionalità di messaggistica e pubblicazione e sottoscrizione FIFO (First-In-First-Out) strutturate.
 
@@ -421,7 +424,7 @@ In questo documento sono state illustrate le funzionalità seguenti. Per altre i
 [AAD]: /azure/active-directory/active-directory-whatis
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
 [ExR]: /azure/expressroute/expressroute-introduction
-[ExRD]: https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about
+[ExRD]: /azure/expressroute/expressroute-erdirect-about
 [vWAN]: /azure/virtual-wan/virtual-wan-about
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
 [AzFW]: /azure/firewall/overview
@@ -431,7 +434,7 @@ In questo documento sono state illustrate le funzionalità seguenti. Per altre i
 [ALB]: /azure/load-balancer/load-balancer-overview
 [DDOS]: /azure/virtual-network/ddos-protection-overview
 [PIP]: /azure/virtual-network/resource-groups-networking#public-ip-address
-[AFD]: https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview
+[AFD]: /azure/frontdoor/front-door-overview
 [AppGW]: /azure/application-gateway/application-gateway-introduction
 [WAF]: /azure/application-gateway/application-gateway-web-application-firewall-overview
 [Monitor]: /azure/monitoring-and-diagnostics/

@@ -3,12 +3,15 @@ title: "Adozione del cloud nell'organizzazione: concetti fondamentali dell'opera
 description: Linee guida per i concetti fondamentali dell'operatività
 author: petertaylor9999
 ms.date: 09/20/2018
-ms.openlocfilehash: d5f4c6529e92be387465a6ab9dca55267c584c11
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 26867e3ecce738f18c5a03ff41754281229851f4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46534361"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481126"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>Stabilire una verifica dell'idoneità operativa
 

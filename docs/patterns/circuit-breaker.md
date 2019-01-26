@@ -5,13 +5,16 @@ description: Gestire gli errori la cui correzione potrebbe richiedere una quanti
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56c90fcb23fd68b0d1b545db90adeab3272705c2
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 7cc84b3c14ea277aa82643f3141f0693ec702a49
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009764"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485605"
 ---
 # <a name="circuit-breaker-pattern"></a>Modello a interruttore
 
@@ -19,7 +22,7 @@ Gestire gli errori il cui ripristino potrebbe richiedere una quantità variabile
 
 ## <a name="context-and-problem"></a>Contesto e problema
 
-In un ambiente distribuito le chiamate alle risorse remote e ai servizi possono non riuscire a causa di errori temporanei, ad esempio connessioni di rete lente, timeout oppure indisponibilità o overcommit delle risorse. Questi errori in genere si risolvono autonomamente dopo un breve periodo di tempo. Un'applicazione cloud affidabile deve essere preparata per gestirli con una strategia come il [modello di ripetizione dei tentativi][retry-pattern].
+In un ambiente distribuito le chiamate alle risorse remote e ai servizi possono non riuscire a causa di errori temporanei, ad esempio connessioni di rete lente, timeout oppure indisponibilità o overcommit delle risorse. Questi errori in genere si risolvono autonomamente dopo un breve periodo di tempo. Un'applicazione cloud affidabile deve essere preparata per gestirli tramite una strategia, ad esempio un [modello di ripetizione dei tentativi](./retry.md).
 
 Tuttavia, possono anche verificarsi situazioni in cui gli errori sono causati da eventi imprevisti, per cui la risoluzione potrebbe richiedere molto più tempo. Questi errori possono variare, in base alla gravità, dalla perdita parziale della connettività alla totale interruzione di un servizio. In queste situazioni potrebbe essere inutile ripetere continuamente un'operazione che ha scarse possibilità di successo, mentre invece è importante che l'applicazione accetti rapidamente l'esito negativo dell'operazione e gestisca il problema in modo appropriato.
 

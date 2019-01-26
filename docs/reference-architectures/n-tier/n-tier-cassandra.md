@@ -4,17 +4,20 @@ titleSuffix: Azure Reference Architectures
 description: Eseguire macchine virtuali di Linux per un'architettura a più livelli con Apache Cassandra in Microsoft Azure.
 author: MikeWasson
 ms.date: 11/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: bbd1029fe17b5d88d54246127c5d8983a573b012
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 6c9a2b4fe513c959e537f705beb1c024b54c7b50
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120170"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485449"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>Applicazione a più livelli Linux in Azure con Apache Cassandra
 
-Questa architettura di riferimento illustra come distribuire macchine virtuali (VM) e una rete virtuale configurata per un'applicazione a più livelli tramite Apache Cassandra in Linux per il livello dati. [**Distribuire questa soluzione**](#deploy-the-solution).
+Questa architettura di riferimento illustra come distribuire macchine virtuali (VM) e una rete virtuale configurata per un'applicazione [a più livelli](../../guide/architecture-styles/n-tier.md) tramite Apache Cassandra in Linux per il livello dati. [**Distribuire questa soluzione**](#deploy-the-solution).
 
 ![Architettura di livello N con Microsoft Azure](./images/n-tier-cassandra.png)
 
@@ -164,6 +167,10 @@ Per distribuire le macchine virtuali Linux per un'architettura di riferimento pe
    ```
 
 Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio usando blocchi predefiniti di Azure, visitare il [repository GitHub][git].
+
+## <a name="next-steps"></a>Passaggi successivi
+
+- [Modulo Microsoft Learn: Visualizzare una presentazione dello stile di architettura a più livelli](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 

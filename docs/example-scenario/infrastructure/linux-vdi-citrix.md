@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: Creare un ambiente VDI per i desktop Linux con Citrix in Azure.
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.custom: fasttrack
-ms.openlocfilehash: af1cf01cb8b118e829c3870b636018aa5181b180
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: fasttrack, Linux
+ms.openlocfilehash: a6fe0b7e53c83c7b932c39f910257a1e7d24834f
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643918"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481232"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>Desktop virtuali Linux con Citrix
 
@@ -90,7 +93,7 @@ Per questo scenario vengono usate le SKU seguenti:
 - Questo esempio è progettato per la disponibilità elevata per tutti i ruoli diversi dal server di gestione licenze. Poiché se il server licenze è offline l'ambiente continua a funzionare per un periodo di tolleranza di 30 giorni, in tale server non è necessaria ulteriore ridondanza.
 - Tutti i server che forniscono ruoli simili andrebbero distribuiti in [set di disponibilità](/azure/virtual-machines/windows/manage-availability#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy).
 - Questo scenario di esempio non include funzionalità di ripristino di emergenza. [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) potrebbe rappresentare un componente aggiuntivo valido per questa struttura.
-- Valutare la possibilità di distribuire le istanze di macchina virtuale in questo scenario tra [zone di disponibilità](/azure/availability-zones/az-overview). Ogni zona di disponibilità è costituita da uno o più Data Center dotati di impianti indipendenti per l'energia, il raffreddamento e la rete. Ogni area abilitata include almeno tre zone di disponibilità. Questa distribuzione di istanze di macchina virtuale tra zone garantisce la disponibilità elevata ai livelli dell'applicazione. Per altre informazioni, vedere [Informazioni sulle zone di disponibilità di Azure][azureaz-docs]. È anche possibile [distribuire gateway VPN ed ExpressRoute in zone di disponibilità di Azure](/azure/vpn-gateway/about-zone-redundant-vnet-gateways).
+- Valutare la possibilità di distribuire le istanze di macchina virtuale in questo scenario tra [zone di disponibilità](/azure/availability-zones/az-overview). Ogni zona di disponibilità è costituita da uno o più Data Center dotati di impianti indipendenti per l'energia, il raffreddamento e la rete. Ogni area abilitata include almeno tre zone di disponibilità. Questa distribuzione di istanze di macchina virtuale tra zone garantisce la disponibilità elevata ai livelli dell'applicazione. Per altre informazioni, vedere [Informazioni sulle zone di disponibilità di Azure](/azure/availability-zones/az-overview). È anche possibile [distribuire gateway VPN ed ExpressRoute in zone di disponibilità di Azure](/azure/vpn-gateway/about-zone-redundant-vnet-gateways).
 - Per una distribuzione di produzione occorre implementare una soluzione di gestione, come [Backup](/azure/backup/backup-introduction-to-azure-backup), [Monitoraggio](/azure/monitoring-and-diagnostics/monitoring-overview) o [Gestione aggiornamenti](/azure/automation/automation-update-management) di Azure.
 - Questo esempio dovrebbe funzionare per circa 250 utenti simultanei (circa 50-60 per ogni server VDA) con utilizzo misto. Il risultato dipenderà fortemente dal tipo di applicazioni in uso. Per l'uso in produzione, è opportuno eseguire test di carico rigorosi.
 

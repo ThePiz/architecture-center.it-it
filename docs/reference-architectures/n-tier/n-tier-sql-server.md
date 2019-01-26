@@ -4,16 +4,19 @@ titleSuffix: Azure Reference Architectures
 description: Implementare un'architettura a più livelli in Azure per la disponibilità, la sicurezza, la scalabilità e la gestibilità.
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: e7dbd8dd2b8e5aff8f18ff9b87fce0b76a850bce
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: cf12d27ccaebb9845ada4d4a437e9889ea3325f2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011379"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485401"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Applicazione a più livelli Windows in Azure con SQL Server
 
-Questa architettura di riferimento illustra come distribuire macchine virtuali e una rete virtuale configurata per un'applicazione a più livelli tramite SQL Server in Windows per il livello dati. [**Distribuire questa soluzione**](#deploy-the-solution).
+Questa architettura di riferimento illustra come distribuire macchine virtuali e una rete virtuale configurata per un'applicazione [a più livelli](../../guide/architecture-styles/n-tier.md) tramite SQL Server in Windows per il livello dati. [**Distribuire questa soluzione**](#deploy-the-solution).
 
 ![Architettura di livello N con Microsoft Azure](./images/n-tier-sql-server.png)
 
@@ -233,6 +236,10 @@ Una distribuzione di questa architettura di riferimento è disponibile in [GitHu
     ```
 
 Per altre informazioni sulla distribuzione di questa architettura di riferimento di esempio usando blocchi predefiniti di Azure, visitare il [repository GitHub][git].
+
+## <a name="next-steps"></a>Passaggi successivi
+
+- [Modulo Microsoft Learn: Visualizzare una presentazione dello stile di architettura a più livelli](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 [dmz]: ../dmz/secure-vnet-dmz.md

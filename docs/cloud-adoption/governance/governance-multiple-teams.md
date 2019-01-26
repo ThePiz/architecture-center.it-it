@@ -3,14 +3,17 @@ title: "Adozione del cloud nell'organizzazione: progettazione della governance p
 description: Guida alla configurazione dei controlli della governance di Azure per più team, più carichi di lavoro e più ambienti
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: ac2a63ad6ced1039290dc0bf5132b0d87a2c79cf
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: de2bfeee7d098984a35f56f9e794e6a37933a3bd
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389418"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488427"
 ---
-# <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>Adozione del cloud nell'organizzazione: progettazione della governance per più team
+# <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>Adozione del cloud nell'organizzazione: Progettazione di governance per più team
 
 L'obiettivo di questa guida è illustrare il processo di progettazione di un modello di governance delle risorse in Azure per supportare più team, più carichi di lavoro e più ambienti.  Verranno esaminati alcuni ipotetici requisiti di governance, quindi verranno illustrate diverse implementazioni di esempio che soddisfano tali requisiti.
 

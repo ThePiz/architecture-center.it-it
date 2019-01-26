@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Illustra i vantaggi, le problematiche e le procedure consigliate per le architetture a più livelli in Azure.
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 4e8aae0032d20df05e1b16a47fda4afa720ed0d9
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: d7b94d56831a6b9172a9091f0e4f7fa63a8881f1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110306"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481491"
 ---
 # <a name="n-tier-architecture-style"></a>Stile di architettura a più livelli
 
@@ -81,10 +84,11 @@ I livelli fisici Web e business sono senza stato. Qualsiasi macchina virtuale pu
 
 I gruppi di sicurezza di rete (NSG) limitano l'accesso ai singoli livelli fisici. Ad esempio, il livello database consente l'accesso solo dal livello business.
 
-Per maggiori dettagli e per un modello di Resource Manager distribuibile, vedere le architetture di riferimento seguenti:
+Per altre informazioni sull'esecuzione di applicazioni a più livelli in Azure:
 
 - [Eseguire macchine virtuali Windows per un'applicazione a più livelli][n-tier-windows]
-- [Eseguire macchine virtuali Linux per un'applicazione a più livelli][n-tier-linux]
+- [Applicazione a più livelli Windows in Azure con SQL Server][n-tier-linux]
+- [Modulo Microsoft Learn: Visualizzare una presentazione dello stile di architettura a più livelli](/learn/modules/n-tier-architecture/)
 
 ### <a name="additional-considerations"></a>Ulteriori considerazioni
 

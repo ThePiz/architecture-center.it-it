@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: Implementare un'architettura di rete ibrida sicura in Azure.
 author: telmosampaio
 ms.date: 10/22/2018
-ms.custom: seodec18
-ms.openlocfilehash: 9a74401d3496807ce2dfc113476e001d19e657e5
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 82327cca08e614bfe5226c9ca1a414388878a7c2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112295"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482511"
 ---
 # <a name="implement-a-dmz-between-azure-and-your-on-premises-datacenter"></a>Implementare una rete perimetrale tra Azure e il data center locale
 
 Questa architettura di riferimento consente di visualizzare una rete ibrida sicura che estende una rete locale in Azure. L'architettura implementa una *rete perimetrale* tra la rete locale e una rete virtuale di Azure (VNet). La rete perimetrale include appliance virtuali di rete (NVA) che implementano funzionalità di sicurezza quali firewall e ispezione dei pacchetti. Tutto il traffico in uscita dalla rete virtuale viene sottoposto a tunneling forzato verso Internet attraverso la rete locale, in modo da poter essere controllato. [**Distribuire questa soluzione**](#deploy-the-solution).
+
+> [!NOTE]
+> Questo scenario può essere eseguito anche usando [Firewall di Azure](/azure/firewall/), un servizio di sicurezza di rete basato sul cloud.
 
 ![Architettura di rete ibrida sicura](./images/dmz-private.png)
 

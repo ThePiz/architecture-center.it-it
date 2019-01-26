@@ -3,14 +3,18 @@ title: Progettazione API
 description: Progettazione delle API per i microservizi
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 80e8e081384a7806880878ae95fbdbc2bb6cc440
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: 01f774773b2d2a653e52c9ee961f12c5b9fc833a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111042"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485979"
 ---
-# <a name="designing-microservices-api-design"></a>Progettazione di microservizi: progettazione API
+# <a name="designing-microservices-api-design"></a>Progettazione di microservizi: Progettazione API
 
 Una buona progettazione delle API è importante in un'architettura di microservizi, perché tutto lo scambio di dati tra servizi avviene tramite messaggi o chiamate API. Le API devono essere efficienti per evitare di creare [I/O frammentato](../antipatterns/chatty-io/index.md). Poiché i servizi sono progettati da team che lavorano in modo indipendente, le API devono avere una semantica e schemi di controllo delle versioni ben definiti, in modo che gli aggiornamenti non interrompano altri servizi.
 
@@ -95,7 +99,7 @@ Queste procedure di codifica sono particolarmente importanti quando si compila u
 
 Un altro esempio è il modello di repository, che assicura che altre parti dell'applicazione non eseguano direttamente operazioni di lettura o scrittura nell'archivio dati:
 
-!Diagramma del repository per un drone[](./images/repository.png)
+![Diagramma di un repository Drone](./images/repository.png)
 
 In un'architettura di microservizi, tuttavia, i servizi non condividono la stessa base codici e non condividono archivi di dati. Comunicano invece attraverso le API. Si consideri il caso in cui il servizio Utilità di pianificazione richieda informazioni su un drone al servizio Drone. Il servizio Drone ha un modello di drone interno espresso tramite codice, che non è tuttavia visibile all'Utilità di pianificazione. L'Utilità di pianificazione ottiene invece una *rappresentazione* dell'entità drone &mdash; eventualmente come oggetto JSON in una risposta HTTP.
 

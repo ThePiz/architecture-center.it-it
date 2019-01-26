@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: Implementare una topologia di rete hub-spoke con servizi condivisi in Azure.
 author: telmosampaio
 ms.date: 10/09/2018
-ms.custom: seodec18
-ms.openlocfilehash: 9de1cd22b32614c332f64cf282ddc1be8090bf7a
-ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: dd7632c3a84f6a0cee5d8b35e6a943ab8c52caf8
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54211972"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488308"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementare una topologia di rete hub-spoke con servizi condivisi in Azure
 
 Questa architettura di riferimento, basata sull'architettura di riferimento [hub-spoke][guidance-hub-spoke], include nell'hub servizi condivisi che potranno essere utilizzati da tutti gli spoke. Come primo passo per la migrazione di un data center al cloud e la creazione di un [data center virtuale], i primi servizi da condividere sono quelli di gestione delle identità e di sicurezza. Questa architettura di riferimento illustra come estendere i servizi di Active Directory dal data center locale ad Azure e come aggiungere un'appliance virtuale di rete che possa fungere da firewall in una topologia hub-spoke.  [**Distribuire questa soluzione**](#deploy-the-solution).
+
+> [!NOTE]
+> Questo scenario può essere eseguito anche usando [Firewall di Azure](/azure/firewall/), un servizio di sicurezza di rete basato sul cloud.
 
 ![Topologia con servizi condivisi in Azure](./images/shared-services.png)
 
@@ -72,7 +78,7 @@ La maggior parte delle organizzazioni aziendali ha un ambiente Active Directory 
 
 Se si usano oggetti Criteri di gruppo che si preferisce controllare separatamente per Azure e l'ambiente locale, usare un diverso sito AD per ogni area di Azure. Inserire i controller di dominio in una rete virtuale centrale (hub) accessibile dai carichi di lavoro dipendenti.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Quando si spostano carichi di lavoro dall'ambiente locale ad Azure, alcuni di questi dovranno essere ospitati in VM. Per motivi di conformità, potrebbe essere necessario applicare restrizioni sul traffico correlato a tali carichi di lavoro.
 
