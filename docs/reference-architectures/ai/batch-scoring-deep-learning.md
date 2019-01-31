@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 26a83b3f75b2e7e9ec4a8a99ab8b4d8f1b1ef4d7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 27975b42179e87f4520186778610159943a93090
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488563"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147247"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Punteggio batch in Azure per modelli di apprendimento avanzato
 
@@ -45,6 +45,9 @@ L'architettura è costituita dai componenti seguenti.
 ### <a name="compute"></a>Calcolo
 
 **[Azure Batch per intelligenza artificiale][batch-ai]** viene usato per eseguire l'algoritmo di neural style transfer. Azure Batch per intelligenza artificiale supporta carichi di lavoro di apprendimento avanzato, fornendo ambienti strutturati in contenitori e preconfigurati per framework di apprendimento automatico su macchine virtuali abilitate per GPU. Con Azure Batch per intelligenza artificiale è anche possibile connettere il cluster di elaborazione ad Archiviazione BLOB.
+
+> [!NOTE]
+> Il servizio Azure Batch per intelligenza artificiale verrà ritirato a marzo 2019 e le relative funzionalità di training e assegnazione dei punteggi su larga scala sono ora disponibili nel [servizio Azure Machine Learning][amls]. Questa architettura di riferimento verrà presto aggiornata per l'uso di Machine Learning, che offre una destinazione di calcolo gestita, l'[ambiente di calcolo di Machine Learning di Azure][aml-compute] per il training, la distribuzione e l'assegnazione di punteggi dei modelli di Machine Learning.
 
 ### <a name="storage"></a>Archiviazione
 
@@ -149,6 +152,8 @@ Per distribuire questa architettura di riferimento, seguire la procedura descrit
 
 <!-- links -->
 
+[aml-compute]: /azure/machine-learning/service/how-to-set-up-training-targets#amlcompute
+[amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/
 [blobfuse]: https://github.com/Azure/azure-storage-fuse

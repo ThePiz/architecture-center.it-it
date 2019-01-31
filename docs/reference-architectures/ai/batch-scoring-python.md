@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: a291821860a8e503ba4c6173ac6d8fd449d6ebf3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1ca6cf385ddd3be56e247a3439e737c114a88dcb
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485367"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147281"
 ---
 # <a name="batch-scoring-of-python-models-on-azure"></a>Assegnazione del punteggio in batch per i modelli Python in Azure
 
@@ -33,6 +33,9 @@ L'architettura è costituita dai componenti seguenti:
 [Analisi di flusso di Azure][stream-analytics]. Un motore di elaborazione di eventi. Un processo di Analisi di flusso legge i flussi di dati dall'hub eventi ed esegue l'elaborazione dei flussi.
 
 [Azure Batch per intelligenza artificiale][batch-ai]. Questo motore di calcolo distribuito viene usato per eseguire training e test dei modelli di Machine Learning e di intelligenza artificiale su larga scala. Batch per intelligenza artificiale consente di creare macchine virtuali su richiesta con un'opzione di scalabilità automatica, in cui ogni nodo del cluster di Batch per intelligenza artificiale esegue un processo di assegnazione del punteggio per un sensore specifico. Lo  [script][python-script] Python viene eseguito in contenitori Docker che vengono creati in ogni nodo del cluster, in cui legge i dati del sensore pertinenti, genera stime e le archivia nell'archivio Blob.
+
+> [!NOTE]
+> Il servizio Azure Batch per intelligenza artificiale verrà ritirato a marzo 2019 e le relative funzionalità di training e assegnazione dei punteggi su larga scala sono ora disponibili nel [servizio Azure Machine Learning][amls]. Questa architettura di riferimento verrà presto aggiornata per l'uso di Machine Learning, che offre una destinazione di calcolo gestita, l'[ambiente di calcolo di Machine Learning di Azure][aml-compute] per il training, la distribuzione e l'assegnazione di punteggi dei modelli di Machine Learning.
 
 [Archiviazione BLOB di Azure][storage]. I contenitori BLOB vengono usati per archiviare i modelli già sottoposti a training, i dati e le stime di output. I modelli vengono caricati nell'archivio BLOB nel notebook [create\_resources.ipynb][create-resources]. I modelli [one-class SVM][one-class-svm] vengono sottoposti a training su dati che rappresentano i valori di sensori diversi per diversi dispositivi. Questa soluzione presuppone che i valori dei dati vengano aggregati per un intervallo di tempo fisso.
 
@@ -94,6 +97,8 @@ L'implementazione di riferimento per questa architettura è disponibile in [GitH
 
 [acr]: /azure/container-registry/container-registry-intro
 [ai]: /azure/application-insights/app-insights-overview
+[aml-compute]: /azure/machine-learning/service/how-to-set-up-training-targets#amlcompute
+[amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [automatic-scaling]: /azure/batch/batch-automatic-scaling
 [azure-files]: /azure/storage/files/storage-files-introduction
 [batch-ai]: /azure/batch-ai/

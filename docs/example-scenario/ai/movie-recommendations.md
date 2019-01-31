@@ -4,12 +4,13 @@ description: Usare Machine Learning per automatizzare i consigli sui film, sui p
 author: njray
 ms.date: 1/9/2019
 ms.custom: azcat-ai
-ms.openlocfilehash: 38e883bac032596d4c14b230fa3aa102fde45837
-ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
+social_image_url: /azure/architecture/example-scenario/ai/media/architecture-movie-recommender.png
+ms.openlocfilehash: 9e68f38cb61d7a3255b76a662c58907704914052
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54307776"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908257"
 ---
 # <a name="movie-recommendations-on-azure"></a>Consigli cinematografici in Azure
 
@@ -73,7 +74,7 @@ Per il training, la soluzione DSVM è disponibile in [più aree geografiche][reg
 
 In caso di dati di grandi dimensioni, la soluzione DSVM può essere scalabile per ridurre i tempi di training. È infatti possibile applicare scalabilità verticale o orizzontale a una VM [cambiandone le dimensioni][vm-size]. Scegliere una memoria di dimensioni sufficienti per inserirvi il set di dati e un numero di vCPU più elevato per ridurre la quantità di tempo necessaria per il training.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Questo scenario può usare Azure Active Directory per autenticare gli utenti per l'[accesso a DSVM][dsvm-id], che contiene codice, modelli e dati in memoria. I dati vengono memorizzati in Archiviazione di Azure prima di essere caricati in una soluzione DSVM, dove vengono crittografati automaticamente con la [crittografia del servizio di archiviazione][storage-security]. Le autorizzazioni possono essere gestite tramite autenticazione di Azure Active Directory o con il controllo degli accessi in base al ruolo.
 

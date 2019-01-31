@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 4e22469af58a08f42abedf34235be5e20f1dceae
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: dc68c0ab4a08e5f47f30050197bb2e68aa559979
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482358"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147264"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
@@ -147,7 +147,7 @@ Una distribuzione di questa architettura è disponibile in [GitHub][github]. Si 
 3. Eseguire il comando seguente e attendere il completamento della distribuzione.
 
     ```bash
-    azbb -s <subscription_id> -g <resource group> -l <location> -p onoprem.json --deploy
+    azbb -s <subscription_id> -g <resource group> -l <location> -p azure.json --deploy
     ```
 
    Eseguire la distribuzione nello stesso gruppo di risorse della rete virtuale locale.

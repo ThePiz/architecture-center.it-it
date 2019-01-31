@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: f9f33421f3e1030e2477379970082f5c45690390
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 0bbe8177abe708cf41c1b5a8d117c05fd280c948
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486859"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908597"
 ---
 # <a name="throttling-pattern"></a>Modello Limitazione
 
@@ -38,7 +38,7 @@ Il sistema potrebbe implementare diverse strategie di limitazione, tra cui:
 
 - Disabilitare o degradare la funzionalità di servizi non essenziali selezionati in modo che i servizi essenziali possano essere eseguiti senza problemi con risorse sufficienti. Ad esempio, se l'applicazione sta trasmettendo l'output video, potrebbe passare a una risoluzione inferiore.
 
-- Usare il livellamento del carico per regolare il volume di attività; questo approccio è descritto in maggior dettaglio nello [schema di livellamento del carico basato sulle code](./queue-based-load-leveling.md). In un ambiente multi-tenant questo approccio ridurrà le prestazioni per ogni tenant. Se il sistema deve supportare un insieme di tenant con contratti di servizio diversi, le operazioni i tenant di alto valore possono essere eseguite immediatamente. Le richieste di altri tenant possono essere tratenute e gestite quando il backlog è diminuito. Per facilitare l'implementazione di questo approccio potrebbe essere usato il modello di coda con priorità.
+- Usare il livellamento del carico per regolare il volume di attività; questo approccio è descritto in maggior dettaglio nello [schema di livellamento del carico basato sulle code](./queue-based-load-leveling.md). In un ambiente multi-tenant questo approccio ridurrà le prestazioni per ogni tenant. Se il sistema deve supportare un insieme di tenant con contratti di servizio diversi, le operazioni i tenant di alto valore possono essere eseguite immediatamente. Le richieste di altri tenant possono essere tratenute e gestite quando il backlog è diminuito. Lo [schema della coda di priorità](./priority-queue.md) può essere usato per facilitare l'implementazione di questo approccio.
 
 - Rinviare operazioni eseguite per conto di tenant o di applicazioni con priorità più bassa. Queste operazioni possono essere sospese o limitate, con un'eccezione generata per informare il tenant che il sistema è occupato e che l'operazione dovrebbe essere ritentata successivamente.
 
