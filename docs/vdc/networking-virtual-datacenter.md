@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1f61996d231f3bf0cc2c550f4d3e119116bb7bc0
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a997a0f03da63bc1432f61f3299e7c6794278e5e
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488648"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908555"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Data center virtuale di Azure: una prospettiva di rete
 
@@ -261,12 +261,6 @@ Azure Load Balancer può anche esaminare l'integrità delle varie istanze del se
 Il [**servizio Frontdoor di Azure**][AFD] (AFD) è un servizio Microsoft a scalabilità e disponibilità elevata di piattaforma di accelerazione dell'applicazione Web, bilanciamento del carico HTTP globale, protezione dell'applicazione e rete per la distribuzione di contenuti. In esecuzione in oltre 100 posizioni sul perimetro della rete globale Microsoft, il servizio Frontdoor di Azure consente di compilare, gestire e scalare orizzontalmente l'applicazione Web dinamica e il contenuto statico. Il servizio Frontdoor di Azure assicura all'applicazione prestazioni per l'utente finale di livello superiore, automazione della manutenzione regionale unificata, automazione della continuità aziendale e ripristino di emergenza, informazioni client/utente unificate, memorizzazione nella cache e informazioni dettagliate sul servizio. La piattaforma garantisce prestazioni, affidabilità e contratti di servizio di supporto tecnico, oltre a certificazioni di conformità e procedure di sicurezza controllabili sviluppate, gestite e supportate in modo nativo da Azure.
 
 [**Gateway applicazione**][AppGW] Il gateway applicazione di Microsoft Azure è un'appliance virtuale dedicata che offre un servizio di controller per la distribuzione di applicazioni con varie funzionalità di bilanciamento del carico di livello 7 per l'applicazione. Consente di ottimizzare la produttività delle Web farm eseguendo l'offload al gateway applicazione della terminazione SSL con utilizzo elevato di CPU. Offre anche altre funzionalità di routing di livello 7, tra cui la distribuzione round robin del traffico in ingresso, l'affinità di sessione basata su cookie, il routing basato su percorso URL e la possibilità di ospitare più siti Web dietro un unico gateway applicazione. Nello SKU WAF del gateway applicazione è incluso anche un Web application firewall (WAF). Questo SKU offre alle applicazioni Web la protezione da exploit e vulnerabilità Web comuni. Il gateway applicazione può essere configurato come gateway con connessione Internet, come gateway solo interno o come una combinazione di queste due opzioni. 
-
-Il [**gateway applicazione**][AppGW] è un'appliance virtuale dedicata che offre un servizio di controller per la distribuzione di applicazioni (ADC, Application Delivery Controller) e varie funzionalità di bilanciamento del carico di livello 7 per l'applicazione. Consente di ottimizzare la produttività delle Web farm eseguendo l'offload all'istanza del gateway applicazione della terminazione SSL con utilizzo elevato di CPU. Offre inoltre funzionalità di routing di livello 7, tra cui gli esempi seguenti: 
-* Distribuzione round-robin del traffico in ingresso 
-* Affinità di sessione basata su cookie 
-* Routing basato su percorsi URL 
-* Possibilità di ospitare più siti Web dietro un'unica istanza del gateway applicazione Nello SKU WAF del gateway applicazione è incluso anche un web application firewall (WAF). Questo SKU offre alle applicazioni Web la protezione da exploit e vulnerabilità Web comuni. Il gateway applicazione può essere configurato come gateway con connessione Internet, come gateway solo interno o come una combinazione di queste due opzioni. 
 
 [**IP pubblici**][PIP]. Alcune funzionalità di Azure consentono di associare gli endpoint di servizio a un indirizzo IP pubblico in modo che la risorsa sia accessibile da Internet. Questo endpoint usa il processo NAT (Network Address Translation) per instradare il traffico fino all'indirizzo e alla porta interni nella rete virtuale di Azure. È questa la modalità primaria che consente al traffico esterno di passare attraverso la rete virtuale. Gli indirizzi IP pubblici possono essere configurati per determinare il traffico autorizzato a passare e come/dove viene convertito nella rete virtuale.
 
