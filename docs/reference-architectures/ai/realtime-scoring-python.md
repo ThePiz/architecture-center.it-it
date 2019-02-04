@@ -3,21 +3,21 @@ title: Assegnazione dei punteggi in tempo reale per i modelli Python
 titleSuffix: Azure Reference Architectures
 description: Questa architettura di riferimento illustra come distribuire modelli Python come servizi Web in Azure per ottenere previsioni in tempo reale.
 author: msalvaris
-ms.date: 11/09/2018
+ms.date: 01/28/2019
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 135e86b447684efd9f54340eda4b6bf6e4c35bbb
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ba2d9a295e5a231f0ffca9e3cf2d53ace4deddfe
+ms.sourcegitcommit: 1ee873aaf40010eb2a38314ac56974bc9e227736
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487679"
+ms.lasthandoff: 01/28/2019
+ms.locfileid: "55141025"
 ---
 # <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Assegnazione di punteggi in tempo reale per modelli Python scikit-learn e di Deep Learning in Azure
 
-Questa architettura di riferimento illustra come distribuire modelli Python come servizi Web per ottenere previsioni in tempo reale. Vengono esaminati due scenari: la distribuzione di modelli Python normali e gli specifici requisiti della distribuzione di modelli di Deep Learning. Entrambi gli scenari usano l'architettura illustrata.
+Questa architettura di riferimento mostra come distribuire modelli Python come servizi Web per effettuare previsioni in tempo reale usando il servizio Azure Machine Learning. Vengono esaminati due scenari: la distribuzione di modelli Python normali e gli specifici requisiti della distribuzione di modelli di Deep Learning. Entrambi gli scenari usano l'architettura illustrata.
 
 In GitHub sono disponibili due implementazioni di riferimento di questa architettura, una per i [modelli Python normali][github-python] e una per i [modelli di Deep Learning][github-dl].
 
@@ -33,13 +33,13 @@ Lo scenario usa un subset di dati delle domande di Stack Overflow che include le
 
 Il flusso applicazione per questa architettura è il seguente:
 
-1. Il client invia una richiesta HTTP POST con i dati della domanda codificati.
-
-2. L'app Flask estrae la domanda dalla richiesta.
-
-3. La domanda viene inviata al modello della pipeline scikit-learn per la definizione delle caratteristiche e l'assegnazione di punteggi.
-
-4. Le domande frequenti corrispondenti con i relativi punteggi vengono inviate tramite pipe a un oggetto JSON e restituite al client.
+1. Il modello sottoposto a training viene registrato nel registro del modello di Machine Learning.
+2. Il servizio Machine Learning crea un'immagine Docker che include il modello e lo script di assegnazione di punteggi.
+3. Machine Learning distribuisce l'immagine di assegnazioni di punteggi nel servizio Azure Kubernetes (AKS) come servizio Web.
+4. Il client invia una richiesta HTTP POST con i dati della domanda codificati.
+5. Il servizio Web creato da Machine Learning estrae la domanda dalla richiesta.
+6. La domanda viene inviata al modello della pipeline Scikit-learn per la definizione delle funzionalità e l'assegnazione di punteggi. 
+7. Le domande frequenti corrispondenti con i relativi punteggi vengono restituite al client.
 
 Di seguito è riportato uno screenshot dell'app di esempio che utilizza i risultati:
 
@@ -53,25 +53,24 @@ Questo scenario usa un modello ResNet-152 con training preliminare di cui viene 
 
 Il flusso applicazione per il modello di Deep Learning è il seguente:
 
-1. Il client invia una richiesta HTTP POST con i dati di immagine codificati.
-
-2. L'app Flask estrae l'immagine dalla richiesta.
-
-3. L'immagine viene pre-elaborata e inviata al modello per l'assegnazione dei punteggi.
-
-4. I risultati dell'assegnazione dei punteggi vengono inviati tramite pipe a un oggetto JSON e restituiti al client.
+1. Il modello di Deep Learning viene registrato nel registro del modello di Machine Learning.
+2. Il servizio Machine Learning crea un'immagine Docker che include il modello e lo script di assegnazione di punteggi.
+3. Machine Learning distribuisce l'immagine di assegnazioni di punteggi nel servizio Azure Kubernetes (AKS) come servizio Web.
+4. Il client invia una richiesta HTTP POST con i dati di immagine codificati.
+5. Il servizio Web creato da Machine Learning pre-elabora i dati di immagine e li invia al modello per l'assegnazione di punteggi. 
+6. Le categorie previste con i relativi punteggi vengono restituite al client.
 
 ## <a name="architecture"></a>Architettura
 
 L'architettura è costituita dai componenti seguenti.
 
+**[Servizio Azure Machine Learning][aml]**. Un servizio cloud che è possibile usare per eseguire il training di modelli di Machine Learning, distribuirli, automatizzarli e gestirli, il tutto su vasta scala, grazie all'ampia portata del cloud. Viene usato in questa architettura per gestire la distribuzione di modelli, nonché le attività di autenticazione, routing e bilanciamento del carico del servizio Web.
+
 **[Macchina virtuale][vm]** (VM). La VM è riportata come un esempio di dispositivo (locale o nel cloud) che può inviare una richiesta HTTP.
 
 **[Servizio Azure Kubernetes][aks]**. Viene usato per distribuire l'applicazione in un cluster Kubernetes. Il servizio Azure Kubernetes semplifica la distribuzione e le operazioni di Kubernetes. Il cluster può essere configurato usando VM solo CPU per i modelli Python normali o VM abilitate per GPU per i modelli di Deep Learning.
 
-**[Servizio di bilanciamento del carico][lb]**. servizio Azure Kubernetes effettua il provisioning di un servizio di bilanciamento del carico che verrà usato per esporre il servizio esternamente. Il traffico proveniente dal servizio di bilanciamento del carico viene indirizzato ai pod back-end.
-
-**[Hub Docker][docker]**. Viene usato per archiviare l'immagine Docker distribuita nel cluster Kubernetes. L'hub Docker è stato scelto per questa architettura perché è facile da usare ed è il repository di immagini predefinito per gli utenti di Docker. Per questa architettura è possibile usare anche [Registro Azure Container][acr].
+**[Registro Azure Container][acr]**. Consente l'archiviazione di immagini per tutti i tipi di distribuzioni di contenitori Docker, inclusi DC/OS, Docker Swarm e Kubernetes. Le immagini di assegnazione di punteggi vengono distribuite come contenitori nel servizio Azure Kubernetes e usate per eseguire lo script di assegnazione di punteggi. L'immagine usata qui viene creata da Machine Learning dal modello sottoposto a training e lo script di assegnazione di punteggi e quindi ne viene eseguito il push nel Registro Azure Container.
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
 
@@ -83,7 +82,7 @@ Per questa architettura, è possibile usare CPU in entrambi gli scenari, ma per 
 
 ## <a name="scalability-considerations"></a>Considerazioni sulla scalabilità
 
-Per i modelli Python normali, in cui il provisioning del cluster servizio Azure Kubernetes viene effettuato con VM solo CPU, prestare attenzione in caso di [aumento del numero di istanze dei pod][manually-scale-pods]. L'obiettivo è utilizzare appieno il cluster. Il ridimensionamento dipende dalle richieste e dai limiti di CPU definiti per i pod. Kubernetes supporta anche il [ridimensionamento automatico][autoscale-pods] dei pod per modificare il numero di pod in una distribuzione in base all'utilizzo delle CPU o ad altre metriche selezionate. Il [ridimensionamento automatico del cluster][autoscaler] (in anteprima) può ridimensionare i nodi agente in base ai pod in sospeso.
+Per i modelli Python normali, in cui il provisioning del cluster del servizio Azure Kubernetes viene effettuato con VM solo CPU, prestare attenzione in caso di [aumento del numero di istanze dei pod][manually-scale-pods]. L'obiettivo è utilizzare appieno il cluster. Il ridimensionamento dipende dalle richieste e dai limiti di CPU definiti per i pod. Machine Learning tramite Kubernetes supporta anche il [ridimensionamento automatico dei pod][autoscale-pods] in base all'utilizzo della CPU o ad altre metriche. Il [ridimensionamento automatico del cluster][autoscaler] (in anteprima) può ridimensionare i nodi agente in base ai pod in sospeso.
 
 Per gli scenari di Deep Learning con VM abilitate per GPU, i limiti di risorse per i pod sono tali che una GPU viene assegnata a un unico pod. A seconda del tipo di VM usato, è necessario [ridimensionare i nodi del cluster][scale-cluster] in base alle esigenze del servizio. Questa operazione può essere eseguita facilmente usando kubectl e l'interfaccia della riga di comando di Azure.
 
@@ -117,7 +116,7 @@ Usare il [controllo degli accessi in base al ruolo][rbac] per controllare l'acce
 
 **Autenticazione**. Questa soluzione non limita l'accesso agli endpoint. Per distribuire l'architettura in un contesto aziendale, proteggere gli endpoint tramite chiavi API e aggiungere una qualche forma di autenticazione utente all'applicazione client.
 
-**Registro contenitori**. Questa soluzione usa un registro pubblico per archiviare l'immagine Docker. Il codice da cui l'applicazione dipende e il modello sono contenuti in tale immagine. Le applicazioni aziendali dovrebbero usare un registro privato per garantire la protezione dall'esecuzione di codice dannoso ed evitare la compromissione delle informazioni all'interno del contenitore.
+**Registro contenitori**. Questa soluzione usa Registro Azure Container per archiviare l'immagine Docker. Il codice da cui l'applicazione dipende e il modello sono contenuti in tale immagine. Le applicazioni aziendali dovrebbero usare un registro privato per garantire la protezione dall'esecuzione di codice dannoso ed evitare la compromissione delle informazioni all'interno del contenitore.
 
 **Protezione DDoS**. Valutare la possibilità di abilitare [Protezione DDoS Standard][ddos]. Nonostante la protezione DDoS di base sia abilitata come parte della piattaforma Azure, Protezione DDoS Standard offre funzionalità di mitigazione ottimizzate specificamente per le risorse di rete virtuale di Azure.
 
@@ -140,15 +139,14 @@ Per distribuire questa architettura di riferimento, seguire la procedura descrit
 [autoscale-pods]: /azure/aks/tutorial-kubernetes-scale#autoscale-pods
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [ddos]: /azure/virtual-network/ddos-protection-overview
-[docker]: https://hub.docker.com/
 [get-started]: /azure/security-center/security-center-get-started
-[github-python]: https://github.com/Azure/MLAKSDeployment
-[github-dl]: https://github.com/Microsoft/AKSDeploymentTutorial
+[github-python]: https://github.com/Microsoft/MLAKSDeployAML
+[github-dl]: https://github.com/Microsoft/AKSDeploymentTutorial_AML
 [gpus-vs-cpus]: https://azure.microsoft.com/en-us/blog/gpus-vs-cpus-for-deployment-of-deep-learning-models/
 [https-ingress]: /azure/aks/ingress-tls
 [ingress-controller]: https://kubernetes.io/docs/concepts/services-networking/ingress/
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[lb]: /azure/load-balancer/load-balancer-overview
+[aml]: /azure/machine-learning/service/overview-what-is-azure-ml
 [manually-scale-pods]: /azure/aks/tutorial-kubernetes-scale#manually-scale-pods
 [monitor-containers]: /azure/monitoring/monitoring-container-insights-overview
 [autorizzazioni]: /azure/aks/concepts-identity
