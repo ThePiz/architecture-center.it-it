@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: a997a0f03da63bc1432f61f3299e7c6794278e5e
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 484f41f64b676b08ae8adb4ba082f9bff75a6a54
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908555"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483114"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Data center virtuale di Azure: una prospettiva di rete
 
@@ -391,7 +391,9 @@ In questo documento sono state illustrate le funzionalità seguenti. Per altre i
 
  - Esplorare il [peering reti virtuali][VNetPeering], la tecnologia fondamentale per le progettazioni di hub e spoke di un data center virtuale
  - Implementare [Azure AD][AAD] per iniziare l'esplorazione del [controllo degli accessi in base al ruolo][RBAC]
- - Sviluppare un modello di gestione della sottoscrizione e delle risorse per rispettare la struttura, i requisiti e i criteri dell'organizzazione. L'attività più importante è la pianificazione. Da un punto di vista pratico, è consigliabile pianificare riorganizzazioni, fusioni, nuove linee di prodotti e così via. <!--Image References-->
+ - Sviluppare un modello di gestione della sottoscrizione e delle risorse per rispettare la struttura, i requisiti e i criteri dell'organizzazione. L'attività più importante è la pianificazione. Da un punto di vista pratico, è consigliabile pianificare riorganizzazioni, fusioni, nuove linee di prodotti e così via.
+
+<!--Image References-->
 [0]: ./images/networking-redundant-equipment.png "Esempi di sovrapposizione di componenti" 
 [1]: ./images/networking-vdc-high-level.png "Esempio generale di data center virtuale con hub e spoke"
 [2]: ./images/networking-hub-spokes-cluster.png "Cluster di hub e spoke"
