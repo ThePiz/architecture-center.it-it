@@ -4,13 +4,17 @@ titleSuffix: Azure Example Scenarios
 description: Accelerare la modellazione basata su immagini digitali in Azure con Avere e Agisoft PhotoScan
 author: adamboeglin
 ms.date: 1/11/2019
-ms.custom: cat-team
-ms.openlocfilehash: 5aac3ea46ea864aba84544362c39d78f4055f512
-ms.sourcegitcommit: ed736a0a1b080f6acf4877c8b906cd9b56e12bdf
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: cat-team, Linux, HPC
+social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-image-modeling.png
+ms.openlocfilehash: 87b43347fb5f4baec0081a67c8b003dccd2fdf0d
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/28/2019
-ms.locfileid: "55085857"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483012"
 ---
 # <a name="accelerate-digital-image-based-modeling-on-azure"></a>Accelerare la modellazione basata su immagini digitali in Azure
 
@@ -72,7 +76,7 @@ Le considerazioni sulla distribuzione dipendono dalle applicazioni e dai servizi
 - Eseguire le applicazioni HPC usando il tipo di macchina virtuale maggiormente indicato per lo specifico carico di lavoro di [Windows](/azure/virtual-machines/windows/sizes-hpc) o di [Linux](/azure/virtual-machines/linux/sizes?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 - Per isolare il carico di lavoro HPC dalle risorse di archiviazione, distribuirli in due apposite reti virtuali, quindi usare il [peering](/azure/virtual-network/virtual-network-peering-overview) di rete virtuale per connetterle. Il peering crea una connessione a bassa latenza e ad ampia larghezza di banda tra le risorse di reti virtuali diverse e instrada il traffico attraverso l'infrastruttura backbone Microsoft solo tramite indirizzi IP privati.
 
-### <a name="security"></a>Sicurezza
+### <a name="security"></a>Security
 
 Questo esempio è incentrato sulla distribuzione di una soluzione di archiviazione con prestazioni elevate per un carico di lavoro HPC e non si tratta di una soluzione di sicurezza. Assicurarsi di coinvolgere il proprio team di sicurezza per eventuali modifiche.
 
