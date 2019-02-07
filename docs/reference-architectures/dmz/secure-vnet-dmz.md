@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 80125626d0c79888445bc7828577846bcce9fc67
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 45ae8de1138b738fdfb42bdf57402711e1be6ebb
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488223"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55482910"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>Implementare una rete perimetrale tra Azure e Internet
 
@@ -101,7 +101,9 @@ Questa architettura di riferimento implementa più livelli di sicurezza:
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
     ```
 
-3. Eseguire il comando seguente:
+3. Passare alla cartella `/dmz/ssecure-vnet-hybrid` del repository GitHub di architetture di riferimento.
+
+4. Eseguire il comando seguente:
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-hybrid.json --deploy
