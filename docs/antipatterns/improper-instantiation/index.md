@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a98a3f41d766354771af917aa126dc53bd0683a4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a2e42e35ae1b56b61c8f9f9ecb21ee104cd3222e
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482766"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898052"
 ---
 # <a name="improper-instantiation-antipattern"></a>Antipattern di creazione di istanze non corretta
 
@@ -126,7 +126,7 @@ Per provare a identificare questo problema è possibile eseguire la procedura se
 3. Eseguire test di carico su ogni operazione sospetta, in un ambiente di test controllato anziché nel sistema di produzione.
 4. Esaminare il codice sorgente ed esaminare come vengono gestiti gli oggetti broker.
 
-Esaminare le tracce dello stack per le operazioni a esecuzione prolungata o che generano eccezioni quando il sistema è in condizioni di carico. Queste informazioni sono utili per identificare in che modo queste operazioni utilizzano le risorse. Le eccezioni possono aiutare a determinare se gli errori sono causati dall'esaurimento di risorse condivise.
+Esaminare le tracce dello stack per le operazioni a esecuzione prolungata o che generano eccezioni quando il sistema è in condizioni di carico. Queste informazioni sono utili per identificare come vengono usate le risorse da queste operazioni. Le eccezioni possono aiutare a determinare se gli errori sono causati dall'esaurimento di risorse condivise.
 
 ## <a name="example-diagnosis"></a>Diagnosi di esempio
 

@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: ba3637ce90b793425b1238ee0d99d36a936da6ca
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1cca2bd39339ba671ee8a298f2ded73d3e252c32
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488597"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897781"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Progettazione di applicazioni resilienti per Azure
 
@@ -187,7 +187,7 @@ Per altre informazioni sul processo dell'analisi FMA, con indicazioni specifiche
 
 ### <a name="redundancy-and-designing-for-failure"></a>Ridondanza e progettazione per gli errori
 
-L'ambito di impatto degli errori può variare. Alcuni errori hardware, come nel caso di un disco danneggiato, possono influire su un singolo computer host. Un commutatore di rete non funzionante può invece influire su un intero rack di server. Gli errori che causano l'interruzione di un intero data center, ad esempio l'interruzione dell'alimentazione in un data center, sono invece meno comuni. Sono infine rari i casi in cui un'intera area risulta non disponibile.
+L'ambito di impatto degli errori può variare. Alcuni errori hardware, come nel caso di un disco danneggiato, possono influire su un singolo computer host. Un commutatore di rete non funzionante può invece influire su un intero rack di server. Meno comuni sono gli errori che causano l'interruzione di un intero data center, ad esempio la perdita di alimentazione in un data center. Sono infine rari i casi in cui un'intera area risulta non disponibile.
 
 Uno dei principali modi per rendere resiliente un'applicazione consiste nell'applicare la ridondanza. Ma la ridondanza va pianificata quando si progetta l'applicazione. Il livello di ridondanza necessario dipende inoltre dai requisiti aziendali: non tutte le applicazioni richiedono la ridondanza tra aree per proteggersi da un'interruzione dell'alimentazione a livello di area. In generale, è opportuno trovare il giusto compromesso tra incremento della ridondanza e dell'affidabilità e aumento dei costi e della complessità.  
 
