@@ -357,6 +357,8 @@ items:
       href: reference-architectures/ai/batch-scoring-deep-learning.md
     - name: Assegnazione dei punteggi in batch per i modelli Python
       href: reference-architectures/ai/batch-scoring-python.md
+    - name: Assegnazione dei punteggi in batch per i modelli Spark in Azure Databricks
+      href: reference-architectures/ai/batch-scoring-databricks.md
     - name: Assegnazione dei punteggi in tempo reale per modelli Python e di Deep Learning
       href: reference-architectures/ai/realtime-scoring-python.md
     - name: Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning
@@ -809,15 +811,15 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/cloud-native.md
         - name: Reti perimetrali nel cloud
           href: cloud-adoption/decision-guides/software-defined-network/cloud-dmz.md
-        - name: Reti ibride
+        - name: Ibrido
           href: cloud-adoption/decision-guides/software-defined-network/hybrid.md
         - name: Modello hub-spoke
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: Log e report
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 608761d954c2a26968a970c99f506ee03b40867d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2ba7e4b0b9eb049c0492557a0543778d2fbb2518
+ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
 ms.translationtype: HT
 ms.contentlocale: it-IT
 ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898460"
+ms.locfileid: "55903249"
