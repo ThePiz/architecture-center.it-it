@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: cfbe877a4e3a4a1d5aa87c4a77ad2c5f23a6d664
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484483"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782099"
 ---
 # <a name="data-partitioning-strategies"></a>Strategie di partizionamento dei dati
 
@@ -242,7 +242,7 @@ Le applicazioni client si limitano a inviare le richieste a un server Redis part
 Questo modello viene implementato dal clustering Redis e viene descritto più dettagliatamente alla pagina [Esercitazione del cluster Redis] sul sito Web Redis. Il clustering di Redis è trasparente per le applicazioni client. È possibile aggiungere altri server Redis al cluster e ripartizionare nuovamente i dati senza dover riconfigurare i client.
 
 > [!IMPORTANT]
-> La Cache Redis di Azure non supporta attualmente il clustering. Se si desidera implementare questo approccio con Azure, è necessario implementare i propri server Redis installando Redis in un set di macchine virtuali di Azure e configurandole manualmente. La pagina relativa all'[esecuzione di Redis in una macchina virtuale CentOS Linux in Azure] descrive un esempio che illustra come creare e configurare un nodo Redis eseguito come VM di Azure.
+> Cache Redis di Azure attualmente supporta il clustering Redis solo nel livello [Premium](/azure/azure-cache-for-redis/cache-how-to-premium-clustering).
 
 La pagina relativa al [partizionamento e alla suddivisione dei dati in più istanze di Redis] nel sito Web Redis fornisce ulteriori informazioni sull'implementazione del partizionamento con Redis. Il resto di questa sezione presuppone l'implementazione di partizionamento sul lato client o assistito dal proxy.
 
@@ -324,7 +324,7 @@ Per considerazioni sui compromessi tra disponibilità e coerenza, vedere [Dispon
 [partizionamento e alla suddivisione dei dati in più istanze di Redis]: https://redis.io/topics/partitioning
 [Performing Entity Group Transactions]: /rest/api/storageservices/Performing-Entity-Group-Transactions
 [Esercitazione del cluster Redis]: https://redis.io/topics/cluster-tutorial
-[esecuzione di Redis in una macchina virtuale CentOS Linux in Azure]: https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/
+[Running Redis on a CentOS Linux VM in Azure]: https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/
 [Scaling using the Elastic Database split-merge tool]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
 [Using Azure Content Delivery Network]: /azure/cdn/cdn-create-new-endpoint
 [Quote del bus di servizio]: /azure/service-bus-messaging/service-bus-quotas
