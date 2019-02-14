@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: f3b637d61c929e5523ea5409426f3d7a72096dfa
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ac7ab8b8dd154999a05dc531e41b0994f66ddf10
+ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484126"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55887404"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Architettura di microservizi nel servizio Azure Kubernetes (AKS)
 
@@ -360,7 +360,7 @@ Supponendo che la compilazione abbia esito positivo, viene attivato un processo 
 
 1. Eseguire `helm upgrade` per distribuire il grafico Helm in un ambiente per il controllo di qualità.
 1. Un responsabile dà l'approvazione prima che il pacchetto venga spostato nell'ambiente di produzione. Vedere [Release deployment control using approvals](/azure/devops/pipelines/release/approvals/approvals) (Controllo della distribuzione della versione tramite approvazioni).
-1. Contrassegnare di nuovo l'immagine Docker per lo spazio dei nomi di produzione nel Registro Azure Container. Ad esempio, se il tag corrente è `myrepo.azurecr.io/delivery:v1.0.2`, il tag di produzione è `reponame.azurecr.io/prod/delivery:v1.0.2`.
+1. Contrassegnare di nuovo l'immagine Docker per lo spazio dei nomi di produzione nel Registro Azure Container. Ad esempio, se il tag corrente è `myrepo.azurecr.io/delivery:v1.0.2`, il tag di produzione è `myrepo.azurecr.io/prod/delivery:v1.0.2`.
 1. Eseguire `helm upgrade` per distribuire il grafico Helm nell'ambiente di produzione.
 
 ![Flusso di lavoro CI/CD](./_images/aks-cicd-3.png)

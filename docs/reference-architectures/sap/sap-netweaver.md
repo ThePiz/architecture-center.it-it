@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP, Windows
-ms.openlocfilehash: 1167a65786c3df946ebaed3e52e4ed4033f50fd5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: e866727a40551b60e74fc26878a15a5a48e69cf6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486404"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897627"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Distribuire SAP NetWeaver (Windows) per AnyDB in macchine virtuali di Azure
 
@@ -91,7 +91,7 @@ Le tradizionali distribuzioni SAP locali implementano più schede di interfaccia
 
 Questa architettura suddivide lo spazio degli indirizzi delle rete virtuale in subnet. Questa architettura di riferimento è incentrata prevalentemente sulla subnet del livello applicazione. Ogni subnet può essere associata a un gruppo di sicurezza di rete che definisce i criteri di accesso per la subnet. Posizionare i server applicazioni in una subnet separata in modo da proteggerli più facilmente gestendo i criteri di sicurezza della subnet anziché i singoli server.
 
-Quando un gruppo di sicurezza di rete viene associato a una subnet, viene applicato a tutti i server all'interno della subnet. Per altre informazioni sull'uso di gruppi di sicurezza di rete per il controllo granulare dei server in una subnet, vedere [Filtrare il traffico di rete con gruppi di sicurezza di rete](https://azure.microsoft.com/en-us/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure/).
+Quando un gruppo di sicurezza di rete viene associato a una subnet, viene applicato a tutti i server all'interno della subnet. Per altre informazioni sull'uso di gruppi di sicurezza di rete per il controllo granulare dei server in una subnet, vedere [Filtrare il traffico di rete con gruppi di sicurezza di rete](https://azure.microsoft.com/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure).
 
 ### <a name="load-balancers"></a>Servizi di bilanciamento del carico
 

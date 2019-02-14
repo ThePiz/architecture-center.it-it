@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 384634acb8690c64f75eabbfebc5f1de414f6da2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9fce082a0e762e25981929f6fa8685033017f3eb
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484619"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224182"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Eseguire un'applicazione a più livelli in più aree di Azure per una disponibilità elevata
 
@@ -119,7 +119,7 @@ Per configurare il gruppo di disponibilità:
     ```
 
 - Creare un [Windows Server Failover Clustering][wsfc] (WSFC) che includa le istanze di SQL Server in entrambe le aree.
-- Creare un gruppo di disponibilità Always On di SQL Server che includa le istanze di SQL Server in entrambe le aree primaria e secondaria. Per la procedura, vedere [Extending Always On Availability Group to Remote Azure Datacenter (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) (Estensione del gruppo di disponibilità Always On al data center di Azure remoto (PowerShell)).
+- Creare un gruppo di disponibilità Always On di SQL Server che includa le istanze di SQL Server in entrambe le aree primaria e secondaria. Per la procedura, vedere [Extending Always On Availability Group to Remote Azure Datacenter (PowerShell)](https://techcommunity.microsoft.com/t5/DataCAT/Extending-AlwaysOn-Availability-Group-to-Remote-Azure-Datacenter/ba-p/305217) (Estensione del gruppo di disponibilità Always On al data center di Azure remoto (PowerShell)).
 
   - Inserire la replica primaria nell'area primaria.
   - Inserire una o più repliche secondarie nell'area primaria. Configurarle per l'uso del commit sincrono con il failover automatico.

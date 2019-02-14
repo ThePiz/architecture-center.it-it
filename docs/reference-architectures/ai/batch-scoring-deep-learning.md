@@ -1,23 +1,23 @@
 ---
-title: Punteggio batch per i modelli di Deep Learning
+title: Punteggio batch per i modelli di apprendimento avanzato
 titleSuffix: Azure Reference Architectures
 description: Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Machine Learning.
 author: jiata
-ms.date: 10/02/2018
+ms.date: 02/06/2019
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 3fc0b85380b6b46f7a52382e0184490104ead5a3
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+ms.openlocfilehash: 85d04f179b988fd5b00b361149f2170d13608e6d
+ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782048"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55887387"
 ---
-# <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Punteggio batch in Azure per modelli di Deep Learning
+# <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Punteggio batch in Azure per modelli di apprendimento avanzato
 
-Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Machine Learning. Lo *style transfer* è una tecnica di Deep Learning che ridefinisce un'immagine esistente usando lo stile di un'altra immagine. Questa architettura può essere generalizzata per qualsiasi scenario che usa l'assegnazione del punteggio batch con Deep Learning. [**Distribuire questa soluzione**](#deploy-the-solution).
+Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Machine Learning. Lo *style transfer* è una tecnica di apprendimento avanzato che ridefinisce un'immagine esistente usando lo stile di un'altra immagine. Questa architettura può essere generalizzata per qualsiasi scenario che usa l'assegnazione del punteggio batch con l'apprendimento avanzato. [**Distribuire questa soluzione**](#deploy-the-solution).
 
 ![Diagramma dell'architettura per modelli di Deep Learning con Azure Machine Learning](./_images/aml-scoring-deep-learning.png)
 
@@ -57,7 +57,7 @@ L'architettura è costituita dai componenti seguenti.
 Questa architettura di riferimento usa un filmato di repertorio di un orangutan in una struttura ad albero. Il filmato è disponibile per il download [qui][source-video].
 
 1. Usare [FFmpeg][ffmpeg] per estrarre il file audio dal filmato video, in modo da riunirlo al video di output in un secondo momento.
-1. Usare FFmpeg per suddividere il video in singoli fotogrammi, che verranno elaborati in modo indipendente, in parallelo.
+1. Usare FFmpeg per suddividere il video in singoli frame. I frame verranno elaborati in modo indipendente, in parallelo.
 1. A questo punto è possibile applicare il neural style transfer a ogni singolo fotogramma in parallelo.
 1. Una volta elaborato ogni fotogramma, è necessario usare FFmpeg per riunirli di nuovo.
 1. Infine, il file audio verrà ricollegato al filmato riunito.
@@ -66,7 +66,7 @@ Questa architettura di riferimento usa un filmato di repertorio di un orangutan 
 
 ### <a name="gpu-vs-cpu"></a>GPU e CPU a confronto
 
-Per carichi di lavoro di Deep Learning, le GPU in genere garantiscono prestazioni nettamente superiori rispetto alle CPU, per cui di norma è necessario un cluster consistente di CPU per ottenere prestazioni analoghe. Anche se in questa architettura è possibile usare soltanto CPU, le GPU offrono comunque un rapporto costi/prestazioni di gran lunga superiore. Si consiglia l'utilizzo della più recente combinazione macchina virtuale-dimensioni-gpu [serie NCv3] di macchine virtuali ottimizzate per la GPU.
+Per carichi di lavoro di apprendimento avanzato, le GPU in genere garantiscono prestazioni nettamente superiori rispetto alle CPU, per cui di norma è necessario un cluster consistente di CPU per ottenere prestazioni analoghe. Anche se in questa architettura è possibile usare soltanto CPU, le GPU offrono comunque un rapporto costi/prestazioni di gran lunga superiore. Si consiglia l'utilizzo della più recente combinazione macchina virtuale-dimensioni-gpu [serie NCv3] di macchine virtuali ottimizzate per la GPU.
 
 Le GPU non sono abilitate per impostazione predefinita in tutte le aree. Assicurarsi di selezionare un'area con GPU abilitate. Le sottoscrizioni prevedono anche una quota predefinita di un numero di core pari a zero per macchine virtuali ottimizzate per la GPU. È possibile aumentare questa quota inoltrando una richiesta di supporto. Assicurarsi che la sottoscrizione disponga di una quota sufficiente per eseguire il carico di lavoro.
 
