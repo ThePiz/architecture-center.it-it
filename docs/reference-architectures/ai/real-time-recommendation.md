@@ -7,18 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 8fa15c82275f18af78d1f42ec1750ab9b28119fb
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c4bfd6e92fc9c770a03a63355fc922d19ef27b7b
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487115"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224165"
 ---
 # <a name="build-a-real-time-recommendation-api-on-azure"></a>Creare un'API per raccomandazioni in tempo reale in Azure
 
 Questa architettura di riferimento illustra come eseguire il training di un modello per raccomandazioni con Azure Databricks e distribuirlo come un'API usando Azure Cosmos DB, Azure Machine Learning e il servizio Azure Kubernetes. Questa architettura può essere generalizzata per la maggior parte degli scenari di motore per la generazione di raccomandazioni, incluse raccomandazioni per prodotti, film e notizie.
 
-Un'implementazione di riferimento per questa architettura è disponibile in [GitHub](https://github.com/Microsoft/Recommenders/blob/master/notebooks/04_operationalize/als_movie_o16n.ipynb).
+Un'implementazione di riferimento per questa architettura è disponibile in [GitHub](https://github.com/Microsoft/Recommenders/blob/master/notebooks/05_operationalize/als_movie_o16n.ipynb).
 
 ![Architettura di un modello di Machine Learning per il training di raccomandazioni per film](./_images/recommenders-architecture.png)
 
@@ -132,6 +132,10 @@ Per distribuire questa architettura, creare prima di tutto un ambiente di Azure 
 
 7. Eseguire il notebook ALS Movie Operationalization per creare le risorse necessarie per creare un'API per le raccomandazioni che fornisce le raccomandazioni per i primi 10 film per un determinato utente.
 
+## <a name="related-architectures"></a>Architetture correlate
+
+È stata creata anche un'architettura di riferimento che usa Spark e Azure Databricks per l'esecuzione pianificata dei [processi di assegnazione del punteggio batch][batch-scoring]. Vedere tale architettura di riferimento per comprendere l'approccio consigliato per la generazione di raccomandazioni regolari.
+
 <!-- links -->
 [aci]: /azure/container-instances/container-instances-overview
 [aad]: /azure/active-directory-b2c/active-directory-b2c-overview
@@ -141,6 +145,7 @@ Per distribuire questa architettura, creare prima di tutto un ambiente di Azure 
 [autoscaling]: https://docs.azuredatabricks.net/user-guide/clusters/sizing.html
 [autoscale]: https://docs.azuredatabricks.net/user-guide/clusters/sizing.html#autoscaling
 [availability]: /azure/architecture/checklist/availability
+[batch-scoring]: /azure/architecture/reference-architectures/ai/batch-scoring-databricks
 [blob]: /azure/storage/blobs/storage-blobs-introduction
 [blog]: https://blogs.technet.microsoft.com/machinelearning/2018/03/20/scaling-azure-container-service-cluster/
 [clusters]: https://docs.azuredatabricks.net/user-guide/clusters/configure.html
@@ -161,12 +166,12 @@ Per distribuire questa architettura, creare prima di tutto un ambiente di Azure 
 [notebook]: https://github.com/Microsoft/Recommenders/notebooks/00_quick_start/als_pyspark_movielens.ipynb
 [partition-data]: /azure/cosmos-db/partition-data
 [redis]: /azure/redis-cache/cache-overview
-[regions]: https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines&regions=all
+[regions]: https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines&regions=all
 [resiliency]: /azure/architecture/resiliency/
 [ru]: /azure/cosmos-db/request-units
 [sec-docs]: /azure/security/
 [setup]: https://github.com/Microsoft/Recommenders/blob/master/SETUP.md%60
 [scale]: /azure/aks/tutorial-kubernetes-scale
-[sla]: https://azure.microsoft.com/en-us/support/legal/sla/virtual-machines/v1_8/
+[sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_8/
 [vm-size]: /azure/virtual-machines/virtual-machines-linux-change-vm-size
 [workspace]: https://docs.azuredatabricks.net/getting-started/index.html

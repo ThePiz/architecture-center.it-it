@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1ad646f5c8f4b329b0d0e9a29c83e86848b13ab0
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4ad221ae5e9bd51c6d304ba33b884f71c5081b16
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488342"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898256"
 ---
 # <a name="bulkhead-pattern"></a>Modello A scomparti
 
@@ -26,7 +26,7 @@ Questo modello è denominato *A scomparti* perché ricorda le aree divise da por
 
 Un'applicazione basata su cloud può includere più servizi, e ogni servizio può essere usato da uno o più consumer. Un carico eccessivo o un errore in un servizio interesserà tutti i consumer del servizio.
 
-Inoltre, un consumer può inviare richieste a più servizi contemporaneamente, impiegando delle risorse per ogni richiesta. Quando il consumer invia una richiesta a un servizio che non è configurato correttamente o non risponde, le risorse usate dalla richiesta del client potrebbero non essere liberate in modo tempestivo. Se le richieste inviate al servizio continuano, le risorse possono esaurirsi. Può ad esempio esaurirsi il pool di connessione del client, con un conseguente impatto sulle richieste di altri servizi da parte del consumer. Alla fine, il consumer non sarà più in grado di inviare richieste neanche agli altri servizi, non solo al servizio che per primo non ha risposto.
+Inoltre, un consumer può inviare richieste a più servizi contemporaneamente, impiegando delle risorse per ogni richiesta. Quando il consumer invia una richiesta a un servizio che non è configurato correttamente o non risponde, le risorse usate dalla richiesta del client potrebbero non essere liberate in modo tempestivo. Se le richieste inviate al servizio continuano, le risorse possono esaurirsi. Può ad esempio esaurirsi il pool di connessione del client, e questo influisce sulle richieste ad altri servizi da parte del consumer. Alla fine, il consumer non sarà più in grado di inviare richieste neanche agli altri servizi, non solo al servizio che per primo non ha risposto.
 
 Lo stesso problema di esaurimento delle risorse può interessare servizi con più consumer. Un numero elevato di richieste provenienti da un client può esaurire le risorse disponibili del servizio. Altri consumer non saranno più in grado di usare il servizio, innescando errori a catena.
 

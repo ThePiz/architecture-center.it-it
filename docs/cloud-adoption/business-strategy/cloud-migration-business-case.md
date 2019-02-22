@@ -1,20 +1,21 @@
 ---
-title: Creazione di un business case per la migrazione cloud
-titleSuffix: Enterprise Cloud Adoption
-description: Aspetti da considerare durante la creazione di una motivazione aziendale per la migrazione cloud
+title: 'CAF: Creare un caso aziendale per la migrazione al cloud'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Considerazioni per la creazione di una motivazione aziendale per la migrazione al cloud.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 8c27ce211f500ee2eec4f7775a7f68f214dba433
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 21c2b877a0f329711027f020fd0047479e8c7bfb
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488325"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898307"
 ---
-# <a name="enterprise-cloud-adoption-building-a-cloud-migration-business-case"></a>Adozione del cloud nell'organizzazione: Creazione di un business case per la migrazione cloud
+# <a name="build-a-business-justification-for-cloud-migration"></a>Creare una motivazione aziendale per la migrazione al cloud
 
 Le migrazioni cloud possono generare un ritorno sugli investimenti (ROI) anticipato proveniente da attività di trasformazione cloud. Tuttavia, lo sviluppo di una motivazione aziendale chiara con i relativi costi e guadagni tangibili, può essere un processo complesso. Questo articolo consente di considerare quali dati sono necessari per creare un modello finanziario che si allinei con i risultati della migrazione cloud. Innanzitutto, sfatiamo alcuni miti sulla migrazione cloud, in modo che l'organizzazione possa evitare alcuni errori comuni.
 
@@ -26,7 +27,7 @@ Le migrazioni cloud possono generare un ritorno sugli investimenti (ROI) anticip
 
 **Mito: il mirroring dell’ambiente locale permette di ridurre i costi del cloud.** Durante la pianificazione del digital estate, ai clienti può capitare di rilevare capacità inutilizzate che superano il 50% dell'ambiente sottoposto a provisioning. Se si effettuata il provisioning di risorse nel cloud in modo che corrisponda al provisioning corrente, sarà difficile ottenere una riduzione dei costi. Provare a ridurre la dimensione delle risorse distribuite in modo da allinearsi con i modelli di utilizzo, non con i modelli di provisioning.
 
-**Mito: i costi dei server indirizzano i business case per la migrazione cloud.** In alcuni casi questo è vero. Per alcune aziende, è importante ridurre le spese in conto capitale costanti relative ai server. Tuttavia, questo dipende da fattori diversi. Per le aziende con un ciclo di aggiornamento hardware che va dai 5&ndash; agli 8&ndash;anni, è improbabile osservare ritorni veloci sugli investimenti dovuti alla migrazione cloud. Le aziende con cicli di aggiornamento standardizzati o imposti possano raggiungere rapidamente un punto di pareggio. In entrambi i casi, altre spese potrebbero essere i trigger finanziari che motivano la migrazione. Di seguito sono indicati alcuni esempi di costi che spesso vengono ignorati durante la considerazione dei costi basata solo sul server o sulle macchine virtuali:
+**Mito: i costi dei server indirizzano i business case per la migrazione cloud.** In alcuni casi questo è vero. Per alcune aziende, è importante ridurre le spese in conto capitale costanti relative ai server. Tuttavia, questo dipende da fattori diversi. Per le aziende con un ciclo di aggiornamento hardware dai 5 agli 8 anni, è improbabile osservare ritorni veloci sugli investimenti nella migrazione al cloud. Le aziende con cicli di aggiornamento standardizzati o imposti possano raggiungere rapidamente un punto di pareggio. In entrambi i casi, altre spese potrebbero essere i trigger finanziari che motivano la migrazione. Di seguito sono indicati alcuni esempi di costi che spesso vengono ignorati durante la considerazione dei costi basata solo sul server o sulle macchine virtuali:
 
 - i costi software di virtualizzazione, server e middleware possono essere ingenti. I provider di servizi cloud eliminano alcuni di questi costi. Due esempi di provider di servizi cloud che riducono i costi di virtualizzazione sono i programmi [Vantaggio Azure Hybrid](https://azure.microsoft.com/pricing/hybrid-benefit/#services) e [Prenotazioni](https://azure.microsoft.com/reservations/).
 - Le perdite aziendali dovute alle interruzioni possono superare rapidamente i costi hardware o software. Se il data center corrente è instabile, richiedere all'azienda di quantificare l'impatto delle interruzioni in termini di costi di opportunità o costi aziendali effettivi.
@@ -109,4 +110,4 @@ Se il ritorno sugli investimenti è ancora disallineato, richiedere assistenza a
 ## <a name="next-steps"></a>Passaggi successivi
 
 > [!div class="nextstepaction"]
-> [Creare un modello finanziario per la trasformazione del cloud](financial-models.md)
+> [Creare un modello finanziario per la trasformazione del cloud](./financial-models.md)

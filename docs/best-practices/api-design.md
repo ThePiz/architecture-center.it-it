@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2c4a76ea3a9acdeb1141a1274f6926667c67c81b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: b15b97de2042a0e213192dd586ffdcc4c51b1f11
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484109"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897984"
 ---
 # <a name="api-design"></a>Progettazione API
 
@@ -21,7 +21,7 @@ La maggior parte delle applicazioni Web moderne espone API che possono essere us
 
 - **Indipendenza dalla piattaforma**. Qualsiasi client deve poter chiamare l'API indipendentemente da come è implementata internamente. A questo scopo è necessario usare protocolli standard e un meccanismo che consenta al client e al servizio Web di concordare il formato dei dati da scambiare.
 
-- **Evoluzione del servizio**. L'API Web deve avere la possibilità di evolversi e aggiungere funzionalità indipendentemente dalle applicazioni client. Con l'evoluzione dell'API, le applicazioni client dovranno continuare a funzionare senza modifiche. Tutte le funzionalità dovranno essere individuabili per poter essere utilizzate appieno dalle applicazioni client.
+- **Evoluzione del servizio**. L'API Web deve avere la possibilità di evolversi e aggiungere funzionalità indipendentemente dalle applicazioni client. Con l'evoluzione dell'API, le applicazioni client dovranno continuare a funzionare senza modifiche. Tutte le funzionalità dovranno essere individuabili per poter essere usate appieno dalle applicazioni client.
 
 Queste linee guida descrivono gli aspetti da considerare durante la progettazione di un'API Web.
 
