@@ -1,41 +1,44 @@
 ---
-title: "Adozione del cloud nell'organizzazione: Funzionamento di Azure"
-description: Spiegazione del funzionamento interno di Azure
-author: petertaylor9999
-ms.date: 09/10/2018
-ms.topic: guide
+title: 'CAF: Funzionamento di Azure'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 510fc1040812d61b8d736b25c434511ea981b9e5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.custom: governance
+description: Spiegazione del funzionamento interno di Azure
+author: petertaylor9999
+ms.date: 2/11/2019
+ms.openlocfilehash: 5ce9f0535584cbc45d757be5aa6f2fd64c7cc39f
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481831"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898069"
 ---
-# <a name="enterprise-cloud-adoption-how-does-azure-work"></a>Adozione del cloud nell'organizzazione: Funzionamento di Azure
+<!-- markdownlint-disable MD026 -->
+
+# <a name="how-does-azure-work"></a>Funzionamento di Azure
 
 Azure è una piattaforma cloud pubblica di Microsoft. Azure offre un'ampia varietà di servizi di tipo piattaforma distribuita come servizio (PaaS), infrastruttura distribuita come servizio (IaaS), database distribuito come servizio (DBaaS) e molti altri. Ma che cos'è esattamente Azure e come funziona?
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo] 
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo]
 
 Come altre piattaforme cloud, Azure si basa su una tecnologia nota come **virtualizzazione**. Quasi tutto l'hardware di computer può essere emulato in software perché è costituito semplicemente da un set di istruzioni codificate in silicone in modo permanente o semipermanente. Usando un livello di emulazione che associa le istruzioni del software a quelle dell'hardware, un componente hardware virtualizzato può essere eseguito nel software come un componente fisico realmente esistente.
 
 In pratica, il cloud è costituito da un set di server fisici in uno o più data center che eseguono hardware virtualizzato per conto dei clienti. In che modo il cloud riesce a creare, avviare, arrestare ed eliminare milioni di istanze di hardware virtualizzato per milioni di clienti allo stesso tempo?
 
-Per comprendere questo concetto, si esaminerà l'architettura dell'hardware nel data center.  All'interno di ogni data center è presente un insieme di server disposti in rack. Ogni rack di server contiene numerosi **blade** con un commutatore per la connettività di rete e un'unità PDU (Power Distribution Unit) per l'alimentazione. I rack sono talvolta raggruppati in unità più grandi, dette **cluster**. 
+Per comprendere questo concetto, si esaminerà l'architettura dell'hardware nel data center.  All'interno di ogni data center è presente un insieme di server disposti in rack. Ogni rack di server contiene numerosi **blade** con un commutatore per la connettività di rete e un'unità PDU (Power Distribution Unit) per l'alimentazione. I rack sono talvolta raggruppati in unità più grandi, dette **cluster**.
 
 All'interno di ogni rack o cluster, la maggior parte dei server ha il compito di eseguire le istanze di hardware virtualizzato per conto degli utenti. Alcuni server eseguono invece il software per la gestione del cloud, noto come controller di infrastruttura. Il **controller di infrastruttura** è un'applicazione distribuita a cui sono affidati numerosi compiti, tra cui l'allocazione dei servizi, il monitoraggio dell'integrità dei server e dei servizi in esecuzione su di essi e la correzione di eventuali errori dei server.
 
-Ogni istanza del controller di infrastruttura è connessa a un altro set di server che eseguono il software di orchestrazione del cloud, in genere denominato **front-end**. Il front-end ospita i servizi Web, le API RESTful e i database interni di Azure usati per tutte le funzioni eseguite dal cloud. 
+Ogni istanza del controller di infrastruttura è connessa a un altro set di server che eseguono il software di orchestrazione del cloud, in genere denominato **front-end**. Il front-end ospita i servizi Web, le API RESTful e i database interni di Azure usati per tutte le funzioni eseguite dal cloud.
 
 Tra i servizi ospitati dal front-end sono inclusi quelli che gestiscono le richieste dei clienti per allocare le risorse di Azure, ad esempio le [reti virtuali][vnet], le [macchine virtuali][vms] e i servizi come [CosmosDB][cosmosdb]. Per prima cosa, il front-end convalida l'utente e verifica che sia autorizzato ad allocare le risorse richieste. In caso affermativo, il front-end cerca in un database un rack di server con capacità sufficiente e quindi indica al controller di infrastruttura nel rack di allocare la risorsa.
 
-In ultima analisi, Azure è semplicemente un enorme insieme di server e componenti hardware di rete, unito a un set complesso di applicazioni distribuite che orchestrano la configurazione e il funzionamento del software e dell'hardware virtualizzato su tali server. È proprio questa orchestrazione a rendere Azure così potente. Gli utenti non sono più responsabili della gestione e dell'aggiornamento dell'hardware, poiché tutte queste attività vengono svolte dietro le quinte da Azure. 
+In ultima analisi, Azure è semplicemente un enorme insieme di server e componenti hardware di rete, unito a un set complesso di applicazioni distribuite che orchestrano la configurazione e il funzionamento del software e dell'hardware virtualizzato su tali server. È proprio questa orchestrazione a rendere Azure così potente. Gli utenti non sono più responsabili della gestione e dell'aggiornamento dell'hardware, poiché tutte queste attività vengono svolte dietro le quinte da Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver compreso il funzionamento interno di Azure, leggere le informazioni sulla [governance dell'accesso alle risorse](what-is-governance.md). 
+Dopo aver compreso il funzionamento interno di Azure, leggere le informazioni sulla governance delle risorse cloud.
 
 > [!div class="nextstepaction"]
 > [Informazioni sulla governance delle risorse](what-is-governance.md)

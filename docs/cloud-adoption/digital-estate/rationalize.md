@@ -1,22 +1,23 @@
 ---
-title: Razionalizzare il digital estate
-titleSuffix: Enterprise Cloud Adoption
-description: Processo per valutare le risorse digitali e trovare il modo migliore per ospitarle sul cloud.
+title: 'Cloud Adoption Framework: Razionalizzare il digital estate'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Valutare gli asset digitali per determinare il modo migliore per ospitarli nel cloud.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 2002b5273aed4aef2d283f23f83aa08d1d6f5c95
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 02189c9edcbfea0a55fe69a53bf610e85470a4d0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485724"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897202"
 ---
-# <a name="enterprise-cloud-adoption-rationalize-the-digital-estate"></a>Adozione del cloud nell'organizzazione: Razionalizzare il digital estate
+# <a name="rationalize-the-digital-estate"></a>Razionalizzare il digital estate
 
-La razionalizzazione del cloud è il processo di valutazione delle risorse per determinare l'approccio migliore per l’hosting delle risorse stesse nel cloud. Una volta determinato un [approccio](approach.md) e aggregato l’[inventario](inventory.md), è possibile iniziare la razionalizzazione del cloud. Nelle [5 R della razionalizzazione](5-rs-of-rationalization.md) sono descritte le opzioni più comuni di razionalizzazione.
+La razionalizzazione del cloud è il processo di valutazione delle risorse per determinare l'approccio migliore per l'hosting delle risorse stesse nel cloud. Una volta determinato un [approccio](approach.md) e aggregato l’[inventario](inventory.md), è possibile iniziare la razionalizzazione del cloud. Nelle [5 R della razionalizzazione](5-rs-of-rationalization.md) sono descritte le opzioni più comuni di razionalizzazione.
 
 ## <a name="traditional-view-of-rationalization"></a>Visione tradizionale della razionalizzazione
 
@@ -50,7 +51,7 @@ Pochissime organizzazioni investono il tempo, l’energia e le spese necessari p
 
 In una trasformazione cloud, l’inventario è direttamente correlato ai costi operativi. Per una pianificazione corretta sono necessari dati di inventario precisi. Sfortunatamente, le opzioni di analisi dell'ambiente correnti, che comportano l’analisi e il catalogo dell’intero inventario, possono ritardare le decisioni di settimane o mesi. Per fortuna, esistono alcuni trucchi per accelerare la raccolta dei dati.
 
-L'analisi basata sugli agenti è la causa di ritardo più citata. I dati affidabili necessari per una razionalizzazione tradizionale spesso dipendono dai dati che possono essere raccolti solo con un agente in esecuzione in ogni risorsa. Questa dipendenza dagli agenti rallenta spesso lo stato di avanzamento, poiché è possibile richiedere commenti dalle funzioni di sicurezza, operative e amministrative.
+L'analisi basata sugli agenti è la causa di ritardo più citata. I dati affidabili necessari per una razionalizzazione tradizionale spesso dipendono dai dati che possono essere raccolti solo con un agente in esecuzione in ogni risorsa. Questa dipendenza dagli agenti rallenta spesso lo stato di avanzamento, poiché è possibile richiedere feedback dalle funzioni di sicurezza, operative e amministrative.
 
 In un processo di razionalizzazione incrementale, è possibile utilizzare una soluzione senza agente per un’individuazione preliminare, in modo da accelerare le prime decisioni. A seconda del livello di complessità dell'ambiente, potrebbe essere ancora necessaria una soluzione basata su agenti, ma può essere rimossa dal percorso fondamentale per la modifica delle attività.
 
@@ -112,7 +113,7 @@ Il primo carico di lavoro è spesso distribuito in un ambiente sperimentale senz
 
 ### <a name="qualitative-analysis"></a>Analisi qualitativa
 
-I team di adozione e strategia cloud possono collaborare per analizzare questo piccolo carico di lavoro. In questo modo si stabilisce un'opportunità per creare e verificare i criteri di analisi qualitativa. La quantità ridotta consente di sondare gli utenti interessati, in modo da completare un’analisi qualitativa dettagliata in una settimana o meno. Per fattori di analisi qualitativa comuni, vedere l’obiettivo specifico della razionalizzazione nlle [5 R della razionalizzazione](5-rs-of-rationalization.md).
+I team di adozione e strategia cloud possono collaborare per analizzare questo piccolo carico di lavoro. In questo modo si stabilisce un'opportunità per creare e verificare i criteri di analisi qualitativa. La popolazione ridotta consente di sondare gli utenti interessati, in modo da completare un'analisi qualitativa dettagliata al massimo in una settimana. Per fattori di analisi qualitativa comuni, vedere l’obiettivo specifico della razionalizzazione nlle [5 R della razionalizzazione](5-rs-of-rationalization.md).
 
 ### <a name="migration"></a>Migrazione
 
@@ -122,7 +123,7 @@ In parallelo alla razionalizzazione continuata, il team di adozione cloud può i
 - Definire i servizi principali (e gli standard di Azure) necessari per soddisfare la visione a lungo termine.
 - Comprendere meglio in che modo le operazioni potrebbero evolversi durante la trasformazione.
 - Comprendere i rischi inerenti per le attività e la tolleranza per tali rischi.
-- Stabilire una linea di base o un prodotto con validità minima (MVP) per una governance basata sulla tolleranza del rischio aziendale
+- Stabilire una baseline o un prodotto minimo funzionante (MVP) per la governance basata sulla tolleranza del rischio aziendale.
 
 ## <a name="release-planning"></a>Pianificazione del rilascio
 
@@ -154,7 +155,7 @@ In alcuni casi, il modello finanziario potrebbe essere troppo ridotto per consen
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-L'output delle attività di razionalizzazione è un backlog ordinato in base alle priorità di tutte le risorse che devono essere interessate dalla trasformazione scelta. Questo backlog sarà la base per i modelli di determinazione dei costi dei servizi cloud.
+L'output delle attività di razionalizzazione è un backlog ordinato in base alle priorità di tutti gli asset che saranno interessati dalla trasformazione scelta. Questo backlog sarà la base per i modelli di determinazione dei costi dei servizi cloud.
 
 > [!div class="nextstepaction"]
 > [Allineare i modelli di costo con il digital estate](calculate.md)

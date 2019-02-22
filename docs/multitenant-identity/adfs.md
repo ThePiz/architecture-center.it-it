@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 82b39d77f1ee9af4063c4715a4688ef4b69bc477
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d095283531c1183726ebf132707aaede1f03f09b
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487856"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897270"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federazione con AD FS di un cliente
 
@@ -62,7 +62,7 @@ Per un esempio di utilizzo di WS-Federation con ASP.NET 4, vedere l'[esempio act
 
 Per impostazione predefinita, l'applicazione relying party riceve solo un set fisso delle attestazioni disponibili nel parametro id_token, illustrato nella tabella seguente. Con AD FS 2016, è possibile personalizzare il parametro id_token negli scenari di OpenID Connect. Per altre informazioni, vedere [Custom ID Tokens in AD FS](/windows-server/identity/ad-fs/development/customize-id-token-ad-fs-2016) (Token ID personalizzati in AD FS).
 
-| Attestazione | DESCRIZIONE |
+| Attestazione | Descrizione |
 | --- | --- |
 | aud |Destinatari. Applicazione per la quale sono state rilasciate le attestazioni. |
 | authenticationinstant |[Istante di autenticazione]. Ora in cui è stata eseguita l'autenticazione. |

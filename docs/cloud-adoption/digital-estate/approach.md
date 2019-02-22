@@ -1,20 +1,21 @@
 ---
-title: Approcci per la pianificazione del digital estate
-titleSuffix: Enterprise Cloud Adoption
+title: 'CAF: Approcci per la pianificazione del digital estate'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
 description: Descrive alcuni approcci per la pianificazione del digital estate
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 59c9e208254eaa0e8beb365718ef59d0694094f3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 8b6c680cf477ea188cbd263ecc04389d6daaed89
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482222"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898018"
 ---
-# <a name="enterprise-cloud-adoption-approaches-to-digital-estate-planning"></a>Adozione del cloud nell'organizzazione: Approcci per la pianificazione del digital estate
+# <a name="approaches-to-digital-estate-planning"></a>Approcci per la pianificazione del digital estate
 
 La pianificazione del digital estate può assumere diverse forme, a seconda dei risultati desiderati e delle dimensioni dell'estate esistente. Esistono anche numerose opzioni relative all'approccio adottato. È importante definire le aspettative in relazione all'approccio all'inizio dei cicli di pianificazione. Le aspettative poco chiare sono spesso causa di ritardi associati a pratiche aggiuntive di raccolta dell'inventario. Questo articolo illustra tre approcci all'analisi.
 
@@ -36,7 +37,7 @@ L'approccio basato su asset offre un piano basato sulle risorse che supportano u
 
 ## <a name="incremental-approach"></a>Approccio incrementale
 
-Come in gran parte del framework aziendale di adozione del cloud, l'approccio incrementale è altamente consigliato. Nel caso della pianificazione del digital estate, questo comporta un processo in più fasi, come indicato di seguito:
+Come in gran parte del framework per l'adozione del cloud, l'approccio incrementale è altamente consigliato. Nel caso della pianificazione del digital estate, questo comporta un processo in più fasi, come indicato di seguito:
 
 - Analisi dei costi iniziali: se è necessaria la convalida finanziaria, iniziare con un approccio basato su asset, descritto in precedenza, per ottenere un calcolo dei costi iniziali per l'intero digital estate, con nessuna razionalizzazione. Questo consente di stabilire un benchmark per il peggiore dei casi.
 

@@ -1,20 +1,21 @@
 ---
-title: Creare un modello finanziario per la trasformazione del cloud
-titleSuffix: Enterprise Cloud Adoption
-description: Come creare un modello finanziario per la trasformazione del cloud
+title: 'CAF: Creare un modello finanziario per la trasformazione del cloud'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Come creare un modello finanziario per la trasformazione del cloud.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: d1a5cd0cefef4786a0f55592cad58451c3cae9c4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482188"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898205"
 ---
-# <a name="enterprise-cloud-adoption-how-to-create-a-financial-model-for-cloud-transformation"></a>Adozione del cloud nell'organizzazione: Come creare un modello finanziario per la trasformazione del cloud
+# <a name="create-a-financial-model-for-cloud-transformation"></a>Creare un modello finanziario per la trasformazione del cloud
 
 Creare un modello finanziario che rappresenti accuratamente l'intero valore aziendale di una trasformazione del cloud può essere complicato. I modelli finanziari e le motivazioni aziendali tendono a essere diversi tra un'organizzazione e l'altra. Questo articolo definisce alcune formule e indica alcuni fattori che solitamente non vengono considerati durante la creazione di un modello finanziario.
 
@@ -62,7 +63,7 @@ I delta dei costi sono la quantità di aumento o calo che risulterà dalla trasf
 
 Per indicazioni sugli ammortamenti, contattare il direttore delle finanze o il team finanziario. Seguono riferimenti generali sul tema degli ammortamenti.
 
-Quando si investe capitale sull'acquisizione di un asset, tale investimento può essere usato a scopi finanziari o fiscali per generare vantaggi continui per tutta la vita utile prevista dell'asset. Alcune aziende vedono gli ammortamenti come un vantaggio fiscale positivo. Altri li considerano una spesa continua e inevitabile, simile ad altri costi periodici attribuiti alla spesa informatica annuale.
+Quando si investe capitale nell'acquisizione di un asset, tale investimento può essere usato a scopi finanziari o fiscali per generare vantaggi continui per tutta la vita utile prevista dell'asset. Alcune aziende vedono gli ammortamenti come un vantaggio fiscale positivo. Altri li considerano una spesa continua e inevitabile, simile ad altri costi periodici attribuiti alla spesa informatica annuale.
 
 Rivolgersi all'ufficio finanziario per vedere se è possibile eliminare gli ammortamenti e se questo può avere un impatto positivo sui delta dei costi.
 
@@ -97,3 +98,10 @@ Un'eccezione è quando la capacità operativa viene fornita da terze parti o pro
 Le spese in conto capitale (CapEx) sono leggermente diverse dalle spese operative. In genere, questa categoria è determinata dai cicli di aggiornamento o dall'espansione dei data center. Un esempio di un'espansione dei data center può essere un nuovo cluster ad alte prestazioni per l'hosting di una soluzione di Big Data o di un data warehouse e in genere può rientrare nella categoria di spese in conto capitale. I cicli di aggiornamento di base sono più comuni. Alcune aziende dispongono cicli rigidi di aggiornamento hardware, in cui gli asset sono dismessi e sostituiti a ciclo regolare (in genere ogni 3, 5 o 8 anni). Questi cicli spesso coincidono con cicli di noleggio di asset o cicli di vita prevista di apparecchiature. Quando è il momento di un ciclo di aggiornamento, il settore IT attinge dalle spese in conto capitale per acquistare l'apparecchiatura nuova.
 
 Se un ciclo di aggiornamento viene approvato e preventivato, la trasformazione del cloud può essere utile per eliminare tale costo. Se un ciclo di aggiornamento è pianificato ma non ancora approvato, la trasformazione del cloud può evitare dei costi di spesa in conto capitale. Entrambi gli scenari sarebbero inclusi nel delta dei costi.
+
+## <a name="next-steps"></a>Passaggi successivi
+
+Leggere alcuni esempi di esiti fiscali nel contesto di una trasformazione cloud.
+
+> [!div class="nextstepaction"]
+> [Esempi di esiti fiscali](./business-outcomes/fiscal-outcomes.md)

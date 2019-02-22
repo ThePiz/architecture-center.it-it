@@ -1,20 +1,21 @@
 ---
-title: Le 5 "R" della razionalizzazione
-titleSuffix: Enterprise Cloud Adoption
-description: Vengono descritte le opzioni disponibili durante la razionalizzazione di un digital estate
+title: 'CAF: Le 5 "R" della razionalizzazione'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Esaminare le opzioni disponibili per la razionalizzazione di un digital estate.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: ee196487e6f59b1e1b3c63bab9496cbbf805affd
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908580"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897474"
 ---
-# <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>Adozione del cloud nell'organizzazione: Le 5 "R" della razionalizzazione
+# <a name="the-5-rs-of-rationalization"></a>Le 5 "R" della razionalizzazione
 
 La razionalizzazione del cloud è il processo di valutazione degli asset per determinare l'approccio migliore per la migrazione o la modernizzazione di ogni asset nel cloud. Per altre informazioni sul processo di razionalizzazione, consultare [Che cos'è un digital estate?](overview.md)
 
@@ -135,7 +136,7 @@ Fattori di analisi quantitativa:
 
 Fattori di analisi qualitativa:
 
-* Analisi costi-benefici dell'architettura attuale in confronto alla soluzione SaaS
+* Analisi costi-benefici dell'architettura attuale rispetto alla soluzione SaaS
 * Mapping dei processi aziendali
 * Schemi di dati
 * Processi personalizzati o automatizzati

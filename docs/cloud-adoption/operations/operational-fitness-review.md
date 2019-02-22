@@ -1,17 +1,17 @@
 ---
-title: "Adozione del cloud nell'organizzazione: concetti fondamentali dell'operatività"
+title: "Cloud Adoption Framework: concetti fondamentali dell'operatività"
 description: Linee guida per i concetti fondamentali dell'operatività
 author: petertaylor9999
 ms.date: 09/20/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 26867e3ecce738f18c5a03ff41754281229851f4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: afecf380b1a75d006f6f2bc0cb0e5058cd3feffc
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481126"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897100"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>Stabilire una verifica dell'idoneità operativa
 
@@ -49,7 +49,7 @@ A livello generale, il processo prevede due fasi. Nella fase dei prerequisiti, i
 
 I passaggi in questa fase sono utili per raccogliere i requisiti necessari per eseguire una verifica regolare dei servizi importanti.
 
-- **Identificare le operazioni aziendali cruciali**. Identificare le operazioni aziendali **cruciali** dell'organizzazione. Le operazioni aziendali sono indipendenti da qualsiasi funzionalità dei servizi di supporto. In altre parole, le operazioni aziendali rappresentano le attività effettive che l'azienda deve eseguire e che sono supportate da un set di servizi IT. Il termine _cruciale_, o in alternativa _business critical_, è indicativo delle gravi conseguenze per l'azienda se l'operazione risultasse impedita. Ad esempio, un rivenditore online può avere un'operazione aziendale come "consentire a un cliente di aggiungere un articolo a un carrello" oppure "elaborare un pagamento con carta di credito". Se una di queste operazioni dovesse avere esito negativo, un cliente non sarebbe in grado di completare la transazione e l'azienda non riuscirebbe a realizzare la vendita.
+- **Identificare le operazioni aziendali cruciali**. Identificare le operazioni aziendali cruciali dell'organizzazione. Le operazioni aziendali sono indipendenti da qualsiasi funzionalità dei servizi di supporto. In altre parole, le operazioni aziendali rappresentano le attività effettive che l'azienda deve eseguire e che sono supportate da un set di servizi IT. Il termine **cruciale**, o **business critical**, è indicativo delle gravi conseguenze per l'azienda se l'operazione risultasse impedita. Ad esempio, un rivenditore online può avere un'operazione aziendale come "consentire a un cliente di aggiungere un articolo a un carrello" oppure "elaborare un pagamento con carta di credito". Se una di queste operazioni dovesse avere esito negativo, un cliente non sarebbe in grado di completare la transazione e l'azienda non riuscirebbe a realizzare la vendita.
 
 - **Abbinare le operazioni ai servizi**. Abbinare queste operazioni aziendali ai servizi che le supportano. Nel precedente esempio del carrello, possono essere coinvolti diversi servizi: un servizio di gestione delle scorte di magazzino, un servizio per il carrello e altri. Nell'esempio di pagamento con carta di credito precedente, un servizio di pagamento in locale potrebbe interagire con un servizio di elaborazione dei pagamenti di terze parti.
 
@@ -65,8 +65,7 @@ La scorecard deve essere espressa in termini semplici per promuovere scambi di o
 
 La fase di verifica del servizio è fondamentale nel processo di verifica dell'idoneità operativa.
 
-- **Misurare le metriche del servizio**. Con le metriche di scorecard, i servizi devono essere monitorati per garantire che soddisfino le aspettative aziendali. Questo significa che il monitoraggio dei servizi è fondamentale. Se non si è in grado di monitorare un set di servizi per quanto riguarda i requisiti non funzionali, le metriche di scorecard corrispondenti devono essere considerate rosse. In questo caso, il primo passaggio per la correzione consiste nell'implementare il monitoraggio del servizio appropriato.
-Ad esempio, se l'azienda si aspetta una disponibilità del 99,99% per il servizio, ma non esistono strumenti di telemetria della produzione per misurare la disponibilità, si deve presupporre che questo requisito non sia soddisfatto.
+- **Misurare le metriche del servizio**. Con le metriche di scorecard, i servizi devono essere monitorati per garantire che soddisfino le aspettative aziendali. Questo significa che il monitoraggio dei servizi è fondamentale. Se non si è in grado di monitorare un set di servizi per quanto riguarda i requisiti non funzionali, le metriche di scorecard corrispondenti devono essere considerate rosse. In questo caso, il primo passaggio per la correzione consiste nell'implementare il monitoraggio del servizio appropriato. Ad esempio, se l'azienda si aspetta una disponibilità del 99,99% per il servizio, ma non esistono strumenti di telemetria della produzione per misurare la disponibilità, si deve presupporre che questo requisito non sia soddisfatto.
 
 - **Pianificare gli interventi correttivi**. Per ogni operazione del servizio con metriche che scendono sotto una soglia accettabile, determinare il costo della correzione del servizio per ottenere di nuovo metriche accettabili per l'operazione. Se il costo di correzione del servizio è maggiore rispetto alla generazione di ricavi prevista del servizio, prendere in considerazione anche i costi non tangibili, come l'esperienza dei clienti. Ad esempio, se i clienti hanno difficoltà a completare un ordine con il servizio, potrebbero optare per un concorrente.
 
@@ -78,7 +77,7 @@ Si tratta di un processo iterativo e idealmente l'organizzazione dovrebbe avere 
 
 Il team di verifica dell'idoneità operativa prevede i seguenti ruoli:
 
-1. **Titolare dell'azienda**. Questo ruolo dispone delle conoscenze dell'azienda necessarie per identificare ogni operazione aziendale "cruciale" e classificarne la priorità. Questo ruolo, inoltre, è in grado di soppesare il costo delle correzioni in relazione all'impatto aziendale e guida la decisione finale in merito agli interventi correttivi.
+1. **Titolare dell'azienda**. Questo ruolo dispone delle conoscenze dell'azienda necessarie per identificare ogni operazione aziendale cruciale e classificarne la priorità. Questo ruolo, inoltre, è in grado di soppesare il costo delle correzioni in relazione all'impatto aziendale e guida la decisione finale in merito agli interventi correttivi.
 
 2. **Responsabile dell'azienda**. Questo ruolo è responsabile della suddivisione delle operazioni aziendali in parti discrete e del mapping di tali parti a servizi ed elementi infrastrutturali locali e nel cloud. Il ruolo richiede una profonda conoscenza della tecnologia associata a ogni operazione aziendale.
 
@@ -107,10 +106,10 @@ I dettagli del processo e delle riunioni devono essere adattati in base alle spe
 ## <a name="recommended-resources"></a>Risorse consigliate
 
 - [Concetti fondamentali della qualità del software](../../guide/pillars.md).
-Questa sezione della Guida all'architettura delle applicazioni Azure descrive i cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza.
+    Questa sezione della Guida all'architettura delle applicazioni Azure descrive i cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza.
 - [Dieci principi di progettazione per le applicazioni Azure](../../guide/design-principles/index.md).
-Questa sezione della Guida all'architettura delle applicazioni Azure descrive un set di principi di progettazione per rendere l'applicazione più scalabile, resiliente e gestibile.
+    Questa sezione della Guida all'architettura delle applicazioni Azure descrive un set di principi di progettazione per rendere l'applicazione più scalabile, resiliente e gestibile.
 - [Progettazione di applicazioni resilienti per Azure](../../resiliency/index.md).
-Questa guida inizia con una definizione del termine resilienza e dei concetti correlati. Quindi, viene descritto un processo per ottenere la resilienza, adottando un approccio strutturato in base alla durata di un'applicazione, dalla progettazione e implementazione alla distribuzione, fino alle operazioni.
+    Questa guida inizia con una definizione del termine resilienza e dei concetti correlati. Quindi, viene descritto un processo per ottenere la resilienza, adottando un approccio strutturato in base alla durata di un'applicazione, dalla progettazione e implementazione alla distribuzione, fino alle operazioni.
 - [Modelli di progettazione cloud](../../patterns/index.md).
-Questi modello di progettazione sono utili per i team di progettazione durante lo sviluppo di applicazioni in base ai pilastri della qualità del software.
+    Questi modello di progettazione sono utili per i team di progettazione durante lo sviluppo di applicazioni in base ai pilastri della qualità del software.

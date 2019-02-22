@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, SAP, Windows, Linux
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-sap-production.png
-ms.openlocfilehash: 03714dbf08c23220fa95a3789adb40d7a5cfac92
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: a80d414f53cca474af587fce7c67d734eb223841
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908240"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897168"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>Esecuzione di carichi di lavoro di produzione SAP con un database Oracle in Azure
 
@@ -66,7 +66,7 @@ SAP offre opzioni flessibili per diverse combinazioni di sistema operativo, sist
 
 - Anche per i database Oracle sono disponibili procedure consigliate per Azure. Per altre informazioni, vedere [Progettazione e implementazione di un database Oracle in Azure](/azure/virtual-machines/workloads/oracle/oracle-design).
 
-- Oracle Data Guard viene usato per eliminare i singoli punti di guasto per i database Oracle cruciali. Per altre informazioni, vedere [Implementazione di Oracle Data Guard su una macchina virtuale Linux in Azure](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard).
+- Oracle Data Guard viene usato per eliminare singoli punti di guasto nei database Oracle cruciali. Per altre informazioni, vedere [Implementazione di Oracle Data Guard su una macchina virtuale Linux in Azure](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard).
 
 - Microsoft Azure offre servizi di infrastruttura che possono essere usati per distribuire prodotti SAP con un database Oracle. Per altre informazioni, vedere [Distribuzione di un sistema DBMS di Oracle in Azure per un carico di lavoro SAP](/azure/virtual-machines/workloads/sap/dbms_guide_oracle).
 

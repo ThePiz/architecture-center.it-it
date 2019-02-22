@@ -1,20 +1,22 @@
 ---
-title: Informazioni sul digital estate
-titleSuffix: Enterprise Cloud Adoption
-description: Spiegazione del concetto di digital estate
+title: 'CAF: Informazioni sul digital estate'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+description: Informazioni sul digital estate
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: ce21a2d72fcb630f5f197dbd6b87b16ef8f41435
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d23bdbdd98226e8b9cdb9bbb5fefa5a918a498d8
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481542"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898426"
 ---
-# <a name="enterprise-cloud-adoption-what-is-a-digital-estate"></a>Adozione del cloud nell'organizzazione: Informazioni sul digital estate
+<!-- markdownlint-disable MD026 -->
+
+# <a name="caf-what-is-a-digital-estate"></a>CAF: Informazioni sul digital estate
 
 Tutte le aziende moderne dispongono di un tipo di digital estate. Proprio come una risorsa fisica, un digital estate è un riferimento astratto a un numero di risorse di proprietà tangibili. In un digital estate, tali risorse sono costituite da macchine virtuali (VM), server, applicazioni, dati e così via. Un digital estate è fondamentalmente la raccolta delle risorse IT necessarie per i processi aziendali e le operazioni di supporto.
 
@@ -53,4 +55,4 @@ I modelli finanziari e i backlog di migrazione possono essere modificati per rif
 Prima di iniziare la pianificazione del digital estate, è necessario determinare l'approccio da utilizzare.
 
 > [!div class="nextstepaction"]
-> [Determinare l'approccio di analisi](approach.md)
+> [Approcci per la pianificazione del digital estate](approach.md)
