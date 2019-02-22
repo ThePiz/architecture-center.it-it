@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+ms.openlocfilehash: 4f973a6173e882d6ae839833bd3c5bf86f8d7fb6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782099"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898137"
 ---
 # <a name="data-partitioning-strategies"></a>Strategie di partizionamento dei dati
 
@@ -229,7 +229,7 @@ Questo approccio è più adatto quando esiste una variazione regionale significa
 
 ## <a name="partitioning-azure-redis-cache"></a>Partizionamento di Cache Redis di Azure
 
-Cache Redis di Azure offre un servizio di memorizzazione nella cache condivisa nel cloud basato sull'archivio dati chiave-valore di Redis. Come suggerisce il nome, Cache Redis di Azure è una soluzione di memorizzazione nella cache. Usare questa soluzione solo per contenere dati temporanei e non come archivio dati permanente. Le applicazioni che usano Cache Redis di Azure dovrebbero continuare a funzionare anche se la cache non è disponibile. Cache Redis di Azure supporta la replica primaria o secondaria per garantire una disponibilità elevata, ma attualmente limita la dimensione massima della cache a 53 GB. Se è necessario più spazio, si devono creare cache aggiuntive. Per altre informazioni, vedere [Cache Redis di Azure].
+Cache Redis di Azure offre un servizio di memorizzazione nella cache condivisa nel cloud basato sull'archivio dati chiave-valore di Redis. Come suggerisce il nome, Cache Redis di Azure è una soluzione di memorizzazione nella cache. Usare questa soluzione solo per contenere dati temporanei e non come archivio dati permanente. Le applicazioni che usano Cache Redis di Azure sono in grado di continuare a funzionare anche se la cache non è disponibile. Cache Redis di Azure supporta la replica primaria o secondaria per garantire una disponibilità elevata, ma attualmente limita la dimensione massima della cache a 53 GB. Se è necessario più spazio, si devono creare cache aggiuntive. Per altre informazioni, vedere [Cache Redis di Azure].
 
 Il partizionamento di un archivio dati Redis prevede la suddivisione dei dati tra istanze del servizio Redis. Ogni istanza rappresenta una singola partizione. Cache Redis di Azure consente di astrarre i servizi di Redis dietro un’interfaccia e non li espone direttamente. Il modo più semplice per implementare il partizionamento consiste nel creare più istanze della Cache Redis di Azure e distribuire i dati nelle cache.
 
