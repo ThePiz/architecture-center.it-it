@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: aa69746b59ddfff02381dd811caa9a7aa62d8b7b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484806"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897763"
 ---
 # <a name="api-implementation"></a>Implementazione di API
 
@@ -614,7 +614,7 @@ Un'applicazione client può inviare una richiesta per recuperare 30 ordini a par
 
 ## <a name="maintaining-responsiveness-scalability-and-availability"></a>Gestione di velocità di risposta, scalabilità e disponibilità
 
-La stessa API Web può essere utilizzata da numerose applicazioni client in esecuzione ovunque nel mondo. È importante assicurarsi che l'API Web sia implementata per mantenere la velocità di risposta con un carico pesante, per essere scalabile per supportare un carico di lavoro estremamente variabile e per garantire la disponibilità per i client che eseguono operazioni critiche. Per determinare le modalità per soddisfare tali requisiti, tenere presente quanto segue:
+La stessa API Web può essere usata da numerose applicazioni client in esecuzione ovunque nel mondo. È importante assicurarsi che l'API Web sia implementata per mantenere la velocità di risposta con un carico pesante, per essere scalabile per supportare un carico di lavoro estremamente variabile e per garantire la disponibilità per i client che eseguono operazioni critiche. Per determinare le modalità per soddisfare tali requisiti, tenere presente quanto segue:
 
 ### <a name="provide-asynchronous-support-for-long-running-requests"></a>Offrire supporto asincrono per le richieste a esecuzione prolungata
 
