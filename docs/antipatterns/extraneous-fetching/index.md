@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c1172531b332854a6d4940c072b61cb3f6bcd7ba
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488189"
 ---
+
 # <a name="extraneous-fetching-antipattern"></a>Antipattern di recupero estraneo
 
 Il recupero di più dati rispetto a quelli necessari per un'operazione commerciale può comportare un sovraccarico non necessario di I/O e ridurre i tempi di risposta.

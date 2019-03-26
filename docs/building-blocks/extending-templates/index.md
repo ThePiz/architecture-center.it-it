@@ -6,13 +6,8 @@ ms.date: 06/09/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 108d82066d9867682c246c4de802849e2e561cbc
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486438"
 ---
+
 # <a name="extend-azure-resource-manager-template-functionality"></a>Estendere le funzionalità dei modelli di Azure Resource Manager
 
 Nel 2016 il team di modelli e procedure di Microsoft ha creato un set di [blocchi predefiniti di modello](https://github.com/mspnp/template-building-blocks/wiki) di Azure Resource Manager allo scopo di semplificare la distribuzione delle risorse. Ogni blocco predefinito contiene un set di modelli predefiniti che distribuiscono set di risorse specificate da file di parametri separati.

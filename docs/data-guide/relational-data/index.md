@@ -1,18 +1,13 @@
 ---
 title: Dati relazionali
-description: ''
+description: null
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: d68bddcb75e5c8f786a7739e85de2645a2c3d641
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484934"
 ---
+
 # <a name="traditional-relational-database-solutions"></a>Soluzioni per i database relazionali tradizionali
 
 I dati relazioni sono dati modellati tramite il modello relazionale, in cui i dati sono espressi sotto forma di tuple. Una *tupla* è un set di coppie attributo/valore, come ad esempio (itemid = 5, orderid = 1, item = "Chair", amount = 200.00). Un set di tuple che condividono gli stessi attributi prende il nome di *relazione*.
