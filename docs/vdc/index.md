@@ -6,13 +6,8 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486957"
 ---
+
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Data center virtuale di Azure e piano di controllo aziendale
 
 Il data center virtuale di Azure rappresenta un approccio per ottenere il massimo dalle funzionalità delle piattaforme cloud di Azure, rispettando al tempo stesso i criteri di sicurezza e di rete esistenti. Quando le organizzazioni IT e le business unit distribuiscono carichi di lavoro aziendali sul cloud, devono bilanciare la governance con la flessibilità degli sviluppatori. Il data center virtuale di Azure offre modelli per raggiungere questo equilibrio, soffermandosi in particolare sulla governance.
