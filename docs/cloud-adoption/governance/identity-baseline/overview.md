@@ -10,11 +10,11 @@ author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
 ms.openlocfilehash: 14569b8db68434ee30fa7bff7fba2da5fa537049
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902036"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242032"
 ---
 # <a name="caf-identity-baseline-discipline-overview"></a>CAF: Panoramica sulla disciplina Baseline di identità
 
@@ -32,7 +32,7 @@ Se l'organizzazione non dispone di competenze interne in materia di Baseline di 
 Le informative sui criteri di utilità pratica e i requisiti dell'architettura risultanti sono il principale fondamento di una disciplina Baseline di identità. Per esempi di informative sui criteri, consultare l'articolo [Identity Baseline Policy Statements (Esempi di informative sui criteri di Baseline di identità)](./policy-statements.md). Questi esempi possono essere usati come punto di partenza per definire i criteri di governance della propria organizzazione.
 
 > [!CAUTION]
-> Sono stati sviluppati in base a esperienze comuni dei clienti. Per allineare questi criteri a specifiche esigenze di governance del cloud, eseguire i passaggi seguenti per creare informative sui criteri che siano in grado di soddisfare le esigenze esclusive della propria organizzazione.
+> I criteri di esempio sono stati sviluppati in base a esperienze comuni dei clienti. Per allineare questi criteri a specifiche esigenze di governance del cloud, eseguire i passaggi seguenti per creare informative sui criteri che siano in grado di soddisfare le esigenze esclusive della propria organizzazione.
 
 ## <a name="developing-identity-baseline-governance-policy-statements"></a>Sviluppare istruzioni dei criteri di governance per Baseline di identità
 
@@ -128,7 +128,7 @@ Le sei fasi seguenti offrono esempi e potenziali opzioni da considerare nello sv
                     </div>
                     <div class="cardText" style="padding-left:0px;">
                         <h3>Livello di maturità</h3>
-                        <p class="x-hidden-focus">Allineare il livello di maturità della gestione cloud alle fasi di adozione del cloud.</p>
+                        <p class="x-hidden-focus">Allineare il livello di maturità della gestione del cloud alle fasi di adozione del cloud.</p>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@ Le sei fasi seguenti offrono esempi e potenziali opzioni da considerare nello sv
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Iniziare con la valutazione dei [rischi aziendali](./business-risks.md) in un determinato ambiente.
+Iniziare con la valutazione dei [rischi aziendali](./business-risks.md) in un ambiente specifico.
 
 > [!div class="nextstepaction"]
-> [Understand business risks](./business-risks.md) (Informazioni sui rischi aziendali)
+> [Informazioni sui rischi aziendali](./business-risks.md)

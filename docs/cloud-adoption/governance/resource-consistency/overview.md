@@ -10,11 +10,11 @@ author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
 ms.openlocfilehash: ce29efab1502d59513528ab4b640173346aee516
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901602"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241982"
 ---
 # <a name="caf-resource-consistency-discipline-overview"></a>Cloud Adoption Framework: Panoramica della disciplina Coerenza delle risorse
 
@@ -27,12 +27,12 @@ Questa sezione del Cloud Adoption Framework illustra come sviluppare una discipl
 
 Se l'organizzazione non dispone di competenze interne sulle strategie relative alla coerenza delle risorse, considerare l'opportunità di avvalersi di consulenti esterni come parte di questa disciplina. Prendere in considerazione anche la possibilità di coinvolgere [Microsoft Consulting Services](https://www.microsoft.com/enterprise/services), il servizio di adozione del cloud [Microsoft FastTrack](https://azure.microsoft.com/programs/azure-fasttrack) o altri esperti esterni di adozione del cloud per discutere sulle modalità ottimali per organizzare, tenere traccia e ottimizzare gli asset basati sul cloud.
 
-## <a name="policy-statements"></a>Definizioni dei criteri
+## <a name="policy-statements"></a>Policy statements
 
 Una disciplina Coerenza delle risorse si basa principalmente sulle definizioni dei criteri in base ai quali prendere decisioni operative e sui requisiti dell'architettura risultanti. Per esempi di definizioni dei criteri, vedere l'articolo [Definizioni dei criteri di esempio per la coerenza delle risorse](./policy-statements.md). Questi esempi possono essere usati come punto di partenza per definire i criteri di governance della propria organizzazione.
 
 > [!CAUTION]
-> Sono stati sviluppati in base a esperienze comuni dei clienti. Per allineare questi criteri a specifiche esigenze di governance del cloud, eseguire i passaggi seguenti in modo da creare definizioni dei criteri in grado di soddisfare le esigenze specifiche della propria organizzazione.
+> I criteri di esempio sono stati sviluppati in base a esperienze comuni dei clienti. Per allineare questi criteri a specifiche esigenze di governance del cloud, eseguire i passaggi seguenti in modo da creare definizioni dei criteri in grado di soddisfare le esigenze specifiche della propria organizzazione.
 
 ## <a name="developing-resource-consistency-governance-policy-statements"></a>Sviluppo di definizioni dei criteri relativi alla governance per la coerenza delle risorse
 
@@ -128,7 +128,7 @@ I sei passaggi seguenti offrono esempi e potenziali opzioni da considerare nello
                     </div>
                     <div class="cardText" style="padding-left:0px;">
                         <h3>Livello di maturità</h3>
-                        <p class="x-hidden-focus">Allineare il livello di maturità della gestione cloud alle fasi di adozione del cloud.</p>
+                        <p class="x-hidden-focus">Allineare il livello di maturità della gestione del cloud alle fasi di adozione del cloud.</p>
                     </div>
                 </div>
             </div>
@@ -161,4 +161,4 @@ I sei passaggi seguenti offrono esempi e potenziali opzioni da considerare nello
 Iniziare con la valutazione dei [rischi aziendali](./business-risks.md) in un ambiente specifico.
 
 > [!div class="nextstepaction"]
-> [Comprendere i rischi aziendali](./business-risks.md)
+> [Informazioni sui rischi aziendali](./business-risks.md)
