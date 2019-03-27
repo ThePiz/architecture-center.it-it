@@ -1,21 +1,16 @@
 ---
 title: Modelli di progettazione cloud
 titleSuffix: Azure Architecture Center
-description: Schemi progettuali cloud per la creazione di applicazioni affidabili, scalabili e sicure nel cloud.
+description: 'Schemi progettuali cloud per la creazione di applicazioni affidabili, scalabili e sicure nel cloud.'
 keywords: Azure
 author: dragon119
-ms.date: 12/10/2018
+ms.date: 03/01/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1f3a76a104f0157526db3cff338c2b8b08dd573c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488257"
 ---
+
 # <a name="cloud-design-patterns"></a>Modelli di progettazione cloud
 
 Questi schemi progettuali sono utili per la compilazione di applicazioni affidabili, scalabili e sicure nel cloud.
@@ -95,10 +90,11 @@ Ogni schema descrive il problema che risolve, le considerazioni per l'applicazio
 |                       [A scomparti](./bulkhead.md)                       |                                                        Isolare gli elementi di un'applicazione in pool in modo che un eventuale problema in uno dei componenti non blocchi il funzionamento degli altri componenti.                                                        |
 |                    [Cache-aside](./cache-aside.md)                    |                                                                                   Caricare i dati su richiesta in una cache da un archivio dati.                                                                                    |
 |                [Interruttore](./circuit-breaker.md)                |                                                     Gestire gli errori la cui correzione potrebbe richiedere una quantità variabile di tempo in fase di connessione a una risorsa o a un servizio remoto.                                                     |
-|                           [CQRS](./cqrs.md)                           |                                                           Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate.                                                            |
+| [Scontrino](./claim-check.md) | Dividere un messaggio di grandi dimensioni in uno scontrino e un payload per evitare di sovraccaricare il bus dei messaggi. |
 |       [Transazione di compensazione](./compensating-transaction.md)       |                                                         Annullare il lavoro eseguito da una serie di passaggi che insieme definiscono un'operazione coerente.                                                         |
 |            [Consumer concorrenti](./competing-consumers.md)            |                                                            Consentire a più consumer concorrenti di elaborare i messaggi ricevuti sullo stesso canale di messaggistica.                                                             |
 | [Consolidamento delle risorse di calcolo](./compute-resource-consolidation.md) |                                                                        Consolidare più attività o operazioni in un'unica unità di calcolo                                                                        |
+|                           [CQRS](./cqrs.md)                           |                                                           Consente di segregare le operazioni di lettura dei dati dalle operazioni di aggiornamento dei dati attraverso l'utilizzo di interfacce separate.                                                            |
 |                 [Origine eventi](./event-sourcing.md)                 |                                                      Usare un archivio di solo accodamento per registrare la serie completa di eventi che descrivono le azioni eseguite sui dati di un dominio.                                                      |
 |   [Archivio di configurazione esterno](./external-configuration-store.md)   |                                                           È possibile estrarre le informazioni di configurazione dal pacchetto di distribuzione dell'applicazione e spostarle in una posizione centralizzata.                                                           |
 |             [Identità federativa](./federated-identity.md)             |                                                                                È possibile delegare l'autenticazione a un provider di identità esterno.                                                                                |

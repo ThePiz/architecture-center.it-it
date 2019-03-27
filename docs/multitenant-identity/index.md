@@ -1,18 +1,13 @@
 ---
 title: Gestione delle identità per le applicazioni multi-tenant
-description: Procedure consigliate per l'autenticazione, l'autorizzazione e la gestione delle identità in applicazioni multi-tenant.
+description: 'Procedure consigliate per l''autenticazione, l''autorizzazione e la gestione delle identità in applicazioni multi-tenant.'
 author: MikeWasson
 ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f8875612ad6b1a71fdb6f7a768078ae599eb70b5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480548"
 ---
+
 # <a name="manage-identity-in-multitenant-applications"></a>Gestire le identità in applicazioni multi-tenant
 
 Questa serie di articoli descrive le procedure consigliate per il multi-tenancy, quando si usa Azure AD per l'autenticazione e la gestione delle identità.
@@ -90,9 +85,7 @@ In un'app multi-tenant è necessario considerare gli utenti nel contesto dei ten
 In queste informazioni aggiuntive si esamina l'uso di Azure AD per la gestione delle identità.
 
 - Si presuppone che il cliente archivia i profili utente in Azure AD (tra cui i tenant di Office 365 e Dynamics CRM).
-- I clienti con Active Directory (AD) locale possono usare [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) per sincronizzare l'istanza locale di Active Directory con Azure AD.
-
-Se un cliente con account AD locale non può usare Azure AD Connect (a causa di criteri IT aziendali o per altri motivi), il provider SaaS può attuare la federazione con il cliente di AD mediante Active Directory Federation Services (AD FS). Questa opzione è descritta nell'argomento relativo alla [federazione con un'istanza AD FS del cliente](adfs.md).
+- I clienti con Active Directory locale possono usare [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) per sincronizzare l'istanza locale di Active Directory con Azure AD. Se un cliente con account Active Directory locale non può usare Azure AD Connect (a causa di criteri IT aziendali o per altri motivi), il provider SaaS può attuare la federazione con la directory del cliente direttamente tramite Active Directory Federation Services (AD FS). Questa opzione è descritta nell'argomento relativo alla [federazione con un'istanza AD FS del cliente](adfs.md).
 
 Queste informazioni aggiuntive non prendono in considerazione altri aspetti della multi-tenancy, ad esempio il partizionamento dei dati, la configurazione per tenant e così via.
 

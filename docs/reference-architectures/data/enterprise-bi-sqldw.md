@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 14adb9de7f46c3196e893451859385d87212b375
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482393"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243862"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Business intelligence aziendale in Azure con SQL Data Warehouse
 

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 70c18e1a5294b09bb156d2af06af7a32d33858da
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485475"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246182"
 ---
 # <a name="online-analytical-processing-olap"></a>OLAP (Online Analytical Processing)
 
@@ -133,13 +133,13 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server con indici columnstore | Database SQL di Azure con indici columnstore |
 | --- | --- | --- | --- | --- |
-| Servizio gestito | Yes | No  | No  | Yes |
-| Supporto per i cubi multidimensionali | No  | Yes | No  | No  |
-| Supporto per i modelli semantici tabulari | Yes | Sì | No  | No  |
-| Facilità di integrazione di più origini dati | Yes | Yes | No <sup>1</sup> | No <sup>1</sup> |
-| Supporto per l'analisi in tempo reale | No  | No  | Yes | Yes |
-| Necessità di un processo per copiare i dati da una o più origini | Yes | Sì | No  | No  |
-| Integrazione di Azure AD | Yes | No  | No <sup>2</sup> | Yes |
+| Servizio gestito | Sì | No  | No  | Sì |
+| Supporto per i cubi multidimensionali | No  | Sì | No  | No  |
+| Supporto per i modelli semantici tabulari | Sì | Sì | No  | No  |
+| Facilità di integrazione di più origini dati | Sì | Sì | No <sup>1</sup> | No <sup>1</sup> |
+| Supporto per l'analisi in tempo reale | No  | No  | Sì | Sì |
+| Necessità di un processo per copiare i dati da una o più origini | Sì | Sì | No  | No  |
+| Integrazione di Azure AD | Sì | No  | No <sup>2</sup> | Sì |
 
 <!-- markdownlint-enable MD033 -->
 
@@ -151,6 +151,6 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 |                                                  | Azure Analysis Services | SQL Server Analysis Services | SQL Server con indici columnstore | Database SQL di Azure con indici columnstore |
 |--------------------------------------------------|-------------------------|------------------------------|-------------------------------------|---------------------------------------------|
-| Server regionali ridondanti per disponibilità elevata |           Yes           |              No               |                 Yes                 |                     Yes                     |
-|             Supporto per la scalabilità orizzontale delle query             |           Yes           |              No               |                 Yes                 |                     No                       |
-|          Scalabilità dinamica (aumento delle prestazioni)          |           Yes           |              No               |                 Yes                 |                     No                       |
+| Server regionali ridondanti per disponibilità elevata |           Sì           |              No               |                 Sì                 |                     Sì                     |
+|             Supporto per la scalabilità orizzontale delle query             |           Sì           |              No               |                 Sì                 |                     No                       |
+|          Scalabilità dinamica (aumento delle prestazioni)          |           Sì           |              No               |                 Sì                 |                     No                       |

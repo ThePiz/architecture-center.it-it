@@ -4,15 +4,15 @@ titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 1/8/2019
+ms.date: 02/11/2019
 description: Motivazioni e rischi aziendali della Baseline di sicurezza
 author: BrianBlanchard
-ms.openlocfilehash: d57b79b37aa257d07df0168a7fee53ec8ecd1526
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 8407ed358e5862e466176096ee6a82ad792027cb
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901247"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247312"
 ---
 # <a name="security-baseline-motivations-and-business-risks"></a>Motivazioni e rischi aziendali della Baseline di sicurezza
 
@@ -44,9 +44,9 @@ I rischi variano da un'organizzazione all'altra, tuttavia i seguenti servono com
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Usare il [Cloud Management Template (modello di Gestione cloud)](./template.md) per documentare i rischi aziendali che potrebbero essere introdotti dal piano di adozione del cloud attuale.
+Usare il [modello di gestione del cloud](./template.md) per documentare i rischi aziendali che è probabile che vengano introdotti dal piano di adozione del cloud attuale.
 
-Dopo aver stabilito il riconoscimento di rischi aziendali realistici, il passaggio successivo consiste nel documentare le metriche e gli indicatori principali sulla tolleranza ai rischi aziendali per monitorare tale tolleranza.
+Dopo aver stabilito in modo realistico i rischi aziendali, il passaggio successivo consiste nel documentare le metriche e gli indicatori principali della tolleranza ai rischi dell'azienda allo scopo di monitorare tale tolleranza.
 
 > [!div class="nextstepaction"]
-> [Understand indicators, metrics, and risk tolerance](./metrics-tolerance.md) (Comprendere indicatori, metriche e tolleranza ai rischi)
+> [Indicatori, metriche e tolleranza ai rischi](./metrics-tolerance.md)

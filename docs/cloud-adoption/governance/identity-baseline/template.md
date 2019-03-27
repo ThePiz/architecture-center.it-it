@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Modello Baseline di identità
 author: BrianBlanchard
 ms.openlocfilehash: d62dcb6e30efd81f026a6dc8a92eff3215d42c46
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902028"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242702"
 ---
 # <a name="caf-identity-baseline-template"></a>CAF: Modello Baseline di identità
 
@@ -34,4 +34,4 @@ Questo modello, sebbene contenga il contenuto di esempio relativo alla disciplin
 Solide pratiche di governance iniziano con il [riconoscimento del rischio aziendale](./business-risks.md). Rivedere l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali in linea con il piano attuale di adozione del cloud.
 
 > [!div class="nextstepaction"]
-> [Understand business risks (Comprendere i rischi aziendali)](./business-risks.md)
+> [Comprendere i rischi aziendali](./business-risks.md)

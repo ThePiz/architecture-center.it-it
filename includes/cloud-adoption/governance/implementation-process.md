@@ -14,7 +14,7 @@ In questo percorso di governance, il team di gestione delle identità implementa
 
 Nell'MVP per la governance, il team di governance imporrà l'applicazione del tenant replicato tramite strumenti di governance delle sottoscrizioni, descritti [più avanti in questo articolo](#subscription-model). In evoluzioni future, il team di governance potrà anche applicare strumenti avanzati in Azure AD per estendere questa funzionalità.
 
-### <a name="security-baseline-networking"></a>Baseline di sicurezza: rete
+### <a name="security-baseline-networking"></a>Baseline di sicurezza: Rete
 
 La rete definita dal software è un aspetto iniziale importante della baseline di sicurezza. La definizione dell'MVP di governance dipende dalle decisioni iniziali del team di gestione della sicurezza, che stabilisce le modalità di configurazione sicura delle reti.
 
@@ -28,7 +28,7 @@ In questo modello, le reti cloud possono connettersi solo a risorse locali su un
 
 Il team di governance del cloud invita i membri dei team di rete e di sicurezza IT a riunioni periodiche per poter anticipare la domanda e i rischi delle connessioni di rete.
 
-### <a name="security-baseline-encryption"></a>Baseline di sicurezza: crittografia
+### <a name="security-baseline-encryption"></a>Baseline di sicurezza: Crittografia
 
 La crittografia è un'altra decisione fondamentale relativa alla disciplina sulla baseline di sicurezza. Considerando che l'azienda non archivia ancora dati protetti nel cloud, il team di sicurezza ha optato per un modello di crittografia meno aggressivo.
 A questo punto, da qualsiasi team di sviluppo viene suggerito, ma non richiesto obbligatoriamente, un modello di crittografia **ibrido**.
@@ -52,6 +52,6 @@ Le decisioni seguenti rappresentano i modelli da applicare tramite la strategia 
 
 **Baseline di identità**. I progetti Azure Blueprints definiranno i requisiti di controllo degli accessi in base al ruolo a livello di sottoscrizione per garantire che in tutte le sottoscrizioni sia configurata un'identità coerente.
 
-**Baseline di sicurezza: rete**. Il team di governance del cloud gestisce un modello di Resource Manager per creare un gateway VPN tra Azure e il dispositivo VPN locale. Quando il team di un'applicazione richiederà una connessione VPN, il team di governance del cloud applicherà il modello di Resource Manager del gateway tramite Azure Blueprints.
+**Baseline di sicurezza: Rete**. Il team di governance del cloud gestisce un modello di Resource Manager per creare un gateway VPN tra Azure e il dispositivo VPN locale. Quando il team di un'applicazione richiederà una connessione VPN, il team di governance del cloud applicherà il modello di Resource Manager del gateway tramite Azure Blueprints.
 
 **Baseline di sicurezza: crittografia**. A questo punto del percorso, in questa area di interesse non è necessaria alcuna applicazione di criteri. Questo aspetto verrà affrontato durante le evoluzioni successive.

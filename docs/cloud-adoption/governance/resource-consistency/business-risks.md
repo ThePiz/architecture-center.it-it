@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Motivazioni e rischi aziendali correlati alla coerenza delle risorse
 author: alexbuckgit
 ms.openlocfilehash: 19e0d761e4afa3473099bde2edc960c8b9eadb79
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901667"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242462"
 ---
 # <a name="resource-consistency-motivations-and-business-risks"></a>Motivazioni e rischi aziendali correlati alla coerenza delle risorse
 

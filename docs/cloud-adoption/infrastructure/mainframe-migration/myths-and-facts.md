@@ -4,11 +4,11 @@ description: Informazioni su come eseguire la migrazione di applicazioni da ambi
 author: njray
 ms.date: 12/27/2018
 ms.openlocfilehash: bcad01ec044d2d802b055e328a9496aae7b33311
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901472"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241542"
 ---
 # <a name="mainframe-myths-and-facts"></a>Falsi miti e fatti sui mainframe
 
@@ -34,7 +34,7 @@ I nuovi sistemi basati su Intel ad alta densità di core hanno una capacità di 
 
 Esistono dei casi isolati in cui le soluzioni cloud non sono sufficienti, ma questo si verifica quando gli algoritmi di applicazione non possono essere distribuiti. Questi rari esempi costituiscono l'eccezione, non la regola.
 
-## <a name="summary"></a>Riepilogo
+## <a name="summary"></a>Summary
 
 Azure offre una piattaforma alternativa ai sistemi mainframe, in grado di offrire caratteristiche e funzionalità equivalenti a costi notevolmente inferiori. Il costo totale di proprietà offerto dal modello di costi del cloud, basato su sottoscrizione e sull'utilizzo effettivo, è notevolmente inferiore a quello dei computer mainframe.
 

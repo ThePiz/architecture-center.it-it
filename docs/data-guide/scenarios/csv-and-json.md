@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 52de5207a5169d2f2a7f701fbc078fb422e61e13
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486540"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244912"
 ---
 # <a name="working-with-csv-and-json-files-for-data-solutions"></a>Uso dei file in formato CSV e JSON per le soluzioni di dati
 

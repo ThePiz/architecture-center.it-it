@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Strumenti di coerenza delle risorse in Azure
 author: BrianBlanchard
 ms.openlocfilehash: 68503289f60fbb3682264ff39546ca7b7700cef5
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901924"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241582"
 ---
 # <a name="resource-consistency-tools-in-azure"></a>Strumenti di coerenza delle risorse in Azure
 

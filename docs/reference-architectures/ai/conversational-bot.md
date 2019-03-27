@@ -8,15 +8,15 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
 ms.openlocfilehash: 0f5de0eca6fbd35cca1a0e8443f363df09ffc6aa
-ms.sourcegitcommit: 287344b6c220bdbd8076aed7a281eb02253e15be
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55712151"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248696"
 ---
 # <a name="enterprise-grade-conversational-bot"></a>Bot di conversazione di livello aziendale
 
-Questa architettura di riferimento descrive come creare un bot di conversazione (chatbot) di livello aziendale con il [framework Azure Bot][bot-framework]. Ogni bot è differente, ma esistono alcuni modelli, flussi di lavoro e tecnologie comuni da considerare. Per i bot da usare come carichi di lavoro aziendali, in particolare, è necessario valutare diversi aspetti della progettazione oltre alle semplici funzionalità di base. Questo articolo affronta la maggior parte degli aspetti essenziali della progettazione e presenta gli strumenti necessari per creare un bot affidabile, sicuro e con apprendimento attivo.
+Questa architettura di riferimento descrive come creare un bot di conversazione (chatbot) di livello aziendale con il [framework Azure Bot][bot-framework]. Ogni bot è differente, ma esistono alcuni modelli, flussi di lavoro e tecnologie comuni da considerare. Per i bot da usare come carichi di la voro aziendali, in particolare, è necessario valutare diversi aspetti della progettazione oltre alle semplici funzionalità di base. Questo articolo affronta la maggior parte degli aspetti essenziali della progettazione e presenta gli strumenti necessari per creare un bot affidabile, sicuro e con apprendimento attivo.
 
 [![Diagramma dell'architettura][0]][0]
 
@@ -24,7 +24,7 @@ Gli esempi di utilità basati su procedure consigliate usati in questa architett
 
 ## <a name="architecture"></a>Architettura
 
-L'architettura mostrata in questo articolo si basa sui servizi di Azure seguenti. Il proprio bot potrebbe non usare tutti questi servizi oppure potrebbe incorporarne altri.
+L'architettura mostrata in questo articolo si basa sui servizi di Azure seguenti. Il proprio bot potrebbe non usare tutti questi servizi oppure potrebbe incorporarne altre.
 
 ### <a name="bot-logic-and-user-experience"></a>Logica del bot ed esperienza utente
 

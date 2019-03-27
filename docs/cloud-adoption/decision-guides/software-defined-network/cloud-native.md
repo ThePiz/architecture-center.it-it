@@ -1,18 +1,18 @@
 ---
-title: 'CAF: Reti definite dal software - Cloud native'
+title: 'CAF: Reti definite dal software - Native per il cloud'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Discussione relativa ai servizi di rete virtuale cloud nativa
+description: Informazioni sui servizi di rete virtuale cloud nativi
 author: rotycenh
 ms.openlocfilehash: c6200491bc9ba35a9f00e0003e51716b58628980
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901240"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242152"
 ---
 # <a name="software-defined-networks-cloud-native"></a>Reti definite dal software: Cloud nativo
 

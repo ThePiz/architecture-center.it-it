@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Miglioramento della disciplina Baseline di identità
 author: BrianBlanchard
 ms.openlocfilehash: c96a638af549782fec22b2068c9b4943df4b943a
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901319"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243252"
 ---
 # <a name="identity-baseline-discipline-improvement"></a>Miglioramento della disciplina Baseline di identità
 
@@ -24,14 +24,14 @@ Questo articolo delinea alcune attività potenziali che l'azienda può svolgere 
 
 *Figura 1. Fasi di adozione dell'approccio incrementale alla governance del cloud.*
 
-È impossibile tener conto per qualsiasi documento dei requisiti di tutte le aziende. Di conseguenza, questo articolo delinea le attività di esempio minime e potenziali suggerite per ogni fase del processo di maturazione della governance. L'obiettivo iniziale di queste attività è quello di permettere di costruire un [MVP dei criteri](../journeys/overview.md#an-incremental-approach-to-cloud-governance) e stabilire un framework per l'evoluzione incrementale dei criteri di Azure. Il team di Governance cloud dovrà decidere quanto investire in queste attività per migliorare le capacità di governance della Baseline di identità.
+È impossibile tener conto per qualsiasi documento dei requisiti di tutte le aziende. Di conseguenza, questo articolo delinea le attività di esempio minime e potenziali suggerite per ogni fase del processo di maturazione della governance. L'obiettivo iniziale di queste attività è quello di permettere di costruire un [MVP dei criteri](../journeys/overview.md#an-incremental-approach-to-cloud-governance) e stabilire un framework per l'evoluzione incrementale dei criteri di Azure. Il team di governance del cloud dovrà decidere quanto investire in queste attività per migliorare le capacità di governance della baseline di identità.
 
 > [!CAUTION]
-> Nessuna delle attività minime o potenziali descritte in questo articolo sono allineate a specifici criteri aziendali o requisiti di conformità di terze parti. Questo materiale sussidiario è progettato per facilitare le conversazioni che porteranno all'allineamento di entrambi i requisiti con un modello di governance del cloud.
+> Nessuna delle attività minime o potenziali descritte in questo articolo è allineata a specifici criteri aziendali o requisiti di conformità di terzi. Queste linee guida sono state progettate per facilitare le conversazioni che porteranno all'allineamento di entrambi i requisiti con un modello di governance del cloud.
 
 ## <a name="planning-and-readiness"></a>Pianificazione e preparazione
 
-Questa fase di maturità della governance colma il divario tra i risultati aziendali e le strategie attuabili. Durante questo processo, il team di leadership definisce metriche specifiche, esegue il mapping di tali metriche sul patrimonio digitale e inizia a pianificare il lavoro richiesto di migrazione complessiva.
+Questa fase di maturità della governance colma il divario tra i risultati aziendali e le strategie attuabili. Durante questo processo, il team di leadership definisce metriche specifiche, associa tali metriche al patrimonio digitale e inizia a pianificare l'impegno complessivo richiesto per la migrazione.
 
 **Attività minime suggerite:**
 
@@ -50,7 +50,7 @@ Questa fase di maturità della governance colma il divario tra i risultati azien
 
 ## <a name="build-and-pre-deployment"></a>Compilazione e pre-distribuzione
 
-È necessaria una serie di prerequisiti tecnici e non, per eseguire correttamente la migrazione di un ambiente. Questo processo è incentrato sulle decisioni, sulla conformità e sull'infrastruttura di base che consente una migrazione.
+Per eseguire correttamente la migrazione di un ambiente è necessario soddisfare una serie di prerequisiti tecnici e non. Questo processo riguarda principalmente le decisioni, la conformità e l'infrastruttura di base preliminari a una migrazione.
 
 **Attività minime suggerite:**
 
@@ -82,7 +82,7 @@ Questa fase di maturità della governance colma il divario tra i risultati azien
 
 ## <a name="adopt-and-migrate"></a>Adottare ed eseguire la migrazione
 
-La migrazione è un processo incrementale incentrato sul movimento, il testing e l'adozione di applicazioni o carichi di lavoro in un patrimonio digitale esistente.
+La migrazione è un processo incrementale incentrato sullo spostamento, il testing e l'adozione di applicazioni o carichi di lavoro in un patrimonio digitale esistente.
 
 **Attività minime suggerite:**
 
@@ -104,7 +104,7 @@ La migrazione è un processo incrementale incentrato sul movimento, il testing e
 
 ## <a name="operate-and-post-implementation"></a>Operazione e post-implementazione
 
-Al termine della trasformazione, la governance e le operazioni devono continuare a funzionare per il ciclo di vita naturale di un'applicazione o del carico di lavoro. Questa fase di maturità della governance si concentra sulle attività che comunemente vengono dopo che la soluzione sia stata implementata e che il ciclo di trasformazione inizi a stabilizzarsi.
+Al termine della trasformazione, la governance e le operazioni devono continuare a funzionare per il ciclo di vita naturale di un'applicazione o di un carico di lavoro. Questa fase di maturità della governance si basa principalmente sulle attività che vengono svolte in genere dopo che la soluzione è stata implementata e il ciclo di trasformazione ha iniziato a stabilizzarsi.
 
 **Attività minime suggerite:**
 
@@ -132,7 +132,7 @@ Al termine della trasformazione, la governance e le operazioni devono continuare
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver compreso il concetto di governance dell'identità del cloud, esaminare la [Identity Baseline toolchain (Toolchain della baseline di identità)](toolchain.md) per identificare gli strumenti e le funzionalità di Azure di cui si avrà bisogno per sviluppare la disciplina di governance della baseline di identità sulla piattaforma Azure.
+Una volta compreso il concetto di governance dell'identità del cloud, esaminare il [toolchain della Baseline di identità](toolchain.md) per identificare gli strumenti e le funzionalità di Azure di cui si avrà bisogno per sviluppare la disciplina di governance della Baseline di identità sulla piattaforma Azure.
 
 > [!div class="nextstepaction"]
-> [Identity Baseline toolchain for Azure (Toolchain della baseline di identità per Azure)](toolchain.md)
+> [Toolchain della Baseline di identità per Azure](toolchain.md)

@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 61470b630f735c1d49ad9b4bfbec853b308630cf
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481525"
 ---
+
 # <a name="busy-front-end-antipattern"></a>Antipattern Front End occupato
 
 L'esecuzione di attività asincrone in un numero elevato di thread in background può rendere non disponibili le risorse per altre attività simultanee in primo piano generando tempi di risposta non accettabili.
@@ -146,7 +141,7 @@ Le sezioni seguenti applicano questa procedura all'applicazione di esempio descr
 
 ### <a name="identify-points-of-slowdown"></a>Identificare i punti di rallentamento
 
-Instrumentare ciascun metodo per tenere traccia della durata e delle risorse usate da ogni richiesta. Monitorare quindi l'applicazione in produzione. In questo modo si ottiene una visione generale del modo in cui le richieste si contendono le risorse. Durante i periodi di stress, è probabile che le richieste a esecuzione lenta con elevato utilizzo di risorse impattino sulle altre operazioni; analizzare questo comportamento monitorando il sistema e rilevando il calo di prestazioni.
+Instrumentare ciascun metodo per tenere traccia della durata e delle risorse usate da ogni richiesta. Monitorare quindi l'applicazione in produzione. In questo modo si ottiene una visione generale del modo in cui le richieste si contendono le risorse. Durante i periodi di stress, è probabile che le richieste a esecuzione lenta con elevato utilizzo di risorse influiscano sulle altre operazioni; analizzare questo comportamento monitorando il sistema e rilevando il calo di prestazioni.
 
 L'immagine seguente mostra un dashboard di monitoraggio. Per i test è stato usato [AppDynamics]. Inizialmente il carico del sistema è ridotto. Gli utenti iniziano quindi a richiedere il metodo GET `UserProfile`. Le prestazioni sono abbastanza soddisfacenti fino a quando altri utenti iniziano ad inviare richieste al metodo POST `WorkInFrontEnd`. A questo punto i tempi di risposta si allungano notevolmente (prima freccia). I tempi di risposta migliorano solo dopo la diminuzione del volume di richieste per il controller `WorkInFrontEnd` (seconda freccia).
 

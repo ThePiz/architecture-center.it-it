@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 8d37bc2aed17bfef4d54f29f269b23ce4a5c52c0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: edd73fd68ca4708faed92c6b1bcf5cfa3e6b2f07
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897661"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242342"
 ---
 # <a name="retry-pattern"></a>Modello di ripetizione dei tentativi
 
@@ -52,7 +52,7 @@ L'applicazione deve eseguire il wrapping di tutti i tentativi di accesso a un se
 
 Un'applicazione deve registrare i dettagli degli errori e delle operazioni con esito negativo. Queste informazioni sono utili per gli operatori. Se un servizio è frequentemente non disponibile oppure occupato, spesso la causa è l'esaurimento delle risorse. È possibile ridurre la frequenza degli errori ampliando il servizio. Ad esempio, se un servizio di database risulta continuamente sovraccarico, potrebbe essere utile partizionare il database e distribuire il carico su più server.
 
-> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) offre strumenti per la ripetizione dei tentativi di esecuzione delle operazioni su database. La maggior parte dei servizi di Azure e degli SDK client include inoltre un meccanismo di ripetizione dei tentativi. Per altre informazioni, vedere [Retry guidance for specific services](/azure/architecture/best-practices/retry-service-specific) (Linee guida per la ripetizione dei tentativi per servizi specifici).
+> [Microsoft Entity Framework](/ef) offre strumenti per la ripetizione dei tentativi di esecuzione delle operazioni su database. La maggior parte dei servizi di Azure e degli SDK client include inoltre un meccanismo di ripetizione dei tentativi. Per altre informazioni, vedere [Retry guidance for specific services](/azure/architecture/best-practices/retry-service-specific) (Linee guida per la ripetizione dei tentativi per servizi specifici).
 
 ## <a name="issues-and-considerations"></a>Considerazioni e problemi
 
@@ -177,4 +177,4 @@ private bool IsTransient(Exception ex)
 
 - [Modello di interruttore](./circuit-breaker.md). Il modello di ripetizione dei tentativi è utile per la gestione degli errori temporanei. Se si prevede che un errore sia di maggiore durata, potrebbe essere più appropriato implementare il modello di interruttore. Il modello di ripetizione dei tentativi può essere usato anche in combinazione con un interruttore per ottenere un approccio completo alla gestione degli errori.
 - [Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici](/azure/architecture/best-practices/retry-service-specific)
-- [Resilienza della connessione](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)
+- [Resilienza della connessione](/ef/core/miscellaneous/connection-resiliency)

@@ -1,21 +1,16 @@
 ---
 title: Azure per i professionisti AWS
 titleSuffix: Azure Architecture Center
-description: Nozioni fondamentali sgli account, sulla piattaforma e sui servizi di Microsoft Azure. Informazioni sulle principali analogie e differenze tra le piattaforme AWS e Azure. Mettere a frutto l'esperienza con AWS in Azure.
-keywords: Professionisti AWS, confronto con Azure, confronto con AWS, differenze tra azure e aws, azure e aws
+description: 'Nozioni fondamentali sgli account, sulla piattaforma e sui servizi di Microsoft Azure. Informazioni sulle principali analogie e differenze tra le piattaforme AWS e Azure. Mettere a frutto l''esperienza con AWS in Azure.'
+keywords: 'Professionisti AWS, confronto con Azure, confronto con AWS, differenze tra azure e aws, azure e aws'
 author: lbrader
 ms.date: 09/19/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897593"
 ---
+
 # <a name="azure-for-aws-professionals"></a>Azure per i professionisti AWS
 
 Questo articolo consente ai professionisti di Amazon Web Services (AWS) di acquisire le nozioni di base sugli account, la piattaforma e i servizi di Microsoft Azure. L'articolo prende anche in esame le principali analogie e differenze tra le piattaforme AWS e Azure.
@@ -147,7 +142,7 @@ Una [zona di disponibilità](/azure/availability-zones/az-overview) è una zona 
 
 Per proteggere un'applicazione da un'interruzione dell'alimentazione a livello di area, è possibile distribuire l'applicazione in più aree, tramite [Gestione traffico di Azure][traffic-manager] in modo da distribuire il traffico Internet in aree diverse. Ogni area di Azure è associata a un'altra area e la combinazione di queste aree costituisce una [coppia di aree][paired-regions]. Ad eccezione del Brasile meridionale, le coppie di aree hanno la stessa collocazione geografica in modo da soddisfare i requisiti di residenza dei dati ai fini della giurisdizione per le imposizioni fiscali e normative.
 
-A differenza delle zone di disponibilità, che rappresentano data center fisicamente distinti ma relativamente prossimi a regioni geografiche, le aree abbinate sono in genere lontane almeno 300 miglia. Ciò garantisce che le emergenze su larga scala abbiamo conseguenze solo una delle regioni della coppia. È possibile configurare le coppie adiacenti in modo che i database e i dati del servizio di archiviazione siano sincronizzati e che l'implementazione degli aggiornamenti della piattaforma venga eseguita in un'area della coppia alla volta.
+A differenza delle zone di disponibilità, che rappresentano data center fisicamente distinti ma relativamente prossimi a regioni geografiche, le aree abbinate sono in genere lontane almeno 300 miglia. Ciò garantisce che le emergenze su larga scala influiscano solo una delle aree della coppia. È possibile configurare le coppie adiacenti in modo che i database e i dati del servizio di archiviazione siano sincronizzati e che l'implementazione degli aggiornamenti della piattaforma venga eseguita in un'area della coppia alla volta.
 
 In Azure, il backup dell'[archiviazione con ridondanza geografica](/azure/storage/common/storage-redundancy-grs) viene eseguito automaticamente nell'area abbinata appropriata. Per tutte le altre risorse, la creazione di una soluzione completamente ridondante usando le aree abbinate implica la creazione di copia completa della soluzione in entrambe le aree.
 
@@ -300,9 +295,9 @@ Azure consente di ottenere connessioni dedicate da sito a sito tramite il serviz
 
 Azure offre diversi servizi di database relazionali equivalenti a RDS (Relational Database Service) di AWS.
 
-- [Database SQL](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
-- [Database di Azure per MySQL](https://docs.microsoft.com/azure/mysql/overview)
-- [Database di Azure per PostgreSQL](https://docs.microsoft.com/azure/postgresql/overview)
+- [Database SQL](/azure/sql-database/sql-database-technical-overview)
+- [Database di Azure per MySQL](/azure/mysql/overview)
+- [Database di Azure per PostgreSQL](/azure/postgresql/overview)
 
 È possibile distribuire altri motori di database, ad esempio [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/), [Oracle](https://azure.microsoft.com/campaigns/oracle/) e [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) tramite le istanze di macchine virtuali di Azure.
 

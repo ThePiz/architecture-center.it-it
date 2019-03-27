@@ -5,14 +5,14 @@ titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 1/18/2019
+ms.date: 02/11/2019
 author: alexbuckgit
-ms.openlocfilehash: 13fbe778f2641b5c0482055aa474e6eec13f023a
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 779e9a802a7e7870c76fa54eefb05d58a737a9fc
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901255"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246532"
 ---
 # <a name="caf-deployment-acceleration-template"></a>CAF: Modello di accelerazione della distribuzione
 
@@ -31,7 +31,7 @@ Sebbene includa il contenuto di esempio relativo alla disciplina della Gestione 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Solide pratiche di governance iniziano con il riconoscimento del rischio d'impresa. Riesaminare l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali in linea con l'attuale piano di adozione del cloud.
+Solide pratiche di governance iniziano con il riconoscimento del rischio aziendale. Vedere l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali conformi all'attuale piano di adozione del cloud.
 
 > [!div class="nextstepaction"]
 > [Comprendere i rischi aziendali](./business-risks.md)

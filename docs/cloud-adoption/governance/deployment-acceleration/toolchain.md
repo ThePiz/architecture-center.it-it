@@ -7,12 +7,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
 author: BrianBlanchard
-ms.openlocfilehash: 8d2cae87b8a3a11bfde87aafc04d4d2ef55cbbe9
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: cd00f2fa132f5f177ccc12f61be8b5342b71197d
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901948"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247422"
 ---
 # <a name="deployment-acceleration-tools-in-azure"></a>Strumenti di Accelerazione della distribuzione
 
@@ -22,7 +22,7 @@ ms.locfileid: "55901948"
 
 Di seguito è riportato un elenco di strumenti di Azure che possono consentire di sviluppare i criteri e i processi che supportano la disciplina di governance.
 
-|  |Criteri di Azure  |Gruppi di gestione di Azure  |Modelli di Azure Resource Manager  |Azure Blueprint  | Diagramma delle risorse di Azure | Gestione costi di Azure |
+|  | Criteri di Azure | Gruppi di gestione di Azure | Modelli di Azure Resource Manager | Azure Blueprint | Diagramma delle risorse di Azure | Gestione costi di Azure |
 |---------|---------|---------|---------|---------|---------|---------|
 |Implementare i criteri aziendali     |Sì |No   |No   |No  | No  |No  |
 |Applicare i criteri tra le sottoscrizioni     |Obbligatoria |Sì  |No   |No  | No  |No  |

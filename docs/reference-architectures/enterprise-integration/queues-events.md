@@ -10,11 +10,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: integration-services
 ms.openlocfilehash: 4c9d2e201bcfc077990d746a1decd55ede2f220a
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480676"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245512"
 ---
 # <a name="enterprise-integration-on-azure-using-message-queues-and-events"></a>Integrazione aziendale in Azure con code ed eventi di messaggi
 

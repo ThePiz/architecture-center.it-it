@@ -3,12 +3,12 @@ title: 'Migrazione dei mainframe: Migrazione delle applicazioni mainframe'
 description: Informazioni su come eseguire la migrazione di applicazioni da ambienti mainframe ad Azure, un'infrastruttura scalabile, collaudata e a disponibilità elevata per i sistemi attualmente in esecuzione su mainframe
 author: njray
 ms.date: 12/26/2018
-ms.openlocfilehash: dcae5077e26ab8ba9b08e0da71a5e69d0d9f62e3
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2a22eb038da693671ce309c76afcfc41946034f3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901431"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246392"
 ---
 # <a name="mainframe-application-migration"></a>Migrazione delle applicazioni mainframe
 
@@ -168,7 +168,7 @@ Lo spostamento di soluzioni da un mainframe in Azure può comportare una migrazi
 
 Uno scenario comune consiste nello spostare un'applicazione in Azure, mantenendo i dati usati dall'applicazione sul mainframe. Viene usato software specifico per abilitare le applicazioni in Azure per l'accesso ai dati dal mainframe. Fortunatamente, una vasta gamma di soluzioni garantisce l'integrazione tra Azure e gli ambienti mainframe esistenti, il supporto per gli scenari ibridi e la migrazione nel corso del tempo. Numerosi partner Microsoft, fornitori di software indipendenti e integratori di sistemi possono offrire tutta l'assistenza necessaria.
 
-Una possibile opzione è [Microsoft Host Integration Server](https://docs.microsoft.com/host-integration-server/) (HIS), una soluzione che fornisce l'architettura DRDA (Distributed Relational Database Architecture) necessaria per consentire alle applicazioni in Azure di accedere ai dati in DB2 che rimangono sul mainframe. Altre opzioni per l'integrazione dei mainframe in Azure includono soluzioni di IBM, Attunity, Codit, altri fornitori e opzioni open source.
+Una possibile opzione è [Microsoft Host Integration Server](/host-integration-server) (HIS), una soluzione che fornisce l'architettura DRDA (Distributed Relational Database Architecture) necessaria per consentire alle applicazioni in Azure di accedere ai dati in DB2 che rimangono sul mainframe. Altre opzioni per l'integrazione dei mainframe in Azure includono soluzioni di IBM, Attunity, Codit, altri fornitori e opzioni open source.
 
 ## <a name="partner-solutions"></a>Soluzioni partner
 
@@ -188,4 +188,4 @@ Per altre informazioni, vedere le seguenti risorse:
 
 - [Distribuire IBM DB2 pureScale in Azure](https://azure.microsoft.com/resources/deploy-ibm-db2-purescale-on-azure)
 
-- [Documentazione di Host Integration Server (HIS)](https://docs.microsoft.com/host-integration-server/)
+- [Documentazione di Host Integration Server (HIS)](/host-integration-server)

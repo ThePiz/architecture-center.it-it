@@ -10,11 +10,11 @@ ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
 ms.openlocfilehash: b3cde9c59e7b4cd023369366ae69977b153eb805
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481585"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244412"
 ---
 # <a name="priority-queue-pattern"></a>Modello di coda con priorità
 

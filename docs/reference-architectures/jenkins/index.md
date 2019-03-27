@@ -1,20 +1,15 @@
 ---
 title: Eseguire un server Jenkins in Azure
 titleSuffix: Azure Reference Architectures
-description: Architettura consigliata che illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).
+description: 'Architettura consigliata che illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell''accesso Single Sign-On (SSO).'
 author: njray
 ms.date: 04/30/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2717b3b11f0315b698d43d067b30472481ffa527
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483429"
 ---
+
 # <a name="run-a-jenkins-server-on-azure"></a>Eseguire un server Jenkins in Azure
 
 Questa architettura di riferimento illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO). L'architettura usa anche Monitoraggio di Azure per monitorare lo stato del server Jenkins. [**Distribuire questa soluzione**](#deploy-the-solution).
@@ -41,7 +36,7 @@ Questa architettura è costituita dai componenti seguenti:
 
 - **Rete virtuale**. Una [rete virtuale][vnet] connette tra loro le risorse di Azure e offre l'isolamento logico. In questa architettura, il server Jenkins viene eseguito in una rete virtuale.
 
-- **Subnet**. Il server Jenkins viene isolato in una [subnet][subnet] per facilitare la gestione e la separazione del traffico di rete senza alcun impatto sulle prestazioni.
+- **Subnet**. Il server Jenkins viene isolato in una [subnet][subnet] per facilitare la gestione e la separazione del traffico di rete senza influire sulle prestazioni.
 
 - **Gruppi di sicurezza di rete**. Usare [gruppi di sicurezza di rete][nsg] (NSG) per limitare il traffico di rete da Internet alla subnet di una rete virtuale.
 
@@ -65,7 +60,7 @@ Il tenant di [Azure AD][azure-ad] per la sottoscrizione di Azure viene usato per
 
 L'autenticazione e l'autorizzazione con SSO vengono implementate dal plug-in Azure AD installato nel server Jenkins. L'accesso SSO consente di eseguire l'autenticazione usando le credenziali dell'organizzazione di Azure AD per l'accesso al server Jenkins. Durante la configurazione del plug-in Azure AD, è possibile specificare il livello di accesso autorizzato al server Jenkins di un utente.
 
-Per consentire ai processi Jenkins di accedere alle risorse di Azure, un amministratore di Azure AD crea entità servizio. Le entità servizio concedono alle applicazioni (in questo caso ai processi Jenkins) l'[accesso autenticato e autorizzato][ad-sp] alle risorse di Azure.
+Per consentire ai processi Jenkins di accedere alle risorse di Azure, un amministratore di Azure AD crea entità servizio. Le entità servizio concedono alle applicazioni &mdash; in questo caso ai processi Jenkins &mdash; [l'accesso autenticato e autorizzato][ad-sp] alle risorse di Azure.
 
 Il [controllo degli accessi in base al ruolo][rbac] definisce e controlla ulteriormente l'accesso alle risorse di Azure da parte di utenti o entità servizio tramite il rispettivo ruolo assegnato. Sono supportati ruoli sia predefiniti che personalizzati. I ruoli consentono anche di proteggere la pipeline e garantiscono che le responsabilità di un utente o un agente vengano assegnate e autorizzate correttamente. Il controllo degli accessi in base al ruolo può anche essere configurato in modo da limitare l'accesso agli asset di Azure. È ad esempio possibile limitare un utente all'uso degli asset di un determinato gruppo di risorse.
 

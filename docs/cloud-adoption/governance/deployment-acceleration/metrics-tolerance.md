@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 'Accelerazione della distribuzione: metriche, indicatori e tolleranza ai rischi'
 author: alexbuckgit
 ms.openlocfilehash: 87d6f9f67b98d5761aced560392c9d38fa682ee7
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901551"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241212"
 ---
 # <a name="deployment-acceleration-metrics-indicators-and-risk-tolerance"></a>Accelerazione della distribuzione: metriche, indicatori e tolleranza ai rischi
 

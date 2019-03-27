@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 0aac064f30c384520a27d2e42b21c9243d5914b2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483463"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244042"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>Scelta di una tecnologia per l'archiviazione di Big Data in Azure
 
@@ -120,8 +120,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 |                                    |                                           Azure Cosmos DB                                           |                                                             HBase in HDInsight                                                             |
 |------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 |       Modello di database primario       |                      Archivio a documenti, a grafo, a chiave-valore, a colonne esteso                      |                                                             Archivio a colonne esteso                                                              |
-|         Indici secondari          |                                                 Yes                                                 |                                                                     No                                                                      |
-|        Supporto per il linguaggio SQL        |                                                 Yes                                                 |                                     Sì (con il driver JDBC [Phoenix](https://phoenix.apache.org/))                                      |
+|         Indici secondari          |                                                 Sì                                                 |                                                                     No                                                                      |
+|        Supporto per il linguaggio SQL        |                                                 Sì                                                 |                                     Sì (con il driver JDBC [Phoenix](https://phoenix.apache.org/))                                      |
 |            Consistency             |                   Assoluta, decadimento ristretto, sessione, coerenza del prefisso, finale                   |                                                                   Assoluta                                                                   |
 | Integrazione nativa di Funzioni di Azure |                        [Sì](/azure/cosmos-db/serverless-computing-database)                        |                                                                     No                                                                      |
 |   Distribuzione globale automatica    |                          [Sì](/azure/cosmos-db/distribute-data-globally)                           | Non [è possibile configurare una replica di cluster HBase](/azure/hdinsight/hbase/apache-hbase-replication) in aree geografiche con coerenza finale |

@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Informazioni sulla disciplina Accelerazione della distribuzione come parte di una strategia di governance del cloud.
 author: alexbuckgit
 ms.openlocfilehash: 854b1fd420de605a665922e9b207e6aecbfab2f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901279"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242142"
 ---
 # <a name="deployment-acceleration-motivations-and-business-risks"></a>Motivazioni e rischi aziendali di Accelerazione della distribuzione
 
@@ -38,7 +38,7 @@ La disciplina Accelerazione della distribuzione cerca di risolvere i rischi azie
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Usare il [Cloud Management Template (modello di Gestione cloud)](./template.md), documentare i rischi aziendali che potrebbero essere introdotti dal piano di adozione del cloud attuale.
+Usare il [modello di gestione del cloud](./template.md) per documentare i rischi aziendali che è probabile che vengano introdotti dal piano di adozione del cloud attuale.
 
 Dopo aver stabilito il riconoscimento di rischi aziendali realistici, il passaggio successivo consiste nel documentare le metriche e gli indicatori principali sulla tolleranza ai rischi aziendali per monitorare tale tolleranza.
 

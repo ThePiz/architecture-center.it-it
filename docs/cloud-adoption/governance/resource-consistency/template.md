@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Modello di coerenza delle risorse
 author: BrianBlanchard
 ms.openlocfilehash: 91c9681aaf94b79823a3da9cb34b1e7f584f00fe
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901304"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242442"
 ---
 # <a name="caf-resource-consistency-template"></a>CAF: Modello di coerenza delle risorse
 
@@ -31,7 +31,7 @@ Sebbene contenga il contenuto di esempio relativo alla disciplina di Gestione co
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Solide pratiche di governance iniziano con il riconoscimento del rischio aziendale. Rivedere l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali in linea con l'attuale piano di adozione del cloud.
+Solide pratiche di governance iniziano con il riconoscimento del rischio aziendale. Vedere l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali conformi all'attuale piano di adozione del cloud.
 
 > [!div class="nextstepaction"]
 > [Comprendere i rischi aziendali](./business-risks.md)

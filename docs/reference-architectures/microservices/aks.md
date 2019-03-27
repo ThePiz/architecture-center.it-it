@@ -7,21 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: ac7ab8b8dd154999a05dc531e41b0994f66ddf10
-ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
+ms.openlocfilehash: c8ce4c77666ab7b9c55e6f144d514fadc6b6ad73
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55887404"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246082"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Architettura di microservizi nel servizio Azure Kubernetes (AKS)
 
 Questa architettura di riferimento mostra un'applicazione di microservizi distribuita al servizio Azure Kubernetes (AKS). Mostra una configurazione di base del servizio Azure Kubernetes, che può costituire il punto di partenza per la maggior parte delle distribuzioni. Le opzioni più avanzate, incluse le opzioni avanzate di rete, verranno trattate in un'architettura di riferimento separata.
 
 Questo articolo presuppone conoscenze di base di Kubernetes. L'articolo si concentra principalmente sull'infrastruttura e sulle considerazioni relative a DevOps sull'esecuzione di un'architettura di microservizi nel servizio Azure Kubernetes. Per indicazioni su come progettare i microservizi da una prospettiva di progettazione basata su dominio (DDD), vedere [Progettazione, compilazione e gestione di microservizi in Azure](/azure/architecture/microservices).
-
-> [!NOTE]
-> Microsoft sta lavorando a un'implementazione di riferimento (RI) a complemento di questo articolo, la cui pubblicazione è prevista a inizio 2019. Questo articolo verrà aggiornato per incorporare le procedure aggiuntive consigliate da tale implementazione di riferimento.
 
 ![Architettura di riferimento del servizio Azure Kubernetes](./_images/aks.png)
 
@@ -310,7 +307,7 @@ In questa sezione viene presentato un possibile flusso di lavoro CI/CD basato su
 - Il team usa [Azure Pipelines](/azure/devops/pipelines) per eseguire il processo CI/CD.
 - Il team usa [spazi dei nomi](/azure/container-registry/container-registry-best-practices#repository-namespaces) nel Registro Azure Container per isolare le immagini approvate per la produzione dalle immagini ancora in corso di test.
 
-In questo esempio, uno sviluppatore sta lavorando a un microservizio denominato Delivery Service (Servizio di recapito). (Il nome deriva dall'implementazione di riferimento descritta [qui](../../microservices/index.md#the-drone-delivery-application).) Durante lo sviluppo di una nuova funzionalità, lo sviluppatore archivia il codice in un ramo di funzionalità.
+In questo esempio, uno sviluppatore sta lavorando a un microservizio denominato Delivery Service (Servizio di recapito). (Il nome deriva dall'implementazione di riferimento descritta [qui](../../microservices/design/index.md#scenario).) Durante lo sviluppo di una nuova funzionalità, lo sviluppatore archivia il codice in un ramo di funzionalità.
 
 ![Flusso di lavoro CI/CD](./_images/aks-cicd-1.png)
 

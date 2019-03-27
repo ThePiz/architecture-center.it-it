@@ -3,12 +3,12 @@ title: 'CAF: Idoneità del CISO'
 description: Come può un CISO prepararsi per il cloud
 author: BrianBlanchard
 ms.date: 10/03/2018
-ms.openlocfilehash: cedb86488304e2fc84897e1da373730768adce66
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: a4535163990797decdacdacdcb6a33f0118366e9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902171"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58238353"
 ---
 # <a name="ciso-cloud-readiness-guide"></a>Guida all'idoneità del CISO per il cloud
 
@@ -38,7 +38,7 @@ Risorse della piattaforma di sicurezza:
 * [Formazione sulla sicurezza obbligatoria, controlli in background](https://downloads.cloudsecurityalliance.org/star/self-assessment/StandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx)
 * [Test di penetrazione, rilevamento delle intrusioni, DDoS, controlli e registrazione](https://www.microsoft.com/trustcenter/Security/AuditingAndLogging)
 * [Data center all'avanguardia](https://www.microsoft.com/cloud-platform/global-datacenters), sicurezza fisica, [rete protetta](/azure/security/security-network-overview)
-* [Microsoft Azure Security Response in the Cloud (PDF)](http://aka.ms/SecurityResponsePaper) (Risposta della sicurezza di Microsoft Azure nel cloud)
+* [Microsoft Azure Security Response in the Cloud (PDF)](https://aka.ms/SecurityResponsePaper) (Risposta della sicurezza di Microsoft Azure nel cloud)
 
 Privacy e controlli:
 
@@ -58,7 +58,7 @@ Conformità:
 Trasparenza:
 
 * [Come vengono protetti da Microsoft i dati dei clienti nei servizi di Azure](https://www.microsoft.com/trustcenter/Transparency/default.aspx)
-* [Come viene gestita da Microsoft la posizione dei dati nei servizi di Azure](http://azuredatacentermap.azurewebsites.net/)
+* [Come viene gestita da Microsoft la posizione dei dati nei servizi di Azure](https://azuredatacentermap.azurewebsites.net/)
 * [Personale Microsoft che ha accesso ai dati e in quali termini](https://www.microsoft.com/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms)
 * [Come vengono protetti da Microsoft i dati dei clienti nei servizi di Azure](https://www.microsoft.com/trustcenter/Transparency/default.aspx)
 * [Certificazione di verifica per i servizi di Azure, hub per la trasparenza](https://www.microsoft.com/trustcenter/Compliance/default.aspx)

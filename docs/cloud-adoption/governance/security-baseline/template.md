@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Spiegazione del concetto di baseline di sicurezza in relazione alla governance del cloud
 author: BrianBlanchard
 ms.openlocfilehash: 93622fee899824fffe604d7b3f588f5ed179b371
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901601"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241692"
 ---
 # <a name="security-baseline-template"></a>Modello di baseline di sicurezza
 
@@ -31,7 +31,7 @@ Questo modello, sebbene contenga il contenuto di esempio relativo alla disciplin
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Solide pratiche di governance iniziano con una buona comprensione del rischio aziendale. Vedere l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali conformi all'attuale piano di adozione del cloud.
+Solide pratiche di governance iniziano con il riconoscimento del rischio aziendale. Vedere l'articolo sui rischi aziendali e iniziare a documentare i rischi aziendali conformi all'attuale piano di adozione del cloud.
 
 > [!div class="nextstepaction"]
 > [Comprendere i rischi aziendali](./business-risks.md)

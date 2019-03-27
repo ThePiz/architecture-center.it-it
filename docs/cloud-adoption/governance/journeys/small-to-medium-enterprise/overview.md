@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Percorso di governance per piccole e medie imprese
 author: BrianBlanchard
 ms.openlocfilehash: a3e078845038a12977e7be5affbf22708411069f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901708"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245162"
 ---
 # <a name="small-to-medium-enterprise-governance-journey"></a>Percorso di governance per piccole e medie imprese
 
@@ -20,10 +20,10 @@ ms.locfileid: "55901708"
 
 Questo percorso di governance segue le esperienze di una società fittizia attraverso le diverse fasi di evoluzione della governance. Il percorso è basato su percorsi di clienti reali. Le procedure consigliate si basano sui vincoli e sulle esigenze della società fittizia.
 
-Come punto di partenza rapido, questa panoramica definisce un prodotto valido minimo (MVP) per la governance basato su procedure consigliate. Vengono inoltre forniti collegamenti ad alcune forme di evoluzione della governance che offrono altre procedure consigliate in base all'emergere di nuovi rischi tecnici o aziendali.
+Come punto di partenza rapido, questa panoramica definisce un prodotto minimo funzionante (MVP) per la governance basato su procedure consigliate. Vengono inoltre forniti collegamenti ad alcune forme di evoluzione della governance che offrono altre procedure consigliate in base all'emergere di nuovi rischi tecnici o aziendali.
 
 > [!WARNING]
-> Questo MVP è solo un punto di partenza, basato su un insieme di ipotesi. Anche questo insieme minimo di procedure consigliate è basato su criteri aziendali determinati da rischi aziendali e tolleranze di rischio speciali. Per determinare se queste ipotesi si applicano alla propria situazione, vedere lo [scenario più approfondito](./narrative.md) che segue questo articolo.
+> Questo MVP è solo un punto di partenza, fondato su un insieme di ipotesi. Anche questo insieme minimo di procedure consigliate è basato su criteri aziendali determinati da rischi commerciali e tolleranze di rischio speciali. Per determinare se queste ipotesi si applicano alla propria situazione, vedere lo [scenario più approfondito](./narrative.md) che segue questo articolo.
 
 ## <a name="governance-best-practice"></a>Procedura consigliata per la governance
 
@@ -56,7 +56,7 @@ Una volta distribuito l'MVP, è possibile integrare livelli aggiuntivi di govern
 
 - [Baseline di sicurezza dei dati protetti](./security-baseline-evolution.md)
 - [Configurazioni delle risorse per applicazioni cruciali](./resource-consistency-evolution.md)
-- [Controlli per la gestione dei costi](./cost-management-evolution.md)
+- [Controlli per Gestione dei costi](./cost-management-evolution.md)
 - [Controlli per l'evoluzione multi-cloud](./multi-cloud-evolution.md)
 
 <!-- markdownlint-disable MD026 -->
@@ -69,7 +69,7 @@ Nell'MVP vengono definiti strumenti e procedure della disciplina di [accelerazio
 
 ## <a name="evolving-the-best-practice"></a>Evoluzione della procedura consigliata
 
-Con il passare del tempo, questo MVP per la governance verrà usato per adeguare le procedure necessarie. Con il progredire dell'adozione, aumentano i rischi aziendali. Diverse discipline all'interno del modello di governance del framework per l'adozione del cloud evolveranno per mitigare questi rischi. Gli articoli successivi di questa serie presentano l'evoluzione dei criteri aziendali che interessano la società fittizia. Queste evoluzioni avvengono in tre discipline:
+Con il passare del tempo, questo MVP per la governance verrà usato per adeguare le procedure necessarie. Con il progredire dell'adozione, aumentano i rischi aziendali. Diverse discipline all'interno del modello di governance del framework per l'adozione del cloud evolveranno per mitigare questi rischi. Gli articoli successivi di questa serie illustrano l'evoluzione di criteri aziendali che interessano la società fittizia. Queste evoluzioni avvengono in tre discipline:
 
 - Gestione dei costi, con il ridimensionarsi dell'adozione.
 - Baseline di sicurezza, man mano che vengono distribuiti dati protetti.
@@ -79,7 +79,7 @@ Con il passare del tempo, questo MVP per la governance verrà usato per adeguare
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che si ha familiarità con l'MVP per la governance e un'idea delle evoluzioni della governance da seguire, vedere lo scenario associato per altre informazioni sul contesto.
+Ora che si ha familiarità con l'MVP per la governance e un'idea delle evoluzioni della governance da seguire, consultare lo scenario associato per altre informazioni sul contesto.
 
 > [!div class="nextstepaction"]
-> [Scenario associato](./narrative.md)
+> [Consultare lo scenario associato](./narrative.md)

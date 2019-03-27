@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Motivazioni e rischi aziendali della Baseline di identità
 author: BrianBlanchard
 ms.openlocfilehash: ef831d1b3b01251b27f1f7b18e551c49996a2468
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901280"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246522"
 ---
 # <a name="identity-baseline-motivations-and-business-risks"></a>Motivazioni e rischi aziendali della Baseline di identità
 
@@ -41,9 +41,9 @@ I rischi variano da un'organizzazione all'altra, tuttavia i seguenti servono com
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Usare il [Cloud Management Template (modello di Gestione cloud)](./template.md) per documentare i rischi aziendali che potrebbero essere introdotti dal piano di adozione del cloud attuale.
+Usare il [modello di gestione del cloud](./template.md) per documentare i rischi aziendali che è probabile che vengano introdotti dal piano di adozione del cloud attuale.
 
-Dopo aver stabilito il riconoscimento di rischi aziendali realistici, il passaggio successivo consiste nel documentare le metriche e gli indicatori principali sulla tolleranza ai rischi aziendali per monitorare tale tolleranza.
+Dopo aver stabilito in modo realistico i rischi aziendali, il passaggio successivo consiste nel documentare le metriche e gli indicatori principali della tolleranza ai rischi dell'azienda allo scopo di monitorare tale tolleranza.
 
 > [!div class="nextstepaction"]
-> [Understand indicators, metrics, and risk tolerance](./metrics-tolerance.md) (Comprendere indicatori, metriche e tolleranza ai rischi)
+> [Indicatori, metriche e tolleranza ai rischi](./metrics-tolerance.md)

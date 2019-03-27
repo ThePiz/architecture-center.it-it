@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: f1f8a9ddc0a728f6be4350edb361afd19901de20
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483591"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245962"
 ---
 # <a name="non-relational-data-and-nosql"></a>Dati non relazionali e NoSQL
 
@@ -158,8 +158,8 @@ Di seguito vengono confrontati i requisiti per ogni tipo di archivi dati non rel
 | Modello di accesso | Accesso casuale | Aggregati di dati in pila/non in pila | Accesso casuale | Accesso casuale |
 | Indicizzazione | Indici primari e secondari | Indici primari e secondari | Solo indice primario | Indici primari e secondari |
 | Forma dei dati | Documento | Tabulare con famiglie di colonne contenenti colonne | Chiave e valore | Grafo contenente bordi e i vertici |
-| Sparse | Yes | Sì | Sì | No  |
-| In pila (elevato numero di colonne/attributi) | Yes | Sì | No  | No  |  
+| Sparse | Sì | Sì | Sì | No  |
+| In pila (elevato numero di colonne/attributi) | Sì | Sì | No  | No  |  
 | Dimensioni dati | Da piccole (KB) a medie (pochi MB) | Da medie (MB) a grandi (pochi GB) | Piccole (KB) | Piccole (KB) |
 | Scalabilità complessiva (max) | Molto grande (PB) | Molto grande (PB) | Molto grande (PB) | Grande (TB) |
 
@@ -174,6 +174,6 @@ Di seguito vengono confrontati i requisiti per ogni tipo di archivi dati non rel
 | Indicizzazione | Indici primari e secondari | Solo indice primario | N/D |
 | Forma dei dati | Tabulare | BLOB e metadati | Documento |
 | Sparse | No  | N/D | No  |
-| In pila (elevato numero di colonne/attributi) |  No  | Yes | Yes |  
+| In pila (elevato numero di colonne/attributi) |  No  | Sì | Sì |  
 | Dimensioni dati | Piccole (KB) | Da grandi (GB) a molto grandi (TB) | Piccole (KB) |
 | Scalabilità complessiva (max) | Grande (pochi TB)  | Molto grande (PB) | Grande (pochi TB) |

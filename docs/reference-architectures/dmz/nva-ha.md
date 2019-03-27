@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: a0973fad14bd9b4e81ec9940c83b8ebb31e9599b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 18a8620d835488be7a3639e8fbde86f9f10f946c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486790"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244992"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Distribuire appliance virtuali di rete con disponibilità elevata
 
@@ -54,7 +54,7 @@ La figura seguente mostra un'architettura a disponibilità elevata che implement
 Il vantaggio di questa architettura è che tutte le appliance virtuali di rete sono attive e se una di queste ha esito negativo il servizio di bilanciamento del carico indirizza il traffico di rete a un'altra appliance virtuale di rete. Entrambe le appliance virtuali di rete indirizzano il traffico al servizio di bilanciamento del carico interno quindi fino a quando un'appliance virtuale di rete è attiva, il traffico continua a fluire. Le appliance virtuali di rete devono interrompere il traffico SSL previsto per le macchine virtuali di livello Web. Queste appliance virtuali di rete non possono essere estese per gestire il traffico locale perché questo richiede un altro set dedicato di appliance virtuali di rete con le proprie route di rete.
 
 > [!NOTE]
-> Questa architettura viene usata nell'architettura di riferimento della [rete perimetrale tra Azure e il data center locale][dmz-on-prem] e quella della [rete perimetrale tra Azure e Internet][dmz-internet]. Ognuna di queste architetture di riferimento include una soluzione di distribuzione che è possibile usare. Per altre informazioni, vedere i collegamenti seguenti.
+> Questa architettura viene usata nell'architettura di riferimento della [rete perimetrale tra Azure e il data center locale][dmz-on-premises] e quella della [rete perimetrale tra Azure e Internet][dmz-internet]. Ognuna di queste architetture di riferimento include una soluzione di distribuzione che è possibile usare. Per altre informazioni, vedere i collegamenti seguenti.
 
 ## <a name="egress-with-layer-7-nvas"></a>Dati in uscita con appliance virtuali di rete di livello 7
 
@@ -65,7 +65,7 @@ L'architettura precedente può essere estesa per offrire una rete perimetrale pe
 In questa architettura tutto il traffico proveniente da Azure viene indirizzato a un servizio di bilanciamento del carico interno. Il servizio di bilanciamento del carico distribuisce le richieste in uscita tra un set di appliance virtuali di rete. Le appliance virtuali di rete indirizzano il traffico a Internet usando i singoli indirizzi IP pubblici.
 
 > [!NOTE]
-> Questa architettura viene usata nell'architettura di riferimento della [rete perimetrale tra Azure e il data center locale][dmz-on-prem] e quella della [rete perimetrale tra Azure e Internet][dmz-internet]. Ognuna di queste architetture di riferimento include una soluzione di distribuzione che è possibile usare. Per altre informazioni, vedere i collegamenti seguenti.
+> Questa architettura viene usata nell'architettura di riferimento della [rete perimetrale tra Azure e il datacenter locale][dmz-on-premises] e quella della [rete perimetrale tra Azure e Internet][dmz-internet]. Ognuna di queste architetture di riferimento include una soluzione di distribuzione che è possibile usare. Per altre informazioni, vedere i collegamenti seguenti.
 
 ## <a name="ingress-egress-with-layer-7-nvas"></a>Dati in ingresso e in uscita con appliance virtuali di rete di livello 7
 
@@ -118,14 +118,14 @@ Scegliere il tipo di probe da usare quando si configura l'app per le funzioni. P
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Informazioni su come [implementare una rete perimetrale tra Azure e il data center locale][dmz-on-prem] con le appliance virtuali di rete di livello 7.
+- Informazioni su come [implementare una rete perimetrale tra Azure e il data center locale][dmz-on-premises] con le appliance virtuali di rete di livello 7.
 - Informazioni su come [implementare una rete perimetrale tra Azure e Internet][dmz-internet] con le appliance virtuali di rete di livello 7.
 - [Risoluzione dei problemi delle appliance virtuali di rete in Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
 
 <!-- links -->
 
 [cloud-security]: /azure/best-practices-network-security
-[dmz-on-prem]: ./secure-vnet-hybrid.md
+[dmz-on-premises]: ./secure-vnet-hybrid.md
 [dmz-internet]: ./secure-vnet-dmz.md
 [egress-with-layer-7]: #egress-with-layer-7-nvas
 [ingress-with-layer-7]: #ingress-with-layer-7-nvas

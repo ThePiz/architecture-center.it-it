@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: c0362ff3bc6c115399892d0f066650aaa96af2dd
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486557"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244052"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>Scelta di un archivio dati di ricerca in Azure
 
@@ -54,35 +54,35 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
 | --- | --- | --- | --- | --- |
-| Servizio gestito | Yes | No  | Yes | Yes |  
-| API REST | Yes | Sì | Sì | No  |
+| Servizio gestito | Sì | No  | Sì | Sì |  
+| API REST | Sì | Sì | Sì | No  |
 | Programmabilità | .NET | Java | Java | T-SQL |
-| Indicizzatori di documenti per tipi di file comuni (PDF, DOCX, TXT e così via) | Yes | No  | Yes | No  |
+| Indicizzatori di documenti per tipi di file comuni (PDF, DOCX, TXT e così via) | Sì | No  | Sì | No  |
 
 ### <a name="manageability-capabilities"></a>Funzionalità per la gestibilità
 
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
 | --- | --- | --- | --- | --- |
-| Schema aggiornabile | No  | Yes | Sì | Yes |
-| Supporto per la scalabilità orizzontale  | Yes | Sì | Sì | No  |
+| Schema aggiornabile | No  | Sì | Sì | Sì |
+| Supporto per la scalabilità orizzontale  | Sì | Sì | Sì | No  |
 
 ### <a name="analytic-workload-capabilities"></a>Funzionalità per carichi di lavoro di analisi
 
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
 | --- | --- | --- | --- | --- |
-| Supporto per funzionalità di analisi oltre alla ricerca full-text | No  | Yes | Sì | Yes |
+| Supporto per funzionalità di analisi oltre alla ricerca full-text | No  | Sì | Sì | Sì |
 | Parte di uno stack per l'analisi di log | No  | Sì (ELK) |  No  | No  |
-| Supporto per la ricerca semantica | Sì (trova solo documenti simili) | Yes | Sì | Yes |
+| Supporto per la ricerca semantica | Sì (trova solo documenti simili) | Sì | Sì | Sì |
 
 ### <a name="security-capabilities"></a>Funzionalità di sicurezza
 
 | | Ricerca di Azure | Elasticsearch | HDInsight con Solr | Database SQL |
 | --- | --- | --- | --- | --- |
-| Sicurezza a livello di riga | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Yes | Yes |
-| Transparent Data Encryption | No  | No  | No  | Yes |  
-| Limitazione dell'accesso a specifici indirizzi IP | No  | Yes | Sì | Yes |
-| Limitazione dell'accesso alla rete virtuale | No  | Yes | Sì | Yes |  
-| Autenticazione di Active Directory (integrata) | No  | No  | No  | Yes |
+| Sicurezza a livello di riga | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Parziale (richiede una query di applicazione per filtrare in base all'ID del gruppo) | Sì | Sì |
+| Transparent Data Encryption | No  | No  | No  | Sì |  
+| Limitazione dell'accesso a specifici indirizzi IP | No  | Sì | Sì | Sì |
+| Limitazione dell'accesso alla rete virtuale | No  | Sì | Sì | Sì |  
+| Autenticazione di Active Directory (integrata) | No  | No  | No  | Sì |
 
 ## <a name="see-also"></a>Vedere anche 
 

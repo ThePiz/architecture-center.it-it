@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 'Baseline di sicurezza: metriche, indicatori e tolleranza ai rischi'
 author: BrianBlanchard
 ms.openlocfilehash: 30deafca59b2e09c78432ad3b59d328fb27a1e2c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901820"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241552"
 ---
 # <a name="security-baseline-metrics-indicators-and-risk-tolerance"></a>Baseline di sicurezza: metriche, indicatori e tolleranza ai rischi
 
@@ -42,7 +42,7 @@ Le piattaforme cloud offrono un set di baseline di funzionalità che consente a 
 
 Nelle prime fasi di adozione del cloud è necessario lavorare con il team addetto alla sicurezza IT e con gli azionisti aziendali per identificare i [rischi aziendali](business-risks.md) correlati alla sicurezza, quindi definire una baseline accettabile per la tolleranza ai rischi di sicurezza. In questa sezione del Cloud Adoption Framework vengono offerti alcuni esempi, ma i rischi dettagliati e le baseline per la società o le distribuzioni potrebbe essere diverse.
 
-Dopo aver creato una baseline, è necessario stabilire i benchmark minimi che rappresentano un aumento inaccettabile di rischi identificati. Questi benchmark fungono da trigger nel momento in cui è necessario intervenire per limitare tali rischi. Di seguito sono riportati alcuni esempi del modo in cui le metriche di sicurezza, ad esempio quelle descritte in precedenza, possono giustificare un maggiore investimento nella disciplina Baseline di sicurezza.
+Dopo aver creato una baseline, è necessario stabilire i benchmark minimi che rappresentano un aumento inaccettabile dei rischi identificati. Questi benchmark fungono da trigger nel momento in cui è necessario intervenire per limitare tali rischi. Di seguito sono riportati alcuni esempi del modo in cui le metriche di sicurezza, ad esempio quelle descritte in precedenza, possono giustificare un maggiore investimento nella disciplina Baseline di sicurezza.
 
 - **Trigger di carichi di lavoro cruciali**. Una società che distribuisce carichi di lavoro cruciali nel cloud deve investire nella disciplina Baseline di sicurezza per evitare potenziali interruzioni del servizio o esposizione di dati sensibili.
 - **Trigger di dati protetti**. Una società che ospita nel cloud dati che possono essere classificati come riservati, privati o comunque soggetti a problemi normativi. È necessaria una disciplina Baseline di sicurezza per garantire che tali dati non siano soggetti a rischi di perdita, esposizione o furto.

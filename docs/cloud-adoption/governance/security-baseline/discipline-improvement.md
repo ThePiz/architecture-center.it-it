@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Miglioramento della disciplina Baseline di sicurezza
 author: BrianBlanchard
 ms.openlocfilehash: 28a971f56c9f8ada1d184bdc1cb3dbb9a17c3507
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901900"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246452"
 ---
 # <a name="security-baseline-discipline-improvement"></a>Miglioramento della disciplina Baseline di sicurezza
 
@@ -24,14 +24,14 @@ Questo articolo delinea alcuni compiti potenziali che l'azienda può svolgere pe
 
 *Figura 1. Fasi di adozione dell'approccio incrementale alla governance del cloud.*
 
-È impossibile per qualsiasi documento tener conto dei requisiti di tutte le aziende. Di conseguenza, questo articolo delinea le attività di esempio minime e potenziali suggerite per ogni fase del processo di maturazione della governance. L'obiettivo iniziale di queste attività è quello di permettere di costruire un [MVP dei criteri](../journeys/overview.md#an-incremental-approach-to-cloud-governance) e stabilire un framework per l'evoluzione incrementale dei criteri. Il team di governance del cloud dovrà decidere quanto investire in queste attività per migliorare le capacità di governance della Baseline di sicurezza.
+È impossibile tener conto per qualsiasi documento dei requisiti di tutte le aziende. Di conseguenza, questo articolo delinea le attività di esempio minime e potenziali suggerite per ogni fase del processo di maturazione della governance. L'obiettivo iniziale di queste attività è quello di permettere di costruire un [MVP dei criteri](../journeys/overview.md#an-incremental-approach-to-cloud-governance) e stabilire un framework per l'evoluzione incrementale dei criteri. Il team di governance del cloud dovrà decidere quanto investire in queste attività per migliorare le capacità di governance della Baseline di sicurezza.
 
 > [!CAUTION]
-> Nessuna delle attività minime o potenziali descritte in questo articolo è allineata a specifici criteri aziendali o requisiti di conformità di terze parti. Questo materiale sussidiario è progettato per facilitare le conversazioni che porteranno all'allineamento di entrambi i requisiti con un modello di governance del cloud.
+> Nessuna delle attività minime o potenziali descritte in questo articolo è allineata a specifici criteri aziendali o requisiti di conformità di terze parti. Queste linee guida sono state progettate per facilitare le conversazioni che porteranno all'allineamento di entrambi i requisiti con un modello di governance del cloud.
 
 ## <a name="planning-and-readiness"></a>Pianificazione e preparazione
 
-Questa fase di maturità della governance colma il divario tra i risultati aziendali e le strategie attuabili. Durante questo processo, il team di leadership definisce metriche specifiche, esegue il mapping di tali metriche al patrimonio digitale e inizia a pianificare l'operazione di migrazione complessiva.
+Questa fase di maturità della governance colma il divario tra i risultati aziendali e le strategie attuabili. Durante questo processo, il team di leadership definisce metriche specifiche, associa tali metriche al patrimonio digitale e inizia a pianificare l'impegno complessivo richiesto per la migrazione.
 
 **Attività minime suggerite:**
 
@@ -76,7 +76,7 @@ Sono necessari una serie di prerequisiti tecnici e non per eseguire la migrazion
 
 ## <a name="adopt-and-migrate"></a>Adottare ed eseguire la migrazione
 
-La migrazione è un processo incrementale che si concentra sul movimento, il testing e l'adozione di applicazioni o carichi di lavoro in un patrimonio digitale esistente.
+La migrazione è un processo incrementale incentrato sullo spostamento, il testing e l'adozione di applicazioni o carichi di lavoro in un patrimonio digitale esistente.
 
 **Attività minime suggerite:**
 
@@ -96,7 +96,7 @@ La migrazione è un processo incrementale che si concentra sul movimento, il tes
 
 ## <a name="operate-and-post-implementation"></a>Operazioni e post-implementazione
 
-Al termine della trasformazione, la governance e le operazioni devono continuare a esser presenti per tutto il ciclo di vita naturale di un'applicazione o carico di lavoro. Questa fase di maturità della governance è incentrato sulle attività fornite in genere dopo aver implementato la soluzione e dopo la stabilizzazione del ciclo di trasformazione.
+Al termine della trasformazione, la governance e le operazioni devono continuare a funzionare per il ciclo di vita naturale di un'applicazione o di un carico di lavoro. Questa fase di maturità della governance si basa principalmente sulle attività che vengono svolte in genere dopo che la soluzione è stata implementata e il ciclo di trasformazione ha iniziato a stabilizzarsi.
 
 **Attività minime suggerite:**
 

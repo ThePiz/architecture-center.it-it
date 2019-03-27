@@ -10,11 +10,11 @@ author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
 ms.openlocfilehash: a86b1a75da57cec9c9aaf88abb70049f70731561
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901683"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243702"
 ---
 # <a name="cost-management-discipline-overview"></a>Panoramica della disciplina Gestione costi
 
@@ -25,7 +25,7 @@ Gestione costi è una delle [cinque discipline della governance del cloud](../go
 
 I principali destinatari di queste linee guida sono gli architetti dell'infrastruttura cloud delle organizzazioni e gli altri membri del team di governance del cloud. Tuttavia, le decisioni, i criteri e i processi che emergono da questa disciplina dovrebbero coinvolgere anche i membri appropriati dei team che si occupano delle attività aziendali e dell'IT, soprattutto i responsabili della proprietà, della gestione e dei pagamenti relativi ai carichi di lavoro basati sul cloud.
 
-## <a name="policy-statements"></a>Definizioni dei criteri
+## <a name="policy-statements"></a>Policy statements
 
 Una disciplina Gestione costi si basa principalmente sulle definizioni dei criteri in base ai quali prendere decisioni operative e sui requisiti dell'architettura risultanti. Per esempi di definizioni dei criteri, vedere l'articolo [Definizioni dei criteri di esempio per la gestione dei costi](./policy-statements.md). Questi esempi possono essere usati come punto di partenza per definire i criteri di governance della propria organizzazione.
 

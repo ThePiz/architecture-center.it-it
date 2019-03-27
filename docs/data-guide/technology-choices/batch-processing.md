@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 53f8b233b0e0c1ff83a72a04b2707caa528d6f6b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486455"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248516"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Scelta di una tecnologia per l'elaborazione batch in Azure
 
@@ -86,8 +86,8 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Azure Data Lake Analytics. | Azure SQL Data Warehouse | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| Servizio gestito | Yes | Yes | Sì <sup>1</sup> | Yes |
-| Archivio dati relazionale | Yes | Sì | No  | No  |
+| Servizio gestito | Sì | Sì | Sì <sup>1</sup> | Sì |
+| Archivio dati relazionale | Sì | Sì | No  | No  |
 | Modello di prezzi | Per processo batch | Per ora di cluster | Per ora di cluster | Unità Databricks<sup>2</sup> + ora di cluster |
 
 [1] Con configurazione e scalabilità manuali.
@@ -98,14 +98,14 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Azure Data Lake Analytics. | SQL Data Warehouse | HDInsight con Spark | HDInsight con Hive | HDInsight con Hive LLAP | Azure Databricks |
 | --- | --- | --- | --- | --- | --- | --- |
-| Scalabilità automatica | No  | No  | No  | No  | No  | Yes |
+| Scalabilità automatica | No  | No  | No  | No  | No  | Sì |
 | Granularità della scalabilità orizzontale  | Per processo | Per cluster | Per cluster | Per cluster | Per cluster | Per cluster |
-| Memorizzazione nella cache dei dati in memoria | No  | Yes | Sì | No  | Yes | Yes |
-| Query da archivi relazionali esterni | Yes | No  | Yes | No  | No  | Yes |
+| Memorizzazione nella cache dei dati in memoria | No  | Sì | Sì | No  | Sì | Sì |
+| Query da archivi relazionali esterni | Sì | No  | Sì | No  | No  | Sì |
 | Authentication  | Azure AD | SQL/Azure AD | No  | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
-| Controllo  | Yes | Sì | No  | Sì <sup>1</sup> | Sì <sup>1</sup> | Yes |
+| Controllo  | Sì | Sì | No  | Sì <sup>1</sup> | Sì <sup>1</sup> | Sì |
 | Sicurezza a livello di riga | No  | No  | No  | Sì <sup>1</sup> | Sì <sup>1</sup> | No  |
-| Supporto dei firewall | Yes | Sì | Yes | Sì <sup>2</sup> | Sì <sup>2</sup> | No  |
+| Supporto dei firewall | Sì | Sì | Sì | Sì <sup>2</sup> | Sì <sup>2</sup> | No  |
 | Maschera dati dinamica | No  | No  | No  | Sì <sup>1</sup> | Sì <sup>1</sup> | No  |
 
 <!-- markdownlint-enable MD033 -->

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484534"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244892"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Trasferimento dei dati da e verso Azure
 
@@ -92,9 +92,9 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | | Servizio Importazione/Esportazione di Azure | Azure Data Box |
 | --- | --- | --- |
 | Fattore di forma | Dischi SATA HDD o SDD interni | Singola appliance hardware, sicura e antimanomissione |
-| Logistica della spedizione gestita da Microsoft | No  | Yes |
-| Integrazione con prodotti di partner | No  | Yes |
-| Appliance personalizzata | No  | Yes |
+| Logistica della spedizione gestita da Microsoft | No  | Sì |
+| Integrazione con prodotti di partner | No  | Sì |
+| Appliance personalizzata | No  | Sì |
 
 ### <a name="command-line-tools"></a>Strumenti da riga di comando
 
@@ -102,13 +102,13 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Distcp | Sqoop | Riga di comando di Hadoop |
 | --- | --- | --- | --- |
-| Ottimizzazione per Big Data | Yes | Sì |  Yes |
-| Copia in database relazionale |  No  | Yes | No  |
-| Copia da database relazionale |  No  | Yes | No  |
-| Copia in archiviazione BLOB |  Yes | Sì | Yes |
-| Copia da archiviazione BLOB | Yes |  Sì | No  |
-| Copia in Data Lake Store | Yes | Sì | Yes |
-| Copia da Data Lake Store | Yes | Sì | No  |
+| Ottimizzazione per Big Data | Sì | Sì |  Sì |
+| Copia in database relazionale |  No  | Sì | No  |
+| Copia da database relazionale |  No  | Sì | No  |
+| Copia in archiviazione BLOB |  Sì | Sì | Sì |
+| Copia da archiviazione BLOB | Sì |  Sì | No  |
+| Copia in Data Lake Store | Sì | Sì | Sì |
+| Copia da Data Lake Store | Sì | Sì | No  |
 
 **Altro:**
 
@@ -118,12 +118,12 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Piattaforme compatibili | Linux, OS X, Windows | Linux, Windows | Windows | Linux, OS X, Windows | SQL Server, Azure SQL Data Warehouse |
 | Ottimizzazione per Big Data | No  | No  | No  | Sì <sup>1</sup> | Sì <sup>2</sup> |
-| Copia in database relazionale | No  | No  | No  | No  | Yes |
-| Copia da database relazionale | No  | No  | No  | No  | Yes |
-| Copia in archiviazione BLOB | Yes | Sì | Sì | No  | Yes |
-| Copia da archiviazione BLOB | Yes | Sì | Sì | Sì | Yes |
-| Copia in Data Lake Store | No  | No  | Yes | Sì |  Yes |
-| Copia da Data Lake Store | No  | No  | Yes | Sì | Yes |
+| Copia in database relazionale | No  | No  | No  | No  | Sì |
+| Copia da database relazionale | No  | No  | No  | No  | Sì |
+| Copia in archiviazione BLOB | Sì | Sì | Sì | No  | Sì |
+| Copia da archiviazione BLOB | Sì | Sì | Sì | Sì | Sì |
+| Copia in Data Lake Store | No  | No  | Sì | Sì |  Sì |
+| Copia da Data Lake Store | No  | No  | Sì | Sì | Sì |
 
 <!-- markdownlint-enable MD033 -->
 
@@ -135,17 +135,17 @@ Le tabelle seguenti contengono un riepilogo delle differenze principali in termi
 
 | | Esplora archivi Azure | Portale di Azure * | Data factory di Azure |
 | --- | --- | --- | --- |
-| Ottimizzazione per Big Data | No  | No  | Yes |
-| Copia in database relazionale | No  | No  | Yes |
-| Copia da database relazionale | No  | No  | Yes |
-| Copia in archiviazione BLOB | Yes | No  | Yes |
-| Copia da archiviazione BLOB | Yes | No  | Yes |
-| Copia in Data Lake Store | No  | No  | Yes |
-| Copia da Data Lake Store | No  | No  | Yes |
-| Caricamento in archiviazione BLOB | Yes | Sì | Yes |
-| Caricamento in Data Lake Store | Yes | Sì | Yes |
-| Orchestrazione dei trasferimenti di dati | No  | No  | Yes |
-| Trasformazioni dei dati personalizzate | No  | No  | Yes |
+| Ottimizzazione per Big Data | No  | No  | Sì |
+| Copia in database relazionale | No  | No  | Sì |
+| Copia da database relazionale | No  | No  | Sì |
+| Copia in archiviazione BLOB | Sì | No  | Sì |
+| Copia da archiviazione BLOB | Sì | No  | Sì |
+| Copia in Data Lake Store | No  | No  | Sì |
+| Copia da Data Lake Store | No  | No  | Sì |
+| Caricamento in archiviazione BLOB | Sì | Sì | Sì |
+| Caricamento in Data Lake Store | Sì | Sì | Sì |
+| Orchestrazione dei trasferimenti di dati | No  | No  | Sì |
+| Trasformazioni dei dati personalizzate | No  | No  | Sì |
 | Modello di prezzi | Gratuito | Gratuito | Pagamento in base all'utilizzo |
 
 \* In questo contesto l'opzione relativa al portale di Azure si riferisce all'uso degli strumenti di esplorazione basati sul Web per l'archiviazione BLOB e Data Lake Store.
