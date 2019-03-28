@@ -25,7 +25,7 @@ In molti settori ci si avvale dell'HPC per risolvere i problemi più difficili, 
 - Simulazioni di petrolio e gas
 - Finanza
 - Progettazione di semiconduttori
-- Ingegneria
+- Engineering
 - Modellazione meteo
 
 ### <a name="how-is-hpc-different-on-the-cloud"></a>Quali sono le differenze dell'HPC sul cloud?
@@ -143,7 +143,7 @@ I carichi di lavoro Batch e HPC su larga scala hanno richieste di archiviazione 
 - [Avere vFXT](https://azure.microsoft.com/services/storage/avere-vfxt/) per l'archiviazione dei dati più veloce e accessibile per l'HPC nei dispositivi perimetrali
 - [BeeGFS](https://azure.microsoft.com/resources/implement-glusterfs-on-azure/)
 - [Macchine virtuali ottimizzate per l'archiviazione](/azure/virtual-machines/windows/sizes-storage?context=/azure/architecture/topics/high-performance-computing/context/hpc-context)
-- [Archiviazione BLOB, tabelle e code](/azure/storage/storage-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context)
+- [Archivio BLOB, tabelle e code](/azure/storage/storage-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context)
 - [Archiviazione file SMB di Azure](/azure/storage/files/storage-files-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context)
 - [Intel Cloud Edition Lustre](https://azuremarketplace.microsoft.com/marketplace/apps/intel.intel-cloud-edition-gs)
 
@@ -165,8 +165,8 @@ La creazione di un sistema HPC da zero in Azure offre una notevole flessibilità
 
 1. Configurare l'ambiente cluster nelle macchine virtuali di Azure o nel [set di scalabilità di macchine virtuali](/azure/virtual-machine-scale-sets/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context).
 2. Usare i modelli di Azure Resource Manager per distribuire [gestori di carichi di lavoro](#workload-managers), infrastruttura e [applicazioni](#hpc-applications).
-3. Scegliere [dimensioni di VM HPC e GPU](#hpc-and-gpu-sizes) che includono hardware specializzato e connessioni di rete per carichi di lavoro MPI o GPU.
-4. Aggiungere [archiviazione ad alte prestazioni](#hpc-storage) per carichi di lavoro con elevato numero di operazioni di I/O.
+3. Scegliere [dimensioni delle VM](#compute) basate su CPU e GPU che includano hardware specializzato e connessioni di rete specifiche per carichi di lavoro MPI o GPU.
+4. Aggiungere [archiviazione ad alte prestazioni](#storage) per carichi di lavoro con elevato numero di operazioni di I/O.
 
 ### <a name="hybrid-and-cloud-bursting"></a>Burst ibrido e nel cloud
 
@@ -231,7 +231,7 @@ Prima di tutto, vedere l'articolo sulle [opzioni per connettere una rete locale 
     </li>
 </ul>
 
-Dopo aver stabilito la connettività di rete, è possibile iniziare a usare le risorse di calcolo del cloud su richiesta con le funzionalità burst dell'attuale [soluzione di gestione dei carichi di lavoro](#workload-manager).
+Dopo aver stabilito la connettività di rete, è possibile iniziare a usare le risorse di calcolo del cloud su richiesta con le funzionalità burst dell'attuale [soluzione di gestione dei carichi di lavoro](#workload-managers).
 
 ### <a name="marketplace-solutions"></a>Soluzioni del Marketplace
 
@@ -263,9 +263,9 @@ CycleCloud consente di:
 - Usare l'utilità di pianificazione di processi e le applicazioni correnti senza modifiche
 - Sfruttare i vantaggi della scalabilità automatica predefinita e di architetture di riferimento convalidate per una vasta gamma di carichi di lavoro HPC e di settori
 
-### <a name="workload-managers"></a>Soluzioni di gestione dei carichi di lavoro
+### <a name="workload-managers"></a>Gestori del carico di lavoro
 
-Di seguito sono riportati esempi di cluster e soluzioni di gestione dei carichi di lavoro eseguibili nell'infrastruttura di Azure. Creare cluster autonomi nelle macchine virtuali di Azure oppure eseguire il potenziamento in macchine virtuali di Azure da un cluster locale.
+Di seguito sono riportati esempi di cluster e gestori del carico di lavoro eseguibili nell'infrastruttura di Azure. Creare cluster autonomi nelle macchine virtuali di Azure oppure eseguire il potenziamento in macchine virtuali di Azure da un cluster locale.
 
 - [Alces Flight Compute](https://azuremarketplace.microsoft.com/marketplace/apps/alces-flight-limited.alces-flight-compute-solo?tab=Overview)
 - [TIBCO DataSynapse GridServer](https://azure.microsoft.com/blog/tibco-datasynapse-comes-to-the-azure-marketplace/)
