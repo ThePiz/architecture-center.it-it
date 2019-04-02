@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 4235e5d1bb3b202cff9f7c703f079651982aac59
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: dbd2a9a8fbb18586e7b255873a9a503117deabcd
+ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246112"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "58489182"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementare una topologia di rete hub-spoke in Azure
 
@@ -101,12 +101,6 @@ Se è necessaria la connettività tra spoke, è consigliabile implementare un'ap
 ![[2]][2]
 
 In questo scenario occorre configurare le connessioni peering in modo da **consentire il traffico inoltrato**.
-
-### <a name="overcoming-vnet-peering-limits"></a>Superamento dei limiti del peering reti virtuali
-
-Assicurarsi di considerare il [limite sul numero di peering reti virtuali per ogni rete virtuale][vnet-peering-limit] in Azure. Se si stabilisce che saranno necessari più spoke di quanto consentito dal limite, valutare la creazione di una topologia hub-spoke-hub-spoke, in cui il primo livello di spoke funge anche da hub. Il diagramma seguente illustra questo approccio.
-
-![[3]][3]
 
 Considerare inoltre i servizi condivisi nell'hub, per assicurarsi che quest'ultimo sia scalabile per un numero superiore di spoke. Ad esempio, se l'hub fornisce servizi firewall, valutare i limiti di larghezza di banda della soluzione firewall quando si aggiungono più spoke. Può essere utile spostare alcuni dei servizi condivisi in un secondo livello di hub.
 

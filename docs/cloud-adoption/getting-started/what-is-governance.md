@@ -6,12 +6,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.date: 02/11/2019
 description: Informazioni sulla governance delle risorse cloud in Azure
 author: petertaylor9999
-ms.openlocfilehash: 5d022e83a1c97a5e5af8208ec00339575bb88be1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 602ac81f2b2201c77746df971d282582ceee23f7
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242122"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503197"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -35,11 +35,11 @@ Il controllo degli accessi in base al ruolo definisce i ruoli e i ruoli definisc
 
 I criteri delle risorse definiscono le regole per la creazione delle risorse. Un criterio delle risorse può ad esempio limitare lo SKU di una macchina virtuale a una dimensione specifica pre-approvata. Un altro criterio delle risorse può imporre l'aggiunta di un tag con un centro di costo quando viene effettuata la richiesta di creazione della risorsa.
 
-Quando si configurano questi strumenti, è importante trovare il giusto equilibrio tra governance e flessibilità organizzativa. Più sono restrittivi i criteri di governance, meno flessibilità avranno gli sviluppatori e i professionisti IT. Criteri di governance restrittivi potrebbero infatti richiedere un maggior numero di passaggi manuali, ad esempio la compilazione di un modulo o l'invio di un messaggio di posta elettronica da uno sviluppatore a un membro del team di governance per la creazione manuale di una risorsa. Il team di governance ha capacità limitate e potrebbe accumulare lavoro arretrato, con una conseguente diminuzione della produttività dei team di sviluppo che devono attendere la creazione delle risorse e con il rischio di accumulare costi per risorse non necessarie in attesa di essere eliminate.
+Quando si configurano questi strumenti, è importante trovare il giusto equilibrio tra governance e flessibilità organizzativa. Più sono restrittivi i criteri di governance, meno flessibilità avranno gli sviluppatori e i professionisti IT. Questo avviene perché un criterio restrittivo governance può richiedere più passaggi manuali, ad esempio richiedere agli sviluppatori di compilare un modulo o inviare un messaggio di posta elettronica a una persona del team di governance per creare manualmente una risorsa. Il team di governance ha funzionalità finita e potrebbe essere inclusi nel backlog, causando i team di sviluppo produttivo in attesa di essere create e non necessarie risorse provenienti i costi durante l'attesa da eliminare le relative risorse.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che si è appreso il concetto di governance delle risorse cloud, si apprenderà come viene gestito l'accesso alle risorse in Azure.
+Ora che abbiamo appreso il concetto di governance delle risorse cloud, altre informazioni su come viene gestito l'accesso alle risorse in Azure.
 
 > [!div class="nextstepaction"]
 > [Informazioni sull'accesso alle risorse in Azure](azure-resource-access.md)

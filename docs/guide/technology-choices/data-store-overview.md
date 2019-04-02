@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 91a551025ae697d5828fc1e398b204d2901d17f6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c76b28fc53f36024867838e8ac36f256b242bf4a
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242022"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419955"
 ---
 # <a name="choose-the-right-data-store"></a>Scegliere l'archivio dati corretto
 
@@ -35,11 +35,13 @@ Un sistema di gestione di database relazionali supporta in genere un modello di 
 
 Un sistema di gestione di database relazionali è molto utile quando è importante avere garanzie di coerenza di alto livello dove tutte le modifiche sono atomiche e le transazioni lasciano sempre i dati in uno stato coerente. Tuttavia le strutture sottostanti non si prestano alla scalabilità orizzontale per la distribuzione delle risorse di archiviazione e l'elaborazione tra più computer. Inoltre, le informazioni archiviate in un sistema di gestione di database relazionali devono essere inserite in una struttura relazionale seguendo il processo di normalizzazione. Benché questo processo sia ben chiaro, può essere inefficiente a causa della necessità di disassemblare entità logiche in righe in tabelle separate e quindi riassemblare i dati quando si eseguono le query.
 
-Servizio di Azure pertinente:
+Servizi di Azure pertinenti:
 
 - [Database SQL di Azure][sql-db]
 - [Database di Azure per MySQL][mysql]
 - [Database di Azure per PostgreSQL][postgres]
+- [Database di Azure per MariaDB][mariadb]
+
 
 ## <a name="keyvalue-stores"></a>Archivi chiave/valore
 
@@ -112,6 +114,7 @@ Servizi di Azure pertinenti:
 
 - [SQL Data Warehouse][sql-dw]
 - [Azure Data Lake][data-lake]
+- [Esplora dati di Azure](https://azure.microsoft.com/services/data-explorer/)
 
 ## <a name="search-engine-databases"></a>Database di motori di ricerca  
 
@@ -152,6 +155,7 @@ Servizio di Azure pertinente: [archivio file][file-storage]
 [hbase]: /azure/hdinsight/hdinsight-hbase-overview
 [mysql]: https://azure.microsoft.com/services/mysql/
 [postgres]: https://azure.microsoft.com/services/postgresql/
+[mariadb]: https://azure.microsoft.com/services/mariadb/
 [redis-cache]: https://azure.microsoft.com/services/cache/
 [search]: https://azure.microsoft.com/services/search/
 [sql-db]: https://azure.microsoft.com/services/sql-database

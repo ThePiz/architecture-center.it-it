@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 931d247f088055286a2832b886992dca8565b6a7
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 67f23ae3676d0fb95ef484fa6dcb7a8bb92e0fa2
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244372"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420006"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Estendere Active Directory Domain Services in Azure
 
@@ -48,7 +48,7 @@ Le raccomandazioni seguenti sono valide per la maggior parte degli scenari. Segu
 
 Determinare i requisiti di [dimensioni delle macchine virtuali][vm-windows-sizes] in base al volume di richieste di autenticazione previsto. Usare le specifiche dei computer che ospitano Active Directory Domain Services in locale come punto di partenza e associarle alle dimensioni delle macchine virtuali di Azure. Dopo la distribuzione, monitorare l'utilizzo e aumentare o ridurre le prestazioni in base al carico effettivo sulle macchine virtuali. Per altre informazioni sul dimensionamento dei controller di dominio Active Directory Domain Services, vedere [Capacity Planning for Active Directory Domain Services][capacity-planning-for-adds] (Pianificazione della capacità per Active Directory Domain Services).
 
-Creare un disco dati virtuale separato per archiviare il database, i log e SYSVOL per Active Directory. Non archiviare questi elementi nello stesso disco del sistema operativo. Si noti che, per impostazione predefinita, le unità disco dati collegate a una macchina virtuale usano la funzionalità cache write-through. Tuttavia, questa forma di memorizzazione nella cache può essere in conflitto con i requisiti di Active Directory Domain Services. Per questo motivo, impostare l'opzione *Preferenze cache dell'host* del disco dati su *Nessuna*. Per altre informazioni, vedere [Linee guida per la distribuzione di Active Directory di Windows Server in macchine virtuali di Azure][adds-data-disks].
+Creare un disco dati virtuale separato per archiviare il database, i log e SYSVOL per Active Directory. Non archiviare questi elementi nello stesso disco del sistema operativo. Si noti che, per impostazione predefinita, le unità disco dati collegate a una macchina virtuale usano la funzionalità cache write-through. Tuttavia, questa forma di memorizzazione nella cache può essere in conflitto con i requisiti di Active Directory Domain Services. Per questo motivo, impostare l'opzione *Preferenze cache dell'host* del disco dati su *Nessuna*.
 
 Distribuire almeno due macchine virtuali che eseguono Active Directory Domain Services come controller di dominio e aggiungerle a un [set di disponibilità][availability-set].
 
