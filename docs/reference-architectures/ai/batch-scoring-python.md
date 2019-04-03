@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: 81dc353735eaa6573c72d9e588c949fe96a329ef
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
-ms.translationtype: HT
+ms.openlocfilehash: b7607984bcf2c4bd046421aeb6e9d52dd8e7c18e
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782014"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887744"
 ---
-# <a name="batch-scoring-of-python-models-on-azure"></a>Assegnazione del punteggio in batch per i modelli Python in Azure
+# <a name="batch-scoring-of-python-machine-learning-models-on-azure"></a>Valutazione dei modelli di machine learning di Python in Azure batch
 
 Questa architettura di riferimento illustra come creare una soluzione scalabile per l'assegnazione del punteggio in batch a molti modelli in base a una pianificazione in parallelo usando il servizio Azure Machine Learning. La soluzione può essere usata come modello e supporta la generalizzazione per problemi diversi.
 
@@ -49,9 +49,9 @@ L'architettura è costituita dai componenti seguenti:
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
 
-Per i modelli Python standard, le CPU sono generalmente considerate sufficienti per gestire il carico di lavoro. Questa architettura usa CPU. Per [carichi di lavoro di Deep Learning][deep], tuttavia, le GPU in genere garantiscono prestazioni nettamente superiori rispetto alle CPU, per cui di norma è necessario un cluster consistente di CPU per ottenere prestazioni analoghe.
+Per i modelli Python standard, le CPU sono generalmente considerate sufficienti per gestire il carico di lavoro. Questa architettura usa CPU. Tuttavia, per [carichi di lavoro di apprendimento avanzato][deep], GPU in genere prestazioni CPU di una quantità considerevole &mdash; un cluster di numero di CPU in genere è necessaria per ottenere prestazioni analoghe.
 
-### <a name="parallelizing-across-vms-vs-cores"></a>Esecuzione in parallelo tra macchine virtuali e core a confronto
+### <a name="parallelizing-across-vms-versus-cores"></a>La parallelizzazione tra le macchine virtuali e core
 
 Durante l'esecuzione dei processi di assegnazione del punteggio a molti modelli in modalità batch, i processi devono essere eseguiti in parallelo tra le macchine virtuali. Sono possibili due approcci:
 
@@ -87,7 +87,7 @@ Per distribuire questa architettura di riferimento, seguire la procedura descrit
 [amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [automatic-scaling]: /azure/batch/batch-automatic-scaling
 [azure-files]: /azure/storage/files/storage-files-introduction
-[cli]: https://docs.microsoft.com/en-us/cli/azure
+[cli]: /cli/azure
 [create-resources]: https://github.com/Microsoft/AMLBatchScoringPipeline/blob/master/01_create_resources.ipynb
 [deep]: /azure/architecture/reference-architectures/ai/batch-scoring-deep-learning
 [event-hubs]: /azure/event-hubs/event-hubs-geo-dr
@@ -95,10 +95,10 @@ Per distribuire questa architettura di riferimento, seguire la procedura descrit
 [github]: https://github.com/Microsoft/AMLBatchScoringPipeline
 [one-class-svm]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html
 [portal]: https://portal.azure.com
-[ml-workspace]: https://docs.microsoft.com/en-us/azure/machine-learning/studio/create-workspace
+[ml-workspace]: /azure/machine-learning/studio/create-workspace
 [python-script]: https://github.com/Azure/BatchAIAnomalyDetection/blob/master/batchai/predict.py
 [pyscript]: https://github.com/Microsoft/AMLBatchScoringPipeline/blob/master/scripts/predict.py
 [storage]: /azure/storage/blobs/storage-blobs-overview
 [stream-analytics]: /azure/stream-analytics/
-[sql-database]: https://docs.microsoft.com/en-us/azure/sql-database/
-[app-insights]: https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview
+[sql-database]: /azure/sql-database/
+[app-insights]: /azure/application-insights/app-insights-overview
