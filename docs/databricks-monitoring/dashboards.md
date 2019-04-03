@@ -3,18 +3,20 @@ title: Utilizzare Dashboard per visualizzare le metriche di Azure Databricks
 description: Come distribuire un dashboard di Grafana per monitorare le prestazioni in Azure Databricks
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: dbc04b00a781dd20c3224b5a031a8d98ddadce94
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503408"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887829"
 ---
 # <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>Utilizzare Dashboard per visualizzare le metriche di Azure Databricks
 
+Questo articolo illustra come configurare un dashboard di Grafana per monitorare i processi di Azure Databricks per i problemi di prestazioni.
+
 [Azure Databricks](/azure/azure-databricks/) è un fast, potente e collaborativa [Apache Spark](https://spark.apache.org/)– basato su servizio analitica che rende più semplice sviluppare e distribuire soluzioni di intelligenza artificiale (AI) e analitica dei big data rapidamente. Il monitoraggio è un componente fondamentale del funzionamento dei carichi di lavoro Azure Databricks nell'ambiente di produzione. Il primo passaggio è per raccogliere le metriche in un'area di lavoro per l'analisi. In Azure è la soluzione migliore per la gestione dei dati di log [monitoraggio di Azure](/azure/azure-monitor/). Azure Databricks in modo nativo non supportano l'invio dei dati di log per il monitoraggio di Azure, ma un [libreria per questa funzionalità](https://github.com/mspnp/spark-monitoring) è disponibile in [Github](https://github.com).
 
-Questa libreria consente la registrazione delle metriche del servizio Azure Databricks, nonché la struttura di Apache Spark streaming le metriche di eventi di query. Dopo aver correttamente distribuito la raccolta a un cluster Azure Databricks, è possibile distribuire un set di ulteriormente [monitoraggio di Azure](/azure/azure-monitor/) oppure [Grafana](https://granfana.com) dashboard che è possibile distribuire come parte di produzione ambiente. Questo documento include una descrizione dei tipi comuni di problemi di prestazioni e come identificare usando questi dashboard.
+Questa libreria consente la registrazione delle metriche del servizio Azure Databricks, nonché la struttura di Apache Spark streaming le metriche di eventi di query. Dopo aver correttamente distribuito la raccolta a un cluster Azure Databricks, è possibile distribuire un set di ulteriormente [Grafana](https://granfana.com) dashboard che è possibile distribuire come parte dell'ambiente di produzione.
 
 ![Screenshot del dashboard](./_images/dashboard-screenshot.png)
 
@@ -188,6 +190,11 @@ Di seguito è riportato un set di visualizzazioni per il dashboard che mostra il
 ### <a name="shuffle-metrics"></a>Le metriche di riproduzione casuale
 
 Il set finale di visualizzazioni Mostra i dati di riproduzione casuale le metriche associate a una query di streaming strutturata tra tutti gli executor. Ad esempio shuffle byte letti e shuffle byte scritti, shuffle memoria e utilizzo dei dischi nelle query in cui viene usato il file system.
+
+## <a name="next-steps"></a>Passaggi successivi
+
+> [!div class="nextstepaction"]
+> [Risolvere i problemi di colli di bottiglia delle prestazioni](./performance-troubleshooting.md)
 
 <!-- links -->
 
