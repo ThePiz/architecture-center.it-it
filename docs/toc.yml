@@ -537,7 +537,7 @@ items:
       href: multitenant-identity/signup.md
     - name: Ruoli applicazione
       href: multitenant-identity/app-roles.md
-    - name: Authorization
+    - name: Autorizzazione
       href: multitenant-identity/authorize.md
     - name: Proteggere un'API Web
       href: multitenant-identity/web-api.md
@@ -557,6 +557,16 @@ items:
       href: service-fabric/migrate-from-cloud-services.md
     - name: Effettuare il refactoring di un'applicazione di Service Fabric
       href: service-fabric/refactor-migrated-app.md
+  - name: Eseguire il monitoraggio di Azure Databricks
+    items:
+    - name: Panoramica
+      href: databricks-monitoring/index.md
+    - name: Configurare Azure Databricks per l'invio delle metriche a Monitoraggio di Azure
+      href: databricks-monitoring/configure-cluster.md
+    - name: Inviare i log dell'applicazione di Azure Databricks a Monitoraggio di Azure
+      href: databricks-monitoring/application-logs.md
+    - name: Usare i dashboard per visualizzare le metriche di Azure Databricks
+      href: databricks-monitoring/dashboards.md
 - name: Framework di analisi della progettazione
   items:
   - name: Progettare per la resilienza
@@ -851,9 +861,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: Log e report
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 06737190911118bab802d8141d959b04f6589f0a
-ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/26/2019
-ms.locfileid: "58489216"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503248"
