@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 00bea3cae0c3d2f0fea2babd7b0157382cf9890a
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 5f3cc62c81c9ef9e5c3c27b1d66badd3e481c228
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248686"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887846"
 ---
-# <a name="real-time-scoring-of-r-machine-learning-models"></a>Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning
+# <a name="real-time-scoring-of-r-machine-learning-models-on-azure"></a>Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning in Azure
 
 Questa architettura di riferimento mostra come implementare un servizio di stima in tempo reale (sincrono) in R con Microsoft Machine Learning Server in esecuzione nel servizio Azure Kubernetes (AKS). Questa architettura generica è progettata per essere adatta a qualsiasi modello predittivo compilato in R che si desidera distribuire come servizio in tempo reale. **[Distribuire questa soluzione][github]**.
 

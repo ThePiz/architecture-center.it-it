@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 1b6f10edf098ed8d9fa14c16de113fc765372835
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: cba8d272ddbdbf2c2da94f68b288e9fb79be7de2
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58231408"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887812"
 ---
-# <a name="batch-scoring-of-spark-models-on-azure-databricks"></a>Assegnazione dei punteggi in batch per i modelli Spark in Azure Databricks
+# <a name="batch-scoring-of-spark-machine-learning-models-on-azure-databricks"></a>Modelli di assegnazione punteggio batch di machine learning di Spark in Azure Databricks
 
 Questa architettura di riferimento illustra come creare una soluzione scalabile per l'assegnazione del punteggio batch a un modello di classificazione Apache Spark in una pianificazione usando Azure Databricks, una piattaforma di strumenti analitici basata su Apache Spark ottimizzata per Azure. La soluzione può essere usata come modello che può essere generalizzato per altri scenari.
 

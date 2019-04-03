@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 748b191aeee931d580dd27b1ad54c4f4bd63e369
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 3d109cb830b7dfc8c3d4de0e654f9d8667acf101
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243842"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887795"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-databricks"></a>Creare una pipeline di elaborazione di flussi con Azure Databricks
 
@@ -316,6 +316,8 @@ SparkMetric_CL
 | render timechart
 | where name_s contains "driver.DAGScheduler.job.allJobs"
 ```
+
+Per altre informazioni, vedere [monitoraggio di Azure Databricks](../../databricks-monitoring/index.md).
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 

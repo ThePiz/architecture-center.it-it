@@ -8,14 +8,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 85d04f179b988fd5b00b361149f2170d13608e6d
-ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
-ms.translationtype: HT
+ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55887387"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887863"
 ---
-# <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Punteggio batch in Azure per modelli di apprendimento avanzato
+# <a name="batch-scoring-of-deep-learning-models-on-azure"></a>Valutazione dei modelli di apprendimento avanzato in Azure batch
 
 Questa architettura di riferimento mostra come applicare la procedura di neural style transfer a un video tramite Azure Machine Learning. Lo *style transfer* è una tecnica di apprendimento avanzato che ridefinisce un'immagine esistente usando lo stile di un'altra immagine. Questa architettura può essere generalizzata per qualsiasi scenario che usa l'assegnazione del punteggio batch con l'apprendimento avanzato. [**Distribuire questa soluzione**](#deploy-the-solution).
 
@@ -23,9 +23,13 @@ Questa architettura di riferimento mostra come applicare la procedura di neural 
 
 **Scenario**: Un'organizzazione di supporti dispone di un video di cui desidera modificare l'aspetto, rendendolo simile a un dipinto specifico. L'organizzazione vuole applicare questo stile a tutti i frame del video in modo tempestivo e automatico. Per altre informazioni sugli algoritmi di neural style transfer, vedere il PDF [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] (Style transfer di immagini tramite reti neurali convoluzionali).
 
+<!-- markdownlint-disable MD033 -->
+
 | Immagine stile: | Video di input/contenuto: | Video di output: |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "Video di input") *fare clic per visualizzare il video* | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "Video di output") *fare clic per visualizzare il video* |
+
+<!-- markdownlint-enable MD033 -->
 
 Questa architettura di riferimento è progettata per carichi di lavoro che vengono attivati dalla presenza di nuovi supporti in Archiviazione di Azure.
 
@@ -42,7 +46,7 @@ L'architettura è costituita dai componenti seguenti.
 
 ### <a name="compute"></a>Calcolo
 
-**[Servizio Azure Machine Learning][amls]**: usa le pipeline di Azure Machine Learning per creare sequenze di calcolo riproducibili e facilmente gestibili. Offre anche una destinazione di calcolo gestita (in cui è possibile eseguire il calcolo della pipeline), l'[ambiente di calcolo di Machine Learning di Azure][aml-compute] per il training, la distribuzione e l'assegnazione di punteggi ai modelli di Machine Learning. 
+**[Servizio Azure Machine Learning][amls]**: usa le pipeline di Azure Machine Learning per creare sequenze di calcolo riproducibili e facilmente gestibili. Offre anche una destinazione di calcolo gestita (in cui è possibile eseguire il calcolo della pipeline), l'[ambiente di calcolo di Machine Learning di Azure][aml-compute] per il training, la distribuzione e l'assegnazione di punteggi ai modelli di Machine Learning.
 
 ### <a name="storage"></a>Archiviazione
 
@@ -64,21 +68,21 @@ Questa architettura di riferimento usa un filmato di repertorio di un orangutan 
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
 
-### <a name="gpu-vs-cpu"></a>GPU e CPU a confronto
+### <a name="gpu-versus-cpu"></a>GPU e CPU
 
 Per carichi di lavoro di apprendimento avanzato, le GPU in genere garantiscono prestazioni nettamente superiori rispetto alle CPU, per cui di norma è necessario un cluster consistente di CPU per ottenere prestazioni analoghe. Anche se in questa architettura è possibile usare soltanto CPU, le GPU offrono comunque un rapporto costi/prestazioni di gran lunga superiore. Si consiglia l'utilizzo della più recente combinazione macchina virtuale-dimensioni-gpu [serie NCv3] di macchine virtuali ottimizzate per la GPU.
 
 Le GPU non sono abilitate per impostazione predefinita in tutte le aree. Assicurarsi di selezionare un'area con GPU abilitate. Le sottoscrizioni prevedono anche una quota predefinita di un numero di core pari a zero per macchine virtuali ottimizzate per la GPU. È possibile aumentare questa quota inoltrando una richiesta di supporto. Assicurarsi che la sottoscrizione disponga di una quota sufficiente per eseguire il carico di lavoro.
 
-### <a name="parallelizing-across-vms-vs-cores"></a>Esecuzione in parallelo tra macchine virtuali e core a confronto
+### <a name="parallelizing-across-vms-versus-cores"></a>La parallelizzazione tra le macchine virtuali e core
 
 Quando si esegue un processo di style transfer come processo batch, i processi che vengono eseguiti principalmente nelle GPU dovranno essere eseguiti in parallelo tra le macchine virtuali. Sono possibili due approcci: è possibile creare un cluster di dimensioni maggiori tramite macchine virtuali con una GPU singola o creare un cluster più piccolo tramite macchine virtuali con più GPU.
 
 Per questo carico di lavoro, queste due opzioni garantiranno prestazioni analoghe. L'utilizzo di un minor numero di macchine virtuali con più GPU per ognuna può contribuire a ridurre lo spostamento dati. Tuttavia, il volume di dati per processo per questo carico di lavoro non è molto grande, per cui non si osserverà una limitazione eccessiva da parte dell'archiviazione BLOB.
 
-### <a name="mpi-step"></a>Passaggio MPI 
+### <a name="mpi-step"></a>Passaggio MPI
 
-Quando si crea la pipeline in Azure Machine Learning, uno dei passaggi usati per eseguire il calcolo parallelo è il passaggio MPI, che consente di dividere uniformemente i dati tra i nodi disponibili. Questo passaggio viene eseguito solo quando tutti i nodi richiesti sono pronti. Se un nodo presenta un errore o viene annullato (nel caso di una macchina virtuale a bassa priorità), il passaggio MPI dovrà essere eseguito di nuovo. 
+Quando si crea la pipeline in Azure Machine Learning, uno dei passaggi usati per eseguire il calcolo parallelo è il passaggio MPI, che consente di dividere uniformemente i dati tra i nodi disponibili. Questo passaggio viene eseguito solo quando tutti i nodi richiesti sono pronti. Se un nodo presenta un errore o viene annullato (nel caso di una macchina virtuale a bassa priorità), il passaggio MPI dovrà essere eseguito di nuovo.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
 
@@ -94,7 +98,7 @@ Questa architettura di riferimento usa lo style transfer come esempio di process
 
 ### <a name="securing-your-computation-in-a-virtual-network"></a>Protezione del calcolo in una rete virtuale
 
-Quando si distribuisce un cluster dell'ambiente di calcolo di Machine Learning, è possibile configurarlo in modo che ne venga eseguito il provisioning all'interno di una subnet di una [rete virtuale][virtual-network]. I nodi di calcolo nel cluster possono così comunicare in modo sicuro con altre macchine virtuali. 
+Quando si distribuisce un cluster dell'ambiente di calcolo di Machine Learning, è possibile configurarlo in modo che ne venga eseguito il provisioning all'interno di una subnet di una [rete virtuale][virtual-network]. I nodi di calcolo nel cluster possono così comunicare in modo sicuro con altre macchine virtuali.
 
 ### <a name="protecting-against-malicious-activity"></a>Protezione da attività dannose
 
@@ -136,7 +140,6 @@ Per distribuire questa architettura di riferimento, seguire la procedura descrit
 
 > [!NOTE]
 > È anche possibile distribuire un'architettura di assegnazione del punteggio in batch per i modelli di Deep Learning usando il servizio Azure Kubernetes. Seguire la procedura descritta nel [repository Github][deployment2].
-
 
 <!-- links -->
 
