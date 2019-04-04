@@ -279,20 +279,26 @@ items:
     href: reference-architectures/index.md
   - name: AI
     items:
-    - name: Training distribuito di modelli di Deep Learning
-      href: reference-architectures/ai/training-deep-learning.md
-    - name: Training dei modelli scikit-learn Python
-      href: reference-architectures/ai/training-python-models.md
-    - name: Assegnazione dei punteggi in batch per i modelli di Deep Learning
-      href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Assegnazione dei punteggi in batch per i modelli Python
-      href: reference-architectures/ai/batch-scoring-python.md
+    - name: Training e assegnazione dei punteggi per i modelli di Deep Learning e Python
+      items:
+      - name: Training distribuito di modelli di Deep Learning
+        href: reference-architectures/ai/training-deep-learning.md
+      - name: Assegnazione dei punteggi in batch per i modelli di Deep Learning
+        href: reference-architectures/ai/batch-scoring-deep-learning.md
+      - name: Training dei modelli scikit-learn Python
+        href: reference-architectures/ai/training-python-models.md
+      - name: Assegnazione dei punteggi in batch per i modelli Python
+        href: reference-architectures/ai/batch-scoring-python.md
+      - name: Assegnazione dei punteggi in tempo reale per modelli Python e di Deep Learning
+        href: reference-architectures/ai/realtime-scoring-python.md
+    - name: Assegnazione di punteggi per i modelli R
+      items:
+      - name: Assegnazione di punteggi in batch per i modelli R
+        href: reference-architectures/ai/batch-scoring-R-models.md
+      - name: Assegnazione di punteggi in tempo reale per i modelli R
+        href: reference-architectures/ai/realtime-scoring-r.md
     - name: Assegnazione dei punteggi in batch per i modelli Spark in Azure Databricks
       href: reference-architectures/ai/batch-scoring-databricks.md
-    - name: Assegnazione dei punteggi in tempo reale per modelli Python e di Deep Learning
-      href: reference-architectures/ai/realtime-scoring-python.md
-    - name: Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning
-      href: reference-architectures/ai/realtime-scoring-r.md
     - name: Bot di conversazione
       href: reference-architectures/ai/conversational-bot.md
     - name: API per consigli in tempo reale
@@ -497,6 +503,8 @@ items:
           href: data-guide/technology-choices/natural-language-processing.md
         - name: Orchestrazione di pipeline
           href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+        - name: Guida di Azure per sviluppatori di R
+          href: data-guide/technology-choices/r-developers-guide.md
         - name: Inserimento di messaggi in tempo reale
           href: data-guide/technology-choices/real-time-ingestion.md
         - name: Archivi dati di ricerca
@@ -537,7 +545,7 @@ items:
       href: multitenant-identity/signup.md
     - name: Ruoli applicazione
       href: multitenant-identity/app-roles.md
-    - name: Autorizzazione
+    - name: Authorization
       href: multitenant-identity/authorize.md
     - name: Proteggere un'API Web
       href: multitenant-identity/web-api.md
@@ -567,6 +575,8 @@ items:
       href: databricks-monitoring/application-logs.md
     - name: Usare i dashboard per visualizzare le metriche di Azure Databricks
       href: databricks-monitoring/dashboards.md
+    - name: Risolvere i problemi relativi ai colli di bottiglia delle prestazioni
+      href: databricks-monitoring/performance-troubleshooting.md
 - name: Framework di analisi della progettazione
   items:
   - name: Progettare per la resilienza
@@ -861,9 +871,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: Log e report
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 953c7cbdee185a88d8470199fb4ba92244adaa84
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503248"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887778"
