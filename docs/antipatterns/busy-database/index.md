@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: 7d3fe47407eff7168dfd227a1dd1bd5917c7d431
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344853"
 ---
-
 # <a name="busy-database-antipattern"></a>Antipattern del database occupato
 
 L'esecuzione del processo di offload in un server del database può causarne una perdita significativa di tempo nell'operazione di esecuzione del codice, invece che in quella di rispondere alle richieste per archiviare e recuperare i dati.

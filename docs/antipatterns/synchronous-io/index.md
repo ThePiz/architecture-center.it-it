@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: 1b53806b2939a7c44a8b48c9146d5e86c84d9e2e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343561"
 ---
-
 # <a name="synchronous-io-antipattern"></a>Antipattern I/O sincrono
 
 Bloccare il thread chiamante durante il completamento dell'I/O può ridurre le prestazioni e influire sulla scalabilità verticale.

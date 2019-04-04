@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: e3d6fbb789e422af22ce54b0defd6bb73099f15a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346332"
 ---
-
 # <a name="monolithic-persistence-antipattern"></a>Antipattern di persistenza monolitica
 
 L'inserimento di tutti i dati di un'applicazione in un unico archivio dati può influire negativamente sulle prestazioni o perché causa una contesa delle risorse o perché l'archivio dati non è adatto per alcuni dei dati.

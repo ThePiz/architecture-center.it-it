@@ -8,8 +8,13 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: networking
+ms.openlocfilehash: 6172866b08197b0ca1cd3aabb3c14c01b4f06f9c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343442"
 ---
-
 # <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>Scegliere una soluzione per la connessione di una rete locale ad Azure.
 
 In questo articolo vengono confrontate le opzioni per la connessione di una rete locale a una rete virtuale di Azure (VNet). Per ogni opzione è disponibile un'architettura di riferimento più dettagliata.

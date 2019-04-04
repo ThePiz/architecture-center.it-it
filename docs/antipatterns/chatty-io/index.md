@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: b21ef5f772eb4e2572833ab15085651ac3766a5e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344326"
 ---
-
 # <a name="chatty-io-antipattern"></a>Antipattern I/O "frammentato"
 
 L'effetto cumulativo di un numero elevato di richieste di I/O può avere un impatto significativo sulle prestazioni e la velocità di risposta.
