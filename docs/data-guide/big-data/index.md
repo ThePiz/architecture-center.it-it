@@ -1,13 +1,18 @@
 ---
 title: Architetture per Big Data
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 269a4c2b8fd0c186e1b44b6c0cfdcbfa4d37b57c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346162"
 ---
-
 # <a name="big-data-architectures"></a><span data-ttu-id="17c4f-102">Architetture per Big Data</span><span class="sxs-lookup"><span data-stu-id="17c4f-102">Big data architectures</span></span>
 
 <span data-ttu-id="17c4f-103">Un'architettura per Big Data è progettata per gestire l'inserimento, l'elaborazione e l'analisi di dati troppo grandi o complessi per i sistemi di database tradizionali.</span><span class="sxs-lookup"><span data-stu-id="17c4f-103">A big data architecture is designed to handle the ingestion, processing, and analysis of data that is too large or complex for traditional database systems.</span></span> <span data-ttu-id="17c4f-104">Il criterio adottato dalle organizzazioni per individuare la soglia oltre la quale è opportuno preferire soluzioni per Big Data varia a seconda delle capacità degli utenti e degli strumenti a disposizione.</span><span class="sxs-lookup"><span data-stu-id="17c4f-104">The threshold at which organizations enter into the big data realm differs, depending on the capabilities of the users and their tools.</span></span> <span data-ttu-id="17c4f-105">Può trattarsi di una quantità di dati dell'ordine di migliaia di gigabyte, ma anche di centinaia di terabyte.</span><span class="sxs-lookup"><span data-stu-id="17c4f-105">For some, it can mean hundreds of gigabytes of data, while for others it means hundreds of terabytes.</span></span> <span data-ttu-id="17c4f-106">Con lo sviluppo di strumenti sempre più avanzati per la gestione di set di Big Data, anche il significato di Big Data si è evoluto.</span><span class="sxs-lookup"><span data-stu-id="17c4f-106">As tools for working with big data sets advance, so does the meaning of big data.</span></span> <span data-ttu-id="17c4f-107">Il termine viene sempre più usato per fare riferimento al valore che è possibile estrarre dai set di dati tramite l'analisi avanzata, anziché esclusivamente alle dimensioni dei dati, anche se in questi casi tendono a essere molto grandi.</span><span class="sxs-lookup"><span data-stu-id="17c4f-107">More and more, this term relates to the value you can extract from your data sets through advanced analytics, rather than strictly the size of the data, although in these cases they tend to be quite large.</span></span>

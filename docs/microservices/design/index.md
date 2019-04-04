@@ -7,8 +7,13 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
+ms.openlocfilehash: 15e9aa16c0e2cfccecbfb84d217c275cc99a66fd
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344411"
 ---
-
 # <a name="designing-a-microservices-architecture"></a><span data-ttu-id="3fe03-103">Progettazione di un'architettura di microservizi</span><span class="sxs-lookup"><span data-stu-id="3fe03-103">Designing a microservices architecture</span></span>
 
 <span data-ttu-id="3fe03-104">I microservizi sono diventati uno stile di architettura diffuso per la creazione di applicazioni cloud che offrono resilienza, scalabilità elevata, possibilità di distribuzione indipendente e capacità di evolversi rapidamente.</span><span class="sxs-lookup"><span data-stu-id="3fe03-104">Microservices have become a popular architectural style for building cloud applications that are resilient, highly scalable, independently deployable, and able to evolve quickly.</span></span> <span data-ttu-id="3fe03-105">I microservizi non sono solo una moda, ma rappresentano un nuovo concetto che richiede un approccio diverso alla progettazione e alla creazione di applicazioni.</span><span class="sxs-lookup"><span data-stu-id="3fe03-105">To be more than just a buzzword, however, microservices require a different approach to designing and building applications.</span></span>

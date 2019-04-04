@@ -8,8 +8,13 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
+ms.openlocfilehash: 0cce207dedd0eb42e29a152b3bb84acc2dca323a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344989"
 ---
-
 # <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a><span data-ttu-id="6df85-103">Eseguire una farm di SharePoint Server 2016 a disponibilità elevata in Azure</span><span class="sxs-lookup"><span data-stu-id="6df85-103">Run a highly available SharePoint Server 2016 farm in Azure</span></span>
 
 <span data-ttu-id="6df85-104">Questa architettura di riferimento mostra procedure comprovate per la distribuzione di una farm di SharePoint Server 2016 a disponibilità elevata in Azure, usando la topologia MinRole e i gruppi di disponibilità di SQL Server Always On.</span><span class="sxs-lookup"><span data-stu-id="6df85-104">This reference architecture shows proven practices for deploying a highly available SharePoint Server 2016 farm on Azure, using MinRole topology and SQL Server Always On availability groups.</span></span> <span data-ttu-id="6df85-105">La farm di SharePoint viene distribuita in una rete virtuale protetta senza presenza su Internet o endpoint con connessione Internet.</span><span class="sxs-lookup"><span data-stu-id="6df85-105">The SharePoint farm is deployed in a secured virtual network with no Internet-facing endpoint or presence.</span></span> <span data-ttu-id="6df85-106">[**Distribuire questa soluzione**](#deploy-the-solution).</span><span class="sxs-lookup"><span data-stu-id="6df85-106">[**Deploy this solution**](#deploy-the-solution).</span></span>

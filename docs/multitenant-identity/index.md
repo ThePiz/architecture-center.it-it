@@ -1,13 +1,18 @@
 ---
 title: Gestione delle identità per le applicazioni multi-tenant
-description: 'Procedure consigliate per l''autenticazione, l''autorizzazione e la gestione delle identità in applicazioni multi-tenant.'
+description: Procedure consigliate per l'autenticazione, l'autorizzazione e la gestione delle identità in applicazioni multi-tenant.
 author: MikeWasson
 ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
+ms.openlocfilehash: be906106fb12c381d57ad40ae22e748dcff9722f
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346077"
 ---
-
 # <a name="manage-identity-in-multitenant-applications"></a><span data-ttu-id="a6e9a-103">Gestire le identità in applicazioni multi-tenant</span><span class="sxs-lookup"><span data-stu-id="a6e9a-103">Manage identity in multitenant applications</span></span>
 
 <span data-ttu-id="a6e9a-104">Questa serie di articoli descrive le procedure consigliate per il multi-tenancy, quando si usa Azure AD per l'autenticazione e la gestione delle identità.</span><span class="sxs-lookup"><span data-stu-id="a6e9a-104">This series of articles describes best practices for multitenancy, when using Azure AD for authentication and identity management.</span></span>

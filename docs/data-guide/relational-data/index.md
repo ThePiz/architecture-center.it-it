@@ -1,13 +1,18 @@
 ---
 title: Dati relazionali
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d68bddcb75e5c8f786a7739e85de2645a2c3d641
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58345414"
 ---
-
 # <a name="traditional-relational-database-solutions"></a><span data-ttu-id="36ba2-102">Soluzioni per i database relazionali tradizionali</span><span class="sxs-lookup"><span data-stu-id="36ba2-102">Traditional relational database solutions</span></span>
 
 <span data-ttu-id="36ba2-103">I dati relazioni sono dati modellati tramite il modello relazionale,</span><span class="sxs-lookup"><span data-stu-id="36ba2-103">Relational data is data modeled using the relational model.</span></span> <span data-ttu-id="36ba2-104">in cui i dati sono espressi sotto forma di tuple.</span><span class="sxs-lookup"><span data-stu-id="36ba2-104">In this model, data is expressed as tuples.</span></span> <span data-ttu-id="36ba2-105">Una *tupla* è un set di coppie attributo/valore,</span><span class="sxs-lookup"><span data-stu-id="36ba2-105">A *tuple* is a set of attribute/value pairs.</span></span> <span data-ttu-id="36ba2-106">come ad esempio (itemid = 5, orderid = 1, item = "Chair", amount = 200.00).</span><span class="sxs-lookup"><span data-stu-id="36ba2-106">For example, a tuple might be (itemid = 5, orderid = 1, item = "Chair", amount = 200.00).</span></span> <span data-ttu-id="36ba2-107">Un set di tuple che condividono gli stessi attributi prende il nome di *relazione*.</span><span class="sxs-lookup"><span data-stu-id="36ba2-107">A set of tuples that all share the same attributes is called a *relation*.</span></span>

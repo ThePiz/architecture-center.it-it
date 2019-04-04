@@ -1,7 +1,7 @@
 ---
 title: Modelli di progettazione cloud
 titleSuffix: Azure Architecture Center
-description: 'Schemi progettuali cloud per la creazione di applicazioni affidabili, scalabili e sicure nel cloud.'
+description: Schemi progettuali cloud per la creazione di applicazioni affidabili, scalabili e sicure nel cloud.
 keywords: Azure
 author: dragon119
 ms.date: 03/01/2018
@@ -9,8 +9,13 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c8fe971e031825632c2bb157bfd23e15f56520a3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343476"
 ---
-
 # <a name="cloud-design-patterns"></a><span data-ttu-id="43fda-104">Modelli di progettazione cloud</span><span class="sxs-lookup"><span data-stu-id="43fda-104">Cloud Design Patterns</span></span>
 
 <span data-ttu-id="43fda-105">Questi schemi progettuali sono utili per la compilazione di applicazioni affidabili, scalabili e sicure nel cloud.</span><span class="sxs-lookup"><span data-stu-id="43fda-105">These design patterns are useful for building reliable, scalable, secure applications in the cloud.</span></span>
