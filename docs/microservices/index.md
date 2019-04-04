@@ -1,187 +1,102 @@
 ---
-title: Creazione di microservizi in Azure
-description: 'Progettazione, creazione e gestione di architetture di microservizi in Azure'
-ms.date: 03/07/2019
-layout: LandingPage
-ms.topic: landing-page
+title: Progettazione, creazione e gestione di microservizi in Azure con Kubernetes
+description: Progettazione, creazione e gestione di microservizi in Azure.
+author: MikeWasson
+ms.date: 10/23/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: 90a6550264e5afd1fc2eda79eeff6557dc7c4163
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897729"
 ---
+# <a name="designing-building-and-operating-microservices-on-azure"></a>Progettazione, creazione e gestione di microservizi in Azure
 
-# <a name="building-microservices-on-azure"></a>Creazione di microservizi in Azure
+![Diagramma di un servizio di recapito tramite drone](./images/drone.svg)
 
-<!-- markdownlint-disable MD033 -->
+I microservizi sono diventati uno stile di architettura diffuso per la creazione di applicazioni cloud che offrono resilienza, scalabilità elevata, possibilità di distribuzione indipendente e capacità di evolversi rapidamente. I microservizi non sono solo una moda, ma rappresentano un nuovo concetto che richiede un approccio diverso alla progettazione e alla creazione di applicazioni.
 
-<img src="../_images/microservices.svg" style="float:left; margin-top:8px; margin-right:8px; max-width: 80px; max-height: 80px;"/>
+In questo set di articoli viene analizzato come creare ed eseguire un'architettura di microservizi in Azure. Gli argomenti includono:
 
-I microservizi sono uno stile di architettura diffuso per la creazione di applicazioni che offrono resilienza, scalabilità elevata, possibilità di distribuzione indipendente e capacità di evolversi rapidamente. Ma un'architettura di microservizi efficiente richiede un approccio diverso alla progettazione e allo sviluppo di applicazioni.
+- Uso della progettazione basata su dominio per progettare un'architettura di microservizi.
+- Scelta delle tecnologie di Azure appropriate per calcolo, archiviazione, messaggistica e altri elementi del progetto.
+- Comprensione degli schemi progettuali dei microservizi.
+- Progettazione per la resilienza, la scalabilità e le prestazioni.
+- Creazione di una pipeline di integrazione continua/distribuzione continua.
 
-<ul  class="panelContent cardsZ">
-<li style="display: flex; flex-direction: column;">
-    <a href="./introduction.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Cosa sono i microservizi?</h3>
-                        <p>Quali sono le differenze tra i microservizi e altre architetture e quando è consigliabile usarli?</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="../guide/architecture-styles/microservices.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Stile di architettura di microservizi</h3>
-                        <p>Panoramica dettagliata dello stile di architettura di microservizi</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-</ul>
+Nel corso degli articoli, viene esaminato uno scenario end-to-end: un servizio di recapito tramite drone che consente ai clienti di pianificare il prelievo e il recapito dei pacchetto tramite drone. Il codice per l'implementazione di riferimento è disponibile su GitHub
 
-## <a name="examples-of-microservices-architectures"></a>Esempi di architetture di microservizi
+[![GitHub](../_images/github.png) Implementazione di riferimento][drone-ri]
 
-<ul  class="panelContent cardsZ">
-<li style="display: flex; flex-direction: column;">
-    <a href="../example-scenario/infrastructure/service-fabric-microservices.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Usare Service Fabric per scomporre applicazioni monolitiche</h3>
-                        <p>Un approccio iterativo alla scomposizione di un sito Web ASP.NET in microservizi.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="../example-scenario/data/ecommerce-order-processing.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Elaborazione degli ordini scalabile in Azure</h3>
-                        <p>Elaborazione degli ordini con un modello di programmazione funzionale implementato tramite microservizi.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-</ul>
+Verranno analizzate, prima di tutto, le nozioni di base. Cosa sono i microservizi e quali sono i vantaggi dell'adozione di un'architettura di microservizi?
 
-## <a name="build-a-microservices-application"></a>Creare applicazioni di microservizi
+<!-- markdownlint-disable MD026 -->
 
-<ul  class="panelContent cardsZ">
-<li style="display: flex; flex-direction: column;">
-    <a href="./model/domain-analysis.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Usare l'analisi del dominio per modellare i microservizi</h3>
-                        <p>Per evitare le comuni insidie associate alla progettazione di microservizi, usare l'analisi del dominio per definirne i limiti.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="../reference-architectures/microservices/aks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Architettura di riferimento per il servizio Azure Kubernetes (AKS)</h3>
-                        <p>Questa architettura di riferimento mostra una configurazione di base di AKS che può essere usata come punto di partenza per la maggior parte delle distribuzioni.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="../reference-architectures/microservices/service-fabric.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Architettura di riferimento per Azure Service Fabric</h3>
-                        <p>Questa architettura di riferimento mostra la configurazione consigliata che può essere usata come punto di partenza per la maggior parte delle distribuzioni.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./design/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Progettare un'architettura di microservizi</h3>
-                        <p>Questi articoli offrono informazioni dettagliate su come sviluppare un'applicazione di microservizi, in base a un'implementazione di riferimento che usa il servizio Azure Kubernetes (AKS).</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./design/patterns.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Modelli di progettazione</h3>
-                        <p>Un set di utili modelli di progettazione per i microservizi.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-</ul>
+## <a name="why-build-microservices"></a>Perché creare microservizi?
 
-## <a name="operate-microservices-in-production"></a>Gestire i microservizi in produzione
+<!-- markdownlint-enable MD026 -->
 
-<ul  class="panelContent cardsZ">
-<li style="display: flex; flex-direction: column;">
-    <a href="./logging-monitoring.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Registrazione e monitoraggio</h3>
-                        <p>Considerando la natura distribuita delle architetture di microservizi, le attività di registrazione e monitoraggio sono particolarmente critiche.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./ci-cd.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Integrazione e distribuzione continue</h3>
-                        <p>Integrazione continua e recapito continuo (CI/CD) sono un requisito chiave per la riuscita dei microservizi.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-</ul>
+In un'architettura di microservizi l'applicazione è composta da servizi di piccole dimensioni indipendenti. Ecco alcune caratteristiche specifiche dei microservizi:
+
+- Ogni microservizio implementa una singola funzionalità di business.
+- Le dimensioni di un microservizio sono sufficientemente piccole da consentirne la scrittura e la gestione da parte di un unico piccolo team di sviluppatori.
+- I microservizi vengono eseguiti in processi separati, che comunicano tramite API o modelli di messaggistica ben definiti.
+- I microservizi non condividono archivi dati o schemi di dati. Ogni microservizio è responsabile della gestione dei propri dati.
+- I microservizi hanno basi di codice separate e non condividono il codice sorgente. Possono tuttavia usare librerie di utilità comuni.
+- Ogni microservizio può essere distribuito e aggiornato in modo indipendente dagli altri servizi.
+
+Se eseguiti correttamente, i microservizi possono offrire molti vantaggi utili:
+
+- **Flessibilità.** Poiché i microservizi vengono distribuiti in modo indipendente, è più facile gestire le correzioni di bug e i rilasci delle funzionalità. È possibile aggiornare un servizio senza ridistribuire l'intera applicazione ed eseguire il rollback di un aggiornamento in caso di errore. In molte applicazioni tradizionali, se viene trovato un bug in una parte dell'applicazione, può venire bloccato l'intero processo di rilascio. Di conseguenza, per le nuove funzionalità può essere necessario attendere l'integrazione, il test e la pubblicazione di una correzione di bug.
+
+- **Piccola quantità di codice e piccoli team.** Un microservizio deve essere sufficientemente piccolo da consentire a un singolo un team responsabile di una funzionalità di crearlo, testarlo e distribuirlo. Le basi di codice di piccole dimensioni sono più facili da comprendere. In un'applicazione monolitica di grandi dimensioni, con il tempo le dipendenze di codice tendono a diventare complesse, quindi per aggiungere una nuova funzionalità è necessario intervenire sul codice in molte posizioni. Un'architettura di microservizi non prevede la condivisione di codice o di archivi dati, quindi le dipendenze sono ridotte al minimo ed è più facile aggiungere nuove funzionalità. Team di piccole dimensioni lavorano inoltre in modo più flessibile. Secondo la "regola delle due pizze", un team deve essere sufficientemente piccolo da potersi nutrire con due pizze. Ovviamente non si tratta di una metrica esatta, visto che dipende dall'appetito del team. Il concetto, tuttavia, è che i gruppi di grandi dimensioni tendono a essere meno produttivi, perché la comunicazione è più lenta, la gestione è più complessa e la flessibilità diminuisce.
+
+- **Combinazione di tecnologie**. I team possono scegliere la tecnologia più adatta al servizio, usando la combinazione di stack tecnologici più appropriata.
+
+- **Resilienza**. Se un singolo microservizio smette di essere disponibile, non si interrompe l'intera applicazione, a condizione che i microservizi upstream siano progettati per gestire correttamente gli errori (ad esempio, implementando l'interruzione del circuito).
+
+- **Scalabilità**. Un'architettura di microservizi consente la scalabilità di ogni microservizio indipendentemente dagli altri microservizi. È quindi possibile scalare orizzontalmente i sottosistemi che richiedono più risorse, senza scalare orizzontalmente l'intera applicazione. Se si distribuiscono servizi all'interno di contenitori, è anche possibile condensare un maggior numero di microservizi in un singolo host, per usare le risorse in modo più efficiente.
+
+- **Isolamento dei dati**. È molto più semplice eseguire aggiornamenti dello schema, perché è interessato solo un singolo microservizio. In un'applicazione monolitica gli aggiornamenti dello schema possono diventare molto complessi, perché diverse parti dell'applicazione possono coinvolgere gli stessi dati, quindi apportare modifiche allo schema può essere rischioso.
+
+## <a name="no-free-lunch"></a>Compromessi necessari
+
+I vantaggi che si ottengono hanno un prezzo. Questa serie di articoli è pensata per esaminare alcune delle sfide associate alla creazione di microservizi resilienti, scalabili e facili da gestire.
+
+- **Limiti dei servizi**. Quando si creano i microservizi, è necessario pensare attentamente a come definire i limiti tra i servizi. Una volta che i servizi sono stati creati e distribuiti nell'ambiente di produzione, può essere difficile effettuare il refactoring tra i limiti. La scelta dei giusti limiti dei servizi è una delle principali sfide quando si progetta un'architettura di microservizi. Quali dimensioni deve avere ogni servizio? Quando è necessario distribuire una funzionalità tra servizi diversi e quando deve essere manutenuta all'interno dello stesso servizio? In questa guida viene descritto un approccio che usa la progettazione basata su dominio per individuare i limiti dei servizi. Si inizia con l'[analisi del dominio](./domain-analysis.md) per trovare i contesti delimitati e quindi si applica un set di [schemi tattici di progettazione basata su dominio](./microservice-boundaries.md) in base ai requisiti funzionali e non funzionali.
+
+- **Coerenza e integrità dei dati**. Un principio alla base dei microservizi è che ogni servizio gestisce i propri dati. I servizi rimangono così separati, ma ciò può causare problemi relativi all'integrità o alla ridondanza dei dati. Alcuni di questi problemi vengono esaminati nell'articolo [Considerazioni sui dati](./data-considerations.md).
+
+- **Congestione e latenza di rete**. L'uso di numerosi servizi granulari di piccole dimensioni può comportare un aumento delle comunicazioni tra i servizi e una maggiore latenza end-to-end. Il capitolo [Comunicazione tra i servizi](./interservice-communication.md) descrive le considerazioni relative alla messaggistica tra servizi. In un'architettura di microservizi la comunicazione avviene sia in modo sincrono che asincrono. Una buona [progettazione API](./api-design.md) è importante per garantire che i servizi rimangano a regime di controllo libero e possano essere distribuiti e aggiornati in modo indipendente.
+
+- **Complessità**. Un'applicazione di microservizi ha più parti mobili. Ogni servizio può essere semplice, ma i servizi devono funzionare in combinazione come se si trattasse di un'unica soluzione. Una singola operazione utente potrebbe interessare più servizi. Nel capitolo [Inserimento e flusso di lavoro](./ingestion-workflow.md) vengono esaminati alcuni dei problemi relativi all'inserimento delle richieste a una velocità effettiva elevata, al coordinamento del flusso di lavoro e alla gestione degli errori.
+
+- **Comunicazione tra i client e l'applicazione.**  Quando si scompone un'applicazione in molti servizi di piccole dimensioni, come devono comunicare i client con tali servizi? Un client deve chiamare ogni singolo servizio direttamente o deve instradare le richieste attraverso un [gateway API](./gateway.md)?
+
+- **Monitoraggio**. Il monitoraggio di un'applicazione distribuita può essere molto più complesso rispetto a quello di un'applicazione monolitica, perché è necessario mettere in correlazione i dati di telemetria di più servizi. Il capitolo [Registrazione e monitoraggio](./logging-monitoring.md) esamina questi problemi.
+
+- **Integrazione continua e distribuzione continua**. Uno degli obiettivi principali dei microservizi è la flessibilità. Per raggiungere questo obiettivo, sono necessarie caratteristiche automatizzate e affidabili di [integrazione continua e distribuzione continua](./ci-cd.md), così da poter distribuire in modo rapido e affidabile singoli servizi negli ambienti di test e di produzione.
+
+## <a name="the-drone-delivery-application"></a>Applicazione di recapito tramite drone
+
+Per esaminare questi problemi e per illustrare alcune delle procedure consigliate per un'architettura di microservizi, è stata creata un'implementazione di riferimento, ovvero l'applicazione di recapito tramite drone. L'implementazione di riferimento è disponibile su [GitHub][drone-ri].
+
+Fabrikam, Inc. sta avviando un servizio di recapito tramite drone. La società gestisce una flotta di droni. Le aziende possono registrarsi per usare il servizio e gli utenti possono richiedere un drone per prelevare merci da recapitare. Quando un cliente pianifica un prelievo, un sistema back-end assegna un drone e invia all'utente una notifica con un tempo di recapito stimato. Durante il recapito, il cliente può tenere traccia della posizione del drone, con un tempo stimato di arrivo che viene aggiornato continuamente.
+
+Questo scenario prevede un dominio piuttosto complesso. Alcuni dei problemi aziendali da affrontare includono la pianificazione dei droni, il monitoraggio dei pacchetti, la gestione degli account utente e l'archiviazione e l'analisi dei dati cronologici. Fabrikam vuole inoltre accelerare i tempi di immissione sul mercato e di iterazione, aggiungendo nuove caratteristiche e funzionalità. L'applicazione deve operare a livello cloud, con un obiettivo del livello di servizio elevato. Fabrikam prevede inoltre che le diverse parti del sistema avranno requisiti molto diversi per l'archiviazione dei dati e le query. Tutte queste considerazioni hanno portato Fabrikam a scegliere un'architettura di microservizi per l'applicazione di recapito tramite drone.
+
+> [!NOTE]
+> Per un aiuto nella scelta tra un'architettura di microservizi e altri stili di architettura, vedere [Guida all'architettura delle applicazioni in Azure](../guide/index.md).
+
+L'implementazione di riferimento usa Kubernetes con il [servizio Azure Kubernetes](/azure/aks/). Molte delle scelte e delle sfide generali relative all'architettura si applicano tuttavia a qualsiasi agente di orchestrazione di contenitori, tra cui [Azure Service Fabric](/azure/service-fabric/).
+
+> [!div class="nextstepaction"]
+> [Analisi del dominio](./domain-analysis.md)
+
+<!-- links -->
+
+[drone-ri]: https://github.com/mspnp/microservices-reference-implementation
