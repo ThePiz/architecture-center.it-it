@@ -16,7 +16,7 @@ ms.locfileid: "55901988"
 ---
 # <a name="security-baseline-policy-compliance-processes"></a>Processi di conformità ai criteri della Baseline di sicurezza
 
-Questo articolo illustra un approccio ai processi conformità ai criteri che regolano la [Baseline di sicurezza](./overview.md). Una governance di protezione cloud efficace include processi manuali ricorrenti progettati per rilevare le vulnerabilità e imporre criteri per attenuare i rischi relativi alla sicurezza. A questo scopo è necessario coinvolgere regolarmente il team di governance del cloud con gli azionisti aziendali e IT, per rivedere e aggiornare i criteri e garantirne la conformità. Inoltre, molti processi di applicazione e di monitoraggio continuo possono essere automatizzati o eseguiti con strumenti per ridurre il sovraccarico di governance e consentire una risposta più rapida alla deviazione dai criteri.
+Questo articolo illustra un approccio ai processi di conformità ai criteri che regolano la [Baseline di sicurezza](./overview.md). Una governance di protezione cloud efficace include processi manuali ricorrenti progettati per rilevare le vulnerabilità e imporre criteri per attenuare i rischi relativi alla sicurezza. A questo scopo è necessario coinvolgere regolarmente il team di governance del cloud con gli stakeholder aziendali e IT, per rivedere e aggiornare i criteri e garantirne la conformità. Inoltre, molti processi di applicazione e di monitoraggio continuo possono essere automatizzati o eseguiti con strumenti per ridurre il sovraccarico di governance e consentire una risposta più rapida alla deviazione dai criteri.
 
 ## <a name="planning-review-and-reporting-processes"></a>Pianificazione, revisione e creazione di report per i processi
 

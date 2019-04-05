@@ -1,29 +1,29 @@
 ---
-title: 'CAF: Criteri relativi alle baseline di sicurezza native del cloud'
+title: 'CAF: Criteri di Baseline di sicurezza Cloud Native'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Criteri relativi alle baseline di sicurezza native del cloud
+description: Criteri di Baseline di sicurezza Cloud Native
 author: BrianBlanchard
 ms.openlocfilehash: fc161009f6ce7aa2b775fe6b3b53ff1e1d62a848
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242432"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55901303"
 ---
-# <a name="cloud-native-security-baseline-policy"></a>Criteri relativi alle baseline di sicurezza native del cloud
+# <a name="cloud-native-security-baseline-policy"></a>Criteri di Baseline di sicurezza Cloud Native
 
-[Baseline di sicurezza](overview.md) è una delle [cinque discipline della governance del cloud](../governance-disciplines.md). Questa disciplina è incentrata sugli argomenti di sicurezza generale, inclusi la protezione di rete, le risorse digitali, i dati e così via. Come illustrato nella [Guida alla revisione di criteri](../policy-compliance/what-is-a-cloud-policy-review.md), il CAF include tre livelli di **criteri di esempio**: nativo del cloud, Enterprise e conforme ai principi di progettazione del cloud per ciascuna delle cinque discipline. Questo articolo illustra i criteri di esempio nativi del cloud relativi alla disciplina Baseline di sicurezza.
+[Baseline di sicurezza](overview.md) è una delle [cinque discipline della governance del cloud](../governance-disciplines.md). Questa disciplina è incentrata sugli argomenti di sicurezza generale, inclusi la protezione di rete, le risorse digitali, i dati e così via. Come illustrato nella [Guida alla revisione di criteri](../policy-compliance/what-is-a-cloud-policy-review.md), il CAF include tre livelli di **criteri di esempio**: Cloud Native, Enterprise e Conforme ai principi di progettazione del cloud per ciascuna delle cinque discipline. Questo articolo illustra i criteri di esempio Cloud Native per la disciplina Baseline di sicurezza.
 
 > [!NOTE]
 > Microsoft non intende dettare criteri aziendali o IT. Questo articolo è pensato per agevolare la preparazione di una revisione dei criteri aziendali. Si presuppone che questo criterio di esempio venga esteso, convalidato e testato in base ai criteri aziendali prima di provare a usarlo. Si sconsiglia qualsiasi uso di questo criterio di esempio nello stato in cui si trova.
 
 ## <a name="policy-alignment"></a>Allineamento dei criteri
 
-Questo criterio di esempio sintetizza uno scenario nativo del cloud, ciò significa che gli strumenti e le piattaforme forniti da Azure possono bastare per ridurre i rischi aziendali relativi a una distribuzione. In questo scenario, si presume che una semplice configurazione dell'impostazione predefinita dei servizi di Azure offra una protezione sufficiente delle risorse.
+Questo criterio di esempio sintetizza uno scenario nativo del cloud, ciò significa che gli strumenti e le piattaforme forniti da Azure possono bastare per ridurre i rischi aziendali relativi a una distribuzione. In questo scenario, si presume che una semplice configurazione dei servizi di Azure predefiniti offra una protezione sufficiente delle risorse.
 
 ## <a name="cloud-security-and-compliance"></a>Conformità e sicurezza del cloud
 
@@ -35,14 +35,14 @@ Azure integra la sicurezza in ogni suo aspetto, offrendo vantaggi esclusivi che 
 
 ### <a name="cloud-native-identity-policies"></a>Criteri di identità nativa del cloud
 
-L'identità è percepita come il nuovo livello limite per la sicurezza, sostituendo in questo ruolo la prospettiva tradizionale incentrata sulla rete. I perimetri di rete sono diventati sempre più permeabili e la difesa perimetrale non è più in grado di garantire la stessa efficacia offerta prima dell'evoluzione delle politiche aziendali Bring your own device (BYOD) e delle applicazioni cloud. La gestione delle identità di Azure e il controllo degli accessi garantiscono un accesso facile e sicuro a tutte le applicazioni.
+L'identità è percepita come il nuovo livello limite per la sicurezza, sostituendo in questo ruolo la prospettiva tradizionale incentrata sulla rete. I perimetri di rete sono diventati sempre più permeabili e la difesa perimetrale non è più in grado di garantire la stessa efficacia offerta prima dell'evoluzione del modello BYOD (Bring Your Own Device) e delle applicazioni cloud. La gestione delle identità di Azure e il controllo degli accessi garantiscono un accesso facile e sicuro a tutte le applicazioni.
 
 Un criterio di esempio nativo del cloud relativo all'identità tra i cloud e le directory locali potrebbe comprendere i requisiti seguenti:
 
 * Accesso autorizzato alle risorse tramite il controllo degli accessi in base ai ruoli (RBAC), l'autenticazione a più fattori (MFA) e l'accesso single sign-on (SSO)
-* Compromissione sospetta dell'attuazione rapida delle identità utente
+* Rapida mitigazione delle identità utente che si sospetta siano compromesse
 * Just-in-time (JIT), l'accesso concesso in base alle singole attività per limitare l'esposizione delle credenziali di amministratore aventi privilegi eccessivi
-* Accesso ai criteri in più ambienti tramite Azure Active Directory e identità utente estese
+* Identità utente estese e accesso a criteri in più ambienti tramite Azure Active Directory
 
 Sebbene sia importante capire le [Baseline sull'identità](../identity-baseline/overview.md) nel contesto delle Baseline sulla sicurezza, è bene sottolineare che le [cinque discipline della governance del cloud](../overview.md) considerano le [Baseline sull'identità](../identity-baseline/overview.md) come una disciplina a sé, che non fa parte della Baseline sulla sicurezza.
 
@@ -52,8 +52,8 @@ Il controllo della rete comprende la configurazione, la gestione e la protezione
 
 I criteri nativi del cloud per i controlli di rete possono comprendere requisiti simili a quanto segue:
 
-* Le connessioni ibride a risorse locali, anche se tecnicamente possibile in Azure, potrebbero non essere consentite in un criterio nativo del cloud. Se dovesse essere necessario usare una connessione ibrida, si consiglia di fare riferimento a un esempio di criteri di protezione aziendale più solido.
-* Gli utenti possono stabilire connessioni protette a e all'interno di Azure tramite reti virtuali e gruppi di sicurezza di rete.
+* Le connessioni ibride a risorse locali, anche se tecnicamente possibili in Azure, potrebbero non essere consentite in un criterio Cloud Native. Se dovesse essere necessario usare una connessione ibrida, si consiglia di fare riferimento a un esempio di criteri di protezione aziendale più solido.
+* Gli utenti possono stabilire connessioni protette ad Azure e al suo interno tramite reti virtuali e gruppi di sicurezza di rete.
 * Firewall nativo di Azure per Windows consente di proteggere gli host dal traffico di rete dannoso, limitando l'accesso alla porta. Un esempio valido di questo criterio è la necessità di bloccare (o non abilitare) il traffico direttamente su una macchina virtuale tramite RDP - TCP/UDP porta 3389.
 * I servizi, ad esempio Web Application Firewall e Protezione DDoS di Azure, proteggono le applicazioni e assicurano la disponibilità delle macchine virtuali in esecuzione in Azure. Queste funzionalità non devono essere disabilitate o usate impropriamente.
 
@@ -62,7 +62,7 @@ I criteri nativi del cloud per i controlli di rete possono comprendere requisiti
 Uno degli aspetti fondamentali della protezione dei dati nel cloud consiste nel tenere conto dei possibili stati in cui possono trovarsi i dati e dei controlli disponibili per ogni stato. Per quanto concerne le procedure consigliate per la sicurezza dei dati e la crittografia in Azure, le raccomandazioni verteranno sugli stati dei dati seguenti:
 
 * I controlli di crittografia dei dati sono integrati nei servizi dalle macchine virtuali all'archiviazione e nel database SQL.
-* Dal momento che i dati passano da un cloud o da un cliente all'altro, è possibile proteggerli tramite protocolli di crittografia basati sugli standard aziendali.
+* Mentre i dati si spostano fra cloud e clienti, è possibile proteggerli tramite protocolli di crittografia standard del settore.
 * Azure Key Vault consente agli utenti di proteggere e controllare le chiavi di crittografia e altre chiavi segrete usate da app e servizi cloud.
 * Azure Information Protection consente di classificare, etichettare e proteggere i dati sensibili presenti nelle app.
 
