@@ -8,12 +8,12 @@ description: Come creare un modello finanziario per la trasformazione del cloud.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 1f3ed8a84b84ba577ad5e5db8b1becd318dc04a3
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898205"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068872"
 ---
 # <a name="create-a-financial-model-for-cloud-transformation"></a>Creare un modello finanziario per la trasformazione del cloud
 
@@ -26,7 +26,7 @@ Il ritorno sugli investimenti (ROI) è spesso un criterio importante per la diri
 ![Ritorno sugli investimenti (ROI) è uguale a (guadagno dall'investimento - costi di investimento) / costi di investimento](../_images/formula-roi.png)
 
 <!-- markdownlint-disable MD036 -->
-*ROI = (guadagno dall'investimento &minus; investimento iniziale) / investimento iniziale*
+<!--*ROI = (Gain from Investment &minus; Initial Investment) / Initial Investment*-->
 <!-- markdownlint-enable MD036 -->
 
 Nelle sezioni successive, si illustreranno i dati necessari per calcolare l'investimento iniziale e il guadagno dall'investimento (utili).
@@ -46,7 +46,7 @@ Per calcolare gli utili, sono necessarie due variabili:
 ![Il guadagno dell'investimento è uguale a delta dei ricavi + delta dei costi](../_images/formula-gain-from-investment.png)
 
 <!-- markdownlint-disable MD036 -->
-*Guadagno dell'investimento = delta dei ricavi + delta dei costi*
+<!--*Gain from Investment = Revenue Deltas + Cost Deltas*-->
 <!-- markdownlint-enable MD036 -->
 
 Ciascun elemento è descritto di seguito.
@@ -57,7 +57,7 @@ Il delta dei ricavi deve essere previsto in collaborazione con l'azienda. Quando
 
 ## <a name="cost-deltas"></a>Delta dei costi
 
-I delta dei costi sono la quantità di aumento o calo che risulterà dalla trasformazione. Esistono una serie di variabili indipendenti che possono influire sui delta dei costi. Gli utili si basano prevalentemente su costi fissi come la riduzione delle spese in conto capitale, i costi evitati, la riduzione dei costi operativi e la riduzione degli ammortamenti. Le seguenti sezioni sono esempi di delta dei costi da prendere in considerazione.
+I delta dei costi sono la quantità di aumento o calo che risulterà dalla trasformazione. Esistono una serie di variabili indipendenti che possono influire sul costo delta. Gli utili si basano prevalentemente su costi fissi come la riduzione delle spese in conto capitale, i costi evitati, la riduzione dei costi operativi e la riduzione degli ammortamenti. Le seguenti sezioni sono esempi di delta dei costi da prendere in considerazione.
 
 ### <a name="depreciation-reductions-or-acceleration"></a>Riduzione o accelerazione degli ammortamenti
 
@@ -75,7 +75,7 @@ In alcuni casi, gli asset dismessi possono essere venduti come fonte di ricavi. 
 
 Le spese ricorrenti necessarie per gestire l'azienda sono spesso definite spese operative (OpEx). La categoria delle spese operative è molto ampia. Nella maggior parte dei modelli di contabilità, questa includerebbe: gestione delle licenze software, spese di hosting, bollette dell'elettricità, affitti immobiliari, costi di raffreddamento, personale temporaneo necessario per le operazioni, noleggio di apparecchiature, parti di ricambio, contratti di manutenzione, servizi di riparazione, servizi di continuità aziendale e ripristino di emergenza (BC/DR) e numerose altri costi che non richiedono le approvazioni di spesa in conto capitale.
 
-Questa categoria è una delle principali aree di guadagno quando si considera un percorso di trasformazione operativa. Il tempo investito a stilare una lista esauriente è raramente sprecato. Rivolgersi al direttore informatico e al team finanziario per assicurarsi che tutti i costi operativi siano presi in considerazione.
+Questa categoria è uno dei principali utili quando si considera una trasformazione operativa. Il tempo investito a stilare una lista esauriente è raramente sprecato. Rivolgersi al direttore informatico e al team finanziario per assicurarsi che tutti i costi operativi siano presi in considerazione.
 
 ### <a name="cost-avoidance"></a>Costi evitati
 
@@ -95,7 +95,7 @@ Un'eccezione è quando la capacità operativa viene fornita da terze parti o pro
 
 ### <a name="capital-expense-reductions-or-avoidance"></a>Riduzione o costi evitati di spesa in conto capitale
 
-Le spese in conto capitale (CapEx) sono leggermente diverse dalle spese operative. In genere, questa categoria è determinata dai cicli di aggiornamento o dall'espansione dei data center. Un esempio di un'espansione dei data center può essere un nuovo cluster ad alte prestazioni per l'hosting di una soluzione di Big Data o di un data warehouse e in genere può rientrare nella categoria di spese in conto capitale. I cicli di aggiornamento di base sono più comuni. Alcune aziende dispongono cicli rigidi di aggiornamento hardware, in cui gli asset sono dismessi e sostituiti a ciclo regolare (in genere ogni 3, 5 o 8 anni). Questi cicli spesso coincidono con cicli di noleggio di asset o cicli di vita prevista di apparecchiature. Quando è il momento di un ciclo di aggiornamento, il settore IT attinge dalle spese in conto capitale per acquistare l'apparecchiatura nuova.
+Le spese in conto capitale (CapEx) sono leggermente diverse dalle spese operative. In genere, questa categoria è determinata dai cicli di aggiornamento o dall'espansione dei data center. Un esempio di un'espansione dei data center può essere un nuovo cluster ad alte prestazioni per l'hosting di una soluzione di Big Data o di un data warehouse e in genere può rientrare nella categoria di spese in conto capitale. I cicli di aggiornamento di base sono più comuni. Alcune aziende dispongono di hardware rigida cicli di aggiornamento, gli asset di significato sono ritiro e verrà sostituiti durante un ciclo regolare (in genere ogni tre, cinque o otto anni). Questi cicli spesso coincidono con cicli di noleggio di asset o cicli di vita prevista di apparecchiature. Quando è il momento di un ciclo di aggiornamento, il settore IT attinge dalle spese in conto capitale per acquistare l'apparecchiatura nuova.
 
 Se un ciclo di aggiornamento viene approvato e preventivato, la trasformazione del cloud può essere utile per eliminare tale costo. Se un ciclo di aggiornamento è pianificato ma non ancora approvato, la trasformazione del cloud può evitare dei costi di spesa in conto capitale. Entrambi gli scenari sarebbero inclusi nel delta dei costi.
 

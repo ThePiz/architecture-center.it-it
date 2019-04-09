@@ -1,18 +1,17 @@
 ---
-title: 'CAF: introduzione a Cloud Adoption Framework'
+title: 'CAF: Introduzione a Cloud Adoption Framework'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-description: Descrive una panoramica della prima fase della trasformazione digitale di un'organizzazione che adotta tecnologie cloud di Azure.
-author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: bfa325ded8c39915ad4d495b4309b700abd71cc2
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+description: Viene fornita una panoramica della prima fase della trasformazione digitale dell'organizzazione. l'adozione di tecnologie di cloud di Azure.
+ms.date: 02/11/2019
+ms.openlocfilehash: 29b02964b5f1cd09857a51c17cf94d6c64e05e88
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898358"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068957"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>Introduzione a Cloud Adoption Framework
 
@@ -59,7 +58,7 @@ Per informazioni approfondite, il team di governance deve esaminare i concetti e
 
 ## <a name="step-3-identify-gaps-in-business-strategy"></a>Passaggio 3: Identificare le lacune nella strategia aziendale
 
-Il passaggio successivo riguarda il team per la strategia cloud, il quale deve enumerare i problemi aziendali che richiedono una soluzione di trasformazione digitale. Ad esempio, un'azienda può disporre di un data center locale esistente il cui hardware ha raggiunto la fine del ciclo di vita e deve essere sostituito. In un altro esempio, un'azienda potrebbe avere difficoltà nell'immissione sul mercato delle nuove funzionalità e dei servizi e potrebbe essere in ritardo rispetto alla concorrenza. Queste lacune rappresentano gli *obiettivi* della trasformazione digitale dell'organizzazione.
+Il passaggio successivo riguarda il team per la strategia cloud, il quale deve enumerare i problemi aziendali che richiedono una soluzione di trasformazione digitale. Ad esempio, un'azienda può disporre di un data center locale esistente con l'hardware di fine del ciclo di vita che richiede la sostituzione. In un altro esempio, un'azienda potrebbe avere difficoltà nell'immissione sul mercato delle nuove funzionalità e dei servizi e potrebbe essere in ritardo rispetto alla concorrenza. Queste lacune rappresentano gli *obiettivi* della trasformazione digitale dell'organizzazione.
 
 Le lacune della strategia aziendale possono essere classificate nelle categorie seguenti:
 
@@ -108,7 +107,7 @@ I membri del personale IT potrebbero avere dei dubbi sui propri ruoli e sulle pr
 Durante la trasformazione digitale, ogni team deve comprendere eventuali problemi del personale quando questi emergono. Quando si cerca di comprendere i problemi, identificare gli elementi seguenti:
 
 * Il tipo di problema. Ad esempio, i dipendenti potrebbero non accettare i cambiamenti delle mansioni derivanti dalla trasformazione digitale.
-* L'impatto del problema se non si viene risolto. La resistenza alla trasformazione digitale, ad esempio, potrebbe causare lentezza dei dipendenti nell'apportare le modifiche necessarie.
+* L'effetto se non viene risolto il problema. La resistenza alla trasformazione digitale, ad esempio, potrebbe causare lentezza dei dipendenti nell'apportare le modifiche necessarie.
 * L'area idonea per affrontare il problema. Ad esempio, se i dipendenti del reparto IT sono riluttanti ad acquisire nuove competenze, l'area degli stakeholder IT è più idonea a risolvere questo problema. L'identificazione dell'area può risultare chiara per alcuni dei problemi e in questi casi potrebbe essere necessario rivolgersi alla dirigenza.
 
 ### <a name="identify-gaps"></a>Identificare le lacune

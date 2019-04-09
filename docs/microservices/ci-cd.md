@@ -7,16 +7,16 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 026d22bb9cfdcb69b1a12294410af748e7af5c39
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 1a927beb23a2e45b509b2648a6bccce4c2ad242d
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480794"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068974"
 ---
 # <a name="designing-microservices-continuous-integration"></a>Progettazione di microservizi: Integrazione continua
 
-Integrazione continua e recapito continuo (CI/CD) sono un requisito chiave per la riuscita dei microservizi. Senza un processo CI/CD, non si otterrà la flessibilità offerta dai microservizi. Alcune problematiche di CI/CD per i microservizi derivano dalla presenza di più basi di codice e ambienti di compilazione eterogenei per i vari servizi. Questo capitolo descrive le problematiche e alcuni approcci consigliabili.
+Integrazione continua e recapito continuo (CI/CD) sono un requisito chiave per la riuscita dei microservizi. Senza un processo CI/CD, non si otterrà la flessibilità offerta dai microservizi. Alcune problematiche di CI/CD per i microservizi derivano dalla presenza di più basi di codice e ambienti di compilazione eterogenei per i vari servizi. Questo articolo vengono descritte le problematiche e alcuni approcci consigliabili il problema.
 
 ![Diagramma di CI/CD per microservizi](./images/ci-cd.png)
 
@@ -123,4 +123,4 @@ A livello di consumatori, un'esperienza utente migliore può avere un valore azi
 
 I microservizi sono una risposta a questo cambiamento del panorama. Scomponendo un'applicazione monolitica in un gruppo di servizi a regime di controllo libero, è possibile controllare il ciclo di rilascio di ogni servizio e consentire aggiornamenti frequenti senza tempi di inattività o modifiche di rilievo. I microservizi sono utili anche ai fini della scalabilità, dell'isolamento degli errori e della resilienza. Nel frattempo, le piattaforme cloud facilitano la compilazione e l'esecuzione di microservizi con il provisioning automatizzato delle risorse di calcolo, agenti di orchestrazione dei contenitori distribuiti come servizio e ambienti senza server guidati dagli eventi.
 
-Come è stato illustrato, tuttavia, le architetture di microservizi presentano anche molte problematiche. Per la riuscita, è necessario partire da una progettazione valida e prestare attenzione nell'analisi del dominio, nella scelta delle tecnologie, nella modellazione dei dati, nella progettazione delle API e nella creazione di una cultura DevOps avanzata. Microsoft si augura che questa guida e l'[implementazione di riferimento](https://github.com/mspnp/microservices-reference-implementation) associata agevolino questo percorso.
+Come è stato illustrato, tuttavia, le architetture di microservizi presentano anche molte problematiche. Per la riuscita, è necessario partire da una progettazione valida e prestare attenzione nell'analisi del dominio, nella scelta delle tecnologie, nella modellazione dei dati, nella progettazione delle API e nella creazione di una cultura DevOps avanzata. Microsoft si augura che questa guida e l'[implementazione di riferimento](https://github.com/mspnp/microservices-reference-implementation/tree/v0.1.0-orig) associata agevolino questo percorso.

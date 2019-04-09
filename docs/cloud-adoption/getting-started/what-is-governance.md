@@ -6,22 +6,22 @@ ms.subservice: enterprise-cloud-adoption
 ms.date: 02/11/2019
 description: Informazioni sulla governance delle risorse cloud in Azure
 author: petertaylor9999
-ms.openlocfilehash: 602ac81f2b2201c77746df971d282582ceee23f7
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 0989a5aad8a6290cce07fd71771c690bbd615e0d
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503197"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068855"
 ---
 <!-- markdownlint-disable MD026 -->
 
 # <a name="what-is-cloud-resource-governance"></a>Informazioni sulla governance delle risorse cloud
 
-Nell'articolo [Funzionamento di Azure](what-is-azure.md) si è appreso che Azure è un insieme di server e componenti hardware di rete che eseguono software e hardware virtualizzati per conto degli utenti. Azure consente ai reparti che si occupano di IT e sviluppo dell'organizzazione di lavorare in modo flessibile, creando, leggendo, aggiornando ed eliminando facilmente le risorse in base alle esigenze.
+Nelle [come funziona Azure?](what-is-azure.md), si è appreso che Azure è una raccolta di server e hardware che eseguono software e hardware virtualizzato per conto degli utenti di rete. Azure consente lo sviluppo di applicazioni e ai reparti IT di offrire una flessibilità rendendo più semplice creare, leggere, aggiornare ed eliminare le risorse in base alle esigenze dell'organizzazione.
 
-Tuttavia, sebbene offrire agli sviluppatori un accesso illimitato alle risorse garantisca loro ampia flessibilità, ciò può anche comportare costi imprevisti. Un team di sviluppo, ad esempio, potrebbe avere l'approvazione per distribuire un set di risorse per i test, ma potrebbe dimenticarsi di eliminare tali risorse al termine della fase di test. Queste risorse continueranno ad accumulare costi anche se il loro uso non è più approvato o necessario.
+Tuttavia, durante l'accesso illimitato alle risorse possa rendere gli sviluppatori molto agile, può inoltre causare costi imprevisti. Un team di sviluppo, ad esempio, potrebbe avere l'approvazione per distribuire un set di risorse per i test, ma potrebbe dimenticarsi di eliminare tali risorse al termine della fase di test. Queste risorse continueranno ad accumularsi dei costi, anche se non sono più necessarie o approvato.
 
-La soluzione a questo problema è la **governance** dell'accesso alle risorse. Per governance si intende il processo continuativo di gestione, monitoraggio e controllo dell'uso delle risorse di Azure per soddisfare gli obiettivi e i requisiti dell'organizzazione.
+La soluzione è governance delle risorse di accesso. **Governance** è il processo in corso di gestione, monitoraggio e la registrazione dell'utilizzo delle risorse di Azure per soddisfare i requisiti dell'organizzazione.
 
 <!-- markdownlint-disable MD034 -->
 
@@ -29,13 +29,13 @@ La soluzione a questo problema è la **governance** dell'accesso alle risorse. P
 
 <!-- markdownlint-enable MD034 -->
 
-Questi obiettivi e requisiti sono univoci per ogni organizzazione, quindi non è possibile definire un approccio alla governance appropriato per tutti. Azure implementa due strumenti di governance principali, il **controllo degli accessi in base al ruolo** e i **criteri delle risorse**, che ogni organizzazione può usare per progettare un modello di governance personalizzato.
+Questi requisiti sono univoci per ogni organizzazione, pertanto un approccio unico per la governance non è utile. Al contrario, spetta a ogni organizzazione per progettare il modello di governance utilizzando due strumenti di governance principale di Azure: **accesso basato sui ruoli controllo degli accessi** e **criteri delle risorse**.
 
-Il controllo degli accessi in base al ruolo definisce i ruoli e i ruoli definiscono le funzionalità per un utente a cui viene assegnato il ruolo. Il ruolo **proprietario**, ad esempio, consente tutte le funzionalità (creazione, lettura, aggiornamento ed eliminazione) per una risorsa, mentre il ruolo **lettore** consente solo la capacità di lettura. I ruoli possono essere definiti con un ambito ampio che si applica a molti tipi di risorse oppure un ambito ristretto che si applica a pochi tipi.
+RBAC definisce i ruoli e i ruoli definiscono le funzionalità di ogni utente assegnato quel ruolo. Ad esempio, il **owner** ruolo consente tutte le funzionalità (creare, leggere, aggiornare ed eliminare) per una risorsa, mentre il **lettore** ruolo consente solo la capacità di lettura. I ruoli possono essere definiti con un ampio ambito applicabile a molti tipi di risorsa o un ristretto ambito che si applica a poche.
 
-I criteri delle risorse definiscono le regole per la creazione delle risorse. Un criterio delle risorse può ad esempio limitare lo SKU di una macchina virtuale a una dimensione specifica pre-approvata. Un altro criterio delle risorse può imporre l'aggiunta di un tag con un centro di costo quando viene effettuata la richiesta di creazione della risorsa.
+I criteri delle risorse definiscono le regole per la creazione delle risorse. Un criterio di risorsa, ad esempio, possibile limitare lo SKU di una macchina virtuale per una determinata dimensione preapprovata. Un altro criterio di risorse potrebbe imporre l'applicazione di un tag per un centro di costo assegnato quando la richiesta viene effettuata per creare la risorsa.
 
-Quando si configurano questi strumenti, è importante trovare il giusto equilibrio tra governance e flessibilità organizzativa. Più sono restrittivi i criteri di governance, meno flessibilità avranno gli sviluppatori e i professionisti IT. Questo avviene perché un criterio restrittivo governance può richiedere più passaggi manuali, ad esempio richiedere agli sviluppatori di compilare un modulo o inviare un messaggio di posta elettronica a una persona del team di governance per creare manualmente una risorsa. Il team di governance ha funzionalità finita e potrebbe essere inclusi nel backlog, causando i team di sviluppo produttivo in attesa di essere create e non necessarie risorse provenienti i costi durante l'attesa da eliminare le relative risorse.
+Durante la configurazione di questi strumenti, è importante bilanciare la governance e l'agilità aziendale. Le più restrittive criteri governance, i meno agile agli sviluppatori e professionisti IT saranno. Un criterio restrittivo governance può richiedere più passaggi manuali, ad esempio uno sviluppatore deve compilare un modulo o inviare un messaggio di posta elettronica a un membro del team di governance per creare manualmente una risorsa. Il team di governance ha la capacità limitata e potrebbe diventare un collo di bottiglia, causando i team di sviluppo indotto attendere le relative risorse essere create o non necessarie risorse accumulo dei costi prima che vengano eliminati.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

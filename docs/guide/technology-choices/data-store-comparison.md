@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: f7c19501b9f28db3892285b5f35a33f02edd87ab
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 3fd3badd66edbe561bea88576bb80d9fc3e0bb79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242332"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068923"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Criteri per la scelta di un archivio dati
 
@@ -61,7 +61,7 @@ Per avviare il confronto, raccogliere il maggior numero possibile delle informaz
 
 - **Disponibilità in base all'area geografica**. Per i servizi gestiti, il servizio è disponibile in tutte le aree di Azure? La soluzione deve essere ospitata in specifiche aree di Azure?
 
-- **Portabilità**. Sarà necessario eseguire la migrazione dei dati in locale, in data center esterni o in altri ambienti di hosting cloud?
+- **Portabilità**. I dati dovranno essere migrati a un'istanza locale, Data Center esterni o altri ambienti di hosting cloud?
 
 - **Licenze**. Si hanno preferenze tra tipo di licenza OSS o proprietaria? Esistono altre restrizioni esterne rispetto al tipo di licenza che è possibile usare?
 
@@ -116,7 +116,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Line-of-business (gestione risorse umane, CRM, ERP)</li>
@@ -158,7 +158,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Catalogo prodotti</li>
@@ -199,7 +199,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Memorizzazione dei dati nella cache</li>
@@ -234,7 +234,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Organigrammi</li>
@@ -271,7 +271,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Consigli</li>
@@ -312,7 +312,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Cataloghi prodotti</li>
@@ -346,7 +346,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>Un data warehouse aziendale che fornisce dati per modelli di analisi, report e dashboard.
     </td>
 </tr>
@@ -377,7 +377,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Monitoraggio e telemetria eventi.</li>
@@ -409,7 +409,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>Immagini, video, documenti di Office, file PDF</li>
@@ -441,7 +441,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>esempi</strong></td>
+<tr><td><strong>Esempi</strong></td>
     <td>
         <ul>
             <li>File legacy</li>

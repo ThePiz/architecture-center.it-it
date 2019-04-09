@@ -7,18 +7,20 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: c8ce4c77666ab7b9c55e6f144d514fadc6b6ad73
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 535c53faa810f74299e715a204e427c8919ce360
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246082"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59069025"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Architettura di microservizi nel servizio Azure Kubernetes (AKS)
 
-Questa architettura di riferimento mostra un'applicazione di microservizi distribuita al servizio Azure Kubernetes (AKS). Mostra una configurazione di base del servizio Azure Kubernetes, che può costituire il punto di partenza per la maggior parte delle distribuzioni. Le opzioni più avanzate, incluse le opzioni avanzate di rete, verranno trattate in un'architettura di riferimento separata.
+Questa architettura di riferimento mostra un'applicazione di microservizi distribuita al servizio Azure Kubernetes (AKS). Descrive una configurazione di base servizio contenitore di AZURE che può essere il punto di partenza per la maggior parte delle distribuzioni. Questo articolo presuppone conoscenze di base di Kubernetes. L'articolo si concentra principalmente sull'infrastruttura e sulle considerazioni relative a DevOps sull'esecuzione di un'architettura di microservizi nel servizio Azure Kubernetes. Per indicazioni su come progettare i microservizi, vedere [creazione di microservizi in Azure](../../microservices/index.md).
 
-Questo articolo presuppone conoscenze di base di Kubernetes. L'articolo si concentra principalmente sull'infrastruttura e sulle considerazioni relative a DevOps sull'esecuzione di un'architettura di microservizi nel servizio Azure Kubernetes. Per indicazioni su come progettare i microservizi da una prospettiva di progettazione basata su dominio (DDD), vedere [Progettazione, compilazione e gestione di microservizi in Azure](/azure/architecture/microservices).
+![Logo di GitHub](../../_images/github.png) è disponibile in un'implementazione di riferimento di questa architettura [GitHub](https://github.com/mspnp/microservices-reference-implementation).
+
+
 
 ![Architettura di riferimento del servizio Azure Kubernetes](./_images/aks.png)
 

@@ -1,18 +1,18 @@
 ---
-title: 'Cloud Adoption Framework: Grandi imprese: informazioni tecniche aggiuntive relative a un MVP per la governance'
+title: 'CAF: Azienda di grandi dimensioni – procedure consigliate illustrate'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 'Grandi imprese: informazioni tecniche aggiuntive relative a un MVP per la governance'
+description: Azienda di grandi dimensioni – procedure consigliate illustrate
 author: BrianBlanchard
-ms.openlocfilehash: 50b0ae1ebb386d2f0b693a347d599ff29680a9cb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901740"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068991"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>Grandi imprese: Spiegazione delle procedure consigliate
 
@@ -38,7 +38,7 @@ Questa implementazione può essere descritta anche usando un semplice elenco di 
 
 1. Sollecitare decisioni relative alle dipendenze principali: identità, rete e crittografia.
 2. Determinare il modello da usare durante l'imposizione dei criteri aziendali.
-3. Determinare i modelli di governance appropriati per le discipline Coerenza delle risorse, Assegnazione di tag alle risorse e Registrazione e creazione di report.
+3. Determinare i modelli di governance appropriate per la coerenza di risorse, tag delle risorse e discipline di registrazione e report.
 4. Implementare gli strumenti di governance conformi al modello di imposizione dei criteri scelto per applicare decisioni dipendenti e di governance.
 
 [!INCLUDE [implementation-process](../../../../../includes/cloud-adoption/governance/implementation-process.md)]
@@ -90,7 +90,7 @@ Alcune delle definizioni dei criteri non possono o non devono essere controllate
 
 **Training per i tecnici**: il team di governance del cloud offre sessioni di training bimestrali e ha messo a punto due video destinati ai tecnici. Entrambe le risorse sono utili ai tecnici per implementare più velocemente la cultura della governance e la modalità di esecuzione delle distribuzioni. Il team sta provvedendo ad aggiungere asset di training per illustrare la differenza tra le distribuzioni di produzione e quelle non di produzione, per consentire ai tecnici di comprendere l'impatto dei nuovi criteri sul processo di adozione. Ciò garantisce distribuzioni coerenti senza un'imposizione rigorosa della conformità.
 
-**Pianificazione della distribuzione**: prima della distribuzione di asset contenenti dati protetti, il team di governance del cloud sarà responsabile di esaminare gli script di distribuzione per convalidarne la conformità alla governance. I team esistenti con le distribuzioni approvate in precedenza verranno controllati tramite strumenti automatici.
+**Pianificazione della distribuzione**: Prima di distribuire qualsiasi asset che contiene i dati protetti, il team di Governance Cloud sarà responsabile di esaminare gli script di distribuzione per convalidare l'allineamento di governance. I team esistenti con le distribuzioni approvate in precedenza verranno controllati tramite strumenti automatici.
 
 **Controllo mensile e creazione di report**: ogni mese, il team di governance del cloud esegue un controllo di tutte le distribuzioni cloud per convalidarne la costante conformità ai criteri. Eventuali deviazioni individuate vengono documentate e condivise con i team di adozione del cloud. Quando non si rischia un'interruzione dell'attività o una perdita dei dati, i criteri vengono imposti automaticamente. Al termine del controllo, il team di governance del cloud crea un report destinato al team per la strategia cloud e a ogni team di adozione del cloud per comunicare l'aderenza complessiva ai criteri. Il report viene inoltre archiviato a scopo legale e di controllo.
 
@@ -102,12 +102,12 @@ Se uno qualsiasi dei modelli scelti in questo percorso di governance non è conf
 
 - [Modelli di crittografia](../../../decision-guides/encryption/overview.md)
 - [Modelli di identità](../../../decision-guides/identity/overview.md)
-- [Modelli di registrazione e creazione di report](../../../decision-guides/log-and-report/overview.md)
+- [Registrazione e i modelli di report](../../../decision-guides/log-and-report/overview.md)
 - [Modelli di imposizione dei criteri](../../../decision-guides/policy-enforcement/overview.md)
 - [Modelli di coerenza delle risorse](../../../decision-guides/resource-consistency/overview.md)
-- [Modelli di assegnazione di tag alle risorse](../../../decision-guides/resource-tagging/overview.md)
-- [Modelli di reti definite dal software](../../../decision-guides/software-defined-network/overview.md)
-- [Modelli di progettazione delle sottoscrizioni](../../../decision-guides/subscriptions/overview.md)
+- [Modelli di assegnazione di tag di risorse](../../../decision-guides/resource-tagging/overview.md)
+- [Modelli di software Defined Networking](../../../decision-guides/software-defined-network/overview.md)
+- [Schemi progettuali di sottoscrizione](../../../decision-guides/subscriptions/overview.md)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -116,4 +116,4 @@ Dopo aver implementato queste linee guida, ogni team di adozione del cloud può 
 Entrambi i team useranno gli indicatori di tolleranza per identificare la successiva evoluzione necessaria per continuare a supportare l'adozione del cloud. Il passaggio successivo per l'azienda in questo percorso è l'evoluzione della baseline della governance per supportare le applicazioni con requisiti di autenticazione a più fattori legacy o di terze parti.
 
 > [!div class="nextstepaction"]
-> [Evoluzione della baseline di identità](./identity-baseline-evolution.md)
+> [Evoluzione di Baseline di identità](./identity-baseline-evolution.md)
