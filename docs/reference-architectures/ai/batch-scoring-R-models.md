@@ -50,7 +50,7 @@ L'architettura è costituita dai componenti seguenti.
 
 [Archiviazione Blob di Azure] [ blob] viene usato per archiviare i dati di input, i modelli di apprendimento automatico con training preliminare e i risultati di previsione. Offre archiviazione molto conveniente per le prestazioni che richiede questo carico di lavoro.
 
-[Istanze di contenitore di Azure] [ aci] fornire calcolo senza server su richiesta. In questo caso, un'istanza di contenitore viene distribuita in una pianificazione per attivare i processi Batch che generano le previsioni. I processi di Batch vengono attivati da uno script R con la [doAzureParallel] [ doAzureParallel] pacchetto. L'istanza di contenitore arresta automaticamente dopo aver completato i processi.
+[Istanze di contenitore di Azure] [ aci] fornire calcolo senza server su richiesta. In questo caso, un'istanza di contenitore viene distribuita in una pianificazione per attivare i processi Batch che generano le previsioni. I processi di Batch vengono attivati da uno script R con la [doAzureParallel][doAzureParallel] pacchetto. L'istanza di contenitore arresta automaticamente dopo aver completato i processi.
 
 [Le app di Azure per la logica] [ logic-apps] attivare l'intero flusso di lavoro distribuendo le istanze di contenitore in una pianificazione. Un connettore di istanze di contenitore di Azure nelle App per la logica consente a un'istanza per la distribuzione su un intervallo di eventi del trigger.
 
@@ -86,13 +86,13 @@ Monitoraggio e terminazione dei processi di Batch dal **processi** riquadro dell
 
 Il pacchetto doAzureParallel raccoglie automaticamente i log di tutti i stdout/stderr per ogni processo inviato in Azure Batch. Questi sono disponibili nell'account di archiviazione creato al momento dell'installazione. Per visualizzarli, usare uno strumento di esplorazione di archiviazione, ad esempio [Azure Storage Explorer] [ storage-explorer] o il portale di Azure.
 
-Per eseguire rapidamente il debug dei processi di Batch durante lo sviluppo, stampa i log di sessione R locale usando il [getJobFiles] [ getJobFiles] funzione del pacchetto doAzureParallel.
+Per eseguire rapidamente il debug dei processi di Batch durante lo sviluppo, stampa i log di sessione R locale usando il [getJobFiles][getJobFiles] funzione del pacchetto doAzureParallel.
 
 ## <a name="cost-considerations"></a>Considerazioni sul costo
 
 Le risorse di calcolo usate in questa architettura di riferimento sono i componenti più costosi. Per questo scenario, ogni volta che viene attivato e quindi chiusa dopo che il processo venga completato il processo viene creato un cluster di dimensioni fisse. Costi vengono addebitati solo mentre i nodi del cluster sono avvio, l'esecuzione o arresto. Questo approccio è adatto per uno scenario in cui le risorse di calcolo necessari per generare le previsioni rimangono abbastanza costanti da un processo a processo.
 
-Negli scenari in cui la quantità di calcolo necessaria per completare il processo non è noto in anticipo, potrebbe essere più opportuno usare la scalabilità automatica. Con questo approccio, le dimensioni del cluster viene ridimensionata verso l'alto o verso il basso a seconda delle dimensioni del processo. Azure Batch supporta una gamma di formule di scalabilità automatica che è possibile impostare quando si definisce il cluster usando il [doAzureParallel] [ doAzureParallel] API.
+Negli scenari in cui la quantità di calcolo necessaria per completare il processo non è noto in anticipo, potrebbe essere più opportuno usare la scalabilità automatica. Con questo approccio, le dimensioni del cluster viene ridimensionata verso l'alto o verso il basso a seconda delle dimensioni del processo. Azure Batch supporta una gamma di formule di scalabilità automatica che è possibile impostare quando si definisce il cluster usando il [doAzureParallel][doAzureParallel] API.
 
 Per alcuni scenari, il tempo tra i processi potrebbe essere troppo breve per arrestare e avviare il cluster. In questi casi, mantenere il cluster in esecuzione tra i processi se appropriato.
 
@@ -100,7 +100,7 @@ Azure Batch e doAzureParallel supporta l'uso di macchine virtuali con priorità 
 
 ## <a name="deployment"></a>Distribuzione
 
-Per distribuire questa architettura di riferimento, seguire i passaggi descritti nel [GitHub] [ github] repository.
+Per distribuire questa architettura di riferimento, seguire i passaggi descritti nel [GitHub][github] repository.
 
 
 [0]: ./_images/batch-scoring-r-models.png
