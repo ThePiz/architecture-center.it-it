@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58420023"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480100"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Convenzioni di denominazione per le risorse di Azure
 
@@ -85,6 +85,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 |Set di disponibilità |Gruppo di risorse |1-80 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, carattere di sottolineatura e trattino |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |Entità associata |512 (nome), 256 (valore) |Non fa distinzione tra maiuscole e minuscole |Alfanumerico, caratteri speciali ad eccezione di `<`, `>`, `%`, `&`, `\`, `?`, `/`. Vedere le limitazioni [qui](/azure/azure-resource-manager/resource-group-using-tags). |`"key" : "value"` |`"department" : "Central IT"` |
 |App Web |Globale |1-60 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico e trattino |`<app_name>-<source-slot-name>` |`contoso-staging` |
+|Gestione API |Globale |1-50 |Non fa distinzione tra maiuscole e minuscole |Alfanumerico e trattino |`<apim-service-name>` |`contoso` |
 
 ### <a name="compute"></a>Calcolo
 

@@ -3,17 +3,17 @@ title: Stile di architettura Web/coda/ruolo di lavoro
 titleSuffix: Azure Application Architecture Guide
 description: Illustra i vantaggi, le problematiche e le procedure consigliate per le architetture Web/coda/ruolo di lavoro in Azure.
 author: MikeWasson
-ms.date: 08/30/2018
+ms.date: 04/10/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: b471d270af09df7ffd58dfdd49e7d03d05bfe582
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 974b8b8595d6d9333552c41dfe1f3f2af848d264
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244592"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480083"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Stile di architettura Web/coda/ruolo di lavoro
 
@@ -71,15 +71,15 @@ Questa sezione descrive un'architettura Web/coda/ruolo di lavoro consigliata che
 
 ![Diagramma fisico dello stile di architettura Web/coda/ruolo di lavoro](./images/web-queue-worker-physical.png)
 
-Il front-end viene implementato come app Web di Servizio app di Azure, mentre il ruolo di lavoro viene implementato come processo Web. L'app Web e il processo Web sono entrambi associati a un piano di servizio app che fornisce le istanze di macchina virtuale.
+- Il front-end viene implementato come un'app web di servizio App di Azure e il ruolo di lavoro viene implementato come un'app per le funzioni di Azure. L'app web e app per le funzioni sono entrambi associati a un piano di servizio App che fornisce istanze di macchina virtuale.
 
-È possibile usare code del bus di servizio di Azure o di archiviazione di Azure per la coda di messaggi. Il diagramma mostra una coda di archiviazione di Azure.
+- È possibile usare code del bus di servizio di Azure o di archiviazione di Azure per la coda di messaggi. Il diagramma mostra una coda di archiviazione di Azure.
 
-Cache Redis di Azure archivia lo stato della sessione e altri dati che richiedono accesso a bassa latenza.
+- Cache Redis di Azure archivia lo stato della sessione e altri dati che richiedono accesso a bassa latenza.
 
-La rete CDN di Azure viene usata per memorizzare nella cache contenuto statico come immagini, CSS o HTML.
+- La rete CDN di Azure viene usata per memorizzare nella cache contenuto statico come immagini, CSS o HTML.
 
-Per l'archiviazione, scegliere le tecnologie più adatte in base alle esigenze dell'applicazione. È possibile usare più tecnologie di archiviazione (programmazione poliglotta persistente). Per illustrare questo concetto, il diagramma mostra il database SQL di Azure e Azure Cosmos DB.
+- Per l'archiviazione, scegliere le tecnologie più adatte in base alle esigenze dell'applicazione. È possibile usare più tecnologie di archiviazione (programmazione poliglotta persistente). Per illustrare questo concetto, il diagramma mostra il database SQL di Azure e Azure Cosmos DB.
 
 Per altre informazioni, vedere [App Service web application reference architecture][scalable-web-app] (Architettura di riferimento per le applicazioni Web di Servizio app).
 
@@ -89,7 +89,7 @@ Per altre informazioni, vedere [App Service web application reference architectu
 
 - Usare la funzionalità di scalabilità automatica predefinita di Servizio app per aumentare il numero di istanze di macchina virtuale. Se il carico sull'applicazione segue modelli prevedibili, usare la scalabilità automatica basata sulla pianificazione. Se il carico è imprevedibile, usare regole di scalabilità automatica basate sulle metriche.
 
-- Provare a includere l'app Web e il processo Web in piani di servizio app separati. In questo modo, saranno ospitati in istanze di macchina virtuale separate e potranno essere ridimensionati in modo indipendente.
+- Si consiglia di inserire l'app web e app per le funzioni in piani di servizio App separati. In questo modo, possono essere ridimensionati in modo indipendente.
 
 - Usare piani di servizio app separati per gli ambienti di produzione e test. In caso contrario, se si usa lo stesso piano per gli ambienti di produzione e test, i test verranno eseguiti nelle macchine virtuali di produzione.
 

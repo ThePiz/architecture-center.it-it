@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, seodec18
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-dotnet-webapp.svg
-ms.openlocfilehash: 0d6ac13fb357657a2ec5e6284abadb46d6926907
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
-ms.translationtype: HT
+ms.openlocfilehash: f999b2ffdf234161f668887d5b2327ecf50f0e55
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908495"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480134"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>Progettare una pipeline CI/CD con Azure DevOps
 
@@ -93,11 +93,11 @@ Questo [albero delle decisioni per i servizi di calcolo di Azure](/azure/archite
 
 ### <a name="walk-through"></a>Procedura dettagliata
 
-Il [progetto di Azure DevOps](/azure/devops-project/azure-devops-project-github) distribuirà un piano di servizio app, il servizio app e una risorsa di Application Insights e configurerà il progetto di Azure DevOps.
+[Progetti DevOps di Azure](/azure/devops-project/azure-devops-project-github) verrà distribuire un piano di servizio App, servizio App e una risorsa di Application Insights per l'utente, nonché configurare una pipeline di pipeline di Azure per l'utente.
 
-Una volta implementato il progetto di Azure DevOps e completata la compilazione, esaminare le modifiche al codice, gli elementi di lavoro e i risultati dei test associati. Si rileverà che non vengono visualizzati risultati dei test, perché il codice non contiene test da eseguire.
+Dopo che sono state configurate una pipeline con progetti DevOps di Azure e il completamento della compilazione, esaminare l'oggetto associato le modifiche al codice, elementi di lavoro e i risultati dei test. Si rileverà che non vengono visualizzati risultati dei test, perché il codice non contiene test da eseguire.
 
-Il progetto crea una pipeline di versione e un trigger di distribuzione continua, distribuendo l'applicazione nell'ambiente di sviluppo. In un processo di distribuzione continua, i rilasci possono estendersi a più ambienti. Un rilascio può riguardare l'infrastruttura (con tecniche come l'infrastruttura distribuita come codice) nonché distribuire i pacchetti dell'applicazione con tutte le attività di post-configurazione.
+La pipeline crea una definizione di versione e un trigger di distribuzione continua, si distribuisce l'applicazione nell'ambiente di sviluppo. In un processo di distribuzione continua, i rilasci possono estendersi a più ambienti. Un rilascio può riguardare l'infrastruttura (con tecniche come l'infrastruttura distribuita come codice) nonché distribuire i pacchetti dell'applicazione con tutte le attività di post-configurazione.
 
 ## <a name="pricing"></a>Prezzi
 
@@ -115,7 +115,7 @@ Rivedere le risorse seguenti per altre informazioni relative ai processi di CI/C
 - [DevOps at Microsoft - How we work with Azure DevOps][devops-microsoft] (DevOps in Microsoft - Come viene usato Azure DevOps)
 - [Esercitazioni dettagliate: DevOps con Azure DevOps][devops-with-vsts]
 - [Elenco di controllo DevOps][devops-checklist]
-- [Creare una pipeline di CI/CD per .NET con il progetto DevOps di Azure][devops-project-create]
+- [Creare una pipeline di integrazione continua/recapito Continuo per .NET con progetti DevOps di Azure][devops-project-create]
 
 <!-- links -->
 
