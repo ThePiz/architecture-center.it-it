@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b93041d87ec1edde91724f6cf6374cb00b8a4941
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: db97f2983d71f63b12e6e4b2f0070b1989b482c4
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488495"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641026"
 ---
 # <a name="caching"></a>Memorizzazione nella cache
 
@@ -144,7 +144,7 @@ Prestare attenzione a non introdurre dipendenze critiche per la disponibilità d
 
 Pertanto, l'applicazione deve essere preparata per rilevare la disponibilità del servizio cache e il fallback all'archivio dati originale se la cache non è accessibile. Il [modello a interruttore](../patterns/circuit-breaker.md) è utile per la gestione di questo scenario. È possibile ripristinare il servizio che fornisce la cache. Non appena questo torna disponibile, la cache può essere ripopolata man mano che i dati vengono letti dall'archivio dati originale, seguendo una strategia come il [modello cache-aside](../patterns/cache-aside.md).
 
-Tuttavia, se l'applicazione esegue il fallback all'archivio dati originale quando la cache è temporaneamente non disponibile, si potrebbe avere un impatto sulla scalabilità del sistema. Mentre viene recuperato l'archivio dati, l'archivio dati originale potrebbe essere sovraccaricato da richieste di dati, con conseguenti timeout ed errori di connessione.
+Tuttavia, la scalabilità del sistema può essere interessata se l'applicazione esegue il fallback all'archivio dati originale quando la cache è temporaneamente non disponibile. Mentre viene recuperato l'archivio dati, l'archivio dati originale potrebbe essere sovraccaricato da richieste di dati, con conseguenti timeout ed errori di connessione.
 
 Prendere in considerazione la possibilità di implementare una cache locale privata in ogni istanza di un'applicazione insieme alla cache condivisa a cui accedono tutte le istanze dell'applicazione. Quando l'applicazione deve recuperare un elemento, può cercarlo prima nella propria cache locale, quindi nella cache condivisa e infine nell'archivio dati originale. La cache locale può essere popolata con i dati nella cache condivisa o nel database, se la cache condivisa non è disponibile.
 
@@ -297,7 +297,7 @@ Per altre informazioni vedere [Provider di stato della sessione ASP.NET per Cach
 > [!NOTE]
 > Non usare il provider di stato della sessione per Cache Redis di Azure con applicazioni ASP.NET eseguite all'esterno dell'ambiente Azure. La latenza di accesso alla cache dall'esterno di Azure consente di eliminare le prestazioni di memorizzazione nella cache di dati.
 
-Analogamente, il provider della cache di output per Cache Redis di Azure consente di salvare le risposte HTTP generate da un'applicazione Web ASP.NET. L'uso del provider della cache di output con Cache Redis di Azure può migliorare i tempi di risposta delle applicazioni che eseguono il rendering di output HTML complesso. Le istanze dell'applicazione che generano risposte simili possono usare frammenti di output condivisi nella cache anziché generare il modello di output HTML da zero. Per altre informazioni vedere [Provider di cache di output ASP.NET per la Cache Redis di Azure](/azure/redis-cache/cache-aspnet-output-cache-provider/).
+Analogamente, il provider della cache di output per Cache Redis di Azure consente di salvare le risposte HTTP generate da un'applicazione Web ASP.NET. L'uso del provider della cache di output con Cache Redis di Azure può migliorare i tempi di risposta delle applicazioni che eseguono il rendering di output HTML complesso. Le istanze dell'applicazione che generano risposte simili possono usare i frammenti di output condivisi nella cache anziché generare il modello di output HTML. Per altre informazioni vedere [Provider di cache di output ASP.NET per la Cache Redis di Azure](/azure/redis-cache/cache-aspnet-output-cache-provider/).
 
 ## <a name="building-a-custom-redis-cache"></a>Creazione di una Cache Redis personalizzata
 
@@ -651,7 +651,7 @@ Un set di Redis è un insieme di più elementi che condividono una singola chiav
 
 Nei frammenti di codice riportati di seguito viene illustrato come i set possono rivelarsi utili per l'archiviazione e il recupero di raccolte di elementi correlati rapidamente. Questo codice usa il tipo `BlogPost` descritto nella sezione Implementare applicazioni client della cache Redis più indietro in questo articolo.
 
-Un oggetto `BlogPost` contiene quattro campi: un ID, un titolo, un punteggio di classificazione e una raccolta di tag. Il primo dei frammenti di codice che seguono mostra i dati di esempio usati per popolare un elenco C# di oggetti `BlogPost` :
+Oggetto `BlogPost` oggetto contiene quattro campi &mdash; un ID, un titolo, un punteggio di classificazione e una raccolta di tag. Il primo dei frammenti di codice che seguono mostra i dati di esempio usati per popolare un elenco C# di oggetti `BlogPost` :
 
 ```csharp
 List<string[]> tags = new List<string[]>
@@ -700,7 +700,7 @@ foreach (BlogPost post in posts)
     await cache.SetAddAsync(
         redisKey, post.Tags.Select(s => (RedisValue)s).ToArray());
 
-    // Now do the inverse so we can figure how which blog posts have a given tag
+    // Now do the inverse so we can figure out which blog posts have a given tag
     foreach (var tag in post.Tags)
     {
         await cache.SetAddAsync(string.Format(CultureInfo.InvariantCulture,

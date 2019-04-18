@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 3d109cb830b7dfc8c3d4de0e654f9d8667acf101
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887795"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59740460"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-databricks"></a>Creare una pipeline di elaborazione di flussi con Azure Databricks
 
@@ -35,7 +35,7 @@ L'architettura è costituita dai componenti seguenti.
 
 **Cosmos DB**. L'output dal processo di Azure Databricks è una serie di record, che vengono scritti in [Cosmos DB](/azure/cosmos-db/) con l'API Cassandra. Viene usata l'API Cassandra perché supporta la modellazione di dati delle serie temporali.
 
-**Azure Log Analytics**. I dati del registro applicazioni raccolti da [Monitoraggio di Azure](/azure/monitoring-and-diagnostics/) vengono archiviati in un'[area di lavoro di Log Analytics](/azure/log-analytics). Le query di Log Analytics permettono di analizzare e visualizzare le metriche e ispezionare i messaggi di log allo scopo di identificare i problemi all'interno dell'applicazione.
+**Azure Log Analytics**. I dati del log applicazioni raccolti da [Monitoraggio di Azure](/azure/monitoring-and-diagnostics/) vengono archiviati in un'[area di lavoro Log Analytics](/azure/log-analytics). Le query di Log Analytics permettono di analizzare e visualizzare le metriche e ispezionare i messaggi di log allo scopo di identificare i problemi all'interno dell'applicazione.
 
 ## <a name="data-ingestion"></a>Inserimento di dati
 
@@ -269,13 +269,13 @@ Dal momento che la classe **com.microsoft.pnp.TaxiCabReader** elabora i messaggi
 
 Apache Spark usa la libreria Dropwizard per inviare metriche e alcuni dei campi metrici nativi di Dropwizard non sono compatibili con Azure Log Analytics. Di conseguenza, questa architettura di riferimento include un sink e un reporter di Dropwizard personalizzati. Formatta le metriche nel formato previsto da Azure Log Analytics. Quando Apache Spark riporta le metriche, vengono inviate anche le metriche personalizzate per i dati di corse e tariffe in formato non valido.
 
-L'ultima metrica da registrare per l'area di lavoro di Azure Log Analytics è lo stato di avanzamento cumulativo del processo Spark Structured Streaming. Questa operazione viene eseguita usando un listener StreamingQuery personalizzato implementato nella classe **com.microsoft.pnp.StreamingMetricsListener**. Questa classe viene registrata nella sessione di Apache Spark quando viene eseguito il processo:
+L'ultima metrica da registrare per l'area di lavoro Azure Log Analytics è lo stato di avanzamento cumulativo del processo Spark Structured Streaming. Questa operazione viene eseguita usando un listener StreamingQuery personalizzato implementato nella classe **com.microsoft.pnp.StreamingMetricsListener**. Questa classe viene registrata nella sessione di Apache Spark quando viene eseguito il processo:
 
 ```scala
 spark.streams.addListener(new StreamingMetricsListener())
 ```
 
-I metodi nella classe StreamingMetricsListener vengono chiamati dal runtime di Apache Spark ogni volta che si verifica un evento di streaming strutturato, inviando messaggi di log e metriche all'area di lavoro di Azure Log Analytics. È possibile usare le query seguenti nell'area di lavoro per monitorare l'applicazione:
+I metodi nella classe StreamingMetricsListener vengono chiamati dal runtime di Apache Spark ogni volta che si verifica un evento di streaming strutturato, inviando messaggi di log e metriche all'area di lavoro Azure Log Analytics. È possibile usare le query seguenti nell'area di lavoro per monitorare l'applicazione:
 
 ### <a name="latency-and-throughput-for-streaming-queries"></a>Latenza e velocità effettiva per le query di streaming
 

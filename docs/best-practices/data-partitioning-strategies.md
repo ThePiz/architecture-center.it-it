@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4f973a6173e882d6ae839833bd3c5bf86f8d7fb6
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: bb810f549c78d16eabd4a96cd811cdc120cc8b6f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898137"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640941"
 ---
 # <a name="data-partitioning-strategies"></a>Strategie di partizionamento dei dati
 
@@ -53,11 +53,11 @@ I pool elastici consentono di aggiungere e rimuovere partizioni con la crescita 
 
 Se un'applicazione deve dividere una partizione in due partizioni separate o combinare partizioni, usare lo [strumento di divisione-unione](/azure/sql-database/sql-database-elastic-scale-overview-split-and-merge). Tale strumento, eseguito come servizio Web di Azure, effettua la migrazione dei dati tra le partizioni in modo sicuro.
 
-Lo schema di partizionamento può influire significativamente sulle prestazioni del sistema, nonché sulla frequenza con cui è necessario aggiungere o rimuovere partizioni o ripartizionare i dati tra le partizioni. Tenere presente quanto segue:
+Lo schema di partizionamento può influire in modo significativo le prestazioni del sistema. nonché sulla frequenza con cui è necessario aggiungere o rimuovere partizioni o ripartizionare i dati tra le partizioni. Tenere presente quanto segue:
 
 - Raggruppare i dati usati insieme nella stessa partizione ed evitare le operazioni con accesso ai dati da più partizioni. Una partizione è di per sé un database SQL e i join tra database devono essere eseguiti sul lato client.
 
-    Anche se il database SQL non supporta i join tra database, è possibile usare gli strumenti dei database elastici per eseguire [query su più partizioni](/azure/sql-database/sql-database-elastic-scale-multishard-querying). Una query su più partizioni invia singole query a ogni database e unisce i risultati.
+    Anche se Database SQL non supporta i join tra database, è possibile usare gli strumenti di Database elastici per eseguire [query su più partizioni](/azure/sql-database/sql-database-elastic-scale-multishard-querying). Una query su più partizioni invia singole query a ogni database e unisce i risultati.
 
 - Non progettare un sistema con dipendenze tra le partizioni. I vincoli di integrità referenziale, i trigger e le stored procedure in un database non possono fare riferimento a oggetti in un altro.
 
@@ -135,7 +135,7 @@ Le code di archiviazione di Azure consentono di implementare la messaggistica as
 
 Ogni coda di archiviazione ha un nome univoco all'interno dell'account di archiviazione in cui è contenuta. Le code di partizione di Azure sono basate sul nome. Tutti i messaggi per la stessa coda vengono archiviati nella stessa partizione, controllata da un singolo server. Code diverse possono essere gestite da server differenti per bilanciare il carico. L'allocazione di code da server è trasparente alle applicazioni e agli utenti.
 
-In un'applicazione di grandi dimensioni, non usare la stessa coda di archiviazione per tutte le istanze dell'applicazione, poiché con questo approccio il server che ospita la coda potrebbe diventare un'area sensibile. È consigliabile usare code diverse per le diverse aree funzionali dell'applicazione. Le code di archiviazione di Azure non supportano le transazioni, quindi l’indirizzamento dei messaggi a code diverse dovrebbe avere un impatto minimo sulla coerenza della messaggistica.
+In un'applicazione di grandi dimensioni, non usare la stessa coda di archiviazione per tutte le istanze dell'applicazione, poiché con questo approccio il server che ospita la coda potrebbe diventare un'area sensibile. È consigliabile usare code diverse per le diverse aree funzionali dell'applicazione. Le code di archiviazione di Azure non supportano le transazioni, in modo da indirizzare i messaggi a code diverse dovrebbe avere un impatto minimo sulla coerenza della messaggistica.
 
 Una coda di archiviazione di Azure è in grado di gestire fino a 2.000 messaggi al secondo. Se è necessario elaborare i messaggi a una velocità più elevata, è consigliabile creare più code. In un'applicazione globale, ad esempio, è consigliabile creare code di archiviazione separate in account di archiviazione separati per gestire le istanze dell'applicazione in esecuzione in ogni area.
 

@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: d99c63b9cb5f2ed7ffcd869b5b8ac7910b9dabe3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 170a38f6b8a6c107670561e63f236e43af948d7d
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487138"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641043"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Materiale sussidiario su come eseguire nuovi tentativi per servizi specifici
 
@@ -169,7 +169,7 @@ Cache Redis di Azure è un servizio cache a bassa latenza e di rapido accesso ai
 
 Le indicazioni fornite in questa sezione presuppongono che si usi il client StackExchange.Redis per accedere alla cache. Nel [sito Web di Redis](https://redis.io/clients)è disponibile un elenco di altri client idonei, a cui possono essere associati vari meccanismi di ripetizione dei tentativi.
 
-Il client StackExchange.Redis usa il multiplexing tramite un'unica connessione. È consigliabile quindi creare un'istanza del client all'avvio dell'applicazione e usarla per tutte le operazioni eseguite sulla cache. In questo modo, la connessione alla cache viene eseguita una sola volta e tutte le indicazioni fornite in questa sezione fanno riferimento ai criteri di ripetizione dei tentativi definiti per la connessione iniziale e non per ogni operazione che accede alla cache.
+Il client StackExchange.Redis usa il multiplexing tramite un'unica connessione. È consigliabile quindi creare un'istanza del client all'avvio dell'applicazione e usarla per tutte le operazioni eseguite sulla cache. Per questo motivo, la connessione alla cache viene eseguita una sola volta e quindi tutte le indicazioni fornite in questa sezione è correlata ai criteri di ripetizione dei tentativi per la connessione iniziale &mdash; e non per ogni operazione che accede alla cache.
 
 ### <a name="retry-mechanism"></a>Meccanismo di ripetizione dei tentativi
 
@@ -955,7 +955,7 @@ Quando si accede ai servizi di archiviazione di Azure tramite l'API del client d
 
 - Usare i criteri di ripetizione dei tentativi dello spazio dei nomi Microsoft.WindowsAzure.Storage.RetryPolicies se appropriati per le proprie esigenze. Nella maggior parte dei casi, questi criteri saranno sufficienti.
 
-- Usare invece i criteri **ExponentialRetry** nelle operazioni in batch, nelle attività in background e negli scenari non interattivi. In questi scenari, è generalmente possibile concedere più tempo per il ripristino del servizio, aumentando così le probabilità che l'operazione abbia esito positivo.
+- Usare invece i criteri **ExponentialRetry** nelle operazioni in batch, nelle attività in background e negli scenari non interattivi. In questi scenari è generalmente possibile concedere più tempo per il ripristino del servizio &mdash; con aumentando così le probabilità dell'operazione abbia esito positivo.
 
 - Valutare la possibilità di specificare la proprietà **MaximumExecutionTime** del parametro **RequestOptions** per limitare il tempo di esecuzione complessivo, ma tenere conto del tipo e delle dimensioni dell'operazione quando si sceglie un valore di timeout.
 
@@ -1123,7 +1123,7 @@ Di seguito sono riportati i tipi intervallo più comuni nelle strategie di ripet
 
 ### <a name="transient-fault-handling-with-polly"></a>Gestione degli errori temporanei con Polly
 
-[Polly][polly] è una libreria per gestire a livello di codice la ripetizione dei tentativi e le strategie dell'[interruttore](../patterns/circuit-breaker.md). Il progetto Polly è membro di [.NET Foundation][dotnet-foundation]. Per i servizi in cui il client non supporta in modo nativo la ripetizione dei tentativi, Polly è una valida alternativa ed evita la necessità di scrivere il codice personalizzato per la ripetizione dei tentativi, la cui corretta implementazione può risultare difficile. Polly offre anche un modo per tracciare gli errori quando questi si verificano, in modo che sia possibile registrare i tentativi.
+[Polly] [ polly] è una libreria per gestire a livello di codice di ripetizione dei tentativi e [interruttore](../patterns/circuit-breaker.md) strategie. Il progetto Polly è membro di [.NET Foundation][dotnet-foundation]. Per i servizi in cui il client non supporta in modo nativo la ripetizione dei tentativi, Polly è una valida alternativa ed evita la necessità di scrivere il codice personalizzato per la ripetizione dei tentativi, la cui corretta implementazione può risultare difficile. Polly offre anche un modo per tracciare gli errori quando questi si verificano, in modo che sia possibile registrare i tentativi.
 
 ### <a name="more-information"></a>Altre informazioni
 
