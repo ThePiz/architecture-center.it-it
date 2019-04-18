@@ -6,18 +6,19 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f49640f4a994bf1cdca8029260fc95a5da323ff2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344530"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640618"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Data center virtuale di Azure e piano di controllo aziendale
 
 Il data center virtuale di Azure rappresenta un approccio per ottenere il massimo dalle funzionalità delle piattaforme cloud di Azure, rispettando al tempo stesso i criteri di sicurezza e di rete esistenti. Quando le organizzazioni IT e le business unit distribuiscono carichi di lavoro aziendali sul cloud, devono bilanciare la governance con la flessibilità degli sviluppatori. Il data center virtuale di Azure offre modelli per raggiungere questo equilibrio, soffermandosi in particolare sulla governance.
- 
+
 ## <a name="resources"></a>Risorse
+
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
@@ -58,6 +59,5 @@ La distribuzione dei carichi di lavoro nel cloud introduce la necessità di svil
 Il data center virtuale di Azure è possibile grazie a questi quattro componenti: identità, crittografia, rete software-defined e conformità, inclusi i log e la creazione di report.
 
 Nel modello di data center virtuale di Azure è possibile applicare i criteri di isolamento, rendere il cloud più simile ai data center fisici conosciuti e raggiungere i livelli di sicurezza e attendibilità necessari. Tutto ciò è realizzabile grazie a quattro componenti che qualsiasi team IT aziendale riconoscerebbe: rete software-defined, crittografia, gestione dell'identità e standard e certificazioni di conformità alla base della piattaforma di Azure. Queste quattro componenti sono fondamentali per fare in modo che un data center virtuale diventi un'estensione attendibile degli investimenti dell'infrastruttura esistente.
-
 
 Continuare a leggere l'eBook sui <a href="https://aka.ms/VDC/eBook">concetti del data center virtuale di Azure</a>.

@@ -3,13 +3,13 @@ title: Architetture di riferimento di Azure
 description: Architetture di riferimento e linee guida per l'implementazione per carichi di lavoro comuni in Azure.
 layout: LandingPage
 ms.topic: landing-page
-ms.date: 02/07/2019
-ms.openlocfilehash: 44111f5f10997c7aba38414b518245c5791d1cd0
-ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
+ms.date: 04/02/2019
+ms.openlocfilehash: d338559e52f16ba7df9ebac030200c6a34d89906
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55903232"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640686"
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -66,6 +66,26 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
         </div>
     </a>
 </li>
+<!-- Training of Python scikit-learn models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Training dei modelli scikit-learn Python</h3>
+                        <p>Procedure consigliate per ottimizzare gli iperparametri di un modello scikit-learn Python.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Batch scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -79,27 +99,7 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
                     </div>
                     <div class="cardText">
                         <h3>Assegnazione dei punteggi in batch per i modelli Python</h3>
-                        <p>È possibile usare Azure Batch per intelligenza artificiale per assegnare punteggi in batch a numerosi modelli Python in parallelo in base a una pianificazione.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<!-- Batch scoring of Spark models on Azure Databricks -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/databricks.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Assegnazione dei punteggi in batch per i modelli Spark in Azure Databricks</h3>
-                        <p>Creare una soluzione scalabile per l'assegnazione dei punteggi in batch per un modello di classificazione Apache Spark usando Azure Databricks.</p>
+                        <p>È possibile usare Azure Machine Learning per assegnare punteggi in batch a numerosi modelli Python in parallelo in base a una pianificazione.</p>
                     </div>
                 </div>
             </div>
@@ -126,6 +126,26 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
         </div>
     </a>
 </li>
+<!-- Batch scoring of R machine learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-R-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/logo-r.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Assegnazione dei punteggi in batch per i modelli R di Machine Learning</h3>
+                        <p>Eseguire l'assegnazione dei punteggi in batch per i modelli R con Azure Batch.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Real-time scoring of R machine learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -140,6 +160,26 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
                     <div class="cardText">
                         <h3>Assegnazione dei punteggi in tempo reale per i modelli R di Machine Learning</h3>
                         <p>Implementare un servizio di stima in tempo reale in R con Microsoft Machine Learning Server in esecuzione nel servizio Azure Kubernetes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring of Spark models on Azure Databricks -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/databricks.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Assegnazione dei punteggi in batch per i modelli Spark in Azure Databricks</h3>
+                        <p>Creare una soluzione scalabile per l'assegnazione dei punteggi in batch per un modello di classificazione Apache Spark usando Azure Databricks.</p>
                     </div>
                 </div>
             </div>
@@ -314,7 +354,27 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
                     </div>
                     <div class="cardText">
                         <h3>Microservizi nel servizio Azure Kubernetes (AKS)</h3>
-                        <p>Architettura consigliata per la distribuzione di un'architettura di microservizi in AKS.</p>
+                        <p>Architettura consigliata per la distribuzione di microservizi in AKS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Microservices architecture on Azure Service Fabric -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./microservices/service-fabric.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sf.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Architettura di microservizi in Azure Service Fabric</h3>
+                        <p>Architettura consigliata per i microservizi in Service Fabric.</p>
                     </div>
                 </div>
             </div>
@@ -590,26 +650,6 @@ Passare a: [Intelligenza artificiale](#ai-and-machine-learning) | [Big Data](#bi
                     <div class="cardText">
                         <h3>Applicazione a più livelli con Cassandra</h3>
                         <p>Macchine virtuali configurate per un'applicazione a più livelli con Apache Cassandra in Linux.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<!-- Jenkins build server -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./jenkins/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/jenkins.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Server di compilazione Jenkins</h3>
-                        <p>Server Jenkins scalabile e di livello aziendale in Azure.</p>
                     </div>
                 </div>
             </div>
