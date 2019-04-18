@@ -1,18 +1,18 @@
 ---
-title: 'CAF: Azienda di grandi dimensioni – Più livelli di governance nelle aziende di grandi dimensioni'
+title: 'CAF: Azienda di grandi dimensioni – più livelli di governance nelle grandi imprese'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Azienda di grandi dimensioni – Più livelli di governance nelle aziende di grandi dimensioni
+description: Azienda di grandi dimensioni – più livelli di governance nelle grandi imprese
 author: BrianBlanchard
-ms.openlocfilehash: 42f4159ca0701c6a798f239359509a3e3b246c38
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 1a90f8007077df0ecefa8ec5d8c0dd6bfca9ccc7
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901860"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641213"
 ---
 # <a name="multiple-layers-of-governance-in-large-enterprises"></a>Più livelli di governance nelle aziende di grandi dimensioni
 
@@ -30,7 +30,7 @@ Questo articolo illustra alcuni modi per esplorare questo tipo di complessità.
 
 Le aziende affermate di grandi dimensioni dispongono spesso di team o di dipendenti che si concentrano sulle discipline indicate in questo percorso. Questo passaggio illustra uno degli approcci per fare della governance uno sport di squadra.
 
-Per molte aziende di grandi dimensioni, le discipline della governance del cloud possono rappresentare ostacoli all'adozione. Lo sviluppo di competenze cloud in identità, sicurezza, operazioni, distribuzioni e configurazione all'interno di un'azienda richiede tempo. L'implementazione in modo completo dei criteri di governance IT e di sicurezza IT può contribuire a rallentare l'innovazione per mesi o addirittura anni. L'equilibrio tra la necessità di innovazione delle imprese e la necessità della governance di proteggere le risorse esistenti è delicato.
+In molte aziende di grandi dimensioni, le cinque discipline di Governance Cloud può essere blockers all'adozione. Lo sviluppo di competenze cloud in identità, sicurezza, operazioni, distribuzioni e configurazione all'interno di un'azienda richiede tempo. L'implementazione in modo completo dei criteri di governance IT e di sicurezza IT può contribuire a rallentare l'innovazione per mesi o addirittura anni. L'equilibrio tra la necessità di innovazione delle imprese e la necessità della governance di proteggere le risorse esistenti è delicato.
 
 Le funzionalità intrinseche del cloud possono rimuovere i blocchi per l'innovazione, ma anche aumentare i rischi. Questo percorso di governance, illustra come l'azienda di esempio abbia creato misure cautelative per attenuare il rischio. Piuttosto che affrontare tutte le discipline necessarie per proteggere l'ambiente, il team di governance del cloud adotta un approccio basato sul rischio per controllare ciò che potrebbe essere distribuito, mentre gli altri team compilano le necessarie maturità del cloud. Soprattutto, mentre ogni team raggiunge la maturità cloud, la governance applica in modo completo le proprie soluzioni. Man mano che ogni team matura e si aggiunge alla soluzione complessiva, il team di governance del cloud può iniziare la fase di stage gate, il che consente l'affermazione di ulteriore innovazione e adozione.
 
@@ -38,7 +38,7 @@ Questo modello illustra la crescita di una relazione tra il team di governance d
 
 ## <a name="requirements-to-supporting-such-a-team-sport"></a>Requisiti per il supporto di questo sport di squadra
 
-Il primo requisito di un modello di governance a più livelli consiste nel comprendere la gerarchia di governance. Rispondere alle domande seguenti aiuterà a comprendere la gerarchia di governance generale:
+Il primo requisito di un modello di governance a più livelli consiste nel comprendere la gerarchia di governance. Rispondere alle domande seguenti consentono di comprendere la gerarchia di governance generali:
 
 - Dove si posiziona la contabilità del cloud (fatturazione per i servizi cloud) tra le unità aziendali?
 - Dove si posizionano le responsabilità di governance nel panorama IT aziendale e tra ogni business unit?
