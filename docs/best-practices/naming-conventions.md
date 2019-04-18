@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
-ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.openlocfilehash: e67da8043beed01c99f36da689dfd0553e012535
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/11/2019
-ms.locfileid: "59480100"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640397"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Convenzioni di denominazione per le risorse di Azure
 
@@ -135,7 +135,7 @@ In generale, evitare i caratteri speciali, `-` o `_`, come primo o ultimo caratt
 
 | Entità | Scope | Length | Maiuscole/minuscole | Caratteri validi | Modello consigliato | Esempio |
 | --- | --- | --- | --- | --- | --- | --- |
-|Spazio dei nomi del bus di servizio | Globale |6-50 |Non fa distinzione tra maiuscole e minuscole | Caratteri alfanumerici, trattini, deve iniziare con leter; visualizzare [qui](/rest/api/servicebus/create-namespace) per informazioni dettagliate. |`<service short name>-bus` |`app1-bus` |
+|Spazio dei nomi del bus di servizio | Globale |6-50 |Non fa distinzione tra maiuscole e minuscole | Caratteri alfanumerici, trattini, deve iniziare con una lettera. visualizzare [qui](/rest/api/servicebus/create-namespace) per informazioni dettagliate. |`<service short name>-bus` |`app1-bus` |
 
 ## <a name="organize-resources-with-tags"></a>Organizza le risorse con i tag
 
@@ -202,4 +202,3 @@ Non è possibile modificare il nome del contenitore o dell'account di archiviazi
 
 > [!TIP]
 > È consigliabile definire una convenzione di denominazione per tutti gli account di archiviazione e i tipi prima di avventurarsi nello sviluppo di un nuovo servizio o una nuova applicazione.
-

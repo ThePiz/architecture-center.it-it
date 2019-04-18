@@ -8,10 +8,10 @@ layout: LandingPage
 ms.topic: landing-page
 author: BrianBlanchard
 ms.openlocfilehash: cb5f5a61ad71d60e0e5805fd7e8d6bd78f893293
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068804"
 ---
 # <a name="microsoft-cloud-adoption-framework-for-azure"></a>Microsoft Cloud Adoption Framework per Azure
@@ -41,4 +41,4 @@ Se l'azienda è una novità di Azure, iniziare leggendo [Guida introduttiva con 
 Se l'azienda ha esperienza con Azure e quale sta tentando di indicazioni più dettagliate e procedure consigliate per aree specifiche, vedere la [Cenni preliminari sulla Governance](./governance/overview.md) e il [Guide scelta architetturale](./decision-guides/overview.md). Altre sezioni verranno aggiunti come gli approcci di versione disponibile a livello generale.
 
 > [!div class="nextstepaction"]
-> [Attività iniziali](./getting-started/overview.md)
+> [esercitazione introduttiva](./getting-started/overview.md)

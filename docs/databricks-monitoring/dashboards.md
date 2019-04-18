@@ -1,16 +1,16 @@
 ---
-title: Utilizzare Dashboard per visualizzare le metriche di Azure Databricks
+title: Usare i dashboard per visualizzare le metriche di Azure Databricks
 description: Come distribuire un dashboard di Grafana per monitorare le prestazioni in Azure Databricks
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: a84203a9188848e6363a80ac455332e8f6a73cda
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887829"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640312"
 ---
-# <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>Utilizzare Dashboard per visualizzare le metriche di Azure Databricks
+# <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>Usare i dashboard per visualizzare le metriche di Azure Databricks
 
 Questo articolo illustra come configurare un dashboard di Grafana per monitorare i processi di Azure Databricks per i problemi di prestazioni.
 
@@ -20,7 +20,7 @@ Questa libreria consente la registrazione delle metriche del servizio Azure Data
 
 ![Screenshot del dashboard](./_images/dashboard-screenshot.png)
 
-## <a name="prequisites"></a>Prerequisiti
+## <a name="prerequisites"></a>Prerequisiti
 
 Clona il [repository Github](https://github.com/mspnp/spark-monitoring) e [seguire le istruzioni di distribuzione](./configure-cluster.md) per compilare e configurare la registrazione di monitoraggio di Azure per la libreria di Azure Databricks inviare i log all'area di lavoro di Analitica di Log di Azure.
 
@@ -31,7 +31,7 @@ Per distribuire l'area di lavoro di Analitica di Log di Azure, seguire questa pr
 1. Passare al `/perftools/deployment/loganalytics` directory.
 1. Distribuire il **logAnalyticsDeploy.json** modello Azure Resource Manager. Per altre informazioni sulla distribuzione dei modelli di Resource Manager, vedere [distribuire le risorse con i modelli di Resource Manager e Azure CLI][rm-cli]. Il modello include i parametri seguenti:
 
-    * **percorso**: L'area in cui vengono distribuiti le area di lavoro di Log Analitica e i dashboard.
+    * **location**: L'area in cui vengono distribuiti le area di lavoro di Log Analitica e i dashboard.
     * **serviceTier**: Piano tariffario dell'area di lavoro Rhe. Visualizzare [Ecco] [ sku] per un elenco di valori validi.
     * **dataRetention** (facoltativo): Il numero di giorni di dati di log viene mantenuto nell'area di lavoro di Log Analitica. Il valore predefinito è 30 giorni. Se il piano tariffario è `Free`, la conservazione dei dati deve essere di 7 giorni.
     * **workspaceName** (optional): Un nome per l'area di lavoro. Se non specificato, il modello genera un nome.
@@ -40,7 +40,7 @@ Per distribuire l'area di lavoro di Analitica di Log di Azure, seguire questa pr
     az group deployment create --resource-group <resource-group-name> --template-file logAnalyticsDeploy.json --parameters location='East US' serviceTier='Standalone'
     ```
 
-Questo modello consente di creare l'area di lavoro e crea anche un set di query predefinite che vengono usati dal dashboard.
+Questo modello consente di creare l'area di lavoro e crea anche un set di query predefinite che vengono utilizzati dal dashboard.
 
 ## <a name="deploy-grafana-in-a-virtual-machine"></a>Distribuire Grafana in una macchina virtuale
 
@@ -81,7 +81,7 @@ Successivamente, modificare la password di amministratore di Grafana seguendo qu
 
 1. Nel portale di Azure, selezionare la macchina virtuale e fare clic su **Panoramica**.
 1. Copiare l'indirizzo IP pubblico.
-1. Aprire un web browser e passare all'URL seguente: `http://<IP addresss>:3000`.
+1. Aprire un web browser e passare all'URL seguente: `http://<IP address>:3000`.
 1. Nella schermata di accesso di Grafana, immettere **admin** per il nome utente e la password di Grafana dai passaggi precedenti.
 1. Una volta effettuato l'accesso, selezionare **configurazione** (l'icona a forma di ingranaggio).
 1. Selezionare **l'amministratore del Server**.
@@ -153,7 +153,7 @@ Le visualizzazioni sono come segue:
 
 ### <a name="job-latency"></a>Latenza del processo
 
-Questa visualizzazione mostra la latenza di esecuzione per un processo, ovvero una visualizzazione grossolana le prestazioni complessive di un processo. Visualizza la durata di esecuzione processo dall'inizio al completamento. Si noti che ora di inizio del processo non sono quello utilizzato per l'ora di invio del processo. La latenza è rappresentata come percentili (del 10%, 30%, 50%, 90%) esecuzione dei processi indicizzato da ID cluster e ID dell'applicazione.
+Questa visualizzazione mostra la latenza di esecuzione per un processo, ovvero una visualizzazione generico sulle prestazioni complessive di un processo. Visualizza la durata di esecuzione processo dall'inizio al completamento. Si noti che ora di inizio del processo non sono quello utilizzato per l'ora di invio del processo. La latenza è rappresentata come percentili (del 10%, 30%, 50%, 90%) esecuzione dei processi indicizzato da ID cluster e ID dell'applicazione.
 
 ### <a name="stage-latency"></a>Latenza di fase
 
@@ -177,7 +177,7 @@ Questa visualizzazione è una vista di alto livello degli elementi di lavoro ind
 
 ### <a name="streaming-throughputlatency"></a>Velocità effettiva/latenza streaming
 
-Le metriche associate a una query di streaming strutturata è correlato questo visualzation. I grafici visualizzano il numero di righe di input al secondo e il numero di righe elaborate al secondo. La metrica di streaming è rappresentata anche per ogni applicazione. Queste metriche vengono inviate quando viene generato l'evento OnQueryProgress quando viene elaborata la query di streaming strutturata e rappresenta la visualizzazione streaming latenza come la quantità di tempo, espresso in millisecondi, impiegato per eseguire un batch di query.
+Questa visualizzazione è correlata alle metriche di cui è associate a una query di streaming strutturata. I grafici visualizzano il numero di righe di input al secondo e il numero di righe elaborate al secondo. La metrica di streaming è rappresentata anche per ogni applicazione. Queste metriche vengono inviate quando viene generato l'evento OnQueryProgress quando viene elaborata la query di streaming strutturata e rappresenta la visualizzazione streaming latenza come la quantità di tempo, espresso in millisecondi, impiegato per eseguire un batch di query.
 
 ### <a name="resource-consumption-per-executor"></a>Utilizzo delle risorse per ogni executor
 

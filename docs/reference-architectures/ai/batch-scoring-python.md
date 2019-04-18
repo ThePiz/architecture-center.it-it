@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: b7607984bcf2c4bd046421aeb6e9d52dd8e7c18e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 9341b9e4c17025e9623902a6202076c352b237b9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887744"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640550"
 ---
 # <a name="batch-scoring-of-python-machine-learning-models-on-azure"></a>Valutazione dei modelli di machine learning di Python in Azure batch
 
@@ -25,11 +25,12 @@ Un'implementazione di riferimento per questa architettura è disponibile in [Git
 **Scenario**: Questa soluzione consente di monitorare il funzionamento di un numero elevato di dispositivi in uno scenario IoT in cui ogni dispositivo invia le letture dei sensori in modo continuo. Si presuppone che ogni dispositivo sia associato a modelli di rilevamento delle anomalie sottoposti precedentemente a training per prevedere se una serie di misurazioni, aggregate per un intervallo di tempo predefinito, corrispondono o meno a un'anomalia. In scenari reali, potrebbe trattarsi di un flusso di letture di sensori che devono essere filtrate e aggregate prima di essere usate per operazioni di training o per l'assegnazione del punteggio in tempo reale. Per semplicità, la soluzione usa lo stesso file di dati durante l'esecuzione dei processi di assegnazione del punteggio.
 
 Questa architettura di riferimento è progettata per carichi di lavoro che vengono attivati in base a una pianificazione. L'elaborazione prevede i passaggi seguenti:
-1.  Inviare le letture dei sensori per l'inserimento in Hub eventi di Azure.
-2.  Eseguire l'elaborazione dei flussi e archiviare i dati non elaborati.
-3.  Inviare i dati a un cluster di Machine Learning pronto a iniziare ad assumere lavoro. Ogni nodo del cluster esegue un processo di assegnazione del punteggio per uno specifico sensore. 
-4.  Eseguire la pipeline di assegnazione del punteggio, che esegue i processi in parallelo usando script Python di Machine Learning. La pipeline viene creata, pubblicata ed eseguita in un intervallo di tempo predefinito e pianificato.
-5.  Generare previsioni e archiviarle in archiviazione BLOB per un utilizzo successivo.
+
+1. Inviare le letture dei sensori per l'inserimento in Hub eventi di Azure.
+2. Eseguire l'elaborazione dei flussi e archiviare i dati non elaborati.
+3. Inviare i dati a un cluster di Machine Learning pronto a iniziare ad assumere lavoro. Ogni nodo del cluster esegue un processo di assegnazione del punteggio per uno specifico sensore. 
+4. Eseguire la pipeline di assegnazione del punteggio, che esegue i processi in parallelo usando script Python di Machine Learning. La pipeline viene creata, pubblicata ed eseguita in un intervallo di tempo predefinito e pianificato.
+5. Generare previsioni e archiviarle in archiviazione BLOB per un utilizzo successivo.
 
 ## <a name="architecture"></a>Architettura
 
@@ -66,7 +67,7 @@ Per motivi di praticità, in questo scenario viene inviata un'unica attività di
 ## <a name="management-considerations"></a>Considerazioni sulla gestione
 
 - **Monitoraggio dei processi**. È importante monitorare lo stato dei processi in esecuzione, ma può essere complesso eseguire il monitoraggio in un cluster di nodi attivi. Per esaminare lo stato dei nodi del cluster, usare il [portale di Azure][portal] per gestire l'[area di lavoro di Machine Learning][ml-workspace]. Se un nodo è inattivo oppure un processo ha avuto esito negativo, i log degli errori vengono salvati nell'archiviazione BLOB e sono accessibili anche nella sezione Pipeline. Per un monitoraggio più completo, connettere i log ad [Application Insights][app-insights] o eseguire processi separati per il polling dello stato del cluster e dei relativi processi.
--   **Registrazione**. Il servizio Machine Learning registra tutti i flussi StdOut/StdErr nell'account di archiviazione di Azure associato. Per semplificare la visualizzazione dei file di log, usare uno strumento di esplorazione dell'archiviazione, ad esempio [Azure Storage Explorer][explorer].
+- **Registrazione**. Il servizio Machine Learning registra tutti i flussi StdOut/StdErr nell'account di archiviazione di Azure associato. Per semplificare la visualizzazione dei file di log, usare uno strumento di esplorazione dell'archiviazione, ad esempio [Azure Storage Explorer][explorer].
 
 ## <a name="cost-considerations"></a>Considerazioni sul costo
 
@@ -75,7 +76,6 @@ I componenti più onerosi usati in questa architettura di riferimento sono le ri
 Per le operazioni che non richiedono un intervento immediato, configurare la formula di scalabilità automatica in modo che lo stato predefinito (minimo) sia rappresentato da un cluster con un numero di nodi pari a zero. Con questa configurazione, il cluster inizia con un numero di nodi pari a zero, per poi aumentare quando rileva processi nella coda. Se il processo di assegnazione del punteggio in batch si verifica poche volte al giorno, questa impostazione consente di ottenere un risparmio significativo sui costi.
 
 La scalabilità automatica potrebbe non essere appropriata per i processi batch eseguiti a distanza troppo ravvicinata. Anche il tempo necessario per avviare e interrompere un cluster comporta dei costi. Pertanto, se un carico di lavoro batch inizia solo pochi minuti dopo il termine del processo precedente, potrebbe essere più conveniente lasciare il cluster attivo tra i processi. Ciò dipende dalla frequenza pianificata per l'esecuzione dei processi di assegnazione del punteggio, ovvero elevata (ad esempio, ogni ora) o meno frequente (ad esempio, una volta al mese).
-
 
 ## <a name="deployment"></a>Distribuzione
 

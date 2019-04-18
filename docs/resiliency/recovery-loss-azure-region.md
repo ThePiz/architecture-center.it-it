@@ -7,16 +7,14 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 7f207bbc0bb0128126f9b828dc100d43553cb100
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b58e8fa1cc4955f90e7171e17aaa70ac0cfb7b71
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242712"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640567"
 ---
-[!INCLUDE [header](../_includes/header.md)]
-
-# <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Materiale sussidiario sulla resilienza di Azure: ripristino dopo un'interruzione di servizio di un'area
+# <a name="recover-from-a-region-wide-service-disruption"></a>Ripristino da un'interruzione del servizio a livello di area
 
 Dal punto di vista fisico e logico, Azure è suddiviso in unità chiamate aree. Un'area è costituita da uno o più data center che si trovano in posizioni molto vicine.
 
@@ -121,7 +119,7 @@ Quando si prova a eseguire il servizio cloud in più aree di Azure è necessario
 
 ### <a name="service-bus"></a>Bus di servizio
 
-Il bus di servizio di Azure usa uno spazio dei nomi univoco che non si estende su più aree di Azure. Il primo requisito consiste quindi nel configurare gli spazi dei nomi del bus di servizio nell'area alternativa. Esistono tuttavia anche considerazioni per la durata dei messaggi in coda. Sono disponibili diverse strategie per la replica dei messaggi tra aree di Azure. Per informazioni dettagliate su queste strategie di replica e altre strategie di ripristino di emergenza, vedere [Procedure consigliate per isolare le applicazioni del bus di servizio da interruzioni ed emergenze del servizio](/azure/service-bus-messaging/service-bus-outages-disasters/). Per altre considerazioni sulla disponibilità del bus di servizio, vedere [Bus di servizio](recovery-local-failures.md#other-azure-platform-services).
+Il bus di servizio di Azure usa uno spazio dei nomi univoco che non si estende su più aree di Azure. Il primo requisito consiste quindi nel configurare gli spazi dei nomi del bus di servizio nell'area alternativa. Esistono tuttavia anche considerazioni per la durata dei messaggi in coda. Sono disponibili diverse strategie per la replica dei messaggi tra aree di Azure. Per informazioni dettagliate su queste strategie di replica e altre strategie di ripristino di emergenza, vedere [Procedure consigliate per isolare le applicazioni del bus di servizio da interruzioni ed emergenze del servizio](/azure/service-bus-messaging/service-bus-outages-disasters/).
 
 ### <a name="app-service"></a>Servizio app
 
@@ -129,7 +127,7 @@ Per eseguire la migrazione di un'applicazione del servizio app di Azure, ad esem
 
 ### <a name="hdinsight"></a>HDInsight
 
-I dati associati a HDInsight vengono archiviati per impostazione predefinita nell'archivio BLOB di Azure. HDInsight richiede che un cluster Hadoop che elabora processi MapReduce si trovi nella stessa area dell'account di archiviazione che contiene i dati analizzati. Se si usa la funzionalità di replica geografica disponibile in Archiviazione di Azure è possibile accedere ai dati nell'area secondaria in cui i dati sono stati replicati, se per qualche motivo l'area primaria non è più disponibile. È possibile creare un nuovo cluster Hadoop nell'area in cui i dati sono stati replicati e continuare l'elaborazione. Per altre considerazioni sulla disponibilità di HDInsight, vedere [HDInsight](recovery-local-failures.md#other-azure-platform-services).
+I dati associati a HDInsight vengono archiviati per impostazione predefinita nell'archivio BLOB di Azure. HDInsight richiede che un cluster Hadoop che elabora processi MapReduce si trovi nella stessa area dell'account di archiviazione che contiene i dati analizzati. Se si usa la funzionalità di replica geografica disponibile in Archiviazione di Azure è possibile accedere ai dati nell'area secondaria in cui i dati sono stati replicati, se per qualche motivo l'area primaria non è più disponibile. È possibile creare un nuovo cluster Hadoop nell'area in cui i dati sono stati replicati e continuare l'elaborazione.
 
 ### <a name="sql-reporting"></a>Report SQL
 

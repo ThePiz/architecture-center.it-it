@@ -1,20 +1,20 @@
 ---
-title: Configurare Azure Databricks per inviare le metriche a monitoraggio di Azure
+title: Configurare Azure Databricks per l'invio delle metriche a Monitoraggio di Azure
 description: Una libreria scala per abilitare il monitoraggio delle metriche e la registrazione dei dati in Azure Log Analitica
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: af6b6433f87964ac60c179ecf498e54129344126
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: f2fc1fd19da661b74ddf032dd1d5153ce575345c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503407"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639887"
 ---
 <!-- markdownlint-disable MD040 -->
 
-# <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>Configurare Azure Databricks per inviare le metriche a monitoraggio di Azure
+# <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>Configurare Azure Databricks per l'invio delle metriche a Monitoraggio di Azure
 
-Questo articolo illustra come configurare un cluster Azure Databricks per inviare le metriche a un [dell'area di lavoro di Log Analitica](/azure/azure-monitor/platform/manage-access). Usa il [libreria di monitoraggio di Azure Databricks](https://github.com/mspnp/spark-monitoring), disponibile su GitHub. Conoscenza di Java, Scala e Maven sono consigliate come prerequisistes.
+Questo articolo illustra come configurare un cluster Azure Databricks per inviare le metriche a un [dell'area di lavoro di Log Analitica](/azure/azure-monitor/platform/manage-access). Usa il [libreria di monitoraggio di Azure Databricks](https://github.com/mspnp/spark-monitoring), disponibile su GitHub. Conoscenza di Java, Scala e Maven sono consigliate come prerequisiti.
 
 ## <a name="about-the-azure-databricks-monitoring-library"></a>Sulla libreria di monitoraggio di Azure Databricks
 
@@ -43,7 +43,7 @@ Il **POM. XML** è il file di compilazione Maven principale per l'intero progett
 Per iniziare, distribuire le risorse di Azure seguenti:
 
 - Un'area di lavoro Azure Databricks. Vedere [Avvio rapido: Eseguire un processo Spark in Azure Databricks tramite il portale di Azure](/azure/azure-databricks/quickstart-create-databricks-workspace-portal).
-- Un'area di lavoro di Log Analytics. Visualizzare [creare un'area di lavoro di Log Analitica nel portale di Azure](/azure/azure-monitor/learn/quick-create-workspace).
+- Un'area di lavoro Log Analytics. Visualizzare [creare un'area di lavoro di Log Analitica nel portale di Azure](/azure/azure-monitor/learn/quick-create-workspace).
 
 Successivamente, installare il [interfaccia della riga di comando di Azure Databricks](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html#install-the-cli). Per utilizzare l'interfaccia della riga di comando è necessario un token di accesso personale di Azure Databricks. Per istruzioni, vedere [generare un token](https://docs.azuredatabricks.net/api/latest/authentication.html#token-management).
 

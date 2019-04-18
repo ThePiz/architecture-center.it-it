@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: dcbfa528a4fdd640b08b42904ceadb7a802b806e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897763"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640924"
 ---
 # <a name="api-implementation"></a>Implementazione di API
 
@@ -582,7 +582,7 @@ ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
 
-È inoltre possibile impostare il metodo statico `Expect100Continue` proprietà della `ServicePointManager` classe per specificare il valore predefinito di questa proprietà per tutti gli oggetti [ServicePoint]](/dotnet/api/system.net.servicepoint) creati successivamente.
+È anche possibile impostare il metodo statico `Expect100Continue` proprietà del `ServicePointManager` classe per specificare il valore predefinito di questa proprietà per tutte le creati successivamente [ServicePoint](/dotnet/api/system.net.servicepoint) oggetti.
 
 ### <a name="support-pagination-for-requests-that-may-return-large-numbers-of-objects"></a>Supporto per l'impaginazione di richieste che possono restituire un numero elevato di oggetti
 
@@ -708,7 +708,7 @@ Fare attenzione alle risposte non previste per i codici di stato compresi nell'i
 
 - Testare le stringhe di query. Se un'operazione può richiedere parametri facoltativi (ad esempio richieste di impaginazione), testare le diverse combinazioni e l'ordine dei parametri.
 
-- Verificare che le operazioni asincrone siano state completate correttamente. Se l'API Web supporta il flusso per le richieste che restituiscono oggetti binari di grandi dimensioni (come video o audio), assicurarsi che le richieste client non siano bloccate durante il trasferimento dei dati. Se l'API Web implementa il polling per operazioni di modifica dei dati a esecuzione prolungata, verificare che le operazioni riportino il proprio stato correttamente durante l'esecuzione.
+- Verificare che le operazioni asincrone siano state completate correttamente. Se l'API Web supporta il flusso per le richieste che restituiscono oggetti binari di grandi dimensioni (come video o audio), assicurarsi che le richieste client non siano bloccate durante il trasferimento dei dati. Se l'API web implementa il polling per operazioni di modifica dei dati a esecuzione prolungata, verificare che le operazioni riportino il relativo stato correttamente durante l'esecuzione.
 
 È necessario creare ed eseguire test delle prestazioni per verificare che l'API Web funzioni in modo soddisfacente sotto costrizione. È possibile creare un progetto di test di carico e delle prestazioni web utilizzando Visual Studio Ultimate. Per altre informazioni, vedere [Eseguire test delle prestazioni su un'applicazione prima del suo rilascio](https://msdn.microsoft.com/library/dn250793.aspx).
 

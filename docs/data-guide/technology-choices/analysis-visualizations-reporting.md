@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: data-analytics
-ms.openlocfilehash: 72b889e2fe0d862ab1ff280cea76c2880b0fadc4
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: bfdfeefe36dd44478f407008e2f9f3749f7a70d6
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245952"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639752"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>Scelta di una tecnologia per l'analisi dei dati in Azure
 
@@ -73,7 +73,7 @@ Per limitare le possibilità di scelta, rispondere prima di tutto a queste doman
 
 - È necessario connettersi a numerose origini dati, fornendo una soluzione centralizzata per creare report per la distribuzione dei dati in tutto il dominio? In caso affermativo, scegliere un'opzione che consenta di connettersi a centinaia di origini dati.
 
-- Si vogliono incorporare visualizzazioni dinamiche in un'applicazione o un sito Web esterno? In caso affermativo, scegliere un'opzione che fornisca funzionalità di incorporamento.
+- Si desidera incorporare visualizzazioni dinamiche in un'applicazione o un sito Web esterno? In caso affermativo, scegliere un'opzione che fornisca funzionalità di incorporamento.
 
 - Si vogliono progettare visualizzazioni e report in modalità offline? In caso affermativo, scegliere un'opzione con funzionalità disponibili offline.
 

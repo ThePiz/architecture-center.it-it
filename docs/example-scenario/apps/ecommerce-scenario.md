@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-ecommerce-scenario.png
-ms.openlocfilehash: 989dec6afccbb836b61eb32e39904f43ffff65ac
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b10ffaafb6479fef89e6691a686c018ac6ce5632
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244012"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640754"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Front-end per e-commerce in Azure
 
@@ -103,7 +103,7 @@ Altre opzioni per il livello dati includono:
 - Valutare la possibilità di sfruttare il [modello a interruttore][circuit-breaker] per offrire una gestione degli errori senza interruzioni se una parte dell'applicazione non è disponibile.
 - Esaminare i [modelli di progettazione tipici per la resilienza][design-patterns-resiliency] e valutare la possibilità di implementarli, quando opportuno.
 - In Centro architetture di Azure sono disponibili diverse [procedure consigliate per il servizio app][resiliency-app-service].
-- Valutare la possibilità di usare la [replica geografica attiva][sql-geo-replication] per il livello dati e l'archiviazione [con ridondanza geografica][storage-geo-redudancy] per le immagini e le code.
+- Valutare la possibilità di usare la [replica geografica attiva][sql-geo-replication] per il livello dati e l'archiviazione [con ridondanza geografica][storage-geo-redundancy] per le immagini e le code.
 - Per una discussione più approfondita sulla [resilienza][resiliency], vedere l'articolo corrispondente in Centro architetture di Azure.
 
 ## <a name="deploy-the-scenario"></a>Distribuire lo scenario
@@ -162,4 +162,4 @@ Sono stati definiti tre profili di costo di esempio in base alla quantità di tr
 [secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [service-bus]: /azure/service-bus-messaging/
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
-[storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs
+[storage-geo-redundancy]: /azure/storage/common/storage-redundancy-grs

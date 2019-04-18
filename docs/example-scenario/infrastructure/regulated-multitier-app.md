@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: seodec18, Windows
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-regulated-multitier-app.png
-ms.openlocfilehash: 440d208b423703fe791dcbe2cad0609fef0e6508
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2e3bb28abf870a1ce358dd67efeb3f422b983651
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246222"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639938"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Creazione di applicazioni Web sicure con macchine virtuali Windows in Azure
 
@@ -67,8 +67,6 @@ Le istanze di macchina virtuale in questo scenario vengono distribuite tra [zone
 
 Il livello di database può essere configurato per l'uso dei gruppi di disponibilità AlwaysOn. Con questa configurazione di SQL Server, un database primario in un cluster viene configurato con un massimo di otto database secondari. Se si verifica un problema con il database primario, il cluster esegue il failover a uno dei database secondari e l'applicazione continua a essere disponibile. Per altre informazioni, vedere [Panoramica di Gruppi di disponibilità AlwaysOn (SQL Server)][sqlalwayson-docs].
 
-Per altre linee guida sulla disponibilità, vedere l’[elenco di controllo per la disponibilità][availability] in Centro architetture di Azure.
-
 ### <a name="scalability"></a>Scalabilità
 
 Questo scenario usa i set di scalabilità di macchine virtuali per i componenti front-end e back-end. Con i set di scalabilità, il numero di istanze di macchina virtuale che eseguono il livello applicazione front-end può essere ridimensionato automaticamente in base alle richieste dei clienti o a una pianificazione definita. Per altre informazioni, vedere [Panoramica della scalabilità automatica con i set di scalabilità di macchine virtuali di Azure][vmssautoscale-docs].
@@ -85,7 +83,7 @@ Per istruzioni sulla distribuzione di PCI DSS (Payment Card Industry Data Securi
 
 Insieme alle zone di disponibilità e ai set di scalabilità di macchine virtuali, questo scenario usa il gateway applicazione di Azure e Azure Load Balancer. Questi due componenti di rete distribuiscono il traffico alle istanze di macchina virtuale connesse e includono probe di integrità che garantiscono che il traffico venga distribuito solo alle macchine virtuali integre. Due istanze del gateway applicazione hanno una configurazione attiva-passiva e viene usato un servizio di bilanciamento del carico con ridondanza della zona. Questa configurazione rende le risorse di rete e le applicazioni resilienti rispetto a problemi che potrebbero altrimenti interrompere il traffico e compromettere l'accesso degli utenti finali.
 
-Per indicazioni generali sulla progettazione di scenari resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
+Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [progettazione di applicazioni Azure affidabili](../../reliability/index.md).
 
 ## <a name="deploy-the-scenario"></a>Distribuire lo scenario
 
@@ -133,12 +131,10 @@ Per linee guida dettagliate sull’implementazione, vedere l’[architettura di 
 [appgateway-docs]: /azure/application-gateway/overview
 [architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
-[availability]: ../../checklist/availability.md
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
 [ntiersql-ra]: /azure/architecture/reference-architectures/n-tier/n-tier-sql-server
-[resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
 [scalability]: /azure/architecture/checklist/scalability
 [scaleset-docs]: /azure/virtual-machine-scale-sets/overview

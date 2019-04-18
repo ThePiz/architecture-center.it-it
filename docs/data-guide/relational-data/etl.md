@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 1551736d8ef3d2b82eb0a2fdb626330798ec1c65
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: aa578464947e51964fee9859395149b44b47fa00
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246192"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639989"
 ---
 # <a name="extract-transform-and-load-etl"></a>ETL (Extract, Transform, and Load)
 
@@ -49,7 +49,7 @@ In pratica, l'archivio dati di destinazione è un [data warehouse](./data-wareho
 
 L'archivio dati gestisce solo lo schema dei dati e lo applica in lettura. Ad esempio, un cluster Hadoop con Hive può descrivere una tabella Hive in cui l'origine dati è effettivamente un percorso di un set di file in HDFS. In SQL Data Warehouse, PolyBase può ottenere lo stesso risultato, creando una tabella a fronte di dati archiviati esternamente nel database stesso. Dopo il caricamento dei dati di origine, i dati presenti nelle tabelle esterne possono essere elaborati usando le funzionalità dell'archivio dati. Negli scenari di Big Data questo significa che l'archivio dati deve essere capace di eseguire un'elaborazione parallela elevata (MPP), durante la quale i dati vengono suddivisi in blocchi più piccoli e l'elaborazione di tali blocchi viene distribuita tra più macchine in parallelo.
 
-La fase finale della pipeline ELT è costituita in genere dalla trasformazione dei dati di origine in un formato finale più efficiente per i tipi di query che devono essere supportati. Ad esempio, i dati possono essere partizionati. Inoltre, ELT può usare formati di archiviazione ottimizzati come Parquet, che archivia i dati basati su righe in colonne e fornisce un'indicizzazione ottimizzata.
+La fase finale della pipeline ELT è costituita in genere dalla trasformazione dei dati di origine in un formato finale più efficiente per i tipi di query che devono essere supportati. Ad esempio, i dati possono essere partizionati. Inoltre, ELT può usare formati di archiviazione ottimizzati come Parquet, che archivia dati orientata alle righe in una modalità a colonne e offre l'indicizzazione ottimizzata.
 
 Servizio di Azure pertinente:
 
@@ -66,7 +66,7 @@ Altri strumenti:
 
 Nell'ambito delle pipeline di dati, il flusso di controllo assicura l'elaborazione ordinata di un set di attività. Per applicare il corretto ordine di elaborazione di queste attività, vengono usati i vincoli di precedenza. È possibile considerare questi vincoli come connettori in un diagramma di flusso di lavoro, come illustrato nell'immagine seguente. Ogni attività fornisce un risultato, ad esempio operazione riuscita, operazione non riuscita o completamento. Qualsiasi attività successiva viene avviata solo quando quella precedente è terminata con uno dei risultati indicati.
 
-I flussi di controllo eseguono i flussi di dati come un'attività. In un'attività Flusso di dati i dati vengono estratti da un'origine, trasformati o caricati in un archivio dati. L'output di un'attività Flusso di dati può costituire l'input per l'attività Flusso di dati successiva e i flussi di dati possono essere eseguiti in parallelo. A differenza di quanto previsto per i flussi di controllo, non è possibile aggiungere vincoli tra le attività di un flusso di dati. Tuttavia, è possibile aggiungere un visualizzatore per osservare i dati che vengono elaborati da ogni attività.
+I flussi di controllo eseguono i flussi di dati come un'attività. In un'attività Flusso di dati i dati vengono estratti da un'origine, trasformati o caricati in un archivio dati. L'output dell'attività flusso di dati può essere l'input per la successiva attività di flusso di dati e flussi di dati eseguibili in parallelo. A differenza di quanto previsto per i flussi di controllo, non è possibile aggiungere vincoli tra le attività di un flusso di dati. Tuttavia, è possibile aggiungere un visualizzatore per osservare i dati che vengono elaborati da ogni attività.
 
 ![Flusso di dati eseguito come attività all'interno di un flusso di controllo](../images/control-flow-data-flow.png)
 

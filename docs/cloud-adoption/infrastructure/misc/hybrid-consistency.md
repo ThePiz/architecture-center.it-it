@@ -1,16 +1,16 @@
 ---
-title: 'CAF: Ottenere la coerenza del cloud ibrido'
+title: 'CAF: Creare coerenza del cloud ibrido'
 description: Definizione dell'approccio per ottenere la coerenza del cloud ibrido
 author: BrianBlanchard
 ms.date: 12/27/2018
-ms.openlocfilehash: 726ea56f52d68f6c9b0d1478d19a91c2b7f12fdd
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: d5cfc8565a97c0342b5dc200512308d4c795422a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902164"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639921"
 ---
-# <a name="create-hybrid-cloud-consistency"></a>Ottenere la coerenza del cloud ibrido
+# <a name="create-hybrid-cloud-consistency"></a>Creare coerenza del cloud ibrido
 
 Questo articolo illustra gli approcci generali per ottenere la coerenza del cloud ibrido.
 
@@ -18,7 +18,7 @@ I modelli di distribuzione ibrida durante la migrazione possono ridurre il risch
 
 ## <a name="integrate-hybrid-cloud-consistency"></a>Integrare la coerenza del cloud ibrido
 
-L'uso di una soluzione cloud ibrida consente alle organizzazioni di ridimensionare le risorse di calcolo. Elimina inoltre la necessità di sostenere ingenti spese in conto capitale per gestire picchi nella domanda a breve termine. Quando le variazioni delle attività aziendali rendono necessario liberare risorse locali per i dati o le applicazioni più sensibili, è più semplice, veloce ed economico effettuare il deprovisioning delle risorse cloud. Si pagano solo le risorse usate temporaneamente dall'organizzazione, senza dover acquistare e gestire risorse aggiuntive. In questo modo si riduce la quantità di dispositivi che potrebbero rimanere inattivi per lunghi periodi di tempo. Il cloud computing ibrido è una piattaforma che offre il meglio di tutti gli scenari, poiché garantisce tutti i vantaggi del cloud computing, ovvero flessibilità, scalabilità e razionalizzazione dei costi, con il rischio più basso possibile di esposizione dei dati.
+L'uso di una soluzione cloud ibrida consente alle organizzazioni di ridimensionare le risorse di calcolo. Elimina inoltre la necessità di sostenere ingenti spese in conto capitale per gestire picchi nella domanda a breve termine. Quando le variazioni delle attività aziendali rendono necessario liberare risorse locali per i dati o le applicazioni più sensibili, è più semplice, veloce ed economico effettuare il deprovisioning delle risorse cloud. Si pagano solo le risorse usate temporaneamente dall'organizzazione, senza dover acquistare e gestire risorse aggiuntive. In questo modo si riduce la quantità di dispositivi che potrebbero rimanere inattivi per lunghi periodi di tempo. Cloud computing ibrido è una piattaforma "migliore dei mondi possibili" e offre tutti i vantaggi del cloud computing flessibilità, scalabilità e risparmi sui costi che; tutto con il più basso possibile rischio di esposizione dei dati.
 
 ![Ottenere la coerenza del cloud ibrido per identità, gestione, sicurezza, dati, sviluppo e DevOps](../../_images/hybrid-consistency.png)
 *Figura 1. Ottenere la coerenza del cloud ibrido per identità, gestione, sicurezza, dati, sviluppo e DevOps*
@@ -32,7 +32,7 @@ Una vera soluzione di cloud ibrido deve fornire quattro componenti, ognuno dei q
   
 Alcuni esempi di questi componenti dalla prospettiva di Azure sono:
 
-- Azure Active Directory (Azure AD), che interagisce con Azure AD in locale per fornire l'identità comune per tutti gli utenti. SSO in locale e tramite il cloud per consentire agli utenti di accedere in modo semplice e sicuro alle applicazioni e agli asset di cui hanno bisogno. Gli amministratori possono gestire i controlli di sicurezza e governance, in modo che gli utenti possano accedere a ciò che serve, con la flessibilità di poter adattare le autorizzazioni senza compromettere l'esperienza utente.
+- Azure Active Directory (Azure AD), che interagisce con Azure AD in locale per fornire l'identità comune per tutti gli utenti. SSO in locale e tramite il cloud per consentire agli utenti di accedere in modo semplice e sicuro alle applicazioni e agli asset di cui hanno bisogno. Gli amministratori possono gestire i controlli di governance e sicurezza in modo che gli utenti possono accedere a ciò che cercano, flessibilità per modificare le autorizzazioni senza compromettere l'esperienza utente.
 - Azure offre servizi di gestione e sicurezza integrati sia per il cloud che per l'infrastruttura locale, che includono un set integrato di strumenti per il monitoraggio, la configurazione e la protezione dei cloud ibridi. Questo approccio end-to-end alla gestione consente di gestire nello specifico le sfide del mondo reale che si trovano ad affrontare le organizzazioni che prendono in considerazione una soluzione cloud ibrida.
 - Il cloud ibrido di Azure offre strumenti comuni che garantiscono l'accesso sicuro a tutti i dati, in modo fluido ed efficiente. I servizi dati di Azure collaborano con Microsoft SQL Server per creare una piattaforma dati coerente. Un modello di cloud ibrido coerente consente agli utenti di lavorare sia con dati operativi che analitici, fornendo gli stessi servizi in locale e nel cloud per data warehousing, analisi dei dati e visualizzazione dei dati.
 - I servizi cloud di Microsoft Azure, i combinazione con Microsoft Azure Stack in locale, offrono sviluppo e DevOps unificati. La coerenza tra cloud e locale significa che il team DevOps può sviluppare applicazioni eseguite in entrambi gli ambienti e distribuirle facilmente nella giusta posizione. È anche possibile riutilizzare i modelli nella soluzione ibrida, semplificando ulteriormente i processi DevOps.
@@ -56,7 +56,7 @@ Azure Stack è disponibile tramite due opzioni di distribuzione:
 
 ## <a name="azure-stack-one-cloud-ecosystem"></a>Azure Stack e l'ecosistema unico del cloud
 
-È possibile velocizzare le iniziative di Azure Stack sfruttando l'ecosistema di Azure completo:
+È possibile velocizzare le iniziative di Azure Stack tramite l'ecosistema di Azure completo:
 
 - Azure garantisce che la maggior parte delle applicazioni e dei servizi certificati per Azure funzionerà in Azure Stack. Vari ISV stanno estendendo le loro soluzioni ad Azure Stack, inclusi Bitnami, Docker, Kemp Technologies, Pivotal Cloud Foundry, Red Hat Enterprise Linux e SUSE Linux.
 - È possibile scegliere di usare e gestire Azure Stack come servizio completamente gestito. Vari partner offriranno a breve servizi gestiti per Azure e Azure Stack, tra cui Tieto Yourhosting, Revera, Pulsant e NTT. Questi partner offrono già servizi gestiti per Azure tramite il programma Cloud Solution Provider (provider di servizi cloud) e ora intendono estendere le proprie offerte per includere soluzioni ibride.

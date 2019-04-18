@@ -9,12 +9,12 @@ ms.devlang: R
 ms.topic: article
 ms.date: 03/19/2019
 ms.author: jepeach
-ms.openlocfilehash: a14c8ce76f78baa7274f22b939eb28cb025ef87e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 7b263d0f49b3b41c9a25b5842de908d5e507780b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58888115"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640482"
 ---
 # <a name="r-developers-guide-to-azure"></a>Guida di Azure per sviluppatori di R
 
@@ -37,7 +37,7 @@ Questo articolo tratta i seguenti servizi di Azure che supportano il linguaggio 
 |[Azure Databricks](#azure-databricks)                            |ambiente di collaborazione Spark che supporta linguaggi R e vari altri               |
 |[Azure Machine Learning Studio](#azure-machine-learning-studio)  |esecuzione di script R personalizzati con esperimenti di apprendimento automatico di Azure                      |
 |[Azure Batch](#azure-batch)                                      |offre una varietà di opzioni per l'esecuzione economica del codice R attraverso diversi nodi di un cluster|
-|[Notebook di Azure](#azure-notebooks)                              |una versione di Jupyter Notebook a costo zero basata sul cloud                  |
+|[Azure Notebooks](#azure-notebooks)                              |una versione di Jupyter Notebook a costo zero basata sul cloud                  |
 |[Database SQL di Azure](#azure-sql-database)                        |esecuzione degli script R all'interno del motore di database di SQL Server                            |
 
 ## <a name="data-science-virtual-machine"></a>Macchina virtuale di data science
@@ -129,14 +129,13 @@ Questa funzionalità offre un'analisi predittiva e incorporata e un motore di da
 
 Anche se Machine Learning Services fa parte del SQL Server locale dal 2016, è relativamente nuovo al Database SQL di Azure.  Al momento si trova in [anteprima limitata](https://docs.microsoft.com/sql/advanced-analytics/what-s-new-in-sql-server-machine-learning-services?view=sql-server-2017#azure-sql-database-roadmap) ma continua a evolversi.
 
-
 ### <a name="next-steps"></a>Passaggi successivi
 
-* [Esegue il codice R in Azure con mrsdeploy](https://blog.revolutionanalytics.com/2017/03/running-your-r-code-azure.html)
+* [Esecuzione del codice R in Azure con mrsdeploy](https://blog.revolutionanalytics.com/2017/03/running-your-r-code-azure.html)
 * [Machine Learning Server nel Cloud](https://docs.microsoft.com/machine-learning-server/install/machine-learning-server-in-the-cloud)
-* [Risorse aggiuntive per Microsoft R e Machine Learning Server](https://docs.microsoft.com/machine-learning-server/resources-more)
+* [Risorse aggiuntive per Machine Learning Server e Microsoft R](https://docs.microsoft.com/machine-learning-server/resources-more)
 * [R in Azure](https://github.com/yueguoguo/r-on-azure): una panoramica dei pacchetti, strumenti e case study per l'uso di R con Azure
 
 ---
 
-<sub>Il logo di R è &copy; 2016 di R Foundation e viene usato con le condizioni per il [licenza Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/).</sub>
+<sub>Il logo di R è &copy; 2016 La Fondazione R e viene usato secondo le condizioni per la [Licenza internazionale Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/).</sub>

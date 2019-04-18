@@ -6,12 +6,12 @@ ms.date: 04/11/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 66f1431f45a0c9accf3a8227fa8cbb5966568372
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: a1fc28737b194fe69e2ae094bd996d97363eb29c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248012"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641111"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Eseguire la migrazione di un'applicazione di Servizi cloud di Azure in Azure Service Fabric 
 
@@ -26,7 +26,6 @@ Prima di leggere questo articolo, è utile comprendere le nozioni di base relati
 - [Panoramica di Azure Service Fabric][sf-overview]
 - [Perché usare un approccio ai microservizi per la compilazione di applicazioni][sf-why-microservices]
 
-
 ## <a name="about-the-surveys-application"></a>Informazioni sull'applicazione Surveys
 
 Nel 2012, il gruppo che si occupa di modelli e procedure ha creato un'applicazione denominata Surveys, per un libro intitolato [Developing Multi-tenant Applications for the Cloud][tailspin-book]. Il libro descrive una società fittizia denominata Tailspin che progetta e implementa l'applicazione Surveys.
@@ -35,8 +34,8 @@ Surveys è un'applicazione multi-tenant che consente ai clienti di creare sondag
 
 Tailspin vuole ora spostare l'applicazione Surveys in un'architettura di microservizi, usando Service Fabric in esecuzione in Azure. Poiché l'applicazione è già stata distribuita come applicazione di Servizi cloud, Tailspin adotta un approccio in più fasi:
 
-1.  Trasferimento dei servizi cloud in Service Fabric, riducendo al minimo le modifiche all'applicazione.
-2.  Ottimizzazione dell'applicazione per Service Fabric, passando a un'architettura di microservizi.
+1. Trasferimento dei servizi cloud in Service Fabric, riducendo al minimo le modifiche all'applicazione.
+2. Ottimizzazione dell'applicazione per Service Fabric, passando a un'architettura di microservizi.
 
 Questo articolo descrive la prima fase. La seconda fase viene descritta in un articolo successivo. In un progetto reale, è probabile che le due fasi si sovrappongano. Durante il trasferimento a Service Fabric, è possibile iniziare anche a riprogettare l'applicazione in microservizi. Successivamente, è possibile ottimizzare ulteriormente l'architettura, ad esempio dividendo i servizi con granularità grossolana in servizi più piccoli.  
 
@@ -87,7 +86,6 @@ La tabella seguente riepiloga alcune importanti differenze tra le applicazioni d
 | Scalabilità automatica | [Servizio integrato][cloud-service-autoscale] | Set di scalabilità di macchine virtuali per la scalabilità orizzontale |
 | Debug | Emulatore locale | Cluster locale |
 
-
 \*I servizi con stato usano [raccolte Reliable Collections][sf-reliable-collections] per archiviare lo stato tra repliche, in modo che tutte le letture siano locali per i nodi del cluster. Le operazioni di scrittura vengono replicate tra i nodi per una maggiore affidabilità. I servizi senza stato possono avere uno stato esterno, usando un database o un altro dispositivo di archiviazione esterna.
 
 ** I ruoli di lavoro supportano anche il self-hosting dell'API Web ASP.NET con OWIN.
@@ -123,7 +121,6 @@ Come accennato, l'obiettivo di questa fase è la migrazione a Service Fabric con
 ![](./images/tailspin02.png)
 
 Questa architettura è intenzionalmente molto simile all'applicazione originale. Il diagramma nasconde tuttavia alcune importanti differenze. Nella parte restante di questo articolo verranno esaminate queste differenze. 
-
 
 ## <a name="converting-the-cloud-service-roles-to-services"></a>Conversione dei ruoli del servizio cloud in servizi
 
@@ -216,7 +213,6 @@ Per supportare diverse impostazioni di configurazione per più ambienti, usare l
 2. Nel manifesto dell'applicazione definire un override per l'impostazione.
 3. Inserire le impostazioni specifiche dell'ambiente nel file di parametri dell'applicazione.
 
-
 ## <a name="deploying-the-application"></a>Distribuzione dell'applicazione
 
 Mentre Servizi cloud di Azure è un servizio gestito, Service Fabric è un runtime. È possibile creare cluster di Service Fabric in molti ambienti, tra cui Azure o in locale. In questo articolo viene analizzata la distribuzione in Azure. 
@@ -265,8 +261,8 @@ Il diagramma seguente mostra un cluster che separa i servizi front-end da quelli
 
 Per implementare questo approccio:
 
-1.  Quando si crea il cluster, definire due o più tipi di nodo. 
-2.  Per ogni servizio, usare i [vincoli di posizionamento][sf-placement-constraints] per assegnare il servizio a un tipo di nodo.
+1. Quando si crea il cluster, definire due o più tipi di nodo. 
+2. Per ogni servizio, usare i [vincoli di posizionamento][sf-placement-constraints] per assegnare il servizio a un tipo di nodo.
 
 Quando si esegue la distribuzione in Azure, ogni tipo di nodo viene distribuito in un set di scalabilità di macchine virtuali distinto. Il cluster di Service Fabric include tutti i tipi di nodo. Per altre informazioni, vedere [Tipi di nodo di Azure Service Fabric e set di scalabilità di macchine virtuali][sf-node-types].
 
@@ -281,7 +277,6 @@ Per configurare un endpoint HTTPS pubblico, vedere [Specificare le risorse in un
 È possibile scalare orizzontalmente l'applicazione aggiungendo macchine virtuali al cluster. I set di scalabilità di macchine virtuali supportano la scalabilità automatica tramite le regole di scalabilità automatica basate sui contatori delle prestazioni. Per altre informazioni vedere [Aumentare o ridurre le istanze del cluster di Service Fabric con le regole di scalabilità automatica][sf-auto-scale].
 
 Quando il cluster è in esecuzione, è necessario raccogliere i log di tutti i nodi in una posizione centrale. Per altre informazioni, vedere [Raccogliere i log con Diagnostica di Azure][sf-logs].   
-
 
 ## <a name="conclusion"></a>Conclusioni
 

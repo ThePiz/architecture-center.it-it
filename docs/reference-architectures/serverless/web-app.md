@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, serverless
-ms.openlocfilehash: 60af3df5bbb75d97d6ba797874c8b37319b2fad5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: edf569b82a0a632e6ca048fee12c1dc61c039cd9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487390"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640805"
 ---
 # <a name="serverless-web-application-on-azure"></a>Applicazione Web senza server in Azure
 
@@ -40,9 +40,6 @@ Questa architettura è costituita dai componenti seguenti:
 
 **Archiviazione BLOB**. I contenuti Web statici, quali file HTML, CSS e JavaScript, vengono archiviati in Archiviazione BLOB di Azure e resi disponibili ai client tramite l'[hosting di siti Web statici][static-hosting]. Tutte le interazioni dinamiche avvengono tramite il codice JavaScript che effettua le chiamate all'API back-end. Non è presente alcun codice lato server per il rendering della pagina Web. L'hosting di siti Web statici supporta l'indicizzazione dei documenti e le pagine di errore 404 personalizzate.
 
-> [!NOTE]
-> L'hosting di siti Web statici è attualmente disponibile in [anteprima][static-hosting-preview].
-
 **Rete CDN**. Usare la [rete per la distribuzione di contenuti di Azure][cdn], ovvero la rete CDN, per memorizzare nella cache il contenuto in modo da ridurre la latenza e accelerare la distribuzione del contenuto, nonché offrire un endpoint HTTPS.
 
 **App per le funzioni**. [Funzioni di Azure][functions] è un'opzione di calcolo senza server. Usa un modello basato su eventi, in cui un frammento di codice, vale a dire una "funzione", viene richiamato da un trigger. In questa architettura la funzione viene richiamata quando un client effettua una richiesta HTTP. La richiesta viene sempre instradata attraverso un gateway API, descritto di seguito.
@@ -63,7 +60,7 @@ Se l'utente non ha bisogno di tutte le funzionalità offerte da Gestione API, un
 
 **Azure Active Directory** (Azure AD). Gli utenti accedono all'applicazione Web usando le proprie credenziali di Azure AD. Azure AD restituisce un token di accesso per l'API, che l'applicazione Web usa per autenticare le richieste API (vedere [Autenticazione](#authentication)).
 
-**Monitoraggio di Azure**. [Monitoraggio][monitor] raccoglie le metriche relative alle prestazioni dei servizi di Azure distribuiti nella soluzione. La visualizzazione delle metriche in una dashboard consente di ottenere visibilità sull'integrità della soluzione. Vengono raccolti anche i registri applicazioni.
+**Monitoraggio di Azure**. [Monitoraggio][monitor] raccoglie le metriche relative alle prestazioni dei servizi di Azure distribuiti nella soluzione. La visualizzazione delle metriche in una dashboard consente di ottenere visibilità sull'integrità della soluzione. Vengono raccolti anche i log applicazioni.
 
 **Azure Pipelines**. [Pipelines][pipelines] è un servizio di integrazione continua, ovvero CI, e recapito continuo, ovvero CD, che compila, verifica e distribuisce l'applicazione.
 
@@ -137,7 +134,7 @@ La distribuzione illustrata di seguito si trova in una sola area di Azure. Per u
 
 ### <a name="authentication"></a>Authentication
 
-L'API `GetStatus` nell'implementazione di riferimento usa Azure AD per autenticare le richieste. Azure AD supporta il protocollo Open ID Connect, ovvero un protocollo di autenticazione creato sul protocollo OAuth 2.
+L'API `GetStatus` nell'implementazione di riferimento usa Azure AD per autenticare le richieste. Azure AD supporta il protocollo OpenID Connect, che è un protocollo di autenticazione basato sopra il protocollo OAuth 2.
 
 In questa architettura l'applicazione client è un'applicazione a pagina singola che viene eseguita nel browser. Questo tipo di applicazione client non può tenere un segreto client o un codice di autorizzazione nascosti, pertanto il flusso di concessione implicita è appropriato. Vedere [Which OAuth 2.0 flow should I use?][oauth-flow] (Quale flusso di OAuth 2.0 è necessario usare?). Di seguito è riportato il flusso completo:
 
@@ -329,7 +326,7 @@ Per distribuire questa architettura di riferimento, consultare il [file leggimi 
 [functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
-[microservices-domain-analysis]: ../../microservices/domain-analysis.md
+[microservices-domain-analysis]: ../../microservices/model/domain-analysis.md
 [monitor]: /azure/azure-monitor/overview
 [oauth-flow]: https://auth0.com/docs/api-auth/which-oauth-flow-to-use
 [partition-key]: /azure/cosmos-db/partition-data

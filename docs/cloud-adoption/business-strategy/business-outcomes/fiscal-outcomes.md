@@ -8,12 +8,12 @@ description: Esempi di esiti fiscali
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.topic: guide
-ms.openlocfilehash: c181133aa238bb631d844cd72a21165b85e47936
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 5b28e22fca294bd1311d29ee5f70ca45e70fae3e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897083"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640227"
 ---
 # <a name="examples-of-fiscal-outcomes"></a>Esempi di esiti fiscali
 
@@ -50,23 +50,23 @@ Raramente una singola attività riesce simultaneamente ad aumentare i ricavi e a
 
 ### <a name="cost-reduction"></a>Riduzione dei costi
 
-Il cloud computing può ridurre le spese in conto capitale (CapEx) correlate all'acquisto di hardware e software, alla configurazione di data center all’esecuzione dei data center locali e così via... I rack di server, l’elettricità sempre necessaria per l'alimentazione e il raffreddamento e gli esperti IT necessari per la gestione dell'infrastruttura si aggiungono rapidamente ai costi. L’arresto di un data center può ridurre gli impegni di spese in conto capitale (CapEx). Generalmente ci si riferisce a questo come «Uscire dal business del data center». La riduzione dei costi viene in genere misurata in dollari nel budget corrente, che può estendersi da 1 a 5 anni a seconda del modo in cui il CFO gestisce le finanze.
+Cloud computing può ridurre le spese (CapEx) correlate all'acquisto di hardware e software, configurazione di Data Center, che eseguono i data center locali e così via... I rack di server, l’elettricità sempre necessaria per l'alimentazione e il raffreddamento e gli esperti IT necessari per la gestione dell'infrastruttura si aggiungono rapidamente ai costi. Arresto di un Data Center, è possibile ridurre gli impegni di spese in conto capitale. Ciò è talvolta detta "Introduzione all'esterno dell'azienda di Data Center". Riduzione dei costi viene in genere misurato in dollari del budget corrente, che potrebbe estendersi su un massimo di cinque anni a seconda del modo in cui la responsabile amministrativa gestisce le finanze.
 
-* Esempio 1: Il data center di un'azienda utilizza una grande percentuale del budget IT aziendale. L’IT sceglie di eseguire una trasformazione operativa ed esegue la migrazione degli asset nel data center verso soluzioni di Infrastruttura distribuita come servizio (Infrastructure as a service, IaaS), creando una riduzione dei costi di 3 anni.
-* Esempio 2 Una società finanziaria ha acquisito di recente una nuova azienda. Nell'acquisizione, le condizioni indicano che la nuova entità sarà rimossa dai data center attuali entro 6 mesi. La mancata esecuzione di questa operazione comporterà una sanzione di 1 milione di dollari al mese per la società madre. Spostare le risorse digitali nel cloud in una trasformazione operativa potrebbe consentire una rapida dismissione delle vecchie risorse.
+* Esempio 1: Account di Data Center dell'azienda per un'alta percentuale della annual budget IT. IT scelga di eseguire una trasformazione Operational un viene eseguita la migrazione gli asset in Data Center in questione all'infrastruttura come soluzioni di servizio (IaaS), la creazione di una riduzione dei costi di tre anni.
+* Esempio 2 Una società finanziaria ha acquisito di recente una nuova azienda. Nell'acquisizione, le condizioni indicano che la nuova entità da rimuovere dal Data Center di corrente entro sei mesi. La mancata esecuzione di questa operazione comporterà una sanzione di 1 milione di dollari al mese per la società madre. Spostare le risorse digitali nel cloud in una trasformazione operativa potrebbe consentire una rapida dismissione delle vecchie risorse.
 * Esempio 3: Una società di imposta sul reddito che si rivolge ai consumatori registra il 70% del reddito annuo durante i primi tre mesi dell'anno. Il resto dell'anno, il loro grande investimento IT è relativamente inattivo. Una trasformazione operativa consentirebbe all'IT di implementare la capacità di calcolo/hosting richiesta per quei tre mesi. Durante i restanti nove mesi, i costi IaaS potrebbero essere significativamente ridotti riducendo il footprint di calcolo.
 
 ### <a name="coverdell"></a>Coverdell
 
-Coverdell modernizza la propria infrastruttura per ottenere risparmi sui costi dei record con Azure. La decisione di Coverdell di investire in Azure e di unire la loro rete di siti web, applicazioni, dati e infrastrutture in questo ambiente, ha portato a maggiori risparmi sui costi di quanto l'azienda avrebbe mai potuto prevedere. La migrazione verso un ambiente solo con Azure ha eliminato 54.000 dollari in costi mensili per i servizi di colocation. Solo con la nuova infrastruttura riunita dell'azienda, Coverdell prevede di risparmiare circa 1 milione di dollari nei prossimi 2-3 anni.
-"L'accesso allo stack della tecnologia Azure apre le porte a soluzioni scalabili, facili da implementare e altamente disponibili che sono convenienti dal punto di vista economico. Questo permette ai nostri progettisti di essere molto più creativi con le soluzioni che offrono".
-Ryan Sorensen: Direttore del dipartimento Application Development and Enterprise Architecture Coverdell
+Coverdell modernizza la propria infrastruttura per ottenere risparmi sui costi dei record con Azure. La decisione di Coverdell di investire in Azure e di unire la loro rete di siti web, applicazioni, dati e infrastrutture in questo ambiente, ha portato a maggiori risparmi sui costi di quanto l'azienda avrebbe mai potuto prevedere. La migrazione a un ambiente solo Azure eliminata 54.000 di dollari in costi mensili per i servizi con più sedi. Con l'infrastruttura dell'azienda nuovo, uniti da solo, Coverdell si aspetta di salvare un stimato $1 USD M nei prossimi due o tre anni.
+"Che hanno accesso allo stack di tecnologie Azure apre le porte per alcuni scalabile, facile da implementare e soluzioni a disponibilità elevata che sono economicamente conveniente. In questo modo i progettisti in modo molto più creativo con le soluzioni che forniscono."
+Ryan Sorensen, Director of Application Development and Enterprise Architecture Coverdell
 
 ### <a name="cost-avoidance"></a>Costi evitati
 
-La chiusura dei data center può anche evitare i costi, prevenendo futuri cicli di aggiornamento. Un ciclo di aggiornamento è il processo di acquisto di nuovo hardware e software per sostituire i sistemi locali obsoleti. In Azure, l'hardware e il sistema operativo sono sottoposti a regolare manutenzione, con patch e aggiornamenti gratuiti per i clienti. Questo permette al CFO di eliminare le spese future pianificate dalle previsioni finanziarie a lungo termine. I costi evitati sono misurati in dollari. Si differenzia dalla riduzione dei costi, in quanto si concentra generalmente su un bilancio futuro che non è stato ancora completamente approvato.
+Terminare i Data Center può comportare anche evitare che insorgano costo, impedendo che i cicli di aggiornamento future. Un ciclo di aggiornamento è il processo di acquisto di nuovo hardware e software per sostituire i sistemi locali obsoleti. In Azure, l'hardware e il sistema operativo sono sottoposti a regolare manutenzione, con patch e aggiornamenti gratuiti per i clienti. Questo permette al CFO di eliminare le spese future pianificate dalle previsioni finanziarie a lungo termine. I costi evitati sono misurati in dollari. Si differenzia dalla riduzione dei costi, in quanto si concentra generalmente su un bilancio futuro che non è stato ancora completamente approvato.
 
-* Esempio: Il contratto di locazione del data center di un'azienda è in scadenza entro 6 mesi. Il data center è stato in servizio per 8 anni. 4 anni prima, tutti i server sono stati aggiornati e virtualizzati, con un costo per l'azienda di milioni di dollari. L'anno prossimo, l'azienda prevede di rinnovare l'hardware e il software. La migrazione degli asset di quel data center, come parte di una trasformazione operativa, consentirebbe di evitare i costi, eliminando l'aggiornamento previsto dal budget previsto per l’anno prossimo. Potrebbe anche produrre una riduzione dei costi diminuendo o eliminando i costi di locazione immobiliare.
+* Esempio: Data Center dell'azienda è in scadenza un rinnovo del lease in sei mesi. Nel servizio per otto anni è stata Data Center in questione. Quattro anni fa, tutti i server sono stati aggiornati e virtualizzato determinazione dei costi della società $ milioni. L'anno prossimo, l'azienda prevede di rinnovare l'hardware e il software. Eseguire la migrazione di asset nel Data Center, come parte di una trasformazione operativa, creerebbe prevenzione di costo, rimuovendo l'aggiornamento pianificato del budget previsto del prossimo anno. Potrebbe anche produrre una riduzione dei costi diminuendo o eliminando i costi di locazione immobiliare.
 
 ### <a name="capex-versus-opex"></a>Spese in conto capitale e spese operative
 
@@ -75,10 +75,10 @@ Prima di discutere i risultati dei costi, è importante comprendere le due opzio
 I seguenti termini sono utili per comprendere le differenze tra CapEx e OpEx quando si parla con l'azienda delle operazioni di trasformazione.
 
 * Il **capitale** è il denaro o le risorse in possesso dell'azienda per contribuire a un determinato scopo, come ad esempio, aumentare la capacità del server o sviluppare un'applicazione.
-* La **spesa in conto capitale (CapEx)** è una spesa che genera benefici sul lungo periodo. Tale spesa è generalmente non ricorrente e comporta l'acquisizione di beni permanenti. Lo sviluppo di un'applicazione potrebbe essere considerata una spesa in conto capitale.
+* **Maiuscole delle spese (CapEx)** è una nota spese che genera i vantaggi per un lungo periodo. Tale spesa è generalmente non ricorrente e comporta l'acquisizione di beni permanenti. Lo sviluppo di un'applicazione potrebbe essere considerata una spesa in conto capitale.
 * La **spesa operativa (OpEx)** è una spesa ricorrente per l’azienda. L’utilizzo di servizi cloud in un modello di pagamento a consumo può essere considerata come spesa operativa.
 * L'asset è una risorsa economica che può essere posseduta o controllata per produrre valore. Server, Data Lake e applicazioni possono essere considerati asset.
-* Il **deprezzamento** è il modo in cui il valore di un asset diminuisce nel tempo. Più rilevante per la conversazione CapEx/OpEx, è il modo in cui i costi di un bene sono ripartiti tra i periodi in cui sono utilizzati. Ad esempio, se si sviluppa un'applicazione nell'anno in corso, ma ci si aspetta una shelf-life media di 5 anni (come la maggior parte delle app commerciali), il costo del team di sviluppo e degli strumenti necessari per creare e distribuire il codice base verrebbe ammortizzato uniformemente in 5 anni.
+* Il **deprezzamento** è il modo in cui il valore di un asset diminuisce nel tempo. Più rilevante per la conversazione CapEx/OpEx, è il modo in cui i costi di un bene sono ripartiti tra i periodi in cui sono utilizzati. Ad esempio, se si compila un'applicazione, quest'anno, ma è previsto per avere una durata di conservazione Media di cinque anni (ad esempio applicazioni commerciali più), quindi il costo del team di sviluppo e gli strumenti necessari necessari per creare e distribuire la base di codice verrebbe rimosso in modo uniforme in cinque anni.
 * La **valutazione** è il processo di stima del valore di un'azienda. Nella maggior parte dei settori, la valutazione si basa sulla capacità dell'azienda di generare ricavi e profitti, rispettando al contempo i costi operativi necessari per creare i beni che forniscono tali ricavi. In alcuni settori come il commercio al dettaglio, o in alcuni tipi di transazioni come il private equity, le attività e gli ammortamenti possono svolgere un ruolo importante nella valutazione dell'azienda.
 
 Spesso è importante un confronto tra i vari dirigenti, tra cui il CIO, su come sfruttare meglio il capitale per far crescere l'azienda nella direzione desiderata. Dare al CIO uno strumento per convertire conversazioni CapEx altamente competitive in una chiara affidabilità OpEx potrebbe essere di per sé un risultato interessante. In molti settori, i direttori finanziari (CFO) sono attivamente alla ricerca di modi per associare meglio l'affidabilità finanziaria al costo dei beni venduti.
@@ -87,4 +87,4 @@ Tuttavia, prima di associare qualsiasi percorso di trasformazione a questo tipo 
 
 Se OpEx è auspicabile, l'esempio seguente potrebbe costituire un valido risultato aziendale:
 
-* Esempio: Il data center dell'azienda è in fase di svalutazione a X dollari all'anno per i prossimi 3 anni. Si prevede di richiedere un ulteriore Y dollari per aggiornare l'hardware nei prossimi anni. È possibile convertire tutto questo CapEx in un modello OpEx a un tasso pari di Z dollari al mese, consentendo una migliore gestione e affidabilità dei costi operativi della tecnologia.
+* Esempio: Data Center dell'azienda è attualmente ammortamento a $X all'anno per tre anni. Si prevede di richiedere un ulteriore Y dollari per aggiornare l'hardware nei prossimi anni. È possibile convertire tutto questo CapEx in un modello OpEx a un tasso pari di Z dollari al mese, consentendo una migliore gestione e affidabilità dei costi operativi della tecnologia.

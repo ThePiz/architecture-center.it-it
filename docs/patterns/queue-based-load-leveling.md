@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c736afced1b0478e8eb1a2694acc4d6a6f0c62fc
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 267d630d97a998c76a75a70191a77f9b74e801ef
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248726"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641060"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>Schema di livellamento del carico basato sulle code
 
@@ -67,8 +67,6 @@ Un'app Web scrive dati in un archivio dati esterno. Se viene eseguito contempora
 Per risolvere il problema, è possibile usare una coda per livellare il carico tra le istanze dell'applicazione e l'archivio dati. Un'app per le funzioni di Azure legge i messaggi dalla coda e invia le richieste di lettura/scrittura all'archivio dati. La logica dell'applicazione nell'app per le funzioni può controllare la frequenza con cui le richieste vengono passate all'archivio dati per impedire il sovraccarico dell'archivio. In caso contrario, l'app per le funzioni si limiterà a reintrodurre lo stesso problema nel back-end.
 
 ![Figura 3 - Uso di una coda e di un'app per le funzioni per livellare il carico](./_images/queue-based-load-leveling-function.png)
-
-
 
 ## <a name="related-patterns-and-guidance"></a>Modelli correlati e informazioni aggiuntive
 

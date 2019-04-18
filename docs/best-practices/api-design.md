@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b15b97de2042a0e213192dd586ffdcc4c51b1f11
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 06090b0862a7c737d9ee93512f851d3fcf2e2d9f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897984"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640873"
 ---
 # <a name="api-design"></a>Progettazione API
 
@@ -97,7 +97,7 @@ Inviando una richiesta HTTP GET all'URI della raccolta viene recuperato un elenc
 
 Adottare una convenzione di denominazione coerente negli URI. In generale, per gli URI che fanno riferimento alle raccolte è utile usare sostantivi plurali. È consigliabile organizzare gli URI per le raccolte e gli elementi in una gerarchia. Se `/customers` è il percorso della raccolta dei clienti, ad esempio, `/customers/5` sarà il percorso del cliente il cui ID è 5. Questo approccio consente di mantenere l'API Web intuitiva. Molti framework API Web, inoltre, possono indirizzare le richieste in base a percorsi URI con parametri ed è quindi possibile definire una route per il percorso `/customers/{id}`.
 
-Considerare anche le relazioni tra i diversi tipi di risorse e come si potrebbero esporre tali associazioni. Ad esempio, `/customers/5/orders` potrebbe rappresentare tutti gli ordini per il cliente 5. Si potrebbe procedere anche nella direzione opposta e rappresentare l'associazione da un ordine a un cliente con un URI come `/orders/99/customer`. Se questo modello viene esteso eccessivamente, tuttavia, la relativa implementazione può diventare complessa. È preferibile fornire collegamenti esplorabili alle risorse associate nel corpo del messaggio di risposta HTTP. Questo meccanismo viene descritto in modo più dettagliato nella sezione [Usare HATEOAS per consentire lo spostamento alle risorse correlate](#using-the-hateoas-approach-to-enable-navigation-to-related-resources) più avanti.
+Considerare anche le relazioni tra i diversi tipi di risorse e come si potrebbero esporre tali associazioni. Ad esempio, `/customers/5/orders` potrebbe rappresentare tutti gli ordini per il cliente 5. Si potrebbe procedere anche nella direzione opposta e rappresentare l'associazione da un ordine a un cliente con un URI come `/orders/99/customer`. Se questo modello viene esteso eccessivamente, tuttavia, la relativa implementazione può diventare complessa. È preferibile fornire collegamenti esplorabili alle risorse associate nel corpo del messaggio di risposta HTTP. Questo meccanismo è descritto più dettagliatamente nella sezione [usare HATEOAS per consentire lo spostamento a risorse correlate](#use-hateoas-to-enable-navigation-to-related-resources).
 
 Nei sistemi più complessi si può essere tentati di fornire URI che consentono a un client di spostarsi tra diversi livelli di relazioni, ad esempio `/customers/1/orders/99/products`. Tuttavia questo livello di complessità può essere difficile da mantenere e non è flessibile se le relazioni tra le risorse cambiano in futuro. Provare invece a mantenere gli URI relativamente semplici. Quando un'applicazione contiene un riferimento a una risorsa, dovrebbe essere possibile usare questo riferimento per trovare gli elementi correlati a tale risorsa. La query precedente può essere sostituita con l'URI `/customers/1/orders` per trovare tutti gli ordini per il cliente 1 e quindi `/orders/99/products` per trovare i prodotti in tale ordine.
 
@@ -442,7 +442,7 @@ Anziché fornire più URI, è possibile specificare la versione della risorsa us
 Questo approccio ha il vantaggio semantico che la stessa risorsa viene sempre recuperata dallo stesso URI, ma dipende dal codice che gestisce la richiesta analizzare la stringa di query e inviare la risposta HTTP appropriata. Questo approccio presenta anche le stesse complicazioni per l'implementazione di HATEOAS del meccanismo di controllo delle versioni tramite URI.
 
 > [!NOTE]
-> Alcuni Web browser e proxy Web meno recenti non memorizzano nella cache le risposte per le richieste che includono una stringa di query nell'URI. Ciò può avere un impatto negativo sulle prestazioni per le applicazioni Web che utilizzano un'API Web e che vengono eseguite dall'interno di questo tipo di Web browser.
+> Alcuni Web browser e proxy Web meno recenti non memorizzano nella cache le risposte per le richieste che includono una stringa di query nell'URI. Ciò può influire negativamente sulle prestazioni per le applicazioni web che usano un'API web e che vengono eseguite dall'interno di tali un browser web.
 
 ### <a name="header-versioning"></a>Controllo delle versioni tramite l’intestazione
 

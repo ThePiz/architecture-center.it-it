@@ -9,10 +9,10 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
 ms.openlocfilehash: 3fd3badd66edbe561bea88576bb80d9fc3e0bb79
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068923"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Criteri per la scelta di un archivio dati
@@ -116,7 +116,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Line-of-business (gestione risorse umane, CRM, ERP)</li>
@@ -158,7 +158,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Catalogo prodotti</li>
@@ -199,7 +199,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Memorizzazione dei dati nella cache</li>
@@ -234,7 +234,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Organigrammi</li>
@@ -271,7 +271,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Consigli</li>
@@ -312,7 +312,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Cataloghi prodotti</li>
@@ -346,7 +346,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>Un data warehouse aziendale che fornisce dati per modelli di analisi, report e dashboard.
     </td>
 </tr>
@@ -377,7 +377,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Monitoraggio e telemetria eventi.</li>
@@ -409,7 +409,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>Immagini, video, documenti di Office, file PDF</li>
@@ -441,7 +441,7 @@ Le sezioni seguenti presentano un confronto dei vari modelli di archivio dati in
         </ul>
     </td>
 </tr>
-<tr><td><strong>Esempi</strong></td>
+<tr><td><strong>esempi</strong></td>
     <td>
         <ul>
             <li>File legacy</li>

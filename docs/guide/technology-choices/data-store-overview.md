@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: c76b28fc53f36024867838e8ac36f256b242bf4a
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: 6e600f839259a8c379cafcba105e93dca895c1d1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419955"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640890"
 ---
 # <a name="choose-the-right-data-store"></a>Scegliere l'archivio dati corretto
 
@@ -41,7 +41,6 @@ Servizi di Azure pertinenti:
 - [Database di Azure per MySQL][mysql]
 - [Database di Azure per PostgreSQL][postgres]
 - [Database di Azure per MariaDB][mariadb]
-
 
 ## <a name="keyvalue-stores"></a>Archivi chiave/valore
 

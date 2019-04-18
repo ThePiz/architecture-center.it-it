@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 5e5af0be41fa892e490d556ef4286d5367144fd9
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 84bc6e5c8d78517e3dc1dc0ee8d250346a33ce43
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249506"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641196"
 ---
 # <a name="design-for-self-healing"></a>Progettazione per la correzione automatica
 
@@ -59,7 +59,7 @@ La modalità di risposta a un determinato tipo di errore può dipendere dai requ
 
 **Adottare l'ingegneria del caos**. L'ingegneria del caos estende il concetto di inserimento degli errori inserendo nelle istanze di produzione errori o condizioni anormali in modo casuale.
 
-Per un approccio strutturato a come creare applicazioni che siano in grado di eseguire la correzione automatica dei propri errori, vedere [Progettazione di applicazioni resilienti per Azure][resiliency-overview].
+Per un approccio strutturato per rendere le applicazioni riparazione automatica, vedere [progettazione di applicazioni affidabili per Azure][resiliency-overview].
 
 <!-- links -->
 
@@ -67,7 +67,7 @@ Per un approccio strutturato a come creare applicazioni che siano in grado di es
 [compensating-transactions]: ../../patterns/compensating-transaction.md
 [leader-election]: ../../patterns/leader-election.md
 [load-level]: ../../patterns/queue-based-load-leveling.md
-[resiliency-overview]: ../../resiliency/index.md
+[resiliency-overview]: ../../reliability/index.md
 [retry]: ../../patterns/retry.md
 [throttle]: ../../patterns/throttling.md
 [transient-fault-handling]: ../../best-practices/transient-faults.md

@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 3459f7895b7b57833da5853a77b2641dc7c85a9e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887863"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639717"
 ---
 # <a name="batch-scoring-of-deep-learning-models-on-azure"></a>Valutazione dei modelli di apprendimento avanzato in Azure batch
 
@@ -120,7 +120,7 @@ Per avere un'idea dello stato complessivo del cluster, passare al pannello Machi
 
 ### <a name="logging-with-azure-machine-learning"></a>Registrazione con Azure Machine Learning
 
-Azure Machine Learning registra automaticamente tutti i flussi StdOut/StdEr per l'account di archiviazione BLOB associato. Se non diversamente specificato, l'area di lavoro di Machine Learning effettua automaticamente il provisioning di un account di archiviazione in cui vi scarica i log. È anche possibile usare uno strumento di esplorazione dell'archiviazione, come ad esempio Storage Explorer, che offre un'esperienza molto più semplice per scorrere i file di log.
+Azure Machine Learning registrerà automaticamente tutti stdout/stderr per l'account di archiviazione blob associato. Se non diversamente specificato, l'area di lavoro di Machine Learning effettua automaticamente il provisioning di un account di archiviazione in cui vi scarica i log. È anche possibile usare uno strumento di esplorazione dell'archiviazione, come ad esempio Storage Explorer, che offre un'esperienza molto più semplice per scorrere i file di log.
 
 ## <a name="cost-considerations"></a>Considerazioni sul costo
 

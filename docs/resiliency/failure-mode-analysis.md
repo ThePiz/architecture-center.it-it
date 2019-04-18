@@ -1,28 +1,26 @@
 ---
 title: Analisi della modalità di errore
-description: Linee guida per l'esecuzione dell'analisi della modalità di errore per soluzioni cloud basate su Azure.
+description: Linee guida per l'esecuzione di un'analisi della modalità di errore per soluzioni cloud basate su Azure.
 author: MikeWasson
 ms.date: 05/07/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 6d0f58161c5b9d5922c21f24b1b1a50bab836bb1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 0d89570ca42aa087a9c18148b5a4019b6f348e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248068"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640975"
 ---
-# <a name="failure-mode-analysis"></a>Analisi della modalità di errore
-
-[!INCLUDE [header](../_includes/header.md)]
+# <a name="failure-mode-analysis-for-azure-applications"></a>Analisi della modalità di errore per le applicazioni Azure
 
 L'analisi della modalità di errore (FMA) è un processo che consente di ottenere la resilienza in un sistema, identificando possibili punti di errore in esso presenti. La FMA deve essere eseguita durante le fasi di progettazione e architettura, in modo che sia possibile integrare il ripristino dagli errori nel sistema dall'inizio.
 
 Ecco il processo generale per eseguire una FMA:
 
-1. Identificare tutti i componenti nel sistema. Includere le dipendenze esterne, ad esempio i provider di identità, i servizi di terze parti e così via.
+1. Identificare tutti i componenti nel sistema. Includere le dipendenze esterne, ad esempio i provider di identità, servizi di terze parti e così via.
 2. Per ogni componente, identificare potenziali errori che potrebbero verificarsi. Un singolo componente può avere più di una modalità di errore. Ad esempio gli errori di lettura e gli errori di scrittura devono essere valutati separatamente, in quanto l'impatto e le misure di attenuazione sono diversi.
 3. Classificare ogni modalità di errore in base al relativo rischio complessivo. Tenere presente questi fattori:
 
@@ -65,7 +63,7 @@ La registrazione Application_End è l'unico modo per individuare gli arresti di 
 
 ### <a name="a-particular-user-repeatedly-makes-bad-requests-or-overloads-the-system"></a>Un utente specifico esegue ripetutamente richieste non valide o sovraccarica il sistema.
 
-**Rilevamento** Autenticare gli utenti e includere l'ID utente nei registri dell'applicazione.
+**Rilevamento** Autenticare gli utenti e includere l'ID utente nei log dell'applicazione.
 
 **Ripristino:**
 
@@ -351,7 +349,7 @@ Esistono due modalità di errore da considerare.
 
 Per altre informazioni, vedere [Panoramica delle code dei messaggi non recapitabili del bus di servizio][sb-dead-letter-queue].
 
-**Diagnostica**. Ogni volta che l'applicazione sposta un messaggio alla coda di messaggi non recapitabili, scrivere un evento nel registro applicazione.
+**Diagnostica**. Ogni volta che l'applicazione sposta un messaggio alla coda di messaggi non recapitabili, scrivere un evento nel log applicazione.
 
 ## <a name="service-fabric"></a>Service Fabric
 

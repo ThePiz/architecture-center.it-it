@@ -8,12 +8,12 @@ description: Considerazioni per la creazione di una motivazione aziendale per la
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 21c2b877a0f329711027f020fd0047479e8c7bfb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: a2fdb225fb978eaade39850560ca1adbbb3476e7
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898307"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640652"
 ---
 # <a name="build-a-business-justification-for-cloud-migration"></a>Creare una motivazione aziendale per la migrazione al cloud
 
@@ -30,8 +30,8 @@ Le migrazioni cloud possono generare un ritorno sugli investimenti (ROI) anticip
 **Mito: i costi dei server indirizzano i business case per la migrazione cloud.** In alcuni casi questo è vero. Per alcune aziende, è importante ridurre le spese in conto capitale costanti relative ai server. Tuttavia, questo dipende da fattori diversi. Per le aziende con un ciclo di aggiornamento hardware dai 5 agli 8 anni, è improbabile osservare ritorni veloci sugli investimenti nella migrazione al cloud. Le aziende con cicli di aggiornamento standardizzati o imposti possano raggiungere rapidamente un punto di pareggio. In entrambi i casi, altre spese potrebbero essere i trigger finanziari che motivano la migrazione. Di seguito sono indicati alcuni esempi di costi che spesso vengono ignorati durante la considerazione dei costi basata solo sul server o sulle macchine virtuali:
 
 - i costi software di virtualizzazione, server e middleware possono essere ingenti. I provider di servizi cloud eliminano alcuni di questi costi. Due esempi di provider di servizi cloud che riducono i costi di virtualizzazione sono i programmi [Vantaggio Azure Hybrid](https://azure.microsoft.com/pricing/hybrid-benefit/#services) e [Prenotazioni](https://azure.microsoft.com/reservations/).
-- Le perdite aziendali dovute alle interruzioni possono superare rapidamente i costi hardware o software. Se il data center corrente è instabile, richiedere all'azienda di quantificare l'impatto delle interruzioni in termini di costi di opportunità o costi aziendali effettivi.
-- Anche i costi ambientali possono avere un impatto elevato. Per una famiglia americana media, la casa è l'investimento maggiore e il costo più elevato nel proprio budget. Spesso vale lo stesso per i data center. I costi dei beni immobili, delle strutture e i costi di utilità rappresentano una parte equa dei costi locali. Quando i data center vengono dismessi, tali strutture possono essere riutilizzate dall'azienda o potenzialmente l'azienda può eliminare interamente i costi.
+- Le perdite aziendali dovute alle interruzioni possono superare rapidamente i costi hardware o software. Se il Data Center corrente è instabile, rivolgersi all'azienda di quantificare l'effetto delle interruzioni in termini di costi opportunità o business effettiva.
+- I costi dell'ambiente possono anche essere significativi. Per una famiglia americana media, la casa è l'investimento maggiore e il costo più elevato nel proprio budget. Spesso lo stesso vale per i Data Center. I costi dei beni immobili, delle strutture e i costi di utilità rappresentano una parte equa dei costi locali. Quando i Data Center vengono dismessi, tali strutture possono essere riutilizzate per l'azienda o potenzialmente l'azienda è stato rilasciato dai costi interamente.
 
 **Mito: le spese operative (OpEx) sono meglio delle spese in conto capitale (CapEx).** Come spiegato nell’articolo sui [risultati fiscali](business-outcomes/fiscal-outcomes.md), le spese operative possono essere un fattore positivo. Tuttavia, esistono diversi settori che possono vedere le spese operative come un fattore negativo. Di seguito sono riportati alcuni esempi che attivano un'integrazione maggiore con le unità di contabilità e aziendali relative alla conversazione sulle spese operative:
 
@@ -70,17 +70,17 @@ L’analisi di questa formula crea un quadro specifico per la migrazione delle f
 
 ## <a name="migration-specific-initial-investment"></a>Investimento iniziale specifico per la migrazione
 
-- Provider di servizi cloud come Azure offrono servizi di calcolo per stimare gli investimenti nel cloud. Un esempio è il [calcolatore dei prezzi di Azure](https://azure.microsoft.com/en-in/pricing/).
+- Provider di servizi cloud come Azure offrono servizi di calcolo per stimare gli investimenti nel cloud. Un esempio è il [calcolatore dei prezzi di Azure](https://azure.microsoft.com/pricing).
 - Alcuni provider di servizi cloud supportano anche calcolatori dei delta di costo. Un esempio di calcolatore dei delta dei costi è il [calcolatore dei costi totale di proprietà (TCO) di Azure](https://azure.com/tco).
 - Per strutture di costo più precise, prendere in considerazione un esercizio di [pianificazione di digital estate](../digital-estate/overview.md).
 - Stimare il costo della migrazione.
-- Stimare il costo di qualsiasi opportunità di training prevista. [Microsoft Learn](https://docs.microsoft.com/learn/) potrebbe ridurre i costi.
+- Stimare il costo di qualsiasi opportunità di training prevista. [Microsoft Learn](/learn) potrebbe ridurre i costi.
 - In alcune aziende, potrebbe essere necessario includere nei costi iniziali il tempo investito dai membri del personale esistente. Per istruzioni, consultare l'ufficio finanziario.
 - Discutere eventuali costi aggiuntivi o l’onere dei costi con l'ufficio finanziario per la convalida.
 
 ## <a name="migration-specific-revenue-deltas"></a>Delta dei ricavi specifici per la migrazione
 
-Spesso questo aspetto è trascurato durante la creazione di una motivazione aziendale per la migrazione. In alcune aree, il cloud può ridurre i costi. Tuttavia, l'obiettivo principale di qualsiasi trasformazione è ottenere risultati migliori nel tempo. Prendere in considerazione gli effetti a valle per comprendere i miglioramenti a lungo termine dei ricavi. Quali nuove tecnologie che non possono essere sfruttate oggi saranno disponibili per l'azienda dopo questa migrazione? Quali progetti o obiettivi aziendali sono bloccati dalle dipendenze da tecnologie obsolete? Quali programmi sono in sospeso, in attesa di elevati costi della tecnologia cap-ex?
+Spesso questo aspetto è trascurato durante la creazione di una motivazione aziendale per la migrazione. In alcune aree, il cloud può ridurre i costi. Tuttavia, l'obiettivo principale di qualsiasi trasformazione è ottenere risultati migliori nel tempo. Prendere in considerazione gli effetti a valle per comprendere i miglioramenti a lungo termine dei ricavi. Quali nuove tecnologie sarà disponibile per l'azienda dopo questa migrazione non può essere usati oggi? Quali progetti o obiettivi aziendali sono bloccati dalle dipendenze da tecnologie obsolete? Quali programmi sono in sospeso, in attesa di elevati costi della tecnologia cap-ex?
 
 Dopo aver considerato le opportunità sbloccate dal cloud, lavorare con l'azienda per calcolare l’aumento dei profitti che può provenire da tali opportunità.
 
@@ -88,24 +88,24 @@ Dopo aver considerato le opportunità sbloccate dal cloud, lavorare con l'aziend
 
 Calcolare le modifiche ai costi dovute alla migrazione proposta. Consultare [modelli finanziari](financial-models.md) per informazioni dettagliate sui diversi tipi di delta dei costi. I provider di servizi cloud spesso offrono gli strumenti per il calcolo dei delta dei costi. Un esempio di calcolatore dei delta dei costi è il [calcolatore dei costi totale di proprietà (TCO) di Azure](https://azure.com/tco).
 
-Altri esempi di costi che possono essere ridotti attraverso una migrazione cloud:
+Altri esempi di costi che possono essere ridotti per una migrazione cloud:
 
-- Riduzione o dismissione dei data center (costi ambientali)
-- Riduzione del consumo energetico (costi ambientali)
-- Dismissione del rack (ripristino di risorse fisiche)
-- Impedire un aggiornamento dell'hardware (contenimento dei costi)
-- Evitare un rinnovo del software (riduzione dei costi operativi o contenimento dei costi)
-- Consolidamento del fornitore (riduzione dei costi operativi e potenziale riduzione dei costi flessibili)
+- Data Center risoluzione o riduzione (ambientale dei costi)
+- Riduzione del consumo energetico (ambientale dei costi)
+- Terminazione di rack (ripristino di asset fisico)
+- Prevenzione di aggiornamento hardware (costo prevenzione)
+- Prevenzione di rinnovo software (costo operativo riduzione o costi evitare che insorgano)
+- Consolidamento del fornitore (riduzione dei costi operativi e potenziale riduzione dei costi temporanea)
 
 ## <a name="when-roi-results-are-surprising"></a>Quando i risultati ROI sono sorprendenti
 
-Se il ritorno sugli investimenti per la migrazione cloud non è in linea con le aspettative, potrebbe essere utile consultare nuovamente i miti comuni elencati all'inizio di questo articolo.
+Se il ritorno sugli investimenti per la migrazione cloud non corrisponde alle aspettative, potrebbe essere utile per visualizzare nuovamente dei comuni miti sulla elencati all'inizio di questo articolo.
 
 Tuttavia, è importante comprendere che un risultato di risparmio sui costi non è sempre possibile. Esistono applicazioni per cui i costi sono maggiori nel cloud rispetto a un'istanza locale. Queste applicazioni possono alterare significativamente i risultati di un'analisi.
 
 Quando il ritorno sugli investimenti è inferiore al 20%, prendere in considerazione un esercizio di [pianificazione di digital estate](../digital-estate/overview.md), con particolare attenzione alla [razionalizzazione](../digital-estate/rationalize.md). Durante l'analisi quantitativa, eseguire una verifica di ogni applicazione per trovare i carichi di lavoro che alterano i risultati. Potrebbe essere opportuno rimuovere questi carichi di lavoro dal piano. Se sono disponibili i dati di utilizzo, provare a ridurre le dimensioni delle macchine virtuali in modo che corrispondano all’utilizzo.
 
-Se il ritorno sugli investimenti è ancora disallineato, richiedere assistenza al rappresentante Microsoft oppure [coinvolgere un partner esperto](https://azure.microsoft.com/en-us/migration/partners/).
+Se il ritorno sugli investimenti è ancora disallineato, richiedere assistenza al rappresentante Microsoft oppure [coinvolgere un partner esperto](https://azure.microsoft.com/migration/support).
 
 ## <a name="next-steps"></a>Passaggi successivi
 

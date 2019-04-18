@@ -1,16 +1,16 @@
 ---
-title: Inviare i log dell'applicazione di Azure Databricks per monitoraggio di Azure
+title: Inviare i log dell'applicazione di Azure Databricks a Monitoraggio di Azure
 description: Come inviare i log personalizzati e metriche da Azure Databricks per monitoraggio di Azure
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 49c631687fb3e3bbd807ffbbb49d9c5f6526bfb4
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: ea67122d7871663e8aaf42b7af0043492f63b6b1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503402"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639186"
 ---
-# <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>Inviare i log dell'applicazione di Azure Databricks per monitoraggio di Azure
+# <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>Inviare i log dell'applicazione di Azure Databricks a Monitoraggio di Azure
 
 Questo articolo illustra come inviare i log dell'applicazione e le metriche da Azure Databricks per un [dell'area di lavoro di Log Analitica](/azure/azure-monitor/platform/manage-access). Usa il [libreria di monitoraggio di Azure Databricks](https://github.com/mspnp/spark-monitoring), disponibile su GitHub.
 
@@ -92,7 +92,7 @@ Per inviare i log dell'applicazione di Azure Databricks Analitica di Log di Azur
     }
     ```
 
-1. Aggiungere i messaggi di log di Apache Spark al livello appropriato nel codice in base alle esigenze. Ad esempio, usare il `logDebug` metodo per inviare un meesage log di debug. Per altre informazioni, vedere [Logging] [ spark-logging] nella documentazione di Spark.
+1. Aggiungere i messaggi di log di Apache Spark al livello appropriato nel codice in base alle esigenze. Ad esempio, usare il `logDebug` metodo per inviare un messaggio di log di debug. Per altre informazioni, vedere [Logging] [ spark-logging] nella documentazione di Spark.
 
     ```Scala
     logTrace("Trace message")
@@ -137,7 +137,7 @@ SparkMetric_CL | where name_s contains "rowcounter" | limit 50
 Distribuire il dashboard che accompagna questa libreria di codice per risolvere i problemi di prestazioni nei tuoi carichi di lavoro di produzione Azure Databricks di monitoraggio delle prestazioni.
 
 > [!div class="nextstepaction"]
-> [Utilizzare Dashboard per visualizzare le metriche di Azure Databricks](./dashboards.md)
+> [Usare i dashboard per visualizzare le metriche di Azure Databricks](./dashboards.md)
 
 <!-- links -->
 

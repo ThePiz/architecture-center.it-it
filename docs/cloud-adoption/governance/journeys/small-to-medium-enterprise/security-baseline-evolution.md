@@ -1,20 +1,20 @@
 ---
-title: 'CAF: Piccole e medie imprese - Evoluzione della baseline di sicurezza'
+title: 'CAF: Enterprise di piccole e medie-evoluzione baseline della sicurezza'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Spiegazione per piccole e medie imprese - Evoluzione della baseline di sicurezza
+description: Enterprise di piccole e medie spiegazione-evoluzione baseline della sicurezza
 author: BrianBlanchard
-ms.openlocfilehash: 5714b886ef63cc2392905250d97ea905839f6011
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: bb26fa2f0d21bda6b1af1213bca817136b0c963f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901462"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640244"
 ---
-# <a name="caf-small-to-medium-enterprise-security-baseline-evolution"></a>CAF: Piccole e medie imprese: Evoluzione della baseline di sicurezza
+# <a name="caf-small-to-medium-enterprise-security-baseline-evolution"></a>CAF: Piccole e medie imprese: Evoluzione di Baseline di sicurezza
 
 Questo articolo approfondisce la presentazione dello scenario aggiungendo i controlli di sicurezza a supporto dello spostamento dei dati protetti nel cloud.
 
@@ -24,9 +24,9 @@ I responsabili IT e aziendali sono soddisfatti dei risultati della sperimentazio
 
 ### <a name="evolution-of-the-cloud-governance-team"></a>Evoluzione del team di governance del cloud
 
-Considerato l'impatto dei cambiamenti dello scenario e il supporto offerto finora, il team di governance del cloud è ora visto in modo diverso. I due amministratori di sistema che hanno avviato il team vengono ora considerati cloud architect esperti. Con lo sviluppo dello scenario, verranno percepiti inizialmente come custodi del cloud e infine più come guardiani del cloud.
+Dato l'effetto del testo descrittivo e supporto finora a modifica, il team di Governance Cloud viene ora visualizzato in modo diverso. I due amministratori di sistema che hanno avviato il team vengono ora considerati cloud architect esperti. Con lo sviluppo dello scenario, verranno percepiti inizialmente come custodi del cloud e infine più come guardiani del cloud.
 
-Sebbene la differenza sia sottile, si tratta di una distinzione importante per lo sviluppo di una cultura IT orientata alla governance. Un custode del cloud mette a posto i pasticci di cloud architect innovativi. I due ruoli hanno obiettivi naturalmente in conflitto e opposti. Lo scopo di un guardiano del cloud è invece quello di mantenere sicuro il cloud, in modo che altri cloud architect possano procedere rapidamente, senza troppi pasticci. Un guardiano del cloud è anche coinvolto nella creazione di modelli per accelerare la distribuzione e l'adozione, diventando così un promotore di innovazione oltre che difensore delle cinque discipline del cloud.
+Sebbene la differenza sia sottile, si tratta di una distinzione importante per lo sviluppo di una cultura IT orientata alla governance. Un custode del cloud mette a posto i pasticci di cloud architect innovativi. I due ruoli hanno obiettivi naturalmente in conflitto e opposti. Lo scopo di un guardiano del cloud è invece quello di mantenere sicuro il cloud, in modo che altri cloud architect possano procedere rapidamente, senza troppi pasticci. Inoltre, è coinvolto un Sorvegliante Cloud nella creazione di modelli di accelerare la distribuzione e adozione, rendendoli un acceleratore di innovazione, nonché un defender di discipline cinque di Governance Cloud.
 
 ### <a name="evolution-of-the-current-state"></a>Evoluzione dello stato attuale
 
@@ -51,9 +51,9 @@ I cambiamenti che riguardano lo stato attuale e quello futuro creano nuovi risch
 
 **Violazione dei dati**: quando si adotta qualsiasi nuova piattaforma di dati, si verifica un aumento intrinseco delle responsabilità correlate alle potenziali violazioni dei dati. I tecnici che adottano le tecnologie cloud hanno maggiori responsabilità di implementare soluzioni in grado di ridurre questo rischio. È necessario implementare una solida strategia di governance e sicurezza per fare in modo che i tecnici adempiano a queste responsabilità.
 
-Questo rischio aziendale può tradursi in alcuni rischi tecnici:
+Questo rischio aziendale può comportare alcuni rischi tecnici:
 
-- Applicazioni cruciali o dati protetti potrebbero venire distribuiti involontariamente.
+- Le applicazioni mission-critical o i dati protetti potrebbero essere distribuiti involontariamente.
 - Dati protetti potrebbero venire esposti in fase di archiviazione a causa di scelte non adeguate in relazione alla crittografia.
 - Utenti non autorizzati potrebbero accedere ai dati protetti.
 - Un'intrusione esterna potrebbe consentire l'accesso ai dati protetti.
@@ -125,7 +125,7 @@ La progettazione dell'MVP per la governance si evolverà in modo da includere nu
 
 L'aggiunta di questi processi e modifiche all'MVP per la governance aiutano a mitigare molti dei rischi associati alla governance della sicurezza. Nel loro insieme aggiungono gli strumenti per il monitoraggio di rete, identità e sicurezza necessari per proteggere i dati.
 
-## <a name="next-steps"></a>Passaggi successivi
+## <a name="next-steps"></a>Fasi successive
 
 In un'epoca in cui l'adozione del cloud continua a evolversi e a offrire valore aziendale aggiunto, anche i rischi e le esigenze di governance del cloud sono destinati a evolversi. Per la società fittizia in questo percorso, il passaggio successivo è supportare i carichi di lavoro cruciali. Questo è il punto in cui diventano necessari i controlli di coerenza delle risorse.
 

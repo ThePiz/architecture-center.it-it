@@ -7,29 +7,24 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Informazioni sulla coerenza delle risorse nell'ambito della pianificazione di una migrazione di Azure.
 author: rotycenh
-ms.openlocfilehash: 8170bfd09218a451e086a57e0631b7e567eb2b82
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 3159e4b7aeddfdd99261c0f68591998d741f3359
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901541"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640048"
 ---
 # <a name="caf-resource-consistency-decision-guide"></a>CAF: Guida alle decisioni relative alla coerenza delle risorse
 
-La [progettazione della sottoscrizione](../subscriptions/overview.md) di Azure definisce la modalità di organizzazione delle risorse cloud in relazione alla struttura complessiva dell'azienda. Inoltre, l'integrazione degli standard di gestione IT esistenti e dei criteri dell'organizzazione dipende dal modo in cui si distribuiscono e organizzano le risorse cloud all'interno di una sottoscrizione.
-
-Gli strumenti disponibili per implementare le progettazioni di distribuzione, raggruppamento e gestione delle risorse dipendono dalla piattaforma cloud. In generale, ogni soluzione include le funzionalità seguenti:
-
-- Un meccanismo di raggruppamento logico sotto il livello della sottoscrizione o dell'account.
-- La possibilità di distribuire le risorse a livello di codice con le API.
-- Modelli per la creazione di distribuzioni standardizzate.
-- La possibilità di distribuire regole per i criteri ai livelli di sottoscrizione, account e raggruppamento delle risorse.
+Azure [progettazione di una sottoscrizione](../subscriptions/overview.md) definisce la modalità di organizzazione gli asset cloud in relazione alla struttura dell'organizzazione, procedure consigliate di accounting e i requisiti del carico di lavoro. Oltre a questo livello di struttura, l'indirizzamento i requisiti dei criteri di governance dell'organizzazione attraverso i tuoi cloud richiede la possibilità di organizzare, distribuire e gestire le risorse all'interno di una sottoscrizione in modo coerente.
 
 ![Grafico delle opzioni relative alla coerenza delle risorse, dalla meno complessa alla più complessa, allineato con i collegamenti sotto](../../_images/discovery-guides/discovery-guide-resource-consistency.png)
 
 Passare a: [Raggruppamento di base](#basic-grouping) | [Coerenza di distribuzione](#deployment-consistency) | [Coerenza dei criteri](#policy-consistency) | [Coerenza gerarchica](#hierarchical-consistency) | [Coerenza automatizzata](#automated-consistency)
 
-Le decisioni relative alla distribuzione e al raggruppamento delle risorse sono guidate principalmente da questi fattori: le dimensioni del digital estate dopo la migrazione, la complessità dell'azienda o dell'ambiente che non si adatta perfettamente agli approcci di progettazione della sottoscrizione esistenti o la necessità di applicare la governance nel tempo dopo la distribuzione delle risorse. Una progettazione di raggruppamento delle risorse più avanzata richiede uno sforzo maggiore per assicurare un raggruppamento accurato, con un conseguente aumento di tempo dedicato alla gestione del cambiamento e al rilevamento.
+Le decisioni che riguardano il livello di requisiti di coerenza di risorse dei tuoi cloud sono principalmente determinate dai fattori seguenti: dimensioni estate digitale di post-migrazione, business o i requisiti dell'ambiente che non rientrano all'interno della sottoscrizione esistente gli approcci di progettazione o la necessità di applicare la governance nel tempo dopo che sono state distribuite le risorse. 
+
+Questi fattori aumento priorità, i vantaggi di garantire una distribuzione coerente, raggruppamento e la gestione delle risorse basate su cloud diventa più importante. Ottenere più avanzate livelli di coerenza di risorse in base alle esigenze crescenti richiede uno sforzo impiegato in automazione, strumenti e imposizione della coerenza e ciò comporta un più tempo impiegato per la gestione delle modifiche e di rilevamento.
 
 ## <a name="basic-grouping"></a>Raggruppamento di base
 
@@ -42,11 +37,11 @@ I gruppi di risorse fungono da contenitori per le risorse con un ciclo di vita c
 
 ## <a name="deployment-consistency"></a>Coerenza di distribuzione
 
-La maggior parte delle piattaforme cloud offre un sistema, basato sul meccanismo di raggruppamento delle risorse di base, che consente di usare modelli per distribuire le risorse nell'ambiente cloud. È possibile usare i modelli per creare convenzioni di denominazione e organizzazione coerenti per distribuire i carichi di lavoro, applicando i vari aspetti della progettazione della distribuzione e gestione delle risorse.
+Basando la risorsa di base meccanismo di raggruppamento, la piattaforma Azure fornisce un sistema per l'uso di modelli per distribuire le risorse nell'ambiente cloud. È possibile usare i modelli per creare convenzioni di denominazione e organizzazione coerenti per distribuire i carichi di lavoro, applicando i vari aspetti della progettazione della distribuzione e gestione delle risorse.
 
 I [modelli di Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview#template-deployment) consentono di distribuire ripetutamente le risorse in uno stato coerente usando una configurazione e una struttura dei gruppi di risorse predeterminate. Con questi modelli è possibile definire facilmente un set di standard come base delle distribuzioni.
 
-Ad esempio, si può usare un modello standard per distribuire un carico di lavoro di server Web che contiene due macchine virtuali come server Web combinati con un servizio di bilanciamento del carico per gestire il traffico tra i server. È quindi possibile riutilizzare questo modello per creare distribuzioni strutturalmente identiche ogni volta che è necessario un nuovo carico di lavoro di server Web, cambiando solo il nome e l'indirizzo IP della distribuzione.
+Ad esempio, è possibile avere un modello standard per la distribuzione di un carico di lavoro server web che contiene due macchine virtuali come server web combinati con un servizio di bilanciamento del carico per distribuire il traffico tra i server. È quindi possibile riutilizzare questo modello per creare set strutturalmente identico di macchine virtuali e il bilanciamento del carico ogni volta che questo tipo di carico di lavoro è necessario, pertanto è necessario solo modificare il nome della distribuzione e gli indirizzi IP.
 
 È anche possibile distribuire questi modelli a livello di codice e integrarli con i sistemi CI/CD.
 
@@ -62,9 +57,9 @@ Per una discussione più approfondita in merito all'applicazione delle decisioni
 
 ## <a name="hierarchical-consistency"></a>Coerenza gerarchica
 
-Man mano che aumentano le dimensioni dell'ambiente cloud, potrebbe presentarsi la necessità di supportare requisiti di governance più complessi di quelli che possono essere supportati mediante la gerarchia azienda/reparto/account/sottoscrizione del contratto Enterprise di Azure. I gruppi di risorse consentono di supportare livelli di gerarchia aggiuntivi all'interno dell'organizzazione, applicando regole di Criteri di Azure e controlli di accesso a livello di gruppo di risorse.
+Gruppi di risorse consente di supportare ulteriori livelli di gerarchia all'interno dell'organizzazione all'interno della sottoscrizione, applicano le regole di criteri di Azure e accedere ai controlli a livello di gruppo di risorse. Tuttavia, man mano che aumenta le dimensioni dei tuoi cloud, potrebbe essere necessario supportare i requisiti di governance tra sottoscrizioni più complessi che è possibile supportare usando gerarchia dell'organizzazione/reparto/Account/sottoscrizione del contratto Enterprise di Azure. 
 
-I [gruppi di gestione di Azure](../subscriptions/overview.md#management-groups) possono supportare strutture organizzative più complesse sovrapponendo una gerarchia alternativa alla struttura del contratto Enterprise. Questo consente alle sottoscrizioni, e alle risorse che contengono, di supportare meccanismi di controllo di accesso e applicazione di criteri organizzati in modo da soddisfare i requisiti organizzativi dell'azienda.
+[I gruppi di gestione di Azure](../subscriptions/overview.md#management-groups) consente alle sottoscrizioni dell'organizzazione in strutture organizzative più sofisticate dalle sottoscrizioni di raggruppamento in una gerarchia alternativa a quello definito dalla struttura del contratto enterprise. Questa gerarchia alternativa consente di applicare meccanismi di imposizione dei criteri e controllo di accesso a più sottoscrizioni e le risorse che contengono. Gerarchie di gruppi di gestione sono utilizzabile in modo che corrispondano sottoscrizioni dei tuoi cloud con operazioni o i requisiti di governance aziendali. 
 
 ## <a name="automated-consistency"></a>Coerenza automatizzata
 

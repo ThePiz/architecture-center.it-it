@@ -6,12 +6,12 @@ ms.date: 09/20/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: afecf380b1a75d006f6f2bc0cb0e5058cd3feffc
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 7d7f6bd46fb60a190a7fb27432d5ff4b74b0c597
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241642"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640703"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>Stabilire una verifica dell'idoneità operativa
 
@@ -31,11 +31,11 @@ Come descritto nell'[Introduzione](../../cloud-adoption/getting-started/overview
 
 Durante questo processo, al centro dell'attenzione vi sono spesso le _funzionalità_ del servizio. Vale a dire, esiste un set di requisiti _funzionali_ desiderati per il servizio. Ad esempio, un servizio per la spedizione di prodotti richiede funzionalità per determinare le posizioni di origine e di destinazione del prodotto, per tenere traccia del prodotto durante la spedizione, per le notifiche ai clienti e altre.
 
-I requisiti _non funzionali_ si riferiscono invece a proprietà del servizio come la [disponibilità](../../checklist/availability.md), la [resilienza](../../resiliency/index.md) e la [scalabilità](../../checklist/scalability.md). Queste proprietà differiscono dai requisiti funzionali perché non incidono direttamente sulla funzione finale di qualsiasi funzionalità particolare nel servizio. Questi requisiti non funzionali sono invece correlati alle _prestazioni_ e alla _continuità_ del servizio.
+Al contrario, il _non funzionali_ requisiti si riferiscono a proprietà quali il servizio [affidabilità](../../reliability/index.md) e [scalabilità](../../checklist/scalability.md). Queste proprietà differiscono dai requisiti funzionali perché non incidono direttamente sulla funzione finale di qualsiasi funzionalità particolare nel servizio. Questi requisiti non funzionali sono invece correlati alle _prestazioni_ e alla _continuità_ del servizio.
 
 È possibile specificare alcuni requisiti non funzionali in termini di contratto di servizio (SLA). Ad esempio, per quanto riguarda la continuità del servizio, un requisito di disponibilità per il servizio può essere espresso come percentuale, ad esempio **disponibilità del 99,99% del tempo**. Altri requisiti non funzionali potrebbero essere più difficili da definire e possono cambiare con l'evolversi delle esigenze di produzione. Ad esempio, per un servizio rivolto ai consumatori potrebbero nascere requisiti di velocità effettiva imprevisti dopo un picco di popolarità.
 
-![NOTE] La definizione dei requisiti per la resilienza, incluse spiegazioni dei concetti di RPO, RTO, contratto di servizio e concetti correlati, sono disponibili in maggiore dettaglio in [Progettazione di applicazioni resilienti per Azure](../../resiliency/index.md#define-your-availability-requirements).
+! [NOTA] Definendo i requisiti per la resilienza, fornendo anche spiegazioni di RPO, RTO, contratto di servizio e concetti correlati, vengono presi in esame in modo più approfondito in [sviluppo di requisiti per applicazioni Azure resilienti](../../reliability/requirements.md).
 
 ## <a name="operational-fitness-review-process"></a>Processo di verifica dell'idoneità operativa
 
@@ -53,7 +53,7 @@ I passaggi in questa fase sono utili per raccogliere i requisiti necessari per e
 
 - **Abbinare le operazioni ai servizi**. Abbinare queste operazioni aziendali ai servizi che le supportano. Nel precedente esempio del carrello, possono essere coinvolti diversi servizi: un servizio di gestione delle scorte di magazzino, un servizio per il carrello e altri. Nell'esempio di pagamento con carta di credito precedente, un servizio di pagamento in locale potrebbe interagire con un servizio di elaborazione dei pagamenti di terze parti.
 
-- **Analizzare le dipendenze dei servizi**. La maggior parte delle operazioni aziendali richiede l'orchestrazione tra più servizi di supporto. È importante conoscere le dipendenze tra i servizi e il flusso delle transazioni cruciali attraverso questi servizi. È anche necessario tenere conto delle dipendenze tra i servizi locali e i servizi di Azure. Nell'esempio del carrello, il servizio di gestione delle scorte di magazzino potrebbe essere ospitato in locale e usare i dati immessi dai dipendenti da un magazzino fisico, ma potrebbe anche archiviare i dati in un servizio di Azure, ad esempio [archiviazione di Azure](/azure/storage/common/storage-introduction), o in un database come [Azure Cosmos DB](/azure/cosmos-db/introduction).
+- **Analizzare le dipendenze dei servizi**. La maggior parte delle operazioni aziendali richiede l'orchestrazione tra più servizi di supporto. È importante comprendere le dipendenze tra i servizi e il flusso delle transazioni cruciali tramite questi servizi. È anche necessario tenere conto delle dipendenze tra i servizi locali e i servizi di Azure. Nell'esempio del carrello, il servizio di gestione delle scorte di magazzino potrebbe essere ospitato in locale e usare i dati immessi dai dipendenti da un magazzino fisico, ma potrebbe anche archiviare i dati in un servizio di Azure, ad esempio [archiviazione di Azure](/azure/storage/common/storage-introduction), o in un database come [Azure Cosmos DB](/azure/cosmos-db/introduction).
 
 Un output da queste attività è un set di **metriche di scorecard** per le operazioni del servizio. Le metriche sono categorizzate in base a criteri non funzionali, ad esempio disponibilità, scalabilità e ripristino di emergenza. Le metriche di scorecard esprimono i criteri che è previsto che il servizio soddisfi a livello operativo. Queste metriche possono essere espresse a qualsiasi livello di granularità appropriato per l'operazione del servizio.
 
@@ -81,7 +81,7 @@ Il team di verifica dell'idoneità operativa prevede i seguenti ruoli:
 
 2. **Responsabile dell'azienda**. Questo ruolo è responsabile della suddivisione delle operazioni aziendali in parti discrete e del mapping di tali parti a servizi ed elementi infrastrutturali locali e nel cloud. Il ruolo richiede una profonda conoscenza della tecnologia associata a ogni operazione aziendale.
 
-3. **Responsabile tecnico**. Questo ruolo è responsabile per l'implementazione dei servizi associati all'operazione aziendale. Queste persone possono partecipare alla progettazione, implementazione e distribuzione di qualsiasi soluzione per la risoluzione dei problemi relativi ai requisiti non funzionali individuati dal team di verifica dell'idoneità operativa.
+3. **Responsabile tecnico**. Questo ruolo è responsabile dell'implementazione dei servizi associati all'operazione di business. Queste persone possono partecipare alla progettazione, implementazione e distribuzione di qualsiasi soluzione per la risoluzione dei problemi relativi ai requisiti non funzionali individuati dal team di verifica dell'idoneità operativa.
 
 4. **Responsabile dei servizi**. Questo ruolo è responsabile dell'operatività delle applicazioni e dei servizi aziendali. Queste persone raccolgono dati di registrazione e utilizzo per questi servizi e applicazioni. Questi dati vengono usati sia per identificare i problemi che per verificare le correzioni dopo la distribuzione.
 
@@ -95,7 +95,7 @@ I dettagli del processo e delle riunioni devono essere adattati in base alle spe
 
 2. I responsabili tecnici e dei servizi abbinano lo **stato corrente** delle operazioni aziendali ai servizi locali e nel cloud corrispondenti. Il mapping è costituito da un elenco dei componenti in ogni servizio, delineati come albero delle dipendenze. Dopo aver generato l'elenco e l'albero delle dipendenze, vengono determinati i **percorsi critici** all'interno dell'albero.
 
-3. I responsabili tecnici e dei servizi verificano lo stato corrente di registrazione e monitoraggio operativi per i servizi elencati nel passaggio precedente. Sono fondamentali procedure solide di registrazione e monitoraggio allo scopo di identificare i componenti dei servizi che contribuiscono all'impossibilità di soddisfare i requisiti non funzionali. Se non sono disponibili strumenti di registrazione e monitoraggio sufficienti, occorre creare e implementare un piano per la loro messa in opera.
+3. I responsabili tecnici e dei servizi verificano lo stato corrente di registrazione e monitoraggio operativi per i servizi elencati nel passaggio precedente. Affidabili di registrazione e monitoraggio sono fondamentali, allo scopo di identificare i componenti del servizio che contribuiscono a non soddisfa i requisiti non funzionali. Se non sono disponibili strumenti di registrazione e monitoraggio sufficienti, occorre creare e implementare un piano per la loro messa in opera.
 
 4. Vengono create metriche di scorecard per le nuove operazioni aziendali. La scorecard è composta dall'elenco dei componenti costitutivi per ogni servizio identificato nel passaggio 2, allineati ai requisiti non funzionali e a una metrica che rappresenta il livello di corrispondenza del componente al requisito.
 
@@ -109,7 +109,7 @@ I dettagli del processo e delle riunioni devono essere adattati in base alle spe
     Questa sezione della Guida all'architettura delle applicazioni Azure descrive i cinque concetti fondamentali per la qualità del software: scalabilità, disponibilità, resilienza, gestione e sicurezza.
 - [Dieci principi di progettazione per le applicazioni Azure](../../guide/design-principles/index.md).
     Questa sezione della Guida all'architettura delle applicazioni Azure descrive un set di principi di progettazione per rendere l'applicazione più scalabile, resiliente e gestibile.
-- [Progettazione di applicazioni resilienti per Azure](../../resiliency/index.md).
+- [Progettazione di applicazioni Azure affidabili](../../reliability/index.md).
     Questa guida inizia con una definizione del termine resilienza e dei concetti correlati. Quindi, viene descritto un processo per ottenere la resilienza, adottando un approccio strutturato in base alla durata di un'applicazione, dalla progettazione e implementazione alla distribuzione, fino alle operazioni.
 - [Modelli di progettazione cloud](../../patterns/index.md).
     Questi modello di progettazione sono utili per i team di progettazione durante lo sviluppo di applicazioni in base ai pilastri della qualità del software.

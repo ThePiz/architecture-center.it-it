@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 2595352075c708e015a0f0c536be31ceb5614fcd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 046ca8c9c67c2d8a77efc87c2106c79670bd153f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245682"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640074"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>Implementare una rete perimetrale tra Azure e Internet
 
@@ -81,7 +81,7 @@ Questa architettura di riferimento implementa più livelli di sicurezza:
 - Le regole dei gruppi di sicurezza di rete per le subnet (NSG) in ingresso e in uscita della rete perimetrale pubblica impediscono che le NVA vengano compromesse bloccando le richieste che non rientrano nelle regole NSG.
 - La configurazione del routing NAT per le NVA invia le richieste in entrata sulle porte 80 e 443 al servizio di bilanciamento del carico di livello Web, ma ignora le richieste su tutte le altre porte.
 
-È consigliabile registrare tutte le richieste in ingresso su tutte le porte. Controllare periodicamente i registri prestando attenzione alle richieste che non rientrano nei parametri previsti, in quanto queste potrebbero indicare tentativi di intrusione.
+È consigliabile registrare tutte le richieste in ingresso su tutte le porte. Controllare periodicamente i log prestando attenzione alle richieste che non rientrano nei parametri previsti, in quanto queste potrebbero indicare tentativi di intrusione.
 
 ## <a name="deploy-the-solution"></a>Distribuire la soluzione
 
@@ -95,13 +95,13 @@ Questa architettura di riferimento implementa più livelli di sicurezza:
 
 1. Passare alla cartella `/dmz/secure-vnet-dmz` del repository GitHub di architetture di riferimento.
 
-2. Eseguire il comando seguente:
+1. Eseguire il comando seguente:
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
     ```
 
-4. Eseguire il comando seguente:
+1. Eseguire il comando seguente:
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-dmz.json --deploy

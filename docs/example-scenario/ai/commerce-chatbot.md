@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/ai/media/architecture-commerce-chatbot.png
-ms.openlocfilehash: 48f85e7443bcd6149c8024d20fb50816c1a4df38
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c4859cb0e43603991e4f8e6a0311a28537f29f1a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245852"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640261"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Chatbot di conversazione per prenotazioni di hotel in Azure
 
@@ -65,8 +65,6 @@ Questo scenario include un bot di conversazione che svolge le funzioni di un rec
 
 Questo scenario usa il database SQL di Azure per archiviare le prenotazioni dei clienti. Il servizio database SQL include database con ridondanza della zona, gruppi di failover e replica geografica. Per altre informazioni, vedere la sezione relativa alle [funzionalità per la disponibilità del database SQL di Azure][sqlavailability-docs].
 
-Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
-
 ### <a name="scalability"></a>Scalabilità
 
 Questo scenario usa il servizio app di Azure. Con il servizio app, è possibile ridimensionare automaticamente il numero di istanze in cui viene eseguito il bot. Questa funzionalità consente di far fronte alla domanda dei clienti per l'applicazione Web e il chatbot. Per altre informazioni sul ridimensionamento automatico, vedere le [procedure consigliate per la scalabilità automatica][autoscaling] in Centro architetture di Azure.
@@ -87,13 +85,13 @@ Questo scenario usa il database SQL di Azure per archiviare le prenotazioni dei 
 
 Per monitorare l'integrità dell'applicazione, questo scenario usa Application Insights. Con Application Insights, è possibile generare avvisi e rispondere a problemi di prestazioni che influirebbero sull'esperienza dei clienti e sulla disponibilità del chatbot. Per altre informazioni, vedere [Informazioni su Application Insights][appinsights-docs].
 
-Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
+Per altri argomenti di resilienza, vedere [progettazione di applicazioni Azure affidabili](../../reliability/index.md).
 
 ## <a name="deploy-the-scenario"></a>Distribuire lo scenario
 
 Questo scenario è suddiviso in tre componenti per consentire l'esplorazione delle aree di maggiore interesse:
 
-- [Componenti dell'infrastruttura](#deploy-infrastructure-components). Usare un modello di Azure Resource Manager per distribuire i componenti dell'infrastruttura di base di un servizio app, dell'app Web, di Application Insights, dell'account di archiviazione, di SQL Server e del database SQL.
+- [Componenti dell'infrastruttura](#walk-through). Usare un modello di Azure Resource Manager per distribuire i componenti dell'infrastruttura di base di un servizio app, dell'app Web, di Application Insights, dell'account di archiviazione, di SQL Server e del database SQL.
 - [Chatbot per l'app Web](#deploy-web-app-chatbot). Usare l'interfaccia della riga di comando di Azure per distribuire un bot con il servizio Bot e l'app LUIS (Language Understanding Intelligent Service).
 - [Applicazione del chatbot C# di esempio](#deploy-chatbot-c-application-code). Usare Visual Studio per esaminare il codice dell'applicazione C# di esempio per prenotazioni di hotel ed eseguire la distribuzione in un bot in Azure.
 
@@ -170,7 +168,6 @@ Per un set di esercitazioni guidate sul servizio Azure Bot, vedere la [sezione d
 [appservice-docs]: /azure/app-service/
 [architecture]: ./media/architecture-commerce-chatbot.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [botservice-docs]: /azure/bot-service/
 [cognitive-docs]: /azure/cognitive-services/
 [resiliency]: ../../resiliency/index.md

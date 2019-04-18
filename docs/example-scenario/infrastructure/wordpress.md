@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/secure-scalable-wordpress.png
-ms.openlocfilehash: 6032247dce0d090885bc560d963f1e714d91f69c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 4f347f91d5958fb83404856ec5d36d70a7ed0d19
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244632"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640091"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Sito Web WordPress altamente scalabile e sicuro
 
@@ -72,15 +72,13 @@ Il secondo flusso di lavoro riguarda il modo in cui gli autori forniscono nuovi 
 
 Le istanze di macchina virtuale in questo scenario vengono distribuite in più aree e i dati vengono replicati tra una e l'altra tramite RSYNC per il contenuto di WordPress e la replica master/slave per i cluster MariaDB.
 
-Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
-
 ### <a name="scalability"></a>Scalabilità
 
 Questo scenario usa i set di scalabilità di macchine virtuali per i due cluster dei server Web front-end in ogni area. Con i set di scalabilità, il numero di istanze di macchina virtuale che eseguono il livello applicazione front-end può essere ridimensionato automaticamente in base alle richieste dei clienti o a una pianificazione definita. Per altre informazioni, vedere [Panoramica della scalabilità automatica con i set di scalabilità di macchine virtuali di Azure][docs-vmss-autoscale].
 
 Il back-end è un cluster MariaDB in un set di disponibilità. Per altre informazioni, vedere l'[esercitazione sul cluster MariaDB][mariadb-tutorial].
 
-Per altri argomenti relativi alla scalabilità, vedere l'[elenco di controllo per la scalabilità][scalability] in Centro architetture Azure.
+Per altri argomenti di scalabilità, vedere [scalabilità checklist] [scalabilità] nel centro architettura di Azure.
 
 ### <a name="security"></a>Security
 
@@ -92,7 +90,7 @@ Per indicazioni generali sulla progettazione di scenari sicuri, vedere la [docum
 
 Insieme all'uso di più aree, alla replica dei dati e ai set di scalabilità di macchine virtuali, questo scenario usa i servizi di bilanciamento del carico di Azure. Questi componenti di rete distribuiscono il traffico alle istanze di macchina virtuale connesse e includono probe di integrità che garantiscono che il traffico venga distribuito solo alle macchine virtuali integre. Tutti questi componenti di rete vengono gestiti tramite una rete CDN. Ciò rende le risorse di rete e le applicazioni resilienti rispetto a problemi che potrebbero altrimenti interrompere il traffico e compromettere l'accesso degli utenti finali.
 
-Per indicazioni generali sulla progettazione di scenari resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
+Per indicazioni generali sulla progettazione di scenari resilienti, vedere [progettazione di applicazioni Azure affidabili](../../reliability/index.md).
 
 ## <a name="pricing"></a>Prezzi
 
@@ -112,6 +110,4 @@ Microsoft ha fornito un [profilo dei costi][pricing] preconfigurato basato sul d
 [docs-nsg]: /azure/virtual-network/security-overview
 [security]: /azure/security/
 [availability]: ../../checklist/availability.md
-[resiliency]: /azure/architecture/resiliency/
-[scalability]: /azure/architecture/checklist/scalability
 [pricing]: https://azure.com/e/a8c4809dab444c1ca4870c489fbb196b

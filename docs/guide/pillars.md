@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: d6eed98c6e224956942c45b52621ec02832be015
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243062"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639769"
 ---
 # <a name="pillars-of-software-quality"></a>Concetti fondamentali della qualità del software
 
@@ -76,8 +76,6 @@ In Azure il Contratto di servizio descrive gli impegni di Microsoft in merito a 
 
 Le applicazioni spesso dipendono da più servizi. In generale la probabilità che un servizio subisca un tempo di inattività è indipendente. Si supponga, ad esempio, che l'applicazione dipenda da due servizi, ognuno con un contratto di servizio con disponibilità del 99,9%. Il contratto di servizio composito per entrambi i servizi è pari al 99,9% &times; 99,9% &asymp; 99,8% o leggermente inferiore rispetto a ogni servizio autonomo.
 
-Usare l'[elenco di controllo della disponibilità] [ availability-checklist] per rivedere la progettazione dal punto di vista della disponibilità.
-
 ### <a name="availability-guidance"></a>Indicazioni sulla disponibilità
 
 - [Schemi progettuali per la disponibilità][availability-patterns]
@@ -104,11 +102,9 @@ Ciò premesso, è comunque necessario integrare la resilienza nell'applicazione.
 
 Quando si progetta un'applicazione resiliente, è necessario comprendere i requisiti di disponibilità. Quanto tempo di inattività è accettabile? La risposta è in parte in funzione dei costi. Quanto costa un potenziale tempo di inattività all'azienda? Quanto si deve investire per rendere l'applicazione a disponibilità elevata?
 
-Usare l'[elenco di controllo per la resilienza] [ resiliency-checklist] per rivedere la progettazione dal punto di vista della resilienza.
-
 ### <a name="resiliency-guidance"></a>Informazioni aggiuntive sulla resilienza
 
-- [Progettazione di applicazioni resilienti per Azure][resiliency]
+- [Progettazione di applicazioni Azure affidabili][resiliency]
 - [Progettare gli schemi per la resilienza][resiliency-patterns]
 - Procedure consigliate: [gestione degli errori temporanei][transient-fault-handling] e [indicazioni per la ripetizione dei tentativi per servizi specifici][retry-service-specific]
 
@@ -173,7 +169,7 @@ Usare Key Vault per proteggere i segreti e le chiavi di crittografia. Con Key Va
 
 [dr-guidance]: ../resiliency/disaster-recovery-azure-applications.md
 [identity-ref-arch]: ../reference-architectures/identity/index.md
-[resiliency]: ../resiliency/index.md
+[resiliency]: ../reliability/index.md
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
@@ -205,7 +201,5 @@ Usare Key Vault per proteggere i segreti e le chiavi di crittografia. Con Key Va
 [transient-fault-handling]: ../best-practices/transient-faults.md
 
 <!-- checklist -->
-[availability-checklist]: ../checklist/availability.md
 [devops-checklist]: ../checklist/dev-ops.md
-[resiliency-checklist]: ../checklist/resiliency.md
 [scalability-checklist]: ../checklist/scalability.md

@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: a1ec441b731ba7f2166f9115452b052ec944444f
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: eb4e65b20ec3339b633b65d2adad768e98d1bdbb
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245042"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640601"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>Iscrizione e onboarding del tenant
 
@@ -63,7 +63,7 @@ Quando un utente anonimo visita l'applicazione Surveys, visualizza due pulsanti:
 
 Questi pulsanti richiamano le azioni nella classe `AccountController`.
 
-L'azione `SignIn` restituisce **ChallegeResult**, in modo che il middleware di OpenID Connect esegua il reindirizzamento all'endpoint di autenticazione. Questa è la modalità predefinita per attivare l'autenticazione in ASP.NET Core.
+Il `SignIn` azione restituisce un **ChallengeResult**, in modo che il middleware OpenID Connect per il reindirizzamento all'endpoint di autenticazione. Questa è la modalità predefinita per attivare l'autenticazione in ASP.NET Core.
 
 ```csharp
 [AllowAnonymous]
@@ -259,7 +259,7 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 Di seguito è riportato un riepilogo dell'intero flusso di iscrizione all'applicazione Surveys:
 
 1. L'utente seleziona il pulsante **Iscriviti** .
-2. L'azione `AccountController.SignUp` restituisce un risultato in attesa di verifica.  Lo stato dell'autenticazione include il valore "signup".
+2. Il `AccountController.SignUp` azione restituisce un risultato della richiesta di verifica.  Lo stato dell'autenticazione include il valore "signup".
 3. Nell'evento `RedirectToAuthenticationEndpoint` aggiungere la richiesta `admin_consent`.
 4. Il middleware OpenID Connect esegue il reindirizzamento ad Azure AD e l'utente viene autenticato.
 5. Nell'evento `AuthenticationValidated` cercare lo stato "signup".

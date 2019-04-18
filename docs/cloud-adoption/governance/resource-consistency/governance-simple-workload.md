@@ -7,12 +7,12 @@ ms.custom: governance
 description: Guida alla configurazione dei controlli della governance di Azure per consentire all'utente di distribuire un carico di lavoro semplice
 author: petertaylor9999
 ms.date: 02/11/2019
-ms.openlocfilehash: 0b6f16ee30ce3af8a533b6e153fbe318252c23e7
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 6bf2f15f706140955df29f7f372068c80ce1ad21
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246432"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640584"
 ---
 # <a name="governance-design-for-a-simple-workload"></a>progettazione della governance per un carico di lavoro semplice
 
@@ -79,7 +79,7 @@ Si noti che in questo esempio il **proprietario dell'account** ha assegnato il r
 Il ruolo di **proprietario** predefinito concede tutte le autorizzazioni al **proprietario del carico di lavoro** nell'ambito della sottoscrizione.
 
 > [!IMPORTANT]
-> Il **proprietario dell'account** Azure è responsabile dell'impegno finanziario associato alla sottoscrizione, ma il **proprietario del carico di lavoro** ha le stesse autorizzazioni. Il **proprietario dell'account** deve considerare il **proprietario del carico di lavoro** affidabile per la distribuzione delle risorse che rientrano nel budget della sottoscrizione.
+> Azure **proprietario dell'account** è responsabile per l'impegno finanziario iniziale associato alla sottoscrizione, ma la **proprietario del carico di lavoro** ha le stesse autorizzazioni. Il **proprietario dell'account** deve considerare il **proprietario del carico di lavoro** affidabile per la distribuzione delle risorse che rientrano nel budget della sottoscrizione.
 
 Il livello successivo dell'ambito di gestione è il livello **risorsa di gruppo**. Un gruppo di risorse è un contenitore logico per le risorse. Le operazioni a livello di gruppo di risorse si applicano a tutte le risorse di un gruppo. È anche importante notare che le autorizzazioni per ogni utente vengono ereditate dal livello superiore successivo, a meno che non vengano esplicitamente modificate in quell'ambito.
 

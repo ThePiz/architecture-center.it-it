@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 281a2e9995d1d04aa9688e811e0d4ff8088fe30b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: fdad7e9241ddd9c11c18e31a1fd2da5a163d05ac
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249706"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640516"
 ---
 # <a name="natural-language-processing"></a>Elaborazione del linguaggio naturale
 
@@ -24,7 +24,7 @@ L'elaborazione del linguaggio naturale (NLP, Natural Language Processing) viene 
 L'elaborazione del linguaggio naturale può essere usata per classificare i documenti, ad esempio per etichettarli come sensibili o indesiderati. L'output dell'elaborazione del linguaggio naturale può essere usato per attività successive di elaborazione o ricerca. Un altro possibile uso è quello di fornire una sintesi di un documento identificando le entità presenti nel testo. Queste entità possono essere usate anche per assegnare tag ai documenti usando parole chiave, in modo da facilitarne la ricerca e il recupero in base al contenuto. Le entità possono essere combinate in argomenti, con informazioni di riepilogo che descrivono gli argomenti importanti presenti in ogni documento. Gli argomenti rilevati possono essere usati per classificare i documenti e facilitarne l'esplorazione o per enumerare i documenti correlati in base a un argomento selezionato. Un altro uso dell'elaborazione del linguaggio naturale consiste nell'assegnare un punteggio al testo per valutare il tono positivo o negativo di un documento, ovvero il relativo sentiment. Queste soluzioni d'uso sfruttano molte tecniche adottate nell'elaborazione del linguaggio naturale, ad esempio:
 
 - **Tokenizer**. Suddivisione del testo in parole o combinazioni di parole.
-- **Stemming e lemmatizzazione**. Normalizzazione delle parole in modo da consentire l'associazione delle diverse forme alla parola canonica con lo stesso significato. Ad esempio, "avuto" e "ha" sono associate ad "avere".
+- **Stemming e lemmatizzazione**. Normalizzazione delle parole in modo da eseguire il mapping di diverse forme alla parola canonica con lo stesso significato. Ad esempio, "avuto" e "ha" sono associate ad "avere".
 - **Estrazione di entità**. Identificazione di argomenti nel testo.
 - **Rilevamento delle parti del discorso**. Identificazione delle parti del testo come verbo, nome, participio, sintagma verbale e così via.
 - **Rilevamento dei limiti delle frasi**. Rilevamento di frasi intere all'interno dei paragrafi di testo.

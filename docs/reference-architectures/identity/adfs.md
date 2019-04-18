@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 22a2a2042c85e70d0d5a523c9ecf72395a9e774c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 873b6a86da14e00d0a537f910d10922444cc1ded
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244392"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640737"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Estendere Active Directory Federation Services in Azure
 
@@ -126,7 +126,7 @@ Pubblicare le applicazioni Web dell'organizzazione e renderle disponibili ai par
 
 AD FS supporta il potenziamento e la trasformazione dei token. Azure Active Directory non offre questa funzionalità. Con AD FS, quando si configurano le relazioni di trust, è possibile:
 
-- Configurare le trasformazioni delle attestazioni per le regole di autorizzazione. È ad esempio possibile eseguire il mapping di sicurezza del gruppo da una rappresentazione usata da un'organizzazione partner non Microsoft a un elemento che può autorizzare il servizio di Directory Active Directory nell'organizzazione.
+- Configurare le trasformazioni delle attestazioni per le regole di autorizzazione. Ad esempio, è possibile eseguire il mapping di sicurezza del gruppo da una rappresentazione usata da un'organizzazione partner non Microsoft in modo che Active Directory DS può essere autorizzato all'interno dell'organizzazione.
 - Trasformare le attestazioni da un formato a un altro. È ad esempio possibile eseguire il mapping da SAML 2.0 a SAML 1.1 se l'applicazione supporta solo attestazioni SAML 1.1.
 
 ### <a name="ad-fs-monitoring"></a>Monitoraggio AD FS

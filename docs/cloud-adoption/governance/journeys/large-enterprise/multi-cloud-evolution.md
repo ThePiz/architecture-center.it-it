@@ -1,20 +1,20 @@
 ---
-title: 'CAF: Grandi imprese - Evoluzione multi-cloud'
+title: 'CAF: Azienda di grandi dimensioni – evoluzione di multi-cloud'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Grandi imprese - Evoluzione multi-cloud
+description: Azienda di grandi dimensioni – evoluzione di multi-cloud
 author: BrianBlanchard
-ms.openlocfilehash: 5ef29aa523c04ff93b2d4f983482f94654a4a039
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 62a2fdd6e340c96494354f4f0cf2f78ab572c251
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901811"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641145"
 ---
-# <a name="large-enterprise-multi-cloud-evolution"></a>Grandi imprese: Evoluzione multi-cloud
+# <a name="large-enterprise-multi-cloud-evolution"></a>Grandi imprese: Evoluzione di Multi-cloud
 
 ## <a name="evolution-of-the-narrative"></a>Evoluzione dello scenario
 
@@ -58,7 +58,7 @@ Le modifiche ai criteri indicate di seguito contribuiranno a mitigare i nuovi ri
 
 ## <a name="evolution-of-the-best-practices"></a>Evoluzione delle procedure consigliate
 
-Questa sezione dell'articolo approfondisce la progettazione dell'MVP per la governance in modo da includere nuovi criteri di Azure e un'implementazione di Gestione costi di Azure. Insieme, queste due modifiche di progettazione riusciranno a soddisfare le nuove definizioni dei criteri aziendali.
+Questa sezione dell'articolo sviluppa l'MVP della governance, in modo da includere nuovi criteri di Azure e un'implementazione di Gestione costi di Azure. Insieme, queste due modifiche di progettazione riusciranno a soddisfare le nuove definizioni dei criteri aziendali.
 
 1. Connettere le reti - Operazione eseguita dal team responsabile di sicurezza IT e rete, supportata dalla governance
     1. L'aggiunta di una connessione dal provider MPLS/linea dedicata al nuovo cloud consentirà di integrare le reti. L'aggiunta di tabelle di routing e di configurazioni del firewall consentirà di controllare l'accesso e il traffico tra gli ambienti.
@@ -82,7 +82,7 @@ Con la maggiore adozione di soluzioni multi-cloud, l'evoluzione della progettazi
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per molte grandi imprese, le discipline della governance del cloud possono rappresentare ostacoli all'adozione. L'articolo successivo propone alcune considerazioni conclusive sull'importanza di fare della governance uno sport di squadra, al fine di garantire un successo a lungo termine nel cloud.
+In molte aziende di grandi dimensioni, le cinque discipline di Governance Cloud può essere blockers all'adozione. L'articolo successivo contiene alcune idee su come rendere governance sport un team aggiuntivi al fine di garantire un successo a lungo termine nel cloud.
 
 > [!div class="nextstepaction"]
 > [Più livelli di governance](./multiple-layers-of-governance.md)

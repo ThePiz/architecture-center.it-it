@@ -8,10 +8,10 @@ ms.date: 02/11/2019
 description: Azienda di grandi dimensioni – procedure consigliate illustrate
 author: BrianBlanchard
 ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068991"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>Grandi imprese: Spiegazione delle procedure consigliate
@@ -102,12 +102,12 @@ Se uno qualsiasi dei modelli scelti in questo percorso di governance non è conf
 
 - [Modelli di crittografia](../../../decision-guides/encryption/overview.md)
 - [Modelli di identità](../../../decision-guides/identity/overview.md)
-- [Registrazione e i modelli di report](../../../decision-guides/log-and-report/overview.md)
+- [Modelli di registrazione e creazione di report](../../../decision-guides/log-and-report/overview.md)
 - [Modelli di imposizione dei criteri](../../../decision-guides/policy-enforcement/overview.md)
 - [Modelli di coerenza delle risorse](../../../decision-guides/resource-consistency/overview.md)
-- [Modelli di assegnazione di tag di risorse](../../../decision-guides/resource-tagging/overview.md)
-- [Modelli di software Defined Networking](../../../decision-guides/software-defined-network/overview.md)
-- [Schemi progettuali di sottoscrizione](../../../decision-guides/subscriptions/overview.md)
+- [Modelli di assegnazione di tag alle risorse](../../../decision-guides/resource-tagging/overview.md)
+- [Modelli di reti definite dal software](../../../decision-guides/software-defined-network/overview.md)
+- [Modelli di progettazione delle sottoscrizioni](../../../decision-guides/subscriptions/overview.md)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -116,4 +116,4 @@ Dopo aver implementato queste linee guida, ogni team di adozione del cloud può 
 Entrambi i team useranno gli indicatori di tolleranza per identificare la successiva evoluzione necessaria per continuare a supportare l'adozione del cloud. Il passaggio successivo per l'azienda in questo percorso è l'evoluzione della baseline della governance per supportare le applicazioni con requisiti di autenticazione a più fattori legacy o di terze parti.
 
 > [!div class="nextstepaction"]
-> [Evoluzione di Baseline di identità](./identity-baseline-evolution.md)
+> [Evoluzione della baseline di identità](./identity-baseline-evolution.md)

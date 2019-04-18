@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat
-ms.openlocfilehash: 5219d08fce5cf09b075b6d7adfb73970e007ded4
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 34c21f4b5356dc0acbd5c2c85124300a6ed13c99
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248676"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640499"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Monitoraggio delle applicazioni Web in Azure
 
@@ -78,7 +78,7 @@ Questo scenario è in gran parte incentrato sulle soluzioni PaaS per il monitora
 
 Application Insights prevede [limiti][app-insights-limits] per il numero di richieste al secondo che possono essere elaborate. Se si supera il limite di richieste, potrebbe verificarsi la limitazione dei messaggi. Per evitare tale limitazione, implementare [filtri][message-filtering] o il [campionamento][message-sampling] per ridurre la velocità dati.
 
-Le considerazioni sulla disponibilità elevata per l'app eseguita, tuttavia, sono responsabilità dello sviluppatore. Per informazioni sulla scalabilità, ad esempio, vedere la sezione [Considerazioni sulla scalabilità](#scalability-considerations) nell'architettura di riferimento dell'applicazione Web di base. Dopo la distribuzione di un'app, è possibile configurare i test per [monitorarne la disponibilità][monitor its availability] usando Application Insights.
+Le considerazioni sulla disponibilità elevata per l'app eseguita, tuttavia, sono responsabilità dello sviluppatore. Per informazioni sulla scalabilità, ad esempio, vedere la sezione [Considerazioni sulla scalabilità](./basic-web-app.md#scalability-considerations) nell'architettura di riferimento dell'applicazione Web di base. Dopo la distribuzione di un'app, è possibile configurare i test per [monitorarne la disponibilità][monitor its availability] usando Application Insights.
 
 ### <a name="security"></a>Security
 
@@ -103,7 +103,7 @@ I dati di telemetria da Application Insights vengono inviati al portale di Azure
 
 Dopo la distribuzione, è possibile osservare un'istanza di [Live Metrics Stream][Live Metrics Stream] per gli indicatori delle prestazioni. Questi dati non vengono archiviati, perché si visualizzano le metriche in tempo reale, ma i dati di telemetria possono essere raccolti e analizzati in un secondo momento. Non sono previste spese per i dati di Live Stream.
 
-La fatturazione di Log Analytics si basa su ogni gigabyte (GB) di dati inseriti nel servizio. I primi 5 GB di dati inseriti nel servizio Azure Log Analytics ogni mese sono gratuiti e i dati vengono conservati senza alcun addebito per i primi 31 giorni nell'area di lavoro di Log Analytics.
+La fatturazione di Log Analytics si basa su ogni gigabyte (GB) di dati inseriti nel servizio. I primi 5 GB di dati inseriti nel servizio Azure Log Analytics ogni mese sono gratuiti e i dati vengono conservati senza alcun addebito per i primi 31 giorni nell'area di lavoro Log Analytics.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

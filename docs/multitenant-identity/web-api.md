@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: a895276a77c111e660f29397d250373bee53f29e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: fd0ac254604470ba51ea00537490cfb22b224e80
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480769"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640176"
 ---
 # <a name="secure-a-backend-web-api"></a>Proteggere un'API Web back-end
 
@@ -47,7 +47,7 @@ L'API Web non consente le richieste anonime, quindi l'app Web deve autenticarsi 
 Esistono due principali approcci possibili:
 
 * Identità utente delegato. L'applicazione Web si autentica con l'identità utente.
-* Identità dell'applicazione. L'applicazione Web si autentica con l'ID client tramite il flusso di credenziali client OAuth2.
+* Identità dell'applicazione. L'applicazione web si autentica con l'ID client, usando il flusso di credenziali client OAuth 2.
 
 L'applicazione Tailspin implementa l'identità utente delegato. Le principali differenze sono le seguenti:
 
@@ -116,7 +116,7 @@ Ecco i diversi parametri necessari:
 * `authorizationCode`. Il codice di autorizzazione restituito da IDP.
 * `clientId`. L'ID client dell'applicazione Web.
 * `clientSecret`. Chiave privata client dell'applicazione Web.
-* `redirectUri`. L'URI di reindirizzamento impostato per OpenID Connect. L'IDP richiama qui con il token.
+* `redirectUri`. URI che è impostato per OpenID Connect di reindirizzamento. L'IDP richiama qui con il token.
 * `resourceID`. L'URI ID app dell'API Web creato al momento della registrazione dell'API Web in Azure AD
 * `tokenCache`. Un oggetto che memorizza nella cache i token di accesso. Vedere l'articolo sulla [memorizzazione nella cache dei token].
 
@@ -230,7 +230,7 @@ Come illustrato in questo esempio, è possibile anche usare l'evento **TokenVali
 
 Per una discussione generale sulle autorizzazioni, vedere [Autorizzazione basata sui ruoli e sulle risorse][Authorization].
 
-Il middleware JwtBearer gestisce le risposte di autorizzazione. Ad esempio, per limitare un'azione del controller agli utenti autenticati, usare l'attributo **[Authorize]** e specificare  **JwtBearerDefaults.AuthenticationScheme** come schema di autenticazione:
+Il middleware JwtBearer gestisce le risposte di autorizzazione. Ad esempio, per limitare un'azione del controller agli utenti autenticati, usare il **[Authorize]** dell'attributo e specificare **jwtbearerdefaults. authenticationScheme** come schema di autenticazione:
 
 ```csharp
 [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

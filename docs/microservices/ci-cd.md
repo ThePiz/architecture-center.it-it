@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: f7f3f3d48087db51c40f134e3e4cf11ec58501bb
-ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
+ms.openlocfilehash: c52ff3d0a330f564e5f7e9b0b07f0ba84c328c8b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59533091"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639785"
 ---
 # <a name="cicd-for-microservices-architectures"></a>Integrazione continua/recapito Continuo per le architetture di microservizi
 
@@ -64,7 +64,7 @@ Per ottenere una velocità elevata, la pipeline di versione deve essere automati
 
 - **Gestione del rilascio**. Ogni team deve essere in grado di distribuire un aggiornamento nell'ambiente di produzione. Ciò non significa assegnare a ogni membro del team le autorizzazioni necessarie a tale scopo. Un ruolo di responsabile del rilascio centralizzato, tuttavia, può ridurre la velocità delle distribuzioni.
 
-    **Migitation**: Maggiore è il livello di automazione e affidabilità del processo CI/CD, minore sarà l'esigenza di un'autorità centrale. È tuttavia possibile usare criteri diversi per il rilascio degli aggiornamenti di funzionalità principali e delle correzioni di bug secondarie. In corso decentralizzato non significa che zero governance.
+    **Mitigazione**: Maggiore è il livello di automazione e affidabilità del processo CI/CD, minore sarà l'esigenza di un'autorità centrale. È tuttavia possibile usare criteri diversi per il rilascio degli aggiornamenti di funzionalità principali e delle correzioni di bug secondarie. In corso decentralizzato non significa che zero governance.
 
 - **Aggiornamenti dei servizi**. L'aggiornamento di un servizio a una nuova versione non dovrà comportare interruzioni per gli altri servizi che dipendono da esso.
 
@@ -74,7 +74,7 @@ Per ottenere una velocità elevata, la pipeline di versione deve essere automati
 
 Prima di creare un flusso di lavoro CI/CD, è necessario sapere come verrà strutturata e gestita la base di codice.
 
-- I team lavorano in repository separati o in un singolo repository?
+- I team lavorano in archivi separati o in un monorepo (unico repository)?
 - Qual è la strategia per la creazione dei rami?
 - Chi può eseguire il push del codice nell'ambiente di produzione? Esiste un ruolo di responsabile del rilascio?
 

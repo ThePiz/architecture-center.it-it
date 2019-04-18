@@ -7,16 +7,16 @@ ms.date: 12/07/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 9b931337f7f0e5dc58f83701271c7d3491af5bfd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: f3d15d65aeab41977e6d30b8141baaa956da29d3
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248746"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640771"
 ---
 # <a name="publisher-subscriber-pattern"></a>Modello di pubblicazione/sottoscrizione
 
-Abilitare un'applicazione all'annuncio di eventi a più consumer interessati in modalità asincrona, senza accoppiamento di mittenti e destinatari.
+Abilitare un'applicazione a cui annunciare gli eventi a più consumer interessate in modo asincrono, senza l'accoppiamento tra i mittenti ai destinatari.
 
 **Detto anche**: messaggistica pub/sub
 
@@ -88,7 +88,7 @@ Prima di decidere come implementare questo modello, considerare quanto segue:
 
 - **Messaggi ripetuti.** Lo stesso messaggio potrebbe essere inviato più volte. Ad esempio, l'invio potrebbe non riuscire dopo la pubblicazione di un messaggio. Potrebbe quindi avviarsi una nuova istanza del mittente, ripetendo il messaggio. L'infrastruttura di messaggistica deve implementare il rilevamento e la rimozione dei messaggi duplicati, nota anche come deduplicazione, in base ai loro ID per garantire che siano recapitati solo una volta.
 
-- **Scadenza dei messaggi.** Un messaggio potrebbe avere una durata limitata. Se non viene elaborato entro questo periodo di tempo, potrebbe non essere più rilevante e deve essere eliminato. Un mittente può specificare una scadenza come parte dei dati nel messaggio. Un ricevitore può esaminare queste informazioni prima di decidere se eseguire la logica di business associata al messaggio.
+- **Scadenza dei messaggi.** Un messaggio potrebbe avere una durata limitata. Se non viene elaborato entro questo periodo di tempo, potrebbe non essere più rilevante e deve essere eliminato. Un mittente può specificare un'ora di scadenza come parte dei dati nel messaggio. Un ricevitore può esaminare queste informazioni prima di decidere se eseguire la logica di business associata al messaggio.
 
 - **Pianificazione dei messaggi.** Un messaggio potrebbe essere temporaneamente bloccato e non deve essere elaborato fino a una data e ora specifiche. Il messaggio non deve essere disponibile per un ricevitore fino a quel momento.
 
@@ -130,4 +130,4 @@ Per l'implementazione di questo modello possono risultare utili i modelli e le i
 
 - [Modello osservatore](https://en.wikipedia.org/wiki/Observer_pattern). Il modello di pubblicazione/sottoscrizione si basa sul modello osservatore, separando i soggetti dagli osservatori tramite messaggistica asincrona.
 
-- [Modello del broker di messaggi](https://en.wikipedia.org/wiki/Message_broker). Molti sottosistemi di messaggistica che supportano il modello di pubblicazione/sottoscrizione sono implementati tramite un broker messaggi.
+- [Modello del broker di messaggi](https://en.wikipedia.org/wiki/Message_broker). Molti sottosistemi di messaggistica che supportano la pubblicazione-sottoscrizione modello vengono implementate tramite un broker messaggi.

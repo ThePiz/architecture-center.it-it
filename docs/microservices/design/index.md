@@ -8,10 +8,10 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
 ms.openlocfilehash: 17e275e5b5f45233f7467192402cb28fce35c57b
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068906"
 ---
 # <a name="designing-a-microservices-architecture"></a>Progettazione di un'architettura di microservizi
@@ -21,10 +21,10 @@ I microservizi sono diventati uno stile di architettura diffuso per la creazione
 In questo set di articoli viene analizzato come creare ed eseguire un'architettura di microservizi in Azure. Gli argomenti includono:
 
 - [Comunicazione tra i servizi](./interservice-communication.md)
-- [Progettazione API](./api-design.md)
+- [Progettazione di API](./api-design.md)
 - [Gateway API](./gateway.md)
 - [Considerazioni sui dati](./data-considerations.md)
-- [Modelli di progettazione](./patterns.md)
+- [Schemi progettuali](./patterns.md)
 
 ## <a name="prerequisites"></a>Prerequisiti
 

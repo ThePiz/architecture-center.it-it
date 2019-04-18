@@ -3,25 +3,6 @@
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
-    <a href="./ai/newsfeed-ingestion.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./ai/media/mass-ingestion-newsfeeds-architecture.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Inserimento e analisi di massa di feed di notizie in Azure</h3>
-                        <p>Creare una pipeline per l'inserimento e l'analisi di testo, immagini, sentiment e altri dati dei feed di notizie RSS usando solo i servizi Azure, tra cui Azure Cosmos DB e Servizi cognitivi di Azure.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
     <a href="./ai/commerce-chatbot.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
@@ -71,7 +52,26 @@
                     </div>
                     <div class="cardText">
                         <h3>Consigli cinematografici in Azure</h3>
-                        <p>Usare Machine Learning per automatizzare i consigli cinematografici, sui prodotti e di altro tipo usando Machine Learning e Azure Data Science Virtual Machine (DSVM) per eseguire il training di un modello in Azure.</p>
+                        <p>Usare Machine Learning per automatizzare i consigli sui film, sui prodotti e di altro tipo, usando Machine Learning e Azure Data Science Virtual Machine (DSVM) per eseguire il training di un modello in Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/newsfeed-ingestion.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./ai/media/mass-ingestion-newsfeeds-architecture.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Inserimento e analisi di massa di feed di notizie in Azure</h3>
+                        <p>Creare una pipeline per l'inserimento e l'analisi di testo, immagini, sentiment e altri dati dei feed di notizie RSS usando solo i servizi Azure, tra cui Azure Cosmos DB e Servizi cognitivi di Azure.</p>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="application-scenarios"></a>Scenari applicativi
 
@@ -218,6 +217,25 @@
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
+    <a href="./apps/jenkins.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./apps/media/architecture-jenkins.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Eseguire un server Jenkins in Azure</h3>
+                        <p>Architettura consigliata che illustra come distribuire e gestire un server Jenkins scalabile di livello aziendale in Azure, con la protezione dell'accesso Single Sign-On (SSO).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
     <a href="./apps/sap-dev-test.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
@@ -256,7 +274,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="data-scenarios"></a>Scenari di dati
 
@@ -376,7 +393,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="infrastructure-scenarios"></a>Scenari di infrastrutture
 
@@ -534,4 +550,3 @@
     </a>
 </li>
 </ul>
-

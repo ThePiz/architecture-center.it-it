@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19, microservices
-ms.openlocfilehash: cc72f61003f4146fd65e501feebda0c0d1d27993
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 87a9dd31b6d935dd11a5a2a2950b6de11f337741
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245092"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639972"
 ---
 # <a name="microservices-architecture-style"></a>Stile di architettura di microservizi
 
@@ -71,7 +71,7 @@ Prendere in considerazione questo stile di architettura per:
 
 - **Team focalizzati di piccole dimensioni**. I team possono concentrarsi su un servizio. L'ambito più ridotto di ciascun servizio rende la base di codici più facile da comprendere ed è più semplice per i nuovi membri del team essere immediatamente operativi.
 
-- **Isolamento degli errori**. Se un servizio smette di funzionare, il problema non influirà sull'intera applicazione. Ciò non implica tuttavia che la resilienza sia assicurata senza mettere in atto misure adeguate. È necessario seguire gli schemi progettuali e le procedure consigliate per la resilienza. Vedere [Progettazione di applicazioni resilienti per Azure][resiliency-overview].
+- **Isolamento degli errori**. Se un servizio smette di funzionare, il problema non influirà sull'intera applicazione. Ciò non implica tuttavia che la resilienza sia assicurata senza mettere in atto misure adeguate. È necessario seguire gli schemi progettuali e le procedure consigliate per la resilienza. Visualizzare [progettazione di applicazioni Azure affidabili][resiliency-overview].
 
 - **Stack di tecnologie miste**. I team possono scegliere la tecnologia che meglio si adatta ai servizi in uso.
 
@@ -113,7 +113,7 @@ Prendere in considerazione questo stile di architettura per:
 
 - I servizi dovrebbero avere un regime di controllo libero e un'elevata coesione funzionale. Le funzioni che potrebbero essere modificate contemporaneamente devono essere inserite in pacchetto e distribuite insieme. Se si trovano in servizi separati, tali servizi finiranno per risultare strettamente accoppiati, perché una modifica in un servizio richiederà l'aggiornamento dell'altro servizio. Le comunicazioni eccessivamente "frammentate" tra due servizi possono essere un sintomo di accoppiamento stretto e bassa coesione.
 
-- Isolare gli errori. Usare strategie di resilienza per impedire che gli errori all'interno di un servizio si propaghino. Vedere [Resiliency patterns][resiliency-patterns] (Modelli di resilienza) e [Progettazione di applicazioni resilienti][resiliency-overview].
+- Isolare gli errori. Usare strategie di resilienza per impedire che gli errori all'interno di un servizio si propaghino. Visualizzare [modelli di resilienza] [ resiliency-patterns] e [progettazione di applicazioni affidabili][resiliency-overview].
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -121,5 +121,5 @@ Per indicazioni dettagliate per la creazione di un'architettura di microservizi 
 
 <!-- links -->
 
-[resiliency-overview]: ../../resiliency/index.md
+[resiliency-overview]: ../../reliability/index.md
 [resiliency-patterns]: ../../patterns/category/resiliency.md

@@ -1,17 +1,17 @@
 ---
 title: Distribuire in modo condizionale una risorsa in un modello di Azure Resource Manager
-description: Illustra come estendere le funzionalità dei modelli di Azure Resource Manager per la distribuzione condizionale di una risorsa in base al valore di un parametro.
+description: Viene descritto come estendere le funzionalità dei modelli di Azure Resource Manager per distribuire in modo condizionale una risorsa in base al valore di un parametro.
 author: petertay
 ms.date: 10/30/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f3d22c6437cdabcd93a781ecf7c99db5a570d7cf
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 437490b2998cfbcde4df13570831e34a776e7afe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243802"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640210"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>Distribuire in modo condizionale una risorsa in un modello di Azure Resource Manager
 

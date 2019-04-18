@@ -8,12 +8,12 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: checklist
-ms.openlocfilehash: 1a000c811cce57cc9b1fcda84d0eb7e2a1312aca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b08884d2a39550b56b4c1b52a418f6607eda00fe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243382"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640720"
 ---
 # <a name="devops-checklist"></a>Elenco di controllo DevOps
 
@@ -91,7 +91,7 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 **Implementare strategie di gestione dei rilasci per ridurre il rischio di distribuzione.** La distribuzione degli aggiornamenti di un'applicazione in produzione comporta sempre dei rischi. Per ridurre al minimo questi rischi, adottare strategie come ad esempio le [versioni canary][ canary-release] o le [distribuzioni di tipo blu-verde][blue-green] per distribuire gli aggiornamenti per un subset di utenti. Verificare che l'aggiornamento funzioni come previsto e distribuirlo nel resto del sistema.
 
-**Documentare tutte le modifiche.** Aggiornamenti e modifiche di configurazione di entità minore possono generare confusione e conflitti di versioni. Tenere sempre traccia di tutte le modifiche, indipendentemente dalla loro entità. Registrare qualsiasi modifica, incluse le patch applicate e le modifiche ai criteri e alle configurazioni. Non includere dati sensibili in questi registri. Ad esempio, registrare l'aggiornamento di credenziali e l'autore della modifica, ma non le credenziali aggiornate. Il record delle modifiche deve essere visibile all'intero team.
+**Documentare tutte le modifiche.** Aggiornamenti e modifiche di configurazione di entità minore possono generare confusione e conflitti di versioni. Tenere sempre traccia di tutte le modifiche, indipendentemente dalla loro entità. Registrare qualsiasi modifica, incluse le patch applicate e le modifiche ai criteri e alle configurazioni. Non includere dati sensibili in questi log. Ad esempio, registrare l'aggiornamento di credenziali e l'autore della modifica, ma non le credenziali aggiornate. Il record delle modifiche deve essere visibile all'intero team.
 
 **Automatizzare le distribuzioni.** Automatizzare tutte le distribuzioni e predisporre i sistemi in modo che possano rilevare eventuali problemi durante l'implementazione. Adottare un processo di mitigazione dei rischi per preservare il codice esistente e i dati nell'ambiente di produzione, prima che l'aggiornamento li sostituisca in tutte le istanze di produzione. Disporre di una procedura automatica per eseguire il roll forward delle correzioni o il rollback delle modifiche.
 
@@ -101,7 +101,7 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 **Rendere i sistemi osservabili.** Il team addetto alle operazioni deve sempre avere massima visibilità sull'integrità e sullo stato di un sistema o un servizio. Configurare endpoint di integrità esterni per monitorare lo stato e verificare che le applicazioni siano codificate per instrumentare le metriche delle operazioni. Usare uno schema comune e coerente che consenta di correlare gli eventi tra i sistemi. [Diagnostica di Azure][azure-diagnostics] e [Application Insights][ app-insights] rappresentano i metodi standard per rilevare l'integrità e lo stato delle risorse di Azure. Anche Microsoft [Operations Management Suite] [oms] offre monitoraggio e gestione centralizzati per soluzioni cloud o ibride.
 
-**Aggregare e correlare i registri e le metriche**. Un sistema di telemetria correttamente instrumentato garantisce una grande quantità di dati delle prestazioni non elaborati e log eventi. Verificare che i dati di telemetria e log vengano elaborati e correlati in un breve periodo di tempo, in modo che il personale addetto alle operazioni abbia sempre un quadro aggiornato dell'integrità del sistema. Organizzare e visualizzare i dati in modi che offrano una visuale uniforme di eventuali problemi, in modo che, quando possibile, la correlazione tra gli eventi sia chiaramente deducibile.
+**Aggregare e correlare i log e le metriche**. Un sistema di telemetria correttamente instrumentato garantisce una grande quantità di dati delle prestazioni non elaborati e log eventi. Verificare che i dati di telemetria e log vengano elaborati e correlati in un breve periodo di tempo, in modo che il personale addetto alle operazioni abbia sempre un quadro aggiornato dell'integrità del sistema. Organizzare e visualizzare i dati in modi che offrano una visuale uniforme di eventuali problemi, in modo che, quando possibile, la correlazione tra gli eventi sia chiaramente deducibile.
 
 > Consultare i criteri di conservazione aziendali per conoscere i requisiti relativi alla modalità di elaborazione dei dati e alla durata di archiviazione.
 
@@ -119,7 +119,7 @@ Dopo il rilascio iniziale, è consigliabile eseguire test delle prestazioni e de
 
 I contenitori creano anche un livello di astrazione tra l'applicazione e il sistema operativo sottostante, garantendo coerenza tra gli ambienti. Questa astrazione può anche isolare un contenitore da altri processi o applicazioni in esecuzione in un host.
 
-**Implementare resilienza e riparazione automatica.** La resilienza è la capacità di recupero da errori di un'applicazione. Alcune strategie per la resilienza includono nuovi tentativi di risoluzione degli errori temporanei e il failover a un'istanza secondaria o addirittura un'altra regione. Per altre informazioni, vedere [Progettazione di applicazioni resilienti per Azure][resiliency]. Instrumentare le applicazioni in modo che i problemi vengano segnalati immediatamente per gestire interruzioni o altri errori di sistema.
+**Implementare resilienza e riparazione automatica.** La resilienza è la capacità di recupero da errori di un'applicazione. Alcune strategie per la resilienza includono nuovi tentativi di risoluzione degli errori temporanei e il failover a un'istanza secondaria o addirittura un'altra regione. Per altre informazioni, vedere [progettazione di applicazioni Azure affidabili](../reliability/index.md) . Instrumentare le applicazioni in modo che i problemi vengano segnalati immediatamente per gestire interruzioni o altri errori di sistema.
 
 **Predisporre un manuale operativo.** Un manuale operativo o *runbook* documenta le procedure e le informazioni di gestione necessarie per la gestione di un sistema da parte del personale addetto alle operazioni. Documentare anche eventuali scenari operativi e piani di mitigazione dei rischi che potrebbero entrare in caso di errore o altre interruzioni del servizio. Creare questa documentazione durante il processo di sviluppo e mantenerla sempre aggiornata. Si tratta di un documento in evoluzione che deve essere periodicamente esaminato, testato e migliorato.
 
@@ -158,7 +158,6 @@ Per altre informazioni su DevOps, vedere l'[introduzione a DevOps][what-is-devop
 [feature-toggles]: https://www.martinfowler.com/articles/feature-toggles.html
 [oms]: https://www.microsoft.com/cloud-platform/operations-management-suite
 [rbac]: /azure/active-directory/role-based-access-control-what-is
-[resiliency]: ../resiliency/index.md
 [resource-manager]: /azure/azure-resource-manager/
 [trunk-based]: https://trunkbaseddevelopment.com/
 [what-is-devops]: https://www.visualstudio.com/learn/what-is-devops/

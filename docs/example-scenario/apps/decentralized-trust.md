@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: csa-team
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-decentralized-trust.png
-ms.openlocfilehash: a3c497f91b3861bf02f05981ee92e578a22a14ca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 3bc75e59a4d391c74a0e606f9670c88509a3375b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246282"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640448"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Relazione di trust decentralizzata tra le banche in Azure
 
@@ -72,8 +72,6 @@ Per altri scenari diversi o estesi, possono insorgere problematiche come la priv
 
 [Monitoraggio di Azure][monitor] viene usato per monitorare costantemente la rete di blockchain per poter rilevare eventuali problemi e garantire la disponibilità. Dopo il completamento della distribuzione del modello di soluzione blockchain usato in questo scenario, si riceverà un collegamento a un dashboard di monitoraggio personalizzato basato su Monitoraggio di Azure. Il dashboard mostra i nodi che segnalano heartbeat nei 30 minuti precedenti, nonché altri utili statistiche.
 
-Per altri argomenti relativi alla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
-
 ### <a name="scalability"></a>Scalabilità
 
 Un problema comune per la blockchain è il numero di transazioni che può includere in un periodo di tempo prestabilito. Questo scenario usa Proof-of-Authority in cui tale scalabilità può essere gestita meglio che in Proof-of-Work. Nelle reti basate su Proof-of-Authority, i partecipanti al consenso sono noti e gestiti, quindi sono più adatte a una blockchain privata per un consorzio di organizzazioni che si conoscono tra loro. I parametri come il tempo medio di blocco, le transazioni al minuto e il consumo delle risorse di calcolo possono essere monitorati con facilità tramite il dashboard personalizzato. Le risorse possono quindi essere modificate di conseguenza in base ai requisiti di scalabilità.
@@ -90,7 +88,7 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 La blockchain Ethereum PoA può offrire di per sé un certo livello di resilienza perché i nodi dei validator possono essere distribuiti in aree diverse. Azure consente di eseguire le distribuzioni in più di 54 aree in tutto il mondo. Una blockchain come quella usata in questo scenario offre possibilità di cooperazione uniche e sempre nuove per aumentare la resilienza. La resilienza della rete non viene fornita solo per una singola entità centralizzata, ma per tutti i membri del consorzio. Una blockchain basata su Proof-of-Authority consente di pianificare e valutare ancora meglio la resilienza della rete.
 
-Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
+Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [progettazione di applicazioni Azure affidabili](../../reliability/index.md).
 
 ## <a name="pricing"></a>Prezzi
 
@@ -104,7 +102,7 @@ Sono disponibili tre profili di costo di esempio, basati sul numero di istanze d
 
 I prezzi indicati in precedenza sono per un membro del consorzio che deve avviare o aggiungere una rete di blockchain. In genere, in un consorzio in cui sono coinvolte più aziende o organizzazioni ogni membro otterrà la propria sottoscrizione di Azure.
 
-## <a name="next-steps"></a>Passaggi successivi
+## <a name="next-steps"></a>Fasi successive
 
 Per un esempio di questo scenario, distribuire l'[applicazione demo per blockchain Ethereum PoA][deploy] in Azure. Esaminare quindi il [file README del codice sorgente dello scenario][source].
 
@@ -120,8 +118,6 @@ Per altre informazioni sull'uso del modello di soluzione Ethereum Proof-of-Autho
 [deploy]: https://portal.azure.com/?pub_source=email&pub_status=success#create/microsoft-azure-blockchain.azure-blockchain-ethereumethereum-poa-consortium
 [source]: https://github.com/vitoc/creditscoreblockchain
 [monitor]: /azure/monitoring-and-diagnostics/monitoring-overview-azure-monitor
-[availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
-[resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
 [vault]: https://azure.microsoft.com/services/key-vault/

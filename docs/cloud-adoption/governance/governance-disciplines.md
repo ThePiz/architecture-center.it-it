@@ -9,12 +9,12 @@ description: Panoramica del contenuto di governance all'interno del CAF
 author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 1721e2ff7b4e7879637a7c09a40a5571b73c9ace
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: ddd7f5e4b7e79ebe2ddf87be7421b6c4691aced1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901908"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639870"
 ---
 # <a name="the-five-disciplines-of-cloud-governance"></a>Le cinque discipline della governance del cloud
 
@@ -26,7 +26,7 @@ ms.locfileid: "55901908"
         <div class="cardPadding" style="padding-bottom:10px;">
             <div class="card" style="padding-bottom:10px;">
                 <div class="cardText" style="padding-left:0px;">
-Qualsiasi modifica apportata a processi di business o piattaforme tecnologiche introduce dei rischi. I team di governance del cloud, i cui membri sono talvolta definiti come responsabili del cloud, hanno il compito di ridurre tali rischi, con un'interruzione minima per gli interventi di adozione o innovazione.<br/><br/>Il modello di governance CAF guida queste decisioni indipendentemente dalla piattaforma cloud scelta, concentrandosi sullo <a href="#corporate-policy">sviluppo di criteri aziendali</a> e sulle <a href="#disciplines-of-cloud-governance">discipline della governance del cloud</a>. Le <a href="#actionable-journeys">Guide alla progettazione operativa</a> illustrano questo modello usando i servizi di Azure. Questo articolo funge da pagina di destinazione per le cinque discipline del modello di governance CAF.
+Qualsiasi modifica apportata a processi di business o piattaforme tecnologiche introduce dei rischi. I team di governance del cloud, i cui membri sono talvolta definiti come responsabili del cloud, hanno il compito di ridurre tali rischi, con un'interruzione minima per gli interventi di adozione o innovazione.<br/><br/>Il modello di governance CAF descrive queste decisioni (indipendentemente dalla piattaforma cloud scelto) focalizzando l'attenzione sullo sviluppo di criteri aziendali e <a href="#disciplines-of-cloud-governance">discipline di Governance Cloud</a>. <a href="./journeys/overview.md">I percorsi di utilità pratici</a> illustrano questo modello usando servizi di Azure. Questo articolo funge da pagina di destinazione per le cinque discipline del modello di governance CAF.
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ Qualsiasi modifica apportata a processi di business o piattaforme tecnologiche i
                     <div class="cardText" style="padding-left:0px;">
 <img src="../_images/operational-transformation-govern-highres.png" alt="Diagram of the CAF governance model: Corporate policy and governance disciplines">
 <br>
-<i>Figura 1. Oggetto visivo relativo alle cinque discipline di governance del cloud e ai criteri aziendali</i>
+<i>Figura 1. Diagramma di criteri aziendali e i cinque discipline di Governance Cloud</i>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ Qualsiasi modifica apportata a processi di business o piattaforme tecnologiche i
 
 ## <a name="disciplines-of-cloud-governance"></a>Discipline della governance del cloud
 
-In ogni provider di servizi cloud è presente una serie di discipline di governance del cloud comuni che possono essere usate come guida informativa sui criteri e sull'allineamento di toolchain. Le discipline guidano le decisioni riguardo il livello appropriato di automazione e riguardo l'imposizione di criteri aziendali nei vari provider di servizi cloud.
+In ogni provider di servizi cloud sono comuni discipline di governance che possono fungere da una Guida che consente di informare i criteri e allineare toolchain. Le discipline guidano le decisioni riguardo il livello appropriato di automazione e riguardo l'imposizione di criteri aziendali nei vari provider di servizi cloud.
 
 <!-- markdownlint-disable MD033 -->
 

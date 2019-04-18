@@ -1,7 +1,7 @@
 ---
 title: Modelli di gestione e monitoraggio
 titleSuffix: Cloud Design Patterns
-description: Le applicazioni cloud vengono eseguite in un data center remoto in cui non si dispone del controllo completo dell'infrastruttura o, in alcuni casi, del sistema operativo. Ciò può rendere la gestione e il monitoraggio più complessi rispetto a una distribuzione locale. Le applicazioni devono esporre le informazioni sul runtime che gli amministratori e gli operatori possono usare per gestire e monitorare il sistema, nonché supportare i nuovi requisiti aziendali e la personalizzazione, senza che sia necessario arrestare o ridistribuire l'applicazione.
+description: Le applicazioni cloud vengono eseguite in un data center remoto, in cui non si dispone del controllo completo dell'infrastruttura o, in alcuni casi, del sistema operativo. Ciò può rendere la gestione e il monitoraggio più complessi rispetto a una distribuzione locale. Le applicazioni devono esporre le informazioni sul runtime che gli amministratori e gli operatori possono usare per gestire e monitorare il sistema, nonché supportare i nuovi requisiti aziendali e la personalizzazione, senza che sia necessario arrestare o ridistribuire l'applicazione.
 keywords: schema progettuale
 author: dragon119
 ms.date: 06/23/2017
@@ -9,16 +9,16 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 587caf680a884cda208baec50ff914f6c7238b48
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2b141a39b17f97ece011e93ca2f05cf5d2baeeea
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243002"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641094"
 ---
 # <a name="management-and-monitoring-patterns"></a>Modelli di gestione e monitoraggio
 
-Le applicazioni cloud vengono eseguite in un data center remoto in cui non si dispone del controllo completo dell'infrastruttura o, in alcuni casi, del sistema operativo. Ciò può rendere la gestione e il monitoraggio più complessi rispetto a una distribuzione locale. Le applicazioni devono esporre le informazioni sul runtime che gli amministratori e gli operatori possono usare per gestire e monitorare il sistema, nonché supportare i nuovi requisiti aziendali e la personalizzazione, senza che sia necessario arrestare o ridistribuire l'applicazione.
+Le applicazioni cloud vengono eseguite in un data center remoto, in cui non si dispone del controllo completo dell'infrastruttura o, in alcuni casi, del sistema operativo. Ciò può rendere la gestione e il monitoraggio più complessi rispetto a una distribuzione locale. Le applicazioni devono esporre le informazioni sul runtime che gli amministratori e gli operatori possono usare per gestire e monitorare il sistema, nonché supportare i nuovi requisiti aziendali e la personalizzazione, senza che sia necessario arrestare o ridistribuire l'applicazione.
 
 |                              Modello                               |                                                              Summary                                                              |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|

@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4ad221ae5e9bd51c6d304ba33b884f71c5081b16
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2b881a6565693642b54d2cabe877853e15282b05
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244492"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640006"
 ---
 # <a name="bulkhead-pattern"></a>Modello A scomparti
 
@@ -98,7 +98,7 @@ spec:
 
 ## <a name="related-guidance"></a>Informazioni correlate
 
-- [Progettazione di applicazioni resilienti per Azure](../resiliency/index.md)
+- [Progettazione di applicazioni Azure affidabili](../reliability/index.md)
 - [Modello Interruttore](./circuit-breaker.md)
 - [Modello Nuovo tentativo](./retry.md)
 - [Modello Limitazione](./throttling.md)

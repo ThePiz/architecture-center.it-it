@@ -1,18 +1,18 @@
 ---
-title: 'CAF: Piccole e medie imprese - Criteri aziendali iniziali per la strategia di governance'
+title: 'CAF: Enterprise di piccole e medie - criteri aziendali iniziale dietro la strategia di governance'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 2/11/2019
-description: Piccole e medie imprese - Criteri aziendali iniziali per la strategia di governance
+ms.date: 02/11/2019
+description: Enterprise di piccole e medie - criteri aziendali iniziale dietro la strategia di governance
 author: BrianBlanchard
-ms.openlocfilehash: 4f49d0aae2c6ab5a5c8feba669cbbb904af2773b
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 2133145c9933ad450ea3cc55ecd68b8a667df783
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901360"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640023"
 ---
 # <a name="small-to-medium-enterprise-initial-corporate-policy-behind-the-governance-strategy"></a>Piccole e medie imprese: Criteri aziendali iniziali per la strategia di governance
 
@@ -32,8 +32,8 @@ In questo esempio pratico, il team di Governance cloud comprende due amministrat
 L'attuale tolleranza ai rischi è elevata e il desiderio di investire nella governance cloud è basso. Di conseguenza, gli indicatori di tolleranza agiscono come un sistema di avviso preventivo per attivare più investimenti di tempo ed energia. Se e quando si osservano gli indicatori seguenti, sarebbe necessario evolvere la strategia di governance.
 
 - Gestione costi: La scala di distribuzione supera le 100 risorse nel cloud oppure la spesa mensile supera i 1.000 USD al mese.
-- Baseline di sicurezza: Inclusione dei dati protetti nei piani di adozione definiti per il cloud.
-- Coerenza delle risorse: Inclusione di tutte le applicazioni di importanza cruciale nei piani di adozione definiti per il cloud.
+- Baseline di sicurezza: inclusione dei dati protetti nei piani di adozione definiti per il cloud.
+- Coerenza delle risorse: inclusione di tutte le applicazioni di importanza cruciale nei piani di adozione definiti per il cloud.
 
 [!INCLUDE [policy-statements](../../../../../includes/cloud-adoption/governance/policy-statements.md)]
 

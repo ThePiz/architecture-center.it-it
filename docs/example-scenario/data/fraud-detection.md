@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/data/media/architecture-fraud-detection.png
-ms.openlocfilehash: b10838635cb592eb93d35ce745832c55a6daae8b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: fc2222874b807a53b5e575973aa6dd4eca63fa3b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245792"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640049"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Rilevamento delle frodi in tempo reale in Azure
 
@@ -62,8 +62,6 @@ Algoritmi più complessi per il rilevamento delle frodi possono inoltre essere o
 
 Monitoraggio di Azure offre interfacce utente unificate per il monitoraggio di diversi servizi di Azure. Per altre informazioni, vedere l'articolo relativo al [monitoraggio in Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Sia Hub eventi che Analisi di flusso sono integrati in Monitoraggio di Azure.
 
-Per altre considerazioni sulla disponibilità, vedere l'[elenco di controllo per la disponibilità][availability] in Centro architetture Azure.
-
 ### <a name="scalability"></a>Scalabilità
 
 I componenti di questo scenario sono progettati per l'inserimento con iperscalabilità e l'analisi parallela elevata in tempo reale. Hub eventi di Azure è una piattaforma altamente scalabile in grado di ricevere ed elaborare milioni di eventi al secondo con bassa latenza. Hub eventi può [aumentare automaticamente](/azure/event-hubs/event-hubs-auto-inflate) il numero di unità elaborate per soddisfare le esigenze di utilizzo. Analisi di flusso di Azure può analizzare volumi elevati di dati in streaming da molte origini. È possibile aumentare le prestazioni di Analisi di flusso aumentando il numero di [unità di streaming](/azure/stream-analytics/stream-analytics-streaming-unit-consumption) allocate per l'esecuzione del processo di streaming.
@@ -78,7 +76,7 @@ Per indicazioni generali sulla progettazione di soluzioni sicure, vedere la [doc
 
 ### <a name="resiliency"></a>Resilienza
 
-Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [Progettazione di applicazioni resilienti per Azure][resiliency].
+Per indicazioni generali sulla progettazione di soluzioni resilienti, vedere [progettazione di applicazioni Azure affidabili](../../reliability/index.md).
 
 ## <a name="deploy-the-scenario"></a>Distribuire lo scenario
 
@@ -111,7 +109,5 @@ In scenari di rilevamento delle frodi più complessi può essere utile un modell
 [docs-r-server-sample-solutions]: /machine-learning-server/r/sample-solutions
 [r-server-fraud-detection]: https://microsoft.github.io/r-server-fraud-detection/
 [technet-fraud-detection]: https://blogs.technet.microsoft.com/machinelearning/2017/06/28/using-azure-data-lake-and-r-for-fraud-detection/
-[availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
-[resiliency]: ../../resiliency/index.md
 [security]: /azure/security/

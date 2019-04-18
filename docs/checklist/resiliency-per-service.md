@@ -8,16 +8,16 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency, checklist
-ms.openlocfilehash: fbb7501a663c8b5e326b2b601685419c8e5a0806
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: db42bd259bf71ef2ffa3e9efc5e4cd6ba2078e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486914"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639700"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Elenco di controllo per la resilienza per servizi di Azure specifici
 
-La resilienza è la capacità di un sistema di recuperare in caso di errore e continuare a funzionare ed è uno dei [punti chiave della qualità del software](../guide/pillars.md). Ogni tecnologia ha modalità di errore specifiche che è necessario tenere in considerazione durante la progettazione e l'implementazione di un'applicazione. Usare questo elenco di controllo per esaminare le considerazioni relative alla resilienza per servizi di Azure specifici. Vedere anche l'[elenco di controllo generale per la resilienza](./resiliency.md).
+La resilienza è la capacità di un sistema di correggere gli errori e continuare a funzionare. Ogni tecnologia ha modalità di errore specifiche che è necessario tenere in considerazione durante la progettazione e l'implementazione di un'applicazione. Usare questo elenco di controllo per esaminare le considerazioni relative alla resilienza per servizi di Azure specifici. Per altre informazioni sulla progettazione di applicazioni resilienti, vedere [progettare le applicazioni Azure affidabili](../reliability/index.md).
 
 ## <a name="app-service"></a>Servizio app
 
@@ -143,7 +143,7 @@ Se si usa Redis Cache come cache di dati temporanea e non come archivio persiste
 
 **Inserire ogni livello applicazione in un set di disponibilità separato.** In un'applicazione a più livelli, non inserire le macchine virtuali appartenenti a livelli differenti nello stesso set di disponibilità. Le macchine virtuali in un set di disponibilità sono posizionate in più domini di errore (FD) e di aggiornamento (UD). Per ottenere il vantaggio della ridondanza dei domini di errore e dei domini di aggiornamento, tuttavia, ogni macchina virtuale nel set di disponibilità deve essere in grado di gestire le stesse richieste del client.
 
-**Replicare le macchine virtuali con Azure Site Recovery.** Quando si esegue la replica di macchine virtuali di Azure usando [Site Recovery][site-recovery], tutti i dischi delle macchine virtuali vengono replicati nell'area di destinazione in modo continuativo e asincrono. I punti di ripristino vengono creati a intervalli di pochi minuti. In tal modo, si ottiene un Obiettivo del punto di ripristino (RPO) nell'ordine di minuti. È possibile condurre esercitazioni sul ripristino di emergenza quante volte si vuole, senza alcun impatto sull'applicazione di produzione o sulla replica in corso. Per altre informazioni, vedere [Eseguire un'esercitazione sul ripristino di emergenza in Azure][site-recovery-test].
+**Replicare le macchine virtuali con Azure Site Recovery.** Quando si esegue la replica di macchine virtuali di Azure usando [Site Recovery][site-recovery], tutti i dischi delle macchine virtuali vengono replicati nell'area di destinazione in modo continuativo e asincrono. I punti di ripristino vengono creati a intervalli di pochi minuti. In tal modo, si ottiene un Obiettivo del punto di ripristino (RPO) nell'ordine di minuti. È possibile condurre esercitazioni sul ripristino di emergenza come numero di volte desiderato, senza influire sull'applicazione di produzione o sulla replica in corso. Per altre informazioni, vedere [Eseguire un'esercitazione sul ripristino di emergenza in Azure][site-recovery-test].
 
 **Scegliere le dimensioni di VM corrette in base ai requisiti di prestazioni.** Quando si sposta un carico di lavoro esistente in Azure, per iniziare scegliere le dimensioni di VM più simili a quelle dei server locali. Misurare quindi le prestazioni del carico di lavoro effettivo in relazione agli aspetti di CPU, memoria e operazioni di I/O al secondo del disco e regolare le dimensioni secondo le necessità. Ciò aiuta a garantire il corretto funzionamento dell'applicazione in un ambiente cloud. Inoltre, se sono necessarie più schede di interfaccia di rete, tenerne presente il limite per ogni dimensione.
 

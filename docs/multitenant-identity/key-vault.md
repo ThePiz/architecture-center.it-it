@@ -8,12 +8,12 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 6aa8d33da0b2fd41fdc037bac28bca9f7ff09907
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 170a88863fef4b97e137d7fb047a9168d6463e01
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249416"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639955"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>Usare Azure Key Vault per proteggere i segreti dell'applicazione
 
@@ -103,6 +103,7 @@ Impostare ora questo utente come proprietario della sottoscrizione.
     ```powershell
     .\Setup-KeyVault.ps1 -Subject <<subject>>
     ```
+
     Per il parametro `Subject` immettere qualsiasi nome, ad esempio "surveysapp". Lo script genera un certificato autofirmato e lo archivia nell'archivio certificati "Utente corrente/Personale". L'output dallo script è un frammento JSON. Copiare questo valore.
 
 2. Nel [portale di Azure][azure-portal] passare alla directory in cui è registrata l'applicazione Surveys selezionando l'account nell'angolo in alto a destra del portale.
@@ -174,6 +175,7 @@ Impostare ora questo utente come proprietario della sottoscrizione.
     ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true"
     ```
+
     dove
 
    * key vault name: nome assegnato all'insieme di credenziali delle chiavi nel passaggio precedente.
@@ -214,6 +216,7 @@ Impostare ora questo utente come proprietario della sottoscrizione.
     //    config["AzureAd:ClientId"],
     //    config["AzureAd:ClientSecret"]);
     ```
+
 3. In Tailspin.Surveys.Web/Startup.cs individuare il codice per la registrazione di `ICredentialService`. Rimuovere il commento dalla riga che usa `CertificateCredentialService` e impostare come commento la riga che usa `ClientCredentialService`:
 
     ```csharp

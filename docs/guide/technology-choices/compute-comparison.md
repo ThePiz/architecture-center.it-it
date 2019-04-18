@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 2b6b9b941bf7a3c0136b71ecb65bfe4b4a59e07b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c4ce7a5da196e0fcf8f85376439e53683432883e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245602"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640465"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Criteri per la scelta di un servizio di calcolo di Azure
 
@@ -31,7 +31,7 @@ Il termine *calcolo* fa riferimento al modello di hosting per le risorse di calc
 | Gestione dello stato | Senza stato o con stato | Senza stato | Senza stato o con stato | Senza stato | Senza stato o con stato | Senza stato | Senza stato |
 | Hosting Web | Agnostico | Integrato | Agnostico | Non applicabile | Agnostico | Agnostico | No  |
 | Può essere distribuito in una rete virtuale dedicata? | Supportato | Supportato<a href="#note5"><sup>5</sup></a> | Supportato | Supportato<a href="#note5"><sup>5</sup></a> | [Supportato](/azure/aks/networking-overview) | Non supportate | Supportato |
-| Connettività ibrida | Supportato | Supportato<a href="#note6"><sup>6</sup></a>  | Supportato | Supportato<a href="#node7"><sup>7</sup></a> | Supportato | Non supportate | Supportato |
+| Connettività ibrida | Supportato | Supportato<a href="#note6"><sup>6</sup></a>  | Supportato | Supportato<a href="#note7"><sup>7</sup></a> | Supportato | Non supportate | Supportato |
 
 Note
 

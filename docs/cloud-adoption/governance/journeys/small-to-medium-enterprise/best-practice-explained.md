@@ -1,18 +1,18 @@
 ---
-title: 'Cloud Adoption Framework: Piccole e medie imprese: informazioni tecniche aggiuntive relative a un MVP per la governance'
+title: 'CAF: Enterprise di piccole e medie-procedure consigliate illustrate'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 'Spiegazione per piccole e medie imprese: informazioni tecniche aggiuntive relative a un MVP per la governance'
+description: Enterprise di piccole e medie-procedure consigliate illustrate
 author: BrianBlanchard
-ms.openlocfilehash: e726213459c8bee63e3cc77ab54868fe7196b3ac
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: b9b385be345098bf1b9e0e1cdce7fd3cceeb5523
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901561"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639581"
 ---
 # <a name="small-to-medium-enterprise-best-practice-explained"></a>Piccole e medie imprese: Spiegazione delle procedure consigliate
 
@@ -22,7 +22,7 @@ Questo articolo illustra le strategie di alto livello necessarie per creare un M
 
 ## <a name="governance-mvp-cloud-adoption-foundation"></a>MVP per la governance (Cloud Adoption Foundation)
 
-Un'adozione rapida dei criteri di governance e aziendali è possibile, grazie ad alcuni semplici principi e a strumenti di governance basati sul cloud. Di seguito sono descritte le prime tre discipline della governance del cloud a cui fare riferimento in qualsiasi processo di governance. Ognuna verrà approfondita in questo articolo.
+Un'adozione rapida dei criteri di governance e aziendali è possibile, grazie ad alcuni semplici principi e a strumenti di governance basati sul cloud. Questi sono i primi tre discipline approccio in qualsiasi processo di governance. Ognuna verrà approfondita in questo articolo.
 
 Per iniziare, questo articolo illustra le strategie di alto livello alla base delle discipline Baseline di identità, Baseline di sicurezza e Accelerazione della distribuzione necessarie per creare un MVP per la governance, che verrà utilizzato come base per qualsiasi processo di adozione.
 
@@ -38,7 +38,7 @@ Questa implementazione può essere descritta anche usando un semplice elenco di 
 
 1. Sollecitare decisioni relative alle dipendenze principali: identità, rete e crittografia.
 2. Determinare il modello da usare durante l'imposizione dei criteri aziendali.
-3. Determinare i modelli di governance appropriati per le discipline Coerenza delle risorse, Assegnazione di tag alle risorse e Registrazione e creazione di report.
+3. Determinare i modelli di governance appropriate per la coerenza di risorse, tag delle risorse e discipline di registrazione e report.
 4. Implementare gli strumenti di governance conformi al modello di imposizione dei criteri scelto per applicare decisioni dipendenti e di governance.
 
 [!INCLUDE [implementation-process](../../../../../includes/cloud-adoption/governance/implementation-process.md)]
@@ -67,7 +67,7 @@ Come modello di coerenza delle risorse è stata scelta la **coerenza di distribu
 - I gruppi di gestione di Azure consentono l'aggiornamento delle progettazioni di governance man mano che maturano i criteri aziendali.
 - Un'implementazione estesa di Criteri di Azure può richiedere al team più tempo del previsto e non offrire particolari vantaggi a questo punto. È tuttavia opportuno creare e applicare semplici criteri predefiniti per imporre le poche definizioni dei criteri di governance del cloud. Questi criteri consentono di definire l'implementazione di requisiti di governance specifici che può quindi essere applicata a tutti gli asset distribuiti.
 
-### <a name="resource-tagging"></a>Assegnazione di tag alle risorse
+### <a name="resource-tagging"></a>Tag delle risorse
 
 Come modello per l'assegnazione di tag alle risorse è stata scelta la **classificazione**.
 

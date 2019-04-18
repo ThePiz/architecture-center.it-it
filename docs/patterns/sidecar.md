@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2b0e46a06f7fe47f281f726f73128db1d7dd1067
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 20a63cdd935f28cc47686238d34d654da2798985
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243562"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639598"
 ---
 # <a name="sidecar-pattern"></a>Modello sidecar
 
@@ -46,7 +46,7 @@ I vantaggi dell'uso di un modello sidecar includono:
 
 - A causa della vicinanza all'applicazione principale, non c'è una latenza significativa durante la comunicazione tra di essi.
 
-- Anche per le applicazioni che non offrono un meccanismo di estensibilità, è possibile usare un sidecar per estendere le funzionalità collegandolo come processo autonomo nello stesso host o sottocontenitore dell'applicazione principale.
+- Anche per le applicazioni che non forniscono un meccanismo di estensibilità, è possibile usare un sidecar per estendere le funzionalità collegandolo come proprio processo nello stesso host o sottocontenitore dell'applicazione principale.
 
 Il modello sidecar viene spesso usato con i contenitori e definito come contenitore sidecar o sidekick.
 
