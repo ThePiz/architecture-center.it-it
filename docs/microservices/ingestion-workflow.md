@@ -7,18 +7,21 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: aa5c2b4357ed53da9bebf4795fcbefb89afe0c78
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: a36d2b4c7bfd2b26d5e1de44ddd8005fbce4bdd2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482572"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640856"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Progettazione di microservizi: Inserimento e flusso di lavoro
 
 I microservizi presentano spesso un flusso di lavoro che coinvolge più servizi per una singola transazione. Il flusso di lavoro deve essere affidabile e non può perdere transazioni o lasciarle in uno stato parzialmente completato. È anche fondamentale controllare la frequenza di inserimento delle richieste in ingresso. Con un numero elevato di piccoli servizi che comunicano tra loro, un picco di richieste in ingresso può compromettere la comunicazione tra i servizi.
 
 ![Diagramma del flusso di lavoro di inserimento](./images/ingestion-workflow.png)
+
+> [!NOTE]
+> Questo articolo si basa su un'implementazione di riferimento di microservizi denominata il [applicazione di recapito tramite Drone](./design/index.md).
 
 ## <a name="the-drone-delivery-workflow"></a>Flusso di lavoro per il recapito tramite drone
 
@@ -83,7 +86,7 @@ All'interno di una partizione, l'host processore di eventi attende che il metodo
 > [!NOTE]
 > L'host processore non resta effettivamente in *attesa*, nel senso di bloccare un thread. Il metodo `ProcessEventsAsync` è asincrono, quindi l'host processore può eseguire altre operazioni mentre il metodo viene completato. Tuttavia, non recapita un altro batch di messaggi per la partizione fino a quando il metodo non restituisce un risultato.
 
-Nell'applicazione del drone, un batch di messaggi può essere elaborato in parallelo. L'attesa del completamento dell'intero batch può però causare un collo di bottiglia. La velocità di elaborazione dipende dalla velocità del messaggio più lento all'interno di un batch. Qualsiasi variazione nei tempi di risposta può creare una "lunga coda" in cui poche risposte lente intralciano l'intero sistema. Dai test delle prestazioni è emerso che usando questo approccio non è stato raggiunto l'obiettivo prefissato per la velocità effettiva. Ciò *non* significa che bisogna evitare di usare l'host processore di eventi. Per ottenere una velocità effettiva elevata, tuttavia, evitare le attività a esecuzione prolungata all'interno del metodo `ProcesssEventsAsync`. Elaborare ogni batch rapidamente.
+Nell'applicazione del drone, un batch di messaggi può essere elaborato in parallelo. L'attesa del completamento dell'intero batch può però causare un collo di bottiglia. La velocità di elaborazione dipende dalla velocità del messaggio più lento all'interno di un batch. Qualsiasi variazione nei tempi di risposta può creare una "lunga coda" in cui poche risposte lente intralciano l'intero sistema. Dai test delle prestazioni è emerso che usando questo approccio non è stato raggiunto l'obiettivo prefissato per la velocità effettiva. Ciò *non* significa che bisogna evitare di usare l'host processore di eventi. Per ottenere una velocità effettiva elevata, tuttavia, evitare le attività a esecuzione prolungata all'interno del metodo `ProcessEventsAsync`. Elaborare ogni batch rapidamente.
 
 ### <a name="iothub-react"></a>IotHub React
 
@@ -176,7 +179,7 @@ Se la logica per le transazioni di compensazione è complessa, prendere in consi
 
 ![Diagramma che illustra il microservizio supervisore](./images/supervisor.png)
 
-## <a name="idempotent-vs-non-idempotent-operations"></a>Confronto tra operazioni idempotenti e non idempotenti
+## <a name="idempotent-versus-non-idempotent-operations"></a>Idempotenti rispetto alle operazioni non idempotenti
 
 Per evitare di perdere le richieste, il servizio Utilità di pianificazione deve garantire che tutti i messaggi vengano elaborati almeno una volta. Hub eventi può fornire una garanzia di recapito dei messaggi di tipo at-least-once se il client imposta correttamente i checkpoint.
 
@@ -239,9 +242,6 @@ public async Task<IActionResult> Put([FromBody]Delivery delivery, string id)
 ```
 
 È previsto che la maggior parte delle richieste creerà una nuova entità, quindi il metodo chiama in modo ottimistico `CreateAsync` sull'oggetto del repository e quindi gestisce eventuali eccezioni di risorsa duplicata aggiornando invece la risorsa.
-
-> [!div class="nextstepaction"]
-> [Gateway API](./gateway.md)
 
 <!-- links -->
 
