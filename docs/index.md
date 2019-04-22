@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: e247985aa92e1c2bf3cb4d43514f4d06250f1141
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: d91e905f2309792cf96fe41fa2fdf56704b95d6e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419972"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640295"
 ---
 # <a name="azure-architecture-center"></a>Centro architetture Azure
 
@@ -162,8 +162,8 @@ ms.locfileid: "58419972"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>Progettare per la resilienza</h3>
-                            <p>Informazioni su come progettare applicazioni resilienti per Azure.</p>
+                            <h3>Progettazione di applicazioni Azure affidabili</h3>
+                            <p>Informazioni su come implementare tolleranza di errore e disponibilità elevata nelle applicazioni per Azure.</p>
                         </div>
                     </div>
                 </div>
@@ -204,26 +204,6 @@ ms.locfileid: "58419972"
                         <div class="cardText">
                             <h3>Modelli di progettazione cloud</h3>
                             <p>Modelli di progettazione per sviluppatori e architetti di soluzioni. Ogni modello descrive un problema, un modello che risolve il problema e un esempio basato su Azure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Checklists -->
-    <li>
-        <a href="/azure/architecture/checklist/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/checklist.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Elenco di controllo per l'analisi della progettazione</h3>
-                            <p>Elenchi di controllo per assistere gli sviluppatori e gli architetti di soluzioni durante il processo di progettazione.</p>
                         </div>
                     </div>
                 </div>
